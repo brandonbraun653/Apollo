@@ -505,6 +505,10 @@ proc CORE_PLL_Config {CLKIN N M M4 M5 M6} {
   mww phys $CM_CLKMODE_DPLL_CORE $clkmode
   while {[expr [expr [mrw $CM_IDLEST_DPLL_CORE] & 0x00000001] != 0x000000001]} {}
   echo {Locked!}
+
+
+  # Verify the settings were applied correctly
+
 }
 
 
