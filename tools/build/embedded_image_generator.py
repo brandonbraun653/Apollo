@@ -1,17 +1,46 @@
 # ************************************************************************************************
 #   File Name:
-#     create_image_header.py
+#       embedded_image_generator.py
 #
 #   Description:
-#     Creates a binary file that is suitable for loading to non-volatile memory, to be read
-#     by the AM335x on-chip ROM at boot.
+#       Utility suite for generation of executable images of a variety of formats for the
+#       AM3358.
 #
-#   2020 | Brandon Braun | brandonbraun653@gmail.com
+#   2020-2021 | Brandon Braun | brandonbraun653@gmail.com
 # ************************************************************************************************
 
+from enum import Enum
 from typing import Dict
 from pathlib import Path
 from argparse import ArgumentParser
+
+
+class MLOTarget(Enum):
+    SD_RAW = 0
+    SPI = 1
+    UART = 2
+
+
+class MLOGen:
+    """ Generates an image suitable for loading by the TI Boot ROM """
+    TARGETS = [MLOTarget.UART, MLOTarget.SPI, MLOTarget.SD_RAW]
+
+    OCM_RAM_START_ADDRESS = 0x402F0400
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def mmc_raw_table_of_contents() -> bytes:
+        pass
+
+
+class ROMGen:
+    """ Generates an image that can be read by the MLO for execution """
+    pass
+
+
+
 
 
 def parse_arguments() -> Dict:
