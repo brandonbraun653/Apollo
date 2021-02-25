@@ -1,15 +1,25 @@
 include("${COMMON_TOOL_ROOT}/cmake/utility/embedded.cmake")
 
+# ====================================================
+# Export the project's root path
+# ====================================================
+set(APOLLO_ROOT "${CMAKE_CURRENT_SOURCE_DIR}" CACHE STRING "")
+set(ApolloExportDir "${PROJECT_BINARY_DIR}/Apollo")
+
+# ====================================================
+# Project Library
+# ====================================================
 add_subdirectory(src)
 
-
-gen_intf_lib_variants(
+# ====================================================
+# Interface Library
+# ====================================================
+gen_intf_lib(
   TARGET
-    apollo_core
-
-  INTF_LIBRARIES
-
-
+    apollo_intf_inc
+  INTF_INCLUDES
+    "${APOLLO_ROOT}/.."
+    "${APOLLO_ROOT}/include"
   EXPORT_DIR
-    "${PROJECT_BINARY_DIR}/Apollo"
+    ${ApolloExportDir}
 )
