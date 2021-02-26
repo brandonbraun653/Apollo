@@ -1,14 +1,14 @@
     .global _reset_handler
-    .global SVC_Handler
-    .global Prefetch_Handler
-    .global Abort_Handler
-    .global IRQ_Handler
-    .global FIQ_Handler
-    .global Vector_Table
-    .global _stack
     .global _startup
     .global _bss_end
-    .global _mlo_startup_entry
+
+    .extern _mlo_startup_entry
+    .extern _stack
+    .extern SVC_Handler
+    .extern Prefetch_Handler
+    .extern Abort_Handler
+    .extern IRQ_Handler
+    .extern FIQ_Handler
 
 @************************ Internal Definitions ******************************
 @
@@ -34,66 +34,96 @@
 
     .equ  I_F_BIT, 0xC0
 
-    @ This code is assembled for ARM instructions
+/* Set the MLO stack to the pre-allocated area in OCM */
+    @.equ  _stack, 0x4030B800
+
+@-------------------------------------------------------------------------------
+@ Reset Handler Function Defintion:
+@   The reset handler sets up the stack pointers for all the modes. The FIQ and
+@   IRQ shall be disabled during this. Then clears the BSS section, enters the
+@   main function.
+@-------------------------------------------------------------------------------
     .section .text.startup, "ax"
+    .arm
     .code 32
 
-@******************************************************************************
-@
-@******************************************************************************
+_reset_handler:
+    mrs r0, cpsr                          @ copy the CPSR to r0
+    bic r0, r0, #0x1F                     @ clear the mode bits so we start from a known state
+    orr r0, r0, #0x13                     @ set SVC mode, defined in ARM Table B1-1. CPSR M[4:0] bits
+    orr r0, r0, #0xC0                     @ disable (mask) FIQ and IRQ. These are the CPSR I/F bits
+    msr cpsr, r0                          @ copy modified r0 into CPSR
 
-@ _startup:
-@     LDR pc, =_reset_handler
-@     LDR pc, =Undefined_Handler
-@     LDR pc, =SVC_Handler
-@     LDR pc, =Prefetch_Handler
-@     LDR pc, =Abort_Handler
-@     NOP                    @Reserved vector
-@     LDR pc, =IRQ_Handler
-@     LDR pc, =FIQ_Handler
-
-@ The reset handler sets up the stack pointers for all the modes. The FIQ and
-@ IRQ shall be disabled during this. Then clears the BSS section, enters the
-@ main function.
-_startup:
     @ Set up the Stack for Undefined mode
-    LDR   r0, =_stack                     @ Read the stack address
-    MSR   cpsr_c, #MODE_UND|I_F_BIT       @ switch to undef mode
-    MOV   sp,r0                           @ write the stack pointer
-    SUB   r0, r0, #UND_STACK_SIZE         @ give stack space
+    ldr   r0, =_stack                     @ Read the stack address
+    msr   cpsr_c, #MODE_UND|I_F_BIT       @ switch to undef mode
+    mov   sp,r0                           @ write the stack pointer
+    sub   r0, r0, #UND_STACK_SIZE         @ give stack space
 
     @ Set up the Stack for abort mode
-    MSR   cpsr_c, #MODE_ABT|I_F_BIT       @ Change to abort mode
-    MOV   sp, r0                          @ write the stack pointer
-    SUB   r0,r0, #ABT_STACK_SIZE          @ give stack space
+    msr   cpsr_c, #MODE_ABT|I_F_BIT       @ Change to abort mode
+    mov   sp, r0                          @ write the stack pointer
+    sub   r0,r0, #ABT_STACK_SIZE          @ give stack space
 
     @ Set up the Stack for FIQ mode
-    MSR   cpsr_c, #MODE_FIQ|I_F_BIT       @ change to FIQ mode
-    MOV   sp,r0                           @ write the stack pointer
-    SUB   r0,r0, #FIQ_STACK_SIZE          @ give stack space
+    msr   cpsr_c, #MODE_FIQ|I_F_BIT       @ change to FIQ mode
+    mov   sp,r0                           @ write the stack pointer
+    sub   r0,r0, #FIQ_STACK_SIZE          @ give stack space
 
     @ Set up the Stack for IRQ mode
-    MSR   cpsr_c, #MODE_IRQ|I_F_BIT       @ change to IRQ mode
-    MOV   sp,r0                           @ write the stack pointer
-    SUB   r0,r0, #IRQ_STACK_SIZE          @ give stack space
+    msr   cpsr_c, #MODE_IRQ|I_F_BIT       @ change to IRQ mode
+    mov   sp,r0                           @ write the stack pointer
+    sub   r0,r0, #IRQ_STACK_SIZE          @ give stack space
 
     @ Set up the Stack for SVC mode
-    MSR   cpsr_c, #MODE_SVC|I_F_BIT       @ change to SVC mode
-    MOV   sp,r0                           @ write the stack pointer
-    SUB   r0,r0, #SVC_STACK_SIZE          @ give stack space
+    msr   cpsr_c, #MODE_SVC|I_F_BIT       @ change to SVC mode
+    mov   sp,r0                           @ write the stack pointer
+    sub   r0,r0, #SVC_STACK_SIZE          @ give stack space
 
     @ Set up the Stack for User/System mode
-    MSR   cpsr_c, #MODE_SYS|I_F_BIT       @ change to system mode
-    MOV   sp,r0                           @ write the stack pointer
+    msr   cpsr_c, #MODE_SYS|I_F_BIT       @ change to system mode
+    mov   sp,r0                           @ write the stack pointer
 
     @ Switch back to SVC mode to start the MLO in priviledged mode
-    MSR   cpsr_c, #MODE_SVC|I_F_BIT
+    msr   cpsr_c, #MODE_SVC|I_F_BIT
 
     @ Enter the MLO startup
-    b _mlo_startup_entry
-@    LDR   r10,=_mlo_startup_entry                       @ Get the address of main
-@    MOV   lr,pc                           @ Dummy return
-@    BX    r10                             @ Branch to main
+    b     _mlo_startup_entry
+
+
+@-------------------------------------------------------------------------------
+@ MLO Exception Vector Table Defintion:
+@   This
+@-------------------------------------------------------------------------------
+    .section .ram_exceptions, "ax"
+    .arm
+    .code 32
+
+_exception_vectors:
+    b _reset_handler
+    ldr pc, =_undf
+    ldr pc, =_swi
+    ldr pc, =_pabt
+    ldr pc, =_dabt
+    nop                    @Reserved vector
+    ldr pc, =_irq
+    ldr pc, =_fiq
+
+/* Allocate addresses for the exception handlers */
+_undf:  .word Undefined_Handler
+_swi:   .word SVC_Handler
+_pabt:  .word Prefetch_Handler
+_dabt:  .word Abort_Handler
+_irq:   .word IRQ_Handler
+_fiq:   .word FIQ_Handler
+
+/* Default exception handlers that simply spin */
+__undf:  b .
+__swi:   b .
+__pabt:  b .
+__dabt:  b .
+__irq:   b .
+__fiq:   b .
 
 @ End of the file
     .end

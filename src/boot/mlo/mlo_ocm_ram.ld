@@ -1,12 +1,11 @@
 OUTPUT_FORMAT("elf32-littlearm")
 OUTPUT_ARCH(arm)
-ENTRY(_startup)
+ENTRY(_reset_handler)
 
 MEMORY
 {
    ocm_ram : ORIGIN = 0x402f0400, LENGTH = 0x1B400
 }
-
 
 SECTIONS
 {
@@ -20,7 +19,9 @@ SECTIONS
     .data :
     {
         . = ALIGN(4);
+        PROVIDE_HIDDEN (__data_start__ = .);
         *(.data)
+        PROVIDE_HIDDEN (__data_end__ = .);
     } > ocm_ram
 
     .bss :

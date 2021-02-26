@@ -2,6 +2,7 @@
 # Builds the standard project MLO for the AM335x
 #
 # Configure Command:
+#   cmake -DTOOLCHAIN=arm-linux-gnueabihf -DCMAKE_BUILD_TYPE=Debug --configure ../
 #   cmake -DTOOLCHAIN=arm-none-eabi -DCMAKE_BUILD_TYPE=Debug --configure ../
 #   cmake -DTOOLCHAIN=gcc -DCMAKE_BUILD_TYPE=Debug --configure ../
 #

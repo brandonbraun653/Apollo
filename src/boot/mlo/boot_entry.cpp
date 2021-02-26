@@ -14,21 +14,44 @@ extern "C"
 
 #include <Apollo/src/boot/mlo/boot_linker_refs.hpp>
 
-/**
- *  System entry after the assembly Reset_Handler executes.
- */
-void __attribute__( ( used ) ) _mlo_startup_entry( void )
-{
-  while ( 1 )
-  {
-    __asm volatile( "nop" );
-  }
-}
+  /*-------------------------------------------------
+  Library Functions
+  -------------------------------------------------*/
+  extern void __libc_init_array();
 
-// void main(void)
-// {
-//   _mlo_startup_entry();
-// }
+  /**
+   *  System entry after the assembly Reset_Handler executes.
+   */
+  void _mlo_startup_entry( void )
+  {
+
+    /*------------------------------------------------
+    Copy the data segment from flash into RAM
+    ------------------------------------------------*/
+    void **pSource, **pDest;
+    // for ( pSource = &_sidata, pDest = &_sdata; pDest != &_edata; pSource++, pDest++ )
+    // {
+    //   *pDest = *pSource;
+    // }
+
+    /*------------------------------------------------
+    Zero initialize the bss segment
+    ------------------------------------------------*/
+    for ( pDest = &__bss_start__; pDest != &__bss_end__; pDest++ )
+    {
+      *pDest = 0;
+    }
+
+    /*------------------------------------------------
+    Takes care of array/ctor/dtor data
+    ------------------------------------------------*/
+    //__libc_init_array();
+  }
+
+  // void main(void)
+  // {
+  //   _mlo_startup_entry();
+  // }
 
 #ifdef __cplusplus
 } /* extern "C" */
