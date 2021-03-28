@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/am574x/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/master_slave/src/main_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/master_slave/am574x/c66/bios/i2c_c66_idkAM574x_slave.cfg"
+-ccs.setCompilerOptions "-D -mv6600 -g -dSOC_AM574x -didkAM574x -dUSE_BIOS -dC66X --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH}/ti/drv/i2c "  -rtsc.enableRtsc

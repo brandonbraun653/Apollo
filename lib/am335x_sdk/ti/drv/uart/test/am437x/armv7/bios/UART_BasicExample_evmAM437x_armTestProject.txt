@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/am437x/armv7/bios/am437x_app_evmam437x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard  -DSOC_AM437X -DevmAM437x -DBUILDCFG_MOD_UART -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/uart "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

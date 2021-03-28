@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/dss/raster/raster_app_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/dss/dss_app.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/dss/raster/rtos/am437x_app_dss_evmam437x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard -DSOC_AM437X -DevmAM437x -DAM43XX_FAMILY_BUILD -DRTOS_BUILD -g -gstrict-dwarf -gdwarf-3 -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/starterware/examples/dss -I${PDK_INSTALL_PATH}/ti/starterware/examples/example_utils -I${PDK_INSTALL_PATH}/ti/starterware/device -I${PDK_INSTALL_PATH}/ti/starterware/examples/dss -I${PDK_INSTALL_PATH}/ti/starterware/include/hw -I${PDK_INSTALL_PATH}/ti/starterware/include/utils -I${PDK_INSTALL_PATH}/ti/starterware/include/am43xx -I${PDK_INSTALL_PATH}/ti/starterware/include/am43xx/am437x -I${PDK_INSTALL_PATH}/ti/starterware/include -I${PDK_INSTALL_PATH}"  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

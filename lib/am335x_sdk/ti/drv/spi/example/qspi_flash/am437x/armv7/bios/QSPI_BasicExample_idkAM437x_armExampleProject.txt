@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/qspi_flash/src/main_qspi_flash_read_write.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/qspi_flash/src/Flash_S25FL/S25FL.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/qspi_flash/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/qspi_flash/am437x/armv7/bios/am437x_app_idkam437x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard -DUART_V1 -DSOC_AM437x -DBUILDCFG_MOD_SPI -DidkAM437x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

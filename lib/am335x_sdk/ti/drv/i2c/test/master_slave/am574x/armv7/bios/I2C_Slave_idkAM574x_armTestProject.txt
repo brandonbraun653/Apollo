@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/am574x/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/master_slave/src/main_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/master_slave/am574x/armv7/bios/i2c_arm_idkAM574x_slave.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM574x -DidkAM574x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

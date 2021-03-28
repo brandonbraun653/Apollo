@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.drv.icss_emac" version="1, 0, 0, 16" producerId="undefined">
+    <units>
+        <module name="Settings"/>
+    </units>
+    <sources>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="package/rel/icss_emac_1_0_0_16.tar.dep" src="package/rel/icss_emac_1_0_0_16.xdc.inc"/>
+    </makefiles>
+    <targets>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="icss_emac_1_0_0_16"
+        pname="./packages/icss_emac_1_0_0_16.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="src/icss_emacLoc.c"/>
+        <file name="src/icss_emacFwLearning.c"/>
+        <file name="src/icss_emacDrv.c"/>
+        <file name="src/icss_emacStormControl.c"/>
+        <file name="src/icss_emacStatistics.c"/>
+        <file name="src/icss_emacFwInit.c"/>
+        <file name="src/icss_emacLearning.c"/>
+        <file name="src/icss_emac_osal.h"/>
+        <file name="src/phy.h"/>
+        <file name="src/icss_emacLoc.h"/>
+        <file name="src/src_files_common.mk"/>
+        <file name="src/Module.xs"/>
+        <file name="docs/tifooter.htm"/>
+        <file name="docs/tiheader.htm"/>
+        <file name="docs/tilogo.gif"/>
+        <file name="docs/titagline.gif"/>
+        <file name="docs/PDK_ICSS_EMAC_LLD_01.00.00_manifest.html"/>
+        <file name="docs/doxygen"/>
+        <file name="docs/ReleaseNotes_ICSS_EMAC_LLD.pdf"/>
+        <file name="docs/Module.xs"/>
+        <file name="test/src/main.c"/>
+        <file name="test/src/main_a53.c"/>
+        <file name="test/src/main_k2g.c"/>
+        <file name="test/src/armv7/linux/mmap_helper.c"/>
+        <file name="test/src/main_m4.c"/>
+        <file name="test/src/main_poll_test.c"/>
+        <file name="test/src/test_common_utils.c"/>
+        <file name="test/src/main_a9.c"/>
+        <file name="test/src/main_a8.c"/>
+        <file name="test/src/stp_switch_test_utils.c"/>
+        <file name="test/src/main_dsp.c"/>
+        <file name="test/src/armv7/linux/__mmap_helper.h"/>
+        <file name="test/src/armv7/linux/mmap_helper.h"/>
+        <file name="test/src/stp_switch_test_utils.h"/>
+        <file name="test/src/fw_mem_section.h"/>
+        <file name="test/src/test_common_utils.h"/>
+        <file name="test/src/tiswitch_pruss_intc_mapping.h"/>
+        <file name="test/src/tiemac_pruss_intc_mapping.h"/>
+        <file name="test/am437x/armv7/linux/makefile"/>
+        <file name="test/am335x/armv7/linux/makefile"/>
+        <file name="test/k2g/armv7/linux/makefile"/>
+        <file name="test/am571x/armv7/linux/makefile"/>
+        <file name="test/am574x/armv7/linux/makefile"/>
+        <file name="test/am572x/armv7/linux/makefile"/>
+        <file name="test/am65xx/a53/bios/icss_emac_arm_wSoCFile.cfg"/>
+        <file name="test/am437x/armv7/bios/am437x_app_idk_wSoCLib.cfg"/>
+        <file name="test/am437x/armv7/bios/am437x_app_idk_wSoCFile.cfg"/>
+        <file name="test/am335x/armv7/bios/am335x_app_iceamic110_wSoCFile.cfg"/>
+        <file name="test/am335x/armv7/bios/am335x_app_iceamic110_wSoCLib.cfg"/>
+        <file name="test/am335x/armv7/bios/am335x_app_icev2_wSoCLib.cfg"/>
+        <file name="test/am335x/armv7/bios/am335x_app_icev2_wSoCFile.cfg"/>
+        <file name="test/k2g/armv7/bios/icss_emac_arm_wSoCLib.cfg"/>
+        <file name="test/k2g/c66/bios/icss_emac_c66_wSoCLib.cfg"/>
+        <file name="test/am571x/armv7/bios/icss_emac_arm_wSoCFile.cfg"/>
+        <file name="test/am571x/armv7/bios/icss_emac_arm_wSoCLib.cfg"/>
+        <file name="test/am571x/c66/bios/icss_emac_c66_wSoCLib.cfg"/>
+        <file name="test/am571x/m4/bios/icss_emac_m4_wSoCFile.cfg"/>
+        <file name="test/am571x/m4/bios/icss_emac_m4_wSoCLib.cfg"/>
+        <file name="test/am574x/armv7/bios/icss_emac_arm_wSoCFile.cfg"/>
+        <file name="test/am574x/armv7/bios/icss_emac_arm_wSoCLib.cfg"/>
+        <file name="test/am574x/c66/bios/icss_emac_c66_wSoCLib.cfg"/>
+        <file name="test/am574x/m4/bios/icss_emac_m4_wSoCFile.cfg"/>
+        <file name="test/am574x/m4/bios/icss_emac_m4_wSoCLib.cfg"/>
+        <file name="test/am572x/armv7/bios/icss_emac_arm_wSoCFile.cfg"/>
+        <file name="test/am572x/armv7/bios/icss_emac_arm_wSoCLib.cfg"/>
+        <file name="test/am572x/c66/bios/icss_emac_c66_wSoCLib.cfg"/>
+        <file name="test/am572x/m4/bios/icss_emac_m4_wSoCFile.cfg"/>
+        <file name="test/am572x/m4/bios/icss_emac_m4_wSoCLib.cfg"/>
+        <file name="test/am65xx/a53/bios/ICSS_EMAC_BasicExample_am65xx_evm_wSoCFile_mpuTestproject.txt"/>
+        <file name="test/am437x/armv7/bios/ICSS_EMAC_BasicExample_idkAM437x_wSoCLib_armtestproject.txt"/>
+        <file name="test/am437x/armv7/bios/ICSS_EMAC_SwitchExample_idkAM437x_wSoCLib_armtestproject.txt"/>
+        <file name="test/am437x/armv7/bios/ICSS_EMAC_SwitchExample_idkAM437x_wSoCFile_armtestproject.txt"/>
+        <file name="test/am437x/armv7/bios/ICSS_EMAC_BasicExample_idkAM437x_wSoCFile_armtestproject.txt"/>
+        <file name="test/am335x/armv7/bios/ICSS_EMAC_BasicExample_iceAMIC110_wSoCFile_armTestproject.txt"/>
+        <file name="test/am335x/armv7/bios/ICSS_EMAC_SwitchExample_iceAMIC110_wSoCFile_armTestproject.txt"/>
+        <file name="test/am335x/armv7/bios/ICSS_EMAC_BasicExample_icev2AM335x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am335x/armv7/bios/ICSS_EMAC_SwitchExample_iceAMIC110_wSoCLib_armTestproject.txt"/>
+        <file name="test/am335x/armv7/bios/ICSS_EMAC_SwitchExample_icev2AM335x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am335x/armv7/bios/ICSS_EMAC_BasicExample_icev2AM335x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am335x/armv7/bios/ICSS_EMAC_SwitchExample_icev2AM335x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am335x/armv7/bios/ICSS_EMAC_BasicExample_iceAMIC110_wSoCLib_armTestproject.txt"/>
+        <file name="test/k2g/armv7/bios/ICSS_EMAC_SwitchExample_iceK2G_wSoCLib_armTestproject.txt"/>
+        <file name="test/k2g/armv7/bios/ICSS_EMAC_BasicExample_iceK2G_wSoCLib_armTestproject.txt"/>
+        <file name="test/k2g/c66/bios/ICSS_EMAC_BasicExample_iceK2G_wSoCLib_C66Testproject.txt"/>
+        <file name="test/k2g/c66/bios/ICSS_EMAC_SwitchExample_iceK2G_wSoCLib_C66Testproject.txt"/>
+        <file name="test/am571x/armv7/bios/ICSS_EMAC_SwitchExample_idkAM571x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am571x/armv7/bios/ICSS_EMAC_BasicExample_idkAM571x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am571x/armv7/bios/ICSS_EMAC_BasicExample_idkAM571x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am571x/armv7/bios/ICSS_EMAC_SwitchExample_idkAM571x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am571x/c66/bios/ICSS_EMAC_BasicExample_idkAM571x_wSoCLib_C66Testproject.txt"/>
+        <file name="test/am571x/c66/bios/ICSS_EMAC_SwitchExample_idkAM571x_wSoCLib_C66Testproject.txt"/>
+        <file name="test/am571x/m4/bios/ICSS_EMAC_SwitchExample_idkAM571x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am571x/m4/bios/ICSS_EMAC_SwitchExample_idkAM571x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/am571x/m4/bios/ICSS_EMAC_BasicExample_idkAM571x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am571x/m4/bios/ICSS_EMAC_BasicExample_idkAM571x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/am574x/armv7/bios/ICSS_EMAC_BasicExamplePoll_idkAM574x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am574x/armv7/bios/ICSS_EMAC_SwitchExample_idkAM574x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am574x/armv7/bios/ICSS_EMAC_SwitchExample_idkAM574x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am574x/armv7/bios/ICSS_EMAC_StpSwitchExample_idkAM574x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am574x/armv7/bios/ICSS_EMAC_BasicExample_idkAM574x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am574x/armv7/bios/ICSS_EMAC_BasicExample_idkAM574x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am574x/armv7/bios/ICSS_EMAC_StpSwitchExample_idkAM574x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am574x/c66/bios/ICSS_EMAC_BasicExample_idkAM574x_wSoCLib_C66Testproject.txt"/>
+        <file name="test/am574x/c66/bios/ICSS_EMAC_SwitchExample_idkAM574x_wSoCLib_C66Testproject.txt"/>
+        <file name="test/am574x/m4/bios/ICSS_EMAC_SwitchExample_idkAM574x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/am574x/m4/bios/ICSS_EMAC_BasicExample_idkAM574x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/am574x/m4/bios/ICSS_EMAC_SwitchExample_idkAM574x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am574x/m4/bios/ICSS_EMAC_BasicExample_idkAM574x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am572x/armv7/bios/ICSS_EMAC_BasicExample_idkAM572x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am572x/armv7/bios/ICSS_EMAC_BasicExamplePoll_idkAM572x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am572x/armv7/bios/ICSS_EMAC_SwitchExample_idkAM572x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am572x/armv7/bios/ICSS_EMAC_BasicExample_idkAM572x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am572x/armv7/bios/ICSS_EMAC_SwitchExample_idkAM572x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am572x/c66/bios/ICSS_EMAC_BasicExample_idkAM572x_wSoCLib_C66Testproject.txt"/>
+        <file name="test/am572x/c66/bios/ICSS_EMAC_SwitchExample_idkAM572x_wSoCLib_C66Testproject.txt"/>
+        <file name="test/am572x/m4/bios/ICSS_EMAC_BasicExample_idkAM572x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/am572x/m4/bios/ICSS_EMAC_BasicExample_idkAM572x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am572x/m4/bios/ICSS_EMAC_SwitchExample_idkAM572x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am572x/m4/bios/ICSS_EMAC_SwitchExample_idkAM572x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/am65xx/a53/bios/icss_emac_a53.lds"/>
+        <file name="test/Module.xs"/>
+        <file name="./icss_emacDrv_Def.h"/>
+        <file name="./icss_emacStormControl.h"/>
+        <file name="./icss_emacFwLearning.h"/>
+        <file name="./icss_emacFwInit.h"/>
+        <file name="./src/icss_emac_osal.h"/>
+        <file name="./src/phy.h"/>
+        <file name="./src/icss_emacLoc.h"/>
+        <file name="./icss_emacDrv.h"/>
+        <file name="./test/src/armv7/linux/__mmap_helper.h"/>
+        <file name="./test/src/armv7/linux/mmap_helper.h"/>
+        <file name="./test/src/stp_switch_test_utils.h"/>
+        <file name="./test/src/fw_mem_section.h"/>
+        <file name="./test/src/test_common_utils.h"/>
+        <file name="./test/src/tiswitch_pruss_intc_mapping.h"/>
+        <file name="./test/src/tiemac_pruss_intc_mapping.h"/>
+        <file name="./icss_emacLearning.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_rx_int_pacing_mmap.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_vlan_mcast_filter_mmap.h"/>
+        <file name="./firmware/icss_dualemac/src/firmware_version.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_intc_regs.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_ecap_regs.h"/>
+        <file name="./firmware/icss_dualemac/src/pru_types.h"/>
+        <file name="./firmware/icss_dualemac/src/emac_MII_Rcv.h"/>
+        <file name="./firmware/icss_dualemac/src/emac_tts.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_defines.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_timeSync_memory_map.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_miirt_regs.h"/>
+        <file name="./firmware/icss_dualemac/src/micro_scheduler.h"/>
+        <file name="./firmware/icss_dualemac/src/emac_MII_Xmt.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_ptp_macro.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_macros.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_iep_regs.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_emacSwitch.h"/>
+        <file name="./firmware/icss_dualemac/src/rsc_types.h"/>
+        <file name="./firmware/icss_dualemac/src/icss_ptp.h"/>
+        <file name="./firmware/icss_dualemac/config/icss_emacFwConfig.h"/>
+        <file name="./firmware/icss_dualemac/config/icss_emacFwVersion.h"/>
+        <file name="./firmware/icss_dualemac/bin/am65xx/a53_0/REV2/PRU1_bin.h"/>
+        <file name="./firmware/icss_dualemac/bin/am65xx/a53_0/REV2/PRU0_bin.h"/>
+        <file name="./firmware/icss_switch/src/icss_switch_macros.h"/>
+        <file name="./firmware/icss_switch/src/icss_stp_switch_macros.h"/>
+        <file name="./firmware/icss_switch/src/icss_switch.h"/>
+        <file name="./firmware/icss_switch/src/icss_stp_switch.h"/>
+        <file name="./firmware/icss_switch/config/icss_emacFwVersion.h"/>
+        <file name="./soc/icss_emacSoc.h"/>
+        <file name="./icss_emacStatistics.h"/>
+        <file name="./icss_emacCommon.h"/>
+        <file name="./icss_emac_ver.h"/>
+        <file name="./src/icss_emacLoc.c"/>
+        <file name="./src/icss_emacFwLearning.c"/>
+        <file name="./src/icss_emacDrv.c"/>
+        <file name="./src/icss_emacStormControl.c"/>
+        <file name="./src/icss_emacStatistics.c"/>
+        <file name="./src/icss_emacFwInit.c"/>
+        <file name="./src/icss_emacLearning.c"/>
+        <file name="./test/src/main.c"/>
+        <file name="./test/src/main_a53.c"/>
+        <file name="./test/src/main_k2g.c"/>
+        <file name="./test/src/armv7/linux/mmap_helper.c"/>
+        <file name="./test/src/main_m4.c"/>
+        <file name="./test/src/main_poll_test.c"/>
+        <file name="./test/src/test_common_utils.c"/>
+        <file name="./test/src/main_a9.c"/>
+        <file name="./test/src/main_a8.c"/>
+        <file name="./test/src/stp_switch_test_utils.c"/>
+        <file name="./test/src/main_dsp.c"/>
+        <file name="./firmware/icss_dualemac/src/resource_table.c"/>
+        <file name="./firmware/icss_dualemac/config/icss_emacFwConfig.c"/>
+        <file name="./firmware/icss_switch/src/resource_table.c"/>
+        <file name="./soc/am65xx/icss_emacSoc.c"/>
+        <file name="./soc/am437x/icss_emacSoc.c"/>
+        <file name="./soc/am335x/icss_emacSoc.c"/>
+        <file name="./soc/k2g/icss_emacSoc.c"/>
+        <file name="./soc/am571x/icss_emacSoc.c"/>
+        <file name="./soc/am574x/icss_emacSoc.c"/>
+        <file name="./soc/am572x/icss_emacSoc.c"/>
+        <file name="firmware/icss_dualemac/make_all.mk"/>
+        <file name="firmware/cmd/lnk_c66_m4_REV2.cmd"/>
+        <file name="firmware/cmd/lnk_a8_a9_a15_REV2.cmd"/>
+        <file name="firmware/cmd/lnk_a8_a9_a15_REV1_linux.cmd"/>
+        <file name="firmware/cmd/lnk_c66_m4_REV1.cmd"/>
+        <file name="firmware/cmd/PRU0_REV1_to_C66.cmd"/>
+        <file name="firmware/cmd/PRU1_REV1_to_C66.cmd"/>
+        <file name="firmware/cmd/PRU0_REV2_to_C66.cmd"/>
+        <file name="firmware/cmd/PRU1_REV1_to_ARM.cmd"/>
+        <file name="firmware/cmd/PRU0_REV2_to_ARM.cmd"/>
+        <file name="firmware/cmd/lnk_a8_a9_a15_REV2_linux.cmd"/>
+        <file name="firmware/cmd/PRU1_REV2_to_C66.cmd"/>
+        <file name="firmware/cmd/lnk_a8_a9_a15_REV1.cmd"/>
+        <file name="firmware/cmd/PRU0_REV1_to_ARM.cmd"/>
+        <file name="firmware/cmd/PRU1_REV2_to_ARM.cmd"/>
+        <file name="firmware/icss_dualemac/src/pru.cmd"/>
+        <file name="firmware/icss_switch/src/pru.cmd"/>
+        <file name="firmware/icss_dualemac/src/emac_tts.asm"/>
+        <file name="firmware/icss_dualemac/src/emac_MII_Xmt.asm"/>
+        <file name="firmware/icss_dualemac/src/emac_MII_Rcv.asm"/>
+        <file name="firmware/icss_dualemac/src/micro_scheduler.asm"/>
+        <file name="firmware/icss_dualemac/src/emac_ptp.asm"/>
+        <file name="firmware/icss_dualemac/src/emac_statistics.asm"/>
+        <file name="firmware/icss_switch/src/switch_collision_task.asm"/>
+        <file name="firmware/icss_dualemac/bin/am335x/a15_0/REV1/icss_dualemac_PRU1.bin"/>
+        <file name="firmware/icss_dualemac/bin/am335x/a15_0/REV1/icss_dualemac_PRU0.bin"/>
+        <file name="firmware/icss_dualemac/bin/am335x/a8host/REV1/icss_dualemac_PRU1.bin"/>
+        <file name="firmware/icss_dualemac/bin/am335x/a8host/REV1/icss_dualemac_PRU0.bin"/>
+        <file name="firmware/icss_switch/bin/am335x/a15_0/REV1/icss_switch_PRU1.bin"/>
+        <file name="firmware/icss_switch/bin/am335x/a15_0/REV1/icss_switch_PRU0.bin"/>
+        <file name="firmware/icss_switch/bin/am335x/a8host/REV1/icss_switch_PRU1.bin"/>
+        <file name="firmware/icss_switch/bin/am335x/a8host/REV1/icss_switch_PRU0.bin"/>
+        <file name="firmware/icss_dualemac/docs/ICSS_DUAL_EMAC_Firmware_Design_Guide.pdf"/>
+        <file name="firmware/icss_switch/docs/ICSS_SWITCH_Firmware_Design_Guide.pdf"/>
+        <file name="firmware/Module.xs"/>
+        <file name="soc/am65xx/icss_emacSoc.c"/>
+        <file name="soc/am437x/icss_emacSoc.c"/>
+        <file name="soc/am335x/icss_emacSoc.c"/>
+        <file name="soc/k2g/icss_emacSoc.c"/>
+        <file name="soc/am571x/icss_emacSoc.c"/>
+        <file name="soc/am574x/icss_emacSoc.c"/>
+        <file name="soc/am572x/icss_emacSoc.c"/>
+        <file name="soc/icss_emacSoc.h"/>
+        <file name="soc/Module.xs"/>
+        <file name="config.bld"/>
+        <file name="config_mk.bld"/>
+        <file name="package.bld"/>
+        <file name="package.xdc"/>
+        <file name="package.xs"/>
+        <file name="Settings.xdc"/>
+        <file name="Settings.xdc.xdt"/>
+        <file name="icss_emacDrv.h"/>
+        <file name="icss_emacFwInit.h"/>
+        <file name="icss_emacStatistics.h"/>
+        <file name="icss_emacStormControl.h"/>
+        <file name="icss_emacLearning.h"/>
+        <file name="icss_emacCommon.h"/>
+        <file name="icss_emac_ver.h"/>
+        <file name="icss_emac_ver.h.xdt"/>
+        <file name="docs/Doxyfile"/>
+        <file name="docs/doxyfile.xdt"/>
+        <file name="build/buildlib.xs"/>
+        <file name="makefile"/>
+        <file name="COPYING.txt"/>
+        <file name="build/makefile.mk"/>
+        <file name="build/makefile_indp.mk"/>
+        <file name="build/makefile_profile_indp.mk"/>
+        <file name="build/makefile_profile.mk"/>
+        <file name="build/makefile_icss_dualemac.mk"/>
+        <file name="build/makefile_icss_stp_switch.mk"/>
+        <file name="build/makefile_icss_switch.mk"/>
+        <file name="icss_emac_component.mk"/>
+        <file name="./lib"/>
+        <file name="package/package.cfg.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

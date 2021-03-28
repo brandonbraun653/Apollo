@@ -1,0 +1,9 @@
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_io.c" 
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_main.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/deviceloopback.c" 
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/src/dra72x/audio_evmInit.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/src/dra72x/mcasp_cfg.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/m4/bios/loopback_m4.cfg" 
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DMCASP_MASTER -DDEVICE_LOOPBACK -DSOC_DRA72x -DevmDRA72x -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/include/dra72x -I${PDK_INSTALL_PATH}/ti/drv/mcasp/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp -I${PDK_INSTALL_PATH}/ti/board" -rtsc.enableRtsc 
+-ccs.setLinkerOptions "--strict_compatibility=on"
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra72x\", BOARD:\"evmDRA72x\"}"

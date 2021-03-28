@@ -1,0 +1,15 @@
+package.xdc
+package.xs
+Settings.xdc
+package/ti.drv.pm.sch
+package/.vers_g200
+package/.vers_r200
+package/.vers_b200
+package/.xdc-G16
+package/ti_drv_pm.java
+package/ti_drv_pm.class
+package/package_ti.drv.pm.c
+package/package.defs.h
+Settings.h
+package/internal/Settings.xdc.h
+package/ti.drv.pm.ccs

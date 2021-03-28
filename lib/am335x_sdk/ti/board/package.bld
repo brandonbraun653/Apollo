@@ -1,0 +1,79 @@
+var board = java.lang.System.getenv("XDCARGS");
+var boardVer = (""+Pkg.version.replace(/\s/g, "")).split(',');
+var releaseName = "board"
+				+ "_" + boardVer[0]
+				+ "_" + boardVer[1]
+				+ "_" + boardVer[2]
+				+ "_" + boardVer[3];
+
+print("    ********* Board library build: **********");
+if ((board == undefined) || (board == null) || (board.length() == 0))
+print("    Board           = " + "All");
+else
+print("    Board           = " + board);
+print("    Version         = " + boardVer);
+print("    *****************************************");
+
+Pkg.defaultRelease = Pkg.addRelease(releaseName, {prefix: "./packages/"});
+
+var file = new java.io.File(".");
+var files = file.listFiles();
+for (var i = 0; i<files.length; i++)
+{
+	if (files[i].exists() && files[i].isDirectory())
+	{
+		var subdir = new java.io.File(files[i].getName());
+		var subdirFiles = subdir.listFiles();
+		var mod = false;
+		for (var j = 0; j<subdirFiles.length; j++)
+		{
+			if (subdirFiles[j].getName().matches("Module.xs"))
+			{
+				mod = true;
+			}
+		}
+		if (mod == true)
+		{
+			var caps = xdc.loadCapsule(files[i].getName() + "/Module.xs");
+			caps.modBuild();
+		}
+	}
+}
+
+Pkg.otherFiles[Pkg.otherFiles.length++] = "config_mk.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "board_component.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "./lib";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmK2L/src_files_evmK2L.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmAM437x/src_files_evmAM437x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmC6678/src_files_evmC6678.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmC6657/src_files_evmC6657.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmK2H/src_files_evmK2H.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmAM572x/src_files_evmAM572x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/skAM335x/src_files_skAM335x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmAM335x/src_files_evmAM335x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/idkAM572x/src_files_idkAM572x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/idkAM574x/src_files_idkAM574x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmK2E/src_files_evmK2E.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/skAM437x/src_files_skAM437x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/idkAM571x/src_files_idkAM571x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmK2G/src_files_evmK2G.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/icev2AM335x/src_files_icev2AM335x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/idkAM437x/src_files_idkAM437x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmAM571x/src_files_evmAM571x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmOMAPL137/src_files_evmOMAPL137.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/lcdkOMAPL138/src_files_lcdkOMAPL138.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/src_files_lld.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/evmKeystone/src_files_evmKeystone.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/src_files_starterware.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/bbbAM335x/src_files_bbbAM335x.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/flash/src_files_flash.mk";
+
+var tplt = xdc.loadTemplate("./Settings.xdc.xdt");
+tplt.genFile("./Settings.xdc",boardVer); 
+
+var util = xdc.loadCapsule("utils.xs");
+var files = util.getAllFiles();
+for (var k = 0; k < files.length; k++)
+	Pkg.otherFiles[Pkg.otherFiles.length++] = files[k];
+

@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/dcan/loopback/loopback_app_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/dcan/dcan_app.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/dcan/loopback/rtos/am437x_app_dcan_evmam437x.cfg"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/example_utils/dma_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/example_utils/edma_utils.c"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard -DSOC_AM437X -DevmAM437x -DRTOS_BUILD -DAM43XX_FAMILY_BUILD -g -gstrict-dwarf -gdwarf-3 -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/starterware/examples/dcan -I${PDK_INSTALL_PATH}/ti/starterware/examples/example_utils -I${PDK_INSTALL_PATH}/ti/starterware/examples/dcan -I${PDK_INSTALL_PATH}/ti/starterware/include/hw -I${PDK_INSTALL_PATH}/ti/starterware/include/utils -I${PDK_INSTALL_PATH}/ti/starterware/include/am43xx -I${PDK_INSTALL_PATH}/ti/starterware/include/am43xx/am437x -I${PDK_INSTALL_PATH}/ti/starterware/include -I${PDK_INSTALL_PATH}"  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static -Wl,--gc-sections -L$(BIOS_INSTALL_PATH)/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/lib/fpu "
+

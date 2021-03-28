@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/src/main_eeprom_read.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/am335x/armv7/bios/i2c_arm_iceamic110.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard  -DSOC_AM335X -DiceAMIC110 -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/i2c -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections  "
+

@@ -1,0 +1,16 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/main_a53.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/test_common_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/firmware/icss_dualemac/config/icss_emacFwConfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am65xx/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH\ti\drv\pruss\src\pruicss_intc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/am65xx/a53/bios/icss_emac_arm_wSoCFile.cfg"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/soc/am65xx/icss_emacSoc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/build/unit-test/config/unity_config.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/build/unit-test/Unity/src/unity.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/am65xx/a53/bios/icss_emac_a53.lds"
+-ccs.setCompilerOptions "-I${PDK_INSTALL_PATH}/ti/board/src/am65xx_idk/include"
+-ccs.setCompilerOptions "-I${PDK_INSTALL_PATH}/ti/csl -I${PDK_INSTALL_PATH}/ti/build/unit-test/Unity/src -I${PDK_INSTALL_PATH}/ti/build/unit-test/config -DUNITY_INCLUDE_CONFIG_H"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a53+fp+simd -mabi=lp64 -mfix-cortex-a53-835769 -mfix-cortex-a53-843419 -mstrict-align -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -DSOC_AM65XX -Dam65xx_evm -DMEM_BARRIER_DISABLE -g -gstrict-dwarf -gdwarf-3  -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/icss_emac/src -I${PDK_INSTALL_PATH}/ti/drv/icss_emac -I${PDK_INSTALL_PATH} "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -nostartfiles -static --gc-sections "
+
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am65xx/config_am65xx_a53.bld -DBOARD=am65xx_evm"

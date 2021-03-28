@@ -1,0 +1,13 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/src/cclink_k2g.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_master/sample/src/CCIEF_BASIC_SLAVES.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_master/sample/src/CCIEF_BASIC_MASTER.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_master/sample/src/SOCKET.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_master/sample/src/TIMER.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_master/sample/src/USER_SAMPLE.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_master/library/src/SLMP.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/src/osdrv_ndkdeviceconfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/k2g/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/k2g/c66/bios/cclink_iceK2G.cfg"
+-ccs.setCompilerOptions "-D -mv6600 -g -dSOC_K2G -D__TIRTOS__ -diceK2G -dUSE_BIOS -dC66X --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837 --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH} --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu_icss/example/CCLink/cclink_master/library/include -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu_icss/example/CCLink/cclink_master/sample/include " -rtsc.enableRtsc
+-ccs.setLinkerOptions "-l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/k2g/c66x/REV2/icss_dualemac_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/k2g/c66x/REV2/icss_dualemac_PRU1.bin -l${PDK_INSTALL_PATH}/ti/build/pruss/lnk_c66_m4_REV2.cmd"
+-rtsc.setConfiguroOptions "--cfgArgs {MODE:\"master\"} -b ${PDK_INSTALL_PATH}/ti/build/k2g/config_k2g_c66.bld -DBOARD=iceK2G --xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"

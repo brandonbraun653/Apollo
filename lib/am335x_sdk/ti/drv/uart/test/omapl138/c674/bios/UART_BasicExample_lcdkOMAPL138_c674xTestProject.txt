@@ -1,0 +1,4 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/omapl138/c674/bios/uart_test.cfg" 
+-ccs.setCompilerOptions "-D -mv6740 -g -DUART_V0 -DlcdkOMAPL138 -dSOC_OMAPL138 -dLCDK_OMAPL138 -dUSE_BIOS --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH}/ti/drv/uart -I${PDK_INSTALL_PATH}"  -rtsc.enableRtsc
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl138/config_omapl138_c674x.bld -DBOARD=lcdkOMAPL138"

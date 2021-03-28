@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.transport.timeSync" version="1, 0, 0, 0" producerId="undefined">
+    <units>
+        <module name="Settings"/>
+    </units>
+    <sources>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="package/rel/timeSync_1_0_0_0.tar.dep" src="package/rel/timeSync_1_0_0_0.xdc.inc"/>
+    </makefiles>
+    <targets>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="timeSync_1_0_0_0"
+        pname="./packages/timeSync_1_0_0_0.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="src/icss_timeSync_init.c"/>
+        <file name="src/icss_timeSync_tools.c"/>
+        <file name="src/icss_timeSync_ecap_edma.c"/>
+        <file name="src/icss_timeSync_mem.c"/>
+        <file name="src/icss_timeSync.c"/>
+        <file name="src/icss_timeSyncApi.c"/>
+        <file name="src/makefile"/>
+        <file name="src/Module.xs"/>
+        <file name="example/src/common/osdrv_ndkdeviceconfig.c"/>
+        <file name="example/src/common/timeSync_example_osal.c"/>
+        <file name="example/src/common/netHooks.c"/>
+        <file name="example/src/boardcfg/icev2AM335x/board_i2cLed.c"/>
+        <file name="example/src/boardcfg/icev2AM335x/board_gpioLed.c"/>
+        <file name="example/src/boardcfg/idkAM437x/board_spi.c"/>
+        <file name="example/src/boardcfg/idkAM437x/board_phy.c"/>
+        <file name="example/src/boardcfg/idkAM437x/board_i2cLed.c"/>
+        <file name="example/src/boardcfg/idkAM437x/board_gpioLed.c"/>
+        <file name="example/src/boardcfg/idkAM57xx/board_i2cLed.c"/>
+        <file name="example/src/boardcfg/idkAM57xx/board_gpioLed.c"/>
+        <file name="example/src/soc/am437x/timeSyncExampleSoC.c"/>
+        <file name="example/src/soc/am335x/timeSyncExampleSoC.c"/>
+        <file name="example/src/soc/am57xx/timeSyncExampleSoC.c"/>
+        <file name="example/src/timeSyncExample_main.c"/>
+        <file name="example/src/common/osdrv_ndkdeviceconfig.h"/>
+        <file name="example/src/common/tiemac_pruss_intc_mapping.h"/>
+        <file name="example/src/boardcfg/board_gpioLed.h"/>
+        <file name="example/src/boardcfg/board_i2cLed.h"/>
+        <file name="example/src/soc/am437x/timeSyncExampleSoC.h"/>
+        <file name="example/src/soc/am335x/timeSyncExampleSoC.h"/>
+        <file name="example/src/soc/timeSyncExampleSoC.h"/>
+        <file name="example/src/soc/am57xx/timeSyncExampleSoC.h"/>
+        <file name="example/src/example.h"/>
+        <file name="example/src/bios/rtsc_common/timeSyncExample_c66x.cfg"/>
+        <file name="example/src/bios/rtsc_common/timeSyncExample_a8.cfg"/>
+        <file name="example/src/bios/rtsc_common/timeSyncExample_m4.cfg"/>
+        <file name="example/src/bios/rtsc_common/timeSyncExample_a9.cfg"/>
+        <file name="example/src/bios/rtsc_common/timeSyncExample_a15.cfg"/>
+        <file name="example/src/bios/ccsProjects/icev2AM335x/timeSyncExample_ccs_a8.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM437x/timeSyncExample_ccs_a9.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM571x/timeSyncExample_ccs_m4.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM571x/timeSyncExample_ccs_a15.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM571x/timeSyncExample_ccs_c66x.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM572x/timeSyncExample_ccs_m4.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM572x/timeSyncExample_ccs_a15.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM572x/timeSyncExample_ccs_c66x.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM574x/timeSyncExample_ccs_m4.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM574x/timeSyncExample_ccs_a15.cfg"/>
+        <file name="example/src/bios/ccsProjects/idkAM574x/timeSyncExample_ccs_c66x.cfg"/>
+        <file name="example/am437x/a9host/bios/timeSync_BasicExample_idkAM437x_wSocLib_armExampleproject.txt"/>
+        <file name="example/am335x/a8host/bios/timeSync_BasicExample_icev2AM335x_wSocLib_armExampleproject.txt"/>
+        <file name="example/am571x/armv7/bios/timeSync_BasicExample_idkAM571x_wSocLib_armExampleproject.txt"/>
+        <file name="example/am571x/c66/bios/timeSync_BasicExample_idkAM571x_c66xExampleProject.txt"/>
+        <file name="example/am571x/m4/bios/timeSync_BasicExample_idkAM571x_m4Exampleproject.txt"/>
+        <file name="example/am574x/armv7/bios/timeSync_BasicExample_idkAM574x_wSocLib_armExampleproject.txt"/>
+        <file name="example/am574x/c66/bios/timeSync_BasicExample_idkAM574x_c66xExampleProject.txt"/>
+        <file name="example/am574x/m4/bios/timeSync_BasicExample_idkAM574x_m4Exampleproject.txt"/>
+        <file name="example/am572x/armv7/bios/timeSync_BasicExample_idkAM572x_wSocLib_armExampleproject.txt"/>
+        <file name="example/am572x/c66/bios/timeSync_BasicExample_idkAM572x_c66xExampleProject.txt"/>
+        <file name="example/am572x/m4/bios/timeSync_BasicExample_idkAM572x_m4Exampleproject.txt"/>
+        <file name="example/Module.xs"/>
+        <file name="docs/tifooter.htm"/>
+        <file name="docs/tiheader.htm"/>
+        <file name="docs/tilogo.gif"/>
+        <file name="docs/titagline.gif"/>
+        <file name="docs/doxygen"/>
+        <file name="docs/Module.xs"/>
+        <file name="include/icss_timeSync_ecap_edma.h"/>
+        <file name="include/icss_timeSync_osal.h"/>
+        <file name="include/soc_icss_header.h"/>
+        <file name="include/icss_timeSync.h"/>
+        <file name="include/icss_timeSyncApi.h"/>
+        <file name="include/icss_timeSync_init.h"/>
+        <file name="include/icss_timeSync_tools.h"/>
+        <file name="include/Module.xs"/>
+        <file name="config_mk.bld"/>
+        <file name="makefile"/>
+        <file name="package.bld"/>
+        <file name="package.xdc"/>
+        <file name="package.xs"/>
+        <file name="Settings.h"/>
+        <file name="Settings.xdc"/>
+        <file name="Settings.xdc.xdt"/>
+        <file name="timeSync_component.mk"/>
+        <file name="timeSync_ver.h"/>
+        <file name="timeSync_ver.h.xdt"/>
+        <file name="docs/Doxyfile"/>
+        <file name="docs/doxyfile.xdt"/>
+        <file name="./lib"/>
+        <file name="package/package.cfg.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

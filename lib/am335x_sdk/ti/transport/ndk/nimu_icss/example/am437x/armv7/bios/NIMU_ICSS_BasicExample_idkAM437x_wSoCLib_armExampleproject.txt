@@ -1,0 +1,10 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/src/main_a9.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/src/osdrv_ndkdeviceconfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/src/netHooks.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/am437x/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/am437x/armv7/bios/am437x_app_idk_wSoCLib.cfg"
+
+-ccs.setCompilerOptions "-c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard -DSOC_AM437x -DidkAM437x -g -gstrict-dwarf -Wall -MMD -MP "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -l:os.aa9fg -lsoc -nostartfiles -static ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am437x/a9host/REV1/icss_dualemac_PRU0.bin ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am437x/a9host/REV1/icss_dualemac_PRU1.bin -Wl,-T,${PDK_INSTALL_PATH}/ti/build/pruss/lnk_a8_a9_a15_REV1.cmd -Wl,--gc-sections -L${NDK_INSTALL_DIR}/packages/ti/ndk/os/lib -L${PDK_INSTALL_PATH}/ti/starterware/binary/soc/lib/am43xx-evm/a9/release/gcc"
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am437x/config_am437x_a9.bld -DBOARD=idkAM437x"

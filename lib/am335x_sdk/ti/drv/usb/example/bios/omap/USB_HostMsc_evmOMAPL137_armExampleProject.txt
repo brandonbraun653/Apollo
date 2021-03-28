@@ -1,0 +1,12 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/shell/fs_shell_app_utils.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_host/msc/fatfs_port_usbmsc.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/host_msc_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/timer.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/usb_osal.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/omap/usb_arm_omapl137.cfg"
+
+-ccs.setCompilerOptions "-DTIRTOS -mv5e -g -Domapl137 -DSOC_OMAPL137 -DevmOMAPL137 --diag_warning=225 -I${PDK_INSTALL_PATH}/ti/drv/usb -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/usb/example/usb_host/msc -I${PDK_INSTALL_PATH}/ti/drv/usb/src/usb_func/include -I${PDK_INSTALL_PATH}/ti/drv/usb/example/common -I${PDK_INSTALL_PATH}/ti/drv/usb/src/include  -I${PDK_INSTALL_PATH}/ti/drv/usb/example/shell "  -rtsc.enableRtsc
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl137/config_omapl137_c674x.bld -DBOARD=evmOMAPL137"

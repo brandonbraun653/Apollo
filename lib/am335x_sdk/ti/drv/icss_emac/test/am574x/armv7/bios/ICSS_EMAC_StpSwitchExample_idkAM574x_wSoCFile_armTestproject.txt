@@ -1,0 +1,11 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/test_common_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/stp_switch_test_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/soc/am574x/icss_emacSoc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/firmware/icss_dualemac/config/icss_emacFwConfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am574x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/am574x/armv7/bios/icss_emac_arm_wSoCFile.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM574x -DidkAM574x -DMEM_BARRIER_DISABLE -DSWITCH_EMAC -DSTP_SWITCH -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/icss_emac/src -I${PDK_INSTALL_PATH}/ti/drv/icss_emac -I${PDK_INSTALL_PATH}"  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -nostartfiles -static ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_switch/bin/am574x/a15_0/REV2/icss_stp_switch_PRU0.bin ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_switch/bin/am574x/a15_0/REV2/icss_stp_switch_PRU1.bin ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_switch/bin/am574x/a15_0/REV2/icss_stp_switch_PRU0.bin ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_switch/bin/am574x/a15_0/REV2/icss_stp_switch_PRU1.bin -Wl,-T,${PDK_INSTALL_PATH}/ti/build/pruss/lnk_a8_a9_a15_REV2.cmd -Wl,--gc-sections "
+
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am574x/config_am574x_a15.bld -DBOARD=idkAM574x"

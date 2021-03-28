@@ -1,0 +1,21 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mcasp/example/src/aic31.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mcasp/example/src/aic3106_if.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mcasp/example/lcdkOMAPL138/src/audio_evmInit.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mcasp/example/src/codec_if.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mcasp/example/lcdkOMAPL138/src/mcasp_cfg.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mcasp/soc/omapl138/mcasp_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/omapl138/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/mcasp/audioSample_io.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/mcasp/audioSample_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/dev_audio_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_dev/audio/usb_dev_audio.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_dev/audio/usb_audio_structs.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/timer.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/usb_osal.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/omap/usb_audio_c674x_omapl138.cfg"
+
+-ccs.setCompilerOptions "-DTIRTOS -mv64+ -g -Domapl138 -DSOC_OMAPL138 -DMCASP_MASTER -DAIC_CODEC -DlcdkOMAPL138 --diag_warning=225 -I${PDK_INSTALL_PATH}/ti/drv/usb -I${PDK_INSTALL_PATH}/ti/drv/usb/example/usb_dev/audio/ -I${PDK_INSTALL_PATH}/ti/drv/usb/example/mcasp -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/usb/src/usb_func/include -I${PDK_INSTALL_PATH}/ti/drv/usb/example/common -I${PDK_INSTALL_PATH}/ti/board  -I${PDK_INSTALL_PATH}/ti/drv/mcasp -I${PDK_INSTALL_PATH}/ti/drv/mcasp/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/lcdkOMAPL138/include -I${PDK_INSTALL_PATH}/ti/drv/usb/src/include"  -rtsc.enableRtsc
+
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl138/config_omapl138_c674x.bld -DBOARD=lcdkOMAPL138"

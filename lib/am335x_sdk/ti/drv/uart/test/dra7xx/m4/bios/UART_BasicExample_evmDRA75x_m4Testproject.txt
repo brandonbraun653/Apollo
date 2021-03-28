@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/dra7xx/m4/bios/uart_m4_test.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_DRA75x -DevmDRA75x -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/uart --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra75x\", BOARD:\"evmDRA75x\"}"

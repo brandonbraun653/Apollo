@@ -1,0 +1,15 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/dev_bulk_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/biosMmu.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_dev/bulk/usb_bulk_structs.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/timer.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/usb_osal.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/am65xx/usb_am65xx_bios.cfg"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/build/am65xx/linker_a53.lds"
+
+-ccs.setCompilerOptions "-DBUILD_MPU -DTIRTOS -DBUILD_MPU -DTIRTOS -c -mcpu=cortex-a53+fp+simd -mabi=lp64 -mcmodel=large -Dam65xx_evm -DSOC_AM65XX -Dgcc -g -Wall -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast  -I${PDK_INSTALL_PATH}/ti/drv/usb -I${PDK_INSTALL_PATH}/ti/drv/usb/example/usb_dev/bulk/ -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/usb/src/usb_func/include -I${PDK_INSTALL_PATH}/ti/drv/usb/example/common -I${PDK_INSTALL_PATH}/ti/drv/usb/example/common -I${PDK_INSTALL_PATH}/ti/drv/usb/src/include  "  -rtsc.enableRtsc
+
+
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm  -nostartfiles -static -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am65xx/config_am65xx_a53.bld -DBOARD=am65xx_evm"

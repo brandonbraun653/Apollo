@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/example/sample/src/main_example.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/example/sample/am57x/armv7/bios/uart_arm_idkAM571x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM571x -DidkAM571x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/uart "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

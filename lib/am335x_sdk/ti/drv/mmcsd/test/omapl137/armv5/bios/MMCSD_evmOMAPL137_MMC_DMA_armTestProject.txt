@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/soc/omapl137/MMCSD_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/src/main_emmc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/omapl137/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/omapl137/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/omapl137/armv5/bios/mmcsddma_test.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv5e --float_support=vfplib --abi=eabi -g -DSOC_OMAPL137 -DMMCSD_EDMA_ENABLED -DevmOMAPL137 -I${PDK_INSTALL_PATH}/ti/drv/gpio -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"

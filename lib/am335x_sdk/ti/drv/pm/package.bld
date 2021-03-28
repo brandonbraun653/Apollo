@@ -1,0 +1,19 @@
+/******************************************************************************
+ * FILE PURPOSE: Build description for the PM Driver
+ ******************************************************************************
+ * FILE NAME: package.bld
+ *
+ * DESCRIPTION:
+ *  This file contains the build specification and description for the PM driver
+ *
+ *
+ * Copyright (C) 2016, Texas Instruments, Inc.
+ *****************************************************************************/
+
+/* Generate Settings.xdc */
+var tplt = xdc.loadTemplate("./Settings.xdc.xdt");
+tplt.genFile("./Settings.xdc",pmDriverReleaseVersion);
+
+/* Generate pmver.h */
+var tplt = xdc.loadTemplate("./pmver.h.xdt");
+tplt.genFile("./pmver.h",pmDriverReleaseVersion);

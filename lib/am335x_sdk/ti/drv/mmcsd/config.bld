@@ -1,0 +1,315 @@
+/******************************************************************************
+ * FILE PURPOSE: Build configuration Script for the mmcsd Driver
+ ******************************************************************************
+ * FILE NAME: config.bld
+ *
+ * DESCRIPTION: 
+ *  This file contains the build configuration script for the mmcsd driver
+ *  and is responsible for configuration of the paths for the various 
+ *  tools required to build the driver.
+ *
+ * Copyright (C) 2017, Texas Instruments, Inc.
+ *****************************************************************************/
+
+/* Get the Tools Base directory from the Environment Variable. */
+var c66ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var c674ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var m4ToolsBaseDir  = java.lang.System.getenv("TOOLCHAIN_PATH_M4");
+var a15ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A15");
+var a9ToolsBaseDir  = java.lang.System.getenv("TOOLCHAIN_PATH_A9");
+var arm9ToolsBaseDir  = java.lang.System.getenv("TOOLCHAIN_PATH_ARM9");
+var a8ToolsBaseDir  = java.lang.System.getenv("TOOLCHAIN_PATH_A8");
+
+/* Get the extended debug flags for C66x, 
+ * did not change the name for backwards compatibilty */
+var extDbgFlags = java.lang.System.getenv("EXTDBGFLAGS");
+
+/* Get the extended debug flags for A15 */
+var extDbgFlags_a15 = java.lang.System.getenv("EXTDBGFLAGS_A15");
+
+/* Get the extended debug flags for A8 */
+var extDbgFlags_a8 = java.lang.System.getenv("EXTDBGFLAGS_A8");
+
+/* Get the extended debug flags for A9 */
+var extDbgFlags_a9 = java.lang.System.getenv("EXTDBGFLAGS_A9");
+
+/* Get the extended debug flags for ARM9 */
+var extDbgFlags_arm9 = java.lang.System.getenv("EXTDBGFLAGS_ARM9");
+
+/* Get the extended debug flags for M4 */
+var extDbgFlags_m4 = java.lang.System.getenv("EXTDBGFLAGS_M4");
+
+/* Get the base directory for the uart Socket Driver Package */
+var driverPath = new java.io.File(".//").getPath();
+
+/* Include Path */
+var lldIncludePath = " -I" + driverPath + "/src" + " -I" + driverPath;
+
+/* Configure the mmcsd Socket Release Version Information */
+/* 3 steps: remove SPACE and TAB, convert to string and split to make array */
+var driverReleaseVersion = (""+Pkg.version.replace(/\s/g, "")).split(',');
+
+/* Print the Compiler Options */
+var pOpts = 1;
+
+/* C66 ELF compiler configuration for Little Endian Mode. */
+var C66LE           = xdc.useModule('ti.targets.elf.C66');
+C66LE.rootDir       = c66ToolsBaseDir;
+C66LE.ccOpts.prefix = "-mo -o3 -q -k -eo.o";
+if(extDbgFlags)     
+    C66LE.ccOpts.prefix = C66LE.ccOpts.prefix + " " + extDbgFlags; 
+
+/* C66 ELF compiler configuration for Big Endian Mode. */
+var C66BE           = xdc.useModule('ti.targets.elf.C66_big_endian');
+C66BE.rootDir       = c66ToolsBaseDir;
+C66BE.ccOpts.prefix = "-mo -o3 -q -k -eo.o -DBIGENDIAN";
+if(extDbgFlags)     
+    C66BE.ccOpts.prefix = C66BE.ccOpts.prefix + " " + extDbgFlags;
+
+/* C674 ELF compiler configuration for Little Endian Mode. */
+var C674LE            = xdc.useModule('ti.targets.elf.C674');
+C674LE.rootDir        = c674ToolsBaseDir;
+C674LE.asmOpts.prefix = "--strip_coff_underscore";
+C674LE.ccOpts.prefix  = "--strip_coff_underscore -mo -o3 -q -k -eo.o " + "-D" + cslPartNumber;
+if(extDbgFlags)
+    C674LE.ccOpts.prefix = C674LE.ccOpts.prefix + " " + extDbgFlags;
+
+/* ARMv7 A15 compiler configuration */
+var A15LE            = xdc.useModule('gnu.targets.arm.A15F');
+A15LE.rootDir        = a15ToolsBaseDir;
+A15LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a15 -marm -DDRA7xx -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+if(extDbgFlags_a15)     
+    A15LE.ccOpts.prefix = A15LE.ccOpts.prefix + " " + extDbgFlags_a15; 
+    
+/* ARMv7 A9 compiler configuration */
+var A9LE            = xdc.useModule('gnu.targets.arm.A9F');
+A9LE.rootDir        = a9ToolsBaseDir;
+A9LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a9 -marm -DDRA7xx -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+if(extDbgFlags_a9)     
+    A9LE.ccOpts.prefix = A9LE.ccOpts.prefix + " " + extDbgFlags_a9;
+
+/* ARMv7 A8 compiler configuration */
+var A8LE            = xdc.useModule('gnu.targets.arm.A8F');
+A8LE.rootDir        = a8ToolsBaseDir;
+A8LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a8 -marm -DDRA7xx -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+if(extDbgFlags_a8)     
+    A8LE.ccOpts.prefix = A8LE.ccOpts.prefix + " " + extDbgFlags_a8; 
+
+/* ARMv5 ARM9 compiler configuration */
+var ARM9LE            = xdc.useModule('ti.targets.arm.elf.Arm9');
+ARM9LE.rootDir        = arm9ToolsBaseDir;
+ARM9LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=arm926ej-s -msoft-float -mfloat-abi=soft -march=armv5te -marm -DDRA7xx -Dxdc_target_types__=gnu/targets/arm/std.h -Dxdc_target_name__=Arm9 -gstrict-dwarf -Wall -D__ARMv5 -D_LITTLE_ENDIAN=1";
+if(extDbgFlags_arm9)
+    ARM9LE.ccOpts.prefix = ARM9LE.ccOpts.prefix + " " + extDbgFlags_arm9; 
+
+/* M4 ELF compiler configuration for Little Endian Mode. */
+var M4LE            = xdc.useModule('ti.targets.arm.elf.M4');
+M4LE.rootDir        = m4ToolsBaseDir;
+M4LE.ccOpts.prefix  = "-o4 -qq -pdsw255 -DMAKEFILE_BUILD";
+if(extDbgFlags_m4)
+    M4LE.ccOpts.prefix = M4LE.ccOpts.prefix + " " + extDbgFlags_m4; 
+
+/* soc name (am?) is inserted between first an second element of this
+   list to construct device file name for each device */
+var deviceConstruct = [ "soc/", "/MMCSD_soc.c" ];
+
+/* soc name (am?) is inserted between first an second element of this
+   list to construct device file name for each device */
+var deviceDmaConstruct = [ "soc/", "/MMCSDDMA_soc.c" ];
+
+/* Create the SoC List  */
+var socs = { 
+    /* device independent libraries */
+    all :
+    {
+        /* Build this library */
+        build: "true",
+        /* SoC lib enabled */
+        socDevLib: "false",
+        /* dma lib enabled */
+        dmaDevLib: "false",     
+        /* Library options */
+        copts: "",
+        /* target lists, kept blank now, would be updated based on argument lists */
+        targets: []
+    },
+    am335x :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains am335x */
+        build: "false",
+        /* SoC lib enabled */
+        socDevLib: "true",
+        /* dma lib enabled */
+        dmaDevLib: "false",     
+        /* Library options */
+        copts: " -DSOC_AM335x",
+        /* target list */
+        targets: [ A8LE ]
+    },
+    am437x :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains am437x */
+        build: "false",       
+        /* SoC lib enabled */
+        socDevLib: "true",
+        /* dma lib enabled */
+        dmaDevLib: "false",     
+        /* Library options */
+        copts: " -DSOC_AM437x",
+        /* target list */
+        targets: [ A9LE ]
+   },
+   am572x :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains am572x */
+        build: "false", 
+       /* SoC lib enabled */
+       socDevLib: "true",
+       /* dma lib enabled */
+       dmaDevLib: "true",     
+       /* Library options */
+       copts: " -DSOC_AM572x",
+       /* target list */
+       targets: [ C66LE, M4LE, A15LE]
+    },
+   am574x :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains am574x */
+        build: "false",
+       /* SoC lib enabled */
+       socDevLib: "true",
+       /* dma lib enabled */
+       dmaDevLib: "true",
+       /* Library options */
+       copts: " -DSOC_AM574x",
+       /* target list */
+       targets: [ C66LE, M4LE, A15LE]
+    },
+    dra75x :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains dra75x */
+        build: "false", 
+       /* SoC lib enabled */
+       socDevLib: "true",
+       /* dma lib enabled */
+       dmaDevLib: "true",     
+       /* Library options */
+       copts: " -DSOC_DRA75x",
+       /* target list */
+       targets: [ C66LE, M4LE, A15LE]
+    },
+   am571x :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains am571x */
+        build: "false",     
+       /* SoC lib enabled */
+       socDevLib: "true",
+       /* dma lib enabled */
+       dmaDevLib: "true",     
+       /* Library options */
+       copts: " -DSOC_AM571x",
+       /* target list */
+       targets: [ C66LE, M4LE, A15LE]
+    },
+	  k2g :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains k2g */
+        build: "false", 
+       /* SoC lib enabled */
+       socDevLib: "true",
+       /* dma lib enabled */
+       dmaDevLib: "true",     
+       /* Library options */
+       copts: " -DSOC_K2G",
+       /* target list */
+       targets: [ C66LE, A15LE]
+    }
+	omapl137 :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains omapl137 */
+        build: "false",
+       /* SoC lib enabled */
+       socDevLib: "true",
+       /* Library options */
+       copts: " -DSOC_OMAPL137",
+       /* target list */
+       targets: [ C674LE, ARM9LE]
+    },
+	omapl138 :
+    {
+        /* this variable would be reinitialized to true, if XDCARGS contains omapl138 */
+        build: "false",
+       /* SoC lib enabled */
+       socDevLib: "true",
+       /* Library options */
+       copts: " -DSOC_OMAPL138",
+       /* target list */
+       targets: [ C674LE, ARM9LE]
+     }
+};
+
+/**************************************************************************
+ * FUNCTION NAME : merge
+ **************************************************************************
+ * DESCRIPTION   :
+ *  The function is used to merge two arrarys
+ **************************************************************************/
+function merge() {
+    var args = arguments;
+    var hash = {};
+    var arr = [];
+    for (var i = 0; i < args.length; i++) {
+       for (var j = 0; j < args[i].length; j++) {
+         if (hash[args[i][j]] !== true) {
+           arr[arr.length] = args[i][j];
+           hash[args[i][j]] = true;
+         }
+       }
+     }
+    return arr;
+}
+
+/* Grab input from XDCARGS */
+var buildArguments  = [];
+
+/* Construct the build arguments */
+for (var tmp=0; arguments[tmp] != undefined; tmp++)
+{
+
+    /* If no arguments are provided, override for building all */
+    if ( ( arguments.length == 1) && (arguments[tmp].equals("./config.bld")) )
+        buildArguments[buildArguments.length++] = "all";
+    else
+        buildArguments[buildArguments.length++] = arguments[tmp];
+}
+
+/* Build targets on this build */
+var build_targets = [];
+var soc_names = Object.keys(socs);
+
+for (var i=0; i < buildArguments.length; i++ ) {
+    /* Build it for all targets */
+    if (buildArguments[i] == "all") {
+        for (var j = 0; j < soc_names.length; j++)  {
+            build_targets = merge (build_targets.slice(0), socs[soc_names[j]].targets.slice(0));
+            /* Set build to "true" for that SoC */
+            socs[soc_names[j]].build = "true";
+        }
+    }
+    else {
+        /* Skip the first argument, which is ./config.bld to get to next SoCs */
+        if (i == 0) continue;          
+        /* Set that build to true if it is found in supported build socs */
+        for (j = 0; j < soc_names.length; j++) {
+            if (buildArguments[i] == soc_names[j]) {
+                socs[buildArguments[i]].build = "true";
+                build_targets = merge (build_targets.slice(0), socs[buildArguments[i]].targets.slice(0));
+                break;
+            }
+        }
+    }   
+}
+
+/* Update the Build target generated list */
+socs["all"].targets = build_targets; 
+Build.targets   = build_targets;

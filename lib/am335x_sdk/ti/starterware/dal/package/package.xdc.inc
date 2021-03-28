@@ -1,0 +1,15 @@
+package.xdc
+package.xs
+Settings.xdc
+package/ti.starterware.dal.sch
+package/.vers_g200
+package/.vers_r200
+package/.vers_b200
+package/.xdc-G16
+package/ti_starterware_dal.java
+package/ti_starterware_dal.class
+package/package_ti.starterware.dal.c
+package/package.defs.h
+Settings.h
+package/internal/Settings.xdc.h
+package/ti.starterware.dal.ccs

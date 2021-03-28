@@ -1,0 +1,4 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/omapl137/armv5/bios/evmOMAPL137_ARM.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv5e --float_support=vfplib --abi=eabi -g -DSOC_OMAPL137 -DevmOMAPL137 -I${PDK_INSTALL_PATH}/ti/drv/emac"

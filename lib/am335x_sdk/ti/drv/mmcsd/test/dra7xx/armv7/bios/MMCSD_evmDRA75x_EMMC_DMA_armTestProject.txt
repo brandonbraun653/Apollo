@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/src/main_emmc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/src/profiling.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/dra7xx/armv7/bios/mmcsddma_emmc_evm.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DDRA7xx -DMMCSD_EDMA_ENABLED -DMEASURE_TIME -DSOC_DRA75x -DevmDRA75x -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/mmcsd "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra75x\", BOARD:\"evmDRA75x\"}"

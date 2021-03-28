@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/soc/am57xx/MMCSD_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/src/main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/src/profiling.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am572x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/am572x/m4/bios/mmcsd_m4_evmAM572x.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DMEASURE_TIME -DSOC_AM572x -DevmAM572x -DAM5XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/mmcsd --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"

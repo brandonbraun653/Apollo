@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/fs/fatfs/example/console/src/fs_shell_app_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/fs/fatfs/example/console/src/main_console.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/fs/fatfs/example/console/src/FATFS_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/fs/fatfs/example/console/dra7xx/armv7/bios/fatfs.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_DRA72x -DevmDRA72x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/fs/fatfs "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections -L$(BIOS_INSTALL_PATH)/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/lib/fpu "
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra72x\", BOARD:\"evmDRA72x\"}"

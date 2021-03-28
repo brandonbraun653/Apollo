@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/example/fatfs_console/src/fs_shell_app_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/example/fatfs_console/src/main_fatfs_console.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/omapl138/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/omapl138/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/soc/omapl138/MMCSD_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/omapl138/armv5/bios/mmcsd_test.cfg"
+-ccs.setCompilerOptions "-mv5e --abi=eabi -me --symdebug:dwarf -DSOC_OMAPL138 -DLCDK_OMAPL138 -DlcdkOMAPL138 -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/mmcsd" -rtsc.enableRtsc
+-ccs.setLinkerOptions "-mv5e  -me -g --define=omapl138 "

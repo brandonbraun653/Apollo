@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/src/main_emmc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/src/profiling.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/dra7xx/m4/bios/mmcsd_m4.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -mv7M4 --float_support=vfplib --abi=eabi -g -DMEASURE_TIME -DSOC_DRA72x -DevmDRA72x -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/mmcsd --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra72x\", BOARD:\"evmDRA72x\"}"

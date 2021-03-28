@@ -1,0 +1,34 @@
+ti_drv_pm.tar: Settings.h
+Settings.h:
+ti_drv_pm.tar: Settings.xdc
+Settings.xdc:
+ti_drv_pm.tar: package/.vers_b200
+package/.vers_b200:
+ti_drv_pm.tar: package/.vers_g200
+package/.vers_g200:
+ti_drv_pm.tar: package/.vers_r200
+package/.vers_r200:
+ti_drv_pm.tar: package/.xdc-G16
+package/.xdc-G16:
+ti_drv_pm.tar: package/build.cfg
+package/build.cfg:
+ti_drv_pm.tar: package/internal/Settings.xdc.h
+package/internal/Settings.xdc.h:
+ti_drv_pm.tar: package/package.bld.xml
+package/package.bld.xml:
+ti_drv_pm.tar: package/package.defs.h
+package/package.defs.h:
+ti_drv_pm.tar: package/package_ti.drv.pm.c
+package/package_ti.drv.pm.c:
+ti_drv_pm.tar: package/ti.drv.pm.ccs
+package/ti.drv.pm.ccs:
+ti_drv_pm.tar: package/ti.drv.pm.sch
+package/ti.drv.pm.sch:
+ti_drv_pm.tar: package/ti_drv_pm.class
+package/ti_drv_pm.class:
+ti_drv_pm.tar: package/ti_drv_pm.java
+package/ti_drv_pm.java:
+ti_drv_pm.tar: package.xdc
+package.xdc:
+ti_drv_pm.tar: package.xs
+package.xs:

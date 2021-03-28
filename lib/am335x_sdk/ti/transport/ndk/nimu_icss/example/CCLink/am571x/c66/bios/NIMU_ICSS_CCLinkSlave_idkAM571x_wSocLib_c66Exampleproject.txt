@@ -1,0 +1,13 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/src/cclink_am57xx.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_slave/sample/src/CCIEF_BASIC_SLAVE.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_slave/sample/src/SLMP_SERVER.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_slave/sample/src/SOCKET.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_slave/sample/src/TIMER.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_slave/sample/src/USER_SAMPLE.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/cclink_slave/library/src/SLMP.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/src/osdrv_ndkdeviceconfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am571x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/CCLink/am571x/c66/bios/cclink_idkAM571x.cfg"
+-ccs.setCompilerOptions "-D -mv6600 -g -dSOC_AM571x -didkAM571x -D__TIRTOS__ -dUSE_BIOS -dC66X --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH} --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu_icss/example/CCLink/cclink_slave/library/include -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu_icss/example/CCLink/cclink_slave/sample/include "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am571x/c66x/REV2/icss_dualemac_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am571x/c66x/REV2/icss_dualemac_PRU1.bin -l${PDK_INSTALL_PATH}/ti/build/pruss/lnk_c66_m4_REV2.cmd"
+-rtsc.setConfiguroOptions "--cfgArgs {MODE:\"slave\"} -b ${PDK_INSTALL_PATH}/ti/build/am571x/config_am571x_c66.bld -DBOARD=idkAM571x --xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"

@@ -1,0 +1,4 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/osal/test/src/main_osal_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/osal/test/omapl137/arm9/bios/osal_arm_omapl137.cfg" 
+-ccs.setCompilerOptions "-mv5e -g -Domapl137 -DSOC_OMAPL137 -DevmOMAPL137 --diag_warning=225 -DENABLE_TIMER_TEST -I${PDK_INSTALL_PATH}/ti/osal "  -rtsc.enableRtsc
+

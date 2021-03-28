@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/helloWorld_k2g.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_osal.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/udpHello.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/cppi/device/k2g/src/cppi_device.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/qmss/device/k2g/src/qmss_device.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/k2g/armv7/bios/helloWorld.cfg" 
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -l:os.aa15fg -nostartfiles -static -Wl,--gc-sections -L${NDK_INSTALL_DIR}/packages/ti/ndk/os/lib"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_K2G -DDEVICE_K2G -DNSS_LITE -DevmK2G -D_LITTLE_ENDIAN=1 -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/cppi -I${PDK_INSTALL_PATH}/ti/drv/qmss"  -rtsc.enableRtsc
+

@@ -1,0 +1,174 @@
+/*
+ * mcasp_soc.c
+ *
+ * This file contains MCASP IP & driver specifications pertaining to a given SOC (AM572x)
+ *
+ * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *    Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *    Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the
+ *    distribution.
+ *
+ *    Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+*/
+
+/* MCASP Driver Includes. */
+
+/* CSL MCASP Register Layer */
+#include <ti/csl/cslr_mcasp.h>
+
+#include <ti/csl/cslr_device.h>
+
+
+/*============================================================================*/
+/*                           IMPORTED VARIABLES                               */
+/*============================================================================*/
+
+
+
+/* ========================================================================== */
+/*                           MODULE FUNCTIONS                                 */
+/* ========================================================================== */
+/**
+ * \brief   Initializes McASP driver's data structures
+ *
+ *          This function initializes the McASP driver's data structures
+ *          including instance objects and channel objects. This is the 
+ *          MCASP Driver Initialization API which needs to be invoked by 
+ *          the users to initialize the MCASP peripheral. This call is 
+ *          *mandatory* and should be called before calling any of the 
+ *          other driver API's.  This can be modified by customers for 
+ *          their application and configuration.
+ *
+ * \return  None
+ */
+#include <mcasp_drv.h>
+#include <mcasp_osal.h>
+#include <ti/drv/mcasp/soc/mcasp_soc.h>
+#include <include/McaspLocal.h>
+#include <ti/starterware/include/hw/soc_am335x.h>
+
+#include "string.h"
+extern Mcasp_HwInfo Mcasp_deviceInstInfo[MCASP_CNT];
+extern Mcasp_Module_State Mcasp_module ;
+extern Mcasp_Object Mcasp_Instances[MCASP_CNT];
+extern Mcasp_TempBuffer Mcasp_muteBuf[MCASP_CNT];
+
+void McaspDevice_init(void)
+
+	{
+	    Int i;
+
+	    for (i = 0; i < (int32_t)MCASP_CNT; i++)
+	    {
+	        /* have to initialize  ally */
+	        Mcasp_module.inUse[i] = (Bool)0;/* FALSE; */
+	        memset((void *)&Mcasp_Instances[i], 0x0, sizeof(Mcasp_Object));
+
+	        Mcasp_module.isrObject[i].isIsrRegistered[0] = (Bool)0;/* FALSE; */
+	        Mcasp_module.isrObject[i].isIsrRegistered[1] = (Bool)0;/* FALSE; */
+	        Mcasp_module.isrObject[i].chanEnabled[0] = (Bool)0;/* FALSE; */
+	        Mcasp_module.isrObject[i].chanEnabled[1] = (Bool)0;/* FALSE; */
+	        Mcasp_module.isrObject[i].instHandle = 0;/* NULL; */
+	        Mcasp_module.isrObject[i].isrSwiTaskHandle = 0;/* NULL; */
+
+	        if (i == 0)
+	        {
+	            Mcasp_deviceInstInfo[i].ditSupport = (Bool)1;/* TRUE; */
+	            Mcasp_deviceInstInfo[i].baseAddress =
+	                (CSL_McaspRegs *)SOC_MCASP_0_CTRL_REGS;
+	            Mcasp_deviceInstInfo[i].fifoAddress =
+	                (CSL_AfifoRegs *)SOC_MCASP_0_FIFO_REGS;
+	            Mcasp_deviceInstInfo[i].dataAddress =
+	                (CSL_AdataRegs *)SOC_MCASP_0_DATA_REGS;
+
+	            Mcasp_deviceInstInfo[i].numSerializers = 4;
+
+
+				Mcasp_deviceInstInfo[i].txMuxInEvent=MCASP_INVALID_MUX_EVENTNUM;
+                Mcasp_deviceInstInfo[i].rxMuxInEvent=MCASP_INVALID_MUX_EVENTNUM;
+                Mcasp_deviceInstInfo[i].txMuxOutEvent=MCASP_INVALID_MUX_EVENTNUM;
+                Mcasp_deviceInstInfo[i].rxMuxOutEvent=MCASP_INVALID_MUX_EVENTNUM;
+                Mcasp_deviceInstInfo[i].muxNum=MCASP_INVALID_MUX_NUM;
+			
+				Mcasp_deviceInstInfo[i].txIntNum = 80;/* MCATXINT0 */
+				Mcasp_deviceInstInfo[i].rxIntNum = 81;/* MCARXINT0 */
+                Mcasp_deviceInstInfo[i].cpuTxEventNumber =  80;/* MCATXINT0 */
+                Mcasp_deviceInstInfo[i].cpuRxEventNumber =  81;/* MCARXINT0 */
+				
+	            Mcasp_deviceInstInfo[i].rxDmaEventNumber =
+	                (uint32_t)9; /* AREVT */
+	            Mcasp_deviceInstInfo[i].txDmaEventNumber =
+	                (uint32_t)8; /* AXEVT */
+	        }
+	        else if (i == 1)
+	        {
+	            Mcasp_deviceInstInfo[i].ditSupport = (Bool)1;/* TRUE; */
+	            Mcasp_deviceInstInfo[i].baseAddress =
+	                (CSL_McaspRegs *)SOC_MCASP_1_CTRL_REGS;
+	            Mcasp_deviceInstInfo[i].fifoAddress =
+	                (CSL_AfifoRegs *)SOC_MCASP_1_FIFO_REGS;
+	            Mcasp_deviceInstInfo[i].dataAddress =
+	                (CSL_AdataRegs *)SOC_MCASP_1_DATA_REGS;
+
+	            Mcasp_deviceInstInfo[i].numSerializers = 4;
+
+				Mcasp_deviceInstInfo[i].txMuxInEvent=MCASP_INVALID_MUX_EVENTNUM;
+                Mcasp_deviceInstInfo[i].rxMuxInEvent=MCASP_INVALID_MUX_EVENTNUM;
+                Mcasp_deviceInstInfo[i].txMuxOutEvent=MCASP_INVALID_MUX_EVENTNUM;
+                Mcasp_deviceInstInfo[i].rxMuxOutEvent=MCASP_INVALID_MUX_EVENTNUM;
+                Mcasp_deviceInstInfo[i].muxNum=MCASP_INVALID_MUX_NUM;
+				
+				Mcasp_deviceInstInfo[i].txIntNum = 82;/* MCATXINT1 */
+				Mcasp_deviceInstInfo[i].rxIntNum = 83;/* MCARXINT1 */
+                Mcasp_deviceInstInfo[i].cpuTxEventNumber = 82;/* MCATXINT1 */
+                Mcasp_deviceInstInfo[i].cpuRxEventNumber = 83;/* MCARXINT1 */
+
+	            Mcasp_deviceInstInfo[i].rxDmaEventNumber =
+	                (uint32_t)11;/* AREVT */
+	            Mcasp_deviceInstInfo[i].txDmaEventNumber =
+	                (uint32_t)10;/* AXEVT */
+	        }
+
+	
+	    }
+
+	    /* intialise the loop job buffers and the mute buffers for all instances  */
+	#ifdef Mcasp_LOOPJOB_ENABLED
+	    memset((void *)Mcasp_loopDstBuf, 0x0,
+	           sizeof(Mcasp_TempBuffer) * MCASP_CNT);
+	    memset((void *)Mcasp_loopSrcBuf, 0x0,
+	           sizeof(Mcasp_TempBuffer) * MCASP_CNT);
+	#else /* Mcasp_LOOPJOB_ENABLED */
+	    memset((void *)Mcasp_muteBuf, 0x0,
+	           sizeof(Mcasp_TempBuffer) * MCASP_CNT);
+	#endif
+}
+
+/* ========================================================================== */
+/*                              END OF FILE                                   */
+/* ========================================================================== */

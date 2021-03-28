@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/main_mcspi_slave_mode.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/am571x/m4/bios/spi_m4_idkAM571x_slavemode_master.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_AM571x -DidkAM571x -DAM5XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 -DSPI_DMA_ENABLE -DMCSPI_MULT_CHANNEL -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"

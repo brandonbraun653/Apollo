@@ -1,0 +1,13 @@
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_io.c" 
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_main.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/aic3106_if.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/aic31.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/codec_if.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmAM437x/src/audio_evmInit.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmAM437x/src/mcasp_cfg.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/soc/am437x/mcasp_soc.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/i2c/soc/am437x/I2C_soc.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/gpio/soc/am437x/GPIO_soc.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmAM437x/armv7/bios/AudioLoopback.cfg" 
+-ccs.setCompilerOptions "-c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard -DAIC_CODEC -DSOC_AM437x -DEVM_AM437X -g -gstrict-dwarf -gdwarf-3 -Wall -MMD -MP -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp -I${PDK_INSTALL_PATH}/ti/board -I${PDK_INSTALL_PATH}/ti/starterware/include  -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmAM437x/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/include -I${PDK_INSTALL_PATH}/ti/starterware/include/am43xx" -rtsc.enableRtsc 
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

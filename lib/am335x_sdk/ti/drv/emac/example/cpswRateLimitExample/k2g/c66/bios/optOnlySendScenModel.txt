@@ -1,0 +1,3 @@
+# Optimize the following two functions in order to generate sufficient traffic
+--beginopts sendScenarioModel -o3 --endopts
+--beginopts ScenReceivePacket -o3 --endopts

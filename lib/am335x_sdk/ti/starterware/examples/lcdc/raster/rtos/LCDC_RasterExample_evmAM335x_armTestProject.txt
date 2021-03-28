@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/lcdc/raster/raster_app_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/lcdc/lcdc_app.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/starterware/examples/lcdc/raster/rtos/am335x_app_lcdc_evmam335x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard -DRTOS_BUILD -DSOC_AM335X -DevmAM335x -DLCD_EVM -DAM335X_FAMILY_BUILD -g -gstrict-dwarf -gdwarf-3 -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/starterware/examples/lcdc -I${PDK_INSTALL_PATH}/ti/starterware/examples/example_utils -I${PDK_INSTALL_PATH}/ti/starterware/device -I${PDK_INSTALL_PATH}/ti/starterware/include/hw -I${PDK_INSTALL_PATH}/ti/starterware/include/utils -I${PDK_INSTALL_PATH}/ti/starterware/include/am335x -I${PDK_INSTALL_PATH}/ti/starterware/include -I${PDK_INSTALL_PATH}"  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

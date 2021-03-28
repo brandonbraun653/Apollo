@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.fs.fatfs" version="1, 0, 0, 15" producerId="undefined">
+    <units>
+        <module name="Settings"/>
+    </units>
+    <sources>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="package/rel/fatfs_null_1_0_0_15.tar.dep" src="package/rel/fatfs_null_1_0_0_15.xdc.inc"/>
+    </makefiles>
+    <targets>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="fatfs_null_1_0_0_15"
+        pname="./packages/fatfs_null_1_0_0_15.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="src/ff.c"/>
+        <file name="src/diskio.c"/>
+        <file name="src/FATFS_drv.c"/>
+        <file name="src/FATFS_drv_log.h"/>
+        <file name="src/FATFS_osal.h"/>
+        <file name="src/src_files_common.mk"/>
+        <file name="src/Module.xs"/>
+        <file name="docs/tifooter.htm"/>
+        <file name="docs/tiheader.htm"/>
+        <file name="docs/tilogo.gif"/>
+        <file name="docs/titagline.gif"/>
+        <file name="docs/FATFS_LLD_SoftwareManifest.pdf"/>
+        <file name="docs/doxygen"/>
+        <file name="docs/ReleaseNotes_FATFS_LLD.pdf"/>
+        <file name="docs/Module.xs"/>
+        <file name="example/console/src/FATFS_log.c"/>
+        <file name="example/console/src/fs_shell_app_utils.c"/>
+        <file name="example/console/src/main_console.c"/>
+        <file name="example/console/src/fs_shell_app_utils.h"/>
+        <file name="example/console/src/FATFS_log.h"/>
+        <file name="example/console/am65xx/a53/fatfsConsole_a53.cfg"/>
+        <file name="example/console/am65xx/r5/fatfsConsole_r5.cfg"/>
+        <file name="example/console/dra7xx/armv7/bios/fatfs.cfg"/>
+        <file name="example/console/dra7xx/c66/bios/fatfs.cfg"/>
+        <file name="example/console/dra7xx/m4/bios/fatfs.cfg"/>
+        <file name="example/console/am437x/armv7/bios/fatfs_idk.cfg"/>
+        <file name="example/console/am437x/armv7/bios/fatfs_evm.cfg"/>
+        <file name="example/console/am335x/armv7/bios/fatfs_icev2.cfg"/>
+        <file name="example/console/am335x/armv7/bios/fatfs_evm.cfg"/>
+        <file name="example/console/am571x/armv7/bios/fatfs_idk.cfg"/>
+        <file name="example/console/am571x/c66/bios/fatfs_idk.cfg"/>
+        <file name="example/console/am574x/armv7/bios/fatfs_idk.cfg"/>
+        <file name="example/console/am574x/c66/bios/fatfs_idk.cfg"/>
+        <file name="example/console/am572x/armv7/bios/fatfs_idk.cfg"/>
+        <file name="example/console/am572x/armv7/bios/fatfs_evm.cfg"/>
+        <file name="example/console/am572x/c66/bios/fatfs_idk.cfg"/>
+        <file name="example/console/am572x/c66/bios/fatfs_evm.cfg"/>
+        <file name="example/console/makefile"/>
+        <file name="example/console/dra7xx/armv7/bios/FATFS_Console_evmDRA75x_armExampleProject.txt"/>
+        <file name="example/console/dra7xx/armv7/bios/FATFS_Console_evmDRA72x_armExampleProject.txt"/>
+        <file name="example/console/dra7xx/c66/bios/FATFS_Console_evmDRA75x_c66xExampleProject.txt"/>
+        <file name="example/console/dra7xx/c66/bios/FATFS_Console_evmDRA78x_c66xExampleProject.txt"/>
+        <file name="example/console/dra7xx/c66/bios/FATFS_Console_evmDRA72x_c66xExampleProject.txt"/>
+        <file name="example/console/dra7xx/m4/bios/FATFS_Console_evmDRA78x_m4ExampleProject.txt"/>
+        <file name="example/console/dra7xx/m4/bios/FATFS_Console_evmDRA75x_m4ExampleProject.txt"/>
+        <file name="example/console/dra7xx/m4/bios/FATFS_Console_evmDRA72x_m4ExampleProject.txt"/>
+        <file name="example/console/am437x/armv7/bios/FATFS_Console_idkAM437x_armExampleProject.txt"/>
+        <file name="example/console/am437x/armv7/bios/FATFS_Console_evmAM437x_armExampleProject.txt"/>
+        <file name="example/console/am335x/armv7/bios/FATFS_Console_evmAM335x_armExampleProject.txt"/>
+        <file name="example/console/am335x/armv7/bios/FATFS_Console_icev2AM335x_armExampleProject.txt"/>
+        <file name="example/console/am571x/armv7/bios/FATFS_Console_idkAM571x_armExampleProject.txt"/>
+        <file name="example/console/am571x/c66/bios/FATFS_Console_idkAM571x_c66xExampleProject.txt"/>
+        <file name="example/console/am574x/armv7/bios/FATFS_Console_idkAM574x_armExampleProject.txt"/>
+        <file name="example/console/am574x/c66/bios/FATFS_Console_idkAM574x_c66xExampleProject.txt"/>
+        <file name="example/console/am572x/armv7/bios/FATFS_Console_idkAM572x_armExampleProject.txt"/>
+        <file name="example/console/am572x/armv7/bios/FATFS_Console_evmAM572x_armExampleProject.txt"/>
+        <file name="example/console/am572x/armv7/bios/FATFS_Console_MultiPartition_evmAM572x_armExampleProject.txt"/>
+        <file name="example/console/am572x/armv7/bios/FATFS_Console_evmAM572x_SMP_armExampleProject.txt"/>
+        <file name="example/console/am572x/c66/bios/FATFS_Console_idkAM572x_c66xExampleProject.txt"/>
+        <file name="example/console/am572x/c66/bios/FATFS_Console_evmAM572x_c66xExampleProject.txt"/>
+        <file name="example/console/am65xx/r5/mpu.xs"/>
+        <file name="example/Module.xs"/>
+        <file name="config.bld"/>
+        <file name="config_mk.bld"/>
+        <file name="package.bld"/>
+        <file name="Settings.xdc"/>
+        <file name="Settings.xdc.xdt"/>
+        <file name="ff.h"/>
+        <file name="ffconf.h"/>
+        <file name="integer.h"/>
+        <file name="diskio.h"/>
+        <file name="FATFS.h"/>
+        <file name="FATFSver.h"/>
+        <file name="FATFSver.h.xdt"/>
+        <file name="docs/Doxyfile"/>
+        <file name="docs/doxyfile.xdt"/>
+        <file name="build/buildlib.xs"/>
+        <file name="makefile"/>
+        <file name="build/makefile_indp.mk"/>
+        <file name="build/makefile_mp_indp.mk"/>
+        <file name="build/makefile_profile_indp.mk"/>
+        <file name="fatfs_component.mk"/>
+        <file name="./lib"/>
+        <file name="package/package.cfg.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

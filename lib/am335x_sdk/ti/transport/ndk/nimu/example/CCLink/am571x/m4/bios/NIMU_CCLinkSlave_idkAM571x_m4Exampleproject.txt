@@ -1,0 +1,15 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/CCLink/src/cclink_am57xx.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/CCLink/cclink_slave/sample/src/CCIEF_BASIC_SLAVE.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/CCLink/cclink_slave/sample/src/SLMP_SERVER.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/CCLink/cclink_slave/sample/src/SOCKET.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/CCLink/cclink_slave/sample/src/TIMER.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/CCLink/cclink_slave/sample/src/USER_SAMPLE.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/CCLink/cclink_slave/library/src/SLMP.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/src/nimu_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am571x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/am571x/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/CCLink/am571x/m4/bios/cclink_idkAM571x.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_AM571x -DidkAM571x -D__TIRTOS__ -DAM5XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH} --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu/example/CCLink/cclink_slave/library/include -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu/example/CCLink/cclink_slave/sample/include"  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on -I${NDK_INSTALL_PATH}/packages/ti/ndk/os/lib"
+-rtsc.setConfiguroOptions "--cfgArgs {MODE:\"slave\"} --xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"
+

@@ -1,0 +1,241 @@
+/*
+ * Copyright (C) 2012-2018 Texas Instruments Incorporated - http://www.ti.com/
+ *
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *    Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *    Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the
+ *    distribution.
+ *
+ *    Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+*/
+
+/********************************************************************
+* file: cslr_pa_pdsp.h
+*
+* Brief: This file contains the Register Description for pa_pdsp
+*
+*********************************************************************/
+#ifndef CSLR_PA_PDSP_H_
+#define CSLR_PA_PDSP_H_
+
+#include <ti/csl/cslr.h>
+#include <ti/csl/tistdtypes.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Minimum unit = 1 byte */
+
+/**************************************************************************\
+* Register Overlay Structure for CONTROL_STATUS
+\**************************************************************************/
+typedef struct  {
+    volatile Uint32 CONTROL;
+    volatile Uint32 STATUS;
+    volatile Uint32 WAKEUP_ENABLE;
+    volatile Uint32 CYCLE_COUNT;
+    volatile Uint32 STALL_COUNT;
+    volatile Uint8 RSVD0[12];
+    volatile Uint32 CONSTANT_TABLE_BLOCK_INDEX_0;
+    volatile Uint32 CONSTANT_TABLE_BLOCK_INDEX_1;
+    volatile Uint32 CONSTANT_TABLE_PROG_PTR_0;
+    volatile Uint32 CONSTANT_TABLE_PROG_PTR_1;
+} CSL_Pa_pdspControl_statusRegs; /* PDSP Control and Status Registers */
+
+/**************************************************************************\
+* Register Overlay Structure for DEBUG
+\**************************************************************************/
+typedef struct  {
+    volatile Uint32 IGP[32]; /* PDSP Internal General Purpose Register */
+    volatile Uint32 ICTE[32]; /* PDSP Internal Contants Table Entry Register */
+} CSL_Pa_pdspDebugRegs; /* PDSP Debug Registers */
+
+/**************************************************************************\
+* Register Overlay Structure
+\**************************************************************************/
+typedef struct  {
+    CSL_Pa_pdspControl_statusRegs CONTROL_STATUS;
+    volatile Uint8 RSVD0[976];
+    CSL_Pa_pdspDebugRegs DEBUG;
+    volatile Uint8 RSVD1[15104];
+    volatile Uint32 IRAM[3072]; /* PDSP Instruction RAM */
+} CSL_Pa_pdspRegs;
+
+/**************************************************************************\
+* Field Definition Macros
+\**************************************************************************/
+
+/* CONTROL */
+
+#define CSL_PA_PDSP_CONTROL_SOFT_RST_N_MASK (0x00000001u)
+#define CSL_PA_PDSP_CONTROL_SOFT_RST_N_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_CONTROL_SOFT_RST_N_RESETVAL (0x00000001u)
+
+#define CSL_PA_PDSP_CONTROL_PDSP_ENABLE_MASK (0x00000002u)
+#define CSL_PA_PDSP_CONTROL_PDSP_ENABLE_SHIFT (0x00000001u)
+#define CSL_PA_PDSP_CONTROL_PDSP_ENABLE_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONTROL_PDSP_SLEEPING_MASK (0x00000004u)
+#define CSL_PA_PDSP_CONTROL_PDSP_SLEEPING_SHIFT (0x00000002u)
+#define CSL_PA_PDSP_CONTROL_PDSP_SLEEPING_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONTROL_COUNTER_ENABLE_MASK (0x00000008u)
+#define CSL_PA_PDSP_CONTROL_COUNTER_ENABLE_SHIFT (0x00000003u)
+#define CSL_PA_PDSP_CONTROL_COUNTER_ENABLE_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONTROL_RESTART_MASK (0x00000010u)
+#define CSL_PA_PDSP_CONTROL_RESTART_SHIFT (0x00000004u)
+#define CSL_PA_PDSP_CONTROL_RESTART_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONTROL_SINGLE_STEP_MASK (0x00000100u)
+#define CSL_PA_PDSP_CONTROL_SINGLE_STEP_SHIFT (0x00000008u)
+#define CSL_PA_PDSP_CONTROL_SINGLE_STEP_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONTROL_BIG_ENDIAN_MASK (0x00004000u)
+#define CSL_PA_PDSP_CONTROL_BIG_ENDIAN_SHIFT (0x0000000Eu)
+#define CSL_PA_PDSP_CONTROL_BIG_ENDIAN_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONTROL_PDSP_STATE_MASK (0x00008000u)
+#define CSL_PA_PDSP_CONTROL_PDSP_STATE_SHIFT (0x0000000Fu)
+#define CSL_PA_PDSP_CONTROL_PDSP_STATE_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONTROL_PCOUNTER_RST_VAL_MASK (0xFFFF0000u)
+#define CSL_PA_PDSP_CONTROL_PCOUNTER_RST_VAL_SHIFT (0x00000010u)
+#define CSL_PA_PDSP_CONTROL_PCOUNTER_RST_VAL_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONTROL_RESETVAL     (0x00000001u)
+
+/* STATUS */
+
+#define CSL_PA_PDSP_STATUS_PCOUNTER_MASK (0x0000FFFFu)
+#define CSL_PA_PDSP_STATUS_PCOUNTER_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_STATUS_PCOUNTER_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_STATUS_RESETVAL      (0x00000000u)
+
+/* WAKEUP_ENABLE */
+
+#define CSL_PA_PDSP_WAKEUP_ENABLE_BITWISE_ENABLES_MASK (0xFFFFFFFFu)
+#define CSL_PA_PDSP_WAKEUP_ENABLE_BITWISE_ENABLES_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_WAKEUP_ENABLE_BITWISE_ENABLES_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_WAKEUP_ENABLE_RESETVAL (0x00000000u)
+
+/* CYCLE_COUNT */
+
+#define CSL_PA_PDSP_CYCLE_COUNT_CYCLECOUNT_MASK (0xFFFFFFFFu)
+#define CSL_PA_PDSP_CYCLE_COUNT_CYCLECOUNT_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_CYCLE_COUNT_CYCLECOUNT_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CYCLE_COUNT_RESETVAL (0x00000000u)
+
+/* STALL_COUNT */
+
+#define CSL_PA_PDSP_STALL_COUNT_STALLCOUNT_MASK (0xFFFFFFFFu)
+#define CSL_PA_PDSP_STALL_COUNT_STALLCOUNT_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_STALL_COUNT_STALLCOUNT_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_STALL_COUNT_RESETVAL (0x00000000u)
+
+/* CONSTANT_TABLE_BLOCK_INDEX_0 */
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_0_C24_BLK_INDEX_MASK (0x000000FFu)
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_0_C24_BLK_INDEX_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_0_C24_BLK_INDEX_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_0_C25_BLK_INDEX_MASK (0x00FF0000u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_0_C25_BLK_INDEX_SHIFT (0x00000010u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_0_C25_BLK_INDEX_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_0_RESETVAL (0x00000000u)
+
+/* CONSTANT_TABLE_BLOCK_INDEX_1 */
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_1_C26_BLK_INDEX_MASK (0x000000FFu)
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_1_C26_BLK_INDEX_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_1_C26_BLK_INDEX_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_1_C27_BLK_INDEX_MASK (0x00FF0000u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_1_C27_BLK_INDEX_SHIFT (0x00000010u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_1_C27_BLK_INDEX_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_BLOCK_INDEX_1_RESETVAL (0x00000000u)
+
+/* CONSTANT_TABLE_PROG_PTR_0 */
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_0_C28_POINTER_MASK (0x0000FFFFu)
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_0_C28_POINTER_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_0_C28_POINTER_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_0_C29_POINTER_MASK (0xFFFF0000u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_0_C29_POINTER_SHIFT (0x00000010u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_0_C29_POINTER_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_0_RESETVAL (0x00000000u)
+
+/* CONSTANT_TABLE_PROG_PTR_1 */
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_1_C30_POINTER_MASK (0x0000FFFFu)
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_1_C30_POINTER_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_1_C30_POINTER_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_1_C31_POINTER_MASK (0xFFFF0000u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_1_C31_POINTER_SHIFT (0x00000010u)
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_1_C31_POINTER_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_CONSTANT_TABLE_PROG_PTR_1_RESETVAL (0x00000000u)
+
+/* IGP */
+
+#define CSL_PA_PDSP_IGP_REGN_MASK        (0xFFFFFFFFu)
+#define CSL_PA_PDSP_IGP_REGN_SHIFT       (0x00000000u)
+#define CSL_PA_PDSP_IGP_REGN_RESETVAL    (0x00000000u)
+
+#define CSL_PA_PDSP_IGP_RESETVAL         (0x00000000u)
+
+/* ICTE */
+
+#define CSL_PA_PDSP_ICTE_CT_ENTRYN_MASK  (0xFFFFFFFFu)
+#define CSL_PA_PDSP_ICTE_CT_ENTRYN_SHIFT (0x00000000u)
+#define CSL_PA_PDSP_ICTE_CT_ENTRYN_RESETVAL (0x00000000u)
+
+#define CSL_PA_PDSP_ICTE_RESETVAL        (0x00000000u)
+
+/* IRAM */
+
+#define CSL_PA_PDSP_IRAM_VALUE_MASK      (0xFFFFFFFFu)
+#define CSL_PA_PDSP_IRAM_VALUE_SHIFT     (0x00000000u)
+#define CSL_PA_PDSP_IRAM_VALUE_RESETVAL  (0x00000000u)
+
+#define CSL_PA_PDSP_IRAM_RESETVAL        (0x00000000u)
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

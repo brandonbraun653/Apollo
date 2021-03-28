@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/firmware_test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/firmware_test/src/test_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/firmware_test/am335x/armv7/bios/am335x_app_bbbam335x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard  -DSOC_AM335X -DbbbAM335x -DBUILDCFG_MOD_UART -DPRU_ICSS_FW -DEXT_LOOPBACK_TESTS -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/uart -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/starterware/include/am335x"  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static ${PDK_INSTALL_PATH}/ti/drv/uart/firmware/icss_uart/bin/am335x/a8host/REV1/icss_uart_PRU0.bin ${PDK_INSTALL_PATH}/ti/drv/uart/firmware/icss_uart/bin/am335x/a8host/REV1/icss_uart_PRU1.bin -Wl,-T,${PDK_INSTALL_PATH}/ti/build/pruss/lnk_a8_a9_a15_REV1.cmd -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am335x/config_am335x_a8.bld -DBOARD=bbbAM335x"
+

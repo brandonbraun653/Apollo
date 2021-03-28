@@ -1,0 +1,10 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/sample_am437x_arm_int_reg.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/sample_am437x_cfg.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/sample_arm_cs.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/sample_arm_init.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/am437x/armv7/bios/am437x_app_dma_evmam437x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard -DUART_V1 -DSOC_AM437X -DevmAM437x -DBUILDCFG_MOD_UART -DUART_DMA_ENABLE -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/uart -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.drv.gpio" version="1, 0, 0, 16" producerId="undefined">
+    <units>
+        <module name="Settings"/>
+    </units>
+    <sources>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="package/rel/gpio_1_0_0_16.tar.dep" src="package/rel/gpio_1_0_0_16.xdc.inc"/>
+    </makefiles>
+    <targets>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="gpio_1_0_0_16"
+        pname="./packages/gpio_1_0_0_16.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="src/GPIO_drv.c"/>
+        <file name="src/v1/GPIO_v1.c"/>
+        <file name="src/v0/GPIO_v0.c"/>
+        <file name="src/GPIO_drv_log.h"/>
+        <file name="src/GPIO_osal.h"/>
+        <file name="src/v0/GPIO_v0.h"/>
+        <file name="src/src_files_common.mk"/>
+        <file name="src/Module.xs"/>
+        <file name="docs/tifooter.htm"/>
+        <file name="docs/tiheader.htm"/>
+        <file name="docs/tilogo.gif"/>
+        <file name="docs/titagline.gif"/>
+        <file name="docs/GPIO_LLD_SoftwareManifest.html"/>
+        <file name="docs/doxygen"/>
+        <file name="docs/ReleaseNotes_GPIO_LLD.pdf"/>
+        <file name="docs/Module.xs"/>
+        <file name="test/led_blink/am65xx/GPIO_board.c"/>
+        <file name="test/led_blink/k2l/GPIO_board.c"/>
+        <file name="test/led_blink/src/am437x/GPIO_evmAM437x_board.c"/>
+        <file name="test/led_blink/src/am437x/GPIO_skAM437x_board.c"/>
+        <file name="test/led_blink/src/am335x/GPIO_bbbAM335x_board.c"/>
+        <file name="test/led_blink/src/am335x/GPIO_skAM335x_board.c"/>
+        <file name="test/led_blink/src/am335x/GPIO_iceAMIC110_board.c"/>
+        <file name="test/led_blink/src/am335x/GPIO_icev2AM335x_board.c"/>
+        <file name="test/led_blink/src/GPIO_log.c"/>
+        <file name="test/led_blink/src/am571x/GPIO_idkAM571x_board.c"/>
+        <file name="test/led_blink/src/main_led_blink.c"/>
+        <file name="test/led_blink/src/am574x/GPIO_idkAM574x_board.c"/>
+        <file name="test/led_blink/src/am572x/GPIO_evmAM572x_board.c"/>
+        <file name="test/led_blink/src/am572x/GPIO_idkAM572x_board.c"/>
+        <file name="test/led_blink/j7200/GPIO_board.c"/>
+        <file name="test/led_blink/j721e/GPIO_board.c"/>
+        <file name="test/led_blink/omapl137/GPIO_board.c"/>
+        <file name="test/led_blink/k2e/GPIO_board.c"/>
+        <file name="test/led_blink/c6678/GPIO_board.c"/>
+        <file name="test/led_blink/c6657/GPIO_board.c"/>
+        <file name="test/led_blink/k2g/GPIO_board.c"/>
+        <file name="test/led_blink/omapl138/GPIO_board.c"/>
+        <file name="test/led_blink/k2h/GPIO_board.c"/>
+        <file name="test/led_blink/src/GPIO_board.h"/>
+        <file name="test/led_blink/src/GPIO_log.h"/>
+        <file name="test/led_blink/makefile"/>
+        <file name="test/baremetal/c66/makefile"/>
+        <file name="test/led_blink/k2l/linker.cmd"/>
+        <file name="test/led_blink/k2e/linker.cmd"/>
+        <file name="test/led_blink/c6678/linker.cmd"/>
+        <file name="test/led_blink/c6657/linker.cmd"/>
+        <file name="test/led_blink/k2g/linker.cmd"/>
+        <file name="test/led_blink/k2h/linker.cmd"/>
+        <file name="test/led_blink/am65xx/gpioLedBlinkTest_a53.cfg"/>
+        <file name="test/led_blink/am65xx/gpioLedBlinkTest_r5.cfg"/>
+        <file name="test/led_blink/am437x/armv7/bios/am437x_app_evmam437x.cfg"/>
+        <file name="test/led_blink/am437x/armv7/bios/am437x_app_skam437x.cfg"/>
+        <file name="test/led_blink/k2l/armv7/bios/gpio_arm.cfg"/>
+        <file name="test/led_blink/k2l/c66/bios/gpio_test.cfg"/>
+        <file name="test/led_blink/j721e/gpioLedBlinkTest_r5f.cfg"/>
+        <file name="test/led_blink/j721e/gpioLedBlinkTest_a72.cfg"/>
+        <file name="test/led_blink/omapl137/arm9/bios/gpio_arm.cfg"/>
+        <file name="test/led_blink/omapl137/c674/bios/gpio_test.cfg"/>
+        <file name="test/led_blink/k2e/armv7/bios/gpio_arm.cfg"/>
+        <file name="test/led_blink/k2e/c66/bios/gpio_test.cfg"/>
+        <file name="test/led_blink/c6678/c66/bios/gpio_test.cfg"/>
+        <file name="test/led_blink/am335x/armv7/bios/am335x_app_icev2am335x.cfg"/>
+        <file name="test/led_blink/am335x/armv7/bios/am335x_app_iceamic110.cfg"/>
+        <file name="test/led_blink/am335x/armv7/bios/am335x_app_bbbam335x.cfg"/>
+        <file name="test/led_blink/am335x/armv7/bios/am335x_app_skam335x.cfg"/>
+        <file name="test/led_blink/c6657/c66/bios/gpio_test.cfg"/>
+        <file name="test/led_blink/k2g/armv7/bios/gpio_arm_ice.cfg"/>
+        <file name="test/led_blink/k2g/armv7/bios/gpio_arm.cfg"/>
+        <file name="test/led_blink/k2g/c66/bios/gpio_test.cfg"/>
+        <file name="test/led_blink/k2g/c66/bios/gpio_test_ice.cfg"/>
+        <file name="test/led_blink/am571x/armv7/bios/gpio_arm_idkAM571x.cfg"/>
+        <file name="test/led_blink/am571x/c66/bios/gpio_test_idkAM571x.cfg"/>
+        <file name="test/led_blink/am571x/m4/bios/gpio_m4_idkAM571x.cfg"/>
+        <file name="test/led_blink/omapl138/arm9/bios/gpio_arm.cfg"/>
+        <file name="test/led_blink/omapl138/c674/bios/gpio_test.cfg"/>
+        <file name="test/led_blink/am574x/armv7/bios/gpio_arm_idkAM574x.cfg"/>
+        <file name="test/led_blink/am574x/c66/bios/gpio_test_idkAM574x.cfg"/>
+        <file name="test/led_blink/am574x/m4/bios/gpio_m4_idkAM574x.cfg"/>
+        <file name="test/led_blink/k2h/armv7/bios/gpio_arm.cfg"/>
+        <file name="test/led_blink/k2h/c66/bios/gpio_test.cfg"/>
+        <file name="test/led_blink/am572x/armv7/bios/gpio_arm_evmAM572x.cfg"/>
+        <file name="test/led_blink/am572x/armv7/bios/gpio_arm_idkAM572x.cfg"/>
+        <file name="test/led_blink/am572x/c66/bios/gpio_test_evmAM572x.cfg"/>
+        <file name="test/led_blink/am572x/c66/bios/gpio_test_idkAM572x.cfg"/>
+        <file name="test/led_blink/am572x/m4/bios/gpio_m4_evmAM572x.cfg"/>
+        <file name="test/led_blink/am572x/m4/bios/gpio_m4_idkAM572x.cfg"/>
+        <file name="test/led_blink/am437x/armv7/bios/GPIO_LedBlink_evmAM437x_armTestProject.txt"/>
+        <file name="test/led_blink/am437x/armv7/bios/GPIO_LedBlink_skAM437x_armTestProject.txt"/>
+        <file name="test/led_blink/k2l/armv7/bios/GPIO_LedBlink_K2L_EVM_armTestProject.txt"/>
+        <file name="test/led_blink/k2l/c66/bios/GPIO_LedBlink_K2L_EVM_c66xTestProject.txt"/>
+        <file name="test/led_blink/k2k/c66/bios/GPIO_LedBlink_K2K_EVM_c66xTestProject.txt"/>
+        <file name="test/led_blink/omapl137/arm9/bios/GPIO_LedBlink_evmOMAPL137_armTestProject.txt"/>
+        <file name="test/led_blink/omapl137/c674/bios/GPIO_LedBlink_evmOMAPL137_c674xTestProject.txt"/>
+        <file name="test/led_blink/k2e/armv7/bios/GPIO_LedBlink_K2E_EVM_armTestProject.txt"/>
+        <file name="test/led_blink/k2e/c66/bios/GPIO_LedBlink_K2E_EVM_c66xTestProject.txt"/>
+        <file name="test/led_blink/c6678/c66/bios/GPIO_LedBlink_C6678_EVM_c66xTestProject.txt"/>
+        <file name="test/led_blink/am335x/armv7/bios/GPIO_LedBlink_icev2AM335x_armTestProject.txt"/>
+        <file name="test/led_blink/am335x/armv7/bios/GPIO_LedBlink_bbbAM335x_armTestProject.txt"/>
+        <file name="test/led_blink/am335x/armv7/bios/GPIO_LedBlink_skAM335x_armTestProject.txt"/>
+        <file name="test/led_blink/am335x/armv7/bios/GPIO_LedBlink_iceAMIC110_armTestProject.txt"/>
+        <file name="test/led_blink/c6657/c66/bios/GPIO_LedBlink_C6657_EVM_c66xTestProject.txt"/>
+        <file name="test/led_blink/k2g/armv7/bios/GPIO_LedBlink_iceK2G_armTestProject.txt"/>
+        <file name="test/led_blink/k2g/armv7/bios/GPIO_LedBlink_evmK2G_armTestProject.txt"/>
+        <file name="test/led_blink/k2g/c66/bios/GPIO_LedBlink_iceK2G_c66xTestProject.txt"/>
+        <file name="test/led_blink/k2g/c66/bios/GPIO_LedBlink_evmK2G_c66xTestProject.txt"/>
+        <file name="test/led_blink/am571x/armv7/bios/GPIO_LedBlink_idkAM571x_armTestProject.txt"/>
+        <file name="test/led_blink/am571x/c66/bios/GPIO_LedBlink_idkAM571x_c66xTestProject.txt"/>
+        <file name="test/led_blink/am571x/m4/bios/GPIO_LedBlink_idkAM571x_m4TestProject.txt"/>
+        <file name="test/led_blink/omapl138/arm9/bios/GPIO_LedBlink_lcdkOMAPL138_armTestProject.txt"/>
+        <file name="test/led_blink/omapl138/c674/bios/GPIO_LedBlink_lcdkOMAPL138_c674xTestProject.txt"/>
+        <file name="test/led_blink/am574x/armv7/bios/GPIO_LedBlink_idkAM574x_armTestProject.txt"/>
+        <file name="test/led_blink/am574x/c66/bios/GPIO_LedBlink_idkAM574x_c66xTestProject.txt"/>
+        <file name="test/led_blink/am574x/m4/bios/GPIO_LedBlink_idkAM574x_m4TestProject.txt"/>
+        <file name="test/led_blink/k2h/armv7/bios/GPIO_LedBlink_K2H_EVM_armTestProject.txt"/>
+        <file name="test/led_blink/k2h/c66/bios/GPIO_LedBlink_K2H_EVM_c66xTestProject.txt"/>
+        <file name="test/led_blink/am572x/armv7/bios/GPIO_LedBlink_evmAM572x_armTestProject.txt"/>
+        <file name="test/led_blink/am572x/armv7/bios/GPIO_LedBlink_idkAM572x_armTestProject.txt"/>
+        <file name="test/led_blink/am572x/c66/bios/GPIO_LedBlink_evmAM572x_c66xTestProject.txt"/>
+        <file name="test/led_blink/am572x/c66/bios/GPIO_LedBlink_idkAM572x_c66xTestProject.txt"/>
+        <file name="test/led_blink/am572x/m4/bios/GPIO_LedBlink_evmAM572x_m4TestProject.txt"/>
+        <file name="test/led_blink/am572x/m4/bios/GPIO_LedBlink_idkAM572x_m4TestProject.txt"/>
+        <file name="test/baremetal/Readme.txt"/>
+        <file name="test/led_blink/am65xx/mpu.xs"/>
+        <file name="test/led_blink/j721e/mpu.xs"/>
+        <file name="test/Module.xs"/>
+        <file name="example/Module.xs"/>
+        <file name="soc/am65xx/GPIO_soc.c"/>
+        <file name="soc/am437x/GPIO_soc.c"/>
+        <file name="soc/k2l/GPIO_soc.c"/>
+        <file name="soc/j7200/GPIO_soc.c"/>
+        <file name="soc/dra75x/GPIO_soc.c"/>
+        <file name="soc/k2k/GPIO_soc.c"/>
+        <file name="soc/j721e/GPIO_soc.c"/>
+        <file name="soc/omapl137/GPIO_soc.c"/>
+        <file name="soc/dra72x/GPIO_soc.c"/>
+        <file name="soc/k2e/GPIO_soc.c"/>
+        <file name="soc/c6678/GPIO_soc.c"/>
+        <file name="soc/am335x/GPIO_soc.c"/>
+        <file name="soc/c6657/GPIO_soc.c"/>
+        <file name="soc/k2g/GPIO_soc.c"/>
+        <file name="soc/dra78x/GPIO_soc.c"/>
+        <file name="soc/am571x/GPIO_soc.c"/>
+        <file name="soc/omapl138/GPIO_soc.c"/>
+        <file name="soc/am574x/GPIO_soc.c"/>
+        <file name="soc/k2h/GPIO_soc.c"/>
+        <file name="soc/am572x/GPIO_soc.c"/>
+        <file name="soc/GPIO_v1.h"/>
+        <file name="soc/GPIO_soc.h"/>
+        <file name="soc/Module.xs"/>
+        <file name="config.bld"/>
+        <file name="config_mk.bld"/>
+        <file name="package.bld"/>
+        <file name="package.xdc"/>
+        <file name="package.xs"/>
+        <file name="Settings.xdc"/>
+        <file name="Settings.xdc.xdt"/>
+        <file name="GPIO.h"/>
+        <file name="GPIOver.h"/>
+        <file name="GPIOver.h.xdt"/>
+        <file name="docs/Doxyfile"/>
+        <file name="docs/doxyfile.xdt"/>
+        <file name="build/buildlib.xs"/>
+        <file name="makefile"/>
+        <file name="build/makefile.mk"/>
+        <file name="build/makefile_indp.mk"/>
+        <file name="build/makefile_profile_indp.mk"/>
+        <file name="build/makefile_profile.mk"/>
+        <file name="gpio_component.mk"/>
+        <file name="./lib"/>
+        <file name="package/package.cfg.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

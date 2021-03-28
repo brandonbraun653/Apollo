@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/main_led_blink.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/k2l/GPIO_board.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/k2l/armv7/bios/gpio_arm.cfg" 
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_K2L -DevmK2L -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/gpio -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

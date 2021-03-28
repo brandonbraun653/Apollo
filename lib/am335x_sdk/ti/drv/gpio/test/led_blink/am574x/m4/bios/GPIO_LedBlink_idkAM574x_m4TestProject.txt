@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/am574x/GPIO_idkAM574x_board.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am574x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/main_led_blink.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/GPIO_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am574x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/am574x/m4/bios/gpio_m4_idkAM574x.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_AM574x -DidkAM574x -DAM5XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/gpio --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"

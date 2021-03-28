@@ -1,0 +1,85 @@
+[OPTIONS]
+Compiled file=..\..\emaclldDocs.chm
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=EMAC Low Level Driver
+
+[WINDOWS]
+main="EMAC Low Level Driver","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+emac__drv_8h.html
+emac__ioctl_8h.html
+group__emaclld__module.html
+group__emaclld__api__functions.html
+group__emaclld__api__structures.html
+group__emaclld__api__constants.html
+group__emaclld__api__ioctl__macros.html
+group__emaclld__callback__functions.html
+group___e_m_a_c___i_o_c_t_l___v_l_a_n___c_t_r_l.html
+group___e_m_a_c___i_o_c_t_l___p_o_r_t___s_t_a_t_e___c_t_r_l.html
+group___e_m_a_c___i_o_c_t_l___f_d_b___e_n_t_r_y___c_t_r_l.html
+group___e_m_a_c___i_o_c_t_l___a_c_c_e_p_t_a_b_l_e___f_r_a_m_e___c_h_e_c_k___c_t_r_l.html
+group___e_m_a_c___i_o_c_t_l___p_o_r_t___u_c___f_l_o_o_d_i_n_g___c_t_r_l.html
+group___e_m_a_c___i_o_c_t_l___i_n_t_e_r_f_a_c_e___m_a_c___c_t_r_l.html
+group___e_m_a_c___i_o_c_t_l___f_r_a_m_e___p_r_e_e_m_p_t_i_o_n___c_t_r_l.html
+group___e_m_a_c___i_o_c_t_l___s_p_e_e_d___d_u_p_l_e_x_i_t_y___c_t_r_l.html
+struct_e_m_a_c___c_h_a_n___m_a_c___a_d_d_r__tag.html
+struct_e_m_a_c___config__s.html
+struct_e_m_a_c___config_info__s.html
+struct_e_m_a_c___fxn_table__s.html
+struct_e_m_a_c___i_o_c_t_l___c_m_d___r_e_s_p__s.html
+struct_e_m_a_c___i_o_c_t_l___f_d_b___a_g_e_i_n_g___i_n_t_e_r_v_a_l___s.html
+struct_e_m_a_c___i_o_c_t_l___f_d_b___e_n_t_r_y___s.html
+struct_e_m_a_c___i_o_c_t_l___p_a_r_a_m_s___s.html
+struct_e_m_a_c___i_o_c_t_l___p_o_r_t___p_r_i_o___m_a_p___s.html
+struct_e_m_a_c___i_o_c_t_l___p_r_e_e_m_p_t_i_o_n___e_n_t_r_y___s.html
+struct_e_m_a_c___i_o_c_t_l___p_r_e_m_p_t___o_r___c_u_t___t_h_r_o_u_g_h___m_a_p___s.html
+struct_e_m_a_c___i_o_c_t_l___p_r_i_o___r_e_g_e_n___m_a_p___s.html
+struct_e_m_a_c___i_o_c_t_l___s_p_e_c_i_a_l___f_r_a_m_e___d_e_f_a_u_l_t___p_r_i_o___s.html
+struct_e_m_a_c___i_o_c_t_l___v_l_a_n___d_e_f_a_u_l_t___e_n_t_r_y___s.html
+struct_e_m_a_c___i_o_c_t_l___v_l_a_n___f_i_d___e_n_t_r_y___s.html
+struct_e_m_a_c___i_o_c_t_l___v_l_a_n___f_i_d___p_a_r_a_m_s___s.html
+struct_e_m_a_c___link_info__s.html
+struct_e_m_a_c___m_a_c___a_d_d_r__tag.html
+struct_e_m_a_c___open_config_info__s.html
+struct_e_m_a_c___p_k_t___d_e_s_c__s.html
+struct_e_m_a_c___s_t_a_t_i_s_t_i_c_s___i_c_s_s_g__tag.html
+struct_e_m_a_c___s_t_a_t_i_s_t_i_c_s__tag.html
+index.html
+modules.html
+annotated.html
+classes.html
+functions.html
+functions_vars.html
+files.html
+globals.html
+globals_func.html
+globals_type.html
+globals_enum.html
+globals_eval.html
+globals_defs.html
+tab_a.png
+tab_b.png
+tab_h.png
+tab_s.png
+nav_h.png
+nav_f.png
+bc_s.png
+doxygen.png
+closed.png
+open.png
+bdwn.png
+sync_on.png
+sync_off.png
+doc.png
+folderopen.png
+folderclosed.png
+arrowdown.png
+arrowright.png
+splitbar.png

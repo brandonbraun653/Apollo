@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/soc/omapl138/MMCSD_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/src/main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/omapl138/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/omapl138/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/omapl138/armv5/bios/mmcsd_test.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv5e --float_support=vfplib --abi=eabi -g -DSOC_OMAPL138 -Domapl138 -DlcdkOMAPL138 -I${PDK_INSTALL_PATH}/ti/drv/gpio -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"

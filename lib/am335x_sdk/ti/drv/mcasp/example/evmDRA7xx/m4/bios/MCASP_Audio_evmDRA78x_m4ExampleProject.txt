@@ -1,0 +1,8 @@
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_io.c" 
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_main.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/src/dra78x/audio_evmInit.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/src/dra78x/mcasp_cfg.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/m4/bios/loopback_m4.cfg" 
+-ccs.setCompilerOptions "-qq -pdsw255 -mv7M4 --float_support=vfplib --abi=eabi -g -DMCASP_MASTER -DSOC_DRA78x -DevmDRA78x -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/include/dra78x -I${PDK_INSTALL_PATH}/ti/drv/mcasp/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp -I${PDK_INSTALL_PATH}/ti/board" -rtsc.enableRtsc 
+-ccs.setLinkerOptions "--strict_compatibility=on"
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra78x\", BOARD:\"evmDRA78x\"}"

@@ -1,0 +1,4866 @@
+/********************************************************************
+ * Copyright (C) 2018 Texas Instruments Incorporated.
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *    Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *    Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the
+ *    distribution.
+ *
+ *    Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ *  Name        : cslr_debug_cbass.h
+*/
+#ifndef CSLR_DEBUG_CBASS_H_
+#define CSLR_DEBUG_CBASS_H_
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+#include <ti/csl/cslr.h>
+#include <stdint.h>
+
+/**************************************************************************
+* Hardware Region  : Global Config port MMR
+**************************************************************************/
+
+
+/**************************************************************************
+* Register Overlay Structure
+**************************************************************************/
+
+typedef struct {
+    volatile uint32_t PID;                       /* Revision Register */
+    volatile uint32_t DESTINATION_ID;            /* Destination ID Register */
+    volatile uint8_t  Resv_32[24];
+    volatile uint32_t EXCEPTION_LOGGING_CONTROL;   /* Exception Logging Control Register */
+    volatile uint32_t EXCEPTION_LOGGING_HEADER0;   /* Exception Logging Header 0 Register */
+    volatile uint32_t EXCEPTION_LOGGING_HEADER1;   /* Exception Logging Header 1 Register */
+    volatile uint32_t EXCEPTION_LOGGING_DATA0;   /* Exception Logging Data 0 Register */
+    volatile uint32_t EXCEPTION_LOGGING_DATA1;   /* Exception Logging Data 1 Register */
+    volatile uint32_t EXCEPTION_LOGGING_DATA2;   /* Exception Logging Data 2 Register */
+    volatile uint32_t EXCEPTION_LOGGING_DATA3;   /* Exception Logging Data 3 Register */
+    volatile uint8_t  Resv_64[4];
+    volatile uint32_t EXCEPTION_PEND_SET;        /* Exception Logging Pending Set Register */
+    volatile uint32_t EXCEPTION_PEND_CLEAR;      /* Exception Logging Pending Clear Register */
+} CSL_debug_cbass_glbRegs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+#define CSL_DEBUG_CBASS_GLB_PID                                                      (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_DESTINATION_ID                                           (0x00000004U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL                                (0x00000020U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0                                (0x00000024U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1                                (0x00000028U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA0                                  (0x0000002CU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA1                                  (0x00000030U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2                                  (0x00000034U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA3                                  (0x00000038U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_SET                                       (0x00000040U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_CLEAR                                     (0x00000044U)
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+
+/* PID */
+
+#define CSL_DEBUG_CBASS_GLB_PID_MINOR_MASK                                           (0x0000003FU)
+#define CSL_DEBUG_CBASS_GLB_PID_MINOR_SHIFT                                          (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_PID_MINOR_RESETVAL                                       (0x00000001U)
+#define CSL_DEBUG_CBASS_GLB_PID_MINOR_MAX                                            (0x0000003FU)
+
+#define CSL_DEBUG_CBASS_GLB_PID_CUSTOM_MASK                                          (0x000000C0U)
+#define CSL_DEBUG_CBASS_GLB_PID_CUSTOM_SHIFT                                         (0x00000006U)
+#define CSL_DEBUG_CBASS_GLB_PID_CUSTOM_RESETVAL                                      (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_PID_CUSTOM_MAX                                           (0x00000003U)
+
+#define CSL_DEBUG_CBASS_GLB_PID_MAJOR_MASK                                           (0x00000700U)
+#define CSL_DEBUG_CBASS_GLB_PID_MAJOR_SHIFT                                          (0x00000008U)
+#define CSL_DEBUG_CBASS_GLB_PID_MAJOR_RESETVAL                                       (0x00000001U)
+#define CSL_DEBUG_CBASS_GLB_PID_MAJOR_MAX                                            (0x00000007U)
+
+#define CSL_DEBUG_CBASS_GLB_PID_RTL_MASK                                             (0x0000F800U)
+#define CSL_DEBUG_CBASS_GLB_PID_RTL_SHIFT                                            (0x0000000BU)
+#define CSL_DEBUG_CBASS_GLB_PID_RTL_RESETVAL                                         (0x00000008U)
+#define CSL_DEBUG_CBASS_GLB_PID_RTL_MAX                                              (0x0000001FU)
+
+#define CSL_DEBUG_CBASS_GLB_PID_FUNC_MASK                                            (0x0FFF0000U)
+#define CSL_DEBUG_CBASS_GLB_PID_FUNC_SHIFT                                           (0x00000010U)
+#define CSL_DEBUG_CBASS_GLB_PID_FUNC_RESETVAL                                        (0x00000600U)
+#define CSL_DEBUG_CBASS_GLB_PID_FUNC_MAX                                             (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_GLB_PID_BU_MASK                                              (0x30000000U)
+#define CSL_DEBUG_CBASS_GLB_PID_BU_SHIFT                                             (0x0000001CU)
+#define CSL_DEBUG_CBASS_GLB_PID_BU_RESETVAL                                          (0x00000002U)
+#define CSL_DEBUG_CBASS_GLB_PID_BU_MAX                                               (0x00000003U)
+
+#define CSL_DEBUG_CBASS_GLB_PID_SCHEME_MASK                                          (0xC0000000U)
+#define CSL_DEBUG_CBASS_GLB_PID_SCHEME_SHIFT                                         (0x0000001EU)
+#define CSL_DEBUG_CBASS_GLB_PID_SCHEME_RESETVAL                                      (0x00000001U)
+#define CSL_DEBUG_CBASS_GLB_PID_SCHEME_MAX                                           (0x00000003U)
+
+#define CSL_DEBUG_CBASS_GLB_PID_RESETVAL                                             (0x66004101U)
+
+/* DESTINATION_ID */
+
+#define CSL_DEBUG_CBASS_GLB_DESTINATION_ID_DEST_ID_MASK                              (0x000000FFU)
+#define CSL_DEBUG_CBASS_GLB_DESTINATION_ID_DEST_ID_SHIFT                             (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_DESTINATION_ID_DEST_ID_RESETVAL                          (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_DESTINATION_ID_DEST_ID_MAX                               (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_GLB_DESTINATION_ID_RESETVAL                                  (0x00000000U)
+
+/* EXCEPTION_LOGGING_CONTROL */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_DISABLE_F_MASK                 (0x00000001U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_DISABLE_F_SHIFT                (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_DISABLE_F_RESETVAL             (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_DISABLE_F_MAX                  (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_DISABLE_PEND_MASK              (0x00000002U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_DISABLE_PEND_SHIFT             (0x00000001U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_DISABLE_PEND_RESETVAL          (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_DISABLE_PEND_MAX               (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_CONTROL_RESETVAL                       (0x00000000U)
+
+/* EXCEPTION_LOGGING_HEADER0 */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_DEST_ID_MASK                   (0x000000FFU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_DEST_ID_SHIFT                  (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_DEST_ID_RESETVAL               (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_DEST_ID_MAX                    (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_SRC_ID_MASK                    (0x00FFFF00U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_SRC_ID_SHIFT                   (0x00000008U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_SRC_ID_RESETVAL                (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_SRC_ID_MAX                     (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_TYPE_F_MASK                    (0xFF000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_TYPE_F_SHIFT                   (0x00000018U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_TYPE_F_RESETVAL                (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_TYPE_F_MAX                     (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER0_RESETVAL                       (0x00000000U)
+
+/* EXCEPTION_LOGGING_HEADER1 */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_CODE_MASK                      (0x00FF0000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_CODE_SHIFT                     (0x00000010U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_CODE_RESETVAL                  (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_CODE_MAX                       (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_GROUP_MASK                     (0xFF000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_GROUP_SHIFT                    (0x00000018U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_GROUP_RESETVAL                 (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_GROUP_MAX                      (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_HEADER1_RESETVAL                       (0x00000000U)
+
+/* EXCEPTION_LOGGING_DATA0 */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA0_ADDR_L_MASK                      (0xFFFFFFFFU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA0_ADDR_L_SHIFT                     (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA0_ADDR_L_RESETVAL                  (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA0_ADDR_L_MAX                       (0xFFFFFFFFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA0_RESETVAL                         (0x00000000U)
+
+/* EXCEPTION_LOGGING_DATA1 */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA1_ADDR_H_MASK                      (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA1_ADDR_H_SHIFT                     (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA1_ADDR_H_RESETVAL                  (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA1_ADDR_H_MAX                       (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA1_RESETVAL                         (0x00000000U)
+
+/* EXCEPTION_LOGGING_DATA2 */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_PRIV_ID_MASK                     (0x000000FFU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_PRIV_ID_SHIFT                    (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_PRIV_ID_RESETVAL                 (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_PRIV_ID_MAX                      (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_SECURE_MASK                      (0x00000100U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_SECURE_SHIFT                     (0x00000008U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_SECURE_RESETVAL                  (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_SECURE_MAX                       (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_PRIV_MASK                        (0x00000200U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_PRIV_SHIFT                       (0x00000009U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_PRIV_RESETVAL                    (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_PRIV_MAX                         (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_CACHEABLE_MASK                   (0x00000400U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_CACHEABLE_SHIFT                  (0x0000000AU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_CACHEABLE_RESETVAL               (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_CACHEABLE_MAX                    (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_DEBUG_MASK                       (0x00000800U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_DEBUG_SHIFT                      (0x0000000BU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_DEBUG_RESETVAL                   (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_DEBUG_MAX                        (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_READ_MASK                        (0x00001000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_READ_SHIFT                       (0x0000000CU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_READ_RESETVAL                    (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_READ_MAX                         (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_WRITE_MASK                       (0x00002000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_WRITE_SHIFT                      (0x0000000DU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_WRITE_RESETVAL                   (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_WRITE_MAX                        (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_ROUTEID_MASK                     (0x0FFF0000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_ROUTEID_SHIFT                    (0x00000010U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_ROUTEID_RESETVAL                 (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_ROUTEID_MAX                      (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA2_RESETVAL                         (0x00000000U)
+
+/* EXCEPTION_LOGGING_DATA3 */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA3_BYTECNT_MASK                     (0x000003FFU)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA3_BYTECNT_SHIFT                    (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA3_BYTECNT_RESETVAL                 (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA3_BYTECNT_MAX                      (0x000003FFU)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_LOGGING_DATA3_RESETVAL                         (0x00000000U)
+
+/* EXCEPTION_PEND_SET */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_SET_PEND_SET_MASK                         (0x00000001U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_SET_PEND_SET_SHIFT                        (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_SET_PEND_SET_RESETVAL                     (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_SET_PEND_SET_MAX                          (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_SET_RESETVAL                              (0x00000000U)
+
+/* EXCEPTION_PEND_CLEAR */
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_CLEAR_PEND_CLR_MASK                       (0x00000001U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_CLEAR_PEND_CLR_SHIFT                      (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_CLEAR_PEND_CLR_RESETVAL                   (0x00000000U)
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_CLEAR_PEND_CLR_MAX                        (0x00000001U)
+
+#define CSL_DEBUG_CBASS_GLB_EXCEPTION_PEND_CLEAR_RESETVAL                            (0x00000000U)
+
+/**************************************************************************
+* Hardware Region  : Config port MMR
+**************************************************************************/
+
+
+/**************************************************************************
+* Register Overlay Structure
+**************************************************************************/
+
+typedef struct {
+    volatile uint32_t STM0_VBUSM_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_1_CONTROL;   /* Firewall Region 1 Control Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_1_PERMISSION_0;   /* Firewall Region 1 Permission 0 Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_1_PERMISSION_1;   /* Firewall Region 1 Permission 1 Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_1_PERMISSION_2;   /* Firewall Region 1 Permission 2 Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_1_START_ADDRESS_L;   /* Firewall Region 1 Start Address Low Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_1_START_ADDRESS_H;   /* Firewall Region 1 Start Address High Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_1_END_ADDRESS_L;   /* Firewall Region 1 End Address Low Register */
+    volatile uint32_t STM0_VBUSM_FW_REGION_1_END_ADDRESS_H;   /* Firewall Region 1 End Address High Register */
+    volatile uint8_t  Resv_1024[960];
+    volatile uint32_t DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint8_t  Resv_2048[992];
+    volatile uint32_t DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint8_t  Resv_3072[992];
+    volatile uint32_t CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint8_t  Resv_4096[992];
+    volatile uint32_t DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint8_t  Resv_5120[992];
+    volatile uint32_t C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint8_t  Resv_6144[992];
+    volatile uint32_t C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint8_t  Resv_8192[2016];
+    volatile uint32_t DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint8_t  Resv_30720[22496];
+    volatile uint32_t CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+    volatile uint8_t  Resv_31744[992];
+    volatile uint32_t CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL;   /* Firewall Region 0 Control Register */
+    volatile uint32_t CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0;   /* Firewall Region 0 Permission 0 Register */
+    volatile uint32_t CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1;   /* Firewall Region 0 Permission 1 Register */
+    volatile uint32_t CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2;   /* Firewall Region 0 Permission 2 Register */
+    volatile uint32_t CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L;   /* Firewall Region 0 Start Address Low Register */
+    volatile uint32_t CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H;   /* Firewall Region 0 Start Address High Register */
+    volatile uint32_t CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L;   /* Firewall Region 0 End Address Low Register */
+    volatile uint32_t CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H;   /* Firewall Region 0 End Address High Register */
+} CSL_debug_cbass_fwRegs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL              (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0         (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1         (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2         (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L      (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_H      (0x00000014U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L        (0x00000018U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_H        (0x0000001CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL              (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0         (0x00000024U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1         (0x00000028U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2         (0x0000002CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L      (0x00000030U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_H      (0x00000034U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L        (0x00000038U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_H        (0x0000003CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0 (0x00000404U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1 (0x00000408U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2 (0x0000040CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L (0x00000410U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_H (0x00000414U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L (0x00000418U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_H (0x0000041CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL  (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0 (0x00000804U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1 (0x00000808U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2 (0x0000080CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L (0x00000810U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H (0x00000814U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L (0x00000818U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H (0x0000081CU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL    (0x00000C00U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0 (0x00000C04U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1 (0x00000C08U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2 (0x00000C0CU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L (0x00000C10U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H (0x00000C14U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L (0x00000C18U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H (0x00000C1CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL  (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0 (0x00001004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1 (0x00001008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2 (0x0000100CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L (0x00001010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H (0x00001014U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L (0x00001018U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H (0x0000101CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL   (0x00001400U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0 (0x00001404U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1 (0x00001408U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2 (0x0000140CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L (0x00001410U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H (0x00001414U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L (0x00001418U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H (0x0000141CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL   (0x00001800U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0 (0x00001804U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1 (0x00001808U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2 (0x0000180CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L (0x00001810U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H (0x00001814U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L (0x00001818U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H (0x0000181CU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0 (0x00002004U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1 (0x00002008U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2 (0x0000200CU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L (0x00002010U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_H (0x00002014U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L (0x00002018U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_H (0x0000201CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL (0x00007800U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0 (0x00007804U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1 (0x00007808U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2 (0x0000780CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L (0x00007810U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H (0x00007814U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L (0x00007818U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H (0x0000781CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL  (0x00007C00U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0 (0x00007C04U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1 (0x00007C08U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2 (0x00007C0CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L (0x00007C10U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H (0x00007C14U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L (0x00007C18U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H (0x00007C1CU)
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+
+/* STM0_VBUSM_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_ENABLE_MASK  (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_ENABLE_MAX   (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_LOCK_MASK    (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_LOCK_SHIFT   (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_LOCK_MAX     (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_CONTROL_RESETVAL     (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00009000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x09000000U)
+
+/* STM0_VBUSM_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00009FFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x09FFFFFFU)
+
+/* STM0_VBUSM_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_1_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_ENABLE_MASK  (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_ENABLE_MAX   (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_LOCK_MASK    (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_LOCK_SHIFT   (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_LOCK_MAX     (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_CONTROL_RESETVAL     (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_1_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_1_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_1_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_1_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_L_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_1_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* STM0_VBUSM_FW_REGION_1_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_L_RESETVAL (0x00000FFFU)
+
+/* STM0_VBUSM_FW_REGION_1_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_STM0_VBUSM_FW_REGION_1_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x0000004CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x0000004CU)
+
+/* DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x00000FFFU)
+
+/* DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x0000004CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS_WRAP0_VBUSP_CFG_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x0000004CU)
+
+/* DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00008004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x08004000U)
+
+/* DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00008004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x08004FFFU)
+
+/* DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00008008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x08008000U)
+
+/* CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00008008U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x08008FFFU)
+
+/* CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CCDEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x08000000U)
+
+/* DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x08000FFFU)
+
+/* DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00008010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x08010000U)
+
+/* C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00008010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x08010FFFU)
+
+/* C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS0_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00008020U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x08020000U)
+
+/* C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00008020U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x08020FFFU)
+
+/* C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_C66DEBUGSS1_SYS_VBUSP_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00003408U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x03408000U)
+
+/* DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00003408U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x03408FFFU)
+
+/* DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_DEBUG_PSILSS4_CFG_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00002A80U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x02A80000U)
+
+/* CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00002A80U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x02A80FFFU)
+
+/* CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_BACKGROUND_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_BACKGROUND_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_BACKGROUND_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_BACKGROUND_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_CACHE_MODE_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_CACHE_MODE_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_CACHE_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_CACHE_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_CONTROL_RESETVAL (0x00000000U)
+
+/* CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0 */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_0_RESETVAL (0x00000000U)
+
+/* CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1 */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_1_RESETVAL (0x00000000U)
+
+/* CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2 */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MASK (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MASK (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_SHIFT (0x00000001U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MASK (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_SHIFT (0x00000002U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MASK (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_SHIFT (0x00000003U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_READ_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MASK (0x00000080U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_SHIFT (0x00000007U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_SEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MASK (0x00000100U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MASK (0x00000200U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_SHIFT (0x00000009U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MASK (0x00000400U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_SHIFT (0x0000000AU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MASK (0x00000800U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_SHIFT (0x0000000BU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_SUPV_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MASK (0x00001000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_WRITE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MASK (0x00002000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_SHIFT (0x0000000DU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_READ_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MASK (0x00004000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_SHIFT (0x0000000EU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_CACHEABLE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MASK (0x00008000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_SHIFT (0x0000000FU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_NONSEC_USER_DEBUG_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_PRIV_ID_MASK (0x00FF0000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_PRIV_ID_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_PRIV_ID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_PERMISSION_2_RESETVAL (0x00000000U)
+
+/* CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00002A86U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_L_RESETVAL (0x02A86000U)
+
+/* CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00002A86U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_L_RESETVAL (0x02A86FFFU)
+
+/* CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_FW_CBASS_DATADEBUG0_CBASS_ERR_SLV_FW_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/**************************************************************************
+* Hardware Region  : Config port MMR
+**************************************************************************/
+
+
+/**************************************************************************
+* Register Overlay Structure
+**************************************************************************/
+
+typedef struct {
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL;   /* ISC Region 0 Control Register */
+    volatile uint8_t  Resv_16[12];
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L;   /* ISC Region 0 Start Address Low Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_H;   /* ISC Region 0 Start Address High Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L;   /* ISC Region 0 End Address Low Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_H;   /* ISC Region 0 End Address High Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL;   /* ISC Default Region Control Register */
+    volatile uint8_t  Resv_1024[988];
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL;   /* ISC Region 0 Control Register */
+    volatile uint8_t  Resv_1040[12];
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L;   /* ISC Region 0 Start Address Low Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_H;   /* ISC Region 0 Start Address High Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L;   /* ISC Region 0 End Address Low Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_H;   /* ISC Region 0 End Address High Register */
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL;   /* ISC Default Region Control Register */
+} CSL_debug_cbass_iscRegs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL  (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_H (0x00000014U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L (0x00000018U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_H (0x0000001CU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL (0x00000020U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL  (0x00000400U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L (0x00000410U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_H (0x00000414U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L (0x00000418U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_H (0x0000041CU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL (0x00000420U)
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+
+/* DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_CH_MODE_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_CH_MODE_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_CH_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_CH_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_DEF_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_DEF_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_DEF_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_DEF_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PRIV_ID_MASK (0x0000FF00U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PRIV_ID_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PRIV_ID_RESETVAL (0x000000B1U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_SEC_MASK (0x000F0000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_SEC_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_SEC_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_SEC_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_NONSEC_MASK (0x00100000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_NONSEC_SHIFT (0x00000014U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_NONSEC_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_NONSEC_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PASS_MASK (0x00200000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PASS_SHIFT (0x00000015U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PASS_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PASS_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PRIV_MASK (0x03000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PRIV_SHIFT (0x00000018U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PRIV_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_PRIV_MAX (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_NOPRIV_MASK (0x0C000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_NOPRIV_SHIFT (0x0000001AU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_NOPRIV_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_NOPRIV_MAX (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_CONTROL_RESETVAL (0x0000B100U)
+
+/* DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_L_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_L_RESETVAL (0x00000FFFU)
+
+/* DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_ENABLE_RESETVAL (0x0000000AU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_CH_MODE_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_CH_MODE_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_CH_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_CH_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_DEF_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_DEF_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_DEF_RESETVAL (0x00000001U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_DEF_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PRIV_ID_MASK (0x0000FF00U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PRIV_ID_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PRIV_ID_RESETVAL (0x000000B1U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_SEC_MASK (0x000F0000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_SEC_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_SEC_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_SEC_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_NONSEC_MASK (0x00100000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_NONSEC_SHIFT (0x00000014U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_NONSEC_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_NONSEC_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PASS_MASK (0x00200000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PASS_SHIFT (0x00000015U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PASS_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PASS_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PRIV_MASK (0x03000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PRIV_SHIFT (0x00000018U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PRIV_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_PRIV_MAX (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_NOPRIV_MASK (0x0C000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_NOPRIV_SHIFT (0x0000001AU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_NOPRIV_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_NOPRIV_MAX (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMR_ISC_REGION_DEF_CONTROL_RESETVAL (0x0000B14AU)
+
+/* DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_ENABLE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_CH_MODE_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_CH_MODE_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_CH_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_CH_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_DEF_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_DEF_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_DEF_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_DEF_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PRIV_ID_MASK (0x0000FF00U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PRIV_ID_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PRIV_ID_RESETVAL (0x000000B1U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_SEC_MASK (0x000F0000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_SEC_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_SEC_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_SEC_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_NONSEC_MASK (0x00100000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_NONSEC_SHIFT (0x00000014U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_NONSEC_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_NONSEC_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PASS_MASK (0x00200000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PASS_SHIFT (0x00000015U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PASS_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PASS_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PRIV_MASK (0x03000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PRIV_SHIFT (0x00000018U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PRIV_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_PRIV_MAX (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_NOPRIV_MASK (0x0C000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_NOPRIV_SHIFT (0x0000001AU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_NOPRIV_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_NOPRIV_MAX (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_CONTROL_RESETVAL (0x0000B100U)
+
+/* DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_L_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_START_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_L_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_H_START_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_H_START_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_H_START_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_START_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MASK (0xFFFFF000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_L_SHIFT (0x0000000CU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_L_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_L_MAX (0x000FFFFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MASK (0x00000FFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_RESETVAL (0x00000FFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_END_ADDRESS_LSB_MAX (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_L_RESETVAL (0x00000FFFU)
+
+/* DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_H */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MASK (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_H_END_ADDRESS_H_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_H_END_ADDRESS_H_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_H_END_ADDRESS_H_MAX (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_0_END_ADDRESS_H_RESETVAL (0x00000000U)
+
+/* DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL */
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_ENABLE_MASK (0x0000000FU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_ENABLE_SHIFT (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_ENABLE_RESETVAL (0x0000000AU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_ENABLE_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_LOCK_MASK (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_LOCK_SHIFT (0x00000004U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_LOCK_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_LOCK_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_CH_MODE_MASK (0x00000020U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_CH_MODE_SHIFT (0x00000005U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_CH_MODE_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_CH_MODE_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_DEF_MASK (0x00000040U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_DEF_SHIFT (0x00000006U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_DEF_RESETVAL (0x00000001U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_DEF_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PRIV_ID_MASK (0x0000FF00U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PRIV_ID_SHIFT (0x00000008U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PRIV_ID_RESETVAL (0x000000B1U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PRIV_ID_MAX (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_SEC_MASK (0x000F0000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_SEC_SHIFT (0x00000010U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_SEC_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_SEC_MAX (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_NONSEC_MASK (0x00100000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_NONSEC_SHIFT (0x00000014U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_NONSEC_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_NONSEC_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PASS_MASK (0x00200000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PASS_SHIFT (0x00000015U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PASS_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PASS_MAX (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PRIV_MASK (0x03000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PRIV_SHIFT (0x00000018U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PRIV_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_PRIV_MAX (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_NOPRIV_MASK (0x0C000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_NOPRIV_SHIFT (0x0000001AU)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_NOPRIV_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_NOPRIV_MAX (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ISC_DEBUGSS_WRAP0_VBUSMW_ISC_REGION_DEF_CONTROL_RESETVAL (0x0000B14AU)
+
+/**************************************************************************
+* Hardware Region  : Config port MMR
+**************************************************************************/
+
+
+/**************************************************************************
+* Register Overlay Structure
+**************************************************************************/
+
+typedef struct {
+    volatile uint8_t  Resv_256[256];
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMR_MAP0;   /* Map Register */
+    volatile uint8_t  Resv_1280[1020];
+    volatile uint32_t DEBUGSS_WRAP0_VBUSMW_MAP0;   /* Map Register */
+} CSL_debug_cbass_qosRegs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0                  (0x00000100U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0                  (0x00000500U)
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+
+/* DEBUGSS_WRAP0_VBUSMR_MAP0 */
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_QOS_MASK         (0x00000007U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_QOS_SHIFT        (0x00000000U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_QOS_RESETVAL     (0x00000000U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_QOS_MAX          (0x00000007U)
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_ORDERID_MASK     (0x000000F0U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_ORDERID_SHIFT    (0x00000004U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_ORDERID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_ORDERID_MAX      (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_EPRIORITY_MASK   (0x00007000U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_EPRIORITY_SHIFT  (0x0000000CU)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_EPRIORITY_RESETVAL (0x00000007U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_EPRIORITY_MAX    (0x00000007U)
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMR_MAP0_RESETVAL         (0x00007000U)
+
+/* DEBUGSS_WRAP0_VBUSMW_MAP0 */
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_QOS_MASK         (0x00000007U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_QOS_SHIFT        (0x00000000U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_QOS_RESETVAL     (0x00000000U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_QOS_MAX          (0x00000007U)
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_ORDERID_MASK     (0x000000F0U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_ORDERID_SHIFT    (0x00000004U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_ORDERID_RESETVAL (0x00000000U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_ORDERID_MAX      (0x0000000FU)
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_EPRIORITY_MASK   (0x00007000U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_EPRIORITY_SHIFT  (0x0000000CU)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_EPRIORITY_RESETVAL (0x00000007U)
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_EPRIORITY_MAX    (0x00000007U)
+
+#define CSL_DEBUG_CBASS_QOS_DEBUGSS_WRAP0_VBUSMW_MAP0_RESETVAL         (0x00007000U)
+
+/**************************************************************************
+* Hardware Region  : Error Config port MMR
+**************************************************************************/
+
+
+/**************************************************************************
+* Register Overlay Structure
+**************************************************************************/
+
+typedef struct {
+    volatile uint32_t PID;                       /* Revision Register */
+    volatile uint32_t DESTINATION_ID;            /* Destination ID Register */
+    volatile uint8_t  Resv_36[28];
+    volatile uint32_t EXCEPTION_LOGGING_HEADER0;   /* Exception Logging Header 0 Register */
+    volatile uint32_t EXCEPTION_LOGGING_HEADER1;   /* Exception Logging Header 1 Register */
+    volatile uint32_t EXCEPTION_LOGGING_DATA0;   /* Exception Logging Data 0 Register */
+    volatile uint32_t EXCEPTION_LOGGING_DATA1;   /* Exception Logging Data 1 Register */
+    volatile uint32_t EXCEPTION_LOGGING_DATA2;   /* Exception Logging Data 2 Register */
+    volatile uint32_t EXCEPTION_LOGGING_DATA3;   /* Exception Logging Data 3 Register */
+    volatile uint8_t  Resv_80[20];
+    volatile uint32_t ERR_INTR_RAW_STAT;         /* Global Interrupt Raw Status Register */
+    volatile uint32_t ERR_INTR_ENABLED_STAT;     /* Global Interrupt Enabled Status Register */
+    volatile uint32_t ERR_INTR_ENABLE_SET;       /* Interrupt Enable Set Register */
+    volatile uint32_t ERR_INTR_ENABLE_CLR;       /* Interrupt Enable Clear Register */
+    volatile uint32_t EOI;                       /* EOI Register */
+} CSL_debug_cbass_errRegs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+#define CSL_DEBUG_CBASS_ERR_PID                                                      (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_DESTINATION_ID                                           (0x00000004U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0                                (0x00000024U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1                                (0x00000028U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA0                                  (0x0000002CU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA1                                  (0x00000030U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2                                  (0x00000034U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA3                                  (0x00000038U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_RAW_STAT                                        (0x00000050U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLED_STAT                                    (0x00000054U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_SET                                      (0x00000058U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_CLR                                      (0x0000005CU)
+#define CSL_DEBUG_CBASS_ERR_EOI                                                      (0x00000060U)
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+
+/* PID */
+
+#define CSL_DEBUG_CBASS_ERR_PID_MINOR_MASK                                           (0x0000003FU)
+#define CSL_DEBUG_CBASS_ERR_PID_MINOR_SHIFT                                          (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_PID_MINOR_RESETVAL                                       (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_PID_MINOR_MAX                                            (0x0000003FU)
+
+#define CSL_DEBUG_CBASS_ERR_PID_CUSTOM_MASK                                          (0x000000C0U)
+#define CSL_DEBUG_CBASS_ERR_PID_CUSTOM_SHIFT                                         (0x00000006U)
+#define CSL_DEBUG_CBASS_ERR_PID_CUSTOM_RESETVAL                                      (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_PID_CUSTOM_MAX                                           (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ERR_PID_MAJOR_MASK                                           (0x00000700U)
+#define CSL_DEBUG_CBASS_ERR_PID_MAJOR_SHIFT                                          (0x00000008U)
+#define CSL_DEBUG_CBASS_ERR_PID_MAJOR_RESETVAL                                       (0x00000001U)
+#define CSL_DEBUG_CBASS_ERR_PID_MAJOR_MAX                                            (0x00000007U)
+
+#define CSL_DEBUG_CBASS_ERR_PID_RTL_MASK                                             (0x0000F800U)
+#define CSL_DEBUG_CBASS_ERR_PID_RTL_SHIFT                                            (0x0000000BU)
+#define CSL_DEBUG_CBASS_ERR_PID_RTL_RESETVAL                                         (0x00000008U)
+#define CSL_DEBUG_CBASS_ERR_PID_RTL_MAX                                              (0x0000001FU)
+
+#define CSL_DEBUG_CBASS_ERR_PID_FUNC_MASK                                            (0x0FFF0000U)
+#define CSL_DEBUG_CBASS_ERR_PID_FUNC_SHIFT                                           (0x00000010U)
+#define CSL_DEBUG_CBASS_ERR_PID_FUNC_RESETVAL                                        (0x00000600U)
+#define CSL_DEBUG_CBASS_ERR_PID_FUNC_MAX                                             (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_ERR_PID_BU_MASK                                              (0x30000000U)
+#define CSL_DEBUG_CBASS_ERR_PID_BU_SHIFT                                             (0x0000001CU)
+#define CSL_DEBUG_CBASS_ERR_PID_BU_RESETVAL                                          (0x00000002U)
+#define CSL_DEBUG_CBASS_ERR_PID_BU_MAX                                               (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ERR_PID_SCHEME_MASK                                          (0xC0000000U)
+#define CSL_DEBUG_CBASS_ERR_PID_SCHEME_SHIFT                                         (0x0000001EU)
+#define CSL_DEBUG_CBASS_ERR_PID_SCHEME_RESETVAL                                      (0x00000001U)
+#define CSL_DEBUG_CBASS_ERR_PID_SCHEME_MAX                                           (0x00000003U)
+
+#define CSL_DEBUG_CBASS_ERR_PID_RESETVAL                                             (0x66004100U)
+
+/* DESTINATION_ID */
+
+#define CSL_DEBUG_CBASS_ERR_DESTINATION_ID_DEST_ID_MASK                              (0x000000FFU)
+#define CSL_DEBUG_CBASS_ERR_DESTINATION_ID_DEST_ID_SHIFT                             (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_DESTINATION_ID_DEST_ID_RESETVAL                          (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_DESTINATION_ID_DEST_ID_MAX                               (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ERR_DESTINATION_ID_RESETVAL                                  (0x00000000U)
+
+/* EXCEPTION_LOGGING_HEADER0 */
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_DEST_ID_MASK                   (0x000000FFU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_DEST_ID_SHIFT                  (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_DEST_ID_RESETVAL               (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_DEST_ID_MAX                    (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_SRC_ID_MASK                    (0x00FFFF00U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_SRC_ID_SHIFT                   (0x00000008U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_SRC_ID_RESETVAL                (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_SRC_ID_MAX                     (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_TYPE_F_MASK                    (0xFF000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_TYPE_F_SHIFT                   (0x00000018U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_TYPE_F_RESETVAL                (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_TYPE_F_MAX                     (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER0_RESETVAL                       (0x00000000U)
+
+/* EXCEPTION_LOGGING_HEADER1 */
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_CODE_MASK                      (0x00FF0000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_CODE_SHIFT                     (0x00000010U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_CODE_RESETVAL                  (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_CODE_MAX                       (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_GROUP_MASK                     (0xFF000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_GROUP_SHIFT                    (0x00000018U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_GROUP_RESETVAL                 (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_GROUP_MAX                      (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_HEADER1_RESETVAL                       (0x00000000U)
+
+/* EXCEPTION_LOGGING_DATA0 */
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA0_ADDR_L_MASK                      (0xFFFFFFFFU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA0_ADDR_L_SHIFT                     (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA0_ADDR_L_RESETVAL                  (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA0_ADDR_L_MAX                       (0xFFFFFFFFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA0_RESETVAL                         (0x00000000U)
+
+/* EXCEPTION_LOGGING_DATA1 */
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA1_ADDR_H_MASK                      (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA1_ADDR_H_SHIFT                     (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA1_ADDR_H_RESETVAL                  (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA1_ADDR_H_MAX                       (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA1_RESETVAL                         (0x00000000U)
+
+/* EXCEPTION_LOGGING_DATA2 */
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_PRIV_ID_MASK                     (0x000000FFU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_PRIV_ID_SHIFT                    (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_PRIV_ID_RESETVAL                 (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_PRIV_ID_MAX                      (0x000000FFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_SECURE_MASK                      (0x00000100U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_SECURE_SHIFT                     (0x00000008U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_SECURE_RESETVAL                  (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_SECURE_MAX                       (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_PRIV_MASK                        (0x00000200U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_PRIV_SHIFT                       (0x00000009U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_PRIV_RESETVAL                    (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_PRIV_MAX                         (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_CACHEABLE_MASK                   (0x00000400U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_CACHEABLE_SHIFT                  (0x0000000AU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_CACHEABLE_RESETVAL               (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_CACHEABLE_MAX                    (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_DEBUG_MASK                       (0x00000800U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_DEBUG_SHIFT                      (0x0000000BU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_DEBUG_RESETVAL                   (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_DEBUG_MAX                        (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_READ_MASK                        (0x00001000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_READ_SHIFT                       (0x0000000CU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_READ_RESETVAL                    (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_READ_MAX                         (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_WRITE_MASK                       (0x00002000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_WRITE_SHIFT                      (0x0000000DU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_WRITE_RESETVAL                   (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_WRITE_MAX                        (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_ROUTEID_MASK                     (0x0FFF0000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_ROUTEID_SHIFT                    (0x00000010U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_ROUTEID_RESETVAL                 (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_ROUTEID_MAX                      (0x00000FFFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA2_RESETVAL                         (0x00000000U)
+
+/* EXCEPTION_LOGGING_DATA3 */
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA3_BYTECNT_MASK                     (0x000003FFU)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA3_BYTECNT_SHIFT                    (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA3_BYTECNT_RESETVAL                 (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA3_BYTECNT_MAX                      (0x000003FFU)
+
+#define CSL_DEBUG_CBASS_ERR_EXCEPTION_LOGGING_DATA3_RESETVAL                         (0x00000000U)
+
+/* ERR_INTR_RAW_STAT */
+
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_RAW_STAT_INTR_MASK                              (0x00000001U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_RAW_STAT_INTR_SHIFT                             (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_RAW_STAT_INTR_RESETVAL                          (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_RAW_STAT_INTR_MAX                               (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_RAW_STAT_RESETVAL                               (0x00000000U)
+
+/* ERR_INTR_ENABLED_STAT */
+
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLED_STAT_ENABLED_INTR_MASK                  (0x00000001U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLED_STAT_ENABLED_INTR_SHIFT                 (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLED_STAT_ENABLED_INTR_RESETVAL              (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLED_STAT_ENABLED_INTR_MAX                   (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLED_STAT_RESETVAL                           (0x00000000U)
+
+/* ERR_INTR_ENABLE_SET */
+
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_SET_INTR_ENABLE_SET_MASK                 (0x00000001U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_SET_INTR_ENABLE_SET_SHIFT                (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_SET_INTR_ENABLE_SET_RESETVAL             (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_SET_INTR_ENABLE_SET_MAX                  (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_SET_RESETVAL                             (0x00000000U)
+
+/* ERR_INTR_ENABLE_CLR */
+
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_CLR_INTR_ENABLE_CLR_MASK                 (0x00000001U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_CLR_INTR_ENABLE_CLR_SHIFT                (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_CLR_INTR_ENABLE_CLR_RESETVAL             (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_CLR_INTR_ENABLE_CLR_MAX                  (0x00000001U)
+
+#define CSL_DEBUG_CBASS_ERR_ERR_INTR_ENABLE_CLR_RESETVAL                             (0x00000000U)
+
+/* EOI */
+
+#define CSL_DEBUG_CBASS_ERR_EOI_WR_MASK                                              (0x0000FFFFU)
+#define CSL_DEBUG_CBASS_ERR_EOI_WR_SHIFT                                             (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EOI_WR_RESETVAL                                          (0x00000000U)
+#define CSL_DEBUG_CBASS_ERR_EOI_WR_MAX                                               (0x0000FFFFU)
+
+#define CSL_DEBUG_CBASS_ERR_EOI_RESETVAL                                             (0x00000000U)
+
+#ifdef __cplusplus
+}
+#endif
+#endif

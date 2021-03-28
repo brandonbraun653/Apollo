@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/client/src/client_omapl13x.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_osal_omapl13x.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/client/src/webpage.c"  
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/client/omapl138/c674/bios/client.cfg"  
+-ccs.setCompilerOptions "-mv6740 -g --diag_warning=225  -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu --define=SOC_OMAPL138 --define lcdkOMAPL138"
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl138/config_omapl138_c674x.bld -DBOARD=lcdkOMAPL138 --xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"

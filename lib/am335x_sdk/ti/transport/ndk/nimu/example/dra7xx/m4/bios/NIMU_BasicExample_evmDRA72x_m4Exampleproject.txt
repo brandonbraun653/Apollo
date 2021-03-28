@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/src/main_evmDRA7xx.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/src/nimu_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/dra7xx/m4/bios/nimu_m4.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_DRA72x -DevmDRA72x " -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on -i${NDK_INSTALL_DIR}/packages/ti/ndk/os/lib"
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra72x\", BOARD:\"evmDRA72x\"} --xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"

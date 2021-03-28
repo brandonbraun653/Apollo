@@ -1,0 +1,12 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am335x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/soc/am335x/sample_am335x_arm_int_reg.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/soc/am335x/sample_am335x_cfg.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/soc/am335x/sample_arm_cs.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/soc/am335x/sample_arm_init.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/mcspi_serial_flash/src/main_mcspi_dma_serial_flash_read_write.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/mcspi_serial_flash/src/W25Q.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/mcspi_serial_flash/am335x/armv7/bios/am335x_app_dma_evmam335x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard -DSOC_AM335x -DBUILDCFG_MOD_SPI -DevmAM335x -DSPI_DMA_ENABLE -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

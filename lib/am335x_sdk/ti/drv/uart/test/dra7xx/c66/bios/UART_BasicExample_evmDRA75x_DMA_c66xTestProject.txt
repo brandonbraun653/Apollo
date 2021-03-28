@@ -1,0 +1,4 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/dra7xx/c66/bios/uart_c66_test_edma.cfg" 
+-ccs.setCompilerOptions "-D -mv6600 -g -dSOC_DRA75x -devmDRA75x -dUART_DMA_ENABLE --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH}/ti/drv/uart --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra75x\", BOARD:\"evmDRA75x\"}"

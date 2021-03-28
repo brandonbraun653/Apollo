@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/pruss/soc/am574x/pruicss_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/pruss/test/src/main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am574x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/pruss/test/am574x/armv7/bios/pruss_arm_wSoCFile.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DDRA7xx -DSOC_AM574x -g -gstrict-dwarf  -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/pruss "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections -L$(BIOS_INSTALL_PATH)/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/lib/fpu "

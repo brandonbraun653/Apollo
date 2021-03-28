@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/example/dcan/dcanLoopback/rtos/dcan_loopback_rtos_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/example/dcan/dcanLoopback/dcan_loopback_app.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/example/dcan/dcanLoopback/rtos/dcan_c66x_evmAM572x.cfg"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+
+-ccs.setCompilerOptions "-D -mv6600 -g -dSOC_AM572x -devmAM572x -DRTOS_BUILD -dUSE_BIOS -dC66X --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+

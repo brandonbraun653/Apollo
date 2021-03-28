@@ -1,0 +1,26 @@
+SOC_LIST = am335x am437x am571x am572x
+
+HOSTCORES_am335x = a8host
+HOSTCORES_am437x = a9host
+HOSTCORES_am571x = a15_0 ipu1_0 c66x
+HOSTCORES_am572x = a15_0 ipu1_0 c66x
+
+PRU_HOST_a8host = ARM
+PRU_HOST_a9host = ARM
+PRU_HOST_a15_0  = ARM
+PRU_HOST_ipu1_0 = ARM
+PRU_HOST_c66x   = C66
+
+PRU_VERSION_LIST_am335x = REV1
+PRU_VERSION_LIST_am437x = REV1
+PRU_VERSION_LIST_am571x = REV2
+PRU_VERSION_LIST_am572x = REV1 REV2
+
+all: $(SOC_LIST)
+_hosts: $(HOSTCORES_$(SOC))
+
+$(SOC_LIST):
+	$(MAKE) -f make_all.mk _hosts SOC=$@
+
+$(HOSTCORES_$(SOC)):
+	$(MAKE) _pru_versions BASE_BIN_DIR=./bin/$(SOC)/$@ PRU_VERSION_LIST="$(PRU_VERSION_LIST_$(SOC))" PRU_HOST=$(PRU_HOST_$@)

@@ -1,0 +1,4 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/osal/test/src/main_osal_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/osal/test/omapl138/c674x/bios/osal_test_omapl138.cfg" 
+-ccs.setCompilerOptions "-mv64+ -g -Domapl138 -DSOC_OMAPL138 -DlcdkOMAPL138 -dUSE_BIOS -DENABLE_TIMER_TEST --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232"  -rtsc.enableRtsc
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl138/config_omapl138_c674x.bld -DBOARD=lcdkOMAPL138"

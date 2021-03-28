@@ -1,0 +1,14 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/example/cpswRateLimitExample/src/cpsw_rateLimit_test.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/example/cpswRateLimitExample/src/cpsw_rateLimit_scen.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/example/cpswRateLimitExample/src/c66x/bios/fw_main.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/cpsw/example/src/cppi_qmss_mgmt.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/cpsw/example/src/view_ale_table.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/cpsw/example/src/c66x/bios/framework.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/cpsw/example/src/c66x/bios/cpsw_mgmt.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/cpsw/example/k2g/c66/bios/singlecore_osal.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/cppi/device/k2g/src/cppi_device.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/qmss/device/k2g/src/qmss_device.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/cpsw/example/src/c66x/bios/cpsw_linker.cmd" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/cpsw/example/k2g/c66/bios/cpsw_example_k2g.cfg" 
+-ccs.setCompilerOptions "-D -mv64+ -g -DDEVICE_K2G -DSOC_K2G -DNSS_LITE -DNUM_PORTS=2 --diag_warning=225 -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/emac -I${PDK_INSTALL_PATH}/ti/drv/cppi -I${PDK_INSTALL_PATH}/ti/drv/qmss -@${PDK_INSTALL_PATH}/ti/drv/emac/example/cpswRateLimitExample/k2g/c66/bios/optOnlySendScenModel.txt"  -rtsc.enableRtsc
+

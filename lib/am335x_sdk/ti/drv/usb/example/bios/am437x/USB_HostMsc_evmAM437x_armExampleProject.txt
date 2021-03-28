@@ -1,0 +1,15 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/shell/fs_shell_app_utils.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_host/msc/fatfs_port_usbmsc.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/host_msc_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/timer.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/usb_osal.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/am437x/usb_arm_am437x.cfg"
+
+-ccs.setCompilerOptions "-DTIRTOS -c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard -DAM43XX_FAMILY_BUILD -DAM437X_BUILD -DevmAM437x -Dgcc -g -gstrict-dwarf -Wall -mno-unaligned-access -I${PDK_INSTALL_PATH}/ti/drv/usb -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/usb/example/usb_host/msc -I${PDK_INSTALL_PATH}/ti/drv/usb/src/usb_func/include -I${PDK_INSTALL_PATH}/ti/drv/usb/example/common -I${PDK_INSTALL_PATH}/ti/drv/usb/src/include  -I${PDK_INSTALL_PATH}/ti/drv/usb/example/shell "  -rtsc.enableRtsc
+
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm  -nostartfiles -static -Wl,--gc-sections " 
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am437x/config_am437x_a9.bld -DBOARD=evmAM437x"
+

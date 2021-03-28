@@ -1,0 +1,20 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/src/main_a53.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/src/netHooks.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu_icss/example/src/osdrv_ndkdeviceconfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am65xx/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am65xx/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/soc/am65xx/icss_emacSoc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/am65xx/a53/bios/icss_emac_a53.lds"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/am65xx/I2C_soc.c" 
+-ccs.linkFile "PDK_INSTALL_PATH\ti\osal\src\tirtos\TimerP_tirtos.c"
+
+-ccs.setCompilerOptions "-I${PDK_INSTALL_PATH}/ti/board/src/am65xx_idk/include"
+-ccs.setCompilerOptions "-I${PDK_INSTALL_PATH}/ti/csl"
+-ccs.setCompilerOptions "-I${PDK_INSTALL_PATH}/ti/board"
+
+-ccs.linkFile "PDK_INSTALL_PATH\ti\transport\ndk\nimu_icss\example\am65xx\a53\bios\nimu_icss_arm_wSocLib.cfg"
+
+-ccs.setCompilerOptions "-c -mcpu=cortex-a53+fp+simd -mabi=lp64 -mfix-cortex-a53-835769 -mfix-cortex-a53-843419 -mstrict-align -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast -DSOC_AM65XX -Dam65xx_evm -DMEM_BARRIER_DISABLE -g -gstrict-dwarf -gdwarf-3  -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/icss_emac/src -I${PDK_INSTALL_PATH}/ti/drv/icss_emac -I${PDK_INSTALL_PATH}\ti\osal -I${PDK_INSTALL_PATH} "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -nostartfiles -static --gc-sections -L${NDK_INSTALL_DIR}/packages/ti/ndk/os/lib"
+
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am65xx/config_am65xx_a53.bld -DBOARD=am65xx_evm"

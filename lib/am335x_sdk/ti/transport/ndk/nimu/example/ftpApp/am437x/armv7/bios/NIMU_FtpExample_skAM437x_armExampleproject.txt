@@ -1,0 +1,11 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/src/main_skAM437x.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/ftpApp/ftpserver/ftp_commands.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/ftpApp/ftpserver/ftp_filerout.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/ftpApp/ftpserver/ftpserver.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/src/nimu_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/src/statistics.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am437x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/am437x/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/am437x/armv7/bios/nimu_skam437x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard -DSOC_AM437x -DSK_AM437X -DskAM437x -DNIMU_FTP_APP -g -gstrict-dwarf -Wall -MMD -MP "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -l:os.aa9fg -lsoc -nostartfiles -static -Wl,--gc-sections -L${NDK_INSTALL_DIR}/packages/ti/ndk/os/lib -L${PDK_INSTALL_PATH}/ti/starterware/binary/soc/lib/am43xx-evm/a9/release/gcc"

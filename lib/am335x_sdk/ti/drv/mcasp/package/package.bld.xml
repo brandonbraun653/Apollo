@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.drv.mcasp" version="1, 1, 0, 15" producerId="undefined">
+    <units>
+        <module name="Settings"/>
+    </units>
+    <sources>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="package/rel/mcasp_1_1_0_15.tar.dep" src="package/rel/mcasp_1_1_0_15.xdc.inc"/>
+    </makefiles>
+    <targets>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="mcasp_1_1_0_15"
+        pname="./packages/mcasp_1_1_0_15.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="src/dma/V1/mcasp_dma.c"/>
+        <file name="src/dma/V0/mcasp_dma.c"/>
+        <file name="src/mcasp_ioctl.c"/>
+        <file name="src/mcasp_drv.c"/>
+        <file name="src/src_files_common.mk"/>
+        <file name="src/Module.xs"/>
+        <file name="include/McaspLocal.h"/>
+        <file name="include/Module.xs"/>
+        <file name="docs/tifooter.htm"/>
+        <file name="docs/tiheader.htm"/>
+        <file name="docs/tilogo.gif"/>
+        <file name="docs/titagline.gif"/>
+        <file name="docs/doxygen"/>
+        <file name="docs/MCASP_LLD_SDS.pdf"/>
+        <file name="docs/MCASP_LLD_SoftwareManifest.pdf"/>
+        <file name="docs/ReleaseNotes_MCASP_LLD.pdf"/>
+        <file name="docs/Module.xs"/>
+        <file name="example/evmDRA7xx/src/dra75x/mcasp_cfg.c"/>
+        <file name="example/evmDRA7xx/src/dra75x/audio_evmInit.c"/>
+        <file name="example/evmDRA7xx/src/dra72x/mcasp_cfg.c"/>
+        <file name="example/evmDRA7xx/src/dra72x/audio_evmInit.c"/>
+        <file name="example/evmDRA7xx/src/dra78x/mcasp_cfg.c"/>
+        <file name="example/evmDRA7xx/src/dra78x/audio_evmInit.c"/>
+        <file name="example/evmK2G/src/mcasp_cfg.c"/>
+        <file name="example/evmK2G/src/audio_evmInit.c"/>
+        <file name="example/src/aic31.c"/>
+        <file name="example/src/audioEQ.c"/>
+        <file name="example/src/mcasp_debug.c"/>
+        <file name="example/src/codec_if.c"/>
+        <file name="example/src/audioSample_io.c"/>
+        <file name="example/src/audioSample_main.c"/>
+        <file name="example/src/deviceloopback.c"/>
+        <file name="example/src/MCASP_log.c"/>
+        <file name="example/src/regression.c"/>
+        <file name="example/src/profiling.c"/>
+        <file name="example/src/aic3104_if.c"/>
+        <file name="example/src/aic3106_if.c"/>
+        <file name="example/src/audioSample_io_regression.c"/>
+        <file name="example/src/audioEQ_biquad.c"/>
+        <file name="example/evmOMAPL137/src/mcasp_cfg.c"/>
+        <file name="example/evmOMAPL137/src/audio_evmInit.c"/>
+        <file name="example/evmOMAPL137/AIC31_Stereo_Loopback/src/audioSample_io.c"/>
+        <file name="example/j721e/src/mcasp_cfg.c"/>
+        <file name="example/j721e/src/audio_evmInit.c"/>
+        <file name="example/idkAM571x/src/mcasp_cfg.c"/>
+        <file name="example/idkAM571x/src/audio_evmInit.c"/>
+        <file name="example/lcdkOMAPL138/src/mcasp_cfg.c"/>
+        <file name="example/lcdkOMAPL138/src/audio_evmInit.c"/>
+        <file name="example/idkAM574x/src/mcasp_cfg.c"/>
+        <file name="example/idkAM574x/src/audio_evmInit.c"/>
+        <file name="example/evmAM65xx/src/mcasp_cfg.c"/>
+        <file name="example/evmAM65xx/src/audio_evmInit.c"/>
+        <file name="example/evmAM437x/src/mcasp_cfg.c"/>
+        <file name="example/evmAM437x/src/audio_evmInit.c"/>
+        <file name="example/evmAM572x/src/mcasp_cfg.c"/>
+        <file name="example/evmAM572x/src/audio_evmInit.c"/>
+        <file name="example/evmAM335x/src/mcasp_cfg.c"/>
+        <file name="example/evmAM335x/src/audio_evmInit.c"/>
+        <file name="example/evmDRA7xx/include/dra75x/mcasp_cfg.h"/>
+        <file name="example/evmDRA7xx/include/dra75x/Audio_evmInit.h"/>
+        <file name="example/evmDRA7xx/include/dra75x/audioEQ_biquad.h"/>
+        <file name="example/evmDRA7xx/include/dra72x/mcasp_cfg.h"/>
+        <file name="example/evmDRA7xx/include/dra72x/Audio_evmInit.h"/>
+        <file name="example/evmDRA7xx/include/dra72x/audioEQ_biquad.h"/>
+        <file name="example/evmDRA7xx/include/dra78x/mcasp_cfg.h"/>
+        <file name="example/evmDRA7xx/include/dra78x/Audio_evmInit.h"/>
+        <file name="example/evmDRA7xx/include/dra78x/audioEQ_biquad.h"/>
+        <file name="example/evmK2G/include/mcasp_cfg.h"/>
+        <file name="example/evmK2G/include/Audio_evmInit.h"/>
+        <file name="example/src/profiling.h"/>
+        <file name="example/evmOMAPL137/include/mcasp_cfg.h"/>
+        <file name="example/evmOMAPL137/include/Audio_evmInit.h"/>
+        <file name="example/include/Aic31.h"/>
+        <file name="example/include/profiling.h"/>
+        <file name="example/include/codec_if.h"/>
+        <file name="example/include/ICodec.h"/>
+        <file name="example/include/aic31_if.h"/>
+        <file name="example/include/regression.h"/>
+        <file name="example/include/mcasp_debug.h"/>
+        <file name="example/include/deviceloopback.h"/>
+        <file name="example/include/Aic31Local.h"/>
+        <file name="example/include/MCASP_log.h"/>
+        <file name="example/include/audioEQ_biquad.h"/>
+        <file name="example/include/hw_types.h"/>
+        <file name="example/include/mcasp_tune.h"/>
+        <file name="example/include/audioEQ.h"/>
+        <file name="example/j721e/include/mcasp_cfg.h"/>
+        <file name="example/j721e/include/Audio_evmInit.h"/>
+        <file name="example/j721e/include/audioEQ_biquad.h"/>
+        <file name="example/idkAM571x/include/mcasp_cfg.h"/>
+        <file name="example/idkAM571x/include/Audio_evmInit.h"/>
+        <file name="example/lcdkOMAPL138/include/mcasp_cfg.h"/>
+        <file name="example/lcdkOMAPL138/include/Audio_evmInit.h"/>
+        <file name="example/idkAM574x/include/mcasp_cfg.h"/>
+        <file name="example/idkAM574x/include/Audio_evmInit.h"/>
+        <file name="example/evmAM65xx/include/mcasp_cfg.h"/>
+        <file name="example/evmAM65xx/include/Audio_evmInit.h"/>
+        <file name="example/evmAM65xx/include/audioEQ_biquad.h"/>
+        <file name="example/evmAM437x/include/mcasp_cfg.h"/>
+        <file name="example/evmAM437x/include/Audio_evmInit.h"/>
+        <file name="example/evmAM572x/include/mcasp_cfg.h"/>
+        <file name="example/evmAM572x/include/Audio_evmInit.h"/>
+        <file name="example/evmAM572x/include/audioEQ_biquad.h"/>
+        <file name="example/evmAM335x/include/mcasp_cfg.h"/>
+        <file name="example/evmAM335x/include/Audio_evmInit.h"/>
+        <file name="example/evmDRA7xx/armv7/bios/loopback_arm.cfg"/>
+        <file name="example/evmDRA7xx/c66/bios/loopback_dsp.cfg"/>
+        <file name="example/evmDRA7xx/m4/bios/loopback_m4.cfg"/>
+        <file name="example/evmK2G/armv7/bios/DeviceLoopback.cfg"/>
+        <file name="example/evmK2G/armv7/bios/AudioLoopback.cfg"/>
+        <file name="example/evmK2G/c66/bios/DeviceLoopback.cfg"/>
+        <file name="example/evmK2G/c66/bios/AudioEQ_demo.cfg"/>
+        <file name="example/evmK2G/c66/bios/AudioLoopback.cfg"/>
+        <file name="example/evmOMAPL137/armv5/bios/audiosample.cfg"/>
+        <file name="example/evmOMAPL137/c674/bios/audiosample.cfg"/>
+        <file name="example/idkAM571x/armv7/bios/DeviceLoopback.cfg"/>
+        <file name="example/idkAM571x/c66/bios/DeviceLoopback.cfg"/>
+        <file name="example/lcdkOMAPL138/armv5/bios/audiosample.cfg"/>
+        <file name="example/lcdkOMAPL138/c674/bios/audiosample.cfg"/>
+        <file name="example/idkAM574x/armv7/bios/DeviceLoopback.cfg"/>
+        <file name="example/idkAM574x/c66/bios/DeviceLoopback.cfg"/>
+        <file name="example/evmAM65xx/a53/mcaspUnitTest_a53.cfg"/>
+        <file name="example/evmAM65xx/r5/mcaspUnitTest_r5.cfg"/>
+        <file name="example/evmAM437x/armv7/bios/DeviceLoopback.cfg"/>
+        <file name="example/evmAM437x/armv7/bios/AudioLoopback.cfg"/>
+        <file name="example/evmAM572x/armv7/bios/DeviceLoopback.cfg"/>
+        <file name="example/evmAM572x/armv7/bios/AudioLoopback.cfg"/>
+        <file name="example/evmAM572x/c66/bios/DeviceLoopback.cfg"/>
+        <file name="example/evmAM572x/c66/bios/AudioEQ_demo.cfg"/>
+        <file name="example/evmAM572x/c66/bios/AudioLoopback.cfg"/>
+        <file name="example/evmAM335x/armv7/bios/DeviceLoopback.cfg"/>
+        <file name="example/evmAM335x/armv7/bios/AudioLoopback.cfg"/>
+        <file name="example/MCASP_AudioDCAnalogLoopback_TestApp/makefile"/>
+        <file name="example/MCASP_AudioDCDigitalLoopback_TestApp/makefile"/>
+        <file name="example/MCASP_DeviceLoopback_TestApp/makefile"/>
+        <file name="example/MCASP_DeviceLoopback_Regression_TestApp/makefile"/>
+        <file name="example/MCASP_AudioLoopback_TestApp/makefile"/>
+        <file name="example/evmDRA7xx/armv7/bios/MCASP_Audio_evmDRA72x_armExampleProject.txt"/>
+        <file name="example/evmDRA7xx/armv7/bios/MCASP_DeviceLoopback_evmDRA72x_armExampleProject.txt"/>
+        <file name="example/evmDRA7xx/armv7/bios/MCASP_DeviceLoopback_evmDRA75x_armExampleProject.txt"/>
+        <file name="example/evmDRA7xx/armv7/bios/MCASP_Audio_evmDRA75x_armExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_AudioEQ_evmDRA75x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_Audio_evmDRA78x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_DeviceLoopback_evmDRA75x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_DeviceLoopback_evmDRA78x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_Audio_evmDRA75x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_AudioEQ_evmDRA72x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_Audio_evmDRA72x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_AudioEQ_evmDRA78x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/c66/bios/MCASP_DeviceLoopback_evmDRA72x_c66ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/m4/bios/MCASP_DeviceLoopback_evmDRA75x_m4ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/m4/bios/MCASP_DeviceLoopback_evmDRA72x_m4ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/m4/bios/MCASP_Audio_evmDRA72x_m4ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/m4/bios/MCASP_Audio_evmDRA78x_m4ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/m4/bios/MCASP_Audio_evmDRA75x_m4ExampleProject.txt"/>
+        <file name="example/evmDRA7xx/m4/bios/MCASP_DeviceLoopback_evmDRA78x_m4ExampleProject.txt"/>
+        <file name="example/evmK2G/armv7/bios/MCASP_Audio_evmK2G_armExampleProject.txt"/>
+        <file name="example/evmK2G/armv7/bios/MCASP_DeviceLoopback_evmK2G_armExampleProject.txt"/>
+        <file name="example/evmK2G/c66/bios/MCASP_AudioEQ_evmK2G_c66ExampleProject.txt"/>
+        <file name="example/evmK2G/c66/bios/MCASP_DeviceLoopback_evmK2G_c66ExampleProject.txt"/>
+        <file name="example/evmK2G/c66/bios/MCASP_Audio_evmK2G_c66ExampleProject.txt"/>
+        <file name="example/evmOMAPL137/armv5/bios/MCASP_Audio_evmOMAPL137_armExampleProject.txt"/>
+        <file name="example/evmOMAPL137/c674/bios/MCASP_Audio_evmOMAPL137_c674xExampleProject.txt"/>
+        <file name="example/idkAM571x/armv7/bios/MCASP_DeviceLoopback_idkAM571x_armExampleProject.txt"/>
+        <file name="example/idkAM571x/c66/bios/MCASP_DeviceLoopback_idkAM571x_c66ExampleProject.txt"/>
+        <file name="example/lcdkOMAPL138/armv5/bios/MCASP_Audio_lcdkOMAPL138_armExampleProject.txt"/>
+        <file name="example/lcdkOMAPL138/c674/bios/MCASP_Audio_lcdkOMAPL138_c674xExampleProject.txt"/>
+        <file name="example/idkAM574x/armv7/bios/MCASP_DeviceLoopback_idkAM574x_armExampleProject.txt"/>
+        <file name="example/idkAM574x/c66/bios/MCASP_DeviceLoopback_idkAM574x_c66ExampleProject.txt"/>
+        <file name="example/evmAM437x/armv7/bios/MCASP_DeviceLoopback_evmAM437x_armExampleProject.txt"/>
+        <file name="example/evmAM437x/armv7/bios/MCASP_Audio_evmAM437x_armExampleProject.txt"/>
+        <file name="example/evmAM572x/armv7/bios/MCASP_Audio_evmAM572x_SMP_armExampleProject.txt"/>
+        <file name="example/evmAM572x/armv7/bios/MCASP_Audio_evmAM572x_armExampleProject.txt"/>
+        <file name="example/evmAM572x/armv7/bios/MCASP_DeviceLoopback_evmAM572x_armExampleProject.txt"/>
+        <file name="example/evmAM572x/c66/bios/MCASP_AudioEQ_evmAM572x_c66ExampleProject.txt"/>
+        <file name="example/evmAM572x/c66/bios/MCASP_Audio_evmAM572x_c66ExampleProject.txt"/>
+        <file name="example/evmAM572x/c66/bios/MCASP_DeviceLoopback_evmAM572x_c66ExampleProject.txt"/>
+        <file name="example/evmAM335x/armv7/bios/MCASP_DeviceLoopback_evmAM335x_armExampleProject.txt"/>
+        <file name="example/evmAM335x/armv7/bios/MCASP_Audio_evmAM335x_armExampleProject.txt"/>
+        <file name="example/j721e/mcasp_extra_config.xs"/>
+        <file name="example/Module.xs"/>
+        <file name="example/evmAM65xx/r5/mpu.xs"/>
+        <file name="soc/am65xx/mcasp_soc.c"/>
+        <file name="soc/am437x/mcasp_soc.c"/>
+        <file name="soc/dra75x/mcasp_soc.c"/>
+        <file name="soc/j721e/mcasp_soc.c"/>
+        <file name="soc/omapl137/mcasp_soc.c"/>
+        <file name="soc/dra72x/mcasp_soc.c"/>
+        <file name="soc/am335x/mcasp_soc.c"/>
+        <file name="soc/k2g/mcasp_soc.c"/>
+        <file name="soc/dra78x/mcasp_soc.c"/>
+        <file name="soc/am571x/mcasp_soc.c"/>
+        <file name="soc/omapl138/mcasp_soc.c"/>
+        <file name="soc/am574x/mcasp_soc.c"/>
+        <file name="soc/am572x/mcasp_soc.c"/>
+        <file name="soc/mcasp_soc.h"/>
+        <file name="soc/Module.xs"/>
+        <file name="config.bld"/>
+        <file name="config_mk.bld"/>
+        <file name="package.bld"/>
+        <file name="package.xdc"/>
+        <file name="package.xs"/>
+        <file name="Settings.xdc"/>
+        <file name="Settings.xdc.xdt"/>
+        <file name="mcasp_drv.h"/>
+        <file name="mcasp_osal.h"/>
+        <file name="mcasp_types.h"/>
+        <file name="mcaspver.h"/>
+        <file name="mcaspver.h.xdt"/>
+        <file name="docs/Doxyfile"/>
+        <file name="docs/doxyfile.xdt"/>
+        <file name="build/buildlib.xs"/>
+        <file name="makefile"/>
+        <file name="build/makefile.mk"/>
+        <file name="build/makefile_profile.mk"/>
+        <file name="mcasp_component.mk"/>
+        <file name="./lib"/>
+        <file name="package/package.cfg.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/main_k2g.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/test_common_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/firmware/icss_dualemac/config/icss_emacFwConfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/k2g/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/k2g/armv7/bios/icss_emac_arm_wSoCLib.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_K2G -DiceK2G -DMEM_BARRIER_DISABLE -DSWITCH_EMAC -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/icss_emac/src -I${PDK_INSTALL_PATH}/ti/drv/icss_emac -I${PDK_INSTALL_PATH}"  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -nostartfiles -static ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_switch/bin/k2g/a15_0/REV2/icss_switch_PRU0.bin ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_switch/bin/k2g/a15_0/REV2/icss_switch_PRU1.bin -Wl,-T,${PDK_INSTALL_PATH}/ti/build/pruss/lnk_a8_a9_a15_REV2.cmd -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/k2g/config_k2g_a15.bld -DBOARD=iceK2G"

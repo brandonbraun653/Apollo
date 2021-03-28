@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspiLoopbackApp/src/mcspiLoopbackApp.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspiLoopbackApp/am571x/armv7/bios/mcspi_loopback_arm_idkAM571x.cfg" 
+-ccs.setCompilerOptions "-c -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM571x -DidkAM571x -DMCSPI_MULT_CHANNEL -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

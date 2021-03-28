@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/client/src/client_omapl13x.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_osal_omapl13x.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/client/src/webpage.c"  
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/client/omapl137/armv5/bios/client.cfg" 
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv5e --float_support=vfplib --abi=eabi -g -DSOC_OMAPL137 -DevmOMAPL137 -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu"
+-rtsc.setConfiguroOptions "--xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"

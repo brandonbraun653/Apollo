@@ -1,0 +1,8 @@
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_io.c" 
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_main.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/src/dra78x/audio_evmInit.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/src/dra78x/mcasp_cfg.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/c66/bios/loopback_dsp.cfg" 
+-ccs.setCompilerOptions "-mv6600 --abi=eabi -g --define=SOC_DRA78x --define=evmDRA78x --define=MCASP_MASTER --display_error_number --diag_warning=225 -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/include  -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmDRA7xx/include/dra78x -I${PDK_INSTALL_PATH}/ti/drv/mcasp/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp -I${PDK_INSTALL_PATH}/ti/board" -rtsc.enableRtsc 
+-ccs.setLinkerOptions "--reread_libs --warn_sections --display_error_number --diag_wrap=off --rom_model "
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra78x\", BOARD:\"evmDRA78x\"}"

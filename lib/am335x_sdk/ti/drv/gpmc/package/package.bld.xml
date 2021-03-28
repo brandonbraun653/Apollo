@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.drv.gpmc" version="1, 0, 0, 3" producerId="undefined">
+    <units>
+        <module name="Settings"/>
+    </units>
+    <sources>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="package/rel/gpmc_1_0_0_3.tar.dep" src="package/rel/gpmc_1_0_0_3.xdc.inc"/>
+    </makefiles>
+    <targets>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="gpmc_1_0_0_3"
+        pname="./packages/gpmc_1_0_0_3.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="src/V1/GPMC_v1.c"/>
+        <file name="src/GPMC_drv.c"/>
+        <file name="src/V1/GPMC_v1.h"/>
+        <file name="src/GPMC_osal.h"/>
+        <file name="src/src_files_common.mk"/>
+        <file name="src/Module.xs"/>
+        <file name="docs/tifooter.htm"/>
+        <file name="docs/tiheader.htm"/>
+        <file name="docs/tilogo.gif"/>
+        <file name="docs/titagline.gif"/>
+        <file name="docs/doxygen"/>
+        <file name="docs/ReleaseNotes_GPMC_LLD.pdf"/>
+        <file name="docs/GPMC_LLD_SoftwareManifest.html"/>
+        <file name="docs/Module.xs"/>
+        <file name="test/src/GPMC_log.c"/>
+        <file name="test/src/main_gpmc_flash_test.c"/>
+        <file name="test/src/GPMC_log.h"/>
+        <file name="test/src/GPMC_board.h"/>
+        <file name="test/am437x/armv7/bios/gpmc_arm_evmam437x.cfg"/>
+        <file name="test/am335x/armv7/bios/am335x_app_icev2am335x.cfg"/>
+        <file name="test/am437x/armv7/bios/GPMC_Test_evmAM437x_armTestProject.txt"/>
+        <file name="test/am335x/armv7/bios/GPMC_Test_icev2AM335x_armTestProject.txt"/>
+        <file name="test/Module.xs"/>
+        <file name="example/src/main_gpmc_flash_example.c"/>
+        <file name="example/am437x/armv7/bios/GPMC_Test_evmAM437x_armExampleProject.txt"/>
+        <file name="example/am335x/armv7/bios/GPMC_Test_icev2AM335x_armExampleProject.txt"/>
+        <file name="example/Module.xs"/>
+        <file name="soc/am437x/GPMC_soc.c"/>
+        <file name="soc/am335x/GPMC_soc.c"/>
+        <file name="soc/GPMC_soc.h"/>
+        <file name="soc/Module.xs"/>
+        <file name="config.bld"/>
+        <file name="config_mk.bld"/>
+        <file name="package.bld"/>
+        <file name="package.xdc"/>
+        <file name="package.xs"/>
+        <file name="Settings.xdc"/>
+        <file name="Settings.xdc.xdt"/>
+        <file name="GPMC.h"/>
+        <file name="GPMCver.h"/>
+        <file name="GPMCver.h.xdt"/>
+        <file name="docs/Doxyfile"/>
+        <file name="docs/doxyfile.xdt"/>
+        <file name="build/buildlib.xs"/>
+        <file name="makefile"/>
+        <file name="build/makefile.mk"/>
+        <file name="build/makefile_profile.mk"/>
+        <file name="build/makefile_indp.mk"/>
+        <file name="build/makefile_profile_indp.mk"/>
+        <file name="gpmc_component.mk"/>
+        <file name="./lib"/>
+        <file name="package/package.cfg.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

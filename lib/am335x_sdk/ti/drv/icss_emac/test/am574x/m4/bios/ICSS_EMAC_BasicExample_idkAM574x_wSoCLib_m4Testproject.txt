@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/main_m4.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/test_common_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/firmware/icss_dualemac/config/icss_emacFwConfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am574x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/am574x/m4/bios/icss_emac_m4_wSoCLib.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_AM574x -DidkAM574x -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/icss_emac/src -I${PDK_INSTALL_PATH}/ti/drv/icss_emac -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on -l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am574x/ipu1_0/REV2/icss_dualemac_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am574x/ipu1_0/REV2/icss_dualemac_PRU1.bin -l${PDK_INSTALL_PATH}/ti/build/pruss/lnk_c66_m4_REV2.cmd -l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am574x/ipu1_0/REV2/icss_dualemac_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am574x/ipu1_0/REV2/icss_dualemac_PRU1.bin"
+
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am574x/config_am574x.bld -DBOARD=idkAM574x"

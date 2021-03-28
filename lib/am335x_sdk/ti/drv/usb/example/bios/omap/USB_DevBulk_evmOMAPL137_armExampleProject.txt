@@ -1,0 +1,10 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/dev_bulk_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_dev/bulk/usb_bulk_structs.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/timer.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/usb_osal.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/omap/usb_arm_omapl137.cfg"
+
+-ccs.setCompilerOptions "-mv5e -g -DTIRTOS -Domapl137 -DSOC_OMAPL137 -DevmOMAPL137 --diag_warning=225 -I${PDK_INSTALL_PATH}/ti/drv/usb -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/usb/example/usb_dev/bulk -I${PDK_INSTALL_PATH}/ti/drv/usb/src/usb_func/include -I${PDK_INSTALL_PATH}/ti/drv/usb/example/common -I${PDK_INSTALL_PATH}/ti/drv/usb/src/include "  -rtsc.enableRtsc
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl137/config_omapl137_arm9.bld -DBOARD=evmOMAPL137"

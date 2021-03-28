@@ -1,0 +1,692 @@
+/********************************************************************
+ * Copyright (C) 2017 Texas Instruments Incorporated.
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *    Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *    Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the
+ *    distribution.
+ *
+ *    Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ *  Name        : cslr_main_sec_mmr.h
+*/
+#ifndef CSLR_MAIN_SEC_MMR_H_
+#define CSLR_MAIN_SEC_MMR_H_
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+#include <ti/csl/cslr.h>
+#include <stdint.h>
+
+/**************************************************************************
+* Module Base Offset Values
+**************************************************************************/
+
+#define CSL_MAIN_SEC_MMR_CFG0_REGS_BASE                                     (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG2_REGS_BASE                                     (0x00000000U)
+
+
+/**************************************************************************
+* Hardware Region  : MMRs in region 0
+**************************************************************************/
+
+
+/**************************************************************************
+* Register Overlay Structure
+**************************************************************************/
+
+typedef struct {
+    volatile uint32_t PID;                       /* PID register */
+    volatile uint8_t  Resv_32[28];
+    volatile uint32_t CLSTR0_DEF;
+    volatile uint8_t  Resv_64[28];
+    volatile uint32_t CLSTR0_CFG;
+    volatile uint8_t  Resv_128[60];
+    volatile uint32_t CLSTR0_PMCTRL;
+    volatile uint8_t  Resv_144[12];
+    volatile uint32_t CLSTR0_PMSTAT;
+    volatile uint8_t  Resv_256[108];
+    volatile uint32_t CLSTR0_CORE0_CFG;
+    volatile uint8_t  Resv_272[12];
+    volatile uint32_t CLSTR0_CORE0_BOOTVECT_LO;
+    volatile uint32_t CLSTR0_CORE0_BOOTVECT_HI;
+    volatile uint8_t  Resv_288[8];
+    volatile uint32_t CLSTR0_CORE0_PMCTRL;
+    volatile uint8_t  Resv_304[12];
+    volatile uint32_t CLSTR0_CORE0_PMSTAT;
+    volatile uint8_t  Resv_384[76];
+    volatile uint32_t CLSTR0_CORE1_CFG;
+    volatile uint8_t  Resv_400[12];
+    volatile uint32_t CLSTR0_CORE1_BOOTVECT_LO;
+    volatile uint32_t CLSTR0_CORE1_BOOTVECT_HI;
+    volatile uint8_t  Resv_416[8];
+    volatile uint32_t CLSTR0_CORE1_PMCTRL;
+    volatile uint8_t  Resv_432[12];
+    volatile uint32_t CLSTR0_CORE1_PMSTAT;
+    volatile uint8_t  Resv_4128[3692];
+    volatile uint32_t CLSTR1_DEF;
+    volatile uint8_t  Resv_4160[28];
+    volatile uint32_t CLSTR1_CFG;
+    volatile uint8_t  Resv_4224[60];
+    volatile uint32_t CLSTR1_PMCTRL;
+    volatile uint8_t  Resv_4240[12];
+    volatile uint32_t CLSTR1_PMSTAT;
+    volatile uint8_t  Resv_4352[108];
+    volatile uint32_t CLSTR1_CORE0_CFG;
+    volatile uint8_t  Resv_4368[12];
+    volatile uint32_t CLSTR1_CORE0_BOOTVECT_LO;
+    volatile uint32_t CLSTR1_CORE0_BOOTVECT_HI;
+    volatile uint8_t  Resv_4384[8];
+    volatile uint32_t CLSTR1_CORE0_PMCTRL;
+    volatile uint8_t  Resv_4400[12];
+    volatile uint32_t CLSTR1_CORE0_PMSTAT;
+    volatile uint8_t  Resv_4480[76];
+    volatile uint32_t CLSTR1_CORE1_CFG;
+    volatile uint8_t  Resv_4496[12];
+    volatile uint32_t CLSTR1_CORE1_BOOTVECT_LO;
+    volatile uint32_t CLSTR1_CORE1_BOOTVECT_HI;
+    volatile uint8_t  Resv_4512[8];
+    volatile uint32_t CLSTR1_CORE1_PMCTRL;
+    volatile uint8_t  Resv_4528[12];
+    volatile uint32_t CLSTR1_CORE1_PMSTAT;
+    volatile uint8_t  Resv_8224[3692];
+    volatile uint32_t CLSTR2_DEF;
+    volatile uint8_t  Resv_8256[28];
+    volatile uint32_t CLSTR2_CFG;
+    volatile uint8_t  Resv_8320[60];
+    volatile uint32_t CLSTR2_PMCTRL;
+    volatile uint8_t  Resv_8336[12];
+    volatile uint32_t CLSTR2_PMSTAT;
+    volatile uint8_t  Resv_8448[108];
+    volatile uint32_t CLSTR2_CORE0_CFG;
+    volatile uint8_t  Resv_8464[12];
+    volatile uint32_t CLSTR2_CORE0_BOOTVECT_LO;
+    volatile uint32_t CLSTR2_CORE0_BOOTVECT_HI;
+    volatile uint8_t  Resv_12320[3848];
+    volatile uint32_t CLSTR3_DEF;
+    volatile uint8_t  Resv_12352[28];
+    volatile uint32_t CLSTR3_CFG;
+    volatile uint8_t  Resv_12416[60];
+    volatile uint32_t CLSTR3_PMCTRL;
+    volatile uint8_t  Resv_12432[12];
+    volatile uint32_t CLSTR3_PMSTAT;
+    volatile uint8_t  Resv_12544[108];
+    volatile uint32_t CLSTR3_CORE0_CFG;
+    volatile uint8_t  Resv_12560[12];
+    volatile uint32_t CLSTR3_CORE0_BOOTVECT_LO;
+    volatile uint32_t CLSTR3_CORE0_BOOTVECT_HI;
+} CSL_main_sec_mmr_cfg0Regs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+#define CSL_MAIN_SEC_MMR_CFG0_PID                                           (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF                                    (0x00000020U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG                                    (0x00000040U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_PMCTRL                                 (0x00000080U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_PMSTAT                                 (0x00000090U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG                              (0x00000100U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_BOOTVECT_LO                      (0x00000110U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_BOOTVECT_HI                      (0x00000114U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMCTRL                           (0x00000120U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT                           (0x00000130U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG                              (0x00000180U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_BOOTVECT_LO                      (0x00000190U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_BOOTVECT_HI                      (0x00000194U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMCTRL                           (0x000001A0U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT                           (0x000001B0U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF                                    (0x00001020U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG                                    (0x00001040U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_PMCTRL                                 (0x00001080U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_PMSTAT                                 (0x00001090U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG                              (0x00001100U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_BOOTVECT_LO                      (0x00001110U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_BOOTVECT_HI                      (0x00001114U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMCTRL                           (0x00001120U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT                           (0x00001130U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG                              (0x00001180U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_BOOTVECT_LO                      (0x00001190U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_BOOTVECT_HI                      (0x00001194U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMCTRL                           (0x000011A0U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT                           (0x000011B0U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF                                    (0x00002020U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CFG                                    (0x00002040U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_PMCTRL                                 (0x00002080U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_PMSTAT                                 (0x00002090U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_CFG                              (0x00002100U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_BOOTVECT_LO                      (0x00002110U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_BOOTVECT_HI                      (0x00002114U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF                                    (0x00003020U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CFG                                    (0x00003040U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_PMCTRL                                 (0x00003080U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_PMSTAT                                 (0x00003090U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_CFG                              (0x00003100U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_BOOTVECT_LO                      (0x00003110U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_BOOTVECT_HI                      (0x00003114U)
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+
+/* PID */
+
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MINOR_MASK                            (0x0000003FU)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MINOR_SHIFT                           (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MINOR_MAX                             (0x0000003FU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_CUSTOM_MASK                           (0x000000C0U)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_CUSTOM_SHIFT                          (0x00000006U)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_CUSTOM_MAX                            (0x00000003U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MAJOR_MASK                            (0x00000700U)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MAJOR_SHIFT                           (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MAJOR_MAX                             (0x00000007U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MISC_MASK                             (0x0000F800U)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MISC_SHIFT                            (0x0000000BU)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MISC_MAX                              (0x0000001FU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MSB16_MASK                            (0xFFFF0000U)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MSB16_SHIFT                           (0x00000010U)
+#define CSL_MAIN_SEC_MMR_CFG0_PID_PID_MSB16_MAX                             (0x0000FFFFU)
+
+/* CLSTR0_DEF */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_ARM_CORE_TYPE_MASK                 (0x000000FFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_ARM_CORE_TYPE_SHIFT                (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_ARM_CORE_TYPE_MAX                  (0x000000FFU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_DSP_CORE_TYPE_MASK                 (0x0000FF00U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_DSP_CORE_TYPE_SHIFT                (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_DSP_CORE_TYPE_MAX                  (0x000000FFU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_CORE_NUM_MASK                      (0x00070000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_CORE_NUM_SHIFT                     (0x00000010U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_DEF_CORE_NUM_MAX                       (0x00000007U)
+
+/* CLSTR0_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_LOCKSTEP_MASK                      (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_LOCKSTEP_SHIFT                     (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_LOCKSTEP_MAX                       (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_TEINIT_MASK                        (0x00000002U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_TEINIT_SHIFT                       (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_TEINIT_MAX                         (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_DBG_NO_CLKSTOP_MASK                (0x00000004U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_DBG_NO_CLKSTOP_SHIFT               (0x00000002U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_DBG_NO_CLKSTOP_MAX                 (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_LOCKSTEP_EN_MASK                   (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_LOCKSTEP_EN_SHIFT                  (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_LOCKSTEP_EN_MAX                    (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_CLSTR_CFG_RSVD_MASK                (0xFFFFFFF0U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_CLSTR_CFG_RSVD_SHIFT               (0x00000004U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CFG_CLSTR_CFG_RSVD_MAX                 (0x0FFFFFFFU)
+
+/* CLSTR0_PMCTRL */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_PMCTRL_RESERVED_MASK                   (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_PMCTRL_RESERVED_SHIFT                  (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_PMCTRL_RESERVED_MAX                    (0xFFFFFFFFU)
+
+/* CLSTR0_PMSTAT */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_PMSTAT_RESERVED_MASK                   (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_PMSTAT_RESERVED_SHIFT                  (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_PMSTAT_RESERVED_MAX                    (0xFFFFFFFFU)
+
+/* CLSTR0_CORE0_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_ATCM_EN_MASK                 (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_ATCM_EN_SHIFT                (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_ATCM_EN_MAX                  (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_BTCM_EN_MASK                 (0x00000080U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_BTCM_EN_SHIFT                (0x00000007U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_BTCM_EN_MAX                  (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_TCM_RSTBASE_MASK             (0x00000800U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_TCM_RSTBASE_SHIFT            (0x0000000BU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_TCM_RSTBASE_MAX              (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_NMFI_EN_MASK                 (0x00008000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_NMFI_EN_SHIFT                (0x0000000FU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_CFG_NMFI_EN_MAX                  (0x00000001U)
+
+/* CLSTR0_CORE0_BOOTVECT_LO */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_BOOTVECT_LO_VECT_ADDR_MASK       (0xFFFFFF80U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_BOOTVECT_LO_VECT_ADDR_SHIFT      (0x00000007U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_BOOTVECT_LO_VECT_ADDR_MAX        (0x01FFFFFFU)
+
+/* CLSTR0_CORE0_BOOTVECT_HI */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_BOOTVECT_HI_VECT_ADDR_MASK       (0x0000FFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_BOOTVECT_HI_VECT_ADDR_SHIFT      (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_BOOTVECT_HI_VECT_ADDR_MAX        (0x0000FFFFU)
+
+/* CLSTR0_CORE0_PMCTRL */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMCTRL_CORE_HALT_MASK            (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMCTRL_CORE_HALT_SHIFT           (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMCTRL_CORE_HALT_MAX             (0x00000001U)
+
+/* CLSTR0_CORE0_PMSTAT */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_WFI_MASK                  (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_WFI_SHIFT                 (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_WFI_MAX                   (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_WFE_MASK                  (0x00000002U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_WFE_SHIFT                 (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_WFE_MAX                   (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_CLK_GATE_MASK             (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_CLK_GATE_SHIFT            (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE0_PMSTAT_CLK_GATE_MAX              (0x00000001U)
+
+/* CLSTR0_CORE1_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_ATCM_EN_MASK                 (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_ATCM_EN_SHIFT                (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_ATCM_EN_MAX                  (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_BTCM_EN_MASK                 (0x00000080U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_BTCM_EN_SHIFT                (0x00000007U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_BTCM_EN_MAX                  (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_TCM_RSTBASE_MASK             (0x00000800U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_TCM_RSTBASE_SHIFT            (0x0000000BU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_TCM_RSTBASE_MAX              (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_NMFI_EN_MASK                 (0x00008000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_NMFI_EN_SHIFT                (0x0000000FU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_CFG_NMFI_EN_MAX                  (0x00000001U)
+
+/* CLSTR0_CORE1_BOOTVECT_LO */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_BOOTVECT_LO_VECT_ADDR_MASK       (0xFFFFFF80U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_BOOTVECT_LO_VECT_ADDR_SHIFT      (0x00000007U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_BOOTVECT_LO_VECT_ADDR_MAX        (0x01FFFFFFU)
+
+/* CLSTR0_CORE1_BOOTVECT_HI */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_BOOTVECT_HI_VECT_ADDR_MASK       (0x0000FFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_BOOTVECT_HI_VECT_ADDR_SHIFT      (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_BOOTVECT_HI_VECT_ADDR_MAX        (0x0000FFFFU)
+
+/* CLSTR0_CORE1_PMCTRL */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMCTRL_CORE_HALT_MASK            (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMCTRL_CORE_HALT_SHIFT           (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMCTRL_CORE_HALT_MAX             (0x00000001U)
+
+/* CLSTR0_CORE1_PMSTAT */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_WFI_MASK                  (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_WFI_SHIFT                 (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_WFI_MAX                   (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_WFE_MASK                  (0x00000002U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_WFE_SHIFT                 (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_WFE_MAX                   (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_CLK_GATE_MASK             (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_CLK_GATE_SHIFT            (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR0_CORE1_PMSTAT_CLK_GATE_MAX              (0x00000001U)
+
+/* CLSTR1_DEF */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_ARM_CORE_TYPE_MASK                 (0x000000FFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_ARM_CORE_TYPE_SHIFT                (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_ARM_CORE_TYPE_MAX                  (0x000000FFU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_DSP_CORE_TYPE_MASK                 (0x0000FF00U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_DSP_CORE_TYPE_SHIFT                (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_DSP_CORE_TYPE_MAX                  (0x000000FFU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_CORE_NUM_MASK                      (0x00070000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_CORE_NUM_SHIFT                     (0x00000010U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_DEF_CORE_NUM_MAX                       (0x00000007U)
+
+/* CLSTR1_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_LOCKSTEP_MASK                      (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_LOCKSTEP_SHIFT                     (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_LOCKSTEP_MAX                       (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_TEINIT_MASK                        (0x00000002U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_TEINIT_SHIFT                       (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_TEINIT_MAX                         (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_DBG_NO_CLKSTOP_MASK                (0x00000004U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_DBG_NO_CLKSTOP_SHIFT               (0x00000002U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_DBG_NO_CLKSTOP_MAX                 (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_LOCKSTEP_EN_MASK                   (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_LOCKSTEP_EN_SHIFT                  (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_LOCKSTEP_EN_MAX                    (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_CLSTR_CFG_RSVD_MASK                (0xFFFFFFF0U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_CLSTR_CFG_RSVD_SHIFT               (0x00000004U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CFG_CLSTR_CFG_RSVD_MAX                 (0x0FFFFFFFU)
+
+/* CLSTR1_PMCTRL */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_PMCTRL_RESERVED_MASK                   (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_PMCTRL_RESERVED_SHIFT                  (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_PMCTRL_RESERVED_MAX                    (0xFFFFFFFFU)
+
+/* CLSTR1_PMSTAT */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_PMSTAT_RESERVED_MASK                   (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_PMSTAT_RESERVED_SHIFT                  (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_PMSTAT_RESERVED_MAX                    (0xFFFFFFFFU)
+
+/* CLSTR1_CORE0_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_ATCM_EN_MASK                 (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_ATCM_EN_SHIFT                (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_ATCM_EN_MAX                  (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_BTCM_EN_MASK                 (0x00000080U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_BTCM_EN_SHIFT                (0x00000007U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_BTCM_EN_MAX                  (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_TCM_RSTBASE_MASK             (0x00000800U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_TCM_RSTBASE_SHIFT            (0x0000000BU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_TCM_RSTBASE_MAX              (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_NMFI_EN_MASK                 (0x00008000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_NMFI_EN_SHIFT                (0x0000000FU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_CFG_NMFI_EN_MAX                  (0x00000001U)
+
+/* CLSTR1_CORE0_BOOTVECT_LO */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_BOOTVECT_LO_VECT_ADDR_MASK       (0xFFFFFF80U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_BOOTVECT_LO_VECT_ADDR_SHIFT      (0x00000007U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_BOOTVECT_LO_VECT_ADDR_MAX        (0x01FFFFFFU)
+
+/* CLSTR1_CORE0_BOOTVECT_HI */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_BOOTVECT_HI_VECT_ADDR_MASK       (0x0000FFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_BOOTVECT_HI_VECT_ADDR_SHIFT      (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_BOOTVECT_HI_VECT_ADDR_MAX        (0x0000FFFFU)
+
+/* CLSTR1_CORE0_PMCTRL */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMCTRL_CORE_HALT_MASK            (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMCTRL_CORE_HALT_SHIFT           (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMCTRL_CORE_HALT_MAX             (0x00000001U)
+
+/* CLSTR1_CORE0_PMSTAT */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_WFI_MASK                  (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_WFI_SHIFT                 (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_WFI_MAX                   (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_WFE_MASK                  (0x00000002U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_WFE_SHIFT                 (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_WFE_MAX                   (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_CLK_GATE_MASK             (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_CLK_GATE_SHIFT            (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE0_PMSTAT_CLK_GATE_MAX              (0x00000001U)
+
+/* CLSTR1_CORE1_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_ATCM_EN_MASK                 (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_ATCM_EN_SHIFT                (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_ATCM_EN_MAX                  (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_BTCM_EN_MASK                 (0x00000080U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_BTCM_EN_SHIFT                (0x00000007U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_BTCM_EN_MAX                  (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_TCM_RSTBASE_MASK             (0x00000800U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_TCM_RSTBASE_SHIFT            (0x0000000BU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_TCM_RSTBASE_MAX              (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_NMFI_EN_MASK                 (0x00008000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_NMFI_EN_SHIFT                (0x0000000FU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_CFG_NMFI_EN_MAX                  (0x00000001U)
+
+/* CLSTR1_CORE1_BOOTVECT_LO */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_BOOTVECT_LO_VECT_ADDR_MASK       (0xFFFFFF80U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_BOOTVECT_LO_VECT_ADDR_SHIFT      (0x00000007U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_BOOTVECT_LO_VECT_ADDR_MAX        (0x01FFFFFFU)
+
+/* CLSTR1_CORE1_BOOTVECT_HI */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_BOOTVECT_HI_VECT_ADDR_MASK       (0x0000FFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_BOOTVECT_HI_VECT_ADDR_SHIFT      (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_BOOTVECT_HI_VECT_ADDR_MAX        (0x0000FFFFU)
+
+/* CLSTR1_CORE1_PMCTRL */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMCTRL_CORE_HALT_MASK            (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMCTRL_CORE_HALT_SHIFT           (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMCTRL_CORE_HALT_MAX             (0x00000001U)
+
+/* CLSTR1_CORE1_PMSTAT */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_WFI_MASK                  (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_WFI_SHIFT                 (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_WFI_MAX                   (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_WFE_MASK                  (0x00000002U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_WFE_SHIFT                 (0x00000001U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_WFE_MAX                   (0x00000001U)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_CLK_GATE_MASK             (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_CLK_GATE_SHIFT            (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR1_CORE1_PMSTAT_CLK_GATE_MAX              (0x00000001U)
+
+/* CLSTR2_DEF */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_ARM_CORE_TYPE_MASK                 (0x000000FFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_ARM_CORE_TYPE_SHIFT                (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_ARM_CORE_TYPE_MAX                  (0x000000FFU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_DSP_CORE_TYPE_MASK                 (0x0000FF00U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_DSP_CORE_TYPE_SHIFT                (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_DSP_CORE_TYPE_MAX                  (0x000000FFU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_CORE_NUM_MASK                      (0x00070000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_CORE_NUM_SHIFT                     (0x00000010U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_DEF_CORE_NUM_MAX                       (0x00000007U)
+
+/* CLSTR2_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CFG_SSCLK_MODE_MASK                    (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CFG_SSCLK_MODE_SHIFT                   (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CFG_SSCLK_MODE_MAX                     (0x00000003U)
+
+/* CLSTR2_PMCTRL */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_PMCTRL_RESERVED_MASK                   (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_PMCTRL_RESERVED_SHIFT                  (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_PMCTRL_RESERVED_MAX                    (0xFFFFFFFFU)
+
+/* CLSTR2_PMSTAT */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_PMSTAT_RESERVED_MASK                   (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_PMSTAT_RESERVED_SHIFT                  (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_PMSTAT_RESERVED_MAX                    (0xFFFFFFFFU)
+
+/* CLSTR2_CORE0_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_CFG_BIG_ENDIAN_MASK              (0x00010000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_CFG_BIG_ENDIAN_SHIFT             (0x00000010U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_CFG_BIG_ENDIAN_MAX               (0x00000001U)
+
+/* CLSTR2_CORE0_BOOTVECT_LO */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_BOOTVECT_LO_GEM_ISTP_RST_VAL_MASK (0x003FFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_BOOTVECT_LO_GEM_ISTP_RST_VAL_SHIFT (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_BOOTVECT_LO_GEM_ISTP_RST_VAL_MAX (0x003FFFFFU)
+
+/* CLSTR2_CORE0_BOOTVECT_HI */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_BOOTVECT_HI_RESERVED_MASK        (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_BOOTVECT_HI_RESERVED_SHIFT       (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR2_CORE0_BOOTVECT_HI_RESERVED_MAX         (0xFFFFFFFFU)
+
+/* CLSTR3_DEF */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_ARM_CORE_TYPE_MASK                 (0x000000FFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_ARM_CORE_TYPE_SHIFT                (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_ARM_CORE_TYPE_MAX                  (0x000000FFU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_DSP_CORE_TYPE_MASK                 (0x0000FF00U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_DSP_CORE_TYPE_SHIFT                (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_DSP_CORE_TYPE_MAX                  (0x000000FFU)
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_CORE_NUM_MASK                      (0x00070000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_CORE_NUM_SHIFT                     (0x00000010U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_DEF_CORE_NUM_MAX                       (0x00000007U)
+
+/* CLSTR3_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CFG_SSCLK_MODE_MASK                    (0x00000003U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CFG_SSCLK_MODE_SHIFT                   (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CFG_SSCLK_MODE_MAX                     (0x00000003U)
+
+/* CLSTR3_PMCTRL */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_PMCTRL_RESERVED_MASK                   (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_PMCTRL_RESERVED_SHIFT                  (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_PMCTRL_RESERVED_MAX                    (0xFFFFFFFFU)
+
+/* CLSTR3_PMSTAT */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_PMSTAT_RESERVED_MASK                   (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_PMSTAT_RESERVED_SHIFT                  (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_PMSTAT_RESERVED_MAX                    (0xFFFFFFFFU)
+
+/* CLSTR3_CORE0_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_CFG_BIG_ENDIAN_MASK              (0x00010000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_CFG_BIG_ENDIAN_SHIFT             (0x00000010U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_CFG_BIG_ENDIAN_MAX               (0x00000001U)
+
+/* CLSTR3_CORE0_BOOTVECT_LO */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_BOOTVECT_LO_GEM_ISTP_RST_VAL_MASK (0x003FFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_BOOTVECT_LO_GEM_ISTP_RST_VAL_SHIFT (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_BOOTVECT_LO_GEM_ISTP_RST_VAL_MAX (0x003FFFFFU)
+
+/* CLSTR3_CORE0_BOOTVECT_HI */
+
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_BOOTVECT_HI_RESERVED_MASK        (0xFFFFFFFFU)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_BOOTVECT_HI_RESERVED_SHIFT       (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG0_CLSTR3_CORE0_BOOTVECT_HI_RESERVED_MAX         (0xFFFFFFFFU)
+
+/**************************************************************************
+* Hardware Region  : MMRs in region 2
+**************************************************************************/
+
+
+/**************************************************************************
+* Register Overlay Structure
+**************************************************************************/
+
+typedef struct {
+    volatile uint32_t CLSTR0_CORE0_DBG_CFG;
+    volatile uint8_t  Resv_64[60];
+    volatile uint32_t CLSTR0_CORE1_DBG_CFG;
+    volatile uint8_t  Resv_4096[4028];
+    volatile uint32_t CLSTR1_CORE0_DBG_CFG;
+    volatile uint8_t  Resv_4160[60];
+    volatile uint32_t CLSTR1_CORE1_DBG_CFG;
+} CSL_main_sec_mmr_cfg2Regs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE0_DBG_CFG                          (0x00000000U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE1_DBG_CFG                          (0x00000040U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE0_DBG_CFG                          (0x00001000U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE1_DBG_CFG                          (0x00001040U)
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+
+/* CLSTR0_CORE0_DBG_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE0_DBG_CFG_NIDEN_MASK               (0x00000F00U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE0_DBG_CFG_NIDEN_SHIFT              (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE0_DBG_CFG_NIDEN_MAX                (0x0000000FU)
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE0_DBG_CFG_DBGEN_MASK               (0x0000F000U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE0_DBG_CFG_DBGEN_SHIFT              (0x0000000CU)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE0_DBG_CFG_DBGEN_MAX                (0x0000000FU)
+
+/* CLSTR0_CORE1_DBG_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE1_DBG_CFG_NIDEN_MASK               (0x00000F00U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE1_DBG_CFG_NIDEN_SHIFT              (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE1_DBG_CFG_NIDEN_MAX                (0x0000000FU)
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE1_DBG_CFG_DBGEN_MASK               (0x0000F000U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE1_DBG_CFG_DBGEN_SHIFT              (0x0000000CU)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR0_CORE1_DBG_CFG_DBGEN_MAX                (0x0000000FU)
+
+/* CLSTR1_CORE0_DBG_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE0_DBG_CFG_NIDEN_MASK               (0x00000F00U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE0_DBG_CFG_NIDEN_SHIFT              (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE0_DBG_CFG_NIDEN_MAX                (0x0000000FU)
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE0_DBG_CFG_DBGEN_MASK               (0x0000F000U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE0_DBG_CFG_DBGEN_SHIFT              (0x0000000CU)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE0_DBG_CFG_DBGEN_MAX                (0x0000000FU)
+
+/* CLSTR1_CORE1_DBG_CFG */
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE1_DBG_CFG_NIDEN_MASK               (0x00000F00U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE1_DBG_CFG_NIDEN_SHIFT              (0x00000008U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE1_DBG_CFG_NIDEN_MAX                (0x0000000FU)
+
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE1_DBG_CFG_DBGEN_MASK               (0x0000F000U)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE1_DBG_CFG_DBGEN_SHIFT              (0x0000000CU)
+#define CSL_MAIN_SEC_MMR_CFG2_CLSTR1_CORE1_DBG_CFG_DBGEN_MAX                (0x0000000FU)
+
+#ifdef __cplusplus
+}
+#endif
+#endif

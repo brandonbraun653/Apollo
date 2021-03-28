@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/qspi_flash/src/main_qspi_flash_read_write.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/qspi_flash/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/qspi_flash/src/Flash_S25FL/S25FL.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/qspi_flash/dra7xx/m4/bios/qspi_m4.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_DRA72x -DevmDRA72x -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra72x\", BOARD:\"evmDRA72x\"}"

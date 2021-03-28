@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_loc.h"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/evmc6657.cfg"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/readme.txt"
+-ccs.setCompilerOptions "-mv6600 -g --diag_warning=225 -I${PDK_INSTALL_PATH}/ti/drv/rm -I${PDK_INSTALL_PATH}/ti/drv/emac --define=C6657 --define SOC_C6657" 
+-rtsc.enableRtsc
+

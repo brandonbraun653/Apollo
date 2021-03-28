@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/am571x/GPIO_idkAM571x_board.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am571x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/main_led_blink.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/GPIO_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am571x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/am571x/armv7/bios/gpio_arm_idkAM571x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM571x -DidkAM571x -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/gpio "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

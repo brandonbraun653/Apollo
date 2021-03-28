@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/qspi_flash/src/main_qspi_flash_read_write.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/qspi_flash/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am571x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/qspi_flash/src/Flash_S25FL/S25FL.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/qspi_flash/am571x/armv7/bios/qspi_arm_idkAM571x.cfg"
+-ccs.setCompilerOptions "-c -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM571x -DidkAM571x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

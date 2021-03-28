@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="ti.drv.pruss" version="1, 0, 0, 15" producerId="undefined">
+    <units>
+        <module name="Settings"/>
+    </units>
+    <sources>
+    </sources>
+    <configscripts>
+    </configscripts>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/package.cfg.dep" src="package.xdc"/>
+        <srcFile name="package/rel/pruss_1_0_0_15.tar.dep" src="package/rel/pruss_1_0_0_15.xdc.inc"/>
+    </makefiles>
+    <targets>
+    </targets>
+    <libraries>
+    </libraries>
+    <configurations>
+    </configurations>
+    <executables>
+    </executables>
+    <tests>
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="pruss_1_0_0_15"
+        pname="./packages/pruss_1_0_0_15.tar"
+        label="default"
+    >
+        <file name="package/package.bld.xml"/>
+        <file name="package/build.cfg"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="src/pruicss_drv.c"/>
+        <file name="src/pruicss_intc.c"/>
+        <file name="src/pruicss_osal.h"/>
+        <file name="src/src_files_common.mk"/>
+        <file name="src/Module.xs"/>
+        <file name="docs/tifooter.htm"/>
+        <file name="docs/tiheader.htm"/>
+        <file name="docs/tilogo.gif"/>
+        <file name="docs/titagline.gif"/>
+        <file name="docs/PRUSS_LLD_SoftwareManifest.pdf"/>
+        <file name="docs/doxygen"/>
+        <file name="docs/ReleaseNotes_PRUSS_LLD.pdf"/>
+        <file name="docs/Module.xs"/>
+        <file name="include/Module.xs"/>
+        <file name="test/src/main.c"/>
+        <file name="test/src/armv7/linux/mmap_helper.c"/>
+        <file name="test/src/main_test_pruss2_pru1.c"/>
+        <file name="test/src/pruicss_osal.c"/>
+        <file name="test/src/main_test_pruss2_pru0.c"/>
+        <file name="test/src/main_test_pruss1_pru1.c"/>
+        <file name="test/src/armv7/linux/__mmap_helper.h"/>
+        <file name="test/src/armv7/linux/mmap_helper.h"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/pru_adc_sampling_bin.h"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/pru_firmware_bin.h"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/pru_firmware_bin.h"/>
+        <file name="test/src/pru_firmware/pruss_test_pru0_bin.h"/>
+        <file name="test/src/pru_firmware/pruss_test_pru1_bin.h"/>
+        <file name="test/src/test_pruss_intc_mapping.h"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/makefile"/>
+        <file name="test/am571x/armv7/linux/makefile"/>
+        <file name="test/am574x/armv7/linux/makefile"/>
+        <file name="test/am572x/armv7/linux/makefile"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/pru_adc_hexpru.cmd"/>
+        <file name="test/am571x/c66/bios/pruss_linker.cmd"/>
+        <file name="test/am574x/c66/bios/pruss_linker.cmd"/>
+        <file name="test/am572x/c66/bios/pruss_linker.cmd"/>
+        <file name="test/k2g/armv7/bios/pruss_arm_wSoCFile.cfg"/>
+        <file name="test/k2g/c66/bios/pruss_test_wSoCFile.cfg"/>
+        <file name="test/am571x/armv7/bios/pruss_test_wSoCLib.cfg"/>
+        <file name="test/am571x/armv7/bios/pruss_test_wSoCFile.cfg"/>
+        <file name="test/am571x/c66/bios/pruss_test_wSoCLib.cfg"/>
+        <file name="test/am571x/c66/bios/pruss_test_wSoCFile.cfg"/>
+        <file name="test/am571x/m4/bios/pruss_m4_idkAM571x_wSoCLib.cfg"/>
+        <file name="test/am571x/m4/bios/pruss_m4_idkAM571xwSoCFile.cfg"/>
+        <file name="test/am574x/armv7/bios/pruss_arm_wSoCLib.cfg"/>
+        <file name="test/am574x/armv7/bios/pruss_arm_wSoCFile.cfg"/>
+        <file name="test/am574x/c66/bios/pruss_test_wSoCLib.cfg"/>
+        <file name="test/am574x/c66/bios/pruss_test_wSoCFile.cfg"/>
+        <file name="test/am574x/m4/bios/pruss_m4_idkAM574xwSoCFile.cfg"/>
+        <file name="test/am574x/m4/bios/pruss_m4_idkAM574x_wSoCLib.cfg"/>
+        <file name="test/am572x/armv7/bios/pruss_arm_wSoCLib.cfg"/>
+        <file name="test/am572x/armv7/bios/pruss_arm_wSoCFile.cfg"/>
+        <file name="test/am572x/c66/bios/pruss_test_wSoCLib.cfg"/>
+        <file name="test/am572x/c66/bios/pruss_test_wSoCFile.cfg"/>
+        <file name="test/am572x/m4/bios/pruss_m4_idkAM572x_wSoCLib.cfg"/>
+        <file name="test/am572x/m4/bios/pruss_m4_idkAM572xwSoCFile.cfg"/>
+        <file name="test/src/pru_firmware/readme.txt"/>
+        <file name="test/src/pru_firmware/pruss_test_pru1.txt"/>
+        <file name="test/src/pru_firmware/pruss_test_pru0.txt"/>
+        <file name="test/k2g/armv7/bios/PRUSS_BasicExample_iceK2G_wSoCFile_armTestproject.txt"/>
+        <file name="test/k2g/c66/bios/PRUSS_BasicExample_iceK2G_wSoCFile_c66xTestProject.txt"/>
+        <file name="test/am571x/armv7/bios/PRUSS_BasicExample_idkAM571x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am571x/armv7/bios/PRUSS_BasicExample_idkAM571x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am571x/c66/bios/PRUSS_BasicExample_idkAM571x_wSoCFile_c66xTestProject.txt"/>
+        <file name="test/am571x/c66/bios/PRUSS_BasicExample_idkAM571x_wSoCLib_c66xTestProject.txt"/>
+        <file name="test/am571x/m4/bios/PRUSS_BasicExample_idkAM571x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am571x/m4/bios/PRUSS_BasicExample_idkAM571x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/am574x/armv7/bios/PRUSS_BasicExample_idkAM574x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am574x/armv7/bios/PRUSS_BasicExample_idkAM574x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am574x/c66/bios/PRUSS_BasicExample_idkAM574x_wSoCFile_c66xTestProject.txt"/>
+        <file name="test/am574x/c66/bios/PRUSS_BasicExample_idkAM574x_wSoCLib_c66xTestProject.txt"/>
+        <file name="test/am574x/m4/bios/PRUSS_BasicExample_idkAM574x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am574x/m4/bios/PRUSS_BasicExample_idkAM574x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/am572x/armv7/bios/PRUSS_BasicExample_idkAM572x_wSoCFile_armTestproject.txt"/>
+        <file name="test/am572x/armv7/bios/PRUSS_BasicExample_idkAM572x_wSoCLib_armTestproject.txt"/>
+        <file name="test/am572x/c66/bios/PRUSS_BasicExample_idkAM572x_wSoCFile_c66xTestProject.txt"/>
+        <file name="test/am572x/c66/bios/PRUSS_BasicExample_idkAM572x_wSoCLib_c66xTestProject.txt"/>
+        <file name="test/am572x/m4/bios/PRUSS_BasicExample_idkAM572x_wSoCLib_m4Testproject.txt"/>
+        <file name="test/am572x/m4/bios/PRUSS_BasicExample_idkAM572x_wSoCFile_m4Testproject.txt"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/bin2header/subdir_vars.mk"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/bin2header/subdir_rules.mk"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/subdir_vars.mk"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/sources.mk"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/objects.mk"/>
+        <file name="test/src/pru_firmware/firmware_ccs_pjt/Debug/subdir_rules.mk"/>
+        <file name="test/Module.xs"/>
+        <file name="example/apps/icssg_pwm/firmware/src/main.c"/>
+        <file name="example/apps/icssg_pwm/firmware/src/iepPwmFwRegs.c"/>
+        <file name="example/apps/icssg_pwm/firmware/src/iepPwm.c"/>
+        <file name="example/apps/sorte/src/main.c"/>
+        <file name="example/apps/icssg_pwm/firmware/src/firmware_version.h"/>
+        <file name="example/apps/icssg_pwm/firmware/src/iepPwmHwRegs.h"/>
+        <file name="example/apps/icssg_pwm/firmware/src/icssg_iep_pwm.h"/>
+        <file name="example/apps/icssg_pwm/firmware/src/iepPwmFwRegs.h"/>
+        <file name="example/apps/icssg_pwm/firmware/src/resource_table_empty.h"/>
+        <file name="example/apps/icssg_pwm/firmware/src/iepPwm.h"/>
+        <file name="example/apps/sorte/src/sorte_loc.h"/>
+        <file name="example/apps/sorte/src/ti_pruss_intc_mapping.h"/>
+        <file name="example/apps/icssg_pwm/firmware/src/AM654x_PRU.cmd"/>
+        <file name="example/apps/sorte/firmware/src/slave/pru_header.cmd"/>
+        <file name="example/apps/sorte/firmware/src/slave/pru.cmd"/>
+        <file name="example/apps/sorte/firmware/src/master/pru_header.cmd"/>
+        <file name="example/apps/sorte/firmware/src/master/pru.cmd"/>
+        <file name="example/apps/sorte/src/sorte_idkAM572x_app.cfg"/>
+        <file name="example/apps/sorte/src/sorte_idkAM574x_app.cfg"/>
+        <file name="example/apps/sorte/src/sorte_icev2am335x_app.cfg"/>
+        <file name="example/apps/sorte/src/sorte_idkAM571x_app.cfg"/>
+        <file name="example/apps/sorte/src/sorte_idkAM437x_app.cfg"/>
+        <file name="example/apps/sorte/src/sorte_iceK2G_app.cfg"/>
+        <file name="example/apps/sorte/slave/makefile"/>
+        <file name="example/apps/sorte/master/makefile"/>
+        <file name="example/apps/sorte/README.txt"/>
+        <file name="example/apps/sorte/firmware/src/slave/README.txt"/>
+        <file name="example/apps/sorte/firmware/src/master/README.txt"/>
+        <file name="example/apps/sorte/firmware/src/slave/appl_slave.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/event_handler.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/appl.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/line_delay.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/param.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/ioex.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/state.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/sync.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/firm_main.asm"/>
+        <file name="example/apps/sorte/firmware/src/slave/discovery.asm"/>
+        <file name="example/apps/sorte/firmware/src/master/firm_main.asm"/>
+        <file name="example/apps/sorte/firmware/src/master/discovery.asm"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_mdio_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_intc_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_ecap_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_cfg_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_miirt_macros.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_event_defs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_cntl_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_miirt_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_iep_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_defines.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/icss/icss_uart_regs.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/macros/utils.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/macros/macros.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/macros/MACdef.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/macros/sorte_macros.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/protocol/sorte_pru_slave_register.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/protocol/sorte_slave_cfg.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/protocol/sorte_master_cfg.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/protocol/sorte_host_interface.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/protocol/sorte_packet_definition.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/protocol/sorte_state_define.inc"/>
+        <file name="example/apps/sorte/firmware/src/include/protocol/sorte_pru_master_register.inc"/>
+        <file name="example/apps/sorte/firmware/src/slave/firmware_version.inc"/>
+        <file name="example/apps/sorte/firmware/src/master/firmware_version.inc"/>
+        <file name="example/apps/sorte/firmware/bin/am335x/a15_0/REV1/sorte_master_PRU0.bin"/>
+        <file name="example/apps/sorte/firmware/bin/am335x/a15_0/REV1/sorte_slave_PRU0.bin"/>
+        <file name="example/apps/sorte/firmware/bin/am335x/a15_0/REV1/sorte_slave_PRU1.bin"/>
+        <file name="example/apps/sorte/firmware/bin/am335x/a8host/REV1/sorte_master_PRU0.bin"/>
+        <file name="example/apps/sorte/firmware/bin/am335x/a8host/REV1/sorte_slave_PRU0.bin"/>
+        <file name="example/apps/sorte/firmware/bin/am335x/a8host/REV1/sorte_slave_PRU1.bin"/>
+        <file name="example/Module.xs"/>
+        <file name="soc/am65xx/pruicss_soc.c"/>
+        <file name="soc/am437x/pruicss_soc.c"/>
+        <file name="soc/j721e/pruicss_soc.c"/>
+        <file name="soc/am335x/pruicss_soc.c"/>
+        <file name="soc/k2g/pruicss_soc.c"/>
+        <file name="soc/am571x/pruicss_soc.c"/>
+        <file name="soc/am574x/pruicss_soc.c"/>
+        <file name="soc/am572x/pruicss_soc.c"/>
+        <file name="soc/pruicss_v1.h"/>
+        <file name="soc/pruicss_soc.h"/>
+        <file name="soc/Module.xs"/>
+        <file name="config.bld"/>
+        <file name="config_mk.bld"/>
+        <file name="package.bld"/>
+        <file name="package.xdc"/>
+        <file name="package.xs"/>
+        <file name="Settings.xdc"/>
+        <file name="Settings.xdc.xdt"/>
+        <file name="pruicss.h"/>
+        <file name="pruicss_ver.h"/>
+        <file name="pruicss_ver.h.xdt"/>
+        <file name="docs/Doxyfile"/>
+        <file name="docs/doxyfile.xdt"/>
+        <file name="build/buildlib.xs"/>
+        <file name="makefile"/>
+        <file name="build/makefile.mk"/>
+        <file name="build/makefile_indp.mk"/>
+        <file name="build/makefile_profile_indp.mk"/>
+        <file name="build/makefile_profile.mk"/>
+        <file name="build/makefile_sorte_master.mk"/>
+        <file name="build/makefile_sorte_slave.mk"/>
+        <file name="pruss_component.mk"/>
+        <file name="./lib"/>
+        <file name="package/package.cfg.xdc.inc"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

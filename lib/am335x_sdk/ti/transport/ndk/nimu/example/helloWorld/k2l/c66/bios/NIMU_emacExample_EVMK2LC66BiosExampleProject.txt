@@ -1,0 +1,12 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/helloWorld.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_osal.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_cppi_qmss_iface.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_pa_iface.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/udpHello.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/setuprm.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/rm/device/k2l/policy_dsp-only.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/rm/device/k2l/policy_dsp_arm.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/rm/device/k2l/global-resource-list.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/k2l/c66/bios/helloWorld.cfg" 
+-ccs.setCompilerOptions "-D -mv64+ -g -DSOC_K2L -DDEVICE_K2L -DNSS_GEN2 -DUSE_BIOS --diag_warning=225 -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu -I${PDK_INSTALL_PATH} -I{NDK_INSTALL_DIR}/packages " -rtsc.enableRtsc
+-rtsc.setConfiguroOptions "--xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"

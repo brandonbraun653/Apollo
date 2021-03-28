@@ -1,0 +1,13 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/dev_bulk_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_dev/bulk/usb_bulk_structs.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/timer.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/usb_osal.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/am57xx/usb_arm_am574x_idk.cfg"
+
+-ccs.setCompilerOptions "-DTIRTOS -c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DidkAM574x -DSOC_AM574x -Dgcc -g -gstrict-dwarf -Wall -mno-unaligned-access -I${PDK_INSTALL_PATH}/ti/drv/usb -I${PDK_INSTALL_PATH}/ti/drv/usb/example/usb_dev/bulk/ -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/usb/src/usb_func/include -I${PDK_INSTALL_PATH}/ti/drv/usb/example/common -I${PDK_INSTALL_PATH}/ti/drv/usb/src/include  "  -rtsc.enableRtsc
+
+
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm  -nostartfiles -static -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am574x/config_am574x_a15.bld -DBOARD=idkAM574x"

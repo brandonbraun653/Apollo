@@ -1,0 +1,2262 @@
+/********************************************************************
+ * Copyright (C) 2003-2018 Texas Instruments Incorporated.
+ * 
+ *  Redistribution and use in source and binary forms, with or without 
+ *  modification, are permitted provided that the following conditions 
+ *  are met:
+ *
+ *    Redistributions of source code must retain the above copyright 
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *    Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the 
+ *    documentation and/or other materials provided with the   
+ *    distribution.
+ *
+ *    Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+*********************************************************************
+* file: cslr_xge_cpsw.h
+*
+* Brief: This file contains the Register Description for xge_cpsw
+*
+*********************************************************************/
+#ifndef CSLR_XGE_CPSW_V1_H_
+#define CSLR_XGE_CPSW_V1_H_
+
+/* CSL Modification:
+ *  The file has been modified from the AUTOGEN file for the following
+ *  reasons:-
+ *      a) Header files are included as per RTSC guidelines
+ */
+
+#include <ti/csl/cslr.h>
+#include <ti/csl/tistdtypes.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Minimum unit = 1 byte */
+
+/**************************************************************************\
+* Register Overlay Structure for enetport
+\**************************************************************************/
+typedef struct  {
+    volatile Uint32 PN_RESERVED_REG; /* Reserved */
+    volatile Uint32 PN_CONTROL_REG; /* Enet Port N Control */
+    volatile Uint8 RSVD0[8];
+    volatile Uint32 PN_BLK_CNT_REG; /* Enet Port N FIFO Block Usage Count */
+    volatile Uint32 PN_PORT_VLAN_REG; /* Enet Port N VLAN */
+    volatile Uint32 PN_TX_PRI_MAP_REG; /* Enet Port N Tx Header Pri to Switch Pri Mapping */
+    volatile Uint32 PN_PRI_CTL_REG; /* Enet Port N Priority Control */
+    volatile Uint32 PN_RX_PRI_MAP_REG; /* Enet Port N RX Pkt Pri to Header Pri Map */
+    volatile Uint32 PN_RX_MAXLEN_REG; /* Enet Port N Receive Frame Max Length */
+    volatile Uint32 PN_TX_BLKS_PRI_REG; /* Enet Port N Transmit Block Sub Per Priority */
+    volatile Uint8 RSVD1[212];
+    volatile Uint32 PN_RX_DSCP_V4_MAP_REG[8]; /* Enet Port N Receive IPV4 DSCP Map M */
+    volatile Uint32 PN_RX_DSCP_V6_MAP_REG[8]; /* Enet Port N Receive IPV6 DSCP Map M */
+    volatile Uint32 PN_PRI_SEND_REG[8]; /* Enet Port N Rx Priority P Send Count Value */
+    volatile Uint32 PN_PRI_IDLE_REG[8]; /* Enet Port N Rx Priority P Idle Count Value */
+    volatile Uint32 PN_TX_D_THRESH_SET_L_REG; /* Enet Port N Tx PFC Destination Threshold Set Low */
+    volatile Uint32 PN_TX_D_THRESH_SET_H_REG; /* Enet Port N Tx PFC Destination Threshold Set High */
+    volatile Uint32 PN_TX_D_THRESH_CLR_L_REG; /* Enet Port N Tx PFC Destination Threshold Clr Low */
+    volatile Uint32 PN_TX_D_THRESH_CLR_H_REG; /* Enet Port N Tx PFC Destination Threshold Clr High */
+    volatile Uint32 PN_TX_G_BUF_THRESH_SET_L_REG; /* Enet Port N Tx PFC Global Buffer Threshold Set Low */
+    volatile Uint32 PN_TX_G_BUF_THRESH_SET_H_REG; /* Enet Port N Tx PFC Global Buffer Threshold Set High */
+    volatile Uint32 PN_TX_G_BUF_THRESH_CLR_L_REG; /* Enet Port N Tx PFC Global Buffer Threshold Clr Low */
+    volatile Uint32 PN_TX_G_BUF_THRESH_CLR_H_REG; /* Enet Port N Tx PFC Global Buffer Threshold Clr High */
+    volatile Uint8 RSVD2[352];
+    volatile Uint32 PN_TX_D_OFLOW_ADDVAL_L_REG; /* Enet Port N Tx Destination Out Flow Add Values Low */
+    volatile Uint32 PN_TX_D_OFLOW_ADDVAL_H_REG; /* Enet Port N Tx Destination Out Flow Add Values High */
+    volatile Uint32 PN_SA_L_REG; /* Enet Port N Tx Pause Frame Source Address Low */
+    volatile Uint32 PN_SA_H_REG; /* Enet Port N Tx Pause Frame Source Address High */
+    volatile Uint32 PN_TS_CTL_REG; /* Enet Port N Time Sync Control */
+    volatile Uint32 PN_TS_SEQ_LTYPE_REG; /* Enet Port N Time Sync LTYPE (and SEQ_ID_OFFSET) */
+    volatile Uint32 PN_TS_VLAN_LTYPE_REG; /* Enet Port N Time Sync VLAN2 and VLAN2 */
+    volatile Uint32 PN_TS_CTL_LTYPE2_REG; /* Enet Port N Time Sync Control and LTYPE 2 */
+    volatile Uint32 PN_TS_CTL2_REG; /* Enet Port N Time Sync Control 2 */
+    volatile Uint8 RSVD3[12];
+    volatile Uint32 PN_MAC_CONTROL_REG; /* Enet Port N Mac Control */
+    volatile Uint32 PN_MAC_STATUS_REG; /* Enet Port N Mac Status */
+    volatile Uint32 PN_MAC_SOFT_RESET_REG; /* Enet Port N Mac Soft Reset */
+    volatile Uint32 PN_MAC_BOFFTEST_REG; /* Enet Port N Mac Backoff Test */
+    volatile Uint32 PN_MAC_RX_PAUSETIMER_REG; /* Enet Port N 802.3 Receive Pause Timer */
+    volatile Uint8 RSVD4[12];
+    volatile Uint32 PN_MAC_RXN_PAUSETIMER_REG[8]; /* Enet Port N PFC Priority P Rx Pause Timer */
+    volatile Uint32 PN_MAC_TX_PAUSETIMER_REG; /* Enet Port N 802.3 Tx Pause Timer */
+    volatile Uint8 RSVD5[12];
+    volatile Uint32 PN_MAC_TXN_PAUSETIMER_REG[8]; /* Enet Port N PFC Priority P Tx Pause Timer */
+    volatile Uint32 PN_MAC_EMCONTROL_REG; /* Enet Port N Emulation Control */
+    volatile Uint32 PN_MAC_TX_GAP_REG; /* Enet Port N Tx Inter Packet Gap */
+    volatile Uint8 RSVD6[3160];
+} CSL_Xge_cpswEnetportRegs; /* Ethernet Port Registers */
+
+/**************************************************************************\
+* Register Overlay Structure for stats
+\**************************************************************************/
+typedef struct  {
+    volatile Uint32 RXGOODFRAMES; /* Total number of good frames received */
+    volatile Uint32 RXBROADCASTFRAMES; /* Total number of good broadcast frames received */
+    volatile Uint32 RXMULTICASTFRAMES; /* Total number of good multicast frames received */
+    volatile Uint32 RXPAUSEFRAMES; /* Total number of pause frames received */
+    volatile Uint32 RXCRCERRORS; /* Total number of CRC errors frames received */
+    volatile Uint32 RXALIGNCODEERRORS; /* Total number of alignment/code errors received */
+    volatile Uint32 RXOVERSIZEDFRAMES; /* Total number of oversized frames received */
+    volatile Uint32 RXJABBERFRAMES; /* Total number of jabber frames received */
+    volatile Uint32 RXUNDERSIZEDFRAMES; /* Total number of undersized frames received */
+    volatile Uint32 RXFRAGMENTS; /* Total number of fragmented frames received */
+    volatile Uint32 ALE_DROP; /* Total number of frames dropped by the ALE */
+    volatile Uint32 ALE_OVERRUN_DROP; /* Total number of overrun frames dropped by the ALE */
+    volatile Uint32 RXOCTETS; /* Total number of received bytes in good frames */
+    volatile Uint32 TXGOODFRAMES; /* Total number of good frames transmitted */
+    volatile Uint32 TXBROADCASTFRAMES; /* Total number of good broadcast frames transmitted */
+    volatile Uint32 TXMULTICASTFRAMES; /* Total number of good multicast frames transmitted */
+    volatile Uint32 TXPAUSEFRAMES; /* Total number of pause frames transmitted */
+    volatile Uint32 TXDEFERREDFRAMES; /* Total number of deferred frames transmitted */
+    volatile Uint32 TXCOLLISIONFRAMES; /* Total number of transmitted frames experiencing a collision */
+    volatile Uint32 TXSINGLECOLLFRAMES; /* Total number of transmitted frames experiencing a single collision */
+    volatile Uint32 TXMULTCOLLFRAMES; /* Total number of transmitted frames experiencing multiple collisions */
+    volatile Uint32 TXEXCESSIVECOLLISIONS; /* Total number of transmitted frames abandoned due to excessive collisions */
+    volatile Uint32 TXLATECOLLISIONS; /* Total number of transmitted frames abandoned due to a late collision */
+    volatile Uint32 RXIPGERROR; /* Total number of receive inter-packet gap errors (10G only) */
+    volatile Uint32 TXCARRIERSENSEERRORS; /* Total number of transmitted frames that experienced a carrier loss */
+    volatile Uint32 TXOCTETS; /* Total number of bytes in all good frames transmitted */
+    volatile Uint32 OCTETFRAMES64; /* Total number of 64-byte frames received and transmitted */
+    volatile Uint32 OCTETFRAMES65T127; /* Total number of frames of size 65 to 127 bytes received and transmitted */
+    volatile Uint32 OCTETFRAMES128T255; /* Total number of frames of size 128 to 255 bytes received and transmitted */
+    volatile Uint32 OCTETFRAMES256T511; /* Total number of frames of size 256 to 511 bytes received and transmitted */
+    volatile Uint32 OCTETFRAMES512T1023; /* Total number of frames of size 512 to 1023 bytes received and transmitted */
+    volatile Uint32 OCTETFRAMES1024TUP; /* Total number of frames of size 1024 to rx_maxlen bytes received and 1024 bytes or greater transmitted */
+    volatile Uint32 NETOCTETS; /* Total number of bytes received and transmitted */
+    volatile Uint32 RX_DROP; /* Total number of dropped frames received */
+    volatile Uint32 PORTMASK_DROP; /* Total number of dropped frames received due to portmask */
+    volatile Uint32 TX_DROP; /* Total number of dropped frames transmitted */
+    volatile Uint32 ALE_RATE_LIMIT_DROP; /* Total number of dropped frames due to ALE Rate Limiting */
+    volatile Uint32 ALE_VID_INGRESS_DROP; /* Total number of dropped frames due to ALE VID Ingress */
+    volatile Uint32 ALE_DA_EQ_SA_DROP; /* Total number of dropped frames due to DA=SA */
+    volatile Uint32 ALE_BLOCK_DROP; /* Total number of dropped frames due to ALE Block Mode */
+    volatile Uint32 ALE_SECURE_DROP; /* Total number of dropped frames due to ALE Secure Mode */
+    volatile Uint32 ALE_AUTH_DROP; /* Total number of dropped frames due to ALE Authentication */
+    volatile Uint8 RSVD0[344];
+} CSL_Xge_cpswStatsRegs; /* Statistics Registers */
+
+/**************************************************************************\
+* Register Overlay Structure
+\**************************************************************************/
+typedef struct  {
+    volatile Uint32 ID_VER_REG; /* CPSW ID Version */
+    volatile Uint32 CONTROL_REG; /* CPSW Switch Control */
+    volatile Uint8 RSVD0[8];
+    volatile Uint32 EM_CONTROL_REG; /* CPSW Emulation Control */
+    volatile Uint32 STAT_PORT_EN_REG; /* CPSW Statistics Port Enable */
+    volatile Uint32 PTYPE_REG; /* CPSW Transmit Priority Type */
+    volatile Uint32 SOFT_IDLE_REG; /* CPSW Software Idle */
+    volatile Uint32 THRU_RATE_REG; /* CPSW Thru Rate */
+    volatile Uint32 GAP_THRESH_REG; /* CPSW Transmit FIFO Short Gap Threshold */
+    volatile Uint32 TX_START_WDS_REG; /* CPSW Transmit FIFO Start Words */
+    volatile Uint8 RSVD1[4];
+    volatile Uint32 TX_G_OFLOW_THRESH_SET_REG; /* CPSW PFC Tx Global Out Flow Threshold Set */
+    volatile Uint32 TX_G_OFLOW_THRESH_CLR_REG; /* CPSW PFC Tx Global Out Flow Threshold Clear */
+    volatile Uint32 TX_G_BUF_THRESH_SET_L_REG; /* CPSW PFC Global Tx Buffer Threshold Set Low */
+    volatile Uint32 TX_G_BUF_THRESH_SET_H_REG; /* CPSW PFC Global Tx Buffer Threshold Set High */
+    volatile Uint32 TX_G_BUF_THRESH_CLR_L_REG; /* CPSW PFC Global Tx Buffer Threshold Clear Low */
+    volatile Uint32 TX_G_BUF_THRESH_CLR_H_REG; /* CPSW PFC Global Tx Buffer Threshold Clear High */
+    volatile Uint8 RSVD2[4028];
+    volatile Uint32 P0_CONTROL_REG; /* CPPI Port 0 Control */
+    volatile Uint8 RSVD3[8];
+    volatile Uint32 P0_BLK_CNT_REG; /* CPPI Port 0 FIFO Block Usage Count */
+    volatile Uint32 P0_PORT_VLAN_REG; /* CPPI Port 0 VLAN */
+    volatile Uint32 P0_TX_PRI_MAP_REG; /* CPPI Port 0 Tx Header Pri to Switch Pri Mapping */
+    volatile Uint32 P0_PRI_CTL_REG; /* CPPI Port 0 Priority Control */
+    volatile Uint32 P0_RX_PRI_MAP_REG; /* CPPI Port 0 RX Pkt Pri to Header Pri Map */
+    volatile Uint32 P0_RX_MAXLEN_REG; /* CPPI Port 0 Receive Frame Max Length */
+    volatile Uint32 P0_TX_BLKS_PRI_REG; /* CPPI Port 0 Transmit Block Sub Per Priority */
+    volatile Uint8 RSVD4[212];
+    volatile Uint32 P0_RX_DSCP_V4_MAP_REG[8]; /* CPPI Port 0 Receive IPV4 DSCP Map N */
+    volatile Uint32 P0_RX_DSCP_V6_MAP_REG[8]; /* CPPI Port 0 Receive IPV6 DSCP Map N */
+    volatile Uint32 P0_PRI_SEND_REG[8]; /* CPPI Port 0 Rx Priority P Send Count Value */
+    volatile Uint32 P0_PRI_IDLE_REG[8]; /* CPPI Port 0 Rx Priority P Idle Count Value */
+    volatile Uint32 P0_TX_D_THRESH_SET_L_REG; /* CPPI Port 0 Tx PFC Destination Threshold Set Low */
+    volatile Uint32 P0_TX_D_THRESH_SET_H_REG; /* CPPI Port 0 Tx PFC Destination Threshold Set High */
+    volatile Uint32 P0_TX_D_THRESH_CLR_L_REG; /* CPPI Port 0 Tx PFC Destination Threshold Clr Low */
+    volatile Uint32 P0_TX_D_THRESH_CLR_H_REG; /* CPPI Port 0 Tx PFC Destination Threshold Clr High */
+    volatile Uint32 P0_TX_G_BUF_THRESH_SET_L_REG; /* CPPI Port 0 Tx PFC Global Buffer Threshold Set Low */
+    volatile Uint32 P0_TX_G_BUF_THRESH_SET_H_REG; /* CPPI Port 0 Tx PFC Global Buffer Threshold Set High */
+    volatile Uint32 P0_TX_G_BUF_THRESH_CLR_L_REG; /* CPPI Port 0 Tx PFC Global Buffer Threshold Clr Low */
+    volatile Uint32 P0_TX_G_BUF_THRESH_CLR_H_REG; /* CPPI Port 0 Tx PFC Global Buffer Threshold Clr High */
+    volatile Uint8 RSVD5[352];
+    volatile Uint32 P0_SRC_ID_A_REG; /* CPPI Port 0 CPPI Source ID A */
+    volatile Uint32 P0_SRC_ID_B_REG; /* CPPI Port 0 CPPI Source ID B */
+    volatile Uint8 RSVD6[24];
+    volatile Uint32 P0_HOST_BLKS_PRI_REG; /* CPPI Port 0 Host Blocks Priori */
+    volatile Uint8 RSVD7[3292];
+    CSL_Xge_cpswEnetportRegs ENETPORT[8];
+    volatile Uint8 RSVD8[65536];
+    CSL_Xge_cpswStatsRegs STATS[9];
+} CSL_Xge_cpswRegs;
+
+/**************************************************************************\
+* Field Definition Macros
+\**************************************************************************/
+
+/* pn_reserved_reg */
+
+#define CSL_XGE_CPSW_PN_RESERVED_REG_RESERVED_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_PN_RESERVED_REG_RESERVED_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_RESERVED_REG_RESERVED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RESERVED_REG_RESETVAL (0x00000000u)
+
+/* pn_control_reg */
+
+#define CSL_XGE_CPSW_PN_CONTROL_REG_DSCP_IPV4_EN_MASK (0x00000002u)
+#define CSL_XGE_CPSW_PN_CONTROL_REG_DSCP_IPV4_EN_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_PN_CONTROL_REG_DSCP_IPV4_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_CONTROL_REG_DSCP_IPV6_EN_MASK (0x00000004u)
+#define CSL_XGE_CPSW_PN_CONTROL_REG_DSCP_IPV6_EN_SHIFT (0x00000002u)
+#define CSL_XGE_CPSW_PN_CONTROL_REG_DSCP_IPV6_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_CONTROL_REG_RESETVAL (0x00000000u)
+
+/* pn_blk_cnt_reg */
+
+#define CSL_XGE_CPSW_PN_BLK_CNT_REG_RX_BLK_CNT_MASK (0x0000003Fu)
+#define CSL_XGE_CPSW_PN_BLK_CNT_REG_RX_BLK_CNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_BLK_CNT_REG_RX_BLK_CNT_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_PN_BLK_CNT_REG_TX_BLK_CNT_MASK (0x00003E00u)
+#define CSL_XGE_CPSW_PN_BLK_CNT_REG_TX_BLK_CNT_SHIFT (0x00000009u)
+#define CSL_XGE_CPSW_PN_BLK_CNT_REG_TX_BLK_CNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_BLK_CNT_REG_RESETVAL (0x00000001u)
+
+/* pn_port_vlan_reg */
+
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_VID_MASK (0x00000FFFu)
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_VID_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_VID_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_CFI_MASK (0x00001000u)
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_CFI_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_CFI_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_PRI_MASK (0x0000E000u)
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_PRI_SHIFT (0x0000000Du)
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_PORT_PRI_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_PORT_VLAN_REG_RESETVAL (0x00000000u)
+
+/* pn_tx_pri_map_reg */
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI1_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI2_RESETVAL (0x00000002u)
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI3_RESETVAL (0x00000003u)
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI4_RESETVAL (0x00000004u)
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI5_RESETVAL (0x00000005u)
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI6_RESETVAL (0x00000006u)
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_PRI7_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_PN_TX_PRI_MAP_REG_RESETVAL (0x76543210u)
+
+/* pn_pri_ctl_reg */
+
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_RLIM_MASK (0x000000FFu)
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_RLIM_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_RLIM_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_HOST_BLKS_REM_MASK (0x0000F000u)
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_HOST_BLKS_REM_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_HOST_BLKS_REM_RESETVAL (0x00000009u)
+
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_RX_FLOW_PRI_MASK (0x00FF0000u)
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_RX_FLOW_PRI_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_RX_FLOW_PRI_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_FLOW_PRI_MASK (0xFF000000u)
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_FLOW_PRI_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_TX_FLOW_PRI_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_PRI_CTL_REG_RESETVAL (0x00009000u)
+
+/* pn_rx_pri_map_reg */
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI1_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI2_RESETVAL (0x00000002u)
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI3_RESETVAL (0x00000003u)
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI4_RESETVAL (0x00000004u)
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI5_RESETVAL (0x00000005u)
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI6_RESETVAL (0x00000006u)
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_PRI7_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_PN_RX_PRI_MAP_REG_RESETVAL (0x76543210u)
+
+/* pn_rx_maxlen_reg */
+
+#define CSL_XGE_CPSW_PN_RX_MAXLEN_REG_RX_MAXLEN_MASK (0x00003FFFu)
+#define CSL_XGE_CPSW_PN_RX_MAXLEN_REG_RX_MAXLEN_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_RX_MAXLEN_REG_RX_MAXLEN_RESETVAL (0x000005EEu)
+
+#define CSL_XGE_CPSW_PN_RX_MAXLEN_REG_RESETVAL (0x000005EEu)
+
+/* pn_tx_blks_pri_reg */
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI0_MASK (0x0000000Fu)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI1_MASK (0x000000F0u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI1_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI2_MASK (0x00000F00u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI2_RESETVAL (0x00000002u)
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI3_MASK (0x0000F000u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI3_RESETVAL (0x00000003u)
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI4_MASK (0x000F0000u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI4_RESETVAL (0x00000004u)
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI5_MASK (0x00F00000u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI5_RESETVAL (0x00000005u)
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI6_MASK (0x0F000000u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI6_RESETVAL (0x00000006u)
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI7_MASK (0xF0000000u)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_PRI7_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_PN_TX_BLKS_PRI_REG_RESETVAL (0x76543210u)
+
+/* pn_rx_dscp_v4_map_reg */
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI1_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI2_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI3_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI4_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI5_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI6_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_PRI7_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V4_MAP_REG_RESETVAL (0x00000000u)
+
+/* pn_rx_dscp_v6_map_reg */
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI1_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI2_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI3_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI4_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI5_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI6_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_PRI7_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_RX_DSCP_V6_MAP_REG_RESETVAL (0x00000000u)
+
+/* pn_pri_send_reg */
+
+#define CSL_XGE_CPSW_PN_PRI_SEND_REG_COUNT_MASK (0x0003FFFFu)
+#define CSL_XGE_CPSW_PN_PRI_SEND_REG_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_PRI_SEND_REG_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_PRI_SEND_REG_RESETVAL (0x00000000u)
+
+/* pn_pri_idle_reg */
+
+#define CSL_XGE_CPSW_PN_PRI_IDLE_REG_COUNT_MASK (0x0003FFFFu)
+#define CSL_XGE_CPSW_PN_PRI_IDLE_REG_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_PRI_IDLE_REG_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_PRI_IDLE_REG_RESETVAL (0x00000000u)
+
+/* pn_tx_d_thresh_set_l_reg */
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_d_thresh_set_h_reg */
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_SET_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_d_thresh_clr_l_reg */
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_d_thresh_clr_h_reg */
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_THRESH_CLR_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_g_buf_thresh_set_l_reg */
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_g_buf_thresh_set_h_reg */
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_SET_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_g_buf_thresh_clr_l_reg */
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_g_buf_thresh_clr_h_reg */
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_G_BUF_THRESH_CLR_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_d_oflow_addval_l_reg */
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_tx_d_oflow_addval_h_reg */
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_PN_TX_D_OFLOW_ADDVAL_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* pn_sa_l_reg */
+
+#define CSL_XGE_CPSW_PN_SA_L_REG_MACSRCADDR_15_8_MASK (0x000000FFu)
+#define CSL_XGE_CPSW_PN_SA_L_REG_MACSRCADDR_15_8_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_SA_L_REG_MACSRCADDR_15_8_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_SA_L_REG_MACSRCADDR_7_0_MASK (0x0000FF00u)
+#define CSL_XGE_CPSW_PN_SA_L_REG_MACSRCADDR_7_0_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_SA_L_REG_MACSRCADDR_7_0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_SA_L_REG_RESETVAL (0x00000000u)
+
+/* pn_sa_h_reg */
+
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_47_40_MASK (0x000000FFu)
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_47_40_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_47_40_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_39_32_MASK (0x0000FF00u)
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_39_32_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_39_32_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_31_24_MASK (0x00FF0000u)
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_31_24_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_31_24_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_23_16_MASK (0xFF000000u)
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_23_16_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_SA_H_REG_MACSRCADDR_23_16_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_SA_H_REG_RESETVAL (0x00000000u)
+
+/* pn_ts_ctl_reg */
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_F_EN_MASK (0x00000001u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_F_EN_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_F_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_VLAN_LTYPE1_EN_MASK (0x00000002u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_VLAN_LTYPE1_EN_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_VLAN_LTYPE1_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_VLAN_LTYPE2_EN_MASK (0x00000004u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_VLAN_LTYPE2_EN_SHIFT (0x00000002u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_VLAN_LTYPE2_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_D_EN_MASK (0x00000008u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_D_EN_SHIFT (0x00000003u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_D_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_F_EN_MASK (0x00000010u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_F_EN_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_F_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_VLAN_LTYPE1_EN_MASK (0x00000020u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_VLAN_LTYPE1_EN_SHIFT (0x00000005u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_VLAN_LTYPE1_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_VLAN_LTYPE2_EN_MASK (0x00000040u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_VLAN_LTYPE2_EN_SHIFT (0x00000006u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_VLAN_LTYPE2_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_D_EN_MASK (0x00000080u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_D_EN_SHIFT (0x00000007u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_D_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_LTYPE2_EN_MASK (0x00000100u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_LTYPE2_EN_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_LTYPE2_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_E_EN_MASK (0x00000200u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_E_EN_SHIFT (0x00000009u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_RX_ANNEX_E_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_E_EN_MASK (0x00000400u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_E_EN_SHIFT (0x0000000Au)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_ANNEX_E_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_HOST_TS_EN_MASK (0x00000800u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_HOST_TS_EN_SHIFT (0x0000000Bu)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_TX_HOST_TS_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_MSG_TYPE_EN_MASK (0xFFFF0000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_MSG_TYPE_EN_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_TS_MSG_TYPE_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_REG_RESETVAL (0x00000000u)
+
+/* pn_ts_seq_ltype_reg */
+
+#define CSL_XGE_CPSW_PN_TS_SEQ_LTYPE_REG_TS_LTYPE1_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_TS_SEQ_LTYPE_REG_TS_LTYPE1_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TS_SEQ_LTYPE_REG_TS_LTYPE1_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_SEQ_LTYPE_REG_TS_SEQ_ID_OFFSET_MASK (0x003F0000u)
+#define CSL_XGE_CPSW_PN_TS_SEQ_LTYPE_REG_TS_SEQ_ID_OFFSET_SHIFT (0x00000010u)
+
+#define CSL_XGE_CPSW_PN_TS_SEQ_LTYPE_REG_RESETVAL (0x00000000u)
+
+/* pn_ts_vlan_ltype_reg */
+
+#define CSL_XGE_CPSW_PN_TS_VLAN_LTYPE_REG_TS_VLAN_LTYPE1_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_TS_VLAN_LTYPE_REG_TS_VLAN_LTYPE1_SHIFT (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_VLAN_LTYPE_REG_TS_VLAN_LTYPE2_MASK (0xFFFF0000u)
+#define CSL_XGE_CPSW_PN_TS_VLAN_LTYPE_REG_TS_VLAN_LTYPE2_SHIFT (0x00000010u)
+
+#define CSL_XGE_CPSW_PN_TS_VLAN_LTYPE_REG_RESETVAL (0x00000000u)
+
+/* pn_ts_ctl_ltype2_reg */
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_LTYPE2_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_LTYPE2_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_LTYPE2_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_107_MASK (0x00010000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_107_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_107_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_129_MASK (0x00020000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_129_SHIFT (0x00000011u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_129_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_130_MASK (0x00040000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_130_SHIFT (0x00000012u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_130_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_131_MASK (0x00080000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_131_SHIFT (0x00000013u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_131_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_132_MASK (0x00100000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_132_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_132_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_319_MASK (0x00200000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_319_SHIFT (0x00000015u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_319_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_320_MASK (0x00400000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_320_SHIFT (0x00000016u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_320_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_TTL_NONZERO_MASK (0x00800000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_TTL_NONZERO_SHIFT (0x00000017u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_TTL_NONZERO_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_UNI_EN_MASK (0x01000000u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_UNI_EN_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_TS_UNI_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL_LTYPE2_REG_RESETVAL (0x00000000u)
+
+/* pn_ts_ctl2_reg */
+
+#define CSL_XGE_CPSW_PN_TS_CTL2_REG_TS_MCAST_TYPE_EN_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_TS_CTL2_REG_TS_MCAST_TYPE_EN_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_TS_CTL2_REG_TS_MCAST_TYPE_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL2_REG_TS_DOMAIN_OFFSET_MASK (0x003F0000u)
+#define CSL_XGE_CPSW_PN_TS_CTL2_REG_TS_DOMAIN_OFFSET_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_TS_CTL2_REG_TS_DOMAIN_OFFSET_RESETVAL (0x00000004u)
+
+#define CSL_XGE_CPSW_PN_TS_CTL2_REG_RESETVAL (0x00040000u)
+
+/* pn_mac_control_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_FULLDUPLEX_MASK (0x00000001u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_FULLDUPLEX_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_FULLDUPLEX_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_LOOPBACK_MASK (0x00000002u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_LOOPBACK_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_LOOPBACK_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_MTEST_MASK (0x00000004u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_MTEST_SHIFT (0x00000002u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_MTEST_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_FLOW_EN_MASK (0x00000008u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_FLOW_EN_SHIFT (0x00000003u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_FLOW_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_FLOW_EN_MASK (0x00000010u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_FLOW_EN_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_FLOW_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GMII_EN_MASK (0x00000020u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GMII_EN_SHIFT (0x00000005u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GMII_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_PACE_MASK (0x00000040u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_PACE_SHIFT (0x00000006u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_PACE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GIG_MASK (0x00000080u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GIG_SHIFT (0x00000007u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GIG_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_XGIG_MASK (0x00000100u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_XGIG_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_XGIG_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_SHORT_GAP_ENABLE_MASK (0x00000400u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_SHORT_GAP_ENABLE_SHIFT (0x0000000Au)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_SHORT_GAP_ENABLE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CMD_IDLE_MASK (0x00000800u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CMD_IDLE_SHIFT (0x0000000Bu)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CMD_IDLE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CRC_TYPE_MASK (0x00001000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CRC_TYPE_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CRC_TYPE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_XGMII_EN_MASK (0x00002000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_XGMII_EN_SHIFT (0x0000000Du)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_XGMII_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_IFCTL_A_MASK (0x00008000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_IFCTL_A_SHIFT (0x0000000Fu)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_IFCTL_A_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_IFCTL_B_MASK (0x00010000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_IFCTL_B_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_IFCTL_B_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GIG_FORCE_MASK (0x00020000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GIG_FORCE_SHIFT (0x00000011u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_GIG_FORCE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CTL_EN_MASK (0x00040000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CTL_EN_SHIFT (0x00000012u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_CTL_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_EXT_RX_FLOW_EN_MASK (0x00080000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_EXT_RX_FLOW_EN_SHIFT (0x00000013u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_EXT_RX_FLOW_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_EXT_TX_FLOW_EN_MASK (0x00100000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_EXT_TX_FLOW_EN_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_EXT_TX_FLOW_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_SHORT_GAP_LIM_EN_MASK (0x00200000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_SHORT_GAP_LIM_EN_SHIFT (0x00000015u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_TX_SHORT_GAP_LIM_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CEF_EN_MASK (0x00400000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CEF_EN_SHIFT (0x00000016u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CEF_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CSF_EN_MASK (0x00800000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CSF_EN_SHIFT (0x00000017u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CSF_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CMF_EN_MASK (0x01000000u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CMF_EN_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RX_CMF_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_CONTROL_REG_RESETVAL (0x00000000u)
+
+/* pn_mac_status_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TX_FLOW_ACT_MASK (0x00000001u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TX_FLOW_ACT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TX_FLOW_ACT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_RX_FLOW_ACT_MASK (0x00000002u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_RX_FLOW_ACT_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_RX_FLOW_ACT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_FULLDUPLEX_MASK (0x00000008u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_FULLDUPLEX_SHIFT (0x00000003u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_FULLDUPLEX_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_GIG_MASK (0x00000010u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_GIG_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_GIG_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_TX_FLOW_EN_MASK (0x00000020u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_TX_FLOW_EN_SHIFT (0x00000005u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_TX_FLOW_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_RX_FLOW_EN_MASK (0x00000040u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_RX_FLOW_EN_SHIFT (0x00000006u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_RX_FLOW_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_XGIG_MASK (0x00000080u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_XGIG_SHIFT (0x00000007u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_EXT_XGIG_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_RX_PFC_FLOW_ACT_MASK (0x0000FF00u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_RX_PFC_FLOW_ACT_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_RX_PFC_FLOW_ACT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TX_PFC_FLOW_ACT_MASK (0x00FF0000u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TX_PFC_FLOW_ACT_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TX_PFC_FLOW_ACT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TORF_PRI_MASK (0x07000000u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TORF_PRI_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TORF_PRI_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TORF_MASK (0x08000000u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TORF_SHIFT (0x0000001Bu)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_TORF_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_IDLE_MASK (0x80000000u)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_IDLE_SHIFT (0x0000001Fu)
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_IDLE_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_PN_MAC_STATUS_REG_RESETVAL (0x80000000u)
+
+/* pn_mac_soft_reset_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_SOFT_RESET_REG_SOFT_RESET_MASK (0x00000001u)
+#define CSL_XGE_CPSW_PN_MAC_SOFT_RESET_REG_SOFT_RESET_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_SOFT_RESET_REG_SOFT_RESET_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_SOFT_RESET_REG_RESETVAL (0x00000000u)
+
+/* pn_mac_bofftest_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_TX_BACKOFF_MASK (0x000003FFu)
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_TX_BACKOFF_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_TX_BACKOFF_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_COLL_COUNT_MASK (0x0000F000u)
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_COLL_COUNT_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_COLL_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_RNDNUM_MASK (0x03FF0000u)
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_RNDNUM_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_RNDNUM_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_PACEVAL_MASK (0x7C000000u)
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_PACEVAL_SHIFT (0x0000001Au)
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_PACEVAL_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_BOFFTEST_REG_RESETVAL (0x00000000u)
+
+/* pn_mac_rx_pausetimer_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_RX_PAUSETIMER_REG_RX_PAUSETIMER_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_MAC_RX_PAUSETIMER_REG_RX_PAUSETIMER_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_RX_PAUSETIMER_REG_RX_PAUSETIMER_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_RX_PAUSETIMER_REG_RESETVAL (0x00000000u)
+
+/* pn_mac_rxn_pausetimer_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_RXN_PAUSETIMER_REG_RX_PAUSETIMER_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_MAC_RXN_PAUSETIMER_REG_RX_PAUSETIMER_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_RXN_PAUSETIMER_REG_RX_PAUSETIMER_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_RXN_PAUSETIMER_REG_RESETVAL (0x00000000u)
+
+/* pn_mac_tx_pausetimer_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_TX_PAUSETIMER_REG_TX_PAUSETIMER_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_MAC_TX_PAUSETIMER_REG_TX_PAUSETIMER_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_TX_PAUSETIMER_REG_TX_PAUSETIMER_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_TX_PAUSETIMER_REG_RESETVAL (0x00000000u)
+
+/* pn_mac_txn_pausetimer_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_TXN_PAUSETIMER_REG_TX_PAUSETIMER_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_MAC_TXN_PAUSETIMER_REG_TX_PAUSETIMER_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_TXN_PAUSETIMER_REG_TX_PAUSETIMER_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_TXN_PAUSETIMER_REG_RESETVAL (0x00000000u)
+
+/* pn_mac_emcontrol_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_EMCONTROL_REG_FREE_MASK (0x00000001u)
+#define CSL_XGE_CPSW_PN_MAC_EMCONTROL_REG_FREE_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_EMCONTROL_REG_FREE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_EMCONTROL_REG_SOFT_MASK (0x00000002u)
+#define CSL_XGE_CPSW_PN_MAC_EMCONTROL_REG_SOFT_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_PN_MAC_EMCONTROL_REG_SOFT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PN_MAC_EMCONTROL_REG_RESETVAL (0x00000000u)
+
+/* pn_mac_tx_gap_reg */
+
+#define CSL_XGE_CPSW_PN_MAC_TX_GAP_REG_TX_GAP_MASK (0x0000FFFFu)
+#define CSL_XGE_CPSW_PN_MAC_TX_GAP_REG_TX_GAP_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PN_MAC_TX_GAP_REG_TX_GAP_RESETVAL (0x0000000Cu)
+
+#define CSL_XGE_CPSW_PN_MAC_TX_GAP_REG_RESETVAL (0x0000000Cu)
+
+/* RxGoodFrames */
+
+#define CSL_XGE_CPSW_RXGOODFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXGOODFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXGOODFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXGOODFRAMES_RESETVAL (0x00000000u)
+
+/* RxBroadcastFrames */
+
+#define CSL_XGE_CPSW_RXBROADCASTFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXBROADCASTFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXBROADCASTFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXBROADCASTFRAMES_RESETVAL (0x00000000u)
+
+/* RxMulticastFrames */
+
+#define CSL_XGE_CPSW_RXMULTICASTFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXMULTICASTFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXMULTICASTFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXMULTICASTFRAMES_RESETVAL (0x00000000u)
+
+/* RxPauseFrames */
+
+#define CSL_XGE_CPSW_RXPAUSEFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXPAUSEFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXPAUSEFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXPAUSEFRAMES_RESETVAL (0x00000000u)
+
+/* RxCRCErrors */
+
+#define CSL_XGE_CPSW_RXCRCERRORS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXCRCERRORS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXCRCERRORS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXCRCERRORS_RESETVAL (0x00000000u)
+
+/* RxAlignCodeErrors */
+
+#define CSL_XGE_CPSW_RXALIGNCODEERRORS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXALIGNCODEERRORS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXALIGNCODEERRORS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXALIGNCODEERRORS_RESETVAL (0x00000000u)
+
+/* RxOversizedFrames */
+
+#define CSL_XGE_CPSW_RXOVERSIZEDFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXOVERSIZEDFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXOVERSIZEDFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXOVERSIZEDFRAMES_RESETVAL (0x00000000u)
+
+/* RxJabberFrames */
+
+#define CSL_XGE_CPSW_RXJABBERFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXJABBERFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXJABBERFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXJABBERFRAMES_RESETVAL (0x00000000u)
+
+/* RxUndersizedFrames */
+
+#define CSL_XGE_CPSW_RXUNDERSIZEDFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXUNDERSIZEDFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXUNDERSIZEDFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXUNDERSIZEDFRAMES_RESETVAL (0x00000000u)
+
+/* RxFragments */
+
+#define CSL_XGE_CPSW_RXFRAGMENTS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXFRAGMENTS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXFRAGMENTS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXFRAGMENTS_RESETVAL (0x00000000u)
+
+/* ALE_Drop */
+
+#define CSL_XGE_CPSW_ALE_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_ALE_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ALE_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ALE_DROP_RESETVAL   (0x00000000u)
+
+/* ALE_Overrun_Drop */
+
+#define CSL_XGE_CPSW_ALE_OVERRUN_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_ALE_OVERRUN_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ALE_OVERRUN_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ALE_OVERRUN_DROP_RESETVAL (0x00000000u)
+
+/* RxOctets */
+
+#define CSL_XGE_CPSW_RXOCTETS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXOCTETS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXOCTETS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXOCTETS_RESETVAL   (0x00000000u)
+
+/* TxGoodFrames */
+
+#define CSL_XGE_CPSW_TXGOODFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXGOODFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXGOODFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXGOODFRAMES_RESETVAL (0x00000000u)
+
+/* TxBroadcastFrames */
+
+#define CSL_XGE_CPSW_TXBROADCASTFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXBROADCASTFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXBROADCASTFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXBROADCASTFRAMES_RESETVAL (0x00000000u)
+
+/* TxMulticastFrames */
+
+#define CSL_XGE_CPSW_TXMULTICASTFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXMULTICASTFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXMULTICASTFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXMULTICASTFRAMES_RESETVAL (0x00000000u)
+
+/* TxPauseFrames */
+
+#define CSL_XGE_CPSW_TXPAUSEFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXPAUSEFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXPAUSEFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXPAUSEFRAMES_RESETVAL (0x00000000u)
+
+/* TxDeferredFrames */
+
+#define CSL_XGE_CPSW_TXDEFERREDFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXDEFERREDFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXDEFERREDFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXDEFERREDFRAMES_RESETVAL (0x00000000u)
+
+/* TxCollisionFrames */
+
+#define CSL_XGE_CPSW_TXCOLLISIONFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXCOLLISIONFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXCOLLISIONFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXCOLLISIONFRAMES_RESETVAL (0x00000000u)
+
+/* TxSingleCollFrames */
+
+#define CSL_XGE_CPSW_TXSINGLECOLLFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXSINGLECOLLFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXSINGLECOLLFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXSINGLECOLLFRAMES_RESETVAL (0x00000000u)
+
+/* TxMultCollFrames */
+
+#define CSL_XGE_CPSW_TXMULTCOLLFRAMES_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXMULTCOLLFRAMES_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXMULTCOLLFRAMES_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXMULTCOLLFRAMES_RESETVAL (0x00000000u)
+
+/* TxExcessiveCollisions */
+
+#define CSL_XGE_CPSW_TXEXCESSIVECOLLISIONS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXEXCESSIVECOLLISIONS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXEXCESSIVECOLLISIONS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXEXCESSIVECOLLISIONS_RESETVAL (0x00000000u)
+
+/* TxLateCollisions */
+
+#define CSL_XGE_CPSW_TXLATECOLLISIONS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXLATECOLLISIONS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXLATECOLLISIONS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXLATECOLLISIONS_RESETVAL (0x00000000u)
+
+/* RxIPGError */
+
+#define CSL_XGE_CPSW_RXIPGERROR_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RXIPGERROR_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RXIPGERROR_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RXIPGERROR_RESETVAL (0x00000000u)
+
+/* TxCarrierSenseErrors */
+
+#define CSL_XGE_CPSW_TXCARRIERSENSEERRORS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXCARRIERSENSEERRORS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXCARRIERSENSEERRORS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXCARRIERSENSEERRORS_RESETVAL (0x00000000u)
+
+/* TxOctets */
+
+#define CSL_XGE_CPSW_TXOCTETS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TXOCTETS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TXOCTETS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TXOCTETS_RESETVAL   (0x00000000u)
+
+/* OctetFrames64 */
+
+#define CSL_XGE_CPSW_OCTETFRAMES64_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_OCTETFRAMES64_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_OCTETFRAMES64_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_OCTETFRAMES64_RESETVAL (0x00000000u)
+
+/* OctetFrames65t127 */
+
+#define CSL_XGE_CPSW_OCTETFRAMES65T127_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_OCTETFRAMES65T127_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_OCTETFRAMES65T127_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_OCTETFRAMES65T127_RESETVAL (0x00000000u)
+
+/* OctetFrames128t255 */
+
+#define CSL_XGE_CPSW_OCTETFRAMES128T255_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_OCTETFRAMES128T255_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_OCTETFRAMES128T255_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_OCTETFRAMES128T255_RESETVAL (0x00000000u)
+
+/* OctetFrames256t511 */
+
+#define CSL_XGE_CPSW_OCTETFRAMES256T511_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_OCTETFRAMES256T511_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_OCTETFRAMES256T511_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_OCTETFRAMES256T511_RESETVAL (0x00000000u)
+
+/* OctetFrames512t1023 */
+
+#define CSL_XGE_CPSW_OCTETFRAMES512T1023_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_OCTETFRAMES512T1023_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_OCTETFRAMES512T1023_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_OCTETFRAMES512T1023_RESETVAL (0x00000000u)
+
+/* OctetFrames1024tUP */
+
+#define CSL_XGE_CPSW_OCTETFRAMES1024TUP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_OCTETFRAMES1024TUP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_OCTETFRAMES1024TUP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_OCTETFRAMES1024TUP_RESETVAL (0x00000000u)
+
+/* NetOctets */
+
+#define CSL_XGE_CPSW_NETOCTETS_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_NETOCTETS_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_NETOCTETS_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_NETOCTETS_RESETVAL  (0x00000000u)
+
+/* Rx_Drop */
+
+#define CSL_XGE_CPSW_RX_DROP_COUNT_MASK  (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_RX_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_RX_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_RX_DROP_RESETVAL    (0x00000000u)
+
+/* Portmask_Drop */
+
+#define CSL_XGE_CPSW_PORTMASK_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_PORTMASK_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PORTMASK_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PORTMASK_DROP_RESETVAL (0x00000000u)
+
+/* Tx_Drop */
+
+#define CSL_XGE_CPSW_TX_DROP_COUNT_MASK  (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_TX_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TX_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_TX_DROP_RESETVAL    (0x00000000u)
+
+/* ALE_Rate_Limit_Drop */
+
+#define CSL_XGE_CPSW_ALE_RATE_LIMIT_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_ALE_RATE_LIMIT_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ALE_RATE_LIMIT_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ALE_RATE_LIMIT_DROP_RESETVAL (0x00000000u)
+
+/* ALE_VID_Ingress_Drop */
+
+#define CSL_XGE_CPSW_ALE_VID_INGRESS_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_ALE_VID_INGRESS_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ALE_VID_INGRESS_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ALE_VID_INGRESS_DROP_RESETVAL (0x00000000u)
+
+/* ALE_DA_EQ_SA_Drop */
+
+#define CSL_XGE_CPSW_ALE_DA_EQ_SA_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_ALE_DA_EQ_SA_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ALE_DA_EQ_SA_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ALE_DA_EQ_SA_DROP_RESETVAL (0x00000000u)
+
+/* ALE_Block_Drop */
+
+#define CSL_XGE_CPSW_ALE_BLOCK_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_ALE_BLOCK_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ALE_BLOCK_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ALE_BLOCK_DROP_RESETVAL (0x00000000u)
+
+/* ALE_Secure_Drop */
+
+#define CSL_XGE_CPSW_ALE_SECURE_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_ALE_SECURE_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ALE_SECURE_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ALE_SECURE_DROP_RESETVAL (0x00000000u)
+
+/* ALE_Auth_Drop */
+
+#define CSL_XGE_CPSW_ALE_AUTH_DROP_COUNT_MASK (0xFFFFFFFFu)
+#define CSL_XGE_CPSW_ALE_AUTH_DROP_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ALE_AUTH_DROP_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ALE_AUTH_DROP_RESETVAL (0x00000000u)
+
+/* id_ver_reg */
+
+#define CSL_XGE_CPSW_ID_VER_REG_MINOR_VER_MASK (0x000000FFu)
+#define CSL_XGE_CPSW_ID_VER_REG_MINOR_VER_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_ID_VER_REG_MINOR_VER_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ID_VER_REG_MAJOR_VER_MASK (0x00000700u)
+#define CSL_XGE_CPSW_ID_VER_REG_MAJOR_VER_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_ID_VER_REG_MAJOR_VER_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_ID_VER_REG_RTL_VER_MASK (0x0000F800u)
+#define CSL_XGE_CPSW_ID_VER_REG_RTL_VER_SHIFT (0x0000000Bu)
+#define CSL_XGE_CPSW_ID_VER_REG_RTL_VER_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_ID_VER_REG_IDENT_MASK (0xFFFF0000u)
+#define CSL_XGE_CPSW_ID_VER_REG_IDENT_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_ID_VER_REG_IDENT_RESETVAL (0x00004EE5u)
+
+#define CSL_XGE_CPSW_ID_VER_REG_RESETVAL (0x4EE50100u)
+
+/* control_reg */
+
+#define CSL_XGE_CPSW_CONTROL_REG_VLAN_AWARE_MASK (0x00000002u)
+#define CSL_XGE_CPSW_CONTROL_REG_VLAN_AWARE_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_CONTROL_REG_VLAN_AWARE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P0_ENABLE_MASK (0x00000004u)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_ENABLE_SHIFT (0x00000002u)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_ENABLE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P0_PASS_PRI_TAGGED_MASK (0x00000008u)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_PASS_PRI_TAGGED_SHIFT (0x00000003u)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P1_PASS_PRI_TAGGED_MASK (0x00000010u)
+#define CSL_XGE_CPSW_CONTROL_REG_P1_PASS_PRI_TAGGED_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_CONTROL_REG_P1_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P2_PASS_PRI_TAGGED_MASK (0x00000020u)
+#define CSL_XGE_CPSW_CONTROL_REG_P2_PASS_PRI_TAGGED_SHIFT (0x00000005u)
+#define CSL_XGE_CPSW_CONTROL_REG_P2_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P3_PASS_PRI_TAGGED_MASK (0x00000040u)
+#define CSL_XGE_CPSW_CONTROL_REG_P3_PASS_PRI_TAGGED_SHIFT (0x00000006u)
+#define CSL_XGE_CPSW_CONTROL_REG_P3_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P4_PASS_PRI_TAGGED_MASK (0x00000080u)
+#define CSL_XGE_CPSW_CONTROL_REG_P4_PASS_PRI_TAGGED_SHIFT (0x00000007u)
+#define CSL_XGE_CPSW_CONTROL_REG_P4_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P5_PASS_PRI_TAGGED_MASK (0x00000100u)
+#define CSL_XGE_CPSW_CONTROL_REG_P5_PASS_PRI_TAGGED_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_CONTROL_REG_P5_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P6_PASS_PRI_TAGGED_MASK (0x00000200u)
+#define CSL_XGE_CPSW_CONTROL_REG_P6_PASS_PRI_TAGGED_SHIFT (0x00000009u)
+#define CSL_XGE_CPSW_CONTROL_REG_P6_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P7_PASS_PRI_TAGGED_MASK (0x00000400u)
+#define CSL_XGE_CPSW_CONTROL_REG_P7_PASS_PRI_TAGGED_SHIFT (0x0000000Au)
+#define CSL_XGE_CPSW_CONTROL_REG_P7_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P8_PASS_PRI_TAGGED_MASK (0x00000800u)
+#define CSL_XGE_CPSW_CONTROL_REG_P8_PASS_PRI_TAGGED_SHIFT (0x0000000Bu)
+#define CSL_XGE_CPSW_CONTROL_REG_P8_PASS_PRI_TAGGED_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P0_TX_CRC_TYPE_MASK (0x00001000u)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_TX_CRC_TYPE_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_TX_CRC_TYPE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P0_TX_CRC_REMOVE_MASK (0x00002000u)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_TX_CRC_REMOVE_SHIFT (0x0000000Du)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_TX_CRC_REMOVE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_P0_RX_PAD_MASK (0x00004000u)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_RX_PAD_SHIFT (0x0000000Eu)
+#define CSL_XGE_CPSW_CONTROL_REG_P0_RX_PAD_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_CONTROL_REG_RESETVAL (0x00000000u)
+
+/* em_control_reg */
+
+#define CSL_XGE_CPSW_EM_CONTROL_REG_FREE_MASK (0x00000001u)
+#define CSL_XGE_CPSW_EM_CONTROL_REG_FREE_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_EM_CONTROL_REG_FREE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_EM_CONTROL_REG_SOFT_MASK (0x00000002u)
+#define CSL_XGE_CPSW_EM_CONTROL_REG_SOFT_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_EM_CONTROL_REG_SOFT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_EM_CONTROL_REG_RESETVAL (0x00000000u)
+
+/* stat_port_en_reg */
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P0_STAT_EN_MASK (0x00000001u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P0_STAT_EN_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P0_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P1_STAT_EN_MASK (0x00000002u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P1_STAT_EN_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P1_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P2_STAT_EN_MASK (0x00000004u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P2_STAT_EN_SHIFT (0x00000002u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P2_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P3_STAT_EN_MASK (0x00000008u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P3_STAT_EN_SHIFT (0x00000003u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P3_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P4_STAT_EN_MASK (0x00000010u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P4_STAT_EN_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P4_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P5_STAT_EN_MASK (0x00000020u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P5_STAT_EN_SHIFT (0x00000005u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P5_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P6_STAT_EN_MASK (0x00000040u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P6_STAT_EN_SHIFT (0x00000006u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P6_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P7_STAT_EN_MASK (0x00000080u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P7_STAT_EN_SHIFT (0x00000007u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P7_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P8_STAT_EN_MASK (0x00000100u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P8_STAT_EN_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_P8_STAT_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_STAT_PORT_EN_REG_RESETVAL (0x00000000u)
+
+/* ptype_reg */
+
+#define CSL_XGE_CPSW_PTYPE_REG_ESC_PRI_LD_VAL_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_PTYPE_REG_ESC_PRI_LD_VAL_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_PTYPE_REG_ESC_PRI_LD_VAL_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P0_PTYPE_ESC_MASK (0x00000100u)
+#define CSL_XGE_CPSW_PTYPE_REG_P0_PTYPE_ESC_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_PTYPE_REG_P0_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P1_PTYPE_ESC_MASK (0x00000200u)
+#define CSL_XGE_CPSW_PTYPE_REG_P1_PTYPE_ESC_SHIFT (0x00000009u)
+#define CSL_XGE_CPSW_PTYPE_REG_P1_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P2_PTYPE_ESC_MASK (0x00000400u)
+#define CSL_XGE_CPSW_PTYPE_REG_P2_PTYPE_ESC_SHIFT (0x0000000Au)
+#define CSL_XGE_CPSW_PTYPE_REG_P2_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P3_PTYPE_ESC_MASK (0x00000800u)
+#define CSL_XGE_CPSW_PTYPE_REG_P3_PTYPE_ESC_SHIFT (0x0000000Bu)
+#define CSL_XGE_CPSW_PTYPE_REG_P3_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P4_PTYPE_ESC_MASK (0x00001000u)
+#define CSL_XGE_CPSW_PTYPE_REG_P4_PTYPE_ESC_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_PTYPE_REG_P4_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P5_PTYPE_ESC_MASK (0x00002000u)
+#define CSL_XGE_CPSW_PTYPE_REG_P5_PTYPE_ESC_SHIFT (0x0000000Du)
+#define CSL_XGE_CPSW_PTYPE_REG_P5_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P6_PTYPE_ESC_MASK (0x00004000u)
+#define CSL_XGE_CPSW_PTYPE_REG_P6_PTYPE_ESC_SHIFT (0x0000000Eu)
+#define CSL_XGE_CPSW_PTYPE_REG_P6_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P7_PTYPE_ESC_MASK (0x00008000u)
+#define CSL_XGE_CPSW_PTYPE_REG_P7_PTYPE_ESC_SHIFT (0x0000000Fu)
+#define CSL_XGE_CPSW_PTYPE_REG_P7_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_P8_PTYPE_ESC_MASK (0x00010000u)
+#define CSL_XGE_CPSW_PTYPE_REG_P8_PTYPE_ESC_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_PTYPE_REG_P8_PTYPE_ESC_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_PTYPE_REG_RESETVAL  (0x00000000u)
+
+/* soft_idle_reg */
+
+#define CSL_XGE_CPSW_SOFT_IDLE_REG_SOFT_IDLE_MASK (0x00000001u)
+#define CSL_XGE_CPSW_SOFT_IDLE_REG_SOFT_IDLE_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_SOFT_IDLE_REG_SOFT_IDLE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_SOFT_IDLE_REG_RESETVAL (0x00000000u)
+
+/* thru_rate_reg */
+
+#define CSL_XGE_CPSW_THRU_RATE_REG_P0_RX_THRU_RATE_MASK (0x0000000Fu)
+#define CSL_XGE_CPSW_THRU_RATE_REG_P0_RX_THRU_RATE_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_THRU_RATE_REG_P0_RX_THRU_RATE_RESETVAL (0x00000003u)
+
+#define CSL_XGE_CPSW_THRU_RATE_REG_SL_RX_THRU_RATE_MASK (0x0000F000u)
+#define CSL_XGE_CPSW_THRU_RATE_REG_SL_RX_THRU_RATE_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_THRU_RATE_REG_SL_RX_THRU_RATE_RESETVAL (0x00000003u)
+
+#define CSL_XGE_CPSW_THRU_RATE_REG_RESETVAL (0x00003003u)
+
+/* gap_thresh_reg */
+
+#define CSL_XGE_CPSW_GAP_THRESH_REG_GAP_THRESH_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_GAP_THRESH_REG_GAP_THRESH_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_GAP_THRESH_REG_GAP_THRESH_RESETVAL (0x0000000Bu)
+
+#define CSL_XGE_CPSW_GAP_THRESH_REG_RESETVAL (0x0000000Bu)
+
+/* tx_start_wds_reg */
+
+#define CSL_XGE_CPSW_TX_START_WDS_REG_TX_START_WDS_MASK (0x000007FFu)
+#define CSL_XGE_CPSW_TX_START_WDS_REG_TX_START_WDS_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TX_START_WDS_REG_TX_START_WDS_RESETVAL (0x00000008u)
+
+#define CSL_XGE_CPSW_TX_START_WDS_REG_RESETVAL (0x00000008u)
+
+/* tx_g_oflow_thresh_set_reg */
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI0_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI1_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI2_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI3_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI4_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI5_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI6_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_PRI7_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_SET_REG_RESETVAL (0x77777777u)
+
+/* tx_g_oflow_thresh_clr_reg */
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI0_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI1_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI2_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI3_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI4_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI5_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI6_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_PRI7_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_TX_G_OFLOW_THRESH_CLR_REG_RESETVAL (0x77777777u)
+
+/* tx_g_buf_thresh_set_l_reg */
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI0_MASK (0x0000007Fu)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI0_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI1_MASK (0x00007F00u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI1_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI2_MASK (0x007F0000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI2_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI3_MASK (0x7F000000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_PRI3_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_L_REG_RESETVAL (0x3F3F3F3Fu)
+
+/* tx_g_buf_thresh_set_h_reg */
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI4_MASK (0x0000007Fu)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI4_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI5_MASK (0x00007F00u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI5_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI6_MASK (0x007F0000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI6_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI7_MASK (0x7F000000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_PRI7_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_SET_H_REG_RESETVAL (0x3F3F3F3Fu)
+
+/* tx_g_buf_thresh_clr_l_reg */
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI0_MASK (0x0000007Fu)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI0_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI1_MASK (0x00007F00u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI1_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI2_MASK (0x007F0000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI2_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI3_MASK (0x7F000000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_PRI3_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_L_REG_RESETVAL (0x3F3F3F3Fu)
+
+/* tx_g_buf_thresh_clr_h_reg */
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI4_MASK (0x0000007Fu)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI4_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI5_MASK (0x00007F00u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI5_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI6_MASK (0x007F0000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI6_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI7_MASK (0x7F000000u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_PRI7_RESETVAL (0x0000003Fu)
+
+#define CSL_XGE_CPSW_TX_G_BUF_THRESH_CLR_H_REG_RESETVAL (0x3F3F3F3Fu)
+
+/* p0_control_reg */
+
+#define CSL_XGE_CPSW_P0_CONTROL_REG_DSCP_IPV4_EN_MASK (0x00000002u)
+#define CSL_XGE_CPSW_P0_CONTROL_REG_DSCP_IPV4_EN_SHIFT (0x00000001u)
+#define CSL_XGE_CPSW_P0_CONTROL_REG_DSCP_IPV4_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_CONTROL_REG_DSCP_IPV6_EN_MASK (0x00000004u)
+#define CSL_XGE_CPSW_P0_CONTROL_REG_DSCP_IPV6_EN_SHIFT (0x00000002u)
+#define CSL_XGE_CPSW_P0_CONTROL_REG_DSCP_IPV6_EN_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_CONTROL_REG_RESETVAL (0x00000000u)
+
+/* p0_blk_cnt_reg */
+
+#define CSL_XGE_CPSW_P0_BLK_CNT_REG_RX_BLK_CNT_MASK (0x0000003Fu)
+#define CSL_XGE_CPSW_P0_BLK_CNT_REG_RX_BLK_CNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_BLK_CNT_REG_RX_BLK_CNT_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_P0_BLK_CNT_REG_TX_BLK_CNT_MASK (0x00003E00u)
+#define CSL_XGE_CPSW_P0_BLK_CNT_REG_TX_BLK_CNT_SHIFT (0x00000009u)
+#define CSL_XGE_CPSW_P0_BLK_CNT_REG_TX_BLK_CNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_BLK_CNT_REG_RESETVAL (0x00000001u)
+
+/* p0_port_vlan_reg */
+
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_VID_MASK (0x00000FFFu)
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_VID_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_VID_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_CFI_MASK (0x00001000u)
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_CFI_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_CFI_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_PRI_MASK (0x0000E000u)
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_PRI_SHIFT (0x0000000Du)
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_PORT_PRI_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_PORT_VLAN_REG_RESETVAL (0x00000000u)
+
+/* p0_tx_pri_map_reg */
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI1_SHIFT (0x00000004u)
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI2_SHIFT (0x00000008u)
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI3_SHIFT (0x0000000Cu)
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI4_SHIFT (0x00000010u)
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI5_SHIFT (0x00000014u)
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI6_SHIFT (0x00000018u)
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_PRI7_SHIFT (0x0000001Cu)
+
+#define CSL_XGE_CPSW_P0_TX_PRI_MAP_REG_RESETVAL (0x00000000u)
+
+/* p0_pri_ctl_reg */
+
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_RLIM_MASK (0x000000FFu)
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_RLIM_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_RLIM_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_PTYPE_MASK (0x00000100u)
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_PTYPE_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_PTYPE_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_FLOW_PRI_MASK (0x00FF0000u)
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_FLOW_PRI_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RX_FLOW_PRI_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_PRI_CTL_REG_RESETVAL (0x00000000u)
+
+/* p0_rx_pri_map_reg */
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI1_SHIFT (0x00000004u)
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI2_SHIFT (0x00000008u)
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI3_SHIFT (0x0000000Cu)
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI4_SHIFT (0x00000010u)
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI5_SHIFT (0x00000014u)
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI6_SHIFT (0x00000018u)
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_PRI7_SHIFT (0x0000001Cu)
+
+#define CSL_XGE_CPSW_P0_RX_PRI_MAP_REG_RESETVAL (0x00000000u)
+
+/* p0_rx_maxlen_reg */
+
+#define CSL_XGE_CPSW_P0_RX_MAXLEN_REG_RX_MAXLEN_MASK (0x00003FFFu)
+#define CSL_XGE_CPSW_P0_RX_MAXLEN_REG_RX_MAXLEN_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_RX_MAXLEN_REG_RX_MAXLEN_RESETVAL (0x000005EEu)
+
+#define CSL_XGE_CPSW_P0_RX_MAXLEN_REG_RESETVAL (0x000005EEu)
+
+/* p0_tx_blks_pri_reg */
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI0_MASK (0x0000000Fu)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI1_MASK (0x000000F0u)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI1_SHIFT (0x00000004u)
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI2_MASK (0x00000F00u)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI2_SHIFT (0x00000008u)
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI3_MASK (0x0000F000u)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI3_SHIFT (0x0000000Cu)
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI4_MASK (0x000F0000u)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI4_SHIFT (0x00000010u)
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI5_MASK (0x00F00000u)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI5_SHIFT (0x00000014u)
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI6_MASK (0x0F000000u)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI6_SHIFT (0x00000018u)
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI7_MASK (0xF0000000u)
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_PRI7_SHIFT (0x0000001Cu)
+
+#define CSL_XGE_CPSW_P0_TX_BLKS_PRI_REG_RESETVAL (0x00000000u)
+
+/* p0_rx_dscp_v4_map_reg */
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI1_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI2_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI3_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI4_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI5_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI6_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_PRI7_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V4_MAP_REG_RESETVAL (0x00000000u)
+
+/* p0_rx_dscp_v6_map_reg */
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI0_MASK (0x00000007u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI1_MASK (0x00000070u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI1_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI2_MASK (0x00000700u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI2_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI3_MASK (0x00007000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI3_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI4_MASK (0x00070000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI4_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI5_MASK (0x00700000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI5_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI6_MASK (0x07000000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI6_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI7_MASK (0x70000000u)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_PRI7_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_RX_DSCP_V6_MAP_REG_RESETVAL (0x00000000u)
+
+/* p0_pri_send_reg */
+
+#define CSL_XGE_CPSW_P0_PRI_SEND_REG_COUNT_MASK (0x0003FFFFu)
+#define CSL_XGE_CPSW_P0_PRI_SEND_REG_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_PRI_SEND_REG_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_PRI_SEND_REG_RESETVAL (0x00000000u)
+
+/* p0_pri_idle_reg */
+
+#define CSL_XGE_CPSW_P0_PRI_IDLE_REG_COUNT_MASK (0x0003FFFFu)
+#define CSL_XGE_CPSW_P0_PRI_IDLE_REG_COUNT_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_PRI_IDLE_REG_COUNT_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_PRI_IDLE_REG_RESETVAL (0x00000000u)
+
+/* p0_tx_d_thresh_set_l_reg */
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* p0_tx_d_thresh_set_h_reg */
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_SET_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* p0_tx_d_thresh_clr_l_reg */
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* p0_tx_d_thresh_clr_h_reg */
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_D_THRESH_CLR_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* p0_tx_g_buf_thresh_set_l_reg */
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* p0_tx_g_buf_thresh_set_h_reg */
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_SET_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* p0_tx_g_buf_thresh_clr_l_reg */
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI0_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI0_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI1_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI1_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI1_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI2_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI2_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI2_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI3_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI3_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_PRI3_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_L_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* p0_tx_g_buf_thresh_clr_h_reg */
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI4_MASK (0x0000001Fu)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI4_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI4_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI5_MASK (0x00001F00u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI5_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI5_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI6_MASK (0x001F0000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI6_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI6_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI7_MASK (0x1F000000u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI7_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_PRI7_RESETVAL (0x0000001Fu)
+
+#define CSL_XGE_CPSW_P0_TX_G_BUF_THRESH_CLR_H_REG_RESETVAL (0x1F1F1F1Fu)
+
+/* p0_src_id_a_reg */
+
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT1_MASK (0x000000FFu)
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT1_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT1_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT2_MASK (0x0000FF00u)
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT2_RESETVAL (0x00000002u)
+
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT3_MASK (0x00FF0000u)
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT3_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT3_RESETVAL (0x00000003u)
+
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT4_MASK (0xFF000000u)
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT4_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_PORT4_RESETVAL (0x00000004u)
+
+#define CSL_XGE_CPSW_P0_SRC_ID_A_REG_RESETVAL (0x04030201u)
+
+/* p0_src_id_b_reg */
+
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT5_MASK (0x000000FFu)
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT5_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT5_RESETVAL (0x00000005u)
+
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT6_MASK (0x0000FF00u)
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT6_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT6_RESETVAL (0x00000006u)
+
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT7_MASK (0x00FF0000u)
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT7_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT7_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT8_MASK (0xFF000000u)
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT8_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_PORT8_RESETVAL (0x00000008u)
+
+#define CSL_XGE_CPSW_P0_SRC_ID_B_REG_RESETVAL (0x08070605u)
+
+/* p0_host_blks_pri_reg */
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI0_MASK (0x0000000Fu)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI0_SHIFT (0x00000000u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI0_RESETVAL (0x00000000u)
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI1_MASK (0x000000F0u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI1_SHIFT (0x00000004u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI1_RESETVAL (0x00000001u)
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI2_MASK (0x00000F00u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI2_SHIFT (0x00000008u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI2_RESETVAL (0x00000002u)
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI3_MASK (0x0000F000u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI3_SHIFT (0x0000000Cu)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI3_RESETVAL (0x00000003u)
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI4_MASK (0x000F0000u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI4_SHIFT (0x00000010u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI4_RESETVAL (0x00000004u)
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI5_MASK (0x00F00000u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI5_SHIFT (0x00000014u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI5_RESETVAL (0x00000005u)
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI6_MASK (0x0F000000u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI6_SHIFT (0x00000018u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI6_RESETVAL (0x00000006u)
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI7_MASK (0xF0000000u)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI7_SHIFT (0x0000001Cu)
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_PRI7_RESETVAL (0x00000007u)
+
+#define CSL_XGE_CPSW_P0_HOST_BLKS_PRI_REG_RESETVAL (0x76543210u)
+
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

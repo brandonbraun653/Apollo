@@ -1,0 +1,4 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/main_mcspi_slave_mode.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/am572x/c66/bios/spi_c66_idkAM572x_slavemode_slave.cfg"
+-ccs.setCompilerOptions "-D -mv6600 -g -dSOC_AM572x -didkAM572x -dUSE_BIOS -dC66X -dSPI_DMA_ENABLE -dMCSPI_MULT_CHANNEL  --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc

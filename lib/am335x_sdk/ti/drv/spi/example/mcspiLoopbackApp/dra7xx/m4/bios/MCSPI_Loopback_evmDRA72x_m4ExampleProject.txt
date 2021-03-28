@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspiLoopbackApp/src/mcspiLoopbackApp.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspiLoopbackApp/dra7xx/m4/bios/spi_loopback_m4.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_DRA72x -DevmDRA72x -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra72x\", BOARD:\"evmDRA72x\"}"

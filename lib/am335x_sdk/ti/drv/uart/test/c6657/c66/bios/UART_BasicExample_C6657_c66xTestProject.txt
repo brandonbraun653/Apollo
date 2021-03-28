@@ -1,0 +1,4 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/c6657/c66/bios/uart_test.cfg" 
+-ccs.setCompilerOptions "-D -mv6600 -g -DUART_V0 -dSOC_C6657 -devmC6657 -dUSE_BIOS --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH}/ti/drv/uart -I${PDK_INSTALL_PATH} --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry"  -rtsc.enableRtsc
+

@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am335x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/firmware_example/src/main_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/firmware_example/am335x/armv7/bios/spi_arm_am335x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard  -DSOC_AM335x -DbbbAM335x -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/starterware/include/am335x -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static ${PDK_INSTALL_PATH}/ti/drv/spi/firmware/icss_espi/bin/am335x/a8host/REV1/icss_espi_PRU0.bin ${PDK_INSTALL_PATH}/ti/drv/spi/firmware/icss_espi/bin/am335x/a8host/REV1/icss_espi_PRU1.bin -Wl,-T,${PDK_INSTALL_PATH}/ti/build/pruss/lnk_a8_a9_a15_REV1.cmd -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am335x/config_am335x_a8.bld -DBOARD=bbbAM335x"
+

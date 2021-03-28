@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/omapl137/c674/bios/evmOMAPL137_DSP.cfg"
+-ccs.setCompilerOptions "-mv6740 -g --diag_warning=225  -I${PDK_INSTALL_PATH}/ti/drv/emac --define=SOC_OMAPL137 --define= evmOMAPL137"
+-rtsc.enableRtsc
+

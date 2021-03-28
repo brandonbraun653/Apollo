@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/src/main_eeprom_read.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/am572x/c66/bios/i2c_test_idkAM52x.cfg" 
+-ccs.setCompilerOptions "-D -mv6600 -g -dSOC_AM572x -didkAM572x -dUSE_BIOS -dC66X --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH}/ti/drv/i2c "  -rtsc.enableRtsc
+

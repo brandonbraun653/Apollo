@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/helloWorld_c6657.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_osal_c6657.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/udpHello.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/c6657/c66/bios/helloWorld.cfg" 
+-ccs.setCompilerOptions "-D -mv6600 -g -DSOC_C6657 -DC6657 -DUSE_BIOS --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH}/ti/transport/ndk/nimu -I${PDK_INSTALL_PATH} -I{NDK_INSTALL_DIR}/packages " -rtsc.enableRtsc
+-rtsc.setConfiguroOptions "--xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"

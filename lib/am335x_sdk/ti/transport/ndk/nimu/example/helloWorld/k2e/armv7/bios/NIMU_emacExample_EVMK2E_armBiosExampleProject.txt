@@ -1,0 +1,17 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/helloWorld.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_osal.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_cppi_qmss_iface.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/nimu_pa_iface.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/udpHello.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/src/setuprm.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/rm/device/k2e/policy_dsp-only.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/rm/device/k2e/policy_dsp_arm.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/rm/device/k2e/global-resource-list.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/src/ip/serdes_sb/V0/csl_wiz8_sb_refclk125MHz_10bit_5Gbps.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/src/ip/serdes_sb/V0/csl_wiz8_sb_refclk125MHz_20bit_6p25Gbps.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/src/ip/serdes_sb/V0/csl_wiz8_sb_refclk156p25MHz_10bit_5Gbps.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/src/ip/serdes_sb/V0/csl_wiz8_sb_refclk156p25MHz_20bit_6p25Gbps.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/helloWorld/k2e/armv7/bios/helloWorld.cfg" 
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -l:os.aa15fg -nostartfiles -static -Wl,--gc-sections -L${NDK_INSTALL_DIR}/packages/ti/ndk/os/lib"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_K2E -DDEVICE_K2E -DNSS_GEN2 -D_LITTLE_ENDIAN=1 -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH} -I{NDK_INSTALL_DIR}/packages"  -rtsc.enableRtsc
+

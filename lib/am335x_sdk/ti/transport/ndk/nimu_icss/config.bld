@@ -1,0 +1,100 @@
+/******************************************************************************
+ * FILE PURPOSE: Build configuration Script for the nimu_icss Driver
+ ******************************************************************************
+ * FILE NAME: config.bld
+ *
+ * DESCRIPTION: 
+ *  This file contains the build configuration script for the nimu_icss driver
+ *  and is responsible for configuration of the paths for the various 
+ *  tools required to build the driver.
+ *
+ * Copyright (C) 2014-2015, Texas Instruments, Inc.
+ *****************************************************************************/
+
+/* Get the Tools Base directory from the Environment Variable. */
+var c66ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var m4ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_M4");
+var a15ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A15");
+var a9ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A9");
+var a8ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A8");
+
+/* Get the base directory for the nimu_icss Socket Driver Package */
+var driverPath = new java.io.File(".//").getPath();
+
+/* Read the part number from the environment variable. */
+var LLDPartNumber = java.lang.System.getenv("PARTNO");
+
+/* Include Path */
+var lldIncludePath = " -I" + driverPath + "/src" + " -I" + driverPath;
+
+/* Configure the nimu_icss Socket Release Version Information */
+/* 3 steps: remove SPACE and TAB, convert to string and split to make array */
+var driverReleaseVersion = (""+Pkg.version.replace(/\s/g, "")).split(',');
+
+/* Print the Compiler Options */
+var pOpts = 1;
+
+/* C66 ELF compiler configuration for Little Endian Mode. */
+var C66LE           = xdc.useModule('ti.targets.elf.C66');
+C66LE.rootDir       = c66ToolsBaseDir;
+C66LE.ccOpts.prefix = "-mo -o3 -q -k -eo.o -DMEM_BARRIER_DISABLE";
+
+/* C66 ELF compiler configuration for Big Endian Mode. */
+var C66BE           = xdc.useModule('ti.targets.elf.C66_big_endian');
+C66BE.rootDir       = c66ToolsBaseDir;
+C66BE.ccOpts.prefix = "-mo -o3 -q -k -eo.o -DBIGENDIAN -DMEM_BARRIER_DISABLE";
+
+/* ARMv7 A15 compiler configuration */
+var A15LE            = xdc.useModule('gnu.targets.arm.A15F');
+A15LE.rootDir        = a15ToolsBaseDir;
+A15LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a15 -marm -DDRA7xx -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+
+/* M4 ELF compiler configuration for Little Endian Mode. */
+var M4LE            = xdc.useModule('ti.targets.arm.elf.M4');
+M4LE.rootDir        = m4ToolsBaseDir;
+M4LE.ccOpts.prefix  = "-o4 -qq -pdsw255 -DMAKEFILE_BUILD";
+
+/* ARMv7 A9 compiler configuration */
+var A9LE            = xdc.useModule('gnu.targets.arm.A9F');
+A9LE.rootDir        = a9ToolsBaseDir;
+A9LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a9 -marm -g -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+
+/* ARMv7 A8 compiler configuration */
+var A8LE            = xdc.useModule('gnu.targets.arm.A8F');
+A8LE.rootDir        = a8ToolsBaseDir;
+A8LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a8 -marm -g -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+/* Check if we need to run the STATIC Analysis or not? */
+var coverityAnalysis = java.lang.System.getenv("STATIC_ANALYZE");
+
+/* C66 ELF compiler configuration for Little Endian Mode. */
+var C66LE           = xdc.useModule('ti.targets.elf.C66');
+C66LE.rootDir       = c66ToolsBaseDir;
+C66LE.ccOpts.prefix = "-mo -o3 -q -k -eo.o -DMEM_BARRIER_DISABLE";
+
+/* C66 ELF compiler configuration for Big Endian Mode. */
+var C66BE           = xdc.useModule('ti.targets.elf.C66_big_endian');
+C66BE.rootDir       = c66ToolsBaseDir;
+C66BE.ccOpts.prefix = "-mo -o3 -q -k -eo.o -DBIGENDIAN -DMEM_BARRIER_DISABLE";
+/* Setup the Coverity Filters to perform Static Analysis. */
+if (coverityAnalysis == "ON") {
+    var coverityInstallPath = java.lang.System.getenv("STATIC_ANALYZE_PATH");
+    var cfgBase = xdc.getPackageBase("tisb.coverity.filters") + "cfg";
+
+    var coverityFilter = [
+    {
+        moduleName: "tisb.coverity.filters.Coverity",
+        params: {
+            cfgDir:  cfgBase,  // The Coverity configuration file directory
+            rootDir: coverityInstallPath,
+            outDir: xdc.csd() + "cov_out",
+            analyzeLibs: true
+        }
+    },
+    ];
+
+    /* Run the coverity filters on the LE Build only. */
+    C66LE.profiles["release"].filters = coverityFilter;
+}
+
+/* List all the build targets here. */
+Build.targets = [ A15LE, A9LE, A8LE, M4LE, C66LE, C66BE ];

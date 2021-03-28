@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am572x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/src/main_mcspi_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/src/am572x/SPI_idkAM572x_board.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/am572x/m4/bios/spi_m4_idkAM572x.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -DMCSPI_MULT_CHANNEL -g -DSOC_AM572x -DidkAM572x -DAM5XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/spi --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+

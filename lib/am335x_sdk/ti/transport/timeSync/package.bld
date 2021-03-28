@@ -1,0 +1,77 @@
+/******************************************************************************
+ * FILE PURPOSE: Build description for the timesync Driver
+ ******************************************************************************
+ * FILE NAME: package.bld
+ *
+ * DESCRIPTION: 
+ *  This file contains the build specification and description for the timesync driver
+ *
+ *
+ * Copyright (C) 2018, Texas Instruments, Inc.
+ *****************************************************************************/
+
+/* List of all subdirectories that combine to make the nimu_icss Socket Driver Package. */
+var subDirectories = [ "src", "example", "docs", "include" ];
+
+var driverInstallType;
+
+/* timesync LLD Deliverables be TAR Ball Package */
+driverInstallType = "TAR";
+
+/* Irrespective of the InstallType we always create a TAR Ball Package as a part
+ * of the RTSC Build. Here we determine the name of the TAR Ball Package
+ *  Format is as follows:
+ *      timeSync_<version> */
+var timeSync_RTSCFileName = "timeSync" + "_" + 
+                      driverReleaseVersion[0] + "_" +  driverReleaseVersion[1] + "_" + 
+                      driverReleaseVersion[2]  + "_" + driverReleaseVersion[3];
+
+/* Create the release package for the nimu_icss LLD */
+Pkg.defaultRelease = Pkg.addRelease (timeSync_RTSCFileName, {prefix: "./packages/"});
+
+/* Moving forward we need to set the Archiver of the package to be ZIP. This is currently
+ * not supported in the XDC tools being used. Currenly builds need to be done with the 
+ * following options:-
+ *   xdc MK_FIXLISTOPTS=-t release 
+ * ZIP is a better option as it works natively with INSTALL Jammer and we can remove the
+ * uncompression into a temporary directory. XDC Tools with xdc-rXX support the ZIP archiver. */
+//Pkg.attrs = {archiver : "zip"};
+
+/* Cycle through all the sub-directories and build all the files */
+for (var i = 0; i < subDirectories.length; i++) 
+{
+    /* Load the capsule in the sub directory. */
+    var caps = xdc.loadCapsule (subDirectories[i]+"/Module.xs");
+
+    print ("Building directory " + subDirectories[i]);
+
+    /* Build the capsule. */
+    caps.modBuild();
+
+    /* Package the module.xs files for building via package */
+    Pkg.otherFiles[Pkg.otherFiles.length++] = subDirectories[i]+"/Module.xs";
+}
+
+/* Package the remaining files */
+Pkg.otherFiles[Pkg.otherFiles.length++] = "config_mk.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "makefile";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "package.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "package.xdc";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "package.xs";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "Settings.h";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "Settings.xdc";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "Settings.xdc.xdt";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "timeSync_component.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "timeSync_ver.h";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "timeSync_ver.h.xdt";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "docs/Doxyfile";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "docs/doxyfile.xdt";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "./lib";
+
+/* Generate Settings.xdc */
+var tplt = xdc.loadTemplate("./Settings.xdc.xdt");
+tplt.genFile("./Settings.xdc",driverReleaseVersion);
+
+/* Generate component's ver.h */
+var tplt = xdc.loadTemplate("./timeSync_ver.h.xdt");
+tplt.genFile("./timeSync_ver.h",driverReleaseVersion);

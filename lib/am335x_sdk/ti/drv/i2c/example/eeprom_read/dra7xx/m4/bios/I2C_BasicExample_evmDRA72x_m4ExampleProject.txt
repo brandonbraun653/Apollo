@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/src/main_eeprom_read.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/dra7xx/m4/bios/i2c_m4_example.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_DRA72x -DevmDRA72x -DDRA7XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/i2c "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra72x\", BOARD:\"evmDRA72x\"}"

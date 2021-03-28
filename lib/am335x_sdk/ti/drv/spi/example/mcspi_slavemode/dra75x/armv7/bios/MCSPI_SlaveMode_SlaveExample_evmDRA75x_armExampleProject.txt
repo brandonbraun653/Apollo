@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/main_mcspi_slave_mode.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/dra75x/armv7/bios/spi_arm_evmDRA75x_slavemode_slave.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_DRA75x -DevmDRA75x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

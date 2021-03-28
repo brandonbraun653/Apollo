@@ -1,0 +1,389 @@
+/******************************************************************************
+ * FILE PURPOSE: Build configuration Script for the CSL
+ ******************************************************************************
+ * FILE NAME: config.bld
+ *
+ * DESCRIPTION: 
+ *  This file contains the build configuration script for CSL 
+ *  and is responsible for configuration of the paths for the various tools
+ *  required to build CSL.
+ *
+ * Copyright (C) 2012-2015, Texas Instruments, Inc.
+ *****************************************************************************/
+/* Get the Tools Base directory from the Environment Variable. */
+var c66ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var c674ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var m4ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_M4");
+var a15ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A15");
+var a9ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A9");
+var a8ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A8");
+var arm9ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_ARM9");
+
+/* Get the extended debug flags for C66x, 
+ * did not change the name for backwards compatibilty */
+var extDbgFlags = java.lang.System.getenv("EXTDBGFLAGS");
+
+/* Get the extended debug flags for A15 */
+var extDbgFlags_a15 = java.lang.System.getenv("EXTDBGFLAGS_A15");
+/* Get the base directory for the CSL Package */
+var cslPath = new java.io.File(".//").getPath();
+
+/* Get the extended debug flags for A8 */
+var extDbgFlags_a8 = java.lang.System.getenv("EXTDBGFLAGS_A8");
+
+/* Get the extended debug flags for A9 */
+var extDbgFlags_a9 = java.lang.System.getenv("EXTDBGFLAGS_A9");
+
+/* Get the extended debug flags for Arm9 */
+var extDbgFlags_arm9 = java.lang.System.getenv("EXTDBGFLAGS_ARM9");
+
+var cslInstallType;
+/* Get the extended debug flags for M4 */
+var extDbgFlags_m4 = java.lang.System.getenv("EXTDBGFLAGS_M4");
+
+/* Read the part number from the environment variable. */
+var cslPartNumber = java.lang.System.getenv("PARTNO");
+
+/* Include Path */
+var cslPathInclude = " -I" + cslPath + "/src/intc" + " -I" + cslPath;
+
+/* Configure the CSL Release Version Information */
+var cslReleaseVersion = (""+Pkg.version.replace(/\s/g, "")).split(',');
+
+/* CSL Coverity Analysis: Check the environment variable to determine if Static
+ * Analysis has to be done on the CSL Code base or not? */
+var cslCoverityAnalysis = java.lang.System.getenv("CSLCOV");
+
+/* Print the Compiler Options */
+var pOpts = 1;
+
+/* C66lus ELF compiler configuration for Little Endian Mode. */
+var C66LE          = xdc.useModule('ti.targets.elf.C66');
+C66LE.rootDir       = c66ToolsBaseDir;
+C66LE.asmOpts.prefix = "--strip_coff_underscore";
+C66LE.ccOpts.prefix  = "--strip_coff_underscore -mo -o3 -q -k -eo.o " + "-D" + cslPartNumber;
+if(extDbgFlags)     
+    C66LE.ccOpts.prefix = C66LE.ccOpts.prefix + " " + extDbgFlags; 
+
+/* C66lus ELF compiler configuration for Big Endian Mode. */
+var C66BE          = xdc.useModule('ti.targets.elf.C66_big_endian');
+C66BE.rootDir       = c66ToolsBaseDir;
+C66BE.asmOpts.prefix = "--strip_coff_underscore";
+C66BE.ccOpts.prefix  = "--strip_coff_underscore -mo -o3 -q -k -eo.o -DBIGENDIAN " + "-D" + cslPartNumber;
+if(extDbgFlags)     
+    C66BE.ccOpts.prefix = C66BE.ccOpts.prefix + " " + extDbgFlags;
+
+/* C674 ELF compiler configuration for Little Endian Mode. */
+var C674LE          = xdc.useModule('ti.targets.elf.C674');
+C674LE.rootDir       = c674ToolsBaseDir;
+C674LE.asmOpts.prefix = "--strip_coff_underscore";
+C674LE.ccOpts.prefix  = "--strip_coff_underscore -mo -o3 -q -k -eo.o " + "-D" + cslPartNumber;
+if(extDbgFlags)     
+    C674LE.ccOpts.prefix = C674LE.ccOpts.prefix + " " + extDbgFlags; 
+	
+/* ARMv7 A15 compiler configuration */
+var A15LE            = xdc.useModule('gnu.targets.arm.A15F');
+A15LE.rootDir        = a15ToolsBaseDir;
+A15LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a15 -marm -DDRA7xx -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+if(extDbgFlags_a15)     
+    A15LE.ccOpts.prefix = A15LE.ccOpts.prefix + " " + extDbgFlags_a15; 
+
+/* ARMv7 A9 compiler configuration */
+var A9LE            = xdc.useModule('gnu.targets.arm.A9F');
+A9LE.rootDir        = a9ToolsBaseDir;
+A9LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a9 -marm -DDRA7xx -Dxdc_target_types__=gnu/targets/arm/std.h -Dxdc_target_name__=A9F -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+if(extDbgFlags_a9)     
+    A9LE.ccOpts.prefix = A9LE.ccOpts.prefix + " " + extDbgFlags_a9; 
+
+/* ARMv7 A8 compiler configuration */
+var A8LE            = xdc.useModule('gnu.targets.arm.A8F');
+A8LE.rootDir        = a8ToolsBaseDir;
+A8LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a8 -marm -DDRA7xx -Dxdc_target_types__=gnu/targets/arm/std.h -Dxdc_target_name__=A8F -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+if(extDbgFlags_a8)     
+    A8LE.ccOpts.prefix = A8LE.ccOpts.prefix + " " + extDbgFlags_a8; 
+
+/* ARMv5 ARM9 compiler configuration */
+var ARM9LE            = xdc.useModule('ti.targets.arm.elf.Arm9');
+ARM9LE.rootDir        = arm9ToolsBaseDir;
+ARM9LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=arm926ej-s -msoft-float -mfloat-abi=soft -march=armv5te -marm -DDRA7xx -Dxdc_target_types__=gnu/targets/arm/std.h -Dxdc_target_name__=Arm9 -gstrict-dwarf -Wall -D__ARMv5 -D_LITTLE_ENDIAN=1";
+if(extDbgFlags_arm9)     
+    ARM9LE.ccOpts.prefix = ARM9LE.ccOpts.prefix + " " + extDbgFlags_arm9; 
+
+/* M4 ELF compiler configuration for Little Endian Mode. */
+var M4LE            = xdc.useModule('ti.targets.arm.elf.M4');
+M4LE.rootDir        = m4ToolsBaseDir;
+M4LE.ccOpts.prefix  = "-o4 -qq -pdsw255 -DMAKEFILE_BUILD";
+if(extDbgFlags_m4)
+    M4LE.ccOpts.prefix = M4LE.ccOpts.prefix + " " + extDbgFlags_m4; 
+
+/* Setup the Coverity Filters to perform Static Analysis. */
+if (cslCoverityAnalysis == "ON") {
+    var coverityInstallPath = java.lang.System.getenv("COVPATH");
+    var cfgBase             = xdc.getPackageBase("tisb.coverity.filters") + "cfg";
+
+    var coverityFilter = [
+    {
+        moduleName: "tisb.coverity.filters.Coverity",
+        params: {
+            cfgDir: cfgBase,                // the Coverity configuration file directory
+            rootDir: coverityInstallPath,   // install directory of Prevent
+            outDir: xdc.csd() + "cov_out",  // the cov-emit and cov-analyze output directory
+            analyzeLibs: true               // run cov-analyze on all libraries
+        }
+    },
+    ];
+
+    /* Coverity Analysis are done only for the C66 Little Endian libraries. */
+    C66LE.profiles["release"].filters = coverityFilter;
+}
+
+/* Check if we need to create the Makefiles? */
+var miniBuild = java.lang.System.getenv("MINI_PACKAGE");
+if (miniBuild == "ON")
+{
+    /* Add the filter for simple Makefile generation. */
+    var makeC66LEFilter = {
+        moduleName: "build.filter.Make",
+        params: {
+          makefileName: "simpleC66LE.mak",
+        }
+    }; 
+    C66LE.profiles["release"].filters[C66LE.profiles["release"].filters.length++] = makeC66LEFilter;
+
+    var makeC66BEFilter = {
+        moduleName: "build.filter.Make",
+        params: {
+          makefileName: "simpleC66BE.mak",
+        }
+    }; 
+    C66BE.profiles["release"].filters[C66BE.profiles["release"].filters.length++] = makeC66BEFilter;
+}
+
+/* List of all devices that combine to make the CSL and intc library.
+ * Note the first entry corresponds to "src/intc" which is 
+ * device independent. Refer src/Module.xs to see the order.
+ */
+var devices =      [ "", "k2k",    "k2h",
+                         "k2e",    "k2l",
+                         "k2g",
+                         "am572x", "am571x", "am574x",
+                         "am335x", "am437x",
+                         "c6678",  "c6657",
+                         "omapl137", "c6747",
+			 "omapl138"];
+
+var devicesCCOpt = [ "", " -DSOC_K2K",    " -DSOC_K2H",
+                         " -DSOC_K2E",    " -DSOC_K2L",
+                         " -DSOC_K2G",
+                         " -DSOC_AM572x", " -DSOC_AM571x", " -DSOC_AM574x",
+                         " -DSOC_AM335x", " -DSOC_AM437x",
+                         " -DSOC_C6678",  " -DSOC_C6657",
+                         " -DSOC_OMAPL137", " -DSOC_C6747",
+			 " -DSOC_OMAPL138"];
+
+var build_devices;
+print (arguments.length);
+for ( i=0; i < arguments.length; i++)
+{
+  print ("ARG[" + i + "] = " + arguments[i]);
+}
+if ( arguments.length <= 1 || arguments[1] == "all" )
+{
+    build_devices = devices;
+}
+else
+{
+    print("Building for subset of devices");
+    build_devices = arguments;
+    build_devices[0] = "";
+}
+
+/* Create the SoC List  */
+var socs = { 
+    /* device independent libraries */
+    all :
+    {
+        /* Build this library */
+        build: "true",
+        /* target lists, kept blank now, would be updated based on argument lists */
+        targets: []
+    },
+    k2e :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, C66BE, A15LE ]
+    },
+    k2h :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, C66BE, A15LE ]
+    },
+    k2k :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, C66BE, A15LE ]
+    },
+    k2l :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, C66BE, A15LE ]
+    },
+    k2g :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, C66BE, A15LE ]
+    },
+    c6678 :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, C66BE ]
+    },
+    c6657 :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, C66BE ]
+    },
+    am574x :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, M4LE, A15LE ]
+    },
+    am572x :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, M4LE, A15LE ]
+    },
+    am571x :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ C66LE, M4LE, A15LE ]
+    },
+    am335x :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ A8LE ]
+    },
+    am437x :
+    {
+        /* Build this library */
+        build: "false",
+        /* target list */
+        targets: [ A9LE ]
+    },
+	omapl137 :
+	{
+		/* Build this library */
+		build: "false",
+		/* target list */
+		targets: [ C674LE, ARM9LE ]
+		},
+		c6747 :
+		{
+		/* Build this library */
+		build: "false",
+		/* target list */
+		targets: [ C674LE ]
+	},
+	omapl138 :
+	{
+		/* Build this library */
+		build: "false",
+		/* target list */
+		targets: [ C674LE, ARM9LE ]
+		},
+		c6747 :
+		{
+		/* Build this library */
+		build: "false",
+		/* target list */
+		targets: [ C674LE ]
+	}
+};
+
+/**************************************************************************
+ * FUNCTION NAME : merge
+ **************************************************************************
+ * DESCRIPTION   :
+ *  The function is used to merge two arrarys
+ **************************************************************************/
+function merge() {
+    var args = arguments;
+    var hash = {};
+    var arr = [];
+    for (var i = 0; i < args.length; i++) {
+       for (var j = 0; j < args[i].length; j++) {
+         if (hash[args[i][j]] !== true) {
+           arr[arr.length] = args[i][j];
+           hash[args[i][j]] = true;
+         }
+       }
+     }
+    return arr;
+}
+
+/* Grab input from XDCARGS */
+var buildArguments  = [];
+
+/* Construct the build arguments */
+for (var tmp=0; arguments[tmp] != undefined; tmp++)
+{
+
+    /* If no arguments are provided, override for building all */
+    if ( ( arguments.length == 1) && (arguments[tmp].equals("./config.bld")) )
+        buildArguments[buildArguments.length++] = "all";
+    else
+        buildArguments[buildArguments.length++] = arguments[tmp];
+}
+
+/* Build targets on this build */
+var build_targets = [];
+var soc_names = Object.keys(socs);
+
+for (var i=0; i < buildArguments.length; i++ ) {
+    /* Build it for all targets */
+    if (buildArguments[i] == "all") {
+        for (var j = 0; j < soc_names.length; j++)  {
+            build_targets = merge (build_targets.slice(0), socs[soc_names[j]].targets.slice(0));
+            /* Set build to "true" for that SoC */
+            socs[soc_names[j]].build = "true";
+        }
+    }
+    else {
+        /* Skip the first argument, which is ./config.bld to get to next SoCs */
+        if (i == 0) continue;          
+        /* Set that build to true if it is found in supported build socs */
+        for (j = 0; j < soc_names.length; j++) {
+            if (buildArguments[i] == soc_names[j]) {
+                socs[buildArguments[i]].build = "true";
+                build_targets = merge (build_targets.slice(0), socs[buildArguments[i]].targets.slice(0));
+                break;
+            }
+        }
+    }   
+}
+
+/* Update the Build target generated list */
+socs["all"].targets = build_targets; 
+Build.targets   = build_targets;

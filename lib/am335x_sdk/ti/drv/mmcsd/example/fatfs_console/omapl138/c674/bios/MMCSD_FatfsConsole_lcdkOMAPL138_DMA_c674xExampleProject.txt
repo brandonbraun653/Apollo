@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/example/fatfs_console/src/fs_shell_app_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/example/fatfs_console/src/main_fatfs_console.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/omapl138/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/omapl138/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/soc/omapl138/MMCSD_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/test/omapl138/c674/bios/mmcsddma_test.cfg"
+-ccs.setCompilerOptions "-mv6740 --abi=eabi -g --define=SOC_OMAPL138 -dMMCSD_EDMA_ENABLED --define=lcdkOMAPL138 --define=omapl138 --define=BUILD_OMAPL138_DSP --display_error_number --diag_warning=225 -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/mmcsd -I${PDK_INSTALL_PATH}/ti/board" -rtsc.enableRtsc
+-ccs.setLinkerOptions "--reread_libs --warn_sections --display_error_number --diag_wrap=off --rom_model "
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl138/config_omapl138_c674x.bld -DBOARD=lcdkOMAPL138"

@@ -1,0 +1,21 @@
+/******************************************************************************
+ * FILE PURPOSE: Build configuration Script for the timesync Driver
+ ******************************************************************************
+ * FILE NAME: config_mk.bld
+ *
+ * DESCRIPTION: 
+ *  This file contains the build configuration script for the timesync driver
+ *  and is responsible for configuration of the paths for the various 
+ *  tools required to build the driver.
+ *
+ * Copyright (C) 2018, Texas Instruments, Inc.
+ *****************************************************************************/
+
+/* Configure the timesync Socket Release Version Information */
+/* 3 steps: remove SPACE and TAB, convert to string and split to make array */
+var driverReleaseVersion = (""+Pkg.version.replace(/\s/g, "")).split(',');
+
+var Build = xdc.useModule('xdc.bld.BuildEnvironment');
+Build.useTargets=null;
+
+

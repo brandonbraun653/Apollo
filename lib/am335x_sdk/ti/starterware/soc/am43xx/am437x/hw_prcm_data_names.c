@@ -1,0 +1,729 @@
+/**
+ *  @file      hw_prcm_data_names.c
+ *
+ *  @brief     PRCM enum names are defined in this file.
+ *
+ *  @warning   This file is auto generated. So avoid manual changes. 
+ *              If manual changes are required the implications of the 
+ *              change in this and other auto generated files has to be 
+ *              completely understood.
+ */
+
+/* Copyright (c) 2013 Texas Instruments Inc - http://www.ti.com */
+
+/*
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *    Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *    Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the
+ *    distribution.
+ *
+ *    Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/* ========================================================================== */
+/*                                Include Files                               */
+/* ========================================================================== */
+#include "types.h"
+#include "hw_prcm_data_names.h"
+#include "hw_prcm_modinc.h"
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+/* ========================================================================== */
+/*                             Macros and Typedefs                            */
+/* ========================================================================== */
+
+/* ========================================================================== */
+/*                            Structures and Enums                            */
+/* ========================================================================== */
+
+/* ========================================================================== */
+/*                        Global Variables Declarations                       */
+/* ========================================================================== */
+
+#ifndef NDEBUG
+
+/** 
+ * Voltage Domains
+ */
+CATTR(prcmVoltageDomain_t_names)
+const char* prcmVoltageDomain_t_names[] = 
+{
+    "PRCM_VD_CORE",
+    "PRCM_VD_MPU",
+    "PRCM_VD_RTC",
+    "PRCM_VD_TAMPER",
+
+};
+
+/** 
+ * Power Domains
+ */
+CATTR(prcmPowerDomain_t_names)
+const char* prcmPowerDomain_t_names[] = 
+{
+    "PRCM_PD_CUST_EFUSE",
+    "PRCM_PD_GFX",
+    "PRCM_PD_MPU",
+    "PRCM_PD_PER",
+    "PRCM_PD_RTC",
+    "PRCM_PD_STD_EFUSE",
+    "PRCM_PD_TAMPER",
+    "PRCM_PD_WKUP",
+
+};
+
+/** 
+ * Clock Domains
+ */
+CATTR(prcmClkDomain_t_names)
+const char* prcmClkDomain_t_names[] = 
+{
+    "PRCM_CD_CEFUSE",
+    "PRCM_CD_GFX_L3",
+    "PRCM_CD_MPU",
+    "PRCM_CD_PER_L3",
+    "PRCM_CD_PER_CPSW",
+    "PRCM_CD_PER_EMIF",
+    "PRCM_CD_PER_DSS",
+    "PRCM_CD_PER_ICSS",
+    "PRCM_CD_PER_L3S",
+    "PRCM_CD_PER_L4LS",
+    "PRCM_CD_PER_LCDC",
+    "PRCM_CD_PER_OCPWP_L3",
+    "PRCM_CD_RTC",
+    "PRCM_CD_STD_EFUSE",
+    "PRCM_CD_TAMPER",
+    "PRCM_CD_L4_WKUP_AON",
+    "PRCM_CD_L3S_TSC",
+    "PRCM_CD_L3_AON",
+    "PRCM_CD_WKUP",
+
+};
+
+/** 
+ * Clocks
+ */
+CATTR(clockList_names)
+const char* clockList_names[] = 
+{
+    "PRCM_CLK_L4_CEFUSE_GCLK",
+    "PRCM_CLK_CUST_EFUSE_SYSCLK",
+    "PRCM_CLK_DEBUG_CLKA_GCLK",
+    "PRCM_CLK_DEBUG_CLKB_GCLK",
+    "PRCM_CLK_DEBUG_CLKC_GCLK",
+    "PRCM_CLK_L3_AON_GCLK",
+    "PRCM_CLK_DBGSYSCLK",
+    "PRCM_CLK_DSS_GCLK",
+    "PRCM_CLK_DSS_L3_GCLK",
+    "PRCM_CLK_DSS_L4_GCLK_EN",
+    "PRCM_CLK_DSS_SYSCLK",
+    "PRCM_CLK_L4LS_GCLK",
+    "PRCM_CLK_EMIF_PHY_GCLK",
+    "PRCM_CLK_DDR_DLL_GCLK",
+    "PRCM_CLK_DLL_AGING_GCLK",
+    "PRCM_CLK_EMIF_L3_GICLK",
+    "PRCM_CLK_L3S_GCLK",
+    "PRCM_CLK_MMC_FCLK",
+    "PRCM_CLK_L3_GCLK",
+    "PRCM_CLK_GFX_GFCLK",
+    "PRCM_CLK_GFX_L3_GCLK",
+    "PRCM_CLK_GPIO_1_GDBCLK",
+    "PRCM_CLK_GPIO_2_GDBCLK",
+    "PRCM_CLK_GPIO_3_GDBCLK",
+    "PRCM_CLK_GPIO_4_GDBCLK",
+    "PRCM_CLK_GPIO_5_GDBCLK",
+    "PRCM_CLK_MGC_FGCLK",
+    "PRCM_CLK_L3D2_GCLK",
+    "PRCM_CLK_ICSS_IEP_GCLK",
+    "PRCM_CLK_ICSS_OCP_GCLK",
+    "PRCM_CLK_ICSS_UART_GCLK",
+    "PRCM_CLK_LCD_L3_GCLK",
+    "PRCM_CLK_LCD_L4S_GCLK",
+    "PRCM_CLK_LCD_GCLK",
+    "PRCM_CLK_CAN_CLK",
+    "PRCM_CLK_HDQ1W_GCLK",
+    "PRCM_CLK_I2C_FCLK",
+    "PRCM_CLK_MCASP_FCLK",
+    "PRCM_CLK_SPI_GCLK",
+    "PRCM_CLK_TIMER10_GCLK",
+    "PRCM_CLK_TIMER11_GCLK",
+    "PRCM_CLK_TIMER2_GCLK",
+    "PRCM_CLK_TIMER3_GCLK",
+    "PRCM_CLK_TIMER4_GCLK",
+    "PRCM_CLK_TIMER5_GCLK",
+    "PRCM_CLK_TIMER6_GCLK",
+    "PRCM_CLK_TIMER7_GCLK",
+    "PRCM_CLK_TIMER8_GCLK",
+    "PRCM_CLK_TIMER9_GCLK",
+    "PRCM_CLK_UART_GFCLK",
+    "PRCM_CLK_CPSW_CPTS_RFT_CLK",
+    "PRCM_CLK_CPSW_250MHZ_CLK",
+    "PRCM_CLK_CPSW_5MHZ_CLK",
+    "PRCM_CLK_CPSW_50MHZ_CLK",
+    "PRCM_CLK_CPSW_125MHZ_GCLK",
+    "PRCM_CLK_MPU_CLK",
+    "PRCM_CLK_OCPWP_L3_GCLK",
+    "PRCM_CLK_OCPWP_L4_GCLK_EN",
+    "PRCM_CLK_RTC_32KCLK",
+    "PRCM_CLK_L4_RTC_GCLK",
+    "PRCM_CLK_L4_WKUP_GCLK",
+    "PRCM_CLK_SR_SYSCLK",
+    "PRCM_CLK_USBPHY_32KHZ_GCLK",
+    "PRCM_CLK_WDT0_GCLK",
+    "PRCM_CLK_WDT1_GCLK",
+    "PRCM_CLK_TAMPER_L4_GCLK",
+    "PRCM_CLK_USB_OTG_SS_REFCLK",
+    "PRCM_CLK_USB_PLL_CLK",
+    "PRCM_CLK_USIM0_FCLK",
+    "PRCM_CLK_USIM0_FCLK32",
+    "PRCM_CLK_USIM1_FCLK",
+    "PRCM_CLK_USIM1_FCLK32",
+    "PRCM_CLK_L3S_TSC_GCLK",
+    "PRCM_CLK_ADC_FCLK",
+    "PRCM_CLK_24MHZ",
+    "PRCM_CLK_GPIO0_GDBCLK",
+    "PRCM_CLK_I2C0_GFCLK",
+    "PRCM_CLK_L4_WKUP_AON_GCLK",
+    "PRCM_CLK_SYNCTIMER32K_GFCLK",
+    "PRCM_CLK_TIMER0_GCLK",
+    "PRCM_CLK_TIMER1_GCLK",
+    "PRCM_CLK_UART0_GFCLK",
+    "PRCM_CLK_STD_EFUSE_SYSCLK",
+
+};
+
+/** 
+ * Reset Groups
+ */
+CATTR(resetGroupList_names)
+const char* resetGroupList_names[] = 
+{
+    "PRCM_RG_CUST_EFUSE_RST",
+    "PRCM_RG_DLL_RESET",
+    "PRCM_RG_DPLL_RST",
+    "PRCM_RG_EMIF_DDR_PHY_PWRON_RST",
+    "PRCM_RG_EMU_EARLY_PWRON_RST",
+    "PRCM_RG_EMU_PWRON_RST",
+    "PRCM_RG_EMU_RST",
+    "PRCM_RG_GFX_DOM_RST",
+    "PRCM_RG_GFX_RST",
+    "PRCM_RG_ICSS_LRST",
+    "PRCM_RG_MPU_AO_RST",
+    "PRCM_RG_MPU_PWRON_RST",
+    "PRCM_RG_MPU_RST",
+    "PRCM_RG_PER_DOM_RST",
+    "PRCM_RG_RTC_DOM_RST",
+    "PRCM_RG_STD_EFUSE_PWRON_RST",
+    "PRCM_RG_TAMPER_DOM_RST",
+    "PRCM_RG_USB_POR",
+    "PRCM_RG_WKUP_DOM_RST",
+    "PRCM_RG_WKUP_M3_LRST",
+    "PRCM_RG_WKUP_PWRON_RST",
+    "PRCM_RG_WKUP_SYS_PWRON_RST",
+
+};
+
+/** 
+ * Reset List
+ */
+CATTR(resetList_names)
+const char* resetList_names[] = 
+{
+
+};
+
+/** 
+ * Physical Memories
+ */
+CATTR(prcmPhysicalMemory_t_names)
+const char* prcmPhysicalMemory_t_names[] = 
+{
+    "PRCM_PHY_MEM_DEBUGSS",
+    "PRCM_PHY_MEM_DSSMEM",
+    "PRCM_PHY_MEM_UART",
+    "PRCM_PHY_MEM_BANK1",
+    "PRCM_PHY_MEM_BANK2",
+    "PRCM_PHY_MEM_GFX",
+    "PRCM_PHY_MEM_DMEM0",
+    "PRCM_PHY_MEM_DMEM1",
+    "PRCM_PHY_MEM_DMEM2",
+    "PRCM_PHY_MEM_DMEM3",
+    "PRCM_PHY_MEM_IMEM0",
+    "PRCM_PHY_MEM_IMEM1",
+    "PRCM_PHY_MEM_IMEM2",
+    "PRCM_PHY_MEM_IMEM3",
+    "PRCM_PHY_MEM_PRUSS0_MEM",
+    "PRCM_PHY_MEM_PRUSS1_MEM",
+    "PRCM_PHY_MEM_LCD_CORE_PALETTE_RAM",
+    "PRCM_PHY_MEM_LCD_DMA_FIFO_RAM",
+    "PRCM_PHY_MEM_MEMORYBANKNONAME",
+    "PRCM_PHY_MEM_MBOXSRAM",
+    "PRCM_PHY_MEM_MSHSI2COCP_MEMORY",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_CPPI",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_RX_ADDR",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_RX_DB",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_RX_INFO",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_RX_ST",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_STATE",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_STATISTICS",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_TX_DB",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_TX_INFO",
+    "PRCM_PHY_MEM_CPGMACSS_R_RAM_TX_ST",
+    "PRCM_PHY_MEM_MPU_L1",
+    "PRCM_PHY_MEM_MPU_L2",
+    "PRCM_PHY_MEM_MPU_RAM",
+    "PRCM_PHY_MEM_DMA_CRYPTO",
+    "PRCM_PHY_MEM_PKA_MEM",
+    "PRCM_PHY_MEM_USB",
+    "PRCM_PHY_MEM_WB0",
+    "PRCM_PHY_MEM_WB1",
+
+};
+
+/** 
+ * Clock Tree nodes - RootClk, Div, Mux, Pll
+ */
+CATTR(nodeList_names)
+const char* nodeList_names[] = 
+{
+    "PRCM_ROOT_CLK_MPU_PLL",
+    "PRCM_ROOT_CLK_SYS_CLKIN",
+    "PRCM_ROOT_CLK_TCLKIN",
+    "PRCM_ROOT_CLK_32K_MOSC",
+    "PRCM_ROOT_CLK_32K_PER",
+    "PRCM_ROOT_CLK_32K_RC",
+    "PRCM_ROOT_CLK_32K_RTC",
+    "PRCM_ROOT_CLK_32K_TPM",
+    "PRCM_MUX_CLKOUT1SEL2",
+    "PRCM_MUX_CLKOUT1",
+    "PRCM_MUX_CLKOUT_32K",
+    "PRCM_MUX_CLKOUT1_MUX1",
+    "PRCM_MUX_CLKOUT1_MUX2",
+    "PRCM_MUX_CLKOUT1_MUX3",
+    "PRCM_MUX_SGX_CLKSEL",
+    "PRCM_MUX_MAG_FCLK",
+    "PRCM_MUX_ICSS_OCP_CLK",
+    "PRCM_MUX_LCD_CLK",
+    "PRCM_MUX_TIMER10_CLK",
+    "PRCM_MUX_TIMER11_CLK",
+    "PRCM_MUX_TIMER1_CLK",
+    "PRCM_MUX_TIMER2_CLK",
+    "PRCM_MUX_TIMER3_CLK",
+    "PRCM_MUX_TIMER4_CLK",
+    "PRCM_MUX_TIMER5_CLK",
+    "PRCM_MUX_TIMER6_CLK",
+    "PRCM_MUX_TIMER8_CLK",
+    "PRCM_MUX_TIMER9_CLK",
+    "PRCM_MUX_CPTS_RFT",
+    "PRCM_MUX_USBPHY_32KHZ",
+    "PRCM_MUX_WDT0",
+    "PRCM_MUX_WDT1",
+    "PRCM_MUX_USIM0_FCLK",
+    "PRCM_MUX_USIM1_FCLK",
+    "PRCM_MUX_USIM_DBCLKMUX",
+    "PRCM_MUX_GPIO_DBCLK",
+    "PRCM_MUX_SYNCTIMER32K",
+    "PRCM_MUX_TIMER0",
+    "PRCM_MUX_TIMER1",
+    "PRCM_DIV_CORE_L4",
+    "PRCM_DIV_CORE_25M",
+    "PRCM_DIV_SYSCLK",
+    "PRCM_DIV_CLKOUT1SEL0DIV",
+    "PRCM_DIV_CLKOUT1SEL2DIV1",
+    "PRCM_DIV_CLKOUT1SEL2DIV2",
+    "PRCM_DIV_CLKOUT2_DIV1",
+    "PRCM_DIV_CLKOUT2_DIV2",
+    "PRCM_DIV_DLL_AGING_CLK",
+    "PRCM_DIV_GFX_FCLK",
+    "PRCM_DIV_PERS_CLK",
+    "PRCM_DIV_MMC",
+    "PRCM_DIV_PDA2CAD8896B3447FD",
+    "PRCM_DIV_CPSW_125MHZ_OCP",
+    "PRCM_DIV_CPSW_50M",
+    "PRCM_DIV_CPSW_5M",
+    "PRCM_DIV_USIM_FCLK",
+    "PRCM_DIV_VTP_CLK",
+    "PRCM_DIV_CLK_DIV_24",
+    "PRCM_DIV_UART5",
+    "PRCM_DPLL_CORE",
+    "PRCM_DPLL_DDR",
+    "PRCM_DPLL_DISP",
+    "PRCM_DPLL_EXTDEV",
+    "PRCM_DPLL_MPU",
+    "PRCM_DPLL_PER",
+
+#ifdef BUILDCFG_PRCM_MOD_CEFUSE
+    "PRCM_MOD_CEFUSE",
+#endif /* BUILDCFG_PRCM_MOD_CEFUSE */
+#ifdef BUILDCFG_PRCM_MOD_DEBUGSS
+    "PRCM_MOD_DEBUGSS",
+#endif /* BUILDCFG_PRCM_MOD_DEBUGSS */
+#ifdef BUILDCFG_PRCM_MOD_DSS
+    "PRCM_MOD_DSS",
+#endif /* BUILDCFG_PRCM_MOD_DSS */
+#ifdef BUILDCFG_PRCM_MOD_EMIF_FW
+    "PRCM_MOD_EMIF_FW",
+#endif /* BUILDCFG_PRCM_MOD_EMIF_FW */
+#ifdef BUILDCFG_PRCM_MOD_DDRPHY
+    "PRCM_MOD_DDRPHY",
+#endif /* BUILDCFG_PRCM_MOD_DDRPHY */
+#ifdef BUILDCFG_PRCM_MOD_DLL
+    "PRCM_MOD_DLL",
+#endif /* BUILDCFG_PRCM_MOD_DLL */
+#ifdef BUILDCFG_PRCM_MOD_DLL_AGING
+    "PRCM_MOD_DLL_AGING",
+#endif /* BUILDCFG_PRCM_MOD_DLL_AGING */
+#ifdef BUILDCFG_PRCM_MOD_EMIF
+    "PRCM_MOD_EMIF",
+#endif /* BUILDCFG_PRCM_MOD_EMIF */
+#ifdef BUILDCFG_PRCM_MOD_GPMC
+    "PRCM_MOD_GPMC",
+#endif /* BUILDCFG_PRCM_MOD_GPMC */
+#ifdef BUILDCFG_PRCM_MOD_MMC0
+    "PRCM_MOD_MMC0",
+#endif /* BUILDCFG_PRCM_MOD_MMC0 */
+#ifdef BUILDCFG_PRCM_MOD_MMC1
+    "PRCM_MOD_MMC1",
+#endif /* BUILDCFG_PRCM_MOD_MMC1 */
+#ifdef BUILDCFG_PRCM_MOD_MMC2
+    "PRCM_MOD_MMC2",
+#endif /* BUILDCFG_PRCM_MOD_MMC2 */
+#ifdef BUILDCFG_PRCM_MOD_OCMCRAM
+    "PRCM_MOD_OCMCRAM",
+#endif /* BUILDCFG_PRCM_MOD_OCMCRAM */
+#ifdef BUILDCFG_PRCM_MOD_OTFA_EMIF
+    "PRCM_MOD_OTFA_EMIF",
+#endif /* BUILDCFG_PRCM_MOD_OTFA_EMIF */
+#ifdef BUILDCFG_PRCM_MOD_GFX
+    "PRCM_MOD_GFX",
+#endif /* BUILDCFG_PRCM_MOD_GFX */
+#ifdef BUILDCFG_PRCM_MOD_GPIO1
+    "PRCM_MOD_GPIO1",
+#endif /* BUILDCFG_PRCM_MOD_GPIO1 */
+#ifdef BUILDCFG_PRCM_MOD_GPIO2
+    "PRCM_MOD_GPIO2",
+#endif /* BUILDCFG_PRCM_MOD_GPIO2 */
+#ifdef BUILDCFG_PRCM_MOD_GPIO3
+    "PRCM_MOD_GPIO3",
+#endif /* BUILDCFG_PRCM_MOD_GPIO3 */
+#ifdef BUILDCFG_PRCM_MOD_GPIO4
+    "PRCM_MOD_GPIO4",
+#endif /* BUILDCFG_PRCM_MOD_GPIO4 */
+#ifdef BUILDCFG_PRCM_MOD_GPIO5
+    "PRCM_MOD_GPIO5",
+#endif /* BUILDCFG_PRCM_MOD_GPIO5 */
+#ifdef BUILDCFG_PRCM_MOD_MAG_CARD
+    "PRCM_MOD_MAG_CARD",
+#endif /* BUILDCFG_PRCM_MOD_MAG_CARD */
+#ifdef BUILDCFG_PRCM_MOD_L3
+    "PRCM_MOD_L3",
+#endif /* BUILDCFG_PRCM_MOD_L3 */
+#ifdef BUILDCFG_PRCM_MOD_L3_INSTR
+    "PRCM_MOD_L3_INSTR",
+#endif /* BUILDCFG_PRCM_MOD_L3_INSTR */
+#ifdef BUILDCFG_PRCM_MOD_L4FW
+    "PRCM_MOD_L4FW",
+#endif /* BUILDCFG_PRCM_MOD_L4FW */
+#ifdef BUILDCFG_PRCM_MOD_L4LS
+    "PRCM_MOD_L4LS",
+#endif /* BUILDCFG_PRCM_MOD_L4LS */
+#ifdef BUILDCFG_PRCM_MOD_L4_HS
+    "PRCM_MOD_L4_HS",
+#endif /* BUILDCFG_PRCM_MOD_L4_HS */
+#ifdef BUILDCFG_PRCM_MOD_ICSS
+    "PRCM_MOD_ICSS",
+#endif /* BUILDCFG_PRCM_MOD_ICSS */
+#ifdef BUILDCFG_PRCM_MOD_IEEE5000
+    "PRCM_MOD_IEEE5000",
+#endif /* BUILDCFG_PRCM_MOD_IEEE5000 */
+#ifdef BUILDCFG_PRCM_MOD_LCDC
+    "PRCM_MOD_LCDC",
+#endif /* BUILDCFG_PRCM_MOD_LCDC */
+#ifdef BUILDCFG_PRCM_MOD_MSTR_EXPS
+    "PRCM_MOD_MSTR_EXPS",
+#endif /* BUILDCFG_PRCM_MOD_MSTR_EXPS */
+#ifdef BUILDCFG_PRCM_MOD_SLV_EXPS
+    "PRCM_MOD_SLV_EXPS",
+#endif /* BUILDCFG_PRCM_MOD_SLV_EXPS */
+#ifdef BUILDCFG_PRCM_MOD_TPCC
+    "PRCM_MOD_TPCC",
+#endif /* BUILDCFG_PRCM_MOD_TPCC */
+#ifdef BUILDCFG_PRCM_MOD_TPTC0
+    "PRCM_MOD_TPTC0",
+#endif /* BUILDCFG_PRCM_MOD_TPTC0 */
+#ifdef BUILDCFG_PRCM_MOD_TPTC1
+    "PRCM_MOD_TPTC1",
+#endif /* BUILDCFG_PRCM_MOD_TPTC1 */
+#ifdef BUILDCFG_PRCM_MOD_TPTC2
+    "PRCM_MOD_TPTC2",
+#endif /* BUILDCFG_PRCM_MOD_TPTC2 */
+#ifdef BUILDCFG_PRCM_MOD_DCAN0
+    "PRCM_MOD_DCAN0",
+#endif /* BUILDCFG_PRCM_MOD_DCAN0 */
+#ifdef BUILDCFG_PRCM_MOD_DCAN1
+    "PRCM_MOD_DCAN1",
+#endif /* BUILDCFG_PRCM_MOD_DCAN1 */
+#ifdef BUILDCFG_PRCM_MOD_ELM
+    "PRCM_MOD_ELM",
+#endif /* BUILDCFG_PRCM_MOD_ELM */
+#ifdef BUILDCFG_PRCM_MOD_EPWMSS0
+    "PRCM_MOD_EPWMSS0",
+#endif /* BUILDCFG_PRCM_MOD_EPWMSS0 */
+#ifdef BUILDCFG_PRCM_MOD_EPWMSS1
+    "PRCM_MOD_EPWMSS1",
+#endif /* BUILDCFG_PRCM_MOD_EPWMSS1 */
+#ifdef BUILDCFG_PRCM_MOD_EPWMSS2
+    "PRCM_MOD_EPWMSS2",
+#endif /* BUILDCFG_PRCM_MOD_EPWMSS2 */
+#ifdef BUILDCFG_PRCM_MOD_EPWMSS3
+    "PRCM_MOD_EPWMSS3",
+#endif /* BUILDCFG_PRCM_MOD_EPWMSS3 */
+#ifdef BUILDCFG_PRCM_MOD_EPWMSS4
+    "PRCM_MOD_EPWMSS4",
+#endif /* BUILDCFG_PRCM_MOD_EPWMSS4 */
+#ifdef BUILDCFG_PRCM_MOD_EPWMSS5
+    "PRCM_MOD_EPWMSS5",
+#endif /* BUILDCFG_PRCM_MOD_EPWMSS5 */
+#ifdef BUILDCFG_PRCM_MOD_ERMC
+    "PRCM_MOD_ERMC",
+#endif /* BUILDCFG_PRCM_MOD_ERMC */
+#ifdef BUILDCFG_PRCM_MOD_HDQ1W
+    "PRCM_MOD_HDQ1W",
+#endif /* BUILDCFG_PRCM_MOD_HDQ1W */
+#ifdef BUILDCFG_PRCM_MOD_I2C1
+    "PRCM_MOD_I2C1",
+#endif /* BUILDCFG_PRCM_MOD_I2C1 */
+#ifdef BUILDCFG_PRCM_MOD_I2C2
+    "PRCM_MOD_I2C2",
+#endif /* BUILDCFG_PRCM_MOD_I2C2 */
+#ifdef BUILDCFG_PRCM_MOD_MCASP0
+    "PRCM_MOD_MCASP0",
+#endif /* BUILDCFG_PRCM_MOD_MCASP0 */
+#ifdef BUILDCFG_PRCM_MOD_QSPI
+    "PRCM_MOD_QSPI",
+#endif /* BUILDCFG_PRCM_MOD_QSPI */
+#ifdef BUILDCFG_PRCM_MOD_SPI0
+    "PRCM_MOD_SPI0",
+#endif /* BUILDCFG_PRCM_MOD_SPI0 */
+#ifdef BUILDCFG_PRCM_MOD_SPI1
+    "PRCM_MOD_SPI1",
+#endif /* BUILDCFG_PRCM_MOD_SPI1 */
+#ifdef BUILDCFG_PRCM_MOD_SPI2
+    "PRCM_MOD_SPI2",
+#endif /* BUILDCFG_PRCM_MOD_SPI2 */
+#ifdef BUILDCFG_PRCM_MOD_SPI3
+    "PRCM_MOD_SPI3",
+#endif /* BUILDCFG_PRCM_MOD_SPI3 */
+#ifdef BUILDCFG_PRCM_MOD_SPI4
+    "PRCM_MOD_SPI4",
+#endif /* BUILDCFG_PRCM_MOD_SPI4 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER10
+    "PRCM_MOD_TIMER10",
+#endif /* BUILDCFG_PRCM_MOD_TIMER10 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER11
+    "PRCM_MOD_TIMER11",
+#endif /* BUILDCFG_PRCM_MOD_TIMER11 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER2
+    "PRCM_MOD_TIMER2",
+#endif /* BUILDCFG_PRCM_MOD_TIMER2 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER3
+    "PRCM_MOD_TIMER3",
+#endif /* BUILDCFG_PRCM_MOD_TIMER3 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER4
+    "PRCM_MOD_TIMER4",
+#endif /* BUILDCFG_PRCM_MOD_TIMER4 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER5
+    "PRCM_MOD_TIMER5",
+#endif /* BUILDCFG_PRCM_MOD_TIMER5 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER6
+    "PRCM_MOD_TIMER6",
+#endif /* BUILDCFG_PRCM_MOD_TIMER6 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER7
+    "PRCM_MOD_TIMER7",
+#endif /* BUILDCFG_PRCM_MOD_TIMER7 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER8
+    "PRCM_MOD_TIMER8",
+#endif /* BUILDCFG_PRCM_MOD_TIMER8 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER9
+    "PRCM_MOD_TIMER9",
+#endif /* BUILDCFG_PRCM_MOD_TIMER9 */
+#ifdef BUILDCFG_PRCM_MOD_UART1
+    "PRCM_MOD_UART1",
+#endif /* BUILDCFG_PRCM_MOD_UART1 */
+#ifdef BUILDCFG_PRCM_MOD_UART2
+    "PRCM_MOD_UART2",
+#endif /* BUILDCFG_PRCM_MOD_UART2 */
+#ifdef BUILDCFG_PRCM_MOD_UART3
+    "PRCM_MOD_UART3",
+#endif /* BUILDCFG_PRCM_MOD_UART3 */
+#ifdef BUILDCFG_PRCM_MOD_UART4
+    "PRCM_MOD_UART4",
+#endif /* BUILDCFG_PRCM_MOD_UART4 */
+#ifdef BUILDCFG_PRCM_MOD_UART5
+    "PRCM_MOD_UART5",
+#endif /* BUILDCFG_PRCM_MOD_UART5 */
+#ifdef BUILDCFG_PRCM_MOD_CPGMAC0
+    "PRCM_MOD_CPGMAC0",
+#endif /* BUILDCFG_PRCM_MOD_CPGMAC0 */
+#ifdef BUILDCFG_PRCM_MOD_MAILBOX0
+    "PRCM_MOD_MAILBOX0",
+#endif /* BUILDCFG_PRCM_MOD_MAILBOX0 */
+#ifdef BUILDCFG_PRCM_MOD_MCASP1
+    "PRCM_MOD_MCASP1",
+#endif /* BUILDCFG_PRCM_MOD_MCASP1 */
+#ifdef BUILDCFG_PRCM_MOD_SPARE0
+    "PRCM_MOD_SPARE0",
+#endif /* BUILDCFG_PRCM_MOD_SPARE0 */
+#ifdef BUILDCFG_PRCM_MOD_SPARE1
+    "PRCM_MOD_SPARE1",
+#endif /* BUILDCFG_PRCM_MOD_SPARE1 */
+#ifdef BUILDCFG_PRCM_MOD_SPINLOCK
+    "PRCM_MOD_SPINLOCK",
+#endif /* BUILDCFG_PRCM_MOD_SPINLOCK */
+#ifdef BUILDCFG_PRCM_MOD_MPU
+    "PRCM_MOD_MPU",
+#endif /* BUILDCFG_PRCM_MOD_MPU */
+#ifdef BUILDCFG_PRCM_MOD_OCP_WP_NOC
+    "PRCM_MOD_OCP_WP_NOC",
+#endif /* BUILDCFG_PRCM_MOD_OCP_WP_NOC */
+#ifdef BUILDCFG_PRCM_MOD_RTC
+    "PRCM_MOD_RTC",
+#endif /* BUILDCFG_PRCM_MOD_RTC */
+#ifdef BUILDCFG_PRCM_MOD_AES0
+    "PRCM_MOD_AES0",
+#endif /* BUILDCFG_PRCM_MOD_AES0 */
+#ifdef BUILDCFG_PRCM_MOD_CRYPTODMA
+    "PRCM_MOD_CRYPTODMA",
+#endif /* BUILDCFG_PRCM_MOD_CRYPTODMA */
+#ifdef BUILDCFG_PRCM_MOD_DES
+    "PRCM_MOD_DES",
+#endif /* BUILDCFG_PRCM_MOD_DES */
+#ifdef BUILDCFG_PRCM_MOD_PKA
+    "PRCM_MOD_PKA",
+#endif /* BUILDCFG_PRCM_MOD_PKA */
+#ifdef BUILDCFG_PRCM_MOD_RNG
+    "PRCM_MOD_RNG",
+#endif /* BUILDCFG_PRCM_MOD_RNG */
+#ifdef BUILDCFG_PRCM_MOD_SHA0
+    "PRCM_MOD_SHA0",
+#endif /* BUILDCFG_PRCM_MOD_SHA0 */
+#ifdef BUILDCFG_PRCM_MOD_SMARTREFLEX0
+    "PRCM_MOD_SMARTREFLEX0",
+#endif /* BUILDCFG_PRCM_MOD_SMARTREFLEX0 */
+#ifdef BUILDCFG_PRCM_MOD_SMARTREFLEX1
+    "PRCM_MOD_SMARTREFLEX1",
+#endif /* BUILDCFG_PRCM_MOD_SMARTREFLEX1 */
+#ifdef BUILDCFG_PRCM_MOD_USB_PHY0_ALWAYS_ON
+    "PRCM_MOD_USB_PHY0_ALWAYS_ON",
+#endif /* BUILDCFG_PRCM_MOD_USB_PHY0_ALWAYS_ON */
+#ifdef BUILDCFG_PRCM_MOD_USB_PHY1_ALWAYS_ON
+    "PRCM_MOD_USB_PHY1_ALWAYS_ON",
+#endif /* BUILDCFG_PRCM_MOD_USB_PHY1_ALWAYS_ON */
+#ifdef BUILDCFG_PRCM_MOD_WDT0
+    "PRCM_MOD_WDT0",
+#endif /* BUILDCFG_PRCM_MOD_WDT0 */
+#ifdef BUILDCFG_PRCM_MOD_WDT1
+    "PRCM_MOD_WDT1",
+#endif /* BUILDCFG_PRCM_MOD_WDT1 */
+#ifdef BUILDCFG_PRCM_MOD_TPMSS
+    "PRCM_MOD_TPMSS",
+#endif /* BUILDCFG_PRCM_MOD_TPMSS */
+#ifdef BUILDCFG_PRCM_MOD_USBPHYOCP2SCP0
+    "PRCM_MOD_USBPHYOCP2SCP0",
+#endif /* BUILDCFG_PRCM_MOD_USBPHYOCP2SCP0 */
+#ifdef BUILDCFG_PRCM_MOD_USBPHYOCP2SCP1
+    "PRCM_MOD_USBPHYOCP2SCP1",
+#endif /* BUILDCFG_PRCM_MOD_USBPHYOCP2SCP1 */
+#ifdef BUILDCFG_PRCM_MOD_USB_OTG_SS0
+    "PRCM_MOD_USB_OTG_SS0",
+#endif /* BUILDCFG_PRCM_MOD_USB_OTG_SS0 */
+#ifdef BUILDCFG_PRCM_MOD_USB_OTG_SS1
+    "PRCM_MOD_USB_OTG_SS1",
+#endif /* BUILDCFG_PRCM_MOD_USB_OTG_SS1 */
+#ifdef BUILDCFG_PRCM_MOD_USIM0
+    "PRCM_MOD_USIM0",
+#endif /* BUILDCFG_PRCM_MOD_USIM0 */
+#ifdef BUILDCFG_PRCM_MOD_USIM1
+    "PRCM_MOD_USIM1",
+#endif /* BUILDCFG_PRCM_MOD_USIM1 */
+#ifdef BUILDCFG_PRCM_MOD_VPFE0
+    "PRCM_MOD_VPFE0",
+#endif /* BUILDCFG_PRCM_MOD_VPFE0 */
+#ifdef BUILDCFG_PRCM_MOD_VPFE1
+    "PRCM_MOD_VPFE1",
+#endif /* BUILDCFG_PRCM_MOD_VPFE1 */
+#ifdef BUILDCFG_PRCM_MOD_ADC_TSC
+    "PRCM_MOD_ADC_TSC",
+#endif /* BUILDCFG_PRCM_MOD_ADC_TSC */
+#ifdef BUILDCFG_PRCM_MOD_CLKDIV32K
+    "PRCM_MOD_CLKDIV32K",
+#endif /* BUILDCFG_PRCM_MOD_CLKDIV32K */
+#ifdef BUILDCFG_PRCM_MOD_CONTROL
+    "PRCM_MOD_CONTROL",
+#endif /* BUILDCFG_PRCM_MOD_CONTROL */
+#ifdef BUILDCFG_PRCM_MOD_GPIO0
+    "PRCM_MOD_GPIO0",
+#endif /* BUILDCFG_PRCM_MOD_GPIO0 */
+#ifdef BUILDCFG_PRCM_MOD_I2C0
+    "PRCM_MOD_I2C0",
+#endif /* BUILDCFG_PRCM_MOD_I2C0 */
+#ifdef BUILDCFG_PRCM_MOD_L4WKUP
+    "PRCM_MOD_L4WKUP",
+#endif /* BUILDCFG_PRCM_MOD_L4WKUP */
+#ifdef BUILDCFG_PRCM_MOD_SYNCTIMER
+    "PRCM_MOD_SYNCTIMER",
+#endif /* BUILDCFG_PRCM_MOD_SYNCTIMER */
+#ifdef BUILDCFG_PRCM_MOD_TIMER0
+    "PRCM_MOD_TIMER0",
+#endif /* BUILDCFG_PRCM_MOD_TIMER0 */
+#ifdef BUILDCFG_PRCM_MOD_TIMER1
+    "PRCM_MOD_TIMER1",
+#endif /* BUILDCFG_PRCM_MOD_TIMER1 */
+#ifdef BUILDCFG_PRCM_MOD_UART0
+    "PRCM_MOD_UART0",
+#endif /* BUILDCFG_PRCM_MOD_UART0 */
+#ifdef BUILDCFG_PRCM_MOD_WKUP_M3
+    "PRCM_MOD_WKUP_M3",
+#endif /* BUILDCFG_PRCM_MOD_WKUP_M3 */
+#ifdef BUILDCFG_PRCM_MOD_EFUSE
+    "PRCM_MOD_EFUSE",
+#endif /* BUILDCFG_PRCM_MOD_EFUSE */
+
+};
+
+#endif /* !NDEBUG */
+
+/* ========================================================================== */
+/*                            Function Declarations                           */
+/* ========================================================================== */
+
+#ifdef __cplusplus
+} /* extern "C" */
+#endif /* __cplusplus */
+

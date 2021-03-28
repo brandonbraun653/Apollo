@@ -1,0 +1,7 @@
+count = 0
+do
+   waitn 256
+   send inputstr
+   flushrecv
+   count = count+1
+loop while count < 40960

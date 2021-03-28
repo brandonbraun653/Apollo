@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/k2g/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/master_slave/src/main_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/master_slave/k2g/armv7/bios/i2c_arm_k2g_master.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_K2G -DevmK2G -DevmK2G -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/i2c -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

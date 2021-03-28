@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/example/fatfs_console/src/fs_shell_app_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/example/fatfs_console/src/main_fatfs_console.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am574x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am574x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/example/fatfs_console/am574x/armv7/bios/mmcsddma_idk.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DDRA7xx -DMMCSD_EDMA_ENABLED -DSOC_AM574x -DidkAM574x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/mmcsd "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

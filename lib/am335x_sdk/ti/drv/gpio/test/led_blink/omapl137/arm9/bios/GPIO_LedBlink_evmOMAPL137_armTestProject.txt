@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/main_led_blink.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/omapl137/GPIO_board.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/omapl137/arm9/bios/gpio_arm.cfg" 
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv5e --float_support=vfplib --abi=eabi -g -DSOC_OMAPL137 -DevmOMAPL137 -DevmOMAPL137 -I${PDK_INSTALL_PATH}/ti/drv/gpio -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+

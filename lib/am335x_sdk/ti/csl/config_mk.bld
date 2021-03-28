@@ -1,0 +1,45 @@
+/******************************************************************************
+ * FILE PURPOSE: Build configuration Script for the CSL
+ ******************************************************************************
+ * FILE NAME: config.bld
+ *
+ * DESCRIPTION: 
+ *  This file contains the build configuration script for CSL 
+ *  and is responsible for configuration of the paths for the various tools
+ *  required to build CSL.
+ *
+ * Copyright (C) 2012-2015, Texas Instruments, Inc.
+ *****************************************************************************/
+/* Get the Tools Base directory from the Environment Variable. */
+var c66ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var c674ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var m4ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_M4");
+var a15ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A15");
+var a9ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A9");
+var arm9ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_ARM9");
+var a8ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A8");
+
+/* Get the base directory for the CSL Package */
+var cslPath = new java.io.File(".//").getPath();
+
+/* Read the part number from the environment variable. */
+var cslPartNumber = java.lang.System.getenv("PARTNO");
+
+/* Include Path */
+var cslPathInclude = " -I" + cslPath + "/src/intc" + " -I" + cslPath;
+
+/* Configure the CSL Version Information */
+/* 3 steps: remove SPACE and TAB, convert to string and split to make array */
+var cslReleaseVersion = (""+Pkg.version.replace(/\s/g, "")).split(',');
+
+/* Do not print the compiler options */
+var pOpts = 0;
+
+/* List of all devices that needs to be build via XDC
+ * As the build happens through makefile, there is nothing to build via XDC
+ * using the below for packaging infrastructure
+ */
+var devices = [];
+var build_devices = [];
+Build.targets = []
+

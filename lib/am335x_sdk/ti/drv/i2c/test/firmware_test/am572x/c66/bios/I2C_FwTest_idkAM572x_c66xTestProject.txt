@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/firmware_test/src/main_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/firmware_test/src/test_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/firmware_test/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/firmware_test/am572x/c66/bios/i2c_c66_idkAM572x.cfg" 
+-ccs.setCompilerOptions "-D -mv6600 -g -dSOC_AM572x -didkAM572x -dUSE_BIOS -dC66X --diag_warning=225 --diag_warning=994 --diag_warning=262 --diag_suppress=1111 --diag_suppress=827  --diag_suppress=824  --diag_suppress=837  --diag_suppress=1037 --diag_suppress=195 --diag_suppress=77  --diag_suppress=232 -I${PDK_INSTALL_PATH}/ti/drv/i2c --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-l${PDK_INSTALL_PATH}/ti/drv/i2c/firmware/icss_i2c/bin/am572x/c66x/REV2/icss_i2c_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/i2c/firmware/icss_i2c/bin/am572x/c66x/REV2/icss_i2c_PRU1.bin -l${PDK_INSTALL_PATH}/ti/build/pruss/lnk_c66_m4_REV2.cmd -l${PDK_INSTALL_PATH}/ti/drv/i2c/firmware/icss_i2c/bin/am572x/c66x/REV1/icss_i2c_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/i2c/firmware/icss_i2c/bin/am572x/c66x/REV1/icss_i2c_PRU1.bin -l${PDK_INSTALL_PATH}/ti/build/pruss/lnk_c66_m4_REV1.cmd"
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am572x/config_am572x_c66.bld -DBOARD=idkAM572x"

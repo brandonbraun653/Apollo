@@ -1,0 +1,12 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/timeSync/example/src/timeSyncExample_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/timeSync/example/src/common/timeSync_example_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/timeSync/example/src/common/netHooks.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/timeSync/example/src/common/osdrv_ndkdeviceconfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/timeSync/example/src/boardcfg/idkAM57xx/board_gpioLed.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/timeSync/example/src/boardcfg/idkAM57xx/board_i2cLed.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/timeSync/example/src/soc/am57xx/timeSyncExampleSoC.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/timeSync/example/src/bios/ccsProjects/idkAM572x/timeSyncExample_ccs_m4.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_AM574x -DidkAM574x -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/icss_emac/src -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/icss_emac -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/transport/timeSync/example -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on -l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am574x/ipu1_0/REV2/icss_dualemac_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am574x/ipu1_0/REV2/icss_dualemac_PRU1.bin -l${PDK_INSTALL_PATH}/ti/build/pruss/lnk_c66_m4_REV2.cmd"
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am574x/config_am574x.bld -DBOARD=idkAM574x --xdcpath=${BIOS_CG_ROOT}/packages/ti/posix/ccs"
+

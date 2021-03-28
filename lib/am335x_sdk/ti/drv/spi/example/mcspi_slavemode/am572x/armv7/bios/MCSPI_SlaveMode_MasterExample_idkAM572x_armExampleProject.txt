@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/main_mcspi_slave_mode.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/am572x/armv7/bios/spi_arm_idkAM572x_slavemode_master.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM572x -DidkAM572x -DMCSPI_MULT_CHANNEL -DSPI_DMA_ENABLE -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

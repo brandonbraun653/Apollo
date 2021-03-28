@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/mmcsd/soc/am57xx/MMCSD_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/fs/fatfs/example/console/src/fs_shell_app_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/fs/fatfs/example/console/src/main_console.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/fs/fatfs/example/console/src/FATFS_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am572x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/fs/fatfs/example/console/am572x/armv7/bios/fatfs_evm.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DDRA7xx -DSOC_AM572x -DevmAM572x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/fs/fatfs "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections -L$(BIOS_INSTALL_PATH)/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/lib/fpu "

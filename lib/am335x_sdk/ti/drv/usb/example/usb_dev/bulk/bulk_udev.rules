@@ -1,0 +1,3 @@
+#TI generic bulk USB example
+ATTRS{idVendor}=="1cbe",ATTRS{idProduct}=="0003",MODE="0666"
+

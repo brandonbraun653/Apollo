@@ -1,0 +1,372 @@
+/******************************************************************************
+ * FILE PURPOSE: Build configuration Script for the board library
+ ******************************************************************************
+ * FILE NAME: config.bld
+ *
+ * DESCRIPTION:
+ *  This file contains the build configuration script for the board library
+ *  and is responsible for configuration of the paths for the various
+ *  tools required to build the library.
+ *
+ * Copyright (C) 2014-2015, Texas Instruments, Inc.
+ *****************************************************************************/
+
+/* Get the Tools Base directory from the Environment Variable. */
+var c66ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var c674ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var m4ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_M4");
+var a15ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A15");
+var a9ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A9");
+var arm9ToolsBaseDir  = java.lang.System.getenv("TOOLCHAIN_PATH_ARM9");
+var a8ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A8");
+
+/* Print the Compiler Options */
+var pOpts = 1;
+
+/* C66 ELF compiler configuration for Little Endian Mode. */
+var C66LE           = xdc.useModule('ti.targets.elf.C66');
+C66LE.rootDir       = c66ToolsBaseDir;
+C66LE.ccOpts.prefix = "-mo -o3 -q -k -eo.o";
+
+/* C66 ELF compiler configuration for Big Endian Mode. */
+var C66BE           = xdc.useModule('ti.targets.elf.C66_big_endian');
+C66BE.rootDir       = c66ToolsBaseDir;
+C66BE.ccOpts.prefix = "-mo -o3 -q -k -eo.o -DBIGENDIAN";
+
+/* C674 ELF compiler configuration for Little Endian Mode. */
+var C674LE          = xdc.useModule('ti.targets.elf.C674');
+C674LE.rootDir       = c674ToolsBaseDir;
+C674LE.ccOpts.prefix = "-mo -o3 -q -k -eo.o";
+
+/* ARMv7 A15 compiler configuration */
+var A15LE            = xdc.useModule('gnu.targets.arm.A15F');
+A15LE.rootDir        = a15ToolsBaseDir;
+A15LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a15 -marm -DDRA7xx -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+
+/* ARMv7 A9 compiler configuration */
+var A9LE            = xdc.useModule('gnu.targets.arm.A9F');
+A9LE.rootDir        = a9ToolsBaseDir;
+A9LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a9 -marm -DDRA7xx -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+
+/* ARMv5 ARM9 compiler configuration */
+var ARM9LE            = xdc.useModule('ti.targets.arm.elf.Arm9');
+ARM9LE.rootDir        = arm9ToolsBaseDir;
+ARM9LE.ccOpts.prefix  = "-mno-unaligned-access -c -marm -Dxdc_target_types__=gnu/targets/arm/std.h -Dxdc_target_name__=Arm9 -gstrict-dwarf -Wall -D__ARMv5 -D_LITTLE_ENDIAN=1";
+
+/* ARMv7 A8 compiler configuration */
+var A8LE            = xdc.useModule('gnu.targets.arm.A8F');
+A8LE.rootDir        = a8ToolsBaseDir;
+A8LE.ccOpts.prefix  = "-mno-unaligned-access -c -mtune=cortex-a8 -marm -DDRA7xx -gstrict-dwarf -Wall -D__ARMv7 -D_LITTLE_ENDIAN=1";
+
+/* M4 ELF compiler configuration for Little Endian Mode. */
+var M4LE            = xdc.useModule('ti.targets.arm.elf.M4');
+M4LE.rootDir        = m4ToolsBaseDir;
+M4LE.ccOpts.prefix  = "-o4 -qq -pdsw255 -DMAKEFILE_BUILD"
+
+/* Grab input from XDCARGS */
+var buildArguments = [];
+for (var tmp=0; arguments[tmp] != undefined; tmp++)
+{
+    buildArguments[buildArguments.length++] = arguments[tmp];
+}
+
+/* Check if we need to run the STATIC Analysis or not? */
+var coverityAnalysis = java.lang.System.getenv("STATIC_ANALYZE");
+
+/* Setup the Coverity Filters to perform Static Analysis. */
+if (coverityAnalysis == "ON") {
+    var coverityInstallPath = java.lang.System.getenv("STATIC_ANALYZE_PATH");
+    var cfgBase = xdc.getPackageBase("tisb.coverity.filters") + "cfg";
+
+    var coverityFilter = [
+    {
+        moduleName: "tisb.coverity.filters.Coverity",
+        params: {
+            cfgDir:  cfgBase,  // The Coverity configuration file directory
+            rootDir: coverityInstallPath,
+            outDir: xdc.csd() + "cov_out",
+            analyzeLibs: true
+        }
+    },
+    ];
+
+    /* Run the coverity filters on the LE Build only. */
+    C66LE.profiles["release"].filters = coverityFilter;
+}
+
+/* Check if we need to create the Makefiles? */
+var miniBuild = java.lang.System.getenv("MINI_PACKAGE");
+if (miniBuild == "ON")
+{
+    var makeC66LEFilter = {
+        moduleName: "build.filter.Make",
+        params: {
+          makefileName: "simpleC66LE.mak",
+        }
+    };
+    C66LE.profiles["release"].filters[C66LE.profiles["release"].filters.length++] = makeC66LEFilter;
+
+    var makeC66BEFilter = {
+        moduleName: "build.filter.Make",
+        params: {
+          makefileName: "simpleC66BE.mak",
+        }
+    };
+    C66BE.profiles["release"].filters[C66BE.profiles["release"].filters.length++] = makeC66BEFilter;
+}
+
+var idkAM572x = {
+    name: "idkAM572x",
+    ccOpts: "-DidkAM572x -DSOC_AM572x",
+    targets: [C66LE, A15LE, M4LE],
+    lldFiles: ["$(PDK_INSTALL_PATH)/ti/drv/i2c/soc/am572x/I2C_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/uart/soc/am572x/UART_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/spi/soc/am572x/SPI_soc.c"]
+}
+
+var idkAM574x = {
+    name: "idkAM574x",
+    ccOpts: "-DidkAM574x -DSOC_AM574x",
+    targets: [C66LE, A15LE, M4LE],
+    lldFiles: ["$(PDK_INSTALL_PATH)/ti/drv/i2c/soc/am574x/I2C_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/uart/soc/am574x/UART_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/spi/soc/am574x/SPI_soc.c"]
+}
+
+var idkAM571x = {
+    name: "idkAM571x",
+    ccOpts: "-DidkAM571x -DSOC_AM571x",
+    targets: [C66LE, A15LE, M4LE],
+    lldFiles: ["$(PDK_INSTALL_PATH)/ti/drv/i2c/soc/am571x/I2C_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/uart/soc/am571x/UART_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/spi/soc/am571x/SPI_soc.c"]
+}
+
+var evmAM572x = {
+    name: "evmAM572x",
+    ccOpts: "-DevmAM572x -DSOC_AM572x",
+    targets: [C66LE, A15LE, M4LE],
+    lldFiles: ["$(PDK_INSTALL_PATH)/ti/drv/i2c/soc/am572x/I2C_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/uart/soc/am572x/UART_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/spi/soc/am572x/SPI_soc.c"]
+}
+
+var evmAM571x = {
+    name: "evmAM571x",
+    ccOpts: "-DevmAM571x -DSOC_AM571x",
+    targets: [C66LE, A15LE, M4LE],
+    lldFiles: ["$(PDK_INSTALL_PATH)/ti/drv/i2c/soc/am571x/I2C_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/uart/soc/am571x/UART_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/spi/soc/am571x/SPI_soc.c"]
+}
+
+var evmAM335x = {
+    name: "evmAM335x",
+    ccOpts: "-DevmAM335x -DSOC_AM335X -DAM335X_FAMILY_BUILD -Dam335x -DBUILDCFG_MOD_UART -DBUILDCFG_MOD_GPIO  -DBUILDCFG_MOD_I2C  -DBUILDCFG_MOD_MCSPI  -DBUILDCFG_MOD_QSPI -DBUILDCFG_MOD_PRU_ETH -DBUILDCFG_MOD_MMCSD  -DBUILDCFG_MOD_CPSW -DBUILDCFG_MOD_PWMSS -DBUILDCFG_MOD_DSS -DBUILDCFG_MOD_USB -DBUILDCFG_MOD_GPMC -DBUILDCFG_MOD_DCAN -DBUILDCFG_MOD_MCASP -DBUILDCFG_MOD_VPFE -DBUILDCFG_MOD_MDIO -DBUILDCFG_MOD_DMTIMER -DBUILDCFG_MOD_EDMA3CC -DBUILDCFG_MOD_EDMA3TC -DBUILDCFG_MOD_RTC -DBUILDCFG_MOD_WDT -DBUILDCFG_MOD_ADC -DBUILDCFG_MOD_LCDC",
+    targets: [A8LE],
+    incOpts: [ "-I$(PDK_INSTALL_PATH)/ti/starterware/include -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/board -I$(PDK_INSTALL_PATH)/ti/starterware/board/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/include/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/device -I$(PDK_INSTALL_PATH)/ti/starterware/include/utils -I$(PDK_INSTALL_PATH)/ti/starterware/include/hw -I$(PDK_INSTALL_PATH)/ti/starterware/soc"],
+    stwFiles: ["$(PDK_INSTALL_PATH)/ti/starterware/board/am335x/am335x_gpevm_pinmux_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_control.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_prcm.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb_baseaddr.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb_interrupt.c"]
+}
+var icev2AM335x = {
+    name: "icev2AM335x",
+    ccOpts: "-Dicev2AM335x -DSOC_AM335X -DAM335X_FAMILY_BUILD -Dam335x -DBUILDCFG_MOD_UART -DBUILDCFG_MOD_GPIO  -DBUILDCFG_MOD_I2C  -DBUILDCFG_MOD_MCSPI  -DBUILDCFG_MOD_QSPI -DBUILDCFG_MOD_PRU_ETH -DBUILDCFG_MOD_MMCSD -DBUILDCFG_MOD_CPSW -DBUILDCFG_MOD_PWMSS -DBUILDCFG_MOD_DSS -DBUILDCFG_MOD_USB -DBUILDCFG_MOD_GPMC -DBUILDCFG_MOD_DCAN -DBUILDCFG_MOD_MCASP -DBUILDCFG_MOD_VPFE -DBUILDCFG_MOD_MDIO -DBUILDCFG_MOD_DMTIMER -DBUILDCFG_MOD_EDMA3CC -DBUILDCFG_MOD_EDMA3TC -DBUILDCFG_MOD_RTC -DBUILDCFG_MOD_WDT -DBUILDCFG_MOD_ADC -DBUILDCFG_MOD_LCDC -DBUILDCFG_MOD_PRU_ICSS",
+    targets: [A8LE],
+    incOpts: [ "-I$(PDK_INSTALL_PATH)/ti/starterware/include -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/board -I$(PDK_INSTALL_PATH)/ti/starterware/board/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/include/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/device -I$(PDK_INSTALL_PATH)/ti/starterware/include/utils -I$(PDK_INSTALL_PATH)/ti/starterware/include/hw -I$(PDK_INSTALL_PATH)/ti/starterware/soc"],
+    stwFiles: ["$(PDK_INSTALL_PATH)/ti/starterware/board/am335x/am335x_icev2_pinmux_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_control.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_prcm.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb_baseaddr.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb_interrupt.c"],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/nor.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/gpmc/nor_gpmc.c"]
+}
+var skAM335x = {
+    name: "skAM335x",
+    ccOpts: "-DskAM335x -DSOC_AM335X -DAM335X_FAMILY_BUILD -Dam335x -DBUILDCFG_MOD_UART -DBUILDCFG_MOD_GPIO  -DBUILDCFG_MOD_I2C  -DBUILDCFG_MOD_MCSPI  -DBUILDCFG_MOD_QSPI -DBUILDCFG_MOD_PRU_ETH -DBUILDCFG_MOD_MMCSD  -DBUILDCFG_MOD_CPSW -DBUILDCFG_MOD_PWMSS -DBUILDCFG_MOD_DSS -DBUILDCFG_MOD_USB -DBUILDCFG_MOD_GPMC -DBUILDCFG_MOD_DCAN -DBUILDCFG_MOD_MCASP -DBUILDCFG_MOD_VPFE -DBUILDCFG_MOD_MDIO -DBUILDCFG_MOD_DMTIMER -DBUILDCFG_MOD_EDMA3CC -DBUILDCFG_MOD_EDMA3TC -DBUILDCFG_MOD_RTC -DBUILDCFG_MOD_WDT -DBUILDCFG_MOD_ADC -DBUILDCFG_MOD_LCDC",
+    targets: [A8LE],
+    incOpts: [ "-I$(PDK_INSTALL_PATH)/ti/starterware/include -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/board -I$(PDK_INSTALL_PATH)/ti/starterware/board/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/include/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/device -I$(PDK_INSTALL_PATH)/ti/starterware/include/utils -I$(PDK_INSTALL_PATH)/ti/starterware/include/hw -I$(PDK_INSTALL_PATH)/ti/starterware/soc"],
+    stwFiles: ["$(PDK_INSTALL_PATH)/ti/starterware/board/am335x/am335x_evmsk_pinmux_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_control.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_prcm.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb_baseaddr.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb_interrupt.c"]
+}
+var bbbAM335x = {
+    name: "bbbAM335x",
+    ccOpts: "-DbbbAM335x -DSOC_AM335X -DAM335X_FAMILY_BUILD -Dam335x -DBUILDCFG_MOD_UART -DBUILDCFG_MOD_GPIO  -DBUILDCFG_MOD_I2C  -DBUILDCFG_MOD_MCSPI  -DBUILDCFG_MOD_QSPI -DBUILDCFG_MOD_PRU_ETH -DBUILDCFG_MOD_MMCSD -DBUILDCFG_MOD_CPSW -DBUILDCFG_MOD_PWMSS -DBUILDCFG_MOD_DSS -DBUILDCFG_MOD_USB -DBUILDCFG_MOD_GPMC -DBUILDCFG_MOD_DCAN -DBUILDCFG_MOD_MCASP -DBUILDCFG_MOD_VPFE -DBUILDCFG_MOD_MDIO -DBUILDCFG_MOD_DMTIMER -DBUILDCFG_MOD_EDMA3CC -DBUILDCFG_MOD_EDMA3TC -DBUILDCFG_MOD_RTC -DBUILDCFG_MOD_WDT -DBUILDCFG_MOD_ADC -DBUILDCFG_MOD_LCDC -DBUILDCFG_MOD_PRU_ICSS",
+    targets: [A8LE],
+    incOpts: [ "-I$(PDK_INSTALL_PATH)/ti/starterware/include -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/board -I$(PDK_INSTALL_PATH)/ti/starterware/board/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/include/am335x -I$(PDK_INSTALL_PATH)/ti/starterware/device -I$(PDK_INSTALL_PATH)/ti/starterware/include/utils -I$(PDK_INSTALL_PATH)/ti/starterware/include/hw -I$(PDK_INSTALL_PATH)/ti/starterware/soc"],
+    stwFiles: ["$(PDK_INSTALL_PATH)/ti/starterware/board/am335x/am335x_beagleboneblack_pinmux_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_control.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/am335x_prcm.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb_baseaddr.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am335x/hw_am335x_chipdb_interrupt.c"]
+}
+var evmAM437x = {
+    name: "evmAM437x",
+    ccOpts: "-DevmAM437x -DSOC_AM437X -DAM43XX_FAMILY_BUILD -Dam437x -DBUILDCFG_MOD_UART -DBUILDCFG_MOD_GPIO  -DBUILDCFG_MOD_I2C  -DBUILDCFG_MOD_MCSPI -DBUILDCFG_MOD_QSPI -DBUILDCFG_MOD_PRU_ETH -DBUILDCFG_MOD_MMCSD  -DBUILDCFG_MOD_CPSW -DBUILDCFG_MOD_PWMSS -DBUILDCFG_MOD_DSS -DBUILDCFG_MOD_USB -DBUILDCFG_MOD_GPMC -DBUILDCFG_MOD_DCAN -DBUILDCFG_MOD_MCASP -DBUILDCFG_MOD_VPFE -DBUILDCFG_MOD_MDIO -DBUILDCFG_MOD_DMTIMER -DBUILDCFG_MOD_EDMA3CC -DBUILDCFG_MOD_EDMA3TC -DBUILDCFG_MOD_RTC -DBUILDCFG_MOD_WDT -DBUILDCFG_MOD_ADC",
+    targets: [A9LE],
+    incOpts: [ "-I$(PDK_INSTALL_PATH)/ti/starterware/include -I$(PDK_INSTALL_PATH)/ti/starterware/include/hw -I$(PDK_INSTALL_PATH)/ti/starterware/include/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/include/am43xx/am437x -I$(PDK_INSTALL_PATH)/ti/starterware/include/utils -I$(PDK_INSTALL_PATH)/ti/starterware/board -I$(PDK_INSTALL_PATH)/ti/starterware/board/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/device -I$(PDK_INSTALL_PATH)/ti/starterware/soc -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am437x -I$(PDK_INSTALL_PATH)/ti/starterware/include/armv7a"],
+    stwFiles: ["$(PDK_INSTALL_PATH)/ti/starterware/board/am43xx/am43xx_gpevm_pinmux_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_control.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/armv7a/pl310.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am437x/hw_prcm_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/utils/agraph.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_prcm.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb_baseaddr.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb_interrupt.c"],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nand/nand.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nand/gpmc/nand_gpmc.c"]
+}
+var idkAM437x = {
+    name: "idkAM437x",
+    ccOpts: "-DidkAM437x -DSOC_AM437X -DAM43XX_FAMILY_BUILD -Dam437x -DBUILDCFG_MOD_UART -DBUILDCFG_MOD_GPIO  -DBUILDCFG_MOD_I2C  -DBUILDCFG_MOD_MCSPI -DBUILDCFG_MOD_QSPI -DBUILDCFG_MOD_PRU_ETH -DBUILDCFG_MOD_MMCSD  -DBUILDCFG_MOD_CPSW -DBUILDCFG_MOD_PWMSS -DBUILDCFG_MOD_DSS -DBUILDCFG_MOD_USB -DBUILDCFG_MOD_GPMC -DBUILDCFG_MOD_DCAN -DBUILDCFG_MOD_MCASP -DBUILDCFG_MOD_VPFE -DBUILDCFG_MOD_MDIO -DBUILDCFG_MOD_DMTIMER -DBUILDCFG_MOD_EDMA3CC -DBUILDCFG_MOD_EDMA3TC -DBUILDCFG_MOD_RTC -DBUILDCFG_MOD_WDT -DBUILDCFG_MOD_ADC -DBUILDCFG_MOD_PRU_ICSS",
+    targets: [A9LE],
+    incOpts: [ "-I$(PDK_INSTALL_PATH)/ti/starterware/include -I$(PDK_INSTALL_PATH)/ti/starterware/include/hw -I$(PDK_INSTALL_PATH)/ti/starterware/include/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/include/am43xx/am437x -I$(PDK_INSTALL_PATH)/ti/starterware/include/utils -I$(PDK_INSTALL_PATH)/ti/starterware/board -I$(PDK_INSTALL_PATH)/ti/starterware/board/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/device -I$(PDK_INSTALL_PATH)/ti/starterware/soc -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am437x -I$(PDK_INSTALL_PATH)/ti/starterware/include/armv7a"],
+    stwFiles: ["$(PDK_INSTALL_PATH)/ti/starterware/board/am43xx/am43xx_idkevm_pinmux_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_control.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/armv7a/pl310.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am437x/hw_prcm_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/utils/agraph.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_prcm.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb_baseaddr.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb_interrupt.c"]
+}
+var skAM437x = {
+    name: "skAM437x",
+    ccOpts: "-DskAM437x -DSOC_AM437X -DAM43XX_FAMILY_BUILD -Dam437x -DBUILDCFG_MOD_UART -DBUILDCFG_MOD_GPIO  -DBUILDCFG_MOD_I2C  -DBUILDCFG_MOD_MCSPI -DBUILDCFG_MOD_QSPI -DBUILDCFG_MOD_PRU_ETH -DBUILDCFG_MOD_MMCSD  -DBUILDCFG_MOD_CPSW -DBUILDCFG_MOD_PWMSS -DBUILDCFG_MOD_DSS -DBUILDCFG_MOD_USB -DBUILDCFG_MOD_GPMC -DBUILDCFG_MOD_DCAN -DBUILDCFG_MOD_MCASP -DBUILDCFG_MOD_VPFE -DBUILDCFG_MOD_MDIO -DBUILDCFG_MOD_DMTIMER -DBUILDCFG_MOD_EDMA3CC -DBUILDCFG_MOD_EDMA3TC -DBUILDCFG_MOD_RTC -DBUILDCFG_MOD_WDT -DBUILDCFG_MOD_ADC",
+    targets: [A9LE],
+    incOpts: [ "-I$(PDK_INSTALL_PATH)/ti/starterware/include -I$(PDK_INSTALL_PATH)/ti/starterware/include/hw -I$(PDK_INSTALL_PATH)/ti/starterware/include/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/include/am43xx/am437x -I$(PDK_INSTALL_PATH)/ti/starterware/include/utils -I$(PDK_INSTALL_PATH)/ti/starterware/board -I$(PDK_INSTALL_PATH)/ti/starterware/board/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/device -I$(PDK_INSTALL_PATH)/ti/starterware/soc -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx -I$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am437x -I$(PDK_INSTALL_PATH)/ti/starterware/include/armv7a"],
+    stwFiles: ["$(PDK_INSTALL_PATH)/ti/starterware/board/am43xx/am43xx_evmsk_pinmux_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_control.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/armv7a/pl310.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am437x/hw_prcm_data.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/utils/agraph.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/am43xx_prcm.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb_baseaddr.c",
+            "$(PDK_INSTALL_PATH)/ti/starterware/soc/am43xx/hw_am43xx_chipdb_interrupt.c"]
+}
+
+var evmK2H = {
+    name: "evmK2H",
+    ccOpts: "-DevmK2H -DSOC_K2H",
+    targets: [C66LE, C66BE, A15LE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/nor.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/spi/nor_spi.c"]
+}
+
+var evmK2K = {
+    name: "evmK2K",
+    ccOpts: "-DevmK2K -DSOC_K2K",
+    incOpts: "-I$(PDK_DIAG_DIR)/src/evmK2H/include",
+    targets: [C66LE, C66BE, A15LE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/nor.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/spi/nor_spi.c"]
+}
+
+var evmK2E = {
+    name: "evmK2E",
+    ccOpts: "-DevmK2E -DSOC_K2E",
+    targets: [C66LE, C66BE, A15LE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/nor.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/spi/nor_spi.c"]
+}
+
+var evmK2L = {
+    name: "evmK2L",
+    ccOpts: "-DevmK2L -DSOC_K2L",
+    targets: [C66LE, C66BE, A15LE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/nor.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/spi/nor_spi.c"]
+}
+
+var evmK2G = {
+    name: "evmK2G",
+    ccOpts: "-DevmK2G -DSOC_K2G",
+    targets: [C66LE, C66BE, A15LE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/nor.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/qspi/nor_qspi.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/spi/nor_spi.c"]
+}
+
+var evmOMAPL137 = {
+    name: "evmOMAPL137",
+    ccOpts: "-DevmOMAPL137 -DSOC_OMAPL137",
+    targets: [C674LE, ARM9LE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/drv/i2c/soc/omapl137/I2C_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/uart/soc/omapl137/UART_soc.c"]
+}
+
+var lcdkOMAPL138 = {
+    name: "lcdkOMAPL138",
+    ccOpts: "-DlcdkOMAPL138 -DSOC_OMAPL138 --define=SOC_OMAPL138 --define=LCDK_OMAPL138",
+    targets: [C674LE, ARM9LE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/drv/i2c/soc/omapl138/I2C_soc.c",
+            "$(PDK_INSTALL_PATH)/ti/drv/uart/soc/omapl138/UART_soc.c"]
+}
+
+var evmC6678 = {
+    name: "evmC6678",
+    ccOpts: "-DevmC6678 -DSOC_C6678",
+    targets: [C66LE, C66BE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/nor.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/spi/nor_spi.c"]
+}
+
+var evmC6657 = {
+    name: "evmC6657",
+    ccOpts: "-DevmC6657 -DSOC_C6657",
+    targets: [C66LE, C66BE],
+    flashFiles: ["$(PDK_INSTALL_PATH)/ti/board/src/flash/board_flash.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/nor.c",
+            "$(PDK_INSTALL_PATH)/ti/board/src/flash/nor/spi/nor_spi.c"]
+}
+
+var am65xx_evm = {
+    name: "am65xx_evm",
+    ccOpts: "-Dam65xx_evm -DSOC_AM65XX",
+    targets: [A53LE],
+}
+
+var am65xx_idk = {
+    name: "am65xx_idk",
+    ccOpts: "-Dam65xx_idk -DSOC_AM65XX",
+    targets: [A53LE],
+}
+
+var tpr12_evm = {
+    name: "tpr12_evm",
+    ccOpts: "-Dtpr12_evm -DSOC_TPR12",
+    targets: [C66LE],
+}
+
+/* List all the build targets here. */
+Build.targets = [ C66LE, C66BE, A15LE, M4LE, A9LE, A8LE, ARM9LE, C674LE A53LE ];
+var boards = [ evmAM335x, icev2AM335x, skAM335x, bbbAM335x, evmAM437x, idkAM437x, skAM437x, evmAM572x, idkAM571x, idkAM572x, evmK2H, evmK2K, evmK2E, evmK2L, evmK2G, evmC6678, evmC6657, evmOMAPL137 idkAM574x am65xx_evm am65xx_idk ];
+

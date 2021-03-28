@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/soc/am437x/sample_am437x_arm_int_reg.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/soc/am437x/sample_am437x_cfg.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/soc/am437x/sample_arm_cs.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/soc/am437x/sample_arm_init.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/main_mcspi_slave_mode.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/mcspi_slavemode/am437x/armv7/bios/spi_arm_idkAM437x_slavemode.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a9 -mtune=cortex-a9 -march=armv7-a -marm -mfloat-abi=hard -DSOC_AM437x -DidkAM437x -DMCSPI_MASTER_TASK -DSPI_DMA_ENABLE -DMCSPI_MULT_CHANNEL -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

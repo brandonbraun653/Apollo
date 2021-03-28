@@ -1,0 +1,129 @@
+/******************************************************************************
+ * FILE PURPOSE: Build description for the pruss Driver
+ ******************************************************************************
+ * FILE NAME: package.bld
+ *
+ * DESCRIPTION: 
+ *  This file contains the build specification and description for the pruss driver
+ *  
+ *  The file takes the following parameters from the command line through the
+ *  XDCARGS variable.
+ *      XDCARGS[0] = Driver Install Type 
+ *      Valid Values are "TAR" or "SETUP"
+ *      DEFAULT is "SETUP"
+ *
+ *  Example for a valid command:
+ *      xdc XDCARGS="SETUP" release   
+ *
+ * Copyright (C) 2014-2016, Texas Instruments, Inc.
+ *****************************************************************************/
+
+/* List of all subdirectories that combine to make the pruss Socket Driver Package. */
+var subDirectories = [ "src", "docs", "include", "test", "example", "soc" ];
+
+var driverInstallType;
+
+/* Determine if we need to create the InstallJammer Application or not? 
+ * pruss LLD Deliverables be either of the following formats:
+ *  - TAR Ball Package
+ *  - Setup Executable 
+ * DEFAULT is a SETUP Executable. */
+
+if ((arguments[0] != "TAR") && (arguments[0] != "SETUP"))
+    driverInstallType = "TAR";
+else
+    driverInstallType = arguments[0];
+
+/* Irrespective of the InstallType we always create a TAR Ball Package as a part
+ * of the RTSC Build. Here we determine the name of the TAR Ball Package
+ *  Format is as follows:
+ *      pruss_<version> */
+var prussRTSCFileName = "pruss" + "_" + 
+                      driverReleaseVersion[0] + "_" +  driverReleaseVersion[1] + "_" + 
+                      driverReleaseVersion[2]  + "_" + driverReleaseVersion[3];
+
+/******************************************************************
+ ************************ Release Banner **************************
+ ******************************************************************/
+
+print ("************* pruss Socket Driver Build Information *************");
+print ("pruss Socket Driver Install     : " + driverInstallType);
+print ("pruss Socket Driver LLD Version : " + driverReleaseVersion);
+print ("C66 Tools Directory             : " + c66ToolsBaseDir);
+print ("M4 Tools Directory              : " + m4ToolsBaseDir);
+print ("A15 Tools Directory             : " + a15ToolsBaseDir);
+print ("RTSC File Name	                : " + prussRTSCFileName);
+print ("pruss Socket Driver LLD Path    : " + driverPath);
+if (pOpts == 1) 
+{
+    print ("CC LE opts                      : " + C66LE.ccOpts.prefix);
+    print ("CC BE opts                      : " + C66BE.ccOpts.prefix);
+    print ("M4 LE opts                      : " + M4LE.ccOpts.prefix);
+    print ("A15 basic opts                  : " + A15LE.ccOpts.prefix);
+}
+print ("****************************************************************");
+
+/* Create the release package for the pruss LLD */
+Pkg.defaultRelease = Pkg.addRelease (prussRTSCFileName, {prefix: "./packages/"});
+
+/* Moving forward we need to set the Archiver of the package to be ZIP. This is currently
+ * not supported in the XDC tools being used. Currenly builds need to be done with the 
+ * following options:-
+ *   xdc MK_FIXLISTOPTS=-t release 
+ * ZIP is a better option as it works natively with INSTALL Jammer and we can remove the
+ * uncompression into a temporary directory. XDC Tools with xdc-rXX support the ZIP archiver. */
+//Pkg.attrs = {archiver : "zip"};
+
+/* Cycle through all the sub-directories and build all the files */
+for (var i = 0; i < subDirectories.length; i++) 
+{
+    /* Load the capsule in the sub directory. */
+    var caps = xdc.loadCapsule (subDirectories[i]+"/Module.xs");
+
+    print ("Building directory " + subDirectories[i]);
+
+    /* Build the capsule. */
+    caps.modBuild();
+
+    /* Package the module.xs files for building via package */
+    Pkg.otherFiles[Pkg.otherFiles.length++] = subDirectories[i]+"/Module.xs";
+}
+
+/* Package the remaining files */
+Pkg.otherFiles[Pkg.otherFiles.length++] = "config.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "config_mk.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "package.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "package.xdc";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "package.xs";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "Settings.xdc";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "Settings.xdc.xdt";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "pruicss.h";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "pruicss_ver.h";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "pruicss_ver.h.xdt";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "docs/Doxyfile";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "docs/doxyfile.xdt";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/buildlib.xs";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "makefile";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile_indp.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile_profile_indp.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile_profile.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile_sorte_master.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile_sorte_slave.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/src_files_common.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "pruss_component.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "./lib";
+
+/* Generate Users Manual Doxyfile */
+var tplt = xdc.loadTemplate("./docs/doxyfile.xdt");
+tplt.genFile("./docs/Doxyfile",driverReleaseVersion); 
+
+/* Generate Settings.xdc */
+var tplt = xdc.loadTemplate("./Settings.xdc.xdt");
+tplt.genFile("./Settings.xdc",driverReleaseVersion); 
+
+/* Generate paver.h */
+var tplt = xdc.loadTemplate("./pruicss_ver.h.xdt");
+tplt.genFile("./pruicss_ver.h",driverReleaseVersion);      
+
+    

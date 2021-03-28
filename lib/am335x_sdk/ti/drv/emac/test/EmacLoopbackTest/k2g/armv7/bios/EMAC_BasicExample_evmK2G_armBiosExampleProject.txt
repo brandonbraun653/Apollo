@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_loc.h"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_main_keystone.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/k2g/armv7/bios/test_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/cppi/device/k2g/src/cppi_device.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/qmss/device/k2g/src/qmss_device.c" 
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/k2g/armv7/bios/emac_example_k2g.cfg" 
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_K2G -DDEVICE_K2G -DNSS_LITE -DNUM_PORTS=2 -D_LITTLE_ENDIAN=1 -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/cppi -I${PDK_INSTALL_PATH}/ti/drv/qmss"  -rtsc.enableRtsc

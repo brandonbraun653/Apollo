@@ -1,0 +1,11 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/dev_msc_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_dev/msc/usb_msc_structs.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/usb_dev/msc/usbdmscglue.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/ramdisk/ramdiskutils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/timer.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/common/usb_osal.c"
+
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/usb/example/bios/omap/usb_c674x_omapl138.cfg"
+
+-ccs.setCompilerOptions "-DTIRTOS -mv64+ -g -Domapl138 -DSOC_OMAPL138 -DlcdkOMAPL138 --diag_warning=225 -I${PDK_INSTALL_PATH}/ti/drv/usb -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/usb/example/usb_dev/msc -I${PDK_INSTALL_PATH}/ti/drv/usb/example/ramdisk -I${PDK_INSTALL_PATH}/ti/drv/usb/src/usb_func/include -I${PDK_INSTALL_PATH}/ti/drv/usb/example/common -I${PDK_INSTALL_PATH}/ti/drv/usb/src/include  -I${PDK_INSTALL_PATH}/ti/drv/usb/example/shell "  -rtsc.enableRtsc
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl138/config_omapl138_c674x.bld -DBOARD=lcdkOMAPL138"

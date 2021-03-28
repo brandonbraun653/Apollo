@@ -1,0 +1,42 @@
+/******************************************************************************
+ * FILE PURPOSE: Build configuration Script for the gpmc Driver
+ ******************************************************************************
+ * FILE NAME: config.bld
+ *
+ * DESCRIPTION:
+ *  This file contains the build configuration script for the gpmc driver
+ *  and is responsible for configuration of the paths for the various
+ *  tools required to build the driver.
+ *
+ * Copyright (C) 2014-2016, Texas Instruments, Inc.
+ *****************************************************************************/
+/* Get the Tools Base directory from the Environment Variable. */
+var c66ToolsBaseDir = java.lang.System.getenv("C6X_GEN_INSTALL_PATH");
+var m4ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_M4");
+var a15ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A15");
+var a9ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A9");
+var a8ToolsBaseDir = java.lang.System.getenv("TOOLCHAIN_PATH_A8");
+
+
+/* Get the base directory for the gpmc Socket Driver Package */
+var driverPath = new java.io.File(".//").getPath();
+
+/* Include Path */
+var lldIncludePath = " -I" + driverPath + "/src" + " -I" + driverPath;
+
+/* Configure the gpmc Socket Release Version Information */
+/* 3 steps: remove SPACE and TAB, convert to string and split to make array */
+var driverReleaseVersion = (""+Pkg.version.replace(/\s/g, "")).split(',');
+
+/* Do not print the compiler options */
+var pOpts = 0;
+
+/* List of all devices that needs to be build via XDC
+ * As the build happens through makefile, there is nothing to build via XDC
+ * using the below for packaging infrastructure
+ */
+var socs = [];
+var devices = [];
+var build_devices = [];
+Build.targets = []
+

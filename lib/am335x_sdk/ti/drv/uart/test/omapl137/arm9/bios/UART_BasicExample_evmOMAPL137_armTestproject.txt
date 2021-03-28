@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/omapl137/arm9/bios/uart_arm.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv5e --float_support=vfplib --abi=eabi -g -Domapl138 -DUART_V0 -DSOC_OMAPL137 -DevmOMAPL137 -DevmOMAPL137 -I${PDK_INSTALL_PATH}/ti/drv/uart "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " --strict_compatibility=on "
+

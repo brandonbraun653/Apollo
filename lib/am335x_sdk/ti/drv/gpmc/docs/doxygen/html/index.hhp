@@ -1,0 +1,65 @@
+[OPTIONS]
+Compiled file=..\..\gpmclldDocs.chm
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=GPMC Low Level Driver
+
+[WINDOWS]
+main="GPMC Low Level Driver","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+_g_p_m_c_8h.html
+_g_p_m_c__drv_8c.html
+_g_p_m_c__osal_8h.html
+_g_p_m_c__soc_8h.html
+_g_p_m_c__v1_8c.html
+_g_p_m_c__v1_8h.html
+_g_p_m_cver_8h.html
+struct_g_p_m_c___config__s.html
+struct_g_p_m_c___fxn_table__s.html
+struct_g_p_m_c___params__s.html
+struct_g_p_m_c___transaction__s.html
+struct_g_p_m_c__v1___hw_attrs__s.html
+struct_g_p_m_c__v1___object__s.html
+struct_g_p_m_c__v1__timing_params.html
+dir_142a5021ff38bb78dc33d65c9d396c41.html
+dir_e02a9c67101481dad483096b434737de.html
+dir_19d806e154b23a5f4c4c08b2e30365a6.html
+dir_68267d1309a1af8e8297ef4c3efbcdba.html
+dir_bc1ce55c71497bbf3c7dee2998830806.html
+index.html
+annotated.html
+classes.html
+functions.html
+functions_vars.html
+files.html
+globals.html
+globals_func.html
+globals_type.html
+globals_enum.html
+globals_eval.html
+globals_defs.html
+tab_a.png
+tab_b.png
+tab_h.png
+tab_s.png
+nav_h.png
+nav_f.png
+bc_s.png
+doxygen.png
+closed.png
+open.png
+bdwn.png
+sync_on.png
+sync_off.png
+doc.png
+folderopen.png
+folderclosed.png
+arrowdown.png
+arrowright.png
+splitbar.png

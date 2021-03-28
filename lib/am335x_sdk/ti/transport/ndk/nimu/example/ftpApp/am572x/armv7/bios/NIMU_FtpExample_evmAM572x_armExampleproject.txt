@@ -1,0 +1,10 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/src/main_AM57xx.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/ftpApp/ftpserver/ftp_commands.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/ftpApp/ftpserver/ftp_filerout.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/ftpApp/ftpserver/ftpserver.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/src/nimu_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/am572x/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/transport/ndk/nimu/example/am572x/armv7/bios/nimu_evm.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM572x -DevmAM572x -DNIMU_FTP_APP -g -gstrict-dwarf -Wall -MMD -MP "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -l:os.aa15fg -nostartfiles -static -Wl,--gc-sections -L${NDK_INSTALL_DIR}/packages/ti/ndk/os/lib"

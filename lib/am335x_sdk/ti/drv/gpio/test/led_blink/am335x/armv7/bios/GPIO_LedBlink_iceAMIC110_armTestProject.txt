@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/am335x/GPIO_iceAMIC110_board.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am335x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/main_led_blink.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/src/GPIO_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am335x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/test/led_blink/am335x/armv7/bios/am335x_app_iceamic110.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard  -DSOC_AM335x -Dicev2AM335x -DUSE_BIOS -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/gpio -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections  "
+

@@ -1,0 +1,178 @@
+/******************************************************************************
+ * FILE PURPOSE: Build description for the nimu_icss Driver
+ ******************************************************************************
+ * FILE NAME: package.bld
+ *
+ * DESCRIPTION: 
+ *  This file contains the build specification and description for the nimu_icss driver
+ *  
+ *  The file takes the following parameters from the command line through the
+ *  XDCARGS variable.
+ *      XDCARGS[0] = Driver Install Type 
+ *      Valid Values are "TAR" or "SETUP"
+ *      DEFAULT is "SETUP"
+ *
+ *  Example for a valid command:
+ *      xdc XDCARGS="SETUP" release   
+ *
+ * Copyright (C) 2014-2015, Texas Instruments, Inc.
+ *****************************************************************************/
+
+/* List of all subdirectories that combine to make the nimu_icss Socket Driver Package. */
+var subDirectories = [ "src", "example", "docs" ];
+
+var driverInstallType;
+
+/* Determine if we need to create the InstallJammer Application or not? 
+ * nimu_icss LLD Deliverables be either of the following formats:
+ *  - TAR Ball Package
+ *  - Setup Executable 
+ * DEFAULT is a SETUP Executable. */
+
+if ((arguments[0] != "TAR") && (arguments[0] != "SETUP"))
+    driverInstallType = "TAR";
+else
+    driverInstallType = arguments[0];
+
+/* Irrespective of the InstallType we always create a TAR Ball Package as a part
+ * of the RTSC Build. Here we determine the name of the TAR Ball Package
+ *  Format is as follows:
+ *      nimu_icss_<version> */
+var nimu_icssRTSCFileName = "nimu_icss" + "_" + LLDPartNumber + "_" + 
+                      driverReleaseVersion[0] + "_" +  driverReleaseVersion[1] + "_" + 
+                      driverReleaseVersion[2]  + "_" + driverReleaseVersion[3];
+
+/******************************************************************
+ ************************ Release Banner **************************
+ ******************************************************************/
+
+print ("************* nimu_icss Socket Driver Build Information *************");
+print ("nimu_icss Socket Driver Install       : " + driverInstallType);
+print ("nimu_icss Socket Driver LLD Version   : " + driverReleaseVersion);
+print ("C66 Tools Directory             : " + c66ToolsBaseDir);
+print ("M4 Tools Directory              : " + m4ToolsBaseDir);
+print ("A15 Tools Directory             : " + a15ToolsBaseDir);
+print ("RTSC File Name	                : " + nimu_icssRTSCFileName);
+print ("nimu_icss Socket Driver LLD Path      : " + driverPath);
+if (pOpts == 1) 
+{	
+    print ("CC LE opts                      : " + C66LE.ccOpts.prefix);
+    print ("CC BE opts                      : " + C66BE.ccOpts.prefix);
+    print ("M4 LE opts                      : " + M4LE.ccOpts.prefix);
+    print ("A15 basic opts                  : " + A15LE.ccOpts.prefix);
+}
+print ("****************************************************************");
+
+/* Create the release package for the nimu_icss LLD */
+Pkg.defaultRelease = Pkg.addRelease (nimu_icssRTSCFileName, {prefix: "./packages/"});
+
+/* Moving forward we need to set the Archiver of the package to be ZIP. This is currently
+ * not supported in the XDC tools being used. Currenly builds need to be done with the 
+ * following options:-
+ *   xdc MK_FIXLISTOPTS=-t release 
+ * ZIP is a better option as it works natively with INSTALL Jammer and we can remove the
+ * uncompression into a temporary directory. XDC Tools with xdc-rXX support the ZIP archiver. */
+//Pkg.attrs = {archiver : "zip"};
+
+/* Cycle through all the sub-directories and build all the files */
+for (var i = 0; i < subDirectories.length; i++) 
+{
+    /* Load the capsule in the sub directory. */
+    var caps = xdc.loadCapsule (subDirectories[i]+"/Module.xs");
+
+    print ("Building directory " + subDirectories[i]);
+
+    /* Build the capsule. */
+    caps.modBuild();
+
+    /* Package the module.xs files for building via package */
+    Pkg.otherFiles[Pkg.otherFiles.length++] = subDirectories[i]+"/Module.xs";
+}
+
+/* Package the remaining files */
+Pkg.otherFiles[Pkg.otherFiles.length++] = "config.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "config_mk.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "package.bld";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "Settings.xdc";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "Settings.xdc.xdt";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "nimu_icssEth.h";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "nimu_icssIoctl.h";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "nimu_icss_ver.h";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "nimu_icss_ver.h.xdt";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/buildlib.xs";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "makefile";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile_indp.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "build/makefile_profile_indp.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "src/src_files_common.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "nimu_icss_component.mk";
+Pkg.otherFiles[Pkg.otherFiles.length++] = "./lib";
+
+/* Generate Users Manual Doxyfile */
+
+/* Generate Settings.xdc */
+var tplt = xdc.loadTemplate("./Settings.xdc.xdt");
+tplt.genFile("./Settings.xdc",driverReleaseVersion); 
+
+/* Generate paver.h */
+var tplt = xdc.loadTemplate("./nimu_icss_ver.h.xdt");
+tplt.genFile("./nimu_icss_ver.h",driverReleaseVersion);      
+
+/********************************************************************* 
+ *********************** INSTALL-JAMMER Support **********************
+ * In order to create the InstallJammer Application; we need to UNTAR
+ * the package into a temporary directory. This is required because 
+ * currently the InstallJammer does not support the TAR Files and thus
+ * creating an UNTAR of the file. So to work-around the problem we will
+ * do the following in the EPILOGUE Section:-
+ *  (a) Create a temporary directory called 'tmp'
+ *  (b) UNTAR the package into 'tmp'
+ *  (c) Run the INSTALL Jammer on 'tmp'
+ *  (d) Remove the 'tmp' directory.
+ *
+ * This can be done only after the 'release' package has been created.
+ * Thus all of this work is being done in the EPILOGUE.
+ *********************************************************************/
+if (driverInstallType == "SETUP")
+{
+    /* Create the Install Jammer Version Variable. This is used inside the 
+     * MPI File to create the Final executable. 
+     *  The format supported is as follows:-
+     *   - setupwin32_nimu_icss_<device>_<version>.exe 
+     */
+    var InstallJammerVersion = "-DVersion " + LLDPartNumber + "_" + 
+                               driverReleaseVersion[0] + "_" + driverReleaseVersion[1] + "_" +  
+                               driverReleaseVersion[2] + "_" + driverReleaseVersion[3];
+
+    /* This is the location where the tmp directory is located; this is used as 
+     * the input directory for the Install Jammer. */ 
+    var PackageBaseDir = " -DPackageBaseDir " + driverPath + "./tmp";
+
+    /* This is the location where the nimu_icss LLD will be installed by default. */
+    var WinInstallDir = " -DWinInstallDir C:/Program Files/Texas Instruments/nimu_icss" + "_" + 
+                            LLDPartNumber + "_" + 
+                            driverReleaseVersion[0] + "_" +  driverReleaseVersion[1] + "_" +  
+                            driverReleaseVersion[2]  + "_" + driverReleaseVersion[3];
+
+    /* Create the actual EPILOGUE Section for the INSTALLER */
+    Pkg.makeEpilogue += "release: install_application\n";
+    Pkg.makeEpilogue += "install_application:\n";
+    Pkg.makeEpilogue += "\t @echo -------------------------------------------------------\n";
+    Pkg.makeEpilogue += "\t @echo Creating the Install\n";
+    Pkg.makeEpilogue += "\t @echo -------------------------------------------------------\n";
+    Pkg.makeEpilogue += "\t -$(MKDIR) tmp\n";
+    Pkg.makeEpilogue += "\t -$(MKDIR) tmp/packages\n";
+    Pkg.makeEpilogue += "\t -$(MKDIR) tmp/eclipse\n";
+    Pkg.makeEpilogue += "\t -$(CP) -R eclipse tmp\n";
+    Pkg.makeEpilogue += "\t tar -xf ./packages/" + nimu_icssRTSCFileName + ".tar" + " -Ctmp/packages \n";
+    Pkg.makeEpilogue += "\t installjammer " + InstallJammerVersion + PackageBaseDir + WinInstallDir + 
+                        " --output-dir packages/ --build install/nimu_icsslld.mpi\n";
+    Pkg.makeEpilogue += "\t -$(RMDIR) /S /Q tmp\n\n";
+
+    /* We need to clean after ourselves; extend the 'clean' target to take care of this. */
+    Pkg.makeEpilogue += "clean::\n";
+    Pkg.makeEpilogue += "\t -$(RM) makefile\n";
+    Pkg.makeEpilogue += "\t $(RM) packages/*.exe\n";
+    Pkg.makeEpilogue += "\t $(RM) packages/*.bin\n";
+    Pkg.makeEpilogue += "\t -$(RMDIR) eclipse\n\n";
+}
+    

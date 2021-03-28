@@ -1,0 +1,60 @@
+clean::
+	$(RM) package/ti.starterware.dal.sch
+	$(RM) package/.vers_g200
+	$(RM) package/.vers_r200
+	$(RM) package/.vers_b200
+	$(RM) package/.xdc-G16
+	$(RM) package/ti_starterware_dal.java
+	$(RM) package/ti_starterware_dal.class
+	$(RM) package/package_ti.starterware.dal.c
+	$(RM) package/package.defs.h
+	$(RM) Settings.h
+	$(RM) package/internal/Settings.xdc.h
+	$(RM) package/ti.starterware.dal.ccs
+
+.interfaces: package/ti.starterware.dal.sch package/.vers_g200 package/.vers_r200 package/.vers_b200 package/.xdc-G16 package/ti_starterware_dal.java package/package_ti.starterware.dal.c package/package.defs.h Settings.h package/internal/Settings.xdc.h package/ti.starterware.dal.ccs 
+package/package.xdc.inc: package/.vers_g200
+package/.vers_g200:
+package/package.xdc.inc: package/.vers_r200
+package/.vers_r200:
+package/package.xdc.inc: package/.vers_b200
+package/.vers_b200:
+
+.interfaces: Settings.xdc 
+
+# schema include file dependencies
+package.xs:
+package/package.xdc.inc: package.xs
+
+# schema update dependencies
+package/package.xdc.inc: Settings.xdc
+package/package.xdc.inc: xdc/IPackage.xdc
+xdc/IPackage.xdc:
+vpath xdc/IPackage.xdc $(XPKGVPATH)
+
+ifneq (clean,$(MAKECMDGOALS))
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/shelf/java/tar.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/shelf/java/tar.jar
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/global/java/package.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/global/java/package.jar
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/shelf/java/antlr.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/shelf/java/antlr.jar
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/intern/xsr/java/package.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/intern/xsr/java/package.jar
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/shelf/java/js.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/shelf/java/js.jar
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/shelf/java/ecj.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/shelf/java/ecj.jar
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/spec/java/package.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/spec/java/package.jar
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/intern/cmd/java/package.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/intern/cmd/java/package.jar
+/oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/intern/gen/java/package.jar:
+package/package.xdc.inc: /oe/bld/build-CORTEX_1/arago-tmp-external-arm-toolchain/work/am335x_evm-linux-gnueabi/starterware-rtos/02.01.01.12A-r0.0/recipe-sysroot-native/usr/share/ti/ti-xdctools-tree/packages/xdc/services/intern/gen/java/package.jar
+endif
+# goals for files generated during schema generation but unspecified by schema's pattern rule
+package/package.xdc.inc: Settings.h
+Settings.h:
+package/package.xdc.inc: package/internal/Settings.xdc.h
+package/internal/Settings.xdc.h:
+

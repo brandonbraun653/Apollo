@@ -1,0 +1,9 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/gpio/soc/am571x/GPIO_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/src/main_mcspi_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am571x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/src/am571x/SPI_idkAM571x_board.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/am571x/armv7/bios/spi_arm_idkAM571x.cfg"
+-ccs.setCompilerOptions "-c -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_AM571x -DidkAM571x -DMCSPI_MULT_CHANNEL -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

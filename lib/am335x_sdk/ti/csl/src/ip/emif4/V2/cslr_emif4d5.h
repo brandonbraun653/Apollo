@@ -1,0 +1,3675 @@
+/********************************************************************
+ * Copyright (C) 2013-2014 Texas Instruments Incorporated.
+ * 
+ *  Redistribution and use in source and binary forms, with or without 
+ *  modification, are permitted provided that the following conditions 
+ *  are met:
+ *
+ *    Redistributions of source code must retain the above copyright 
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *    Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the 
+ *    documentation and/or other materials provided with the   
+ *    distribution.
+ *
+ *    Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+*/
+#ifndef CSLR_EMIF4D5_H_
+#define CSLR_EMIF4D5_H_
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+#include <ti/csl/cslr.h>
+#include <ti/csl/tistdtypes.h>
+
+
+/**************************************************************************
+* Register Overlay Structure for emif4daddressBlockTable
+**************************************************************************/
+typedef struct {
+    volatile Uint32 EMIF_MODULE_ID_AND_REVISION;
+    volatile Uint32 STATUS;
+    volatile Uint32 SDRAM_CONFIG;
+    volatile Uint32 SDRAM_CONFIG_2;
+    volatile Uint32 SDRAM_REFRESH_CONTROL;
+    volatile Uint32 SDRAM_REFRESH_CONTROL_SHADOW;
+    volatile Uint32 SDRAM_TIMING_1;
+    volatile Uint32 SDRAM_TIMING_1_SHADOW;
+    volatile Uint32 SDRAM_TIMING_2;
+    volatile Uint32 SDRAM_TIMING_2_SHADOW;
+    volatile Uint32 SDRAM_TIMING_3;
+    volatile Uint32 SDRAM_TIMING_3_SHADOW;
+    volatile Uint32 LPDDR2_NVM_TIMING;
+    volatile Uint32 LPDDR2_NVM_TIMING_SHADOW;
+    volatile Uint32 POWER_MANAGEMENT_CONTROL;
+    volatile Uint32 POWER_MANAGEMENT_CONTROL_SHADOW;
+    volatile Uint32 LPDDR2_MODE_REG_DATA;
+    volatile Uint8  RSVD0[12];
+    volatile Uint32 LPDDR2_MODE_REG_CONFIG;
+    volatile Uint32 OCP_CONFIG;
+    volatile Uint32 OCP_CONFIG_VALUE_1;
+    volatile Uint32 OCP_CONFIG_VALUE_2;
+    volatile Uint32 IODFT_TEST_LOGIC_GLOBAL_CONTROL;
+    volatile Uint32 IODFT_TEST_LOGIC_CONTROL_MISR_RESULT;
+    volatile Uint32 IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT;
+    volatile Uint32 IODFT_TEST_LOGIC_DATA_MISR_RESULT_1;
+    volatile Uint32 IODFT_TEST_LOGIC_DATA_MISR_RESULT_2;
+    volatile Uint32 IODFT_TEST_LOGIC_DATA_MISR_RESULT_3;
+    volatile Uint8  RSVD1[8];
+    volatile Uint32 PERFORMANCE_COUNTER_1;
+    volatile Uint32 PERFORMANCE_COUNTER_2;
+    volatile Uint32 PERFORMANCE_COUNTER_CONFIG;
+    volatile Uint32 PERFORMANCE_COUNTER_MASTER_REGION_SELECT;
+    volatile Uint32 PERFORMANCE_COUNTER_TIME;
+    volatile Uint32 MISC_REG;
+    volatile Uint32 DLL_CALIB_CTRL;
+    volatile Uint32 DLL_CALIB_CTRL_SHADOW;
+    volatile Uint32 END_OF_INTERRUPT;
+    volatile Uint32 SYSTEM_OCP_INTERRUPT_RAW_STATUS;
+    volatile Uint32 LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS;
+    volatile Uint32 SYSTEM_OCP_INTERRUPT_STATUS;
+    volatile Uint32 LOW_LATENCY_OCP_INTERRUPT_STATUS;
+    volatile Uint32 SYSTEM_OCP_INTERRUPT_ENABLE_SET;
+    volatile Uint32 LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET;
+    volatile Uint32 SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR;
+    volatile Uint32 LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR;
+    volatile Uint8  RSVD2[4];
+    volatile Uint32 SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG;
+    volatile Uint32 TEMPERATURE_ALERT_CONFIG;
+    volatile Uint32 OCP_ERROR_LOG;
+    volatile Uint32 READ_WRITE_LEVELING_RAMP_WINDOW;
+    volatile Uint32 READ_WRITE_LEVELING_RAMP_CONTROL;
+    volatile Uint32 READ_WRITE_LEVELING_CONTROL;
+    volatile Uint8  RSVD3[4];
+    volatile Uint32 DDR_PHY_CONTROL_1;
+    volatile Uint32 DDR_PHY_CONTROL_1_SHADOW;
+    volatile Uint32 DDR_PHY_CONTROL_2;
+    volatile Uint8  RSVD4[16];
+    volatile Uint32 PRIORITY_TO_CLASS_OF_SERVICE_MAPPING;
+    volatile Uint32 CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING;
+    volatile Uint32 CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING;
+    volatile Uint8  RSVD5[4];
+    volatile Uint32 ECC_CTRL_REG;
+    volatile Uint32 ECC_ADDRESS_RANGE_1;
+    volatile Uint32 ECC_ADDRESS_RANGE_2;
+    volatile Uint8  RSVD6[4];
+    volatile Uint32 READ_WRITE_EXECUTION_THRESHOLD;
+    volatile Uint32 COS_CONFIG;
+    volatile Uint8  RSVD7[8];
+    volatile Uint32 B_ECC_ERR_CNT;
+    volatile Uint32 B_ECC_ERR_THRSH;
+    volatile Uint32 B_ECC_ERR_DIST_1;
+    volatile Uint32 B_ECC_ERR_ADDR_LOG1;
+    volatile Uint32 B_ECC_ERR_ADDR_LOG2;
+    volatile Uint32 PHY_STATUS_1;
+    volatile Uint32 PHY_STATUS_2;
+    volatile Uint32 PHY_STATUS_3;
+    volatile Uint32 PHY_STATUS_4;
+    volatile Uint32 PHY_STATUS_5;
+    volatile Uint32 PHY_STATUS_6;
+    volatile Uint32 PHY_STATUS_7;
+    volatile Uint32 PHY_STATUS_8;
+    volatile Uint32 PHY_STATUS_9;
+    volatile Uint32 PHY_STATUS_10;
+    volatile Uint32 PHY_STATUS_11;
+    volatile Uint32 PHY_STATUS_12;
+    volatile Uint32 PHY_STATUS_13;
+    volatile Uint32 PHY_STATUS_14;
+    volatile Uint32 PHY_STATUS_15;
+    volatile Uint32 PHY_STATUS_16;
+    volatile Uint32 PHY_STATUS_17;
+    volatile Uint32 PHY_STATUS_18;
+    volatile Uint32 PHY_STATUS_19;
+    volatile Uint32 PHY_STATUS_20;
+    volatile Uint32 PHY_STATUS_21;
+    volatile Uint32 PHY_STATUS_22;
+    volatile Uint32 PHY_STATUS_23;
+    volatile Uint32 PHY_STATUS_24;
+    volatile Uint32 PHY_STATUS_25;
+    volatile Uint32 PHY_STATUS_26;
+    volatile Uint32 PHY_STATUS_27;
+    volatile Uint32 PHY_STATUS_28;
+    volatile Uint8  RSVD8[76];
+    volatile Uint32 EXT_PHY_CONTROL_1;
+    volatile Uint32 EXT_PHY_CONTROL_1_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_2;
+    volatile Uint32 EXT_PHY_CONTROL_2_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_3;
+    volatile Uint32 EXT_PHY_CONTROL_3_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_4;
+    volatile Uint32 EXT_PHY_CONTROL_4_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_5;
+    volatile Uint32 EXT_PHY_CONTROL_5_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_6;
+    volatile Uint32 EXT_PHY_CONTROL_6_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_7;
+    volatile Uint32 EXT_PHY_CONTROL_7_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_8;
+    volatile Uint32 EXT_PHY_CONTROL_8_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_9;
+    volatile Uint32 EXT_PHY_CONTROL_9_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_10;
+    volatile Uint32 EXT_PHY_CONTROL_10_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_11;
+    volatile Uint32 EXT_PHY_CONTROL_11_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_12;
+    volatile Uint32 EXT_PHY_CONTROL_12_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_13;
+    volatile Uint32 EXT_PHY_CONTROL_13_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_14;
+    volatile Uint32 EXT_PHY_CONTROL_14_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_15;
+    volatile Uint32 EXT_PHY_CONTROL_15_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_16;
+    volatile Uint32 EXT_PHY_CONTROL_16_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_17;
+    volatile Uint32 EXT_PHY_CONTROL_17_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_18;
+    volatile Uint32 EXT_PHY_CONTROL_18_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_19;
+    volatile Uint32 EXT_PHY_CONTROL_19_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_20;
+    volatile Uint32 EXT_PHY_CONTROL_20_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_21;
+    volatile Uint32 EXT_PHY_CONTROL_21_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_22;
+    volatile Uint32 EXT_PHY_CONTROL_22_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_23;
+    volatile Uint32 EXT_PHY_CONTROL_23_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_24;
+    volatile Uint32 EXT_PHY_CONTROL_24_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_25;
+    volatile Uint32 EXT_PHY_CONTROL_25_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_26;
+    volatile Uint32 EXT_PHY_CONTROL_26_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_27;
+    volatile Uint32 EXT_PHY_CONTROL_27_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_28;
+    volatile Uint32 EXT_PHY_CONTROL_28_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_29;
+    volatile Uint32 EXT_PHY_CONTROL_29_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_30;
+    volatile Uint32 EXT_PHY_CONTROL_30_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_31;
+    volatile Uint32 EXT_PHY_CONTROL_31_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_32;
+    volatile Uint32 EXT_PHY_CONTROL_32_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_33;
+    volatile Uint32 EXT_PHY_CONTROL_33_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_34;
+    volatile Uint32 EXT_PHY_CONTROL_34_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_35;
+    volatile Uint32 EXT_PHY_CONTROL_35_SHADOW;
+    volatile Uint32 EXT_PHY_CONTROL_36;
+    volatile Uint32 EXT_PHY_CONTROL_36_SHADOW;
+} CSL_Emif4d5Regs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+/* EMIF_MODULE_ID_AND_REVISION */
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION                 (0x0U)
+
+/* STATUS */
+#define CSL_EMIF4D5_STATUS                                      (0x4U)
+
+/* SDRAM_CONFIG */
+#define CSL_EMIF4D5_SDRAM_CONFIG                                (0x8U)
+
+/* SDRAM_CONFIG_2 */
+#define CSL_EMIF4D5_SDRAM_CONFIG_2                              (0xCU)
+
+/* SDRAM_REFRESH_CONTROL */
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL                       (0x10U)
+
+/* SDRAM_REFRESH_CONTROL_SHADOW */
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SHADOW                (0x14U)
+
+/* SDRAM_TIMING_1 */
+#define CSL_EMIF4D5_SDRAM_TIMING_1                              (0x18U)
+
+/* SDRAM_TIMING_1_SHADOW */
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW                       (0x1CU)
+
+/* SDRAM_TIMING_2 */
+#define CSL_EMIF4D5_SDRAM_TIMING_2                              (0x20U)
+
+/* SDRAM_TIMING_2_SHADOW */
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW                       (0x24U)
+
+/* SDRAM_TIMING_3 */
+#define CSL_EMIF4D5_SDRAM_TIMING_3                              (0x28U)
+
+/* SDRAM_TIMING_3_SHADOW */
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW                       (0x2CU)
+
+/* LPDDR2_NVM_TIMING */
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING                           (0x30U)
+
+/* LPDDR2_NVM_TIMING_SHADOW */
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW                    (0x34U)
+
+/* POWER_MANAGEMENT_CONTROL */
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL                    (0x38U)
+
+/* POWER_MANAGEMENT_CONTROL_SHADOW */
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW             (0x3CU)
+
+/* LPDDR2_MODE_REG_DATA */
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_DATA                        (0x40U)
+
+/* LPDDR2_MODE_REG_CONFIG */
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG                      (0x50U)
+
+/* OCP_CONFIG */
+#define CSL_EMIF4D5_OCP_CONFIG                                  (0x54U)
+
+/* OCP_CONFIG_VALUE_1 */
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1                          (0x58U)
+
+/* OCP_CONFIG_VALUE_2 */
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2                          (0x5CU)
+
+/* IODFT_TEST_LOGIC_GLOBAL_CONTROL */
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL             (0x60U)
+
+/* IODFT_TEST_LOGIC_CONTROL_MISR_RESULT */
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT        (0x64U)
+
+/* IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT */
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT        (0x68U)
+
+/* IODFT_TEST_LOGIC_DATA_MISR_RESULT_1 */
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_1         (0x6CU)
+
+/* IODFT_TEST_LOGIC_DATA_MISR_RESULT_2 */
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_2         (0x70U)
+
+/* IODFT_TEST_LOGIC_DATA_MISR_RESULT_3 */
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_3         (0x74U)
+
+/* PERFORMANCE_COUNTER_1 */
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_1                       (0x80U)
+
+/* PERFORMANCE_COUNTER_2 */
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_2                       (0x84U)
+
+/* PERFORMANCE_COUNTER_CONFIG */
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG                  (0x88U)
+
+/* PERFORMANCE_COUNTER_MASTER_REGION_SELECT */
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT    (0x8CU)
+
+/* PERFORMANCE_COUNTER_TIME */
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_TIME                    (0x90U)
+
+/* DLL_CALIB_CTRL */
+#define CSL_EMIF4D5_DLL_CALIB_CTRL                              (0x98U)
+
+/* DLL_CALIB_CTRL_SHADOW */
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW                       (0x9CU)
+
+/* END_OF_INTERRUPT */
+#define CSL_EMIF4D5_END_OF_INTERRUPT                            (0xA0U)
+
+/* SYSTEM_OCP_INTERRUPT_RAW_STATUS */
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS             (0xA4U)
+
+/* LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS */
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS        (0xA8U)
+
+/* SYSTEM_OCP_INTERRUPT_STATUS */
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS                 (0xACU)
+
+/* LOW_LATENCY_OCP_INTERRUPT_STATUS */
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS            (0xB0U)
+
+/* SYSTEM_OCP_INTERRUPT_ENABLE_SET */
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET             (0xB4U)
+
+/* LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET */
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET        (0xB8U)
+
+/* SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR */
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR           (0xBCU)
+
+/* LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR */
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR      (0xC0U)
+
+/* SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG */
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG   (0xC8U)
+
+/* TEMPERATURE_ALERT_CONFIG */
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG                    (0xCCU)
+
+/* OCP_ERROR_LOG */
+#define CSL_EMIF4D5_OCP_ERROR_LOG                               (0xD0U)
+
+/* READ_WRITE_LEVELING_RAMP_WINDOW */
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_WINDOW             (0xD4U)
+
+/* READ_WRITE_LEVELING_RAMP_CONTROL */
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL            (0xD8U)
+
+/* READ_WRITE_LEVELING_CONTROL */
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL                 (0xDCU)
+
+/* DDR_PHY_CONTROL_1 */
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1                           (0xE4U)
+
+/* DDR_PHY_CONTROL_1_SHADOW */
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW                    (0xE8U)
+
+/* DDR_PHY_CONTROL_2 */
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_2                           (0xECU)
+
+/* PRIORITY_TO_CLASS_OF_SERVICE_MAPPING */
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING        (0x100U)
+
+/* CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING */
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING  (0x104U)
+
+/* CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING */
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING  (0x108U)
+
+/* ECC_CTRL_REG */
+#define CSL_EMIF4D5_ECC_CTRL_REG                                (0x110U)
+
+/* ECC_ADDRESS_RANGE_1 */
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1                         (0x114U)
+
+/* ECC_ADDRESS_RANGE_2 */
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2                         (0x118U)
+
+/* READ_WRITE_EXECUTION_THRESHOLD */
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD              (0x120U)
+
+/* COS_CONFIG */
+#define CSL_EMIF4D5_COS_CONFIG                                  (0x124U)
+
+/* B_ECC_ERR_CNT */
+#define CSL_EMIF4D5_B_ECC_ERR_CNT                               (0x130U)
+
+/* B_ECC_ERR_THRSH */
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH                             (0x134U)
+
+/* B_ECC_ERR_DIST_1 */
+#define CSL_EMIF4D5_B_ECC_ERR_DIST_1                            (0x138U)
+
+/* B_ECC_ERR_ADDR_LOG1 */
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG1                         (0x13CU)
+
+/* B_ECC_ERR_ADDR_LOG2 */
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG2                         (0x140U)
+
+/* PHY_STATUS_1 */
+#define CSL_EMIF4D5_PHY_STATUS_1                                (0x144U)
+
+/* PHY_STATUS_2 */
+#define CSL_EMIF4D5_PHY_STATUS_2                                (0x148U)
+
+/* PHY_STATUS_3 */
+#define CSL_EMIF4D5_PHY_STATUS_3                                (0x14CU)
+
+/* PHY_STATUS_4 */
+#define CSL_EMIF4D5_PHY_STATUS_4                                (0x150U)
+
+/* PHY_STATUS_5 */
+#define CSL_EMIF4D5_PHY_STATUS_5                                (0x154U)
+
+/* PHY_STATUS_6 */
+#define CSL_EMIF4D5_PHY_STATUS_6                                (0x158U)
+
+/* PHY_STATUS_7 */
+#define CSL_EMIF4D5_PHY_STATUS_7                                (0x15CU)
+
+/* PHY_STATUS_8 */
+#define CSL_EMIF4D5_PHY_STATUS_8                                (0x160U)
+
+/* PHY_STATUS_9 */
+#define CSL_EMIF4D5_PHY_STATUS_9                                (0x164U)
+
+/* PHY_STATUS_10 */
+#define CSL_EMIF4D5_PHY_STATUS_10                               (0x168U)
+
+/* PHY_STATUS_11 */
+#define CSL_EMIF4D5_PHY_STATUS_11                               (0x16CU)
+
+/* PHY_STATUS_12 */
+#define CSL_EMIF4D5_PHY_STATUS_12                               (0x170U)
+
+/* PHY_STATUS_13 */
+#define CSL_EMIF4D5_PHY_STATUS_13                               (0x174U)
+
+/* PHY_STATUS_14 */
+#define CSL_EMIF4D5_PHY_STATUS_14                               (0x178U)
+
+/* PHY_STATUS_15 */
+#define CSL_EMIF4D5_PHY_STATUS_15                               (0x17CU)
+
+/* PHY_STATUS_16 */
+#define CSL_EMIF4D5_PHY_STATUS_16                               (0x180U)
+
+/* PHY_STATUS_17 */
+#define CSL_EMIF4D5_PHY_STATUS_17                               (0x184U)
+
+/* PHY_STATUS_18 */
+#define CSL_EMIF4D5_PHY_STATUS_18                               (0x188U)
+
+/* PHY_STATUS_19 */
+#define CSL_EMIF4D5_PHY_STATUS_19                               (0x18CU)
+
+/* PHY_STATUS_20 */
+#define CSL_EMIF4D5_PHY_STATUS_20                               (0x190U)
+
+/* PHY_STATUS_21 */
+#define CSL_EMIF4D5_PHY_STATUS_21                               (0x194U)
+
+/* PHY_STATUS_22 */
+#define CSL_EMIF4D5_PHY_STATUS_22                               (0x198U)
+
+/* PHY_STATUS_23 */
+#define CSL_EMIF4D5_PHY_STATUS_23                               (0x19CU)
+
+/* PHY_STATUS_24 */
+#define CSL_EMIF4D5_PHY_STATUS_24                               (0x1A0U)
+
+/* PHY_STATUS_25 */
+#define CSL_EMIF4D5_PHY_STATUS_25                               (0x1A4U)
+
+/* PHY_STATUS_26 */
+#define CSL_EMIF4D5_PHY_STATUS_26                               (0x1A8U)
+
+/* PHY_STATUS_27 */
+#define CSL_EMIF4D5_PHY_STATUS_27                               (0x1ACU)
+
+/* PHY_STATUS_28 */
+#define CSL_EMIF4D5_PHY_STATUS_28                               (0x1B0U)
+
+/* EXT_PHY_CONTROL_1 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1                           (0x200U)
+
+/* EXT_PHY_CONTROL_1_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_SHADOW                    (0x204U)
+
+/* EXT_PHY_CONTROL_2 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2                           (0x208U)
+
+/* EXT_PHY_CONTROL_2_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW                    (0x20CU)
+
+/* EXT_PHY_CONTROL_3 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3                           (0x210U)
+
+/* EXT_PHY_CONTROL_3_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW                    (0x214U)
+
+/* EXT_PHY_CONTROL_4 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4                           (0x218U)
+
+/* EXT_PHY_CONTROL_4_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW                    (0x21CU)
+
+/* EXT_PHY_CONTROL_5 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5                           (0x220U)
+
+/* EXT_PHY_CONTROL_5_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW                    (0x224U)
+
+/* EXT_PHY_CONTROL_6 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6                           (0x228U)
+
+/* EXT_PHY_CONTROL_6_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW                    (0x22CU)
+
+/* EXT_PHY_CONTROL_7 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7                           (0x230U)
+
+/* EXT_PHY_CONTROL_7_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW                    (0x234U)
+
+/* EXT_PHY_CONTROL_8 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8                           (0x238U)
+
+/* EXT_PHY_CONTROL_8_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW                    (0x23CU)
+
+/* EXT_PHY_CONTROL_9 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9                           (0x240U)
+
+/* EXT_PHY_CONTROL_9_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW                    (0x244U)
+
+/* EXT_PHY_CONTROL_10 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10                          (0x248U)
+
+/* EXT_PHY_CONTROL_10_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW                   (0x24CU)
+
+/* EXT_PHY_CONTROL_11 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11                          (0x250U)
+
+/* EXT_PHY_CONTROL_11_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW                   (0x254U)
+
+/* EXT_PHY_CONTROL_12 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12                          (0x258U)
+
+/* EXT_PHY_CONTROL_12_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW                   (0x25CU)
+
+/* EXT_PHY_CONTROL_13 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13                          (0x260U)
+
+/* EXT_PHY_CONTROL_13_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW                   (0x264U)
+
+/* EXT_PHY_CONTROL_14 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14                          (0x268U)
+
+/* EXT_PHY_CONTROL_14_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW                   (0x26CU)
+
+/* EXT_PHY_CONTROL_15 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15                          (0x270U)
+
+/* EXT_PHY_CONTROL_15_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW                   (0x274U)
+
+/* EXT_PHY_CONTROL_16 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16                          (0x278U)
+
+/* EXT_PHY_CONTROL_16_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW                   (0x27CU)
+
+/* EXT_PHY_CONTROL_17 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17                          (0x280U)
+
+/* EXT_PHY_CONTROL_17_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW                   (0x284U)
+
+/* EXT_PHY_CONTROL_18 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18                          (0x288U)
+
+/* EXT_PHY_CONTROL_18_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW                   (0x28CU)
+
+/* EXT_PHY_CONTROL_19 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19                          (0x290U)
+
+/* EXT_PHY_CONTROL_19_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW                   (0x294U)
+
+/* EXT_PHY_CONTROL_20 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20                          (0x298U)
+
+/* EXT_PHY_CONTROL_20_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW                   (0x29CU)
+
+/* EXT_PHY_CONTROL_21 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21                          (0x2A0U)
+
+/* EXT_PHY_CONTROL_21_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW                   (0x2A4U)
+
+/* EXT_PHY_CONTROL_22 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22                          (0x2A8U)
+
+/* EXT_PHY_CONTROL_22_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW                   (0x2ACU)
+
+/* EXT_PHY_CONTROL_23 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23                          (0x2B0U)
+
+/* EXT_PHY_CONTROL_23_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW                   (0x2B4U)
+
+/* EXT_PHY_CONTROL_24 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24                          (0x2B8U)
+
+/* EXT_PHY_CONTROL_24_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW                   (0x2BCU)
+
+/* EXT_PHY_CONTROL_25 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25                          (0x2C0U)
+
+/* EXT_PHY_CONTROL_25_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_SHADOW                   (0x2C4U)
+
+/* EXT_PHY_CONTROL_26 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26                          (0x2C8U)
+
+/* EXT_PHY_CONTROL_26_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW                   (0x2CCU)
+
+/* EXT_PHY_CONTROL_27 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27                          (0x2D0U)
+
+/* EXT_PHY_CONTROL_27_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW                   (0x2D4U)
+
+/* EXT_PHY_CONTROL_28 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28                          (0x2D8U)
+
+/* EXT_PHY_CONTROL_28_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW                   (0x2DCU)
+
+/* EXT_PHY_CONTROL_29 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29                          (0x2E0U)
+
+/* EXT_PHY_CONTROL_29_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW                   (0x2E4U)
+
+/* EXT_PHY_CONTROL_30 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30                          (0x2E8U)
+
+/* EXT_PHY_CONTROL_30_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW                   (0x2ECU)
+
+/* EXT_PHY_CONTROL_31 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31                          (0x2F0U)
+
+/* EXT_PHY_CONTROL_31_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW                   (0x2F4U)
+
+/* EXT_PHY_CONTROL_32 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32                          (0x2F8U)
+
+/* EXT_PHY_CONTROL_32_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW                   (0x2FCU)
+
+/* EXT_PHY_CONTROL_33 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33                          (0x300U)
+
+/* EXT_PHY_CONTROL_33_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW                   (0x304U)
+
+/* EXT_PHY_CONTROL_34 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34                          (0x308U)
+
+/* EXT_PHY_CONTROL_34_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW                   (0x30CU)
+
+/* EXT_PHY_CONTROL_35 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35                          (0x310U)
+
+/* EXT_PHY_CONTROL_35_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW                   (0x314U)
+
+/* EXT_PHY_CONTROL_36 */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36                          (0x318U)
+
+/* EXT_PHY_CONTROL_36_SHADOW */
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW                   (0x31CU)
+
+/* MISC_REG */
+#define CSL_EMIF4D5_MISC_REG                                    (0x94U)
+
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+/* EMIF_MODULE_ID_AND_REVISION */
+
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_SCHEME_MASK     (0xC0000000U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_SCHEME_SHIFT    (30U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_SCHEME_RESETVAL  (0x00000001U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_SCHEME_MAX      (0x00000003U)
+
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_BU_MASK         (0x30000000U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_BU_SHIFT        (28U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_BU_RESETVAL     (0x00000001U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_BU_MAX          (0x00000003U)
+
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MODULE_ID_MASK  (0x0FFF0000U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MODULE_ID_SHIFT  (16U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MODULE_ID_RESETVAL  (0x00000044U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MODULE_ID_MAX   (0x00000fffU)
+
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_RTL_VERSION_MASK  (0x0000F800U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_RTL_VERSION_SHIFT  (11U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_RTL_VERSION_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_RTL_VERSION_MAX  (0x0000001fU)
+
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MAJOR_REVISION_MASK  (0x00000700U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MAJOR_REVISION_SHIFT  (8U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MAJOR_REVISION_RESETVAL  (0x00000005U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MAJOR_REVISION_MAX  (0x00000007U)
+
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MINOR_REVISION_MASK  (0x0000003FU)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MINOR_REVISION_SHIFT  (0U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MINOR_REVISION_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_MINOR_REVISION_MAX  (0x0000003fU)
+
+#define CSL_EMIF4D5_EMIF_MODULE_ID_AND_REVISION_RESETVAL        (0x50440500U)
+
+/* STATUS */
+
+#define CSL_EMIF4D5_STATUS_BE_MASK                              (0x80000000U)
+#define CSL_EMIF4D5_STATUS_BE_SHIFT                             (31U)
+#define CSL_EMIF4D5_STATUS_BE_RESETVAL                          (0x00000000U)
+#define CSL_EMIF4D5_STATUS_BE_MAX                               (0x00000001U)
+
+#define CSL_EMIF4D5_STATUS_DUAL_CLK_MODE_MASK                   (0x40000000U)
+#define CSL_EMIF4D5_STATUS_DUAL_CLK_MODE_SHIFT                  (30U)
+#define CSL_EMIF4D5_STATUS_DUAL_CLK_MODE_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_STATUS_DUAL_CLK_MODE_MAX                    (0x00000001U)
+
+#define CSL_EMIF4D5_STATUS_FAST_INIT_MASK                       (0x20000000U)
+#define CSL_EMIF4D5_STATUS_FAST_INIT_SHIFT                      (29U)
+#define CSL_EMIF4D5_STATUS_FAST_INIT_RESETVAL                   (0x00000000U)
+#define CSL_EMIF4D5_STATUS_FAST_INIT_MAX                        (0x00000001U)
+
+#define CSL_EMIF4D5_STATUS_RDLVLGATETO_MASK                     (0x00000040U)
+#define CSL_EMIF4D5_STATUS_RDLVLGATETO_SHIFT                    (6U)
+#define CSL_EMIF4D5_STATUS_RDLVLGATETO_RESETVAL                 (0x00000000U)
+#define CSL_EMIF4D5_STATUS_RDLVLGATETO_MAX                      (0x00000001U)
+
+#define CSL_EMIF4D5_STATUS_RDLVLTO_MASK                         (0x00000020U)
+#define CSL_EMIF4D5_STATUS_RDLVLTO_SHIFT                        (5U)
+#define CSL_EMIF4D5_STATUS_RDLVLTO_RESETVAL                     (0x00000000U)
+#define CSL_EMIF4D5_STATUS_RDLVLTO_MAX                          (0x00000001U)
+
+#define CSL_EMIF4D5_STATUS_WRLVLTO_MASK                         (0x00000010U)
+#define CSL_EMIF4D5_STATUS_WRLVLTO_SHIFT                        (4U)
+#define CSL_EMIF4D5_STATUS_WRLVLTO_RESETVAL                     (0x00000000U)
+#define CSL_EMIF4D5_STATUS_WRLVLTO_MAX                          (0x00000001U)
+
+#define CSL_EMIF4D5_STATUS_PHY_DLL_READY_MASK                   (0x00000004U)
+#define CSL_EMIF4D5_STATUS_PHY_DLL_READY_SHIFT                  (2U)
+#define CSL_EMIF4D5_STATUS_PHY_DLL_READY_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_STATUS_PHY_DLL_READY_MAX                    (0x00000001U)
+
+#define CSL_EMIF4D5_STATUS_RESETVAL                             (0x00000000U)
+
+/* SDRAM_CONFIG */
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_SDRAM_TYPE_MASK                (0xE0000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_SDRAM_TYPE_SHIFT               (29U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_SDRAM_TYPE_RESETVAL            (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_SDRAM_TYPE_MAX                 (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_IBANK_POS_MASK                 (0x18000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_IBANK_POS_SHIFT                (27U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_IBANK_POS_RESETVAL             (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_IBANK_POS_MAX                  (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR_TERM_MASK                  (0x07000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR_TERM_SHIFT                 (24U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR_TERM_RESETVAL              (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR_TERM_MAX                   (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR2_DDQS_MASK                 (0x00800000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR2_DDQS_SHIFT                (23U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR2_DDQS_RESETVAL             (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR2_DDQS_MAX                  (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_DYN_ODT_MASK                   (0x00600000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DYN_ODT_SHIFT                  (21U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DYN_ODT_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DYN_ODT_MAX                    (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR_DISABLE_DLL_MASK           (0x00100000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR_DISABLE_DLL_SHIFT          (20U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR_DISABLE_DLL_RESETVAL       (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_DDR_DISABLE_DLL_MAX            (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_SDRAM_DRIVE_MASK               (0x000C0000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_SDRAM_DRIVE_SHIFT              (18U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_SDRAM_DRIVE_RESETVAL           (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_SDRAM_DRIVE_MAX                (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_CWL_MASK                       (0x00030000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_CWL_SHIFT                      (16U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_CWL_RESETVAL                   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_CWL_MAX                        (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_NARROW_MODE_MASK               (0x0000C000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_NARROW_MODE_SHIFT              (14U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_NARROW_MODE_RESETVAL           (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_NARROW_MODE_MAX                (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_CL_MASK                        (0x00003C00U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_CL_SHIFT                       (10U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_CL_RESETVAL                    (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_CL_MAX                         (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_ROWSIZE_MASK                   (0x00000380U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_ROWSIZE_SHIFT                  (7U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_ROWSIZE_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_ROWSIZE_MAX                    (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_IBANK_MASK                     (0x00000070U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_IBANK_SHIFT                    (4U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_IBANK_RESETVAL                 (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_IBANK_MAX                      (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_EBANK_MASK                     (0x00000008U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_EBANK_SHIFT                    (3U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_EBANK_RESETVAL                 (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_EBANK_MAX                      (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_PAGESIZE_MASK                  (0x00000007U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_PAGESIZE_SHIFT                 (0U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_PAGESIZE_RESETVAL              (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_PAGESIZE_MAX                   (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_RESETVAL                       (0x00000000U)
+
+/* SDRAM_CONFIG_2 */
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_CS1NVMEN_MASK                (0x40000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_CS1NVMEN_SHIFT               (30U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_CS1NVMEN_RESETVAL            (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_CS1NVMEN_MAX                 (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_EBANK_POS_MASK               (0x08000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_EBANK_POS_SHIFT              (27U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_EBANK_POS_RESETVAL           (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_EBANK_POS_MAX                (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RDBNUM_MASK                  (0x00000030U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RDBNUM_SHIFT                 (4U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RDBNUM_RESETVAL              (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RDBNUM_MAX                   (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RDBSIZE_MASK                 (0x00000007U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RDBSIZE_SHIFT                (0U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RDBSIZE_RESETVAL             (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RDBSIZE_MAX                  (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_CONFIG_2_RESETVAL                     (0x00000000U)
+
+/* SDRAM_REFRESH_CONTROL */
+
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_INITREF_DIS_MASK      (0x80000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_INITREF_DIS_SHIFT     (31U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_INITREF_DIS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_INITREF_DIS_MAX       (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SRT_MASK              (0x20000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SRT_SHIFT             (29U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SRT_RESETVAL          (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SRT_MAX               (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_ASR_MASK              (0x10000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_ASR_SHIFT             (28U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_ASR_RESETVAL          (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_ASR_MAX               (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_PASR_MASK             (0x07000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_PASR_SHIFT            (24U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_PASR_RESETVAL         (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_PASR_MAX              (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_REFRESH_RATE_MASK     (0x0000FFFFU)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_REFRESH_RATE_SHIFT    (0U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_REFRESH_RATE_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_REFRESH_RATE_MAX      (0x0000ffffU)
+
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_RESETVAL              (0x00000000U)
+
+/* SDRAM_REFRESH_CONTROL_SHADOW */
+
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SHADOW_REFRESH_RATE_SHDW_MASK  (0x0000FFFFU)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SHADOW_REFRESH_RATE_SHDW_SHIFT  (0U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SHADOW_REFRESH_RATE_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SHADOW_REFRESH_RATE_SHDW_MAX  (0x0000ffffU)
+
+#define CSL_EMIF4D5_SDRAM_REFRESH_CONTROL_SHADOW_RESETVAL       (0x00000000U)
+
+/* SDRAM_TIMING_1 */
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RTW_MASK                   (0xE0000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RTW_SHIFT                  (29U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RTW_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RTW_MAX                    (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RP_MASK                    (0x1E000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RP_SHIFT                   (25U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RP_RESETVAL                (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RP_MAX                     (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RCD_MASK                   (0x01E00000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RCD_SHIFT                  (21U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RCD_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RCD_MAX                    (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_WR_MASK                    (0x001E0000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_WR_SHIFT                   (17U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_WR_RESETVAL                (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_WR_MAX                     (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RAS_MASK                   (0x0001F000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RAS_SHIFT                  (12U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RAS_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RAS_MAX                    (0x0000001fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RC_MASK                    (0x00000FC0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RC_SHIFT                   (6U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RC_RESETVAL                (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RC_MAX                     (0x0000003fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RRD_MASK                   (0x00000038U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RRD_SHIFT                  (3U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RRD_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_RRD_MAX                    (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_WTR_MASK                   (0x00000007U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_WTR_SHIFT                  (0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_WTR_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_T_WTR_MAX                    (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_RESETVAL                     (0x00000000U)
+
+/* SDRAM_TIMING_1_SHADOW */
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RTW_SHDW_MASK       (0xE0000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RTW_SHDW_SHIFT      (29U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RTW_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RTW_SHDW_MAX        (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RP_SHDW_MASK        (0x1E000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RP_SHDW_SHIFT       (25U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RP_SHDW_RESETVAL    (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RP_SHDW_MAX         (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RCD_SHDW_MASK       (0x01E00000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RCD_SHDW_SHIFT      (21U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RCD_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RCD_SHDW_MAX        (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_WR_SHDW_MASK        (0x001E0000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_WR_SHDW_SHIFT       (17U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_WR_SHDW_RESETVAL    (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_WR_SHDW_MAX         (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RAS_SHDW_MASK       (0x0001F000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RAS_SHDW_SHIFT      (12U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RAS_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RAS_SHDW_MAX        (0x0000001fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RC_SHDW_MASK        (0x00000FC0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RC_SHDW_SHIFT       (6U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RC_SHDW_RESETVAL    (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RC_SHDW_MAX         (0x0000003fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RRD_SHDW_MASK       (0x00000038U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RRD_SHDW_SHIFT      (3U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RRD_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_RRD_SHDW_MAX        (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_WTR_SHDW_MASK       (0x00000007U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_WTR_SHDW_SHIFT      (0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_WTR_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_T_WTR_SHDW_MAX        (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_1_SHADOW_RESETVAL              (0x00000000U)
+
+/* SDRAM_TIMING_2 */
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XP_MASK                    (0x70000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XP_SHIFT                   (28U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XP_RESETVAL                (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XP_MAX                     (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_ODT_MASK                   (0x0E000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_ODT_SHIFT                  (25U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_ODT_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_ODT_MAX                    (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XSNR_MASK                  (0x01FF0000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XSNR_SHIFT                 (16U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XSNR_RESETVAL              (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XSNR_MAX                   (0x000001ffU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XSRD_MASK                  (0x0000FFC0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XSRD_SHIFT                 (6U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XSRD_RESETVAL              (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_XSRD_MAX                   (0x000003ffU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_RTP_MASK                   (0x00000038U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_RTP_SHIFT                  (3U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_RTP_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_RTP_MAX                    (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_CKE_MASK                   (0x00000007U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_CKE_SHIFT                  (0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_CKE_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_T_CKE_MAX                    (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_RESETVAL                     (0x00000000U)
+
+/* SDRAM_TIMING_2_SHADOW */
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XP_SHDW_MASK        (0x70000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XP_SHDW_SHIFT       (28U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XP_SHDW_RESETVAL    (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XP_SHDW_MAX         (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_ODT_SHDW_MASK       (0x0E000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_ODT_SHDW_SHIFT      (25U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_ODT_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_ODT_SHDW_MAX        (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XSNR_SHDW_MASK      (0x01FF0000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XSNR_SHDW_SHIFT     (16U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XSNR_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XSNR_SHDW_MAX       (0x000001ffU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XSRD_SHDW_MASK      (0x0000FFC0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XSRD_SHDW_SHIFT     (6U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XSRD_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_XSRD_SHDW_MAX       (0x000003ffU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_RTP_SHDW_MASK       (0x00000038U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_RTP_SHDW_SHIFT      (3U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_RTP_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_RTP_SHDW_MAX        (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_CKE_SHDW_MASK       (0x00000007U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_CKE_SHDW_SHIFT      (0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_CKE_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_T_CKE_SHDW_MAX        (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_2_SHADOW_RESETVAL              (0x00000000U)
+
+/* SDRAM_TIMING_3 */
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_PDLL_UL_MASK               (0xF0000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_PDLL_UL_SHIFT              (28U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_PDLL_UL_RESETVAL           (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_PDLL_UL_MAX                (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_CSTA_MASK                  (0x0F000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_CSTA_SHIFT                 (24U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_CSTA_RESETVAL              (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_CSTA_MAX                   (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_CKESR_MASK                 (0x00E00000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_CKESR_SHIFT                (21U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_CKESR_RESETVAL             (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_CKESR_MAX                  (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_ZQ_ZQCS_MASK                 (0x001F8000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_ZQ_ZQCS_SHIFT                (15U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_ZQ_ZQCS_RESETVAL             (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_ZQ_ZQCS_MAX                  (0x0000003fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_TDQSCKMAX_MASK             (0x00006000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_TDQSCKMAX_SHIFT            (13U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_TDQSCKMAX_RESETVAL         (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_TDQSCKMAX_MAX              (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_RFC_MASK                   (0x00001FF0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_RFC_SHIFT                  (4U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_RFC_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_RFC_MAX                    (0x000001ffU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_RAS_MAX_MASK               (0x0000000FU)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_RAS_MAX_SHIFT              (0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_RAS_MAX_RESETVAL           (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_T_RAS_MAX_MAX                (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_RESETVAL                     (0x00000000U)
+
+/* SDRAM_TIMING_3_SHADOW */
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_PDLL_UL_SHDW_MASK   (0xF0000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_PDLL_UL_SHDW_SHIFT  (28U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_PDLL_UL_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_PDLL_UL_SHDW_MAX    (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_CSTA_SHDW_MASK      (0x0F000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_CSTA_SHDW_SHIFT     (24U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_CSTA_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_CSTA_SHDW_MAX       (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_CKESR_SHDW_MASK     (0x00E00000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_CKESR_SHDW_SHIFT    (21U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_CKESR_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_CKESR_SHDW_MAX      (0x00000007U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_ZQ_ZQCS_SHDW_MASK     (0x001F8000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_ZQ_ZQCS_SHDW_SHIFT    (15U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_ZQ_ZQCS_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_ZQ_ZQCS_SHDW_MAX      (0x0000003fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_TDQSCKMAX_SHDW_MASK  (0x00006000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_TDQSCKMAX_SHDW_SHIFT  (13U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_TDQSCKMAX_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_TDQSCKMAX_SHDW_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_RFC_SHDW_MASK       (0x00001FF0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_RFC_SHDW_SHIFT      (4U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_RFC_SHDW_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_RFC_SHDW_MAX        (0x000001ffU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_RAS_MAX_SHDW_MASK   (0x0000000FU)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_RAS_MAX_SHDW_SHIFT  (0U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_RAS_MAX_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_T_RAS_MAX_SHDW_MAX    (0x0000000fU)
+
+#define CSL_EMIF4D5_SDRAM_TIMING_3_SHADOW_RESETVAL              (0x00000000U)
+
+/* LPDDR2_NVM_TIMING */
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_XP_MASK             (0x70000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_XP_SHIFT            (28U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_XP_RESETVAL         (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_XP_MAX              (0x00000007U)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_WTR_MASK            (0x07000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_WTR_SHIFT           (24U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_WTR_RESETVAL        (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_WTR_MAX             (0x00000007U)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RP_MASK             (0x00F00000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RP_SHIFT            (20U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RP_RESETVAL         (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RP_MAX              (0x0000000fU)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_WRA_MASK            (0x000F0000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_WRA_SHIFT           (16U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_WRA_RESETVAL        (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_WRA_MAX             (0x0000000fU)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RRD_MASK            (0x0000FF00U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RRD_SHIFT           (8U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RRD_RESETVAL        (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RRD_MAX             (0x000000ffU)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RCDMIN_MASK         (0x000000FFU)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RCDMIN_SHIFT        (0U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RCDMIN_RESETVAL     (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_NVM_T_RCDMIN_MAX          (0x000000ffU)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_RESETVAL                  (0x00000000U)
+
+/* LPDDR2_NVM_TIMING_SHADOW */
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_XP_SHDW_MASK  (0x70000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_XP_SHDW_SHIFT  (28U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_XP_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_XP_SHDW_MAX  (0x00000007U)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_WTR_SHDW_MASK  (0x07000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_WTR_SHDW_SHIFT  (24U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_WTR_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_WTR_SHDW_MAX  (0x00000007U)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RP_SHDW_MASK  (0x00F00000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RP_SHDW_SHIFT  (20U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RP_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RP_SHDW_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_WRA_SHDW_MASK  (0x000F0000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_WRA_SHDW_SHIFT  (16U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_WRA_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_WRA_SHDW_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RRD_SHDW_MASK  (0x0000FF00U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RRD_SHDW_SHIFT  (8U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RRD_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RRD_SHDW_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RCDMIN_SHDW_MASK  (0x000000FFU)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RCDMIN_SHDW_SHIFT  (0U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RCDMIN_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_NVM_T_RCDMIN_SHDW_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_LPDDR2_NVM_TIMING_SHADOW_RESETVAL           (0x00000000U)
+
+/* POWER_MANAGEMENT_CONTROL */
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_PD_TIM_MASK        (0x0000F000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_PD_TIM_SHIFT       (12U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_PD_TIM_RESETVAL    (0x00000000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_PD_TIM_MAX         (0x0000000fU)
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_DPD_EN_MASK        (0x00000800U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_DPD_EN_SHIFT       (11U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_DPD_EN_RESETVAL    (0x00000000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_DPD_EN_MAX         (0x00000001U)
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_LP_MODE_MASK       (0x00000700U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_LP_MODE_SHIFT      (8U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_LP_MODE_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_LP_MODE_MAX        (0x00000007U)
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SR_TIM_MASK        (0x000000F0U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SR_TIM_SHIFT       (4U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SR_TIM_RESETVAL    (0x00000000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SR_TIM_MAX         (0x0000000fU)
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_CS_TIM_MASK        (0x0000000FU)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_CS_TIM_SHIFT       (0U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_CS_TIM_RESETVAL    (0x00000000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_CS_TIM_MAX         (0x0000000fU)
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_RESETVAL           (0x00000000U)
+
+/* POWER_MANAGEMENT_CONTROL_SHADOW */
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_PD_TIM_SHDW_MASK  (0x0000F000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_PD_TIM_SHDW_SHIFT  (12U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_PD_TIM_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_PD_TIM_SHDW_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_SR_TIM_SHDW_MASK  (0x000000F0U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_SR_TIM_SHDW_SHIFT  (4U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_SR_TIM_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_SR_TIM_SHDW_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_CS_TIM_SHDW_MASK  (0x0000000FU)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_CS_TIM_SHDW_SHIFT  (0U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_CS_TIM_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_CS_TIM_SHDW_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_POWER_MANAGEMENT_CONTROL_SHADOW_RESETVAL    (0x00000000U)
+
+/* LPDDR2_MODE_REG_DATA */
+
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_DATA_VALUE_0_MASK           (0x0000007FU)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_DATA_VALUE_0_SHIFT          (0U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_DATA_VALUE_0_RESETVAL       (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_DATA_VALUE_0_MAX            (0x0000007fU)
+
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_DATA_RESETVAL               (0x00000000U)
+
+/* LPDDR2_MODE_REG_CONFIG */
+
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_CS_MASK              (0x80000000U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_CS_SHIFT             (31U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_CS_RESETVAL          (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_CS_MAX               (0x00000001U)
+
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_REFRESH_EN_MASK      (0x40000000U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_REFRESH_EN_SHIFT     (30U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_REFRESH_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_REFRESH_EN_MAX       (0x00000001U)
+
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_ADDRESS_MASK         (0x000000FFU)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_ADDRESS_SHIFT        (0U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_ADDRESS_RESETVAL     (0x00000000U)
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_ADDRESS_MAX          (0x000000ffU)
+
+#define CSL_EMIF4D5_LPDDR2_MODE_REG_CONFIG_RESETVAL             (0x00000000U)
+
+/* OCP_CONFIG */
+
+#define CSL_EMIF4D5_OCP_CONFIG_SYS_THRESH_MAX_MASK              (0x0F000000U)
+#define CSL_EMIF4D5_OCP_CONFIG_SYS_THRESH_MAX_SHIFT             (24U)
+#define CSL_EMIF4D5_OCP_CONFIG_SYS_THRESH_MAX_RESETVAL          (0x00000007U)
+#define CSL_EMIF4D5_OCP_CONFIG_SYS_THRESH_MAX_MAX               (0x0000000fU)
+
+#define CSL_EMIF4D5_OCP_CONFIG_MPU_THRESH_MAX_MASK              (0x00F00000U)
+#define CSL_EMIF4D5_OCP_CONFIG_MPU_THRESH_MAX_SHIFT             (20U)
+#define CSL_EMIF4D5_OCP_CONFIG_MPU_THRESH_MAX_RESETVAL          (0x00000007U)
+#define CSL_EMIF4D5_OCP_CONFIG_MPU_THRESH_MAX_MAX               (0x0000000fU)
+
+#define CSL_EMIF4D5_OCP_CONFIG_LL_THRESH_MAX_MASK               (0x000F0000U)
+#define CSL_EMIF4D5_OCP_CONFIG_LL_THRESH_MAX_SHIFT              (16U)
+#define CSL_EMIF4D5_OCP_CONFIG_LL_THRESH_MAX_RESETVAL           (0x00000007U)
+#define CSL_EMIF4D5_OCP_CONFIG_LL_THRESH_MAX_MAX                (0x0000000fU)
+
+#define CSL_EMIF4D5_OCP_CONFIG_RESETVAL                         (0x07770000U)
+
+/* OCP_CONFIG_VALUE_1 */
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_SYS_BUS_WIDTH_MASK       (0xC0000000U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_SYS_BUS_WIDTH_SHIFT      (30U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_SYS_BUS_WIDTH_RESETVAL   (0x00000002U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_SYS_BUS_WIDTH_MAX        (0x00000003U)
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_LL_BUS_WIDTH_MASK        (0x30000000U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_LL_BUS_WIDTH_SHIFT       (28U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_LL_BUS_WIDTH_RESETVAL    (0x00000001U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_LL_BUS_WIDTH_MAX         (0x00000003U)
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_WR_FIFO_DEPTH_MASK       (0x0000FF00U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_WR_FIFO_DEPTH_SHIFT      (8U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_WR_FIFO_DEPTH_RESETVAL   (0x00000019U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_WR_FIFO_DEPTH_MAX        (0x000000ffU)
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_CMD_FIFO_DEPTH_MASK      (0x000000FFU)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_CMD_FIFO_DEPTH_SHIFT     (0U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_CMD_FIFO_DEPTH_RESETVAL  (0x0000000aU)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_CMD_FIFO_DEPTH_MAX       (0x000000ffU)
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_1_RESETVAL                 (0x9000190aU)
+
+/* OCP_CONFIG_VALUE_2 */
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RREG_FIFO_DEPTH_MASK     (0x00FF0000U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RREG_FIFO_DEPTH_SHIFT    (16U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RREG_FIFO_DEPTH_RESETVAL  (0x00000004U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RREG_FIFO_DEPTH_MAX      (0x000000ffU)
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RSD_FIFO_DEPTH_MASK      (0x0000FF00U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RSD_FIFO_DEPTH_SHIFT     (8U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RSD_FIFO_DEPTH_RESETVAL  (0x00000027U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RSD_FIFO_DEPTH_MAX       (0x000000ffU)
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RCMD_FIFO_DEPTH_MASK     (0x000000FFU)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RCMD_FIFO_DEPTH_SHIFT    (0U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RCMD_FIFO_DEPTH_RESETVAL  (0x00000027U)
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RCMD_FIFO_DEPTH_MAX      (0x000000ffU)
+
+#define CSL_EMIF4D5_OCP_CONFIG_VALUE_2_RESETVAL                 (0x00042727U)
+
+/* IODFT_TEST_LOGIC_GLOBAL_CONTROL */
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_TLEC_MASK   (0xFFFF0000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_TLEC_SHIFT  (16U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_TLEC_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_TLEC_MAX    (0x0000ffffU)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MT_MASK     (0x00004000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MT_SHIFT    (14U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MT_MAX      (0x00000001U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_ACT_CAP_EN_MASK  (0x00002000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_ACT_CAP_EN_SHIFT  (13U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_ACT_CAP_EN_RESETVAL  (0x00000001U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_ACT_CAP_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_OPG_LD_MASK  (0x00001000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_OPG_LD_SHIFT  (12U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_OPG_LD_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_OPG_LD_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MMS_MASK    (0x00000100U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MMS_SHIFT   (8U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MMS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MMS_MAX     (0x00000001U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MC_MASK     (0x00000030U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MC_SHIFT    (4U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MC_RESETVAL  (0x00000001U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_MC_MAX      (0x00000003U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_PC_MASK     (0x0000000EU)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_PC_SHIFT    (1U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_PC_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_PC_MAX      (0x00000007U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_TM_MASK     (0x00000001U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_TM_SHIFT    (0U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_TM_RESETVAL  (0x00000001U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_TM_MAX      (0x00000001U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_RESET_PHY_MASK  (0x00000400U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_RESET_PHY_SHIFT  (10U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_RESET_PHY_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_RESET_PHY_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_GLOBAL_CONTROL_RESETVAL    (0x00002011U)
+
+/* IODFT_TEST_LOGIC_CONTROL_MISR_RESULT */
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_DQM_TLMR_MASK  (0x003FF000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_DQM_TLMR_SHIFT  (12U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_DQM_TLMR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_DQM_TLMR_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_CTL_TLMR_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_CTL_TLMR_SHIFT  (0U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_CTL_TLMR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_CTL_TLMR_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_CONTROL_MISR_RESULT_RESETVAL  (0x00000000U)
+
+/* IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT */
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT_ADDR_TLMR_MASK  (0x001FFFFFU)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT_ADDR_TLMR_SHIFT  (0U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT_ADDR_TLMR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT_ADDR_TLMR_MAX  (0x001fffffU)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_ADDRESS_MISR_RESULT_RESETVAL  (0x00000000U)
+
+/* IODFT_TEST_LOGIC_DATA_MISR_RESULT_1 */
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_1_DATA_TLMR_31_0_MASK  (0xFFFFFFFFU)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_1_DATA_TLMR_31_0_SHIFT  (0U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_1_DATA_TLMR_31_0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_1_DATA_TLMR_31_0_MAX  (0xffffffffU)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_1_RESETVAL  (0x00000000U)
+
+/* IODFT_TEST_LOGIC_DATA_MISR_RESULT_2 */
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_2_DATA_TLMR_63_32_MASK  (0xFFFFFFFFU)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_2_DATA_TLMR_63_32_SHIFT  (0U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_2_DATA_TLMR_63_32_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_2_DATA_TLMR_63_32_MAX  (0xffffffffU)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_2_RESETVAL  (0x00000000U)
+
+/* IODFT_TEST_LOGIC_DATA_MISR_RESULT_3 */
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_3_DATA_TLMR_66_64_MASK  (0x00000007U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_3_DATA_TLMR_66_64_SHIFT  (0U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_3_DATA_TLMR_66_64_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_3_DATA_TLMR_66_64_MAX  (0x00000007U)
+
+#define CSL_EMIF4D5_IODFT_TEST_LOGIC_DATA_MISR_RESULT_3_RESETVAL  (0x00000000U)
+
+/* PERFORMANCE_COUNTER_1 */
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_1_COUNTER1_MASK         (0xFFFFFFFFU)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_1_COUNTER1_SHIFT        (0U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_1_COUNTER1_RESETVAL     (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_1_COUNTER1_MAX          (0xffffffffU)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_1_RESETVAL              (0x00000000U)
+
+/* PERFORMANCE_COUNTER_2 */
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_2_COUNTER2_MASK         (0xFFFFFFFFU)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_2_COUNTER2_SHIFT        (0U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_2_COUNTER2_RESETVAL     (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_2_COUNTER2_MAX          (0xffffffffU)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_2_RESETVAL              (0x00000000U)
+
+/* PERFORMANCE_COUNTER_CONFIG */
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_MCONNID_EN_MASK  (0x80000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_MCONNID_EN_SHIFT  (31U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_MCONNID_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_MCONNID_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_REGION_EN_MASK  (0x40000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_REGION_EN_SHIFT  (30U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_REGION_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_REGION_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_CFG_MASK   (0x000F0000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_CFG_SHIFT  (16U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_CFG_RESETVAL  (0x00000001U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR2_CFG_MAX    (0x0000000fU)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_MCONNID_EN_MASK  (0x00008000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_MCONNID_EN_SHIFT  (15U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_MCONNID_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_MCONNID_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_REGION_EN_MASK  (0x00004000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_REGION_EN_SHIFT  (14U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_REGION_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_REGION_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_CFG_MASK   (0x0000000FU)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_CFG_SHIFT  (0U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_CFG_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_CNTR1_CFG_MAX    (0x0000000fU)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_CONFIG_RESETVAL         (0x00010000U)
+
+/* PERFORMANCE_COUNTER_MASTER_REGION_SELECT */
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_MCONNID2_MASK  (0xFF000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_MCONNID2_SHIFT  (24U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_MCONNID2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_MCONNID2_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_REGION_SEL2_MASK  (0x00030000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_REGION_SEL2_SHIFT  (16U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_REGION_SEL2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_REGION_SEL2_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_MCONNID1_MASK  (0x0000FF00U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_MCONNID1_SHIFT  (8U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_MCONNID1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_MCONNID1_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_REGION_SEL1_MASK  (0x00000003U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_REGION_SEL1_SHIFT  (0U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_REGION_SEL1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_REGION_SEL1_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_MASTER_REGION_SELECT_RESETVAL  (0x00000000U)
+
+/* PERFORMANCE_COUNTER_TIME */
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_TIME_TOTAL_TIME_MASK    (0xFFFFFFFFU)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_TIME_TOTAL_TIME_SHIFT   (0U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_TIME_TOTAL_TIME_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_TIME_TOTAL_TIME_MAX     (0xffffffffU)
+
+#define CSL_EMIF4D5_PERFORMANCE_COUNTER_TIME_RESETVAL           (0x00000000U)
+
+/* DLL_CALIB_CTRL */
+
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_ACK_WAIT_MASK                (0x000F0000U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_ACK_WAIT_SHIFT               (16U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_ACK_WAIT_RESETVAL            (0x00000009U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_ACK_WAIT_MAX                 (0x0000000fU)
+
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_DLL_CALIB_INTERVAL_MASK      (0x000001FFU)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_DLL_CALIB_INTERVAL_SHIFT     (0U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_DLL_CALIB_INTERVAL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_DLL_CALIB_INTERVAL_MAX       (0x000001ffU)
+
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_RESETVAL                     (0x00090000U)
+
+/* DLL_CALIB_CTRL_SHADOW */
+
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_ACK_WAIT_SHDW_MASK    (0x000F0000U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_ACK_WAIT_SHDW_SHIFT   (16U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_ACK_WAIT_SHDW_RESETVAL  (0x00000009U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_ACK_WAIT_SHDW_MAX     (0x0000000fU)
+
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_DLL_CALIB_INTERVAL_SHDW_MASK  (0x000001FFU)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_DLL_CALIB_INTERVAL_SHDW_SHIFT  (0U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_DLL_CALIB_INTERVAL_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_DLL_CALIB_INTERVAL_SHDW_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_DLL_CALIB_CTRL_SHADOW_RESETVAL              (0x00090000U)
+
+/* END_OF_INTERRUPT */
+
+#define CSL_EMIF4D5_END_OF_INTERRUPT_EOI_MASK                   (0x00000001U)
+#define CSL_EMIF4D5_END_OF_INTERRUPT_EOI_SHIFT                  (0U)
+#define CSL_EMIF4D5_END_OF_INTERRUPT_EOI_RESETVAL               (0x00000000U)
+#define CSL_EMIF4D5_END_OF_INTERRUPT_EOI_MAX                    (0x00000001U)
+
+#define CSL_EMIF4D5_END_OF_INTERRUPT_RESETVAL                   (0x00000000U)
+
+/* SYSTEM_OCP_INTERRUPT_RAW_STATUS */
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_DNV_SYS_MASK  (0x00000004U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_DNV_SYS_SHIFT  (2U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_DNV_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_DNV_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_TA_SYS_MASK  (0x00000002U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_TA_SYS_SHIFT  (1U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_TA_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_TA_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_ERR_SYS_MASK  (0x00000001U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_ERR_SYS_SHIFT  (0U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_ERR_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_ERR_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_RAW_STATUS_RESETVAL    (0x00000000U)
+
+/* LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS */
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_DNV_LL_MASK  (0x00000004U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_DNV_LL_SHIFT  (2U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_DNV_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_DNV_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_TA_LL_MASK  (0x00000002U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_TA_LL_SHIFT  (1U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_TA_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_TA_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_ERR_LL_MASK  (0x00000001U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_ERR_LL_SHIFT  (0U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_ERR_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_ERR_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_RAW_STATUS_RESETVAL  (0x00000000U)
+
+/* SYSTEM_OCP_INTERRUPT_STATUS */
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_DNV_SYS_MASK    (0x00000004U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_DNV_SYS_SHIFT   (2U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_DNV_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_DNV_SYS_MAX     (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_TA_SYS_MASK     (0x00000002U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_TA_SYS_SHIFT    (1U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_TA_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_TA_SYS_MAX      (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_ERR_SYS_MASK    (0x00000001U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_ERR_SYS_SHIFT   (0U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_ERR_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_ERR_SYS_MAX     (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_STATUS_RESETVAL        (0x00000000U)
+
+/* LOW_LATENCY_OCP_INTERRUPT_STATUS */
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_DNV_LL_MASK  (0x00000004U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_DNV_LL_SHIFT  (2U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_DNV_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_DNV_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_TA_LL_MASK  (0x00000002U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_TA_LL_SHIFT  (1U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_TA_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_TA_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_ERR_LL_MASK  (0x00000001U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_ERR_LL_SHIFT  (0U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_ERR_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_ERR_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_STATUS_RESETVAL   (0x00000000U)
+
+/* SYSTEM_OCP_INTERRUPT_ENABLE_SET */
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_DNV_SYS_MASK  (0x00000004U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_DNV_SYS_SHIFT  (2U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_DNV_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_DNV_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_TA_SYS_MASK  (0x00000002U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_TA_SYS_SHIFT  (1U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_TA_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_TA_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_ERR_SYS_MASK  (0x00000001U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_ERR_SYS_SHIFT  (0U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_ERR_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_EN_ERR_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_SET_RESETVAL    (0x00000000U)
+
+/* LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET */
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_DNV_LL_MASK  (0x00000004U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_DNV_LL_SHIFT  (2U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_DNV_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_DNV_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_TA_LL_MASK  (0x00000002U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_TA_LL_SHIFT  (1U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_TA_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_TA_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_ERR_LL_MASK  (0x00000001U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_ERR_LL_SHIFT  (0U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_ERR_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_EN_ERR_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_SET_RESETVAL  (0x00000000U)
+
+/* SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR */
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_DNV_SYS_MASK  (0x00000004U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_DNV_SYS_SHIFT  (2U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_DNV_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_DNV_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_TA_SYS_MASK  (0x00000002U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_TA_SYS_SHIFT  (1U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_TA_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_TA_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_ERR_SYS_MASK  (0x00000001U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_ERR_SYS_SHIFT  (0U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_ERR_SYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_EN_ERR_SYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SYSTEM_OCP_INTERRUPT_ENABLE_CLEAR_RESETVAL  (0x00000000U)
+
+/* LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR */
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_DNV_LL_MASK  (0x00000004U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_DNV_LL_SHIFT  (2U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_DNV_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_DNV_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_TA_LL_MASK  (0x00000002U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_TA_LL_SHIFT  (1U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_TA_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_TA_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_ERR_LL_MASK  (0x00000001U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_ERR_LL_SHIFT  (0U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_ERR_LL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_EN_ERR_LL_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_LOW_LATENCY_OCP_INTERRUPT_ENABLE_CLEAR_RESETVAL  (0x00000000U)
+
+/* SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG */
+
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_CS1EN_MASK  (0x80000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_CS1EN_SHIFT  (31U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_CS1EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_CS1EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_CS0EN_MASK  (0x40000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_CS0EN_SHIFT  (30U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_CS0EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_CS0EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_DUALCALEN_MASK  (0x20000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_DUALCALEN_SHIFT  (29U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_DUALCALEN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_DUALCALEN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_SFEXITEN_MASK  (0x10000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_SFEXITEN_SHIFT  (28U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_SFEXITEN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_SFEXITEN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_ZQINIT_MULT_MASK  (0x000C0000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_ZQINIT_MULT_SHIFT  (18U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_ZQINIT_MULT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_ZQINIT_MULT_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_ZQCL_MULT_MASK  (0x00030000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_ZQCL_MULT_SHIFT  (16U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_ZQCL_MULT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_ZQCL_MULT_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_REFINTERVAL_MASK  (0x0000FFFFU)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_REFINTERVAL_SHIFT  (0U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_REFINTERVAL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_ZQ_REFINTERVAL_MAX  (0x0000ffffU)
+
+#define CSL_EMIF4D5_SDRAM_OUTPUT_IMPEDANCE_CALIBRATION_CONFIG_RESETVAL  (0x00000000U)
+
+/* TEMPERATURE_ALERT_CONFIG */
+
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_CS1EN_MASK      (0x80000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_CS1EN_SHIFT     (31U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_CS1EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_CS1EN_MAX       (0x00000001U)
+
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_CS0EN_MASK      (0x40000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_CS0EN_SHIFT     (30U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_CS0EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_CS0EN_MAX       (0x00000001U)
+
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_SFEXITEN_MASK   (0x10000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_SFEXITEN_SHIFT  (28U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_SFEXITEN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_SFEXITEN_MAX    (0x00000001U)
+
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_DEVWDT_MASK     (0x0C000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_DEVWDT_SHIFT    (26U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_DEVWDT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_DEVWDT_MAX      (0x00000003U)
+
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_DEVCNT_MASK     (0x03000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_DEVCNT_SHIFT    (24U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_DEVCNT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_DEVCNT_MAX      (0x00000003U)
+
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_REFINTERVAL_MASK  (0x003FFFFFU)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_REFINTERVAL_SHIFT  (0U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_REFINTERVAL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_TA_REFINTERVAL_MAX  (0x003fffffU)
+
+#define CSL_EMIF4D5_TEMPERATURE_ALERT_CONFIG_RESETVAL           (0x00000000U)
+
+/* OCP_ERROR_LOG */
+
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MADDRSPACE_MASK               (0x0000C000U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MADDRSPACE_SHIFT              (14U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MADDRSPACE_RESETVAL           (0x00000000U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MADDRSPACE_MAX                (0x00000003U)
+
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MBURSTSEQ_MASK                (0x00003800U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MBURSTSEQ_SHIFT               (11U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MBURSTSEQ_RESETVAL            (0x00000000U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MBURSTSEQ_MAX                 (0x00000007U)
+
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MCMD_MASK                     (0x00000700U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MCMD_SHIFT                    (8U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MCMD_RESETVAL                 (0x00000000U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MCMD_MAX                      (0x00000007U)
+
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MCONNID_MASK                  (0x000000FFU)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MCONNID_SHIFT                 (0U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MCONNID_RESETVAL              (0x00000000U)
+#define CSL_EMIF4D5_OCP_ERROR_LOG_MCONNID_MAX                   (0x000000ffU)
+
+#define CSL_EMIF4D5_OCP_ERROR_LOG_RESETVAL                      (0x00000000U)
+
+/* READ_WRITE_LEVELING_RAMP_WINDOW */
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_WINDOW_RDWRLVLINC_RMP_WIN_MASK  (0x00001FFFU)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_WINDOW_RDWRLVLINC_RMP_WIN_SHIFT  (0U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_WINDOW_RDWRLVLINC_RMP_WIN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_WINDOW_RDWRLVLINC_RMP_WIN_MAX  (0x00001fffU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_WINDOW_RESETVAL    (0x00000000U)
+
+/* READ_WRITE_LEVELING_RAMP_CONTROL */
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDWRLVL_EN_MASK  (0x80000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDWRLVL_EN_SHIFT  (31U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDWRLVL_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDWRLVL_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDWRLVLINC_RMP_PRE_MASK  (0x7F000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDWRLVLINC_RMP_PRE_SHIFT  (24U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDWRLVLINC_RMP_PRE_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDWRLVLINC_RMP_PRE_MAX  (0x0000007fU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDLVLINC_RMP_INT_MASK  (0x00FF0000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDLVLINC_RMP_INT_SHIFT  (16U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDLVLINC_RMP_INT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDLVLINC_RMP_INT_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDLVLGATEINC_RMP_INT_MASK  (0x0000FF00U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDLVLGATEINC_RMP_INT_SHIFT  (8U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDLVLGATEINC_RMP_INT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RDLVLGATEINC_RMP_INT_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_WRLVLINC_RMP_INT_MASK  (0x000000FFU)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_WRLVLINC_RMP_INT_SHIFT  (0U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_WRLVLINC_RMP_INT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_WRLVLINC_RMP_INT_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_RAMP_CONTROL_RESETVAL   (0x00000000U)
+
+/* READ_WRITE_LEVELING_CONTROL */
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDWRLVLFULL_START_MASK  (0x80000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDWRLVLFULL_START_SHIFT  (31U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDWRLVLFULL_START_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDWRLVLFULL_START_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDWRLVLINC_PRE_MASK  (0x7F000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDWRLVLINC_PRE_SHIFT  (24U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDWRLVLINC_PRE_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDWRLVLINC_PRE_MAX  (0x0000007fU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDLVLINC_INT_MASK  (0x00FF0000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDLVLINC_INT_SHIFT  (16U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDLVLINC_INT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDLVLINC_INT_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDLVLGATEINC_INT_MASK  (0x0000FF00U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDLVLGATEINC_INT_SHIFT  (8U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDLVLGATEINC_INT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RDLVLGATEINC_INT_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_WRLVLINC_INT_MASK  (0x000000FFU)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_WRLVLINC_INT_SHIFT  (0U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_WRLVLINC_INT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_WRLVLINC_INT_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_READ_WRITE_LEVELING_CONTROL_RESETVAL        (0x00000000U)
+
+/* DDR_PHY_CONTROL_1 */
+
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_DDR_PHY_CTRL_1_MASK       (0xFFFFFFE0U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_DDR_PHY_CTRL_1_SHIFT      (5U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_DDR_PHY_CTRL_1_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_DDR_PHY_CTRL_1_MAX        (0x07ffffffU)
+
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_READ_LATENCY_MASK         (0x0000001FU)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_READ_LATENCY_SHIFT        (0U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_READ_LATENCY_RESETVAL     (0x00000000U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_READ_LATENCY_MAX          (0x0000001fU)
+
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_RESETVAL                  (0x00000000U)
+
+/* DDR_PHY_CONTROL_1_SHADOW */
+
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_DDR_PHY_CTRL_1_SHDW_MASK  (0xFFFFFFE0U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_DDR_PHY_CTRL_1_SHDW_SHIFT  (5U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_DDR_PHY_CTRL_1_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_DDR_PHY_CTRL_1_SHDW_MAX  (0x07ffffffU)
+
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_READ_LATENCY_SHDW_MASK  (0x0000001FU)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_READ_LATENCY_SHDW_SHIFT  (0U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_READ_LATENCY_SHDW_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_READ_LATENCY_SHDW_MAX  (0x0000001fU)
+
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_1_SHADOW_RESETVAL           (0x00000000U)
+
+/* DDR_PHY_CONTROL_2 */
+
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_2_DDR_PHY_CTRL_2_MASK       (0xFFFFFFFFU)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_2_DDR_PHY_CTRL_2_SHIFT      (0U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_2_DDR_PHY_CTRL_2_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_2_DDR_PHY_CTRL_2_MAX        (0xffffffffU)
+
+#define CSL_EMIF4D5_DDR_PHY_CONTROL_2_RESETVAL                  (0x00000000U)
+
+/* PRIORITY_TO_CLASS_OF_SERVICE_MAPPING */
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_COS_MAP_EN_MASK  (0x80000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_COS_MAP_EN_SHIFT  (31U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_COS_MAP_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_COS_MAP_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_7_COS_MASK  (0x0000C000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_7_COS_SHIFT  (14U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_7_COS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_7_COS_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_6_COS_MASK  (0x00003000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_6_COS_SHIFT  (12U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_6_COS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_6_COS_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_5_COS_MASK  (0x00000C00U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_5_COS_SHIFT  (10U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_5_COS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_5_COS_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_4_COS_MASK  (0x00000300U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_4_COS_SHIFT  (8U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_4_COS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_4_COS_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_3_COS_MASK  (0x000000C0U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_3_COS_SHIFT  (6U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_3_COS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_3_COS_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_2_COS_MASK  (0x00000030U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_2_COS_SHIFT  (4U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_2_COS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_2_COS_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_1_COS_MASK  (0x0000000CU)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_1_COS_SHIFT  (2U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_1_COS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_1_COS_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_0_COS_MASK  (0x00000003U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_0_COS_SHIFT  (0U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_0_COS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_PRI_0_COS_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PRIORITY_TO_CLASS_OF_SERVICE_MAPPING_RESETVAL  (0x00000000U)
+
+/* CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING */
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_COS_1_MAP_EN_MASK  (0x80000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_COS_1_MAP_EN_SHIFT  (31U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_COS_1_MAP_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_COS_1_MAP_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_1_COS_1_MASK  (0x7F800000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_1_COS_1_SHIFT  (23U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_1_COS_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_1_COS_1_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_1_COS_1_MASK  (0x00700000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_1_COS_1_SHIFT  (20U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_1_COS_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_1_COS_1_MAX  (0x00000007U)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_2_COS_1_MASK  (0x000FF000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_2_COS_1_SHIFT  (12U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_2_COS_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_2_COS_1_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_2_COS_1_MASK  (0x00000C00U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_2_COS_1_SHIFT  (10U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_2_COS_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_2_COS_1_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_3_COS_1_MASK  (0x000003FCU)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_3_COS_1_SHIFT  (2U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_3_COS_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_CONNID_3_COS_1_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_3_COS_1_MASK  (0x00000003U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_3_COS_1_SHIFT  (0U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_3_COS_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_MSK_3_COS_1_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_1_MAPPING_RESETVAL  (0x00000000U)
+
+/* CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING */
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_COS_2_MAP_EN_MASK  (0x80000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_COS_2_MAP_EN_SHIFT  (31U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_COS_2_MAP_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_COS_2_MAP_EN_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_1_COS_2_MASK  (0x7F800000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_1_COS_2_SHIFT  (23U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_1_COS_2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_1_COS_2_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_1_COS_2_MASK  (0x00700000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_1_COS_2_SHIFT  (20U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_1_COS_2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_1_COS_2_MAX  (0x00000007U)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_2_COS_2_MASK  (0x000FF000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_2_COS_2_SHIFT  (12U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_2_COS_2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_2_COS_2_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_2_COS_2_MASK  (0x00000C00U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_2_COS_2_SHIFT  (10U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_2_COS_2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_2_COS_2_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_3_COS_2_MASK  (0x000003FCU)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_3_COS_2_SHIFT  (2U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_3_COS_2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_CONNID_3_COS_2_MAX  (0x000000ffU)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_3_COS_2_MASK  (0x00000003U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_3_COS_2_SHIFT  (0U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_3_COS_2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_MSK_3_COS_2_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_CONNECTION_ID_TO_CLASS_OF_SERVICE_2_MAPPING_RESETVAL  (0x00000000U)
+
+/* ECC_CTRL_REG */
+
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_EN_MASK                (0x80000000U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_EN_SHIFT               (31U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_EN_RESETVAL            (0x00000000U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_EN_MAX                 (0x00000001U)
+
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_PROT_MASK     (0x40000000U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_PROT_SHIFT    (30U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_PROT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_PROT_MAX      (0x00000001U)
+
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_2_EN_MASK     (0x00000002U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_2_EN_SHIFT    (1U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_2_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_2_EN_MAX      (0x00000001U)
+
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_1_EN_MASK     (0x00000001U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_1_EN_SHIFT    (0U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_1_EN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_ECC_CTRL_REG_REG_ECC_ADDR_RGN_1_EN_MAX      (0x00000001U)
+
+#define CSL_EMIF4D5_ECC_CTRL_REG_RESETVAL                       (0x00000000U)
+
+/* ECC_ADDRESS_RANGE_1 */
+
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_REG_ECC_END_ADDR_1_MASK  (0xFFFF0000U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_REG_ECC_END_ADDR_1_SHIFT  (16U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_REG_ECC_END_ADDR_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_REG_ECC_END_ADDR_1_MAX  (0x0000ffffU)
+
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_REG_ECC_STRT_ADDR_1_MASK  (0x0000FFFFU)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_REG_ECC_STRT_ADDR_1_SHIFT  (0U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_REG_ECC_STRT_ADDR_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_REG_ECC_STRT_ADDR_1_MAX  (0x0000ffffU)
+
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_1_RESETVAL                (0x00000000U)
+
+/* ECC_ADDRESS_RANGE_2 */
+
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_REG_ECC_END_ADDR_2_MASK  (0xFFFF0000U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_REG_ECC_END_ADDR_2_SHIFT  (16U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_REG_ECC_END_ADDR_2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_REG_ECC_END_ADDR_2_MAX  (0x0000ffffU)
+
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_REG_ECC_STRT_ADDR_2_MASK  (0x0000FFFFU)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_REG_ECC_STRT_ADDR_2_SHIFT  (0U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_REG_ECC_STRT_ADDR_2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_REG_ECC_STRT_ADDR_2_MAX  (0x0000ffffU)
+
+#define CSL_EMIF4D5_ECC_ADDRESS_RANGE_2_RESETVAL                (0x00000000U)
+
+/* READ_WRITE_EXECUTION_THRESHOLD */
+
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_MFLAG_OVERRIDE_MASK  (0x80000000U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_MFLAG_OVERRIDE_SHIFT  (31U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_MFLAG_OVERRIDE_RESETVAL  (0x00000003U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_MFLAG_OVERRIDE_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_ENABLE_LLBUBBLE_MASK  (0x40000000U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_ENABLE_LLBUBBLE_SHIFT  (30U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_ENABLE_LLBUBBLE_RESETVAL  (0x00000003U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_ENABLE_LLBUBBLE_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_WR_THRSH_MASK  (0x00001F00U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_WR_THRSH_SHIFT  (8U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_WR_THRSH_RESETVAL  (0x00000003U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_WR_THRSH_MAX  (0x0000001fU)
+
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_RD_THRSH_MASK  (0x0000001FU)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_RD_THRSH_SHIFT  (0U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_RD_THRSH_RESETVAL  (0x00000005U)
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_RD_THRSH_MAX  (0x0000001fU)
+
+#define CSL_EMIF4D5_READ_WRITE_EXECUTION_THRESHOLD_RESETVAL     (0x1c00003c5U)
+
+/* COS_CONFIG */
+
+#define CSL_EMIF4D5_COS_CONFIG_COS_COUNT_1_MASK                 (0x00FF0000U)
+#define CSL_EMIF4D5_COS_CONFIG_COS_COUNT_1_SHIFT                (16U)
+#define CSL_EMIF4D5_COS_CONFIG_COS_COUNT_1_RESETVAL             (0x000000ffU)
+#define CSL_EMIF4D5_COS_CONFIG_COS_COUNT_1_MAX                  (0x000000ffU)
+
+#define CSL_EMIF4D5_COS_CONFIG_COS_COUNT_2_MASK                 (0x0000FF00U)
+#define CSL_EMIF4D5_COS_CONFIG_COS_COUNT_2_SHIFT                (8U)
+#define CSL_EMIF4D5_COS_CONFIG_COS_COUNT_2_RESETVAL             (0x000000ffU)
+#define CSL_EMIF4D5_COS_CONFIG_COS_COUNT_2_MAX                  (0x000000ffU)
+
+#define CSL_EMIF4D5_COS_CONFIG_PR_OLD_COUNT_MASK                (0x000000FFU)
+#define CSL_EMIF4D5_COS_CONFIG_PR_OLD_COUNT_SHIFT               (0U)
+#define CSL_EMIF4D5_COS_CONFIG_PR_OLD_COUNT_RESETVAL            (0x000000ffU)
+#define CSL_EMIF4D5_COS_CONFIG_PR_OLD_COUNT_MAX                 (0x000000ffU)
+
+#define CSL_EMIF4D5_COS_CONFIG_RESETVAL                         (0x00ffffffU)
+
+/* B_ECC_ERR_CNT */
+
+#define CSL_EMIF4D5_B_ECC_ERR_CNT_REG_1B_ECC_ERR_CNT_MASK       (0xFFFFFFFFU)
+#define CSL_EMIF4D5_B_ECC_ERR_CNT_REG_1B_ECC_ERR_CNT_SHIFT      (0U)
+#define CSL_EMIF4D5_B_ECC_ERR_CNT_REG_1B_ECC_ERR_CNT_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_B_ECC_ERR_CNT_REG_1B_ECC_ERR_CNT_MAX        (0xffffffffU)
+
+#define CSL_EMIF4D5_B_ECC_ERR_CNT_RESETVAL                      (0x00000000U)
+
+/* B_ECC_ERR_THRSH */
+
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_REG_1B_ECC_ERR_THRSH_MASK   (0xFF000000U)
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_REG_1B_ECC_ERR_THRSH_SHIFT  (24U)
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_REG_1B_ECC_ERR_THRSH_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_REG_1B_ECC_ERR_THRSH_MAX    (0x000000ffU)
+
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_REG_1B_ECC_ERR_WIN_MASK     (0x0000FFFFU)
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_REG_1B_ECC_ERR_WIN_SHIFT    (0U)
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_REG_1B_ECC_ERR_WIN_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_REG_1B_ECC_ERR_WIN_MAX      (0x0000ffffU)
+
+#define CSL_EMIF4D5_B_ECC_ERR_THRSH_RESETVAL                    (0x00000000U)
+
+/* B_ECC_ERR_DIST_1 */
+
+#define CSL_EMIF4D5_B_ECC_ERR_DIST_1_REG_1B_ECC_ERR_DIST_1_MASK  (0xFFFFFFFFU)
+#define CSL_EMIF4D5_B_ECC_ERR_DIST_1_REG_1B_ECC_ERR_DIST_1_SHIFT  (0U)
+#define CSL_EMIF4D5_B_ECC_ERR_DIST_1_REG_1B_ECC_ERR_DIST_1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_B_ECC_ERR_DIST_1_REG_1B_ECC_ERR_DIST_1_MAX  (0xffffffffU)
+
+#define CSL_EMIF4D5_B_ECC_ERR_DIST_1_RESETVAL                   (0x00000000U)
+
+/* B_ECC_ERR_ADDR_LOG1 */
+
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG1_REG_1B_ECC_ERR_ADDR_MASK  (0xFFFFFFFFU)
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG1_REG_1B_ECC_ERR_ADDR_SHIFT  (0U)
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG1_REG_1B_ECC_ERR_ADDR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG1_REG_1B_ECC_ERR_ADDR_MAX  (0xffffffffU)
+
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG1_RESETVAL                (0x00000000U)
+
+/* B_ECC_ERR_ADDR_LOG2 */
+
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG2_REG_2B_ECC_ERR_ADDR_MASK  (0xFFFFFFFFU)
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG2_REG_2B_ECC_ERR_ADDR_SHIFT  (0U)
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG2_REG_2B_ECC_ERR_ADDR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG2_REG_2B_ECC_ERR_ADDR_MAX  (0xffffffffU)
+
+#define CSL_EMIF4D5_B_ECC_ERR_ADDR_LOG2_RESETVAL                (0x00000000U)
+
+/* PHY_STATUS_1 */
+
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_PHY_CTRL_DLL_SLAVE_VALUE_MASK  (0x3FFFF000U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_PHY_CTRL_DLL_SLAVE_VALUE_SHIFT  (12U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_PHY_CTRL_DLL_SLAVE_VALUE_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_PHY_CTRL_DLL_SLAVE_VALUE_MAX  (0x0003ffffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_STATUS_DLL_LOCK_MASK   (0x000001F0U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_STATUS_DLL_LOCK_SHIFT  (4U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_STATUS_DLL_LOCK_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_STATUS_DLL_LOCK_MAX    (0x0000001fU)
+
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_PHY_CTRL_DLL_LOCK_MASK  (0x00000003U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_PHY_CTRL_DLL_LOCK_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_PHY_CTRL_DLL_LOCK_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_1_PHY_REG_PHY_CTRL_DLL_LOCK_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PHY_STATUS_1_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_2 */
+
+#define CSL_EMIF4D5_PHY_STATUS_2_PHY_REG_STATUS_DLL_SLAVE_VALUE_LO_MASK  (0xFFFFFFFFU)
+#define CSL_EMIF4D5_PHY_STATUS_2_PHY_REG_STATUS_DLL_SLAVE_VALUE_LO_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_2_PHY_REG_STATUS_DLL_SLAVE_VALUE_LO_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_2_PHY_REG_STATUS_DLL_SLAVE_VALUE_LO_MAX  (0xffffffffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_2_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_3 */
+
+#define CSL_EMIF4D5_PHY_STATUS_3_PHY_REG_RDFIFO_RDPTR_MASK      (0x7FFF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_3_PHY_REG_RDFIFO_RDPTR_SHIFT     (16U)
+#define CSL_EMIF4D5_PHY_STATUS_3_PHY_REG_RDFIFO_RDPTR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_3_PHY_REG_RDFIFO_RDPTR_MAX       (0x00007fffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_3_PHY_REG_STATUS_DLL_SLAVE_VALUE_HI_MASK  (0x00001FFFU)
+#define CSL_EMIF4D5_PHY_STATUS_3_PHY_REG_STATUS_DLL_SLAVE_VALUE_HI_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_3_PHY_REG_STATUS_DLL_SLAVE_VALUE_HI_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_3_PHY_REG_STATUS_DLL_SLAVE_VALUE_HI_MAX  (0x00001fffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_3_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_4 */
+
+#define CSL_EMIF4D5_PHY_STATUS_4_PHY_REG_GATELVL_FSM_MASK       (0x7FFF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_4_PHY_REG_GATELVL_FSM_SHIFT      (16U)
+#define CSL_EMIF4D5_PHY_STATUS_4_PHY_REG_GATELVL_FSM_RESETVAL   (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_4_PHY_REG_GATELVL_FSM_MAX        (0x00007fffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_4_PHY_REG_RDFIFO_WRPTR_MASK      (0x00007FFFU)
+#define CSL_EMIF4D5_PHY_STATUS_4_PHY_REG_RDFIFO_WRPTR_SHIFT     (0U)
+#define CSL_EMIF4D5_PHY_STATUS_4_PHY_REG_RDFIFO_WRPTR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_4_PHY_REG_RDFIFO_WRPTR_MAX       (0x00007fffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_4_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_5 */
+
+#define CSL_EMIF4D5_PHY_STATUS_5_PHY_REG_RD_LEVEL_FSM_MASK      (0x000FFFFFU)
+#define CSL_EMIF4D5_PHY_STATUS_5_PHY_REG_RD_LEVEL_FSM_SHIFT     (0U)
+#define CSL_EMIF4D5_PHY_STATUS_5_PHY_REG_RD_LEVEL_FSM_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_5_PHY_REG_RD_LEVEL_FSM_MAX       (0x000fffffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_5_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_6 */
+
+#define CSL_EMIF4D5_PHY_STATUS_6_PHY_REG_WR_LEVEL_FSM_MASK      (0x00007FFFU)
+#define CSL_EMIF4D5_PHY_STATUS_6_PHY_REG_WR_LEVEL_FSM_SHIFT     (0U)
+#define CSL_EMIF4D5_PHY_STATUS_6_PHY_REG_WR_LEVEL_FSM_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_6_PHY_REG_WR_LEVEL_FSM_MAX       (0x00007fffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_6_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_7 */
+
+#define CSL_EMIF4D5_PHY_STATUS_7_PHY_REG_RDLVL_DQS_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_7_PHY_REG_RDLVL_DQS_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_7_PHY_REG_RDLVL_DQS_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_7_PHY_REG_RDLVL_DQS_RATIO1_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_7_PHY_REG_RDLVL_DQS_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_7_PHY_REG_RDLVL_DQS_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_7_PHY_REG_RDLVL_DQS_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_7_PHY_REG_RDLVL_DQS_RATIO0_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_7_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_8 */
+
+#define CSL_EMIF4D5_PHY_STATUS_8_PHY_REG_RDLVL_DQS_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_8_PHY_REG_RDLVL_DQS_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_8_PHY_REG_RDLVL_DQS_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_8_PHY_REG_RDLVL_DQS_RATIO3_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_8_PHY_REG_RDLVL_DQS_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_8_PHY_REG_RDLVL_DQS_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_8_PHY_REG_RDLVL_DQS_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_8_PHY_REG_RDLVL_DQS_RATIO2_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_8_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_9 */
+
+#define CSL_EMIF4D5_PHY_STATUS_9_PHY_REG_RDLVL_DQS_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_9_PHY_REG_RDLVL_DQS_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_9_PHY_REG_RDLVL_DQS_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_9_PHY_REG_RDLVL_DQS_RATIO5_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_9_PHY_REG_RDLVL_DQS_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_9_PHY_REG_RDLVL_DQS_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_9_PHY_REG_RDLVL_DQS_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_9_PHY_REG_RDLVL_DQS_RATIO4_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_9_RESETVAL                       (0x00000000U)
+
+/* PHY_STATUS_10 */
+
+#define CSL_EMIF4D5_PHY_STATUS_10_PHY_REG_RDLVL_DQS_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_10_PHY_REG_RDLVL_DQS_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_10_PHY_REG_RDLVL_DQS_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_10_PHY_REG_RDLVL_DQS_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_10_PHY_REG_RDLVL_DQS_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_10_PHY_REG_RDLVL_DQS_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_10_PHY_REG_RDLVL_DQS_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_10_PHY_REG_RDLVL_DQS_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_10_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_11 */
+
+#define CSL_EMIF4D5_PHY_STATUS_11_PHY_REG_RDLVL_DQS_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_11_PHY_REG_RDLVL_DQS_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_11_PHY_REG_RDLVL_DQS_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_11_PHY_REG_RDLVL_DQS_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_11_PHY_REG_RDLVL_DQS_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_11_PHY_REG_RDLVL_DQS_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_11_PHY_REG_RDLVL_DQS_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_11_PHY_REG_RDLVL_DQS_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_11_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_12 */
+
+#define CSL_EMIF4D5_PHY_STATUS_12_PHY_REG_RDLVL_FIFOWEIN_RATIO1_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_12_PHY_REG_RDLVL_FIFOWEIN_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_12_PHY_REG_RDLVL_FIFOWEIN_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_12_PHY_REG_RDLVL_FIFOWEIN_RATIO1_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_12_PHY_REG_RDLVL_FIFOWEIN_RATIO0_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_PHY_STATUS_12_PHY_REG_RDLVL_FIFOWEIN_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_12_PHY_REG_RDLVL_FIFOWEIN_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_12_PHY_REG_RDLVL_FIFOWEIN_RATIO0_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_12_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_13 */
+
+#define CSL_EMIF4D5_PHY_STATUS_13_PHY_REG_RDLVL_FIFOWEIN_RATIO3_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_13_PHY_REG_RDLVL_FIFOWEIN_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_13_PHY_REG_RDLVL_FIFOWEIN_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_13_PHY_REG_RDLVL_FIFOWEIN_RATIO3_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_13_PHY_REG_RDLVL_FIFOWEIN_RATIO2_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_PHY_STATUS_13_PHY_REG_RDLVL_FIFOWEIN_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_13_PHY_REG_RDLVL_FIFOWEIN_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_13_PHY_REG_RDLVL_FIFOWEIN_RATIO2_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_13_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_14 */
+
+#define CSL_EMIF4D5_PHY_STATUS_14_PHY_REG_RDLVL_FIFOWEIN_RATIO5_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_14_PHY_REG_RDLVL_FIFOWEIN_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_14_PHY_REG_RDLVL_FIFOWEIN_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_14_PHY_REG_RDLVL_FIFOWEIN_RATIO5_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_14_PHY_REG_RDLVL_FIFOWEIN_RATIO4_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_PHY_STATUS_14_PHY_REG_RDLVL_FIFOWEIN_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_14_PHY_REG_RDLVL_FIFOWEIN_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_14_PHY_REG_RDLVL_FIFOWEIN_RATIO4_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_14_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_15 */
+
+#define CSL_EMIF4D5_PHY_STATUS_15_PHY_REG_RDLVL_FIFOWEIN_RATIO7_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_15_PHY_REG_RDLVL_FIFOWEIN_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_15_PHY_REG_RDLVL_FIFOWEIN_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_15_PHY_REG_RDLVL_FIFOWEIN_RATIO7_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_15_PHY_REG_RDLVL_FIFOWEIN_RATIO6_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_PHY_STATUS_15_PHY_REG_RDLVL_FIFOWEIN_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_15_PHY_REG_RDLVL_FIFOWEIN_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_15_PHY_REG_RDLVL_FIFOWEIN_RATIO6_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_15_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_16 */
+
+#define CSL_EMIF4D5_PHY_STATUS_16_PHY_REG_RDLVL_FIFOWEIN_RATIO9_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_16_PHY_REG_RDLVL_FIFOWEIN_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_16_PHY_REG_RDLVL_FIFOWEIN_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_16_PHY_REG_RDLVL_FIFOWEIN_RATIO9_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_16_PHY_REG_RDLVL_FIFOWEIN_RATIO8_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_PHY_STATUS_16_PHY_REG_RDLVL_FIFOWEIN_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_16_PHY_REG_RDLVL_FIFOWEIN_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_16_PHY_REG_RDLVL_FIFOWEIN_RATIO8_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_16_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_17 */
+
+#define CSL_EMIF4D5_PHY_STATUS_17_PHY_REG_WRLVL_DQ_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_17_PHY_REG_WRLVL_DQ_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_17_PHY_REG_WRLVL_DQ_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_17_PHY_REG_WRLVL_DQ_RATIO1_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_17_PHY_REG_WRLVL_DQ_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_17_PHY_REG_WRLVL_DQ_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_17_PHY_REG_WRLVL_DQ_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_17_PHY_REG_WRLVL_DQ_RATIO0_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_17_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_18 */
+
+#define CSL_EMIF4D5_PHY_STATUS_18_PHY_REG_WRLVL_DQ_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_18_PHY_REG_WRLVL_DQ_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_18_PHY_REG_WRLVL_DQ_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_18_PHY_REG_WRLVL_DQ_RATIO3_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_18_PHY_REG_WRLVL_DQ_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_18_PHY_REG_WRLVL_DQ_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_18_PHY_REG_WRLVL_DQ_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_18_PHY_REG_WRLVL_DQ_RATIO2_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_18_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_19 */
+
+#define CSL_EMIF4D5_PHY_STATUS_19_PHY_REG_WRLVL_DQ_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_19_PHY_REG_WRLVL_DQ_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_19_PHY_REG_WRLVL_DQ_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_19_PHY_REG_WRLVL_DQ_RATIO5_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_19_PHY_REG_WRLVL_DQ_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_19_PHY_REG_WRLVL_DQ_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_19_PHY_REG_WRLVL_DQ_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_19_PHY_REG_WRLVL_DQ_RATIO4_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_19_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_20 */
+
+#define CSL_EMIF4D5_PHY_STATUS_20_PHY_REG_WRLVL_DQ_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_20_PHY_REG_WRLVL_DQ_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_20_PHY_REG_WRLVL_DQ_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_20_PHY_REG_WRLVL_DQ_RATIO7_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_20_PHY_REG_WRLVL_DQ_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_20_PHY_REG_WRLVL_DQ_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_20_PHY_REG_WRLVL_DQ_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_20_PHY_REG_WRLVL_DQ_RATIO6_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_20_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_21 */
+
+#define CSL_EMIF4D5_PHY_STATUS_21_PHY_REG_WRLVL_DQ_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_21_PHY_REG_WRLVL_DQ_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_21_PHY_REG_WRLVL_DQ_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_21_PHY_REG_WRLVL_DQ_RATIO9_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_21_PHY_REG_WRLVL_DQ_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_21_PHY_REG_WRLVL_DQ_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_21_PHY_REG_WRLVL_DQ_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_21_PHY_REG_WRLVL_DQ_RATIO8_MAX   (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_21_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_22 */
+
+#define CSL_EMIF4D5_PHY_STATUS_22_PHY_REG_WRLVL_DQS_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_22_PHY_REG_WRLVL_DQS_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_22_PHY_REG_WRLVL_DQS_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_22_PHY_REG_WRLVL_DQS_RATIO1_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_22_PHY_REG_WRLVL_DQS_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_22_PHY_REG_WRLVL_DQS_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_22_PHY_REG_WRLVL_DQS_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_22_PHY_REG_WRLVL_DQS_RATIO0_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_22_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_23 */
+
+#define CSL_EMIF4D5_PHY_STATUS_23_PHY_REG_WRLVL_DQS_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_23_PHY_REG_WRLVL_DQS_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_23_PHY_REG_WRLVL_DQS_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_23_PHY_REG_WRLVL_DQS_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_23_PHY_REG_WRLVL_DQS_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_23_PHY_REG_WRLVL_DQS_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_23_PHY_REG_WRLVL_DQS_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_23_PHY_REG_WRLVL_DQS_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_23_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_24 */
+
+#define CSL_EMIF4D5_PHY_STATUS_24_PHY_REG_WRLVL_DQS_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_24_PHY_REG_WRLVL_DQS_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_24_PHY_REG_WRLVL_DQS_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_24_PHY_REG_WRLVL_DQS_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_24_PHY_REG_WRLVL_DQS_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_24_PHY_REG_WRLVL_DQS_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_24_PHY_REG_WRLVL_DQS_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_24_PHY_REG_WRLVL_DQS_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_24_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_25 */
+
+#define CSL_EMIF4D5_PHY_STATUS_25_PHY_REG_WRLVL_DQS_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_25_PHY_REG_WRLVL_DQS_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_25_PHY_REG_WRLVL_DQS_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_25_PHY_REG_WRLVL_DQS_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_25_PHY_REG_WRLVL_DQS_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_25_PHY_REG_WRLVL_DQS_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_25_PHY_REG_WRLVL_DQS_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_25_PHY_REG_WRLVL_DQS_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_25_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_26 */
+
+#define CSL_EMIF4D5_PHY_STATUS_26_PHY_REG_WRLVL_DQS_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_PHY_STATUS_26_PHY_REG_WRLVL_DQS_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_26_PHY_REG_WRLVL_DQS_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_26_PHY_REG_WRLVL_DQS_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_26_PHY_REG_WRLVL_DQS_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_PHY_STATUS_26_PHY_REG_WRLVL_DQS_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_26_PHY_REG_WRLVL_DQS_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_26_PHY_REG_WRLVL_DQS_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_26_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_27 */
+
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_PHY_CONTROL_MDLL_UNLOCK_STICKY_MASK  (0x30000000U)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_PHY_CONTROL_MDLL_UNLOCK_STICKY_SHIFT  (28U)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_PHY_CONTROL_MDLL_UNLOCK_STICKY_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_PHY_CONTROL_MDLL_UNLOCK_STICKY_MAX  (0x00000003U)
+
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_STATUS_MDLL_UNLOCK_STICKY_MASK  (0x01F00000U)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_STATUS_MDLL_UNLOCK_STICKY_SHIFT  (20U)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_STATUS_MDLL_UNLOCK_STICKY_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_STATUS_MDLL_UNLOCK_STICKY_MAX  (0x0000001fU)
+
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_RDC_FIFO_RST_ERR_CNT_MASK  (0x000FFFFFU)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_RDC_FIFO_RST_ERR_CNT_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_RDC_FIFO_RST_ERR_CNT_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_27_PHY_REG_RDC_FIFO_RST_ERR_CNT_MAX  (0x000fffffU)
+
+#define CSL_EMIF4D5_PHY_STATUS_27_RESETVAL                      (0x00000000U)
+
+/* PHY_STATUS_28 */
+
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_GATELVL_INC_FAIL_MASK  (0x1F000000U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_GATELVL_INC_FAIL_SHIFT  (24U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_GATELVL_INC_FAIL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_GATELVL_INC_FAIL_MAX  (0x0000001fU)
+
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_WRLVL_INC_FAIL_MASK   (0x001F0000U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_WRLVL_INC_FAIL_SHIFT  (16U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_WRLVL_INC_FAIL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_WRLVL_INC_FAIL_MAX    (0x0000001fU)
+
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_RDLVL_INC_FAIL_MASK   (0x00001F00U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_RDLVL_INC_FAIL_SHIFT  (8U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_RDLVL_INC_FAIL_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_RDLVL_INC_FAIL_MAX    (0x0000001fU)
+
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_FIFO_WE_IN_MIASALIGNED_STICKY_MASK  (0x0000001FU)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_FIFO_WE_IN_MIASALIGNED_STICKY_SHIFT  (0U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_FIFO_WE_IN_MIASALIGNED_STICKY_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_PHY_STATUS_28_PHY_REG_FIFO_WE_IN_MIASALIGNED_STICKY_MAX  (0x0000001fU)
+
+#define CSL_EMIF4D5_PHY_STATUS_28_RESETVAL                      (0x00000000U)
+
+/* EXT_PHY_CONTROL_1 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_PHY_REG_CTRL_SLAVE_RATIO_MASK  (0x3FFFFFFFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_PHY_REG_CTRL_SLAVE_RATIO_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_PHY_REG_CTRL_SLAVE_RATIO_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_PHY_REG_CTRL_SLAVE_RATIO_MAX  (0x3fffffffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_RESETVAL                  (0x00000000U)
+
+/* EXT_PHY_CONTROL_1_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_SHADOW_PHY_REG_CTRL_SLAVE_RATIO_MASK  (0x3FFFFFFFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_SHADOW_PHY_REG_CTRL_SLAVE_RATIO_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_SHADOW_PHY_REG_CTRL_SLAVE_RATIO_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_SHADOW_PHY_REG_CTRL_SLAVE_RATIO_MAX  (0x3fffffffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_1_SHADOW_RESETVAL           (0x00000000U)
+
+/* EXT_PHY_CONTROL_2 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_PHY_REG_FIFO_WE_SLAVE_RATIO1_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_PHY_REG_FIFO_WE_SLAVE_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_PHY_REG_FIFO_WE_SLAVE_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_PHY_REG_FIFO_WE_SLAVE_RATIO1_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_PHY_REG_FIFO_WE_SLAVE_RATIO0_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_PHY_REG_FIFO_WE_SLAVE_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_PHY_REG_FIFO_WE_SLAVE_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_PHY_REG_FIFO_WE_SLAVE_RATIO0_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_RESETVAL                  (0x00000000U)
+
+/* EXT_PHY_CONTROL_2_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO1_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO1_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO0_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO0_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_2_SHADOW_RESETVAL           (0x00000000U)
+
+/* EXT_PHY_CONTROL_3 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_PHY_REG_FIFO_WE_SLAVE_RATIO3_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_PHY_REG_FIFO_WE_SLAVE_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_PHY_REG_FIFO_WE_SLAVE_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_PHY_REG_FIFO_WE_SLAVE_RATIO3_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_PHY_REG_FIFO_WE_SLAVE_RATIO2_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_PHY_REG_FIFO_WE_SLAVE_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_PHY_REG_FIFO_WE_SLAVE_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_PHY_REG_FIFO_WE_SLAVE_RATIO2_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_RESETVAL                  (0x00000000U)
+
+/* EXT_PHY_CONTROL_3_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO3_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO3_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO2_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO2_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_3_SHADOW_RESETVAL           (0x00000000U)
+
+/* EXT_PHY_CONTROL_4 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_PHY_REG_FIFO_WE_SLAVE_RATIO5_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_PHY_REG_FIFO_WE_SLAVE_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_PHY_REG_FIFO_WE_SLAVE_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_PHY_REG_FIFO_WE_SLAVE_RATIO5_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_PHY_REG_FIFO_WE_SLAVE_RATIO4_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_PHY_REG_FIFO_WE_SLAVE_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_PHY_REG_FIFO_WE_SLAVE_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_PHY_REG_FIFO_WE_SLAVE_RATIO4_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_RESETVAL                  (0x00000000U)
+
+/* EXT_PHY_CONTROL_4_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO5_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO5_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO4_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO4_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_4_SHADOW_RESETVAL           (0x00000000U)
+
+/* EXT_PHY_CONTROL_5 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_PHY_REG_FIFO_WE_SLAVE_RATIO7_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_PHY_REG_FIFO_WE_SLAVE_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_PHY_REG_FIFO_WE_SLAVE_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_PHY_REG_FIFO_WE_SLAVE_RATIO7_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_PHY_REG_FIFO_WE_SLAVE_RATIO6_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_PHY_REG_FIFO_WE_SLAVE_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_PHY_REG_FIFO_WE_SLAVE_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_PHY_REG_FIFO_WE_SLAVE_RATIO6_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_RESETVAL                  (0x00000000U)
+
+/* EXT_PHY_CONTROL_5_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO7_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO7_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO6_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO6_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_5_SHADOW_RESETVAL           (0x00000000U)
+
+/* EXT_PHY_CONTROL_6 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_PHY_REG_FIFO_WE_SLAVE_RATIO9_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_PHY_REG_FIFO_WE_SLAVE_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_PHY_REG_FIFO_WE_SLAVE_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_PHY_REG_FIFO_WE_SLAVE_RATIO9_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_PHY_REG_FIFO_WE_SLAVE_RATIO8_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_PHY_REG_FIFO_WE_SLAVE_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_PHY_REG_FIFO_WE_SLAVE_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_PHY_REG_FIFO_WE_SLAVE_RATIO8_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_RESETVAL                  (0x00000000U)
+
+/* EXT_PHY_CONTROL_6_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO9_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO9_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO8_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_PHY_REG_FIFO_WE_SLAVE_RATIO8_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_6_SHADOW_RESETVAL           (0x00000000U)
+
+/* EXT_PHY_CONTROL_7 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_PHY_REG_RD_DQS_SLAVE_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_PHY_REG_RD_DQS_SLAVE_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_PHY_REG_RD_DQS_SLAVE_RATIO1_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_PHY_REG_RD_DQS_SLAVE_RATIO1_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_PHY_REG_RD_DQS_SLAVE_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_PHY_REG_RD_DQS_SLAVE_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_PHY_REG_RD_DQS_SLAVE_RATIO0_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_PHY_REG_RD_DQS_SLAVE_RATIO0_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_RESETVAL                  (0x00400040U)
+
+/* EXT_PHY_CONTROL_7_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO1_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO1_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO0_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO0_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_7_SHADOW_RESETVAL           (0x00400040U)
+
+/* EXT_PHY_CONTROL_8 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_PHY_REG_RD_DQS_SLAVE_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_PHY_REG_RD_DQS_SLAVE_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_PHY_REG_RD_DQS_SLAVE_RATIO3_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_PHY_REG_RD_DQS_SLAVE_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_PHY_REG_RD_DQS_SLAVE_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_PHY_REG_RD_DQS_SLAVE_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_PHY_REG_RD_DQS_SLAVE_RATIO2_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_PHY_REG_RD_DQS_SLAVE_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_RESETVAL                  (0x00400040U)
+
+/* EXT_PHY_CONTROL_8_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO3_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO2_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_8_SHADOW_RESETVAL           (0x00400040U)
+
+/* EXT_PHY_CONTROL_9 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_PHY_REG_RD_DQS_SLAVE_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_PHY_REG_RD_DQS_SLAVE_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_PHY_REG_RD_DQS_SLAVE_RATIO5_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_PHY_REG_RD_DQS_SLAVE_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_PHY_REG_RD_DQS_SLAVE_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_PHY_REG_RD_DQS_SLAVE_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_PHY_REG_RD_DQS_SLAVE_RATIO4_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_PHY_REG_RD_DQS_SLAVE_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_RESETVAL                  (0x00400040U)
+
+/* EXT_PHY_CONTROL_9_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO5_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO4_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_9_SHADOW_RESETVAL           (0x00400040U)
+
+/* EXT_PHY_CONTROL_10 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_PHY_REG_RD_DQS_SLAVE_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_PHY_REG_RD_DQS_SLAVE_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_PHY_REG_RD_DQS_SLAVE_RATIO7_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_PHY_REG_RD_DQS_SLAVE_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_PHY_REG_RD_DQS_SLAVE_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_PHY_REG_RD_DQS_SLAVE_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_PHY_REG_RD_DQS_SLAVE_RATIO6_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_PHY_REG_RD_DQS_SLAVE_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_RESETVAL                 (0x00400040U)
+
+/* EXT_PHY_CONTROL_10_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO7_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO6_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_10_SHADOW_RESETVAL          (0x00400040U)
+
+/* EXT_PHY_CONTROL_11 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_PHY_REG_RD_DQS_SLAVE_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_PHY_REG_RD_DQS_SLAVE_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_PHY_REG_RD_DQS_SLAVE_RATIO9_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_PHY_REG_RD_DQS_SLAVE_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_PHY_REG_RD_DQS_SLAVE_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_PHY_REG_RD_DQS_SLAVE_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_PHY_REG_RD_DQS_SLAVE_RATIO8_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_PHY_REG_RD_DQS_SLAVE_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_RESETVAL                 (0x00400040U)
+
+/* EXT_PHY_CONTROL_11_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO9_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO8_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_PHY_REG_RD_DQS_SLAVE_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_11_SHADOW_RESETVAL          (0x00400040U)
+
+/* EXT_PHY_CONTROL_12 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_PHY_REG_WR_DATA_SLAVE_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_PHY_REG_WR_DATA_SLAVE_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_PHY_REG_WR_DATA_SLAVE_RATIO1_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_PHY_REG_WR_DATA_SLAVE_RATIO1_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_PHY_REG_WR_DATA_SLAVE_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_PHY_REG_WR_DATA_SLAVE_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_PHY_REG_WR_DATA_SLAVE_RATIO0_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_PHY_REG_WR_DATA_SLAVE_RATIO0_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_RESETVAL                 (0x00400040U)
+
+/* EXT_PHY_CONTROL_12_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO1_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO1_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO0_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO0_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_12_SHADOW_RESETVAL          (0x00400040U)
+
+/* EXT_PHY_CONTROL_13 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_PHY_REG_WR_DATA_SLAVE_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_PHY_REG_WR_DATA_SLAVE_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_PHY_REG_WR_DATA_SLAVE_RATIO3_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_PHY_REG_WR_DATA_SLAVE_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_PHY_REG_WR_DATA_SLAVE_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_PHY_REG_WR_DATA_SLAVE_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_PHY_REG_WR_DATA_SLAVE_RATIO2_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_PHY_REG_WR_DATA_SLAVE_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_RESETVAL                 (0x00400040U)
+
+/* EXT_PHY_CONTROL_13_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO3_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO2_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_13_SHADOW_RESETVAL          (0x00400040U)
+
+/* EXT_PHY_CONTROL_14 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_PHY_REG_WR_DATA_SLAVE_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_PHY_REG_WR_DATA_SLAVE_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_PHY_REG_WR_DATA_SLAVE_RATIO5_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_PHY_REG_WR_DATA_SLAVE_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_PHY_REG_WR_DATA_SLAVE_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_PHY_REG_WR_DATA_SLAVE_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_PHY_REG_WR_DATA_SLAVE_RATIO4_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_PHY_REG_WR_DATA_SLAVE_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_RESETVAL                 (0x00400040U)
+
+/* EXT_PHY_CONTROL_14_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO5_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO4_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_14_SHADOW_RESETVAL          (0x00400040U)
+
+/* EXT_PHY_CONTROL_15 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_PHY_REG_WR_DATA_SLAVE_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_PHY_REG_WR_DATA_SLAVE_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_PHY_REG_WR_DATA_SLAVE_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_PHY_REG_WR_DATA_SLAVE_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_PHY_REG_WR_DATA_SLAVE_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_PHY_REG_WR_DATA_SLAVE_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_PHY_REG_WR_DATA_SLAVE_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_PHY_REG_WR_DATA_SLAVE_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_15_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_15_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_16 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_PHY_REG_WR_DATA_SLAVE_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_PHY_REG_WR_DATA_SLAVE_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_PHY_REG_WR_DATA_SLAVE_RATIO9_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_PHY_REG_WR_DATA_SLAVE_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_PHY_REG_WR_DATA_SLAVE_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_PHY_REG_WR_DATA_SLAVE_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_PHY_REG_WR_DATA_SLAVE_RATIO8_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_PHY_REG_WR_DATA_SLAVE_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_RESETVAL                 (0x00400040U)
+
+/* EXT_PHY_CONTROL_16_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO9_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO8_RESETVAL  (0x00000040U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_PHY_REG_WR_DATA_SLAVE_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_16_SHADOW_RESETVAL          (0x00400040U)
+
+/* EXT_PHY_CONTROL_17 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_PHY_REG_WR_DQS_SLAVE_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_PHY_REG_WR_DQS_SLAVE_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_PHY_REG_WR_DQS_SLAVE_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_PHY_REG_WR_DQS_SLAVE_RATIO1_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_PHY_REG_WR_DQS_SLAVE_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_PHY_REG_WR_DQS_SLAVE_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_PHY_REG_WR_DQS_SLAVE_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_PHY_REG_WR_DQS_SLAVE_RATIO0_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_17_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO1_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO1_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO0_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO0_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_17_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_18 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_PHY_REG_WR_DQS_SLAVE_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_PHY_REG_WR_DQS_SLAVE_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_PHY_REG_WR_DQS_SLAVE_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_PHY_REG_WR_DQS_SLAVE_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_PHY_REG_WR_DQS_SLAVE_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_PHY_REG_WR_DQS_SLAVE_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_PHY_REG_WR_DQS_SLAVE_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_PHY_REG_WR_DQS_SLAVE_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_18_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_18_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_19 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_PHY_REG_WR_DQS_SLAVE_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_PHY_REG_WR_DQS_SLAVE_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_PHY_REG_WR_DQS_SLAVE_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_PHY_REG_WR_DQS_SLAVE_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_PHY_REG_WR_DQS_SLAVE_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_PHY_REG_WR_DQS_SLAVE_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_PHY_REG_WR_DQS_SLAVE_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_PHY_REG_WR_DQS_SLAVE_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_19_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_19_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_20 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_PHY_REG_WR_DQS_SLAVE_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_PHY_REG_WR_DQS_SLAVE_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_PHY_REG_WR_DQS_SLAVE_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_PHY_REG_WR_DQS_SLAVE_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_PHY_REG_WR_DQS_SLAVE_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_PHY_REG_WR_DQS_SLAVE_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_PHY_REG_WR_DQS_SLAVE_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_PHY_REG_WR_DQS_SLAVE_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_20_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_20_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_21 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_PHY_REG_WR_DQS_SLAVE_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_PHY_REG_WR_DQS_SLAVE_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_PHY_REG_WR_DQS_SLAVE_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_PHY_REG_WR_DQS_SLAVE_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_PHY_REG_WR_DQS_SLAVE_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_PHY_REG_WR_DQS_SLAVE_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_PHY_REG_WR_DQS_SLAVE_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_PHY_REG_WR_DQS_SLAVE_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_21_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_PHY_REG_WR_DQS_SLAVE_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_21_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_22 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_PHY_REG_FIFO_WE_IN_DELAY_MASK  (0x01FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_PHY_REG_FIFO_WE_IN_DELAY_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_PHY_REG_FIFO_WE_IN_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_PHY_REG_FIFO_WE_IN_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_PHY_REG_CTRL_SLAVE_DELAY_MASK  (0x000001FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_PHY_REG_CTRL_SLAVE_DELAY_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_PHY_REG_CTRL_SLAVE_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_PHY_REG_CTRL_SLAVE_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_RESETVAL                 (0x00800080U)
+
+/* EXT_PHY_CONTROL_22_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_PHY_REG_FIFO_WE_IN_DELAY_MASK  (0x01FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_PHY_REG_FIFO_WE_IN_DELAY_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_PHY_REG_FIFO_WE_IN_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_PHY_REG_FIFO_WE_IN_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_PHY_REG_CTRL_SLAVE_DELAY_MASK  (0x000001FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_PHY_REG_CTRL_SLAVE_DELAY_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_PHY_REG_CTRL_SLAVE_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_PHY_REG_CTRL_SLAVE_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_22_SHADOW_RESETVAL          (0x00800080U)
+
+/* EXT_PHY_CONTROL_23 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_PHY_REG_WR_DQS_SLAVE_DELAY_MASK  (0x01FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_PHY_REG_WR_DQS_SLAVE_DELAY_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_PHY_REG_WR_DQS_SLAVE_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_PHY_REG_WR_DQS_SLAVE_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_PHY_REG_RD_DQS_SLAVE_DELAY_MASK  (0x000001FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_PHY_REG_RD_DQS_SLAVE_DELAY_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_PHY_REG_RD_DQS_SLAVE_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_PHY_REG_RD_DQS_SLAVE_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_RESETVAL                 (0x00800080U)
+
+/* EXT_PHY_CONTROL_23_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_PHY_REG_WR_DQS_SLAVE_DELAY_MASK  (0x01FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_PHY_REG_WR_DQS_SLAVE_DELAY_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_PHY_REG_WR_DQS_SLAVE_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_PHY_REG_WR_DQS_SLAVE_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_PHY_REG_RD_DQS_SLAVE_DELAY_MASK  (0x000001FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_PHY_REG_RD_DQS_SLAVE_DELAY_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_PHY_REG_RD_DQS_SLAVE_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_PHY_REG_RD_DQS_SLAVE_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_23_SHADOW_RESETVAL          (0x00800080U)
+
+/* EXT_PHY_CONTROL_24 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_DQ_OFFSET_HI_MASK  (0x7F000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_DQ_OFFSET_HI_SHIFT  (24U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_DQ_OFFSET_HI_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_DQ_OFFSET_HI_MAX  (0x0000007fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_GATELVL_INIT_MODE_MASK  (0x00010000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_GATELVL_INIT_MODE_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_GATELVL_INIT_MODE_RESETVAL  (0x00000001U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_GATELVL_INIT_MODE_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_USE_RANK0_DELAYS_MASK  (0x00001000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_USE_RANK0_DELAYS_SHIFT  (12U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_USE_RANK0_DELAYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_USE_RANK0_DELAYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_WR_DATA_SLAVE_DELAY_MASK  (0x000001FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_WR_DATA_SLAVE_DELAY_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_WR_DATA_SLAVE_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_REG_PHY_WR_DATA_SLAVE_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_RESETVAL                 (0x00010080U)
+
+/* EXT_PHY_CONTROL_24_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_DQ_OFFSET_HI_MASK  (0x7F000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_DQ_OFFSET_HI_SHIFT  (24U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_DQ_OFFSET_HI_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_DQ_OFFSET_HI_MAX  (0x0000007fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_GATELVL_INIT_MODE_MASK  (0x00010000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_GATELVL_INIT_MODE_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_GATELVL_INIT_MODE_RESETVAL  (0x00000001U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_GATELVL_INIT_MODE_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_USE_RANK0_DELAYS_MASK  (0x00001000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_USE_RANK0_DELAYS_SHIFT  (12U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_USE_RANK0_DELAYS_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_USE_RANK0_DELAYS_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_WR_DATA_SLAVE_DELAY_MASK  (0x000001FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_WR_DATA_SLAVE_DELAY_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_WR_DATA_SLAVE_DELAY_RESETVAL  (0x00000080U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_REG_PHY_WR_DATA_SLAVE_DELAY_MAX  (0x000001ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_24_SHADOW_RESETVAL          (0x00010080U)
+
+/* EXT_PHY_CONTROL_25 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_REG_PHY_DQ_OFFSET_MASK   (0x0FFFFFFFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_REG_PHY_DQ_OFFSET_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_REG_PHY_DQ_OFFSET_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_REG_PHY_DQ_OFFSET_MAX    (0x0fffffffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_25_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_SHADOW_REG_PHY_DQ_OFFSET_MASK  (0x0FFFFFFFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_SHADOW_REG_PHY_DQ_OFFSET_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_SHADOW_REG_PHY_DQ_OFFSET_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_SHADOW_REG_PHY_DQ_OFFSET_MAX  (0x0fffffffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_25_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_26 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_REG_PHY_GATELVL_INIT_RATIO1_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_REG_PHY_GATELVL_INIT_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_REG_PHY_GATELVL_INIT_RATIO1_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_REG_PHY_GATELVL_INIT_RATIO1_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_REG_PHY_GATELVL_INIT_RATIO0_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_REG_PHY_GATELVL_INIT_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_REG_PHY_GATELVL_INIT_RATIO0_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_REG_PHY_GATELVL_INIT_RATIO0_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_RESETVAL                 (0x01500150U)
+
+/* EXT_PHY_CONTROL_26_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_REG_PHY_GATELVL_INIT_RATIO1_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_REG_PHY_GATELVL_INIT_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_REG_PHY_GATELVL_INIT_RATIO1_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_REG_PHY_GATELVL_INIT_RATIO1_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_REG_PHY_GATELVL_INIT_RATIO0_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_REG_PHY_GATELVL_INIT_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_REG_PHY_GATELVL_INIT_RATIO0_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_REG_PHY_GATELVL_INIT_RATIO0_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_26_SHADOW_RESETVAL          (0x01500150U)
+
+/* EXT_PHY_CONTROL_27 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_REG_PHY_GATELVL_INIT_RATIO3_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_REG_PHY_GATELVL_INIT_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_REG_PHY_GATELVL_INIT_RATIO3_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_REG_PHY_GATELVL_INIT_RATIO3_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_REG_PHY_GATELVL_INIT_RATIO2_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_REG_PHY_GATELVL_INIT_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_REG_PHY_GATELVL_INIT_RATIO2_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_REG_PHY_GATELVL_INIT_RATIO2_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_RESETVAL                 (0x01500150U)
+
+/* EXT_PHY_CONTROL_27_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_REG_PHY_GATELVL_INIT_RATIO3_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_REG_PHY_GATELVL_INIT_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_REG_PHY_GATELVL_INIT_RATIO3_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_REG_PHY_GATELVL_INIT_RATIO3_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_REG_PHY_GATELVL_INIT_RATIO2_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_REG_PHY_GATELVL_INIT_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_REG_PHY_GATELVL_INIT_RATIO2_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_REG_PHY_GATELVL_INIT_RATIO2_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_27_SHADOW_RESETVAL          (0x01500150U)
+
+/* EXT_PHY_CONTROL_28 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_REG_PHY_GATELVL_INIT_RATIO5_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_REG_PHY_GATELVL_INIT_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_REG_PHY_GATELVL_INIT_RATIO5_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_REG_PHY_GATELVL_INIT_RATIO5_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_REG_PHY_GATELVL_INIT_RATIO4_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_REG_PHY_GATELVL_INIT_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_REG_PHY_GATELVL_INIT_RATIO4_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_REG_PHY_GATELVL_INIT_RATIO4_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_RESETVAL                 (0x01500150U)
+
+/* EXT_PHY_CONTROL_28_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_REG_PHY_GATELVL_INIT_RATIO5_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_REG_PHY_GATELVL_INIT_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_REG_PHY_GATELVL_INIT_RATIO5_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_REG_PHY_GATELVL_INIT_RATIO5_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_REG_PHY_GATELVL_INIT_RATIO4_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_REG_PHY_GATELVL_INIT_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_REG_PHY_GATELVL_INIT_RATIO4_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_REG_PHY_GATELVL_INIT_RATIO4_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_28_SHADOW_RESETVAL          (0x01500150U)
+
+/* EXT_PHY_CONTROL_29 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_REG_PHY_GATELVL_INIT_RATIO7_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_REG_PHY_GATELVL_INIT_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_REG_PHY_GATELVL_INIT_RATIO7_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_REG_PHY_GATELVL_INIT_RATIO7_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_REG_PHY_GATELVL_INIT_RATIO6_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_REG_PHY_GATELVL_INIT_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_REG_PHY_GATELVL_INIT_RATIO6_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_REG_PHY_GATELVL_INIT_RATIO6_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_RESETVAL                 (0x01500150U)
+
+/* EXT_PHY_CONTROL_29_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_REG_PHY_GATELVL_INIT_RATIO7_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_REG_PHY_GATELVL_INIT_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_REG_PHY_GATELVL_INIT_RATIO7_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_REG_PHY_GATELVL_INIT_RATIO7_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_REG_PHY_GATELVL_INIT_RATIO6_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_REG_PHY_GATELVL_INIT_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_REG_PHY_GATELVL_INIT_RATIO6_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_REG_PHY_GATELVL_INIT_RATIO6_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_29_SHADOW_RESETVAL          (0x01500150U)
+
+/* EXT_PHY_CONTROL_30 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_REG_PHY_GATELVL_INIT_RATIO9_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_REG_PHY_GATELVL_INIT_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_REG_PHY_GATELVL_INIT_RATIO9_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_REG_PHY_GATELVL_INIT_RATIO9_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_REG_PHY_GATELVL_INIT_RATIO8_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_REG_PHY_GATELVL_INIT_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_REG_PHY_GATELVL_INIT_RATIO8_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_REG_PHY_GATELVL_INIT_RATIO8_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_RESETVAL                 (0x01500150U)
+
+/* EXT_PHY_CONTROL_30_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_REG_PHY_GATELVL_INIT_RATIO9_MASK  (0x07FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_REG_PHY_GATELVL_INIT_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_REG_PHY_GATELVL_INIT_RATIO9_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_REG_PHY_GATELVL_INIT_RATIO9_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_REG_PHY_GATELVL_INIT_RATIO8_MASK  (0x000007FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_REG_PHY_GATELVL_INIT_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_REG_PHY_GATELVL_INIT_RATIO8_RESETVAL  (0x00000150U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_REG_PHY_GATELVL_INIT_RATIO8_MAX  (0x000007ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_30_SHADOW_RESETVAL          (0x01500150U)
+
+/* EXT_PHY_CONTROL_31 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_REG_PHY_WRLVL_INIT_RATIO1_MASK  (0x003F0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_REG_PHY_WRLVL_INIT_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_REG_PHY_WRLVL_INIT_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_REG_PHY_WRLVL_INIT_RATIO1_MAX  (0x0000003fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_REG_PHY_WRLVL_INIT_RATIO0_MASK  (0x0000003FU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_REG_PHY_WRLVL_INIT_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_REG_PHY_WRLVL_INIT_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_REG_PHY_WRLVL_INIT_RATIO0_MAX  (0x0000003fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_31_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_REG_PHY_WRLVL_INIT_RATIO1_MASK  (0x003F0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_REG_PHY_WRLVL_INIT_RATIO1_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_REG_PHY_WRLVL_INIT_RATIO1_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_REG_PHY_WRLVL_INIT_RATIO1_MAX  (0x0000003fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_REG_PHY_WRLVL_INIT_RATIO0_MASK  (0x0000003FU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_REG_PHY_WRLVL_INIT_RATIO0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_REG_PHY_WRLVL_INIT_RATIO0_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_REG_PHY_WRLVL_INIT_RATIO0_MAX  (0x0000003fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_31_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_32 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_REG_PHY_WRLVL_INIT_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_REG_PHY_WRLVL_INIT_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_REG_PHY_WRLVL_INIT_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_REG_PHY_WRLVL_INIT_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_REG_PHY_WRLVL_INIT_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_REG_PHY_WRLVL_INIT_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_REG_PHY_WRLVL_INIT_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_REG_PHY_WRLVL_INIT_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_32_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_REG_PHY_WRLVL_INIT_RATIO3_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_REG_PHY_WRLVL_INIT_RATIO3_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_REG_PHY_WRLVL_INIT_RATIO3_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_REG_PHY_WRLVL_INIT_RATIO3_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_REG_PHY_WRLVL_INIT_RATIO2_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_REG_PHY_WRLVL_INIT_RATIO2_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_REG_PHY_WRLVL_INIT_RATIO2_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_REG_PHY_WRLVL_INIT_RATIO2_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_32_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_33 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_REG_PHY_WRLVL_INIT_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_REG_PHY_WRLVL_INIT_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_REG_PHY_WRLVL_INIT_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_REG_PHY_WRLVL_INIT_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_REG_PHY_WRLVL_INIT_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_REG_PHY_WRLVL_INIT_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_REG_PHY_WRLVL_INIT_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_REG_PHY_WRLVL_INIT_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_33_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_REG_PHY_WRLVL_INIT_RATIO5_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_REG_PHY_WRLVL_INIT_RATIO5_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_REG_PHY_WRLVL_INIT_RATIO5_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_REG_PHY_WRLVL_INIT_RATIO5_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_REG_PHY_WRLVL_INIT_RATIO4_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_REG_PHY_WRLVL_INIT_RATIO4_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_REG_PHY_WRLVL_INIT_RATIO4_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_REG_PHY_WRLVL_INIT_RATIO4_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_33_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_34 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_REG_PHY_WRLVL_INIT_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_REG_PHY_WRLVL_INIT_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_REG_PHY_WRLVL_INIT_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_REG_PHY_WRLVL_INIT_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_REG_PHY_WRLVL_INIT_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_REG_PHY_WRLVL_INIT_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_REG_PHY_WRLVL_INIT_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_REG_PHY_WRLVL_INIT_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_34_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_REG_PHY_WRLVL_INIT_RATIO7_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_REG_PHY_WRLVL_INIT_RATIO7_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_REG_PHY_WRLVL_INIT_RATIO7_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_REG_PHY_WRLVL_INIT_RATIO7_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_REG_PHY_WRLVL_INIT_RATIO6_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_REG_PHY_WRLVL_INIT_RATIO6_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_REG_PHY_WRLVL_INIT_RATIO6_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_REG_PHY_WRLVL_INIT_RATIO6_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_34_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_35 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_REG_PHY_WRLVL_INIT_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_REG_PHY_WRLVL_INIT_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_REG_PHY_WRLVL_INIT_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_REG_PHY_WRLVL_INIT_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_REG_PHY_WRLVL_INIT_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_REG_PHY_WRLVL_INIT_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_REG_PHY_WRLVL_INIT_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_REG_PHY_WRLVL_INIT_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_RESETVAL                 (0x00000000U)
+
+/* EXT_PHY_CONTROL_35_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_REG_PHY_WRLVL_INIT_RATIO9_MASK  (0x03FF0000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_REG_PHY_WRLVL_INIT_RATIO9_SHIFT  (16U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_REG_PHY_WRLVL_INIT_RATIO9_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_REG_PHY_WRLVL_INIT_RATIO9_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_REG_PHY_WRLVL_INIT_RATIO8_MASK  (0x000003FFU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_REG_PHY_WRLVL_INIT_RATIO8_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_REG_PHY_WRLVL_INIT_RATIO8_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_REG_PHY_WRLVL_INIT_RATIO8_MAX  (0x000003ffU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_35_SHADOW_RESETVAL          (0x00000000U)
+
+/* EXT_PHY_CONTROL_36 */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_RDC_FIFO_RST_ERR_CNT_CLR_MASK  (0x00000400U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_RDC_FIFO_RST_ERR_CNT_CLR_SHIFT  (10U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_RDC_FIFO_RST_ERR_CNT_CLR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_RDC_FIFO_RST_ERR_CNT_CLR_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_MDLL_UNLOCK_CLR_MASK  (0x00000200U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_MDLL_UNLOCK_CLR_SHIFT  (9U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_MDLL_UNLOCK_CLR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_MDLL_UNLOCK_CLR_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_FIFO_WE_IN_MISALIGNED_CLR_MASK  (0x00000100U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_FIFO_WE_IN_MISALIGNED_CLR_SHIFT  (8U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_FIFO_WE_IN_MISALIGNED_CLR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_FIFO_WE_IN_MISALIGNED_CLR_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_WRLVL_NUM_OF_DQ0_MASK  (0x000000F0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_WRLVL_NUM_OF_DQ0_SHIFT  (4U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_WRLVL_NUM_OF_DQ0_RESETVAL  (0x00000007U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_WRLVL_NUM_OF_DQ0_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_GATELVL_NUM_OF_DQ0_MASK  (0x0000000FU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_GATELVL_NUM_OF_DQ0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_GATELVL_NUM_OF_DQ0_RESETVAL  (0x00000007U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_REG_PHY_GATELVL_NUM_OF_DQ0_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_RESETVAL                 (0x00000077U)
+
+/* EXT_PHY_CONTROL_36_SHADOW */
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_RDC_FIFO_RST_ERR_CNT_CLR_MASK  (0x00000400U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_RDC_FIFO_RST_ERR_CNT_CLR_SHIFT  (10U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_RDC_FIFO_RST_ERR_CNT_CLR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_RDC_FIFO_RST_ERR_CNT_CLR_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_MDLL_UNLOCK_CLR_MASK  (0x00000200U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_MDLL_UNLOCK_CLR_SHIFT  (9U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_MDLL_UNLOCK_CLR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_MDLL_UNLOCK_CLR_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_FIFO_WE_IN_MISALIGNED_CLR_MASK  (0x00000100U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_FIFO_WE_IN_MISALIGNED_CLR_SHIFT  (8U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_FIFO_WE_IN_MISALIGNED_CLR_RESETVAL  (0x00000000U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_FIFO_WE_IN_MISALIGNED_CLR_MAX  (0x00000001U)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_WRLVL_NUM_OF_DQ0_MASK  (0x000000F0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_WRLVL_NUM_OF_DQ0_SHIFT  (4U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_WRLVL_NUM_OF_DQ0_RESETVAL  (0x00000007U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_WRLVL_NUM_OF_DQ0_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_GATELVL_NUM_OF_DQ0_MASK  (0x0000000FU)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_GATELVL_NUM_OF_DQ0_SHIFT  (0U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_GATELVL_NUM_OF_DQ0_RESETVAL  (0x00000007U)
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_REG_PHY_GATELVL_NUM_OF_DQ0_MAX  (0x0000000fU)
+
+#define CSL_EMIF4D5_EXT_PHY_CONTROL_36_SHADOW_RESETVAL          (0x00000077U)
+
+/* MISC_REG */
+
+#define CSL_EMIF4D5_MISC_REG_DLL_CALIB_OS_MASK                  (0x00000001U)
+#define CSL_EMIF4D5_MISC_REG_DLL_CALIB_OS_SHIFT                 (0U)
+#define CSL_EMIF4D5_MISC_REG_DLL_CALIB_OS_RESETVAL              (0x00000000U)
+#define CSL_EMIF4D5_MISC_REG_DLL_CALIB_OS_MAX                   (0x00000001U)
+
+#define CSL_EMIF4D5_MISC_REG_RESETVAL                           (0x00000000U)
+
+#ifdef __cplusplus
+}
+#endif
+#endif

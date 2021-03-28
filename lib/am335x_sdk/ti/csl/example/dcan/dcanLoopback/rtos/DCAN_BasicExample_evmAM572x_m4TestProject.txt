@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/example/dcan/dcanLoopback/rtos/dcan_loopback_rtos_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/example/dcan/dcanLoopback/dcan_loopback_app.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/csl/example/dcan/dcanLoopback/rtos/dcan_m4_evmAM572x.cfg"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_AM572x -DevmAM572x -DRTOS_BUILD -DAM5XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"

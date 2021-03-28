@@ -1,0 +1,93 @@
+[OPTIONS]
+Compiled file=..\..\osallldDocs.chm
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=OSAL Library
+
+[WINDOWS]
+main="OSAL Library","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+_cache_p_8h.html
+_cycleprofiler_p_8h.html
+_event_combiner_p_8h.html
+_event_p_8h.html
+_hwi_p_8h.html
+_memory_p_8h.html
+_mux_intc_p_8h.html
+osal_8h.html
+osalver_8h.html
+_queue_8h.html
+_register_intr_8h.html
+_semaphore_p_8h.html
+_swi_p_8h.html
+_task_p_8h.html
+_timer_p_8h.html
+group___d_r_v___o_s_a_l___cache_p.html
+group___d_r_v___o_s_a_l___cycleprofiler_p.html
+group___d_r_v___o_s_a_l___event_combiner_p.html
+group___d_r_v___o_s_a_l___event_p.html
+group___d_r_v___o_s_a_l___hwi_p.html
+group___d_r_v___o_s_a_l___memory_p.html
+group___d_r_v___o_s_a_l___mux_intc_p.html
+group___d_r_v___o_s_a_l___m_o_d_u_l_e.html
+group___d_r_v___o_s_a_l___a_p_i.html
+group___d_r_v___o_s_a_l___queue.html
+group___d_r_v___o_s_a_l___register_intr.html
+group___d_r_v___o_s_a_l___semaphore_p.html
+group___d_r_v___o_s_a_l___swi_p.html
+group___d_r_v___o_s_a_l___timer_p.html
+struct_event_p___params__s.html
+struct_hwi_p___params__s.html
+struct_memory_p___stats.html
+struct_mux_intc_p__in_params__s.html
+struct_osal___hw_attrs__s.html
+struct_osal__mem_range__s.html
+struct_osal___queue___elem.html
+struct_osal___static_memory_status.html
+struct_osal_register_int_params__corepac__t.html
+struct_osal_register_int_params__socmux__t.html
+struct_osal_register_intr_params__t.html
+struct_semaphore_p___params__s.html
+struct_swi_p___params__s.html
+struct_task_p___params__s.html
+struct_timer_p___freq_hz__s.html
+struct_timer_p___params__s.html
+index.html
+modules.html
+annotated.html
+classes.html
+functions.html
+functions_vars.html
+files.html
+globals.html
+globals_func.html
+globals_vars.html
+globals_type.html
+globals_enum.html
+globals_eval.html
+globals_defs.html
+tab_a.png
+tab_b.png
+tab_h.png
+tab_s.png
+nav_h.png
+nav_f.png
+bc_s.png
+doxygen.png
+closed.png
+open.png
+bdwn.png
+sync_on.png
+sync_off.png
+doc.png
+folderopen.png
+folderclosed.png
+arrowdown.png
+arrowright.png
+splitbar.png

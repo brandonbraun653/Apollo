@@ -1,0 +1,356 @@
+/*
+* hw_pwmss_ecap.h
+*
+* Register-level header file for PWMSS_ECAP
+*
+* Copyright (C) 2013 Texas Instruments Incorporated - http://www.ti.com/
+*
+*
+*  Redistribution and use in source and binary forms, with or without
+*  modification, are permitted provided that the following conditions
+*  are met:
+*
+*    Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+*    Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the
+*    distribution.
+*
+*    Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+*  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+*  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+*  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+*  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+*  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+*  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+*  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+*  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+*  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+*  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+*  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+#ifndef HW_PWMSS_ECAP_H_
+#define HW_PWMSS_ECAP_H_
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+
+/****************************************************************************************************
+* Register Definitions
+****************************************************************************************************/
+#define PWMSS_ECAP_REVID                                        (0x5cU)
+#define PWMSS_ECAP_ECEINT                                       (0x2cU)
+#define PWMSS_ECAP_ECCTL1                                       (0x28U)
+#define PWMSS_ECAP_ECCLR                                        (0x30U)
+#define PWMSS_ECAP_CTRPHS                                       (0x4U)
+#define PWMSS_ECAP_ECFRC                                        (0x32U)
+#define PWMSS_ECAP_CAP2                                         (0xcU)
+#define PWMSS_ECAP_CAP3                                         (0x10U)
+#define PWMSS_ECAP_TSCTR                                        (0x0U)
+#define PWMSS_ECAP_ECFLG                                        (0x2eU)
+#define PWMSS_ECAP_CAP1                                         (0x8U)
+#define PWMSS_ECAP_ECCTL2                                       (0x2aU)
+#define PWMSS_ECAP_CAP4                                         (0x14U)
+
+
+/****************************************************************************************************
+* Field Definition Macros
+****************************************************************************************************/
+
+#define PWMSS_ECAP_REVID_REV_SHIFT                              (0U)
+#define PWMSS_ECAP_REVID_REV_MASK                               (0xffffffffU)
+
+#define PWMSS_ECAP_ECEINT_CEVT1_SHIFT                           (1U)
+#define PWMSS_ECAP_ECEINT_CEVT1_MASK                            (0x00000002U)
+#define PWMSS_ECAP_ECEINT_CEVT1_DISABLE                          (0U)
+#define PWMSS_ECAP_ECEINT_CEVT1_ENABLE                           (1U)
+
+#define PWMSS_ECAP_ECEINT_CEVT2_SHIFT                           (2U)
+#define PWMSS_ECAP_ECEINT_CEVT2_MASK                            (0x00000004U)
+#define PWMSS_ECAP_ECEINT_CEVT2_DISABLE                          (0U)
+#define PWMSS_ECAP_ECEINT_CEVT2_EN_0X1                           (1U)
+
+#define PWMSS_ECAP_ECEINT_CEVT3_SHIFT                           (3U)
+#define PWMSS_ECAP_ECEINT_CEVT3_MASK                            (0x00000008U)
+#define PWMSS_ECAP_ECEINT_CEVT3_ENABLE                           (1U)
+#define PWMSS_ECAP_ECEINT_CEVT3_DISABLE                          (0U)
+
+#define PWMSS_ECAP_ECEINT_CEVT4_SHIFT                           (4U)
+#define PWMSS_ECAP_ECEINT_CEVT4_MASK                            (0x00000010U)
+#define PWMSS_ECAP_ECEINT_CEVT4_ENABLE                           (1U)
+#define PWMSS_ECAP_ECEINT_CEVT4_DISABLE                          (0U)
+
+#define PWMSS_ECAP_ECEINT_CNTOVF_SHIFT                          (5U)
+#define PWMSS_ECAP_ECEINT_CNTOVF_MASK                           (0x00000020U)
+#define PWMSS_ECAP_ECEINT_CNTOVF_DISABLE                         (0U)
+#define PWMSS_ECAP_ECEINT_CNTOVF_ENABLE                          (1U)
+
+#define PWMSS_ECAP_ECEINT_PRDEQ_SHIFT                           (6U)
+#define PWMSS_ECAP_ECEINT_PRDEQ_MASK                            (0x00000040U)
+#define PWMSS_ECAP_ECEINT_PRDEQ_ENABLE                           (1U)
+#define PWMSS_ECAP_ECEINT_PRDEQ_DISABLE                          (0U)
+
+#define PWMSS_ECAP_ECEINT_CMPEQ_SHIFT                           (7U)
+#define PWMSS_ECAP_ECEINT_CMPEQ_MASK                            (0x00000080U)
+#define PWMSS_ECAP_ECEINT_CMPEQ_ENABLE                           (1U)
+#define PWMSS_ECAP_ECEINT_CMPEQ_DISABLE                          (0U)
+
+#define PWMSS_ECAP_ECCTL1_CAP1POL_SHIFT                         (0U)
+#define PWMSS_ECAP_ECCTL1_CAP1POL_MASK                          (0x00000001U)
+#define PWMSS_ECAP_ECCTL1_CAP1POL_RE                             (0U)
+#define PWMSS_ECAP_ECCTL1_CAP1POL_FE                             (1U)
+
+#define PWMSS_ECAP_ECCTL1_CTRRST1_SHIFT                         (1U)
+#define PWMSS_ECAP_ECCTL1_CTRRST1_MASK                          (0x00000002U)
+#define PWMSS_ECAP_ECCTL1_CTRRST1_NO_RESET                       (0U)
+#define PWMSS_ECAP_ECCTL1_CTRRST1_RESET                          (1U)
+
+#define PWMSS_ECAP_ECCTL1_CAP2POL_SHIFT                         (2U)
+#define PWMSS_ECAP_ECCTL1_CAP2POL_MASK                          (0x00000004U)
+#define PWMSS_ECAP_ECCTL1_CAP2POL_RE                             (0U)
+#define PWMSS_ECAP_ECCTL1_CAP2POL_FE                             (1U)
+
+#define PWMSS_ECAP_ECCTL1_CTRRST2_SHIFT                         (3U)
+#define PWMSS_ECAP_ECCTL1_CTRRST2_MASK                          (0x00000008U)
+#define PWMSS_ECAP_ECCTL1_CTRRST2_NO_RESET                       (0U)
+#define PWMSS_ECAP_ECCTL1_CTRRST2_RESET                          (1U)
+
+#define PWMSS_ECAP_ECCTL1_CAP3POL_SHIFT                         (4U)
+#define PWMSS_ECAP_ECCTL1_CAP3POL_MASK                          (0x00000010U)
+#define PWMSS_ECAP_ECCTL1_CAP3POL_FE                             (1U)
+#define PWMSS_ECAP_ECCTL1_CAP3POL_RE                             (0U)
+
+#define PWMSS_ECAP_ECCTL1_CTRRST3_SHIFT                         (5U)
+#define PWMSS_ECAP_ECCTL1_CTRRST3_MASK                          (0x00000020U)
+#define PWMSS_ECAP_ECCTL1_CTRRST3_NO_RESET                       (0U)
+#define PWMSS_ECAP_ECCTL1_CTRRST3_RESET                          (1U)
+
+#define PWMSS_ECAP_ECCTL1_CAP4POL_SHIFT                         (6U)
+#define PWMSS_ECAP_ECCTL1_CAP4POL_MASK                          (0x00000040U)
+#define PWMSS_ECAP_ECCTL1_CAP4POL_FE                             (1U)
+#define PWMSS_ECAP_ECCTL1_CAP4POL_RE                             (0U)
+
+#define PWMSS_ECAP_ECCTL1_CTRRST4_SHIFT                         (7U)
+#define PWMSS_ECAP_ECCTL1_CTRRST4_MASK                          (0x00000080U)
+#define PWMSS_ECAP_ECCTL1_CTRRST4_NO_RESET                       (0U)
+#define PWMSS_ECAP_ECCTL1_CTRRST4_RESET                          (1U)
+
+#define PWMSS_ECAP_ECCTL1_CAPLDEN_SHIFT                         (8U)
+#define PWMSS_ECAP_ECCTL1_CAPLDEN_MASK                          (0x00000100U)
+#define PWMSS_ECAP_ECCTL1_CAPLDEN_DISABLE                        (0U)
+#define PWMSS_ECAP_ECCTL1_CAPLDEN_ENABLE                         (1U)
+
+#define PWMSS_ECAP_ECCTL1_PRESCALE_SHIFT                        (9U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_MASK                         (0x00003e00U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_DIV10                         (5U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_DIV6                          (3U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_DIV8                          (4U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_DIV62                         (31U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_DIV2                          (1U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_DIV4                          (2U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_DIV60                         (30U)
+#define PWMSS_ECAP_ECCTL1_PRESCALE_DIV1                          (0U)
+
+#define PWMSS_ECAP_ECCTL1_FREE_SOFT_SHIFT                       (14U)
+#define PWMSS_ECAP_ECCTL1_FREE_SOFT_MASK                        (0x0000c000U)
+#define PWMSS_ECAP_ECCTL1_FREE_SOFT_RUN_FREE1                    (2U)
+#define PWMSS_ECAP_ECCTL1_FREE_SOFT_RUN_0                        (1U)
+#define PWMSS_ECAP_ECCTL1_FREE_SOFT_STOP                         (0U)
+#define PWMSS_ECAP_ECCTL1_FREE_SOFT_RUN_FREE2                    (3U)
+
+#define PWMSS_ECAP_ECCLR_INT_SHIFT                              (0U)
+#define PWMSS_ECAP_ECCLR_INT_MASK                               (0x00000001U)
+#define PWMSS_ECAP_ECCLR_INT_NO_EFFECT                           (0U)
+#define PWMSS_ECAP_ECCLR_INT_CLEAR                               (1U)
+
+#define PWMSS_ECAP_ECCLR_CEVT1_SHIFT                            (1U)
+#define PWMSS_ECAP_ECCLR_CEVT1_MASK                             (0x00000002U)
+#define PWMSS_ECAP_ECCLR_CEVT1_CLEAR                             (1U)
+#define PWMSS_ECAP_ECCLR_CEVT1_NO_EFFECT                         (0U)
+
+#define PWMSS_ECAP_ECCLR_CEVT2_SHIFT                            (2U)
+#define PWMSS_ECAP_ECCLR_CEVT2_MASK                             (0x00000004U)
+#define PWMSS_ECAP_ECCLR_CEVT2_NO_EFFECT                         (0U)
+#define PWMSS_ECAP_ECCLR_CEVT2_CLEAR                             (1U)
+
+#define PWMSS_ECAP_ECCLR_CEVT3_SHIFT                            (3U)
+#define PWMSS_ECAP_ECCLR_CEVT3_MASK                             (0x00000008U)
+#define PWMSS_ECAP_ECCLR_CEVT3_NO_EFFECT                         (0U)
+#define PWMSS_ECAP_ECCLR_CEVT3_CLEAR                             (1U)
+
+#define PWMSS_ECAP_ECCLR_CEVT4_SHIFT                            (4U)
+#define PWMSS_ECAP_ECCLR_CEVT4_MASK                             (0x00000010U)
+#define PWMSS_ECAP_ECCLR_CEVT4_NO_EFFECT                         (0U)
+#define PWMSS_ECAP_ECCLR_CEVT4_CLEAR                             (1U)
+
+#define PWMSS_ECAP_ECCLR_CNTOVF_SHIFT                           (5U)
+#define PWMSS_ECAP_ECCLR_CNTOVF_MASK                            (0x00000020U)
+#define PWMSS_ECAP_ECCLR_CNTOVF_CLEAR                            (1U)
+#define PWMSS_ECAP_ECCLR_CNTOVF_NO_EFFECT                        (0U)
+
+#define PWMSS_ECAP_ECCLR_PRDEQ_SHIFT                            (6U)
+#define PWMSS_ECAP_ECCLR_PRDEQ_MASK                             (0x00000040U)
+#define PWMSS_ECAP_ECCLR_PRDEQ_CLEAR                             (1U)
+#define PWMSS_ECAP_ECCLR_PRDEQ_NO_EFFECT                         (0U)
+
+#define PWMSS_ECAP_ECCLR_CMPEQ_SHIFT                            (7U)
+#define PWMSS_ECAP_ECCLR_CMPEQ_MASK                             (0x00000080U)
+#define PWMSS_ECAP_ECCLR_CMPEQ_CLEAR                             (1U)
+#define PWMSS_ECAP_ECCLR_CMPEQ_NO_EFFECT                         (0U)
+
+#define PWMSS_ECAP_CTRPHS_SHIFT                                 (0U)
+#define PWMSS_ECAP_CTRPHS_MASK                                  (0xffffffffU)
+
+#define PWMSS_ECAP_ECFRC_CEVT1_SHIFT                            (1U)
+#define PWMSS_ECAP_ECFRC_CEVT1_MASK                             (0x00000002U)
+#define PWMSS_ECAP_ECFRC_CEVT1_SET                               (1U)
+#define PWMSS_ECAP_ECFRC_CEVT1_NO_EFFECT                         (0U)
+
+#define PWMSS_ECAP_ECFRC_CEVT2_SHIFT                            (2U)
+#define PWMSS_ECAP_ECFRC_CEVT2_MASK                             (0x00000004U)
+#define PWMSS_ECAP_ECFRC_CEVT2_NO_EFFECT                         (0U)
+#define PWMSS_ECAP_ECFRC_CEVT2_SET                               (1U)
+
+#define PWMSS_ECAP_ECFRC_CEVT3_SHIFT                            (3U)
+#define PWMSS_ECAP_ECFRC_CEVT3_MASK                             (0x00000008U)
+#define PWMSS_ECAP_ECFRC_CEVT3_NO_EFFECT                         (0U)
+#define PWMSS_ECAP_ECFRC_CEVT3_SET                               (1U)
+
+#define PWMSS_ECAP_ECFRC_CEVT4_SHIFT                            (4U)
+#define PWMSS_ECAP_ECFRC_CEVT4_MASK                             (0x00000010U)
+#define PWMSS_ECAP_ECFRC_CEVT4_NO_EFFECT                         (0U)
+#define PWMSS_ECAP_ECFRC_CEVT4_SET                               (1U)
+
+#define PWMSS_ECAP_ECFRC_CNTOVF_SHIFT                           (5U)
+#define PWMSS_ECAP_ECFRC_CNTOVF_MASK                            (0x00000020U)
+#define PWMSS_ECAP_ECFRC_CNTOVF_NO_EFFECT                        (0U)
+#define PWMSS_ECAP_ECFRC_CNTOVF_SET                              (1U)
+
+#define PWMSS_ECAP_ECFRC_PRDEQ_SHIFT                            (6U)
+#define PWMSS_ECAP_ECFRC_PRDEQ_MASK                             (0x00000040U)
+#define PWMSS_ECAP_ECFRC_PRDEQ_NO_EFFECT                         (0U)
+#define PWMSS_ECAP_ECFRC_PRDEQ_SET                               (1U)
+
+#define PWMSS_ECAP_ECFRC_CMPEQ_SHIFT                            (7U)
+#define PWMSS_ECAP_ECFRC_CMPEQ_MASK                             (0x00000080U)
+#define PWMSS_ECAP_ECFRC_CMPEQ_NO_EFFECT                         (0U)
+#define PWMSS_ECAP_ECFRC_CMPEQ_SET                               (1U)
+
+#define PWMSS_ECAP_CAP2_SHIFT                                   (0U)
+#define PWMSS_ECAP_CAP2_MASK                                    (0xffffffffU)
+
+#define PWMSS_ECAP_CAP3_SHIFT                                   (0U)
+#define PWMSS_ECAP_CAP3_MASK                                    (0xffffffffU)
+
+#define PWMSS_ECAP_TSCTR_SHIFT                                  (0U)
+#define PWMSS_ECAP_TSCTR_MASK                                   (0xffffffffU)
+
+#define PWMSS_ECAP_ECFLG_INT_SHIFT                              (0U)
+#define PWMSS_ECAP_ECFLG_INT_MASK                               (0x00000001U)
+#define PWMSS_ECAP_ECFLG_INT_NO_INTERRUPT                        (0U)
+#define PWMSS_ECAP_ECFLG_INT_INTERRUPT                           (1U)
+
+#define PWMSS_ECAP_ECFLG_CEVT1_SHIFT                            (1U)
+#define PWMSS_ECAP_ECFLG_CEVT1_MASK                             (0x00000002U)
+#define PWMSS_ECAP_ECFLG_CEVT1_EVENT                             (1U)
+#define PWMSS_ECAP_ECFLG_CEVT1_NO_EVENT                          (0U)
+
+#define PWMSS_ECAP_ECFLG_CEVT2_SHIFT                            (2U)
+#define PWMSS_ECAP_ECFLG_CEVT2_MASK                             (0x00000004U)
+#define PWMSS_ECAP_ECFLG_CEVT2_NO_EVENT                          (0U)
+#define PWMSS_ECAP_ECFLG_CEVT2_EVENT                             (1U)
+
+#define PWMSS_ECAP_ECFLG_CEVT3_SHIFT                            (3U)
+#define PWMSS_ECAP_ECFLG_CEVT3_MASK                             (0x00000008U)
+#define PWMSS_ECAP_ECFLG_CEVT3_NO_EVENT                          (0U)
+#define PWMSS_ECAP_ECFLG_CEVT3_EVENT                             (1U)
+
+#define PWMSS_ECAP_ECFLG_CEVT4_SHIFT                            (4U)
+#define PWMSS_ECAP_ECFLG_CEVT4_MASK                             (0x00000010U)
+#define PWMSS_ECAP_ECFLG_CEVT4_EVENT                             (1U)
+#define PWMSS_ECAP_ECFLG_CEVT4_NO_EVENT                          (0U)
+
+#define PWMSS_ECAP_ECFLG_CNTOVF_SHIFT                           (5U)
+#define PWMSS_ECAP_ECFLG_CNTOVF_MASK                            (0x00000020U)
+#define PWMSS_ECAP_ECFLG_CNTOVF_NO_EVENT                         (0U)
+#define PWMSS_ECAP_ECFLG_CNTOVF_EVENT                            (1U)
+
+#define PWMSS_ECAP_ECFLG_PRDEQ_SHIFT                            (6U)
+#define PWMSS_ECAP_ECFLG_PRDEQ_MASK                             (0x00000040U)
+#define PWMSS_ECAP_ECFLG_PRDEQ_NO_EVENT                          (0U)
+#define PWMSS_ECAP_ECFLG_PRDEQ_EVENT                             (1U)
+
+#define PWMSS_ECAP_ECFLG_CMPEQ_SHIFT                            (7U)
+#define PWMSS_ECAP_ECFLG_CMPEQ_MASK                             (0x00000080U)
+#define PWMSS_ECAP_ECFLG_CMPEQ_NO_EVENT                          (0U)
+#define PWMSS_ECAP_ECFLG_CMPEQ_EVENT                             (1U)
+
+#define PWMSS_ECAP_CAP1_SHIFT                                   (0U)
+#define PWMSS_ECAP_CAP1_MASK                                    (0xffffffffU)
+
+#define PWMSS_ECAP_ECCTL2_CONT_ONESHT_SHIFT                     (0U)
+#define PWMSS_ECAP_ECCTL2_CONT_ONESHT_MASK                      (0x00000001U)
+#define PWMSS_ECAP_ECCTL2_CONT_ONESHT_CONTINUOUS                 (0U)
+#define PWMSS_ECAP_ECCTL2_CONT_ONESHT_ONESHOT                    (1U)
+
+#define PWMSS_ECAP_ECCTL2_STOP_WRAP_SHIFT                       (1U)
+#define PWMSS_ECAP_ECCTL2_STOP_WRAP_MASK                        (0x00000006U)
+#define PWMSS_ECAP_ECCTL2_STOP_WRAP_CAPT_EVT1                    (0U)
+#define PWMSS_ECAP_ECCTL2_STOP_WRAP_CAPT_EVT4                    (3U)
+#define PWMSS_ECAP_ECCTL2_STOP_WRAP_CAPT_EVT2                    (1U)
+#define PWMSS_ECAP_ECCTL2_STOP_WRAP_CAPT_EVT3                    (2U)
+
+#define PWMSS_ECAP_ECCTL2_RE_ARM_SHIFT                          (3U)
+#define PWMSS_ECAP_ECCTL2_RE_ARM_MASK                           (0x00000008U)
+#define PWMSS_ECAP_ECCTL2_RE_ARM_NO_EFFECT                       (0U)
+#define PWMSS_ECAP_ECCTL2_RE_ARM_ARMS                            (1U)
+
+#define PWMSS_ECAP_ECCTL2_TSCTRSTOP_SHIFT                       (4U)
+#define PWMSS_ECAP_ECCTL2_TSCTRSTOP_MASK                        (0x00000010U)
+#define PWMSS_ECAP_ECCTL2_TSCTRSTOP_FREE_RUNNING                 (1U)
+#define PWMSS_ECAP_ECCTL2_TSCTRSTOP_STOPPED                      (0U)
+
+#define PWMSS_ECAP_ECCTL2_SYNCI_EN_SHIFT                        (5U)
+#define PWMSS_ECAP_ECCTL2_SYNCI_EN_MASK                         (0x00000020U)
+#define PWMSS_ECAP_ECCTL2_SYNCI_EN_DISABLE                       (0U)
+#define PWMSS_ECAP_ECCTL2_SYNCI_EN_ENABLE                        (1U)
+
+#define PWMSS_ECAP_ECCTL2_SYNCO_SEL_SHIFT                       (6U)
+#define PWMSS_ECAP_ECCTL2_SYNCO_SEL_MASK                        (0x000000c0U)
+#define PWMSS_ECAP_ECCTL2_SYNCO_SEL_DISABLE2                     (3U)
+#define PWMSS_ECAP_ECCTL2_SYNCO_SEL_PRDEQ                        (1U)
+#define PWMSS_ECAP_ECCTL2_SYNCO_SEL_DISABLE1                     (2U)
+#define PWMSS_ECAP_ECCTL2_SYNCO_SEL_SYNC_IN                      (0U)
+
+#define PWMSS_ECAP_ECCTL2_SWSYNC_SHIFT                          (8U)
+#define PWMSS_ECAP_ECCTL2_SWSYNC_MASK                           (0x00000100U)
+#define PWMSS_ECAP_ECCTL2_SWSYNC_NO_EFFECT                       (0U)
+#define PWMSS_ECAP_ECCTL2_SWSYNC_SHADOW_LOAD                     (1U)
+
+#define PWMSS_ECAP_ECCTL2_CAP_APWM_SHIFT                        (9U)
+#define PWMSS_ECAP_ECCTL2_CAP_APWM_MASK                         (0x00000200U)
+#define PWMSS_ECAP_ECCTL2_CAP_APWM_CAPTURE_MODE                  (0U)
+#define PWMSS_ECAP_ECCTL2_CAP_APWM_MODE                          (1U)
+
+#define PWMSS_ECAP_ECCTL2_APWMPOL_SHIFT                         (10U)
+#define PWMSS_ECAP_ECCTL2_APWMPOL_MASK                          (0x00000400U)
+#define PWMSS_ECAP_ECCTL2_APWMPOL_ACTIVE_LOW                     (1U)
+#define PWMSS_ECAP_ECCTL2_APWMPOL_ACTIVE_HIGH                    (0U)
+
+#define PWMSS_ECAP_CAP4_SHIFT                                   (0U)
+#define PWMSS_ECAP_CAP4_MASK                                    (0xffffffffU)
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* HW_PWMSS_ECAP_H_ */

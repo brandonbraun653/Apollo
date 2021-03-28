@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/omapl138/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/master_slave/src/main_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/master_slave/omapl138/arm9/bios/i2c_arm_omapl138_master.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv5e --float_support=vfplib --abi=eabi -g -DlcdkOMAPL138 -DSOC_OMAPL138 -DLCDK_OMAPL138 -I${PDK_INSTALL_PATH}/ti/drv/i2c -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+

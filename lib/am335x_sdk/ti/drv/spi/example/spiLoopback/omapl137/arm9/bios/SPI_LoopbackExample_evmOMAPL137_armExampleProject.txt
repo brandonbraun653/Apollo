@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/spiLoopback/src/main_spi_loopback_example.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/spiLoopback/omapl137/arm9/bios/spi_arm.cfg" 
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv5e --float_support=vfplib --abi=eabi -g -DevmOMAPL137 -DSOC_OMAPL137 -DEVM_OMAPL137 -I${PDK_INSTALL_PATH}/ti/drv/spi -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"
+

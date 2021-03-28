@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/am572x/armv7/bios/uart_arm_dma_evmAM572x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DUART_V1 -DSOC_AM572x -DevmAM572x -DUART_DMA_ENABLE -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/uart "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

@@ -1,0 +1,10 @@
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_io.c" 
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/audioSample_main.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/src/deviceloopback.c" 
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmK2G/src/audio_evmInit.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmK2G/src/mcasp_cfg.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/soc/k2g/mcasp_soc.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/i2c/soc/k2g/I2C_soc.c"
+-ccs.linkFile "${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmK2G/armv7/bios/DeviceLoopback.cfg" 
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DMCASP_MASTER -DDEVICE_LOOPBACK -DSOC_K2G -DEVM_K2G -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/include  -I${PDK_INSTALL_PATH}/ti/drv/mcasp/example/evmK2G/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp/include -I${PDK_INSTALL_PATH}/ti/drv/mcasp -I${PDK_INSTALL_PATH}/ti/board" -rtsc.enableRtsc 
+-ccs.setLinkerOptions "-lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "

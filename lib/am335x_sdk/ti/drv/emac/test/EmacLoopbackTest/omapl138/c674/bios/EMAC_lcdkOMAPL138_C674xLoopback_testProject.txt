@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_main.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/test_osal.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/emac/test/EmacLoopbackTest/omapl138/c674/bios/lcdkOMAPL138_DSP.cfg"
+-ccs.setCompilerOptions "-D -mv6740 -g -dSOC_OMAPL138 -dlcdkOMAPL138 -domapl138 -dUSE_BIOS --diag_warning=225 -I${PDK_INSTALL_PATH}/ti/drv/emac"
+
+
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/omapl138/config_omapl138_c674x.bld -DBOARD=lcdkOMAPL138"

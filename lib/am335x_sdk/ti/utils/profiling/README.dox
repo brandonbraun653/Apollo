@@ -1,0 +1,229 @@
+/*
+ * This README contains instructions for using the profiling tools both
+ * manually using Code Composer Studio 6 and automatically using the bundled
+ * Debug Scripting Server tools. Scroll down to see the latter.
+ */
+/*!
+  @page profCCS Project Profiling in CCS
+  @brief This guide steps through the manual profiling pipeline using the TI
+  Utils library and CCS
+  ##Introduction##
+
+  These instructions are for manually compiling and benchmarking the included
+  LLD example projects in the TI Processor Development Kit. This benchmark tool
+  uses the hardware clock of the PMU to measure the length of each task in
+  processor cycles with minimal overhead. This guide and scripts were written
+  for the AM5728 RTOS platform, but use standard C programming hooks that
+  may be adapted for any platform and/or processor architecture.
+
+  Notes:
+  - Functions with more than one entry point may not always map correctly with
+  their symbols and in the trace. This does not affect their child or parent
+  functions.
+  - Functions that are still on the stack at the breakpoint will be considered
+  closed at the last recorded timestamp for continuity.
+  - BIOS functions that are not referenced in the project or its library are
+  not accounted for by instrumentation and will not appear in the report.
+  - The python script used to tabulate the instrumentation logs depends on the
+  file readelf.py, which must be in the same directory.
+  - Depending on your optimization level, some functions may be optimized out
+  and/or may not appear on certain platforms, including:
+      - Empty or single-line functions
+      - ti_sysbios_* functions
+      - SemaphoreP_* functions
+
+  ###Part I: Project Setup###
+  -# Download and install the TI RTOS Processor SDK for AM572x or the desired
+  product.
+	    - The installer for the AM572x can be found at: http://www.ti.com/tool/PROCESSOR-SDK-AM572X. All other platform SDKs can be found at: http://www.ti.com/lsds/ti/tools-software/sw_portal.page
+  -# In CCS. select the desired project in the Project Explorer, and open its
+  *.cfg file in a text editor.
+  -# Any LLDs in use must have be set to enable profiling in order to be
+  profiled at runtime. This is done by setting enableProfiling to true in the
+  LLD package. For example, in GPIO, this would be:
+  @code
+  /* Load the GPIO package */
+  var Gpio = xdc.loadPackage('ti.drv.gpio');
+  Gpio.Settings.enableProfiling = true;
+  @endcode
+  Otherwise the time elapsed by their functions will count against the caller.
+  -# In the same file, add the following line so that the profiling library is
+  included in your project as well:
+  @code
+  var Profiling = xdc.loadPackage('ti.utils.profiling');
+  @endcode
+  -# Under the Project Explorer, right-click the desired project and select
+  Properties > CCS Build > "Set Additional Flags..." and add the flags for the
+  desired platform:
+      - ARM: `-finstrument-functions -gdwarf-3 -g`
+      - DSP: `--entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry -g`
+      - M4: `--entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry -g`
+  -# Also ensure that the optimization flags (-O1, -O2, -O3...) reflect the flags
+  set in the desired program so that functions are instrumented consistently.
+  By default, example projects and new CCS projects are set to no optimization.
+  -# Close the project properties and right-click the project and select
+  "Rebuild Project" to compile.
+
+  ###Part II: Profiling Project Runtime###
+  -# Load the compiled program onto the desired target platform and run the
+  program to a desired breakpoint or time interval.
+  -# While the program is at the break, open the Memory Browser (View > Memory
+  Browser).
+  -# (Optional) In the search field, search for "elemlog" and ensure that the
+  log array has been populated (consists of sets of four values that begin with
+  either 00000000, 00000001, or 00000002).
+  -# Save a memory snapshot by clicking "Save", and in the popup, choosing a
+  filename and location, and setting the start address to "elemlog" and length
+  to "log_idx*4".
+
+  ###Part III: Post-processing the Profiling Log###
+  -# Open a command prompt window set to the directory of the
+  "decodeProfileDump.py" Python script (typically under utils/profiling/scripts)
+  -# Assemble the processing command in the following format:
+  @code
+      python decodeProfileDump.py [log 1] [executable 1] [log 2] [executable 2] ...
+  @endcode
+  where the log is the profiling log memory dump created in Part II and the
+  executable is the *.out program.
+  -# Append any desired flags:
+        - -v      Display verbose output
+        - -t	    Breakdown function totals by their reference sites
+        - -x	    Print the tabulated results into a report.xlsx Excel file
+        - -csv    Print the tabulated results into a report.csv file
+        - -h	    Print a histogram of the results (shown in the rightmost columns of the output)
+        - -off N  Manual instrumentation offset of N cycles, subtracted from each function.
+        Note: The instrumentation program already generates an offset from itself that is subtracted from the function times. Use this flag only if there is an additional offset you would like to subtract.
+
+  ###Part IV: Understanding the Output###
+  Term           | Meaning
+  ---------------|----------------------------------------------
+  Function	     | The name of the function that was instrumented
+  Referenced_By  | The call site of the function instrumented
+  Total_Cycles   | The number of processor cycles elapsed for the function instrumented, both inclusively (inc), including the cycles of its child functions within, and exclusively (exc), excluding the cycles of its child functions
+  Average_Cycles | The number of processor cycles elapsed for the function instrumented per reference, both inclusively and exclusively
+  Total_Calls    | The number of internal, child functions referenced by the function that are part of the program or its library
+  Average_Calls  | The number of internal, child functions referenced by the function per reference
+  Iterations     | The number of times the function instrumented was referenced
+
+  -# If the histogram flag was set, the histogram is written in the ten columns following the measurements. These columns account for every iteration of the instrumented function, and are followed by its high, low, and bin size values, in processor cycles.
+  -# If the histogram flag was set, the last column includes the high outlying reference that used an disproportionate number of processor cycles compared to the other function references, including its file location.
+  -# The text file (generated by default) will also contain a visual trace of the results below the table, for each function reference and its measured cycle count.
+ */
+
+ /*!
+  @page profDSS Automated Profiling with DSS
+
+  @brief This guide steps through the automated profiling pipeline using the TI
+  Utils library and DSS, using the loadti script
+
+  ##Introduction##
+
+  These instructions are for benchmarking the included LLD example projects in
+  the TI Processor Development Kit using the loadti script. This benchmark tool
+  uses the hardware clock of the PMU to measure the length of each task in
+  processor cycles with minimal overhead. This guide and scripts were written
+  for the AM5728 RTOS platform, but use standard C programming hooks that
+  may be adapted for any platform and/or processor architecture.
+
+  Notes:
+  - Functions with more than one entry point may not always map correctly with
+  their symbols and in the trace. This does not affect their child or parent
+  functions.
+  - Functions that are still on the stack at the breakpoint will be considered
+  closed at the last recorded timestamp for continuity.
+  - BIOS functions that are not referenced in the project or its library are
+  not accounted for by instrumentation and will not appear in the report.
+  - The python script used to tabulate the instrumentation logs depends on the
+  file readelf.py, which must be in the same directory.
+  - Depending on your optimization level, some functions may be optimized out
+  and/or may not appear on certain platforms, including:
+      - Empty or single-line functions
+      - ti_sysbios_* functions
+      - SemaphoreP_* functions
+
+  ###Part I: Project Setup###
+  -# Download and install the TI RTOS Processor SDK for AM572x or the desired
+  product.
+	    - The installer for the AM572x can be found at: http://www.ti.com/tool/PROCESSOR-SDK-AM572X. All other platform SDKs can be found at: http://www.ti.com/lsds/ti/tools-software/sw_portal.page
+  -# In the desired project directory, open the project's *.cfg file in a text
+  editor.
+  -# Any LLDs in use must have be set to enable profiling in order to be
+  profiled at runtime. This is done by setting enableProfiling to true in the
+  LLD package. For example, in GPIO, this would be:
+  @code
+  /* Load the GPIO package */
+  var Gpio = xdc.loadPackage('ti.drv.gpio');
+  Gpio.Settings.enableProfiling = true;
+  @endcode
+  Otherwise the time elapsed by their functions will count against the caller.
+  -# In the same file, add the following line so that the profiling library is
+  included in your project as well:
+  @code
+  var Profiling = xdc.loadPackage('ti.utils.profiling');
+  @endcode
+  -# Locate the configuration file for your project (typically a *.text file)
+  and add the flags for the desired platform:
+      - ARM: `-finstrument-functions -gdwarf-3 -g`
+      - DSP: `--entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry -g`
+      - M4: `--entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry -g`
+  -# Also ensure that the optimization flags (-O1, -O2, -O3...) reflect the flags
+  set in the desired program so that functions are instrumented consistently.
+  By default, example projects and new CCS projects are set to no optimization.
+  -# Save these files and recompile your project.
+
+  ###Part II: Profiling Project Runtime###
+  -# If you have not already, locate the loadti directory. This is typically
+  located under:
+  @code
+  C:\ti\ccsv6\ccs_base\scripting\examples\loadti
+  @endcode
+  -# Depending on the version of CCS installed, loadti may need to be patched
+  so that its saveData function can evaluate expressions as well as static
+  integer addresses.
+        - If this is the case, a patched version of the memXfer.js script is
+        included in the utils/profiling/scripts directory
+        - Simply replace the memXfer.js file in the loadti directory with the
+        patched memXfer.js file in the profiling library
+        - Note: This will not break existing applications that use static
+        integer addresses
+  -# Load the desired program onto the desired target platform and run the
+  program to a desired breakpoint or time interval using this format:
+  @code
+  loadti -v -c=[config *.ccxml] -t [time interval] -msd="0,elemlog,[output *.txt],4*log_idx,1,false" [executable *.out]
+  @endcode
+  -# This will automatically run the run the program and dump the profiling log
+  into a specified text file for post-processing.
+
+  ###Part III: Post-processing the Profiling Log###
+  -# Open a command prompt window set to the directory of the
+  "decodeProfileDump.py" Python script (typically under utils/profiling/scripts)
+  -# Assemble the processing command in the following format:
+  @code
+      python decodeProfileDump.py [log 1] [executable 1] [log 2] [executable 2] ...
+  @endcode
+  where the log is the profiling log memory dump created in Part II and the
+  executable is the *.out program.
+  -# Append any desired flags:
+        - -v      Display verbose output
+        - -t	    Breakdown function totals by their reference sites
+        - -x	    Print the tabulated results into a report.xlsx Excel file
+        - -csv    Print the tabulated results into a report.csv file
+        - -h	    Print a histogram of the results (shown in the rightmost columns of the output)
+        - -off N  Manual instrumentation offset of N cycles, subtracted from each function.
+        Note: The instrumentation program already generates an offset from itself that is subtracted from the function times. Use this flag only if there is an additional offset you would like to subtract.
+
+  ###Part IV: Understanding the Output###
+  Term           | Meaning
+  ---------------|----------------------------------------------
+  Function	     | The name of the function that was instrumented
+  Referenced_By  | The call site of the function instrumented
+  Total_Cycles   | The number of processor cycles elapsed for the function instrumented, both inclusively (inc), including the cycles of its child functions within, and exclusively (exc), excluding the cycles of its child functions
+  Average_Cycles | The number of processor cycles elapsed for the function instrumented per reference, both inclusively and exclusively
+  Total_Calls    | The number of internal, child functions referenced by the function that are part of the program or its library
+  Average_Calls  | The number of internal, child functions referenced by the function per reference
+  Iterations     | The number of times the function instrumented was referenced
+
+  -# If the histogram flag was set, the histogram is written in the ten columns following the measurements. These columns account for every iteration of the instrumented function, and are followed by its high, low, and bin size values, in processor cycles.
+  -# If the histogram flag was set, the last column includes the high outlying reference that used an disproportionate number of processor cycles compared to the other function references, including its file location.
+  -# The text file (generated by default) will also contain a visual trace of the results below the table, for each function reference and its measured cycle count.
+  */

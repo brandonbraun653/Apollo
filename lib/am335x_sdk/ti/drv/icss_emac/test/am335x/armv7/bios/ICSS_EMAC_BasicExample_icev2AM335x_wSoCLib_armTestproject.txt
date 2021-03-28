@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/main_a8.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/src/test_common_utils.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am335x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/firmware/icss_dualemac/config/icss_emacFwConfig.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/icss_emac/test/am335x/armv7/bios/am335x_app_icev2_wSoCLib.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard -DSOC_AM335x -DICEV2_AM335X -Dicev2AM335x -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/icss_emac/src -I${PDK_INSTALL_PATH}/ti/drv/icss_emac -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/starterware -I${PDK_INSTALL_PATH}/ti/starterware/include -I${PDK_INSTALL_PATH}/ti/starterware/include/hw -I${PDK_INSTALL_PATH}/ti/starterware/soc/am335x -I${PDK_INSTALL_PATH}/ti/starterware/board -I${PDK_INSTALL_PATH}/ti/starterware/board/am335x -I${PDK_INSTALL_PATH}/ti/starterware/include/am335x -I${PDK_INSTALL_PATH}/ti/starterware/device -I${PDK_INSTALL_PATH}/ti/starterware/include/utils -I${PDK_INSTALL_PATH}/ti/starterware/include/hw -I${PDK_INSTALL_PATH}/ti/starterware/soc -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages"  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lrdimon -lm -lnosys -nostartfiles -static ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am335x/a8host/REV1/icss_dualemac_PRU0.bin ${PDK_INSTALL_PATH}/ti/drv/icss_emac/firmware/icss_dualemac/bin/am335x/a8host/REV1/icss_dualemac_PRU1.bin -Wl,-T,${PDK_INSTALL_PATH}/ti/build/pruss/lnk_a8_a9_a15_REV1.cmd -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am335x/config_am335x_a8.bld -DBOARD=icev2AM335x"

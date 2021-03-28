@@ -1,0 +1,57 @@
+Source File 1 : 'pruss_test_pru0.p' (9 Instructions Generated)
+
+    1 :                   : .origin 0
+    2 :                   : .entrypoint ARM_TO_PRU0_INTERRUPT
+    3 :                   : 
+    4 :                   : #include "pruss_test_pru.hp"
+    5 :                   : 
+    6 :                   : ARM_TO_PRU0_INTERRUPT:
+    7 :                   : POLL:
+    8 :                   :     // Poll for receipt of interrupt on host 0
+    9 : 0x0000 0xd11eff02 :     QBBS      EVENT, R31, 30
+   10 : 0x0004 0x21000000 :     JMP       POLL
+   11 :                   : 
+   12 :                   : EVENT:
+   13 :                   :     //Clear system event in SECR1/2
+   14 : 0x0008 0x24000080 :     MOV32   r0, 0
+      : 0x000c 0x240000c0 : 
+   15 :                   :     // Send notification to Host for program completion
+   16 :                   : #ifdef AM33XX
+   17 : 0x0010 0x24028083 :     MOV     r3.w0, 0x280 //SECR1
+   18 : 0x0014 0x1f10e0e0 :     SET     r0, ARM_PRU0_EVENT
+   19 : 0x0018 0x2400211f :     MOV     R31.b0, PRU0_ARM_EVENT+16
+   20 :                   : #else
+   21 :                   :     MOV     r3.w0, 0x284 //SECR2
+   22 :                   :     SET     r0, ARM_PRU0_EVENT-32
+   23 :                   :     MOV     R31.b0, PRU0_ARM_EVENT
+   24 :                   : #endif
+   25 : 0x001c 0x80832080 :     SBCO    r0, C0, r3.w0, 4 
+   26 : 0x0020 0x7f0000f8 :     QBA POLL
+   27 :                   : 
+   28 :                   : 
+
+Source File 2 : 'pruss_test_pru.hp' (No Ouput Generated)
+
+    1 :                   : #define AM33XX
+    2 :                   : #ifdef AM33XX
+    3 :                   : #define ARM_PRU0_EVENT       16
+    4 :                   : #define PRU0_ARM_EVENT       17
+    5 :                   : #define ARM_PRU1_EVENT       18
+    6 :                   : #define PRU1_ARM_EVENT       19
+    7 :                   : #else
+    8 :                   : #define ARM_PRU0_EVENT       32
+    9 :                   : #define PRU0_ARM_EVENT       33
+   10 :                   : #define ARM_PRU1_EVENT       34
+   11 :                   : #define PRU1_ARM_EVENT       35
+   12 :                   : #endif
+   13 :                   : 
+   14 :                   : .macro  MOV32               
+   15 :                   : .mparam dst, src
+   16 :                   :     MOV     dst.w0, src & 0xFFFF
+   17 :                   :     MOV     dst.w2, src >> 16
+   18 :                   : .endm
+   19 :                   : 
+   20 :                   :       
+   21 :                   : 
+   22 :                   : 
+

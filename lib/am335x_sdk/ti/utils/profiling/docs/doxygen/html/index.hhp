@@ -1,0 +1,73 @@
+[OPTIONS]
+Compiled file=..\..\gpiolldDocs.chm
+Compatibility=1.1
+Full-text search=Yes
+Contents file=index.hhc
+Default Window=main
+Default topic=index.html
+Index file=index.hhk
+Language=0x409 English (United States)
+Title=Processor SDK Utilities
+
+[WINDOWS]
+main="Processor SDK Utilities","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x10387e,,,,,,,,0
+
+[FILES]
+decode_profile_dump_8py.html
+profiling__osal_8h.html
+profiling_hooks_8h.html
+profiling_hooks_arm_v7___a_8c.html
+profiling_hooks_c66_8c.html
+profiling_hooks_m4_8c.html
+profiling_hooks_r5_8c.html
+profilingver_8h.html
+prof_c_c_s.html
+prof_d_s_s.html
+group__pdk__profiling__tool.html
+group__pdk__profiling__hooks.html
+group__pdk__profiling__postprocessing.html
+struct_hwi_p___params__s.html
+struct_semaphore_p___params__s.html
+structutils_profiling_elem.html
+classdecode_profile_dump_1_1_log_node.html
+classdecode_profile_dump_1_1_print_node.html
+classreadelf_1_1_read_elf.html
+dir_6a1fed31c85639532cbf2595d9e06af8.html
+dir_49723ebcbd6fe8f0b24287e7094945fb.html
+dir_86dacb18a830435b1232b5cd879e2ef2.html
+dir_53e6fa9553ac22a5646d2a2b2d7b97a1.html
+dir_68267d1309a1af8e8297ef4c3efbcdba.html
+index.html
+pages.html
+modules.html
+annotated.html
+classes.html
+functions.html
+functions_func.html
+functions_vars.html
+files.html
+globals.html
+globals_func.html
+globals_type.html
+globals_enum.html
+globals_eval.html
+globals_defs.html
+tab_a.png
+tab_b.png
+tab_h.png
+tab_s.png
+nav_h.png
+nav_f.png
+bc_s.png
+doxygen.png
+closed.png
+open.png
+bdwn.png
+sync_on.png
+sync_off.png
+doc.png
+folderopen.png
+folderclosed.png
+arrowdown.png
+arrowright.png
+splitbar.png

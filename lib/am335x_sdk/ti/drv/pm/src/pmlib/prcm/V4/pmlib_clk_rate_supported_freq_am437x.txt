@@ -1,0 +1,197 @@
+---------------------------------------------------------------------------------------------------------------
+  Module Name                             | Clock Name                             | Supported Frequencies(Hz) 
+---------------------------------------------------------------------------------------------------------------
+ * PMHAL_PRCM_MOD_AES0                    | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_CPGMAC0                 | PMHAL_PRCM_CLK_CPSW_125MHZ_GCLK        | 125000000
+ * PMHAL_PRCM_MOD_CPGMAC0                 | PMHAL_PRCM_CLK_CPSW_250MHZ_CLK         | 250000000
+ * PMHAL_PRCM_MOD_CPGMAC0                 | PMHAL_PRCM_CLK_CPSW_50MHZ_GCLK         | 50000000
+ * PMHAL_PRCM_MOD_CPGMAC0                 | PMHAL_PRCM_CLK_CPSW_5MHZ_GCLK          | 5000000
+ * PMHAL_PRCM_MOD_CPGMAC0                 | PMHAL_PRCM_CLK_CPSW_CPTS_RFT_CLK       | 200000000, 250000000, 100000000
+ * PMHAL_PRCM_MOD_CRYPTODMA               | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_CRYPTODMA               | PMHAL_PRCM_CLK_L3D2_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_DCAN0                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_DCAN0                   | PMHAL_PRCM_CLK_CAN_CLK                 | 24000000
+ * PMHAL_PRCM_MOD_DCAN1                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_DCAN1                   | PMHAL_PRCM_CLK_CAN_CLK                 | 24000000
+ * PMHAL_PRCM_MOD_DDRPHY                  | PMHAL_PRCM_CLK_EMIF_PHY_GCLK           | 400000000
+ * PMHAL_PRCM_MOD_DES                     | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_DLL                     | PMHAL_PRCM_CLK_DDR_DLL_GCLK            | 400000000
+ * PMHAL_PRCM_MOD_DLL_AGING               | PMHAL_PRCM_CLK_DLL_AGING_GCLK          | 3000000, 1500000, 750000
+ * PMHAL_PRCM_MOD_DSS                     | PMHAL_PRCM_CLK_DSS_GCLK                | 100000000, 250000000, 192000000
+ * PMHAL_PRCM_MOD_DSS                     | PMHAL_PRCM_CLK_DSS_L3_GCLK             | 200000000
+ * PMHAL_PRCM_MOD_DSS                     | PMHAL_PRCM_CLK_DSS_L4_GCLK_EN          | 100000000
+ * PMHAL_PRCM_MOD_DSS                     | PMHAL_PRCM_CLK_DSS_SYSCLK              | 24000000
+ * PMHAL_PRCM_MOD_ELM                     | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_EMIF                    | PMHAL_PRCM_CLK_DDR_DLL_GCLK            | 400000000
+ * PMHAL_PRCM_MOD_EMIF                    | PMHAL_PRCM_CLK_EMIF_PHY_GCLK           | 400000000
+ * PMHAL_PRCM_MOD_EMIF                    | PMHAL_PRCM_CLK_EMIF_L3_GICLK           | 200000000
+ * PMHAL_PRCM_MOD_EMIF_FW                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_EPWMSS0                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_EPWMSS1                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_EPWMSS2                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_EPWMSS3                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_EPWMSS4                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_EPWMSS5                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_ERMC                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_GPIO1                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_GPIO1                   | PMHAL_PRCM_CLK_GPIO_1_GDBCLK           | 32786
+ * PMHAL_PRCM_MOD_GPIO2                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_GPIO2                   | PMHAL_PRCM_CLK_GPIO_2_GDBCLK           | 32786
+ * PMHAL_PRCM_MOD_GPIO3                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_GPIO3                   | PMHAL_PRCM_CLK_GPIO_3_GDBCLK           | 32786
+ * PMHAL_PRCM_MOD_GPIO4                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_GPIO4                   | PMHAL_PRCM_CLK_GPIO_4_GDBCLK           | 32786
+ * PMHAL_PRCM_MOD_GPIO5                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_GPIO5                   | PMHAL_PRCM_CLK_GPIO_5_GDBCLK           | 32786
+ * PMHAL_PRCM_MOD_GPMC                    | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_HDQ1W                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_HDQ1W                   | PMHAL_PRCM_CLK_HDQ1W_GCLK              | 12000000
+ * PMHAL_PRCM_MOD_I2C1                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_I2C1                    | PMHAL_PRCM_CLK_I2C_FCLK                | 48000000
+ * PMHAL_PRCM_MOD_I2C2                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_I2C2                    | PMHAL_PRCM_CLK_I2C_FCLK                | 48000000
+ * PMHAL_PRCM_MOD_ICSS                    | PMHAL_PRCM_CLK_ICSS_IEP_GCLK           | 200000000
+ * PMHAL_PRCM_MOD_ICSS                    | PMHAL_PRCM_CLK_ICSS_OCP_GCLK           | 200000000, 100000000
+ * PMHAL_PRCM_MOD_ICSS                    | PMHAL_PRCM_CLK_ICSS_UART_GCLK          | 192000000
+ * PMHAL_PRCM_MOD_IEEE5000                | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_L3                      | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_L3                      | PMHAL_PRCM_CLK_L3D2_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_L3_INSTR                | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_L4FW                    | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_L4FW                    | PMHAL_PRCM_CLK_L3D2_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_L4LS                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_L4_HS                   | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_LCDC                    | PMHAL_PRCM_CLK_LCD_L3_GCLK             | 200000000
+ * PMHAL_PRCM_MOD_LCDC                    | PMHAL_PRCM_CLK_LCD_L4S_GCLK            | 100000000
+ * PMHAL_PRCM_MOD_LCDC                    | PMHAL_PRCM_CLK_LCD_GCLK                | 100000000, 250000000, 192000000
+ * PMHAL_PRCM_MOD_MAG_CARD                | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_MAG_CARD                | PMHAL_PRCM_CLK_MGC_FCLK                | 24000000, 192000000
+ * PMHAL_PRCM_MOD_MAILBOX0                | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_MCASP0                  | PMHAL_PRCM_CLK_MCASP_FCLK              | 24000000
+ * PMHAL_PRCM_MOD_MCASP0                  | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_MCASP1                  | PMHAL_PRCM_CLK_MCASP_FCLK              | 24000000
+ * PMHAL_PRCM_MOD_MCASP1                  | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_MMC0                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_MMC0                    | PMHAL_PRCM_CLK_MMC_FCLK                | 96000000
+ * PMHAL_PRCM_MOD_MMC1                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_MMC1                    | PMHAL_PRCM_CLK_MMC_FCLK                | 96000000
+ * PMHAL_PRCM_MOD_MMC2                    | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_MMC2                    | PMHAL_PRCM_CLK_MMC_FCLK                | 96000000
+ * PMHAL_PRCM_MOD_MSTR_EXPS               | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_OCMCRAM                 | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_OCP_WP_NOC              | PMHAL_PRCM_CLK_OCPWP_L3_GCLK           | 200000000
+ * PMHAL_PRCM_MOD_OCP_WP_NOC              | PMHAL_PRCM_CLK_OCPWP_L4_GCLK_EN        | 100000000
+ * PMHAL_PRCM_MOD_OTFA_EMIF               | PMHAL_PRCM_CLK_EMIF_L3_GICLK           | 200000000
+ * PMHAL_PRCM_MOD_PKA                     | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_QSPI                    | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_QSPI                    | PMHAL_PRCM_CLK_SPI_GCLK                | 48000000
+ * PMHAL_PRCM_MOD_RNG                     | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_SHA0                    | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_SLV_EXPS                | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_SPARE0                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_SPARE1                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_SPI0                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_SPI0                    | PMHAL_PRCM_CLK_SPI_GCLK                | 48000000
+ * PMHAL_PRCM_MOD_SPI1                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_SPI1                    | PMHAL_PRCM_CLK_SPI_GCLK                | 48000000
+ * PMHAL_PRCM_MOD_SPI2                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_SPI2                    | PMHAL_PRCM_CLK_SPI_GCLK                | 48000000
+ * PMHAL_PRCM_MOD_SPI3                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_SPI3                    | PMHAL_PRCM_CLK_SPI_GCLK                | 48000000
+ * PMHAL_PRCM_MOD_SPI4                    | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_SPI4                    | PMHAL_PRCM_CLK_SPI_GCLK                | 48000000
+ * PMHAL_PRCM_MOD_SPINLOCK                | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER10                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER10                 | PMHAL_PRCM_CLK_TIMER10_GCLK            | 24000000, 32768, 32768
+ * PMHAL_PRCM_MOD_TIMER11                 | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER11                 | PMHAL_PRCM_CLK_TIMER11_GCLK            | 24000000, 32768, 32768
+ * PMHAL_PRCM_MOD_TIMER2                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER2                  | PMHAL_PRCM_CLK_TIMER2_GCLK             | 24000000, 32768
+ * PMHAL_PRCM_MOD_TIMER3                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER3                  | PMHAL_PRCM_CLK_TIMER3_GCLK             | 24000000, 32768
+ * PMHAL_PRCM_MOD_TIMER4                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER4                  | PMHAL_PRCM_CLK_TIMER4_GCLK             | 24000000, 32768
+ * PMHAL_PRCM_MOD_TIMER5                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER5                  | PMHAL_PRCM_CLK_TIMER5_GCLK             | 24000000, 32768
+ * PMHAL_PRCM_MOD_TIMER6                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER6                  | PMHAL_PRCM_CLK_TIMER6_GCLK             | 24000000, 32768
+ * PMHAL_PRCM_MOD_TIMER7                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER7                  | PMHAL_PRCM_CLK_TIMER7_GCLK             | 24000000, 32768
+ * PMHAL_PRCM_MOD_TIMER8                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER8                  | PMHAL_PRCM_CLK_TIMER8_GCLK             | 24000000, 32768, 32768
+ * PMHAL_PRCM_MOD_TIMER9                  | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_TIMER9                  | PMHAL_PRCM_CLK_TIMER9_GCLK             | 24000000, 32768, 32768
+ * PMHAL_PRCM_MOD_TPCC                    | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_TPTC0                   | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_TPTC1                   | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_TPTC2                   | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_UART1                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_UART1                   | PMHAL_PRCM_CLK_UART_GFCLK              | 48000000
+ * PMHAL_PRCM_MOD_UART2                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_UART2                   | PMHAL_PRCM_CLK_UART_GFCLK              | 48000000
+ * PMHAL_PRCM_MOD_UART3                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_UART3                   | PMHAL_PRCM_CLK_UART_GFCLK              | 48000000
+ * PMHAL_PRCM_MOD_UART4                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_UART4                   | PMHAL_PRCM_CLK_UART_GFCLK              | 48000000
+ * PMHAL_PRCM_MOD_UART5                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_UART5                   | PMHAL_PRCM_CLK_UART_GFCLK              | 48000000
+ * PMHAL_PRCM_MOD_USBPHYOCP2SCP0          | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_USBPHYOCP2SCP1          | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_USB_OTG_SS0             | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_USB_OTG_SS0             | PMHAL_PRCM_CLK_USB_OTG_SS_REFCLK       | 24000000
+ * PMHAL_PRCM_MOD_USB_OTG_SS0             | PMHAL_PRCM_CLK_USB_PLL_CLK             | 960000000
+ * PMHAL_PRCM_MOD_USB_OTG_SS1             | PMHAL_PRCM_CLK_L3S_GCLK                | 100000000
+ * PMHAL_PRCM_MOD_USB_OTG_SS1             | PMHAL_PRCM_CLK_USB_OTG_SS_REFCLK       | 24000000
+ * PMHAL_PRCM_MOD_USB_OTG_SS1             | PMHAL_PRCM_CLK_USB_PLL_CLK             | 960000000
+ * PMHAL_PRCM_MOD_USIM0                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_USIM0                   | PMHAL_PRCM_CLK_USIM0_FCLK              | 24000000, 40000000
+ * PMHAL_PRCM_MOD_USIM0                   | PMHAL_PRCM_CLK_USIM0_FCLK32            | 32768, 32768, 32768
+ * PMHAL_PRCM_MOD_USIM1                   | PMHAL_PRCM_CLK_L4LS_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_USIM1                   | PMHAL_PRCM_CLK_USIM1_FCLK              | 24000000, 40000000
+ * PMHAL_PRCM_MOD_USIM1                   | PMHAL_PRCM_CLK_USIM1_FCLK32            | 32768, 32768, 32768
+ * PMHAL_PRCM_MOD_VPFE0                   | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_VPFE0                   | PMHAL_PRCM_CLK_L3D2_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_VPFE1                   | PMHAL_PRCM_CLK_L3_GCLK                 | 200000000
+ * PMHAL_PRCM_MOD_VPFE1                   | PMHAL_PRCM_CLK_L3D2_GCLK               | 100000000
+ * PMHAL_PRCM_MOD_GFX                     | PMHAL_PRCM_CLK_GFX_GFCLK               | 200000000, 100000000, 192000000, 96000000
+ * PMHAL_PRCM_MOD_GFX                     | PMHAL_PRCM_CLK_GFX_L3_GCLK             | 200000000
+ * PMHAL_PRCM_MOD_ADC_TSC                 | PMHAL_PRCM_CLK_L3S_TSC_GCLK            | 100000000
+ * PMHAL_PRCM_MOD_ADC_TSC                 | PMHAL_PRCM_CLK_ADC_FCLK                | 24000000
+ * PMHAL_PRCM_MOD_CLKDIV32K               | PMHAL_PRCM_CLK_CLK_24MHZ               | 24000000
+ * PMHAL_PRCM_MOD_CONTROL                 | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_DEBUGSS                 | PMHAL_PRCM_CLK_DEBUG_CLKA_GCLK         | 200000000
+ * PMHAL_PRCM_MOD_DEBUGSS                 | PMHAL_PRCM_CLK_DEBUG_CLKB_GCLK         | 192000000
+ * PMHAL_PRCM_MOD_DEBUGSS                 | PMHAL_PRCM_CLK_DEBUG_CLKC_GCLK         | 100000000
+ * PMHAL_PRCM_MOD_DEBUGSS                 | PMHAL_PRCM_CLK_L3_AON_GCLK             | 200000000
+ * PMHAL_PRCM_MOD_DEBUGSS                 | PMHAL_PRCM_CLK_DBGSYSCLK               | 24000000
+ * PMHAL_PRCM_MOD_GPIO0                   | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_GPIO0                   | PMHAL_PRCM_CLK_GPIO0_GDBCLK            | 32768, 32768, 32768, 32768, 32768
+ * PMHAL_PRCM_MOD_I2C0                    | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_I2C0                    | PMHAL_PRCM_CLK_UART0_GFCLK             | 48000000
+ * PMHAL_PRCM_MOD_L4WKUP                  | PMHAL_PRCM_CLK_L4_WKUP_AON_GCLK        | 24000000
+ * PMHAL_PRCM_MOD_SMARTREFLEX0            | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_SMARTREFLEX0            | PMHAL_PRCM_CLK_SR_SYSCLK               | 24000000
+ * PMHAL_PRCM_MOD_SMARTREFLEX1            | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_SMARTREFLEX1            | PMHAL_PRCM_CLK_SR_SYSCLK               | 24000000
+ * PMHAL_PRCM_MOD_SYNCTIMER               | PMHAL_PRCM_CLK_SYNCTIMER32K_GFCLK      | 32768, 32768, 32768
+ * PMHAL_PRCM_MOD_SYNCTIMER               | PMHAL_PRCM_CLK_L4_WKUP_AON_GCLK        | 24000000
+ * PMHAL_PRCM_MOD_TIMER0                  | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_TIMER0                  | PMHAL_PRCM_CLK_TIMER0_GCLK             | 32786, 32786, 24000000
+ * PMHAL_PRCM_MOD_TIMER1                  | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_TIMER1                  | PMHAL_PRCM_CLK_TIMER1_GCLK             | 24000000, 32768, 32768, 32768, 32768
+ * PMHAL_PRCM_MOD_UART0                   | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_UART0                   | PMHAL_PRCM_CLK_UART0_GFCLK             | 48000000
+ * PMHAL_PRCM_MOD_USB_PHY0_ALWAYS_ON      | PMHAL_PRCM_CLK_USBPHY_32KHZ_GCLK       | 32768, 32768
+ * PMHAL_PRCM_MOD_USB_PHY1_ALWAYS_ON      | PMHAL_PRCM_CLK_USBPHY_32KHZ_GCLK       | 32768, 32768
+ * PMHAL_PRCM_MOD_WDT0                    | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_WDT0                    | PMHAL_PRCM_CLK_WDT0_GCLK               | 32768, 32768
+ * PMHAL_PRCM_MOD_WDT1                    | PMHAL_PRCM_CLK_L4_WKUP_GCLK            | 24000000
+ * PMHAL_PRCM_MOD_WDT1                    | PMHAL_PRCM_CLK_WDT1_GCLK               | 32768, 32768
+ * PMHAL_PRCM_MOD_WKUP_M3                 | PMHAL_PRCM_CLK_L4_WKUP_AON_GCLK        | 24000000
+ * PMHAL_PRCM_MOD_CEFUSE                  | PMHAL_PRCM_CLK_L4_CEFUSE_GCLK          | 100000000
+ * PMHAL_PRCM_MOD_CEFUSE                  | PMHAL_PRCM_CLK_CUST_EFUSE_SYSCLK       | 24000000
+ * PMHAL_PRCM_MOD_RTCSS                   | PMHAL_PRCM_CLK_RTC_32KCLK              | 32786
+ * PMHAL_PRCM_MOD_RTCSS                   | PMHAL_PRCM_CLK_L4_RTC_GCLK             | 24000000
+ * PMHAL_PRCM_MOD_MPU                     | PMHAL_PRCM_CLK_MPU_CLK                 | 300000000, 600000000, 720000000, 800000000, 1000000000
+ * PMHAL_PRCM_MOD_EFUSE                   | PMHAL_PRCM_CLK_STD_EFUSE_SYSCLK        | 24000000
+ * PMHAL_PRCM_MOD_TPMSS                   | PMHAL_PRCM_CLK_TAMPER_L4_GCLK          | 25000000

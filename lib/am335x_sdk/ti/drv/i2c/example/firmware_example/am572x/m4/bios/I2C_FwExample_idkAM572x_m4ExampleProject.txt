@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/firmware_example/src/main_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/firmware_example/am572x/m4/bios/i2c_m4_idkAM572x.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_AM572x -DidkAM572x -DAM5XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/i2c --entry_parm=address --exit_hook=ti_utils_exit --exit_parm=address --entry_hook=ti_utils_entry "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on -l${PDK_INSTALL_PATH}/ti/drv/i2c/firmware/icss_i2c/bin/am572x/ipu1_0/REV2/icss_i2c_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/i2c/firmware/icss_i2c/bin/am572x/ipu1_0/REV2/icss_i2c_PRU1.bin -l${PDK_INSTALL_PATH}/ti/build/pruss/lnk_c66_m4_REV2.cmd -l${PDK_INSTALL_PATH}/ti/drv/i2c/firmware/icss_i2c/bin/am572x/ipu1_0/REV1/icss_i2c_PRU0.bin -l${PDK_INSTALL_PATH}/ti/drv/i2c/firmware/icss_i2c/bin/am572x/ipu1_0/REV1/icss_i2c_PRU1.bin -l${PDK_INSTALL_PATH}/ti/build/pruss/lnk_c66_m4_REV1.cmd"
+-rtsc.setConfiguroOptions "-b ${PDK_INSTALL_PATH}/ti/build/am572x/config_am572x.bld -DBOARD=idkAM572x"

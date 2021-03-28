@@ -1,0 +1,5 @@
+-ccs.linkFile "CSL_INSTALL_PATH/ti/csl/test/src/csl_wte_test.c" 
+-ccs.linkFile "CSL_INSTALL_PATH/ti/csl/test/src/testMain.c" 
+-ccs.linkFile "CSL_INSTALL_PATH/ti/csl/test/k2l/c66/bios/csl_utest.cfg" 
+-ccs.setCompilerOptions "-D -mv64+ -g -DDEVICE_K2L --diag_warning=225 -I${CSL_INSTALL_PATH} -I${CSL_INSTALL_PATH}/ti/csl/test/src" -rtsc.enableRtsc
+

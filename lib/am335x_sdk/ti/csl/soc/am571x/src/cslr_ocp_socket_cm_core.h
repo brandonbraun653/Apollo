@@ -1,0 +1,313 @@
+/********************************************************************
+ * Copyright (C) 2013-2014 Texas Instruments Incorporated.
+ * 
+ *  Redistribution and use in source and binary forms, with or without 
+ *  modification, are permitted provided that the following conditions 
+ *  are met:
+ *
+ *    Redistributions of source code must retain the above copyright 
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ *    Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the 
+ *    documentation and/or other materials provided with the   
+ *    distribution.
+ *
+ *    Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+ *  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+ *  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ *  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+ *  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+ *  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+ *  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+*/
+#ifndef CSLR_OCP_SOCKET_CM_CORE_H
+#define CSLR_OCP_SOCKET_CM_CORE_H
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+#include <ti/csl/cslr.h>
+#include <ti/csl/tistdtypes.h>
+
+
+/**************************************************************************
+* Register Overlay Structure for __ALL__
+**************************************************************************/
+typedef struct {
+    volatile Uint32 REVISION_CM_CORE_REG;
+    volatile Uint8  RSVD0[60];
+    volatile Uint32 CM_CM_CORE_PROFILING_CLKCTRL_REG;
+    volatile Uint8  RSVD1[172];
+    volatile Uint32 CM_CORE_DEBUG_CFG_REG;
+} CSL_ocp_socket_cm_coreRegs;
+
+
+/**************************************************************************
+* Register Macros
+**************************************************************************/
+
+/* This register contains the IP revision code for the CM_CORE part of the 
+ * PRCM */
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG             (0x0U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE  (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG)
+
+
+/* This register manages the CM_CORE_PROFILING clocks. [warm reset 
+ * insensitive] */
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG  (0x40U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL  (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG)
+
+
+/* This register is used to configure the CM_CORE's 32-bit debug output. There 
+ * is one 8-bit source select field for selecting from a shared set of 8-bit 
+ * internal signal blocks per byte. The signals included in each block are 
+ * specified in the PRCM integration specification. [warm reset insensitive] */
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG            (0xF0U)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG  (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG)
+
+
+
+/**************************************************************************
+* Field Definition Macros
+**************************************************************************/
+
+/* REVISION_CM_CORE_REG */
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_CUSTOM_MASK  (0x000000C0U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_CUSTOM_MASK                  (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_CUSTOM_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_CUSTOM_RESETVAL  (0x00000000U)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_CUSTOM_SHIFT  (6U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_CUSTOM_SHIFT                 (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_CUSTOM_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_CUSTOM_STANDARD  (0x00000000U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_CUSTOM_STANDARD              (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_CUSTOM_STANDARD)
+
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_R_RTL_MASK  (0x0000F800U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_R_RTL_MASK                   (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_R_RTL_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_R_RTL_RESETVAL  (0x00000000U)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_R_RTL_SHIFT  (11U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_R_RTL_SHIFT                  (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_R_RTL_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_R_RTL_MAX   (0x0000001fU)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_FUNC_MASK   (0x0FFF0000U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_FUNC_MASK                    (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_FUNC_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_FUNC_RESETVAL  (0x00000000U)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_FUNC_SHIFT  (16U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_FUNC_SHIFT                   (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_FUNC_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_FUNC_MAX    (0x00000fffU)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_MASK  (0xC0000000U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_SCHEME_MASK                  (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_RESETVAL  (0x00000001U)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_SHIFT  (30U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_SCHEME_SHIFT                 (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_H08  (0x00000001U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_SCHEME_H08                   (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_H08)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_LEGACY  (0x00000000U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_SCHEME_LEGACY                (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_SCHEME_LEGACY)
+
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_MASK  (0x0000003FU)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_Y_MINOR_MASK                 (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_RESETVAL  (0x00000001U)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_SHIFT  (0U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_Y_MINOR_SHIFT                (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_ES1  (0x00000000U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_Y_MINOR_ES1                  (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_ES1)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_ES2  (0x00000001U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_Y_MINOR_ES2                  (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_Y_MINOR_ES2)
+
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_MASK  (0x00000700U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_X_MAJOR_MASK                 (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_RESETVAL  (0x00000003U)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_SHIFT  (8U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_X_MAJOR_SHIFT                (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP4430_ES1_X  (0x00000000U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_X_MAJOR_OMAP4430_ES1_X       (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP4430_ES1_X)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP4430_ES2_X  (0x00000001U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_X_MAJOR_OMAP4430_ES2_X       (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP4430_ES2_X)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP4460  (0x00000002U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_X_MAJOR_OMAP4460             (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP4460)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP5430  (0x00000003U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_X_MAJOR_OMAP5430             (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP5430)
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP470  (0x00000004U)
+/* Below define for backward compatibility */
+#define REVISION_CM_CORE_X_MAJOR_OMAP470              (CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_X_MAJOR_OMAP470)
+
+
+#define CSL_OCP_SOCKET_CM_CORE_REVISION_CM_CORE_REG_RESETVAL    (0x40000301U)
+
+/* CM_CM_CORE_PROFILING_CLKCTRL_REG */
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_MASK  (0x00000003U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_MODULEMODE_MASK  (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_RESETVAL  (0x00000001U)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_SHIFT  (0U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_MODULEMODE_SHIFT  (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_DISABLED  (0x00000000U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_MODULEMODE_DISABLED  (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_DISABLED)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_AUTO  (0x00000001U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_MODULEMODE_AUTO  (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_AUTO)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_RESERVED_2  (0x00000002U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_MODULEMODE_RESERVED_2  (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_RESERVED_2)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_RESERVED  (0x00000003U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_MODULEMODE_RESERVED  (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_MODULEMODE_RESERVED)
+
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_MASK  (0x00030000U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_IDLEST_MASK      (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_RESETVAL  (0x00000003U)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_SHIFT  (16U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_IDLEST_SHIFT     (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_DISABLE  (0x00000003U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_IDLEST_DISABLE   (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_DISABLE)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_IDLE  (0x00000002U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_IDLEST_IDLE      (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_IDLE)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_FUNC  (0x00000000U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_IDLEST_FUNC      (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_FUNC)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_TRANS  (0x00000001U)
+/* Below define for backward compatibility */
+#define CM_CM_CORE_PROFILING_CLKCTRL_IDLEST_TRANS     (CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_IDLEST_TRANS)
+
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CM_CORE_PROFILING_CLKCTRL_REG_RESETVAL  (0x00030001U)
+
+/* CM_CORE_DEBUG_CFG_REG */
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL0_MASK  (0x000000FFU)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG_SEL0_MASK                   (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL0_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL0_RESETVAL  (0x00000000U)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL0_SHIFT  (0U)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG_SEL0_SHIFT                  (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL0_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL0_MAX   (0x000000ffU)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL1_MASK  (0x0000FF00U)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG_SEL1_MASK                   (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL1_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL1_RESETVAL  (0x00000001U)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL1_SHIFT  (8U)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG_SEL1_SHIFT                  (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL1_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL1_MAX   (0x000000ffU)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL2_MASK  (0x00FF0000U)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG_SEL2_MASK                   (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL2_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL2_RESETVAL  (0x00000002U)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL2_SHIFT  (16U)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG_SEL2_SHIFT                  (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL2_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL2_MAX   (0x000000ffU)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL3_MASK  (0xFF000000U)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG_SEL3_MASK                   (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL3_MASK)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL3_RESETVAL  (0x00000003U)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL3_SHIFT  (24U)
+/* Below define for backward compatibility */
+#define CM_CORE_DEBUG_CFG_SEL3_SHIFT                  (CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL3_SHIFT)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_SEL3_MAX   (0x000000ffU)
+
+#define CSL_OCP_SOCKET_CM_CORE_CM_CORE_DEBUG_CFG_REG_RESETVAL   (0x03020100U)
+
+#ifdef __cplusplus
+}
+#endif
+#endif

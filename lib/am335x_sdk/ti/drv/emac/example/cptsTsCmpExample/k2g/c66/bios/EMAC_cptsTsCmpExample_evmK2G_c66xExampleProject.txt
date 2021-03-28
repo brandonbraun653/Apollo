@@ -1,0 +1,7 @@
+-ccs.linkFile "PASS_INSTALL_PATH/ti/drv/emac/example/cptsTsCmpExample/src/cpts_ts_cmp.c" 
+-ccs.linkFile "PASS_INSTALL_PATH/ti/drv/emac/example/cptsTsCmpExample/src/c66x/bios/fw_main.c" 
+-ccs.linkFile "PASS_INSTALL_PATH/ti/drv/emac/example/cptsTsCmpExample/src/c66x/bios/framework.c" 
+-ccs.linkFile "PASS_INSTALL_PATH/ti/drv/emac/cpsw/example/src/c66x/bios/cpsw_linker.cmd" 
+-ccs.linkFile "PASS_INSTALL_PATH/ti/drv/emac/example/cptsTsCmpExample/k2g/c66/bios/cpts_ts_cmp_k2g.cfg" 
+-ccs.setCompilerOptions "-D -mv64+ -g -DDEVICE_K2G -DSOC_K2G -DNSS_LITE -DNUM_PORTS=2 --diag_warning=225 -I${PDK_INSTALL_PATH} -I${PDK_INSTALL_PATH}/ti/drv/emac -I${PDK_INSTALL_PATH}/ti/drv/cppi -I${PDK_INSTALL_PATH}/ti/drv/qmss"  -rtsc.enableRtsc
+

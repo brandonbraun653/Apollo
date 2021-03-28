@@ -1,0 +1,8 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/soc/am335x/I2C_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/eeprom_read/src/main_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/eeprom_read/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am335x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/test/eeprom_read/am335x/armv7/bios/i2c_arm_bbbam335x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm -mfloat-abi=hard  -DSOC_AM335X -DbbbAM335x -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/i2c -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+

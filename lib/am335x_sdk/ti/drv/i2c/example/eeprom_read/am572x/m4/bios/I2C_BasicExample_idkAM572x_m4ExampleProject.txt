@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/src/main_eeprom_read.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/src/I2C_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/soc/am572x/UART_soc.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/i2c/example/eeprom_read/am572x/m4/bios/i2c_m4_idkAM572x.cfg"
+-ccs.setCompilerOptions "-qq -pdsw255 -DMAKEFILE_BUILD -mv7M4 --float_support=vfplib --abi=eabi -g -DSOC_AM572x -DidkAM572x -DAM5XX_FAMILY_BUILD -Dti_targets_arm_elf_M4 -I${PDK_INSTALL_PATH}/ti/drv/i2c "  -rtsc.enableRtsc
+-ccs.setLinkerOptions "--strict_compatibility=on"

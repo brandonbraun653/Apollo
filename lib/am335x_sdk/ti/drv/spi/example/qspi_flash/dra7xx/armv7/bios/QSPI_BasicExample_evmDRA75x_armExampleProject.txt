@@ -1,0 +1,7 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/qspi_flash/src/main_qspi_flash_read_write.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/qspi_flash/src/SPI_log.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/test/qspi_flash/src/Flash_S25FL/S25FL.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/spi/example/qspi_flash/dra7xx/armv7/bios/qspi_arm.cfg"
+-ccs.setCompilerOptions "-c -mtune=cortex-a15 -march=armv7-a -marm -mfloat-abi=hard -DSOC_DRA75x -DevmDRA75x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/spi "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lrdimon -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra75x\", BOARD:\"evmDRA75x\"}"

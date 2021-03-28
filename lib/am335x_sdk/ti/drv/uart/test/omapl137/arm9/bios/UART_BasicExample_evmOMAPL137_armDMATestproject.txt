@@ -1,0 +1,5 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/omapl137/arm9/bios/uart_arm_dma.cfg"
+-ccs.setCompilerOptions "-mv5e -g -Domapl138 -DUART_V0 -DSOC_OMAPL137 -DevmOMAPL137 -DUART_DMA_ENABLE -DevmOMAPL137 --diag_warning=225 -I${PDK_INSTALL_PATH}/ti/drv/uart -I${PDK_INSTALL_PATH} -I${EDMA3LLD_BIOS6_INSTALLDIR}/packages "  -rtsc.enableRtsc
+
+

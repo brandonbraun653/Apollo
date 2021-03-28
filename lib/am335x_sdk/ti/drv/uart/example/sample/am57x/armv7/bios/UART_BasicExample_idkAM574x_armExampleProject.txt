@@ -1,0 +1,4 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/example/sample/src/main_example.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/example/sample/am57x/armv7/bios/uart_arm_idkAM574x.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DUART_V1 -DDRA7xx -DSOC_AM574x -g -gstrict-dwarf -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/uart "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections -L$(BIOS_INSTALL_PATH)/packages/gnu/targets/arm/libs/install-native/arm-none-eabi/lib/fpu "

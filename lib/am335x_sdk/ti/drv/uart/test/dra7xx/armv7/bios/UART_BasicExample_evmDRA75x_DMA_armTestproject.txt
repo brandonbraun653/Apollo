@@ -1,0 +1,6 @@
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/src/main_uart_test.c"
+-ccs.linkFile "PDK_INSTALL_PATH/ti/drv/uart/test/dra7xx/armv7/bios/uart_arm_dma_test.cfg"
+-ccs.setCompilerOptions "-c -mcpu=cortex-a15 -mtune=cortex-a15 -marm -mfloat-abi=hard -DSOC_DRA75x -DevmDRA75x -DUART_DMA_ENABLE -g -gstrict-dwarf -gdwarf-3 -finstrument-functions -Wall -MMD -MP -I${PDK_INSTALL_PATH}/ti/drv/uart "  -rtsc.enableRtsc
+-ccs.setLinkerOptions " -lgcc -lm -lnosys -nostartfiles -static -Wl,--gc-sections "
+-rtsc.setConfiguroOptions "--cfgArgs {SOC:\"dra75x\", BOARD:\"evmDRA75x\"}"
+
