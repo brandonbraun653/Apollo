@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="EVMAM3517" XML_version="1" desc="EVMAM3517" description="LogicPD AM3517 EVM Board">
+  <instance XML_version="1.2" desc="AM3517_0" href="devices/AM3517.xml" id="AM3517_0" xml="AM3517.xml" xmlpath="devices"/>
+	<device id="AM3517_0" partnum="AM3517" HW_revision="1" XML_version="1" description="AM35x - Cortex A8 Embedded Processor">
+	<property Type="stringfield" Value="AM35x - Cortex A8" id="FilterString" />
+	<router HW_revision="1.0" XML_version="1.2" description="ICEPick_C Router" id="IcePick_C_0" isa="ICEPICK_C">
+		<subpath id="Subpath_2">
+			<router HW_revision="1.0" XML_version="1.2" description="CS_DAP_PC Router" id="CS_DAP_PC_0" isa="CS_DAP_PC">
+				<subpath id="Subpath_3">
+					<cpu HW_revision="1.0" XML_version="1.2" description="Cortex_A8 CPU" id="Cortex_A8_0" isa="Cortex_A8">
+						<property Type="filepathfield" Value="../../../emulation/boards/evmam3517/gel/CortexA8_startup_common.gel" id="GEL File" />
+						</cpu>
+					</subpath>
+				</router>
+			</subpath>
+		</router>
+	</device>
+</board>

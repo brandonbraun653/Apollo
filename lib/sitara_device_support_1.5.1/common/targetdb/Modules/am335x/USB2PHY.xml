@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="USB2PHY" id="USB2PHY">
+  
+  
+  <register acronym="Termination_control" description="contains bits related to control of terminations in USB2PHY" id="Termination_control" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="reserved1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="29" description="When set to ‘1’, the calibration code is updated immediately after a code computation without waiting for idle periods." end="29" id="ALWAYS_UPDATE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Rterm calibration is done. 1st time cal is done this bit gets set and gets reset at a restart cal.Read value is valid only if VDDLDO is on." end="28" id="RTERM_CAL_DONE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="27" description="FS Code selection control" end="24" id="FS_CODE_SEL" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="22" id="reserved" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="21" description="Override termination resistor trim code with RTERM_RMX from this register" end="21" id="USE_RTERM_RMX_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="When read,  this field returns the current Termination resistor trim code.Read value is valid only if VDDLDO is on. The value written to this field is used as Termination resistor trim code  if bit 21 is set to ‘1’" end="14" id="RTERM_RMX" rwaccess="RW" width="7"></bitfield>
+    
+  <bitfield begin="13" description="HS Code selection control. Each increment increases the termination impedance by ~1.5%.  Valid values are 000b–011b." end="11" id="HS_CODE_SEL" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Master loop comparator output. Read value is valid only if VDDLDO is on." end="10" id="RTERM_COMP_OUT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Restart the rterm calibration. The calibration restarts on any toggle 0 to 1 or 1 to 0 on this bit." end="9" id="RESTART_RTERM_CAL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Disables the temperature tracking function of the termination calibration" end="8" id="DISABLE_TEMP_TRACK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="when '1' the rterm cal code is overridden by values in RTERM_CAL" end="7" id="USE_RTERM_CAL_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="When read this field returns the current rterm calibration code. Read value is valid only if VDDLDO is on. The value written to this field is used as rterm calibration code  if  the bit USE_RTERM_CAL_REG is 1." end="0" id="RTERM_CAL" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_CALIB" description="Contains bits related to RX calibration" id="RX_CALIB" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Restart the HSRX calibration state machine when this bit goes from 0 to 1." end="31" id="RESTART_HSRX_CAL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Override HS offset correction with HS_OFF_CODE when set to '1'" end="30" id="USE_HS_OFF_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="HS offset code, this code is forced when bit 30 is ‘1’. Code is updated from calibration logic when bit 30 = 0." end="24" id="HS_OFF_CODE" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="23" description="The output of the HSRX comparator.Read value is valid only if VDDLDO is on." end="23" id="HSRX_COMP_OUT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Signal that indicates that the HSRX calibration is done. This gets reset at every restart.Read value is valid only if VDDLDO is on." end="22" id="HSRX_CAL_DONE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Override Squelch offset DAC1 code when '1'" end="21" id="USE_SQ_OFF_DAC1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="When read returns current Sq offset code for DAC1, if VDDLDO is on. When written this is used as Sq offset code for DAC1 when USE_SQ_OFF_DAC1 = '1'" end="15" id="SQ_OFF_CODE_DAC1" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="14" description="Override Squelch offset DAC2 code when '1'" end="14" id="USE_SQ_OFF_DAC2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="When read returns current Sq offset code for DAC2, if VDDLDO is on. When written this is used as Sq offset code for DAC2 when USE_SQ_OFF_DAC2 = '1'" end="9" id="SQ_OFF_CODE_DAC2" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="8" description="Override Squelch offset DAC3 code when '1'" end="8" id="USE_SQ_OFF_DAC3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="When read returns current Sq offset code for DAC3, if VDDLDO is on. When written this is used as Sq offset code for DAC3 when USE_SQ_OFF_DAC3 = '1'" end="3" id="SQ_OFF_CODE_DAC3" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="2" description="Sq comp output.Read value is valid only if VDDLDO is on." end="2" id="SQ_COMP_OUT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Sq calibration is done when this bit = 1. see RESTART_SQ_CAL for more description.Read value is valid only if VDDLDO is on." end="1" id="SQ_CAL_DONE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="the squelch calibration continuously goes through restart cycles when this bit is ‘1’. i.e. restarts waits for done – then restarts again etc." end="0" id="RESTART_SQ_CAL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DLLHS_2" description="the 2nd DLLHS control register. bits 4:0 are unrelated to the DLLHS and are linestate filter settings" id="DLLHS_2" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="See DFT spec for details" end="24" id="DLLHS_CNTRL_LDO" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="See DFT spec for details" end="16" id="DLLHS_STATUS_LDO" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="5" id="Reserved" rwaccess="RW" width="11"></bitfield>
+    
+  <bitfield begin="4" description="Enables the linestate debounce filter" end="4" id="LINESTATE_DEBOUNCE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Used for control of the linestate debounce filter when going from syncronous to async linestate." end="0" id="LINESTATE_DEBOUNCE_CNTL" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_TEST_2" description="the 2nd receiver test register" id="RX_TEST_2" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Swaps the dataout from HSOS" end="31" id="HSOSREVERSAL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Inverts the HSOS bits" end="30" id="HSOSBITINVERSION" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="This inverts the phase for the PHYCLKOUT" end="29" id="PHYCLKOUTINVERSION" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Flags if the RX data packet has PID error. NOT IMPLEMENTED YET" end="28" id="RXPIDERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="27" description="This will bypass the analog and will send data packet to controller incase of receiver (Faking the receive data). data used will be INTDATAOUTREG" end="27" id="USEINTDATAOUT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="This register will be loaded through OCP and this data will be given to the controller if USEINTDATAOUT is set to ‘1’" end="11" id="INTDATAOUTREG" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="10" description="Reserved" end="8" id="Reserved" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="CDR debug bits. Read value is valid only if VDDLDO is on. see DFT spec for details" end="0" id="CDR_TESTOUT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CHRG_DET" description="this is the charger detect register. this register is not used in the dead battery case." id="CHRG_DET" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="reserved2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Use bits 28-24 and 18-17 from this register" end="29" id="USE_CHG_DET_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="When read, returns current value of charger detect input. When USE_CHG_DET_REG = ‘1’, the value written to this field  overrides the corresponding charger detect input." end="28" id="DIS_CHG_DET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="When read, returns current value of charger detect input. When USE_CHG_DET_REG = ‘1’, the value written to this field  overrides the corresponding charger detect input." end="27" id="SRC_ON_DM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="When read, returns current value of charger detect input. When USE_CHG_DET_REG = ‘1’, the value written to this field  overrides the corresponding charger detect input." end="26" id="SINK_ON_DP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="When read, returns current value of charger detect input. When USE_CHG_DET_REG = ‘1’, the value written to this field  overrides the corresponding charger detect input." end="25" id="CHG_DET_EXT_CTL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Restart the charger detection protocol when this goes from 0 to 1" end="24" id="RESTART_CHG_DET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Charger detect protocol has completed" end="23" id="CHG_DET_DONE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Same signal as CE" end="22" id="CHG_DETECTED" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Output of the data det comparator" end="21" id="DATA_DET" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Reserved" end="19" id="reserved1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="18" description="When read, returns current value of charger detect input. When USE_CHG_DET_REG = ‘1’, the value written to this field  overrides the corresponding charger detect input." end="18" id="CHG_ISINK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="When read, returns current value of charger detect input. When USE_CHG_DET_REG = ‘1’, the value written to this field  overrides the corresponding charger detect input." end="17" id="CHG_VSRC_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Comparator on the DP line value" end="16" id="COMP_DP" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Comparator on the DM line value" end="15" id="COMP_DM" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Charger detect osc control" end="13" id="CHG_DET_OSC_CNTRL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="12" description="Charger detect timer control. See charger detect section for details" end="7" id="CHG_DET_TIMER" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="6" description="Reserved" end="5" id="reserved" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="4" description="Charger detect current control" end="3" id="CHG_DET_ICTRL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="2" description="Charger detect voltage buffer control" end="1" id="CHG_DET_VCTRL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="0" description="Force CE = ‘1’ when this bit is set" end="0" id="FOR_CE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="PWR_CNTL" description="has all the power control bits" id="PWR_CNTL" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="Goes high when the RESET is synchronized to TCLK" end="31" id="RESETDONETCLK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Goes high when LDO domain is up and PLL LOCK is available and utmi_reset is de-asserted." end="30" id="RESET_DONE_VMAIN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Goes high when LDO domain is up and PLL LOCK is available." end="29" id="VMAIN_GLOBAL_RESET_DONE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Goes high when the RESET is synchronized to MCLK" end="28" id="RESETDONEMCLK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Goes high when the RESET is synchronized to charger detect oscillator clock domain" end="27" id="RESETDONE_CHGDET" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="This is the value of the counter used for LDO power up. RESET to default. " end="12" id="LDOPWRCOUNTER" rwaccess="RW" width="15"></bitfield>
+    
+  <bitfield begin="11" description="Forces the PLL to the slow clk mode" end="11" id="FORCEPLLSLOWCLK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Forces the LDO to be ON." end="10" id="FORCELDOON" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Forces the PLL to be ON." end="9" id="FORCEPLLON" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Reserved" end="7" id="reserved1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="6" description="Lock signal from the PLL" end="6" id="PLLLOCK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="This signal is used to indicate to the Phy, not to do any clock related activity until PLLLOCK = ‘1’.This is not the default option.0 – do not use PLLLOCK. 1 – use PLLLOCK as a clock gate." end="5" id="USEPLLLOCK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="1 -> use bit 3 as override for the DATAPOLARITYN signal." end="4" id="USE_DATAPOLARITYN_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Override value of datapolarityn" end="3" id="DATAPOLARITYN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Use bit 1 from this register as PD override when set to '1'" end="2" id="USE_PD_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Override value for PD" end="1" id="PD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Reserved" end="0" id="reserved" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="UTMI_INTERFACE_CNTL_1" description="register to override UTMI interface control pins." id="UTMI_INTERFACE_CNTL_1" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Use datain from UTMI interface register" end="31" id="USEUTMIDATAREG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Override value for the UTMIDATAIN" end="15" id="UTMIDATAIN" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="14" description="Reserved" end="14" id="reserved" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="When set to ‘1’ use bit 12 from register instead of interface" end="13" id="USEDATABUSREG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Override value for UTMI signal DATABUS16OR8" end="12" id="DATABUS16OR8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="When set to ‘1’ use bit 10-9 from register instead of interface" end="11" id="USEOPMODEREG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Override value for UTMI signal OPMODE[1:0]" end="9" id="OPMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="8" description="Override the suspend and reset values. Use bits 6 and 7" end="8" id="OVERRIDESUSRESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Override value for UTMI signal SUSPENDM" end="7" id="SUSPENDM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Override value for UTMI signal UTMIRESET" end="6" id="UTMIRESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="When set to ‘1’ use bit 4-3 from register instead of interface" end="5" id="OVERRIDEXCVRSEL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Override value for UTMI signal XCVRSEL[1:0]" end="3" id="XCVRSEL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="2" description="When set to ‘1’ use bit 1-0 from register instead of interface" end="2" id="USETXVALIDREG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Override value for UTMI signal TXVALID" end="1" id="TXVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Override value for UTMI signal TXVALIDH" end="0" id="TXVALIDH" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="UTMI_INTERFACE_CNTL_2" description="UTMI interface override and observe register 2" id="UTMI_INTERFACE_CNTL_2" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="Read for UTMI signal.Read value is valid only if VDDLDO is on.Read value is valid only if VDDLDO is on." end="31" id="RXRCV" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="30" id="RXDP" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="29" id="RXDM" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="28" id="HOSTDISCONNECT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="26" id="LINESTATE" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="25" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="25" id="RXVALID" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="24" id="RXVALIDH" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="23" id="RXACTIVE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="22" id="RXERROR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Read for UTMI signal.Read value is valid only if VDDLDO is on." end="21" id="TXREADY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Read for UTMIRESETDONE signal" end="20" id="UTMIRESETDONE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="When set to ‘1’ use bits 18-17 from register instead of interface" end="19" id="USEBITSTUFFREG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Override value for signal TXBITSTUFFENABLE" end="18" id="TXBITSTUFFENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Override value for pin TXBITSTUFFENABLE" end="17" id="TXBITSTUFFENABLEH" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="-When set to ‘1’ use bits 15-13 from register instead of interface" end="16" id="USETERMCONTROLREG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Override value for signal TERMSEL" end="15" id="TERMSEL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Override value for signal DPPULLDOWN" end="14" id="DPPULLDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Override value for signal DMPULLDOWN" end="13" id="DMPULLDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Reserved" end="10" id="reserved6" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="9" description="When set to ‘1’ use bits 8-5 from register instead of interface" end="9" id="USEREGSERIALMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Override value for signal TXSE0" end="8" id="TXSE0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Override value for signal TXDAT" end="7" id="TXDAT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Override value for signal FSLSSERIALMODE" end="6" id="FSLSSERIALMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Override value for signal TXENABLEN" end="5" id="TXENABLEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Reserved" end="1" id="reserved" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="0" description="If the suspend signal is asserted for very short-time, it is pulse extended so that all the sampling logic samples it reliably. This pulse extention can be bypassed by writin a '1' to this bit ( so that IP's behaviour is similar to previous versions)" end="0" id="sig_bypass_suspendmpulse_incr" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="BIST" description="COntains bits related to the built in self test of the phy" id="BIST" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="When set to ‘1’ the BIST mode is started." end="31" id="BIST_START" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="When ‘1’ the TX swing is reduced in BIST mode" end="30" id="REDUCED_SWING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Enables CRC calculation during BIST when set to ‘1’" end="29" id="BIST_CRC_CALC_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Address for which BIST to select" end="20" id="BIST_PKT_LENGTH" rwaccess="RW" width="9"></bitfield>
+    
+  <bitfield begin="19" description="Enables the loopback mode" end="19" id="LOOPBACK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Selects which phase to use for data transmission during BIST" end="16" id="BIST_OP_PHASE_SEL" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="15" description="Enables freq sweep on CDR " end="15" id="SWEEP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Selects the freq sweep mode. Details in DFT spec." end="12" id="SWEEP_MODE" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="Indicates that the BIST has passed. Read value is valid only if VDDLDO is on." end="11" id="BIST_PASS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Indicates that BIST is running. Read value is valid only if VDDLDO is on." end="10" id="BIST_BUSY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Reserved" end="7" id="reserved2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Defined in DFT spec" end="5" id="OP_CODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="4" description="Defined in DFT spec" end="4" id="RX_TEST_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="3" id="reserved" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Defined in DFT spec" end="2" id="INTER_PKT_DELAY_TEST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Defined in DFT spec" end="1" id="HS_ALL_ONES_TEST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="When set to ‘1’ bits 18-16 are activated for choosing the transmitting phase." end="0" id="USE_BIST_TX_PHASES" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="BIST_CRC" description="the CRC code for BIST test" id="BIST_CRC" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="The CRC value from the BIST." end="0" id="BIST_CRC" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CDR_BIST2" description="clock data recovery register and BIST register 2" id="CDR_BIST2" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="CDR debug bits" end="31" id="CDR_EXE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="CDR debug bits" end="28" id="CDR_EXE_MODE" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="CDR debug bits" end="25" id="NUM_DECISIONS" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="24" description="" end="22" id="CDR_CHOSEN_PHASE" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="21" description="" end="19" id="FORCE_CDR_PHASE" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="18" description="" end="18" id="DISABLE_CDR_FREQ_TRACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="" end="13" id="CDR_CONFIGURE" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="12" description="Use bits 21-19 as the phase to be forced on the CDR." end="12" id="FORCE_CDR_PHASE_EN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="11" description="See DFT spec for details" end="6" id="Bist_start_addr" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="5" description="See DFT spec for details" end="0" id="Bist_end_addr" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO" description="GPIO mode configurations and reads" id="GPIO" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="When set to ‘1’ use bits 31 – 24 from this register instead of primary inputs" end="31" id="USEGPIOMODEREG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Overrides the corresponding primary input" end="30" id="GPIOMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Overrides the corresponding primary input" end="29" id="DPGPIOGZ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Overrides the corresponding primary input" end="28" id="DMGPIOGZ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Overrides the corresponding primary input" end="27" id="DPGPIOA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Overrides the corresponding primary input" end="26" id="DMGPIOA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="The GPIO Y output is stored here" end="25" id="DPGPIOY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="The GPIO Y output is stored here" end="24" id="DMGPIOY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Overrides the corresponding primary input" end="23" id="GPIO1P8VCONFIG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Used for configuring the GPIOs. Details to be updated." end="20" id="GPIOCONFIG" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="19" description="GPIO mode DM pull down enabled. Overrides the corresponding primary input" end="19" id="DMGPIOPIPD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="GPIO mode DP pull-down enabled. Overrides the corresponding primary input." end="18" id="DPGPIOPIPD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Reserved" end="0" id="reserved" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="DLLHS" description="bits for control and debug of the DLL inside the phy" id="DLLHS" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="29" id="reserved2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Read the AFE output by this name" end="28" id="DLLHS_LOCK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Read the AFE output by this name.Read value is valid only if VDDLDO is on." end="22" id="DLLHS_GENERATED_CODE" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="21" description="Connect to DLLHS_TEST_LDO[0] on AFE interface. see DFT spec for details." end="21" id="DLL_SEL_CODE_PHS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Connect to DLLHS_TEST_LDO[2:1] on AFE interface. see DFT spec for details." end="19" id="DLL_LOCKCHK" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="18" description="Connect to DLLHS_TEST_LDO[5:3] on AFE interface. see DFT spec for details." end="16" id="DLL_SEL_COD" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="15" description="Connect to DLLHS_TEST_LDO[6] on AFE interface. see DFT spec for details." end="15" id="DLL_PHS0_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Connect to the pin of this name  on AFE interface. see DFT spec for details." end="9" id="DLL_FORCED_CODE" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="8" description="Connect to DLLHS_TEST_LDO[11] on AFE interface. see DFT spec for details." end="8" id="FORCE_DLL_CODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Connect to DLLHS_TEST_LDO[8:7] on AFE interface. see DFT spec for details." end="6" id="DLL_RATE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Connect to DLLHS_TEST_LDO[10:9] on AFE interface. see DFT spec for details." end="4" id="DLL_FILT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Connect to the pin of this name  on AFE interface. see DFT spec for details." end="3" id="DLL_CDR_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Connect to DLLHS_TEST_LDO[12] on AFE interface. see DFT spec for details." end="2" id="DLL_IDLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Connect to DLLHS_TEST_LDO[13] on AFE interface. see DFT spec for details." end="1" id="DLL_FREEZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Reserved" end="0" id="reserved" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB2PHYCM_CONFIG" description="Config and status register for the USB2PHYCM and LDO" id="USB2PHYCM_CONFIG" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Connects to the CONFIGURECM pins. see DFT spec for details." end="24" id="CONFIGURECM" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reads the CMSTATUS bits. see DFT spec for details." end="18" id="CMSTATUS" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="17" description="The LDOCONFIG bit settings. See DFT spec for details." end="2" id="LDOCONFIG" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="1" description="Reads the LDOSTATUS bits. see DFT spec for details." end="0" id="LDOSTATUS" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="AD_INTERFACE_REG1" description="All bits (unless defined) are bypass bits for internal analog to digital interface pins with the same name.  All the bits of this register, except the over-ride bits return a '0' on read, if  VDDLDO is off." id="AD_INTERFACE_REG1" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Override for bits 30-29" end="31" id="USE_AD_DATA_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="" end="30" id="HS_TX_DATA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="" end="29" id="FS_TX_DATA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Override for bits 27-25" end="28" id="TEST_PRE_EN_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="SQ_PRE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="" end="26" id="HS_TX_PRE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="" end="25" id="HS_RX_PRE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Override for bits 23-19" end="24" id="TEST_EN_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="" end="23" id="HS_TX_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="22" id="FS_RX_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Reserved" end="21" id="reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="SQ_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="" end="19" id="HS_RX_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Override for bits 17-16" end="18" id="TEST_HS_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="" end="17" id="HS_HV_SW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="" end="16" id="HS_CHIRP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Override for bits 14 – 12" end="15" id="TEST_FS_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="" end="14" id="FSTX_GZ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="" end="13" id="FSTX_PRE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Reserved" end="12" id="reserved" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Override for bits 10 – 8 " end="11" id="TEST_SQ_CAL_CONTROL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="" end="10" id="SQ_CAL_EN3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="" end="9" id="SQ_CAL_EN1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="" end="8" id="SQ_CAL_EN2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Override for bits 6" end="7" id="TEST_RTERM_CAL_CONTROL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="RTERM_CAL_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="5" id="DLL_RX_DATA" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="" end="4" id="DISCON_DETECT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Use bit 2 for this reg" end="3" id="USE_LSHOST_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="" end="2" id="LSHOSTMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="" end="1" id="LSFS_RX_DATA" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="SQUELCH" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="AD_INTERFACE_REG2" description="All bits (unless defined) are bypass bits for internal analog to digital interface pins with the same name.  All the bits of this register, except the over-ride bits return a '0' on read, if  VDDLDO is off." id="AD_INTERFACE_REG2" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Use bits 27-30 from this register as overrides" end="31" id="USE_SUSP_DRV_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="" end="30" id="SUS_DRV_DP_DATA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="" end="29" id="SUS_DRV_DP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="" end="28" id="SUS_DRV_DM_DATA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="SUS_DRV_DM_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Use bits 24-25 from this register as override" end="26" id="USE_DISCON_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="" end="25" id="DISCON_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="" end="24" id="DISCON_PRE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="23" id="reserved" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="18" id="SPARE_OUT_CORE" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="17" description="" end="17" id="SERX_DP_CORE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="" end="16" id="SERX_DM_CORE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Use bit 14 from this register as override" end="15" id="USE_HSRX_CAL_EN_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="" end="14" id="HSRX_CAL_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Use override from bits 7-12" end="13" id="USE_RPU_RPD_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="" end="12" id="RPU_DP_SW1_EN_CORE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="" end="11" id="RPU_DP_SW2_EN_CORE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="" end="10" id="RPU_DM_SW1_EN_CORE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="" end="9" id="RPU_DM_SW2_EN_CORE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="" end="8" id="DP_PULLDOWN_EN_CORE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="DM_PULLDOWN_EN_CORE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="DP_DM_5V_SHORT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="1" id="SPARE_IN_CORE" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="0" description="Read only bit -> the PORZ generated from the digital registered on the A-D interface." end="0" id="PORZ" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="AD_INTERFACE_REG3" description="All bits (unless defined) are bypass bits for internal analog to digital interface pins with the same name.  All the bits of this register, except the over-ride bits return a '0' on read, if  VDDLDO is off." id="AD_INTERFACE_REG3" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Use bits 30-23 in this register as bypass bits" end="31" id="USE_HSOS_DATA_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="" end="23" id="HSOS_DATA" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="22" description="Use bits 20-21 as bypass bits" end="22" id="USE_FS_REG3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="" end="21" id="FSTX_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="FSTX_SE0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Use bit 18 as override bit" end="19" id="USE_HS_TERM_RES_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="" end="18" id="HS_TERM_RES" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="" end="10" id="SPARE_IN_LDO" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="9" description="" end="2" id="SPARE_OUT_LDO" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="1" description="Use bit 0 from this register as bypass" end="1" id="USE_FARCORE_REG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="FARCORE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ANA_CONFIG2" description="Used to configure and debug the analog blocks." id="ANA_CONFIG2" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="Reserved." end="27" id="Reserved" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="26" description="0000000b - Produces the typical vertical eye diagram amplitude (default). 1100000b - Increases vertical eye diagram amplitude by 15 mV. 1010000b - Decreases vertical eye diagram amplitude by 15 mV. All other values are reserved." end="20" id="REF_GEN_TEST" rwaccess="RW" width="7"></bitfield>
+    
+  <bitfield begin="19" description="Reserved." end="18" id="Reserved2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="000b - Typical termination impedance (default). 011b - Decreases the termination impedance by 2 to 3% and can be used to increase the vertical eye diagram amplitude by 1 to 1.5%. All other values reserved." end="15" id="RTERM_TEST" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Reserved." end="0" id="Reserved3" rwaccess="RW" width="15"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_DEBUG_REG" description="not implemented" id="RX_DEBUG_REG" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="SYNCERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="" end="30" id="BITSTUFFERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="29" description="" end="14" id="UTMIRXDATARCV" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="13" description="" end="13" id="EOPERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="12" description="" end="10" id="PKTCOUNT" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="9" description="" end="5" id="BYTECOUNT" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="4" description="" end="1" id="SYNCBITCOUNT" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="0" description="Reserved" end="0" id="reserved" rwaccess="R" width="1"></bitfield>
+  </register>
+</module>

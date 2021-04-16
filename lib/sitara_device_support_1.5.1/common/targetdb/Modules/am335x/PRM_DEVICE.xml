@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRM_DEVICE" id="PRM_DEVICE">
+  
+  
+  <register acronym="PRM_RSTCTRL" description="Global software cold and warm reset control. This register is auto-cleared.  Only write 1 is possible. A read returns 0 only." id="PRM_RSTCTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Global COLD software reset control.  This bit is reset only upon a global cold source of reset. Read returns 0." end="1" id="RST_GLOBAL_COLD_SW" rwaccess="RW" width="1">
+    <bitenum description="Global COLD software reset is cleared." id="0x0" token="0x0" value="0"></bitenum>
+    <bitenum description="Asserts a global COLD software reset. The software must ensure the SDRAM is properly  put in sef-refresh mode before applying this reset." id="0x1" token="0x1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Global WARM software reset control.  This bit is reset upon any global source of reset (warm and cold).  Read returns 0." end="0" id="RST_GLOBAL_WARM_SW" rwaccess="RW" width="1">
+    <bitenum description="Global warm software reset is cleared." id="0x0" token="0x0" value="0"></bitenum>
+    <bitenum description="Asserts a global warm software reset." id="0x1" token="0x1" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_RSTTIME" description="Reset duration control. [warm reset insensitive]" id="PRM_RSTTIME" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="13" id="Reserved" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="(Power domain) reset duration 2 (number of CLK_M_OSC clock cycles)" end="8" id="RSTTIME2" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="(Global) reset duration 1 (number of CLK_M_OSC clock cycles)" end="0" id="RSTTIME1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_RSTST" description="This register logs the global reset sources. Each bit is set upon release of the domain reset signal.  Must be cleared by software. [warm reset insensitive]" id="PRM_RSTST" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="Reserved" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="IcePick reset event.  This is a source of global warm reset initiated by the emulation. [warm reset insensitive]" end="9" id="ICEPICK_RST" rwaccess="RW" width="1">
+    <bitenum description="No ICEPICK reset." id="0x0" token="0x0" value="0"></bitenum>
+    <bitenum description="IcePick reset has occurred." id="0x1" token="0x1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Reserved" end="6" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="5" description="External warm reset event [warm reset insensitive]" end="5" id="EXTERNAL_WARM_RST" rwaccess="RW" width="1">
+    <bitenum description="No global warm reset." id="0x0" token="0x0" value="0"></bitenum>
+    <bitenum description="Global external warm reset has occurred." id="0x1" token="0x1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="Watchdog1 timer reset event. This is a source of global WARM reset. [warm reset insensitive]" end="4" id="WDT1_RST" rwaccess="RW" width="1">
+    <bitenum description="No watchdog reset." id="0x0" token="0x0" value="0"></bitenum>
+    <bitenum description="watchdog reset has occurred." id="0x1" token="0x1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved." end="3" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Reserved." end="2" id="Reserved3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Global warm software reset event [warm reset insensitive]" end="1" id="GLOBAL_WARM_SW_RST" rwaccess="RW" width="1">
+    <bitenum description="No global warm SW reset" id="0x0" token="0x0" value="0"></bitenum>
+    <bitenum description="Global warm SW reset has occurred." id="0x1" token="0x1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Power-on (cold) reset event [warm reset insensitive]" end="0" id="GLOBAL_COLD_RST" rwaccess="RW" width="1">
+    <bitenum description="No power-on reset." id="0x0" token="0x0" value="0"></bitenum>
+    <bitenum description="Power-on reset has occurred." id="0x1" token="0x1" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_SRAM_COUNT" description="Common setup for SRAM LDO transition counters. Applies to all voltage domains. [warm reset insensitive]" id="PRM_SRAM_COUNT" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Determines the start-up duration of SRAM and ABB LDO. The duration is computed as 16 x NbCycles of system clock cycles. Target is 50us." end="24" id="StartUp_Count" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Delay between retention/off assertion of last SRAM bank and SRAMALLRET signal to LDO is driven high. Counting on system clock. Target is 2us." end="16" id="SLPCNT_VALUE" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="SRAM LDO rampup time from retention to active mode. The duration is computed as 8 x NbCycles of system clock cycles. Target is 30us." end="8" id="VSETUPCNT_VALUE" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Delay between de-assertion of standby_rta_ret_on and standby_rta_ret_good. Counting on system clock. Target is 600ns." end="0" id="PCHARGECNT_VALUE" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_LDO_SRAM_CORE_SETUP" description="Setup of the SRAM LDO for CORE voltage domain. [warm reset insensitive]" id="PRM_LDO_SRAM_CORE_SETUP" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="9" id="Reserved" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Override on AIPOFF input of SRAM LDO." end="8" id="AIPOFF" rwaccess="RW" width="1">
+    <bitenum description="AIPOFF signal is not overriden" id="No_Override" token="No_Override" value="0"></bitenum>
+    <bitenum description="AIPOFF signal is overriden to '1'. Corresponding SRAM LDO is disabled and in HZ mode." id="Override" token="Override" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="ENFUNC5 input of SRAM LDO." end="7" id="ENFUNC5" rwaccess="RW" width="1">
+    <bitenum description="Active to retention is a one step transfer" id="One_step" token="One_step" value="0"></bitenum>
+    <bitenum description="Active to retention is a two steps transfer" id="Two_step" token="Two_step" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="ENFUNC4 input of SRAM LDO." end="6" id="ENFUNC4" rwaccess="RW" width="1">
+    <bitenum description="One external clock is supplied" id="Ext_clock" token="Ext_clock" value="0"></bitenum>
+    <bitenum description="No external clock is supplied" id="No_ext_clock" token="No_ext_clock" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="ENFUNC3 input of SRAM LDO. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="5" id="ENFUNC3_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="Sub regulation is disabled" id="Sub_regul_disabled" token="Sub_regul_disabled" value="0"></bitenum>
+    <bitenum description="Sub regulation is enabled" id="Sub_regul_enabled" token="Sub_regul_enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="ENFUNC2 input of SRAM LDO. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="4" id="ENFUNC2_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="External cap is used" id="Ext_cap" token="Ext_cap" value="0"></bitenum>
+    <bitenum description="External cap is not used" id="No_ext_cap" token="No_ext_cap" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="ENFUNC1 input of SRAM LDO. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="3" id="ENFUNC1_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="Short circuit protection is disabled" id="Short_prot_disabled" token="Short_prot_disabled" value="0"></bitenum>
+    <bitenum description="Short circuit protection is enabled" id="Short_prot_enabled" token="Short_prot_enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Determines whether SRAMNWA is supplied by VDDS or VDDAR during deep-sleep. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="2" id="ABBOFF_SLEEP_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="SRAMNWA supplied with VDDS" id="SRAMNW_SLP_VDDS" token="SRAMNW_SLP_VDDS" value="0"></bitenum>
+    <bitenum description="SRAMNWA supplied with VDDAR" id="SRAMNW_SLP_VDDAR" token="SRAMNW_SLP_VDDAR" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Determines whether SRAMNWA is supplied by VDDS or VDDAR during active mode. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="1" id="ABBOFF_ACT_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="SRAMNWA supplied with VDDS" id="SRAMNW_ACT_VDDS" token="SRAMNW_ACT_VDDS" value="0"></bitenum>
+    <bitenum description="SRAMNWA supplied with VDDAR" id="SRAMNW_ACT_VDDAR" token="SRAMNW_ACT_VDDAR" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Control for HD memory RTA feature. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="0" id="DISABLE_RTA_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="HD memory RTA feature  is enabled" id="RTA_ENABLED" token="RTA_ENABLED" value="0"></bitenum>
+    <bitenum description="HD memory RTA feature is disabled" id="RTA_DISABLED" token="RTA_DISABLED" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_LDO_SRAM_CORE_CTRL" description="Control and status of the SRAM LDO for CORE voltage domain. [warm reset insensitive]" id="PRM_LDO_SRAM_CORE_CTRL" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Status indicating SRAM LDO state machine state." end="9" id="SRAM_IN_TRANSITION" rwaccess="R" width="1">
+    <bitenum description="SRAM LDO state machine is stable" id="IDLE" token="IDLE" value="0"></bitenum>
+    <bitenum description="SRAM LDO state machine is in transition state" id="IN_TRANSITION" token="IN_TRANSITION" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="SRAMLDO status" end="8" id="SRAMLDO_STATUS" rwaccess="R" width="1">
+    <bitenum description="SRAMLDO is in ACTIVE mode." id="ACTIVE" token="ACTIVE" value="0"></bitenum>
+    <bitenum description="SRAMLDO is on RETENTION mode." id="RETENTION" token="RETENTION" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="1" id="Reserved" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="Control if the SRAM LDO retention mode is used or not." end="0" id="RETMODE_ENABLE" rwaccess="RW" width="1">
+    <bitenum description="SRAM LDO is not allowed to go to RET mode" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SRAM LDO go to RET mode when all memory of voltage domain are OFF or RET" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_LDO_SRAM_MPU_SETUP" description="Setup of the SRAM LDO for MPU voltage domain. [warm reset insensitive]" id="PRM_LDO_SRAM_MPU_SETUP" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="9" id="Reserved" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Override on AIPOFF input of SRAM LDO." end="8" id="AIPOFF" rwaccess="RW" width="1">
+    <bitenum description="AIPOFF signal is not overriden" id="No_Override" token="No_Override" value="0"></bitenum>
+    <bitenum description="AIPOFF signal is overriden to '1'. Corresponding SRAM LDO is disabled and in HZ mode." id="Override" token="Override" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="ENFUNC5 input of SRAM LDO." end="7" id="ENFUNC5" rwaccess="RW" width="1">
+    <bitenum description="Active to retention is a one step transfer" id="One_step" token="One_step" value="0"></bitenum>
+    <bitenum description="Active to retention is a two steps transfer" id="Two_step" token="Two_step" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="ENFUNC4 input of SRAM LDO." end="6" id="ENFUNC4" rwaccess="RW" width="1">
+    <bitenum description="One external clock is supplied" id="Ext_clock" token="Ext_clock" value="0"></bitenum>
+    <bitenum description="No external clock is supplied" id="No_ext_clock" token="No_ext_clock" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="ENFUNC3 input of SRAM LDO. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="5" id="ENFUNC3_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="Sub regulation is disabled" id="Sub_regul_disabled" token="Sub_regul_disabled" value="0"></bitenum>
+    <bitenum description="Sub regulation is enabled" id="Sub_regul_enabled" token="Sub_regul_enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="ENFUNC2 input of SRAM LDO. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="4" id="ENFUNC2_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="External cap is used" id="Ext_cap" token="Ext_cap" value="0"></bitenum>
+    <bitenum description="External cap is not used" id="No_ext_cap" token="No_ext_cap" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="ENFUNC1 input of SRAM LDO. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="3" id="ENFUNC1_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="Short circuit protection is disabled" id="Short_prot_disabled" token="Short_prot_disabled" value="0"></bitenum>
+    <bitenum description="Short circuit protection is enabled" id="Short_prot_enabled" token="Short_prot_enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Determines whether SRAMNWA is supplied by VDDS or VDDAR during deep-sleep. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="2" id="ABBOFF_SLEEP_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="SRAMNWA supplied with VDDS" id="SRAMNW_SLP_VDDS" token="SRAMNW_SLP_VDDS" value="0"></bitenum>
+    <bitenum description="SRAMNWA supplied with VDDAR" id="SRAMNW_SLP_VDDAR" token="SRAMNW_SLP_VDDAR" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Determines whether SRAMNWA is supplied by VDDS or VDDAR during active mode. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="1" id="ABBOFF_ACT_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="SRAMNWA supplied with VDDS" id="SRAMNW_ACT_VDDS" token="SRAMNW_ACT_VDDS" value="0"></bitenum>
+    <bitenum description="SRAMNWA supplied with VDDAR" id="SRAMNW_ACT_VDDAR" token="SRAMNW_ACT_VDDAR" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Control for HD memory RTA feature. After PowerOn reset and Efuse sensing, this bitfield is automatically loaded with an Efuse value from control module. Bitfield remains writable after this." end="0" id="DISABLE_RTA_EXPORT" rwaccess="RW" width="1">
+    <bitenum description="HD memory RTA feature  is enabled" id="RTA_ENABLED" token="RTA_ENABLED" value="0"></bitenum>
+    <bitenum description="HD memory RTA feature is disabled" id="RTA_DISABLED" token="RTA_DISABLED" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_LDO_SRAM_MPU_CTRL" description="Control and status of the SRAM LDO for MPU voltage domain. [warm reset insensitive]" id="PRM_LDO_SRAM_MPU_CTRL" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Status indicating SRAM LDO state machine state." end="9" id="SRAM_IN_TRANSITION" rwaccess="R" width="1">
+    <bitenum description="SRAM LDO state machine is stable" id="IDLE" token="IDLE" value="0"></bitenum>
+    <bitenum description="SRAM LDO state machine is in transition state" id="IN_TRANSITION" token="IN_TRANSITION" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="SRAMLDO status" end="8" id="SRAMLDO_STATUS" rwaccess="R" width="1">
+    <bitenum description="SRAMLDO is in ACTIVE mode." id="ACTIVE" token="ACTIVE" value="0"></bitenum>
+    <bitenum description="SRAMLDO is on RETENTION mode." id="RETENTION" token="RETENTION" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="1" id="Reserved" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="Control if the SRAM LDO retention mode is used or not." end="0" id="RETMODE_ENABLE" rwaccess="RW" width="1">
+    <bitenum description="SRAM LDO is not allowed to go to RET mode" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SRAM LDO go to RET mode when all memory of voltage domain are OFF or RET" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+  </register>
+</module>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<device id="AM3358" partnum="AM3358" HW_revision="1" XML_version="2" desc="AM3358" description="AM33x - Cortex A8 Embedded Processor">
+	<!-- Filter for project wizard -->
+	<property Type="stringfield" Value="AM33x - Cortex A8" id="FilterString" />
+	<instance XML_version="1.2" desc="IcePick_D_0" href="routers/icepick_d.xml" id="IcePick_D_0" xml="icepick_d.xml" xmlpath="routers"/>
+	<router HW_revision="1.0" XML_version="1.2" description="ICEPick_D Router" id="IcePick_D_0" isa="ICEPICK_D">
+		<subpath desc="M3_wakeupSS" id="subpath_11">
+			<property Type="numericfield" Value="0xb" id="Port Number"/>
+			<instance XML_version="1.2" desc="CS_DAP_M3" href="routers/cs_dap.xml" id="CS_DAP_M3" xml="cs_dap.xml" xmlpath="routers"/>
+			<router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_M3" isa="CS_DAP">
+				<property Type="numericfield" Value="0x4b6b902f" id="DAP TAP ID"/>
+				<subpath desc="M3_wakeupSS_sp" id="M3_wakeupSS_sp">
+					<property Type="numericfield" Value="0xb" id="Port Number"/>
+					<property Type="choicelist" Value="0" id="Type"/>
+					<property Type="choicelist" Value="1" id="Pseudo"/>
+					<instance XML_version="1.2" desc="CortexM3_wakeupSS" href="cpus/cortex_m3.xml" id="M3_wakeupSS" xml="cortex_m3.xml" xmlpath="cpus"/>
+					<cpu HW_revision="1.0" XML_version="1.2" desc="M3_wakeupSS" description="Cortex_M3 CPU" deviceSim="false" id="M3_wakeupSS" isa="Cortex_M3">
+						<property Type="numericfield" Value="0x4" id="TraceDeviceId" />
+						<!-- Project Wizard Settings -->
+                        <property Type="stringfield" Value="true" id="IsElfDefault" />
+                        <property Type="stringfield" Value="little" id="Endianness" />
+						<property Type="stringfield" Value="-D=am3358 -D=m3 --silicon_version=7M3 --code_state=16" id="CompilerBuildOptions" />
+						<property Type="stringfield" Value="--define=M3_CORE=1 --stack_size=0x800 --heap_size=0x800" id="LinkerBuildOptions" />
+                        <property Type="stringfield" Value="AM335x.cmd" id="LinkerCmd" />
+						<!-- END Project Wizard Settings -->
+					</cpu>
+                    <!-- Cross Triggering Settings -->
+                    <instance XML_version="1.2" desc="ICECrusherCS_0" href="cpus/cs_child.xml" id="ICECrusherCS_0" xml="cs_child.xml" xmlpath="cpus" />
+                    <cpu HW_revision="1.0" XML_version="1.2" description="Cross Triggering" deviceSim="false" id="ICECrusherCS_0" isa="cs_child">
+                        <property Type="numericfield" Value="0x4bc44c09" id="Identity" />
+                        <property Type="numericfield" Value="0xE0042000" id="Address" />
+                    </cpu>
+		             <!-- END Cross Triggering Settings -->
+				</subpath>
+			</router>
+		</subpath>
+		<subpath desc="DAP" id="subpath_12">
+			<property Type="numericfield" Value="0xc" id="Port Number" />
+			<instance XML_version="1.2" desc="CS_DAP_DebugSS" href="routers/cs_dap.xml" id="CS_DAP_0" xml="cs_dap.xml" xmlpath="routers" />
+			<router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_0" isa="CS_DAP">
+				<property Type="numericfield" Value="0x4b6b902f" id="DAP TAP ID" />
+				<property Type="filepathfield" Value="../../../emulation/gel/AM335x_trace_dapdebugss.gel" id="GEL File"/>
+				<subpath id="ModenaSS">
+					<property Type="numericfield" Value="0x0" id="Port Number"/>
+					<property Type="choicelist" Value="2" id="Type"/>
+					<property Type="choicelist" Value="1" id="Pseudo"/>
+					<instance XML_version="1.2" desc="CortexA8_0" href="cpus/cortex_a8.xml" id="CortexA8" xml="cortex_a8.xml" xmlpath="cpus" />
+					<cpu HW_revision="1.0" XML_version="1.2" desc="CortxA8" description="Cortex_A8 CPU" deviceSim="false" id="CortexA8" isa="Cortex_A8">
+						<property Type="numericfield" Value="0x80001000" id="Address" />
+						<property Type="numericfield" Value="0x1" id="TraceDeviceId" />
+						<!-- Project Wizard Settings -->
+                        <property Type="stringfield" Value="true" id="IsElfDefault" />
+                        <property Type="stringfield" Value="little" id="Endianness" />
+						<property Type="stringfield" Value="-D=am3358 --silicon_version=7A8 --code_state=32" id="CompilerBuildOptions" />
+                        <property Type="stringfield" Value="--define=A8_CORE=1 --stack_size=0x800 --heap_size=0x800" id="LinkerBuildOptions" />
+                        <property Type="stringfield" Value="AM335x.cmd" id="LinkerCmd" />
+						<property Type="stringfield" Value="-D=am3358 -mcpu=cortex-a8 -mtune=cortex-a8 -march=armv7-a -marm" id="GNUCompilerBuildOptions" />
+						<property Type="stringfield" Value="--defsym STACKSIZE=0x1C000 --defsym HEAPSIZE=0x400" id="GNULinkerBuildOptions" />
+						<property Type="stringfield" Value="AM335x.lds" id="GNULinkerCmd" />
+						<property Type="stringfield" Value="startup_ARMCA8.S" id="GNUFilesToCopy" />
+						<property Type="stringfield" Value="GNU" id="DefaultToolChain" />
+						<!-- END Project Wizard Settings -->
+                         <instance href="../Modules/am335x/CM_PER.xml" id="CM_PER" xml="CM_PER.xml" xmlpath="../Modules/am335x/" description="Clock Module Peripheral Registers" baseaddr="0x44E00000" endaddr="0x44E003FF" size="0x400" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CM_WKUP.xml" id="CM_WKUP" xml="CM_WKUP.xml" xmlpath="../Modules/am335x/" description="Clock Module Wakeup Registers" baseaddr="0x44E00400" endaddr="0x44E004FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CM_DPLL.xml" id="CM_DPLL" xml="CM_DPLL.xml" xmlpath="../Modules/am335x/" description="Clock Module PLL Registers" baseaddr="0x44E00500" endaddr="0x44E005FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CM_MPU.xml" id="CM_MPU" xml="CM_MPU.xml" xmlpath="../Modules/am335x/" description="Clock Module MPU Registers" baseaddr="0x44E00600" endaddr="0x44E006FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CM_DEVICE.xml" id="CM_DEVICE" xml="CM_DEVICE.xml" xmlpath="../Modules/am335x/" description="Clock Module Device Registers" baseaddr="0x44E00700" endaddr="0x44E007FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CM_RTC.xml" id="CM_RTC" xml="CM_RTC.xml" xmlpath="../Modules/am335x/" description="Clock Module RTC Registers" baseaddr="0x44E00800" endaddr="0x44E008FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CM_GFX.xml" id="CM_GFX" xml="CM_GFX.xml" xmlpath="../Modules/am335x/" description="Clock Module Graphics Controller Registers" baseaddr="0x44E00900" endaddr="0x44E009FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CM_CEFUSE.xml" id="CM_CEFUSE" xml="CM_CEFUSE.xml" xmlpath="../Modules/am335x/" description="Clock Module Efuse Registers" baseaddr="0x44E00A00" endaddr="0x44E00AFF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/prm_irq.xml" id="PRM_IRQ" xml="prm_irq.xml" xmlpath="../Modules/am335x/" description="Power Reset Module Interrupt Registers" baseaddr="0x44E00B00" endaddr="0x44E00BFF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRM_PER.xml" id="PRM_PER" xml="PRM_PER.xml" xmlpath="../Modules/am335x/" description="Power Reset Module Peripheral Registers" baseaddr="0x44E00C00" endaddr="0x44E00CFF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRM_WKUP.xml" id="PRM_WKUP" xml="PRM_WKUP.xml" xmlpath="../Modules/am335x/" description="Power Reset Module Wakeup Registers" baseaddr="0x44E00D00" endaddr="0x44E00DFF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRM_MPU.xml" id="PRM_MPU" xml="PRM_MPU.xml" xmlpath="../Modules/am335x/" description="Power Reset Module MPU Registers" baseaddr="0x44E00E00" endaddr="0x44E00EFF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRM_DEVICE.xml" id="PRM_DEVICE" xml="PRM_DEVICE.xml" xmlpath="../Modules/am335x/" description="Power Reset Module Device Registers" baseaddr="0x44E00F00" endaddr="0x44E00FFF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRM_RTC.xml" id="PRM_RTC" xml="PRM_RTC.xml" xmlpath="../Modules/am335x/" description="Power Reset Module RTC Registers" baseaddr="0x44E01000" endaddr="0x44E010FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRM_GFX.xml" id="PRM_GFX" xml="PRM_GFX.xml" xmlpath="../Modules/am335x/" description="Power Reset Module Graphics Controller Registers" baseaddr="0x44E01100" endaddr="0x44E011FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRM_CEFUSE.xml" id="PRM_CEFUSE" xml="PRM_CEFUSE.xml" xmlpath="../Modules/am335x/" description="Power Reset Module Efuse Registers" baseaddr="0x44E01200" endaddr="0x44E012FF" size="0x100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DMTimer.xml" id="DMTIMER0" xml="DMTimer.xml" xmlpath="../Modules/am335x/" description="DMTimer0 Registers" baseaddr="0x44E05000" endaddr="0x44E05FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/GPIO.xml" id="GPIO0" xml="GPIO.xml" xmlpath="../Modules/am335x/" description="GPIO Registers" baseaddr="0x44E07000" endaddr="0x44E07FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/UART.xml" id="UART0" xml="UART.xml" xmlpath="../Modules/am335x/" description="UART0 Registers" baseaddr="0x44E09000" endaddr="0x44E07FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/I2C.xml" id="I2C0" xml="I2C.xml" xmlpath="../Modules/am335x/" description="I2C0 Registers" baseaddr="0x44E0B000" endaddr="0x44E07FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/tsc_adc_ss.xml" id="ADC_TSC" xml="tsc_adc_ss.xml" xmlpath="../Modules/am335x/" description="ADC_TSC Registers" baseaddr="0x44E0D000" endaddr="0x44E0EFFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/control_module.xml" id="Control_Module" xml="control_module.xml" xmlpath="../Modules/am335x/" description="Control Module Registers" baseaddr="0x44E10000" endaddr="0x44E11FFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DDR2_3_PHY.xml" id="DDR2_3_PHY" xml="DDR2_3_PHY.xml" xmlpath="../Modules/am335x/" description="DDR2/3/mDDR PHY Registers" baseaddr="0x44E12000" endaddr="0x44E123FF" size="0x0400" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DMTIMER_1MS.xml" id="DMTIMER1_1MS" xml="DMTIMER_1MS.xml" xmlpath="../Modules/am335x/" description="DMTimer1 1ms Registers" baseaddr="0x44E31000" endaddr="0x44E31FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/Watchdog.xml" id="WDT1" xml="Watchdog.xml" xmlpath="../Modules/am335x/" description="Watchdog Timer Registers" baseaddr="0x44E35000" endaddr="0x44E35FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/RTC.xml" id="RTCSS" xml="RTC.xml" xmlpath="../Modules/am335x/" description="RTC Registers" baseaddr="0x44E3E000" endaddr="0x44E3EFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/USBSS.xml" id="USBSS" xml="USBSS.xml" xmlpath="../Modules/am335x/" description="USB Subsystem Registers" baseaddr="0x47400000" endaddr="0x47400FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/USB0_CTRL.xml" id="USB0" xml="USB0_CTRL.xml" xmlpath="../Modules/am335x/" description="USB0 Controller Registers" baseaddr="0x47401000" endaddr="0x474012FF" size="0x0300" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/USB2PHY.xml" id="USB0_PHY" xml="USB2PHY.xml" xmlpath="../Modules/am335x/" description="USB0 PHY Registers" baseaddr="0x47401300" endaddr="0x474013FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/USB1_CTRL.xml" id="USB1" xml="USB1_CTRL.xml" xmlpath="../Modules/am335x/" description="USB1 Controller Registers" baseaddr="0x47401800" endaddr="0x47401AFF" size="0x0300" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/USB2PHY.xml" id="USB1_PHY" xml="USB2PHY.xml" xmlpath="../Modules/am335x/" description="USB1 PHY Registers" baseaddr="0x47401B00" endaddr="0x47401BFF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CPPI_DMA.xml" id="USB_CPPI_DMA_CTRL" xml="CPPI_DMA.xml" xmlpath="../Modules/am335x/" description="USB CPPI DMA Controller Registers" baseaddr="0x47402000" endaddr="0x47402FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/CPPI_DMA_Scheduler.xml" id="USB_CPPI_DMA_SCH" xml="CPPI_DMA_Scheduler.xml" xmlpath="../Modules/am335x/" description="USB CPPI DMA Scheduler Registers" baseaddr="0x47403000" endaddr="0x47403FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/Queue_MGR.xml" id="USB_Queue_MGR" xml="Queue_MGR.xml" xmlpath="../Modules/am335x/" description="USB Queue Manager Registers" baseaddr="0x47404000" endaddr="0x47404FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MMC.xml" id="MMCHS2" xml="MMC.xml" xmlpath="../Modules/am335x/" description="MMCHS2" baseaddr="0x47810000" endaddr="0x4781FFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/UART.xml" id="UART1" xml="UART.xml" xmlpath="../Modules/am335x/" description="UART1 Registers" baseaddr="0x48022000" endaddr="0x48022FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/UART.xml" id="UART2" xml="UART.xml" xmlpath="../Modules/am335x/" description="UART2 Registers" baseaddr="0x48024000" endaddr="0x48024FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/I2C.xml" id="I2C1" xml="I2C.xml" xmlpath="../Modules/am335x/" description="I2C1 Registers" baseaddr="0x4802A000" endaddr="0x4802AFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MCSPI.xml" id="McSPI0" xml="MCSPI.xml" xmlpath="../Modules/am335x/" description="McSPI0 Registers" baseaddr="0x48030000" endaddr="0x48030FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MCASP.xml" id="McASP0_CFG" xml="MCASP.xml" xmlpath="../Modules/am335x/" description="McASP0 CFG Registers" baseaddr="0x48038000" endaddr="0x48039FFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MCASP.xml" id="McASP1_CFG" xml="MCASP.xml" xmlpath="../Modules/am335x/" description="McASP1 CFG Registers" baseaddr="0x4803C000" endaddr="0x4803DFFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DMTimer.xml" id="DMTIMER2" xml="DMTimer.xml" xmlpath="../Modules/am335x/" description="DMTimer2 Registers" baseaddr="0x48040000" endaddr="0x48040FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DMTimer.xml" id="DMTIMER3" xml="DMTimer.xml" xmlpath="../Modules/am335x/" description="DMTimer3 Registers" baseaddr="0x48042000" endaddr="0x48042FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DMTimer.xml" id="DMTIMER4" xml="DMTimer.xml" xmlpath="../Modules/am335x/" description="DMTimer4 Registers" baseaddr="0x48044000" endaddr="0x48044FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DMTimer.xml" id="DMTIMER5" xml="DMTimer.xml" xmlpath="../Modules/am335x/" description="DMTimer5 Registers" baseaddr="0x48046000" endaddr="0x48046FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DMTimer.xml" id="DMTIMER6" xml="DMTimer.xml" xmlpath="../Modules/am335x/" description="DMTimer6 Registers" baseaddr="0x48048000" endaddr="0x48048FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DMTimer.xml" id="DMTIMER7" xml="DMTimer.xml" xmlpath="../Modules/am335x/" description="DMTimer7 Registers" baseaddr="0x4804A000" endaddr="0x4804AFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/GPIO.xml" id="GPIO1" xml="GPIO.xml" xmlpath="../Modules/am335x/" description="GPIO1 Registers" baseaddr="0x4804C000" endaddr="0x4804CFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MMC.xml" id="MMCHS0" xml="MMC.xml" xmlpath="../Modules/am335x/" description="MMCHS0 Registers" baseaddr="0x48060000" endaddr="0x48060FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/ELM.xml" id="ELM" xml="ELM.xml" xmlpath="../Modules/am335x/" description="ELM Registers" baseaddr="0x48080000" endaddr="0x4808FFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MAILBOX.xml" id="MAILBOX0" xml="MAILBOX.xml" xmlpath="../Modules/am335x/" description="Mailbox Registers" baseaddr="0x480C8000" endaddr="0x480C8FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/SPINLOCK.xml" id="Spinlock" xml="SPINLOCK.xml" xmlpath="../Modules/am335x/" description="Spinlock Registers" baseaddr="0x480CA000" endaddr="0x480CAFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/I2C.xml" id="I2C2" xml="I2C.xml" xmlpath="../Modules/am335x/" description="I2C2 Registers" baseaddr="0x4819C000" endaddr="0x4819CFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MCSPI.xml" id="McSPI1" xml="MCSPI.xml" xmlpath="../Modules/am335x/" description="McSPI1 Registers" baseaddr="0x481A0000" endaddr="0x481A0FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/UART.xml" id="UART3" xml="UART.xml" xmlpath="../Modules/am335x/" description="UART3 Registers" baseaddr="0x481A6000" endaddr="0x481A6FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/UART.xml" id="UART4" xml="UART.xml" xmlpath="../Modules/am335x/" description="UART4 Registers" baseaddr="0x481A8000" endaddr="0x481A8FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/UART.xml" id="UART5" xml="UART.xml" xmlpath="../Modules/am335x/" description="UART5 Registers" baseaddr="0x481AA000" endaddr="0x481AAFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/GPIO.xml" id="GPIO2" xml="GPIO.xml" xmlpath="../Modules/am335x/" description="GPIO2 Registers" baseaddr="0x481AC000" endaddr="0x481ACFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/GPIO.xml" id="GPIO3" xml="GPIO.xml" xmlpath="../Modules/am335x/" description="GPIO3 Registers" baseaddr="0x481AE000" endaddr="0x481AEFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DCAN.xml" id="DCAN0" xml="DCAN.xml" xmlpath="../Modules/am335x/" description="DCAN0 Registers" baseaddr="0x481CC000" endaddr="0x481CDFFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/DCAN.xml" id="DCAN1" xml="DCAN.xml" xmlpath="../Modules/am335x/" description="DCAN1 Registers" baseaddr="0x481D0000" endaddr="0x481D1FFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MMC.xml" id="MMC1" xml="MMC.xml" xmlpath="../Modules/am335x/" description="MMC1 Registers" baseaddr="0x481D8000" endaddr="0x481D8FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/INTC.xml" id="INTCPS" xml="INTC.xml" xmlpath="../Modules/am335x/" description="Interrupt Controller Registers" baseaddr="0x48200000" endaddr="0x48200FFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PWMSS.xml" id="PWMSS0" xml="PWMSS.xml" xmlpath="../Modules/am335x/" description="PWMSS0 Configuration Registers" baseaddr="0x48300000" endaddr="0x483000FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/ecap.xml" id="eCAP0" xml="ecap.xml" xmlpath="../Modules/am335x/" description="PWMSS eCAP0 Registers" baseaddr="0x48300100" endaddr="0x4830017F" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/eqep.xml" id="eQEP0" xml="eqep.xml" xmlpath="../Modules/am335x/" description="PWMSS eQEP0 Registers" baseaddr="0x48300180" endaddr="0x483001FF" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/epwm.xml" id="ePWM0" xml="epwm.xml" xmlpath="../Modules/am335x/" description="PWMSS ePWM0 Registers" baseaddr="0x48300200" endaddr="0x4830025F" size="0x0060" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PWMSS.xml" id="PWMSS1" xml="PWMSS.xml" xmlpath="../Modules/am335x/" description="PWMSS1 Configuration Registers" baseaddr="0x48302000" endaddr="0x483020FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/ecap.xml" id="eCAP1" xml="ecap.xml" xmlpath="../Modules/am335x/" description="PWMSS eCAP1 Registers" baseaddr="0x48302100" endaddr="0x4830217F" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/eqep.xml" id="eQEP1" xml="eqep.xml" xmlpath="../Modules/am335x/" description="PWMSS eQEP1 Registers" baseaddr="0x48302180" endaddr="0x483021FF" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/epwm.xml" id="ePWM1" xml="epwm.xml" xmlpath="../Modules/am335x/" description="PWMSS ePWM1 Registers" baseaddr="0x48302200" endaddr="0x4830225F" size="0x0060" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PWMSS.xml" id="PWMSS2" xml="PWMSS.xml" xmlpath="../Modules/am335x/" description="PWMSS2 Configuration Registers" baseaddr="0x48304000" endaddr="0x483040FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/ecap.xml" id="eCAP2" xml="ecap.xml" xmlpath="../Modules/am335x/" description="PWMSS eCAP2 Registers" baseaddr="0x48304100" endaddr="0x4830417F" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/eqep.xml" id="eQEP2" xml="eqep.xml" xmlpath="../Modules/am335x/" description="PWMSS eQEP2 Registers" baseaddr="0x48304180" endaddr="0x483041FF" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/epwm.xml" id="ePWM2" xml="epwm.xml" xmlpath="../Modules/am335x/" description="PWMSS ePWM2 Registers" baseaddr="0x48304200" endaddr="0x4830425F" size="0x0060" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/LCD.xml" id="LCD_Controller" xml="LCD.xml" xmlpath="../Modules/am335x/" description="LCD Registers" baseaddr="0x4830E000" endaddr="0x4830EFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/EDMA3CC.xml" id="EDMA3CC" xml="EDMA3CC.xml" xmlpath="../Modules/am335x/" description="EDMA3 Channel Controller Registers" baseaddr="0x49000000" endaddr="0x490FFFFF" size="0x100000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/EDMA3TC.xml" id="EDMA3TC0" xml="EDMA3TC.xml" xmlpath="../Modules/am335x/" description="EDMA3 Transfer Controller 0 Registers" baseaddr="0x49800000" endaddr="0x498FFFFF" size="0x100000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/EDMA3TC.xml" id="EDMA3TC1" xml="EDMA3TC.xml" xmlpath="../Modules/am335x/" description="EDMA3 Transfer Controller 1 Registers" baseaddr="0x49900000" endaddr="0x499FFFFF" size="0x100000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/EDMA3TC.xml" id="EDMA3TC2" xml="EDMA3TC.xml" xmlpath="../Modules/am335x/" description="EDMA3 Transfer Controller 2 Registers" baseaddr="0x49A00000" endaddr="0x49AFFFFF" size="0x100000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_ss.xml" id="CPSW_SS" xml="cpsw_ss.xml" xmlpath="../Modules/am335x/" description="Ethernet Switch Subsystem" baseaddr="0x4A100000" endaddr="0x4A1000FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_port.xml" id="CPSW_PORT" xml="cpsw_port.xml" xmlpath="../Modules/am335x/" description="Ethernet Switch Port Control" baseaddr="0x4A100100" endaddr="0x4A1007FF" size="0x0700" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_cpdma.xml" id="CPSW_CPDMA" xml="cpsw_cpdma.xml" xmlpath="../Modules/am335x/" description="CPPI DMA Controller Module" baseaddr="0x4A100800" endaddr="0x4A1008FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_stats.xml" id="CPSW_STATS" xml="cpsw_stats.xml" xmlpath="../Modules/am335x/" description="Ethernet Statistics" baseaddr="0x4A100900" endaddr="0x4A1009FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpdma_stateram.xml" id="CPSW_STATERAM" xml="cpdma_stateram.xml" xmlpath="../Modules/am335x/" description="CPPI DMA State RAM" baseaddr="0x4A100A00" endaddr="0x4A100BFF" size="0x0200" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_cpts.xml" id="CPSW_CPTS" xml="cpsw_cpts.xml" xmlpath="../Modules/am335x/" description="Ethernet Time Sync Module" baseaddr="0x4A100C00" endaddr="0x4A100CFF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_ale.xml" id="CPSW_ALE" xml="cpsw_ale.xml" xmlpath="../Modules/am335x/" description="Ethernet Address Lookup Engine" baseaddr="0x4A100D00" endaddr="0x4A100D7F" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_sl.xml" id="CPSW_SL1" xml="cpsw_sl.xml" xmlpath="../Modules/am335x/" description="Ethernet Sliver for Port 1" baseaddr="0x4A100D80" endaddr="0x4A100DBF" size="0x0040" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_sl.xml" id="CPSW_SL2" xml="cpsw_sl.xml" xmlpath="../Modules/am335x/" description="Ethernet Sliver for Port 2" baseaddr="0x4A100DC0" endaddr="0x4A100DFF" size="0x0040" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/MDIO.xml" id="MDIO" xml="MDIO.xml" xmlpath="../Modules/am335x/" description="Ethernet MDIO Controller" baseaddr="0x4A101000" endaddr="0x4A1010FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/cpsw_wr.xml" id="CPSW_WR" xml="cpsw_wr.xml" xmlpath="../Modules/am335x/" description="Ethernet Subsystem for RMII/GMII" baseaddr="0x4A101200" endaddr="0x4A101FFF" size="0x0E00" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/emif4.xml" id="EMIF0" xml="emif4.xml" xmlpath="../Modules/am335x/" description="EMIF0 Configuration Registers" baseaddr="0x4C000000" endaddr="0x4C00012F" size="0x0130" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/GPMC.xml" id="GPMC" xml="GPMC.xml" xmlpath="../Modules/am335x/" description="GPMC Configuration Registers" baseaddr="0x50000000" endaddr="0x5000012F" size="0x0130" accessnumbytes="4" permissions="p" />
+<!--
+                         <instance href="../Modules/am335x/SGX530.xml" id="SGX530" xml="SGX530.xml" xmlpath="../Modules/am335x/" description="SGX530 Slave Port" baseaddr="0x56000000" endaddr="0x56FFFFFF" size="0x1000" accessnumbytes="4" permissions="p" />
+-->
+					</cpu>
+					<instance XML_version="1.2" desc="ICECrusherCS_1" href="cpus/cs_child.xml" id="ICECrusherCS_1" xml="cs_child.xml" xmlpath="cpus" />
+					<cpu HW_revision="1.0" XML_version="1.2" description="Cross Triggering" deviceSim="false" id="ICECrusherCS_1" isa="cs_child">
+						<property Type="numericfield" Value="0x80003000" id="Address" />
+						<property Type="numericfield" Value="0x48c44c09" id="Identity" />
+					</cpu>
+					<instance XML_version="1.2" desc="ETM" href="cpus/cs_child.xml" id="ETM" xml="cs_child.xml" xmlpath="cpus"/>
+					<cpu HW_revision="1.0" XML_version="1.2" description="cs_child" id="ETM" isa="cs_child">
+						<property Type="numericfield" Value="0x48c6e409" id="Identity"/>
+						<property Type="numericfield" Value="0x80000000" id="Address"/>
+					</cpu>
+				</subpath>
+				<subpath id="Trace_STM">
+					<property Type="numericfield" Value="0xc" id="Port Number"/>
+					<property Type="choicelist" Value="0x0" id="Type"/>
+					<instance XML_version="1.2" desc="CSSTM_0" href="cpus/csstm.xml" id="CSSTM_0" xml="csstm.xml" xmlpath="cpus"/>
+					<cpu HW_revision="1.0" XML_version="1.2" description="CS System Trace" deviceSim="false" id="CSSTM_0" isa="TMS470R26X">
+						<property Type="numericfield" Value="0x4B161000" id="Address"/>
+					</cpu>
+					<instance XML_version="1.2" desc="CSETB_0" href="cpus/csetb.xml" id="CSETB_0" xml="csetb.xml" xmlpath="cpus"/>
+					<cpu HW_revision="1.0" XML_version="1.2" description="CS Embedded Trace Buffer" deviceSim="false" id="CSETB_0" isa="CS_ETB">
+						<property Type="numericfield" Value="0x4B162000" id="Address"/>
+					</cpu>
+				</subpath>
+				<subpath id="PRU">
+					<property Type="numericfield" Value="0xd" id="Port Number"/>
+					<property Type="choicelist" Value="0x0" id="Type"/>
+					<instance href="../cpus/pru.xml" id="PRU_0" xml="pru.xml" xmlpath="../cpus/" isa="TMS192C2026"/>
+					<cpu HW_revision="1.0" XML_version="1.2" description="PRU Accelerator" id="PRU_0" isa="TMS192C2026">
+						<property id="debugParent" Type="hiddenfield" Value="" />
+						<property id="PRU Base Address" Type="hiddenfield" Value="0x4a300000" />
+						<property id="PRU Register Offset" Type="hiddenfield" Value="0x22000" />
+						<property id="PRU Program RAM Offset" Type="hiddenfield" Value="0x34000" />
+						<property id="PRU Data RAM Offset" Type="hiddenfield" Value="0x0000" />
+                        <property id="PRU Shared Data RAM Offset" Type="hiddenfield" Value="0x10000" />
+						<property id="PRU Program RAM Size" Type="hiddenfield" Value="0x2000" />
+						<property id="PRU Data RAM Size" Type="hiddenfield" Value="0x2000" />
+                        <property id="PRU Shared Data RAM Size" Type="hiddenfield" Value="0x3000" />
+						<property id="PRU Device Size" Type="hiddenfield" Value="0x100000" />
+						<!-- Project Wizard Settings -->
+                        <property Type="stringfield" Value="true" id="IsElfDefault" />
+                        <property Type="stringfield" Value="little" id="Endianness" />
+						<property Type="stringfield" Value="-D=am3358 -D=pru0 --ram_model --silicon_version=3 --hardware_mac=on" id="CompilerBuildOptions" />
+                        <property Type="stringfield" Value="--stack_size=0x100 --heap_size=0x100" id="LinkerBuildOptions" />
+                        <property Type="stringfield" Value="AM335x_PRU.cmd" id="LinkerCmd" />
+						<!-- END Project Wizard Settings -->
+						<property Type="filepathfield" Value="../../../emulation/gel/AM335x_PRU_ICSS_local.gel" id="GEL File"/>
+                         <instance href="../Modules/am335x/pru_icss_intc.xml" id="INTC" xml="pru_icss_intc.xml" xmlpath="../Modules/am335x/" description="INTC" baseaddr="0x00020000" endaddr="0x00021FFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/pru_icss_pru_ctrl.xml" id="PRU0_CTRL" xml="pru_icss_pru_ctrl.xml" xmlpath="../Modules/am335x/" description="PRU0 Control Registers" baseaddr="0x00022000" endaddr="0x0002207F" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/pru_icss_pru_debug.xml" id="PRU0_DEBUG" xml="pru_icss_pru_debug.xml" xmlpath="../Modules/am335x/" description="PRU0 Debug Registers" baseaddr="0x00022400" endaddr="0x000224FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <!-- <instance href="../Modules/am335x/pru_icss_pru_ctrl.xml" id="PRU1_CTRL" xml="pru_icss_pru_ctrl.xml" xmlpath="../Modules/am335x/" description="PRU1 Control Registers" baseaddr="0x00024000" endaddr="0x0002407F" size="0x0080" accessnumbytes="4" permissions="p" /> -->
+                         <!-- <instance href="../Modules/am335x/pru_icss_pru_debug.xml" id="PRU1_DEBUG" xml="pru_icss_pru_debug.xml" xmlpath="../Modules/am335x/" description="PRU1 Debug Registers" baseaddr="0x00024400" endaddr="0x000244FF" size="0x0100" accessnumbytes="4" permissions="p" /> -->
+                         <instance href="../Modules/am335x/pru_icss_cfg.xml" id="PRU_CFG" xml="pru_icss_cfg.xml" xmlpath="../Modules/am335x/" description="CFG" baseaddr="0x00026000" endaddr="0x00027FFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/pru_icss_iep.xml" id="IEP" xml="pru_icss_iep.xml" xmlpath="../Modules/am335x/" description="IEP" baseaddr="0x0002E000" endaddr="0x0002E3FF" size="0x0400" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRU_ICSS_MII_RT.xml" id="MII_RT_CFG" xml="PRU_ICSS_MII_RT.xml" xmlpath="../Modules/am335x/" description="MII_RT" baseaddr="0x00032000" endaddr="0x0003207F" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRU_ICSS_MDIO.xml" id="MDIO" xml="PRU_ICSS_MDIO.xml" xmlpath="../Modules/am335x/" description="MDIO" baseaddr="0x00032400" endaddr="0x000324FF" size="0x0100" accessnumbytes="4" permissions="p" />
+					</cpu>
+					<instance href="../cpus/pru.xml" id="PRU_1" xml="pru.xml" xmlpath="../cpus/" isa="TMS192C2026"/>
+					<cpu HW_revision="1.0" XML_version="1.2" description="PRU Accelerator" id="PRU_1" isa="TMS192C2026">
+						<property id="debugParent" Type="hiddenfield" Value="" />
+						<property id="PRU Base Address" Type="hiddenfield" Value="0x4a300000" />
+						<property id="PRU Register Offset" Type="hiddenfield" Value="0x24000" />
+						<property id="PRU Program RAM Offset" Type="hiddenfield" Value="0x38000" />
+						<property id="PRU Data RAM Offset" Type="hiddenfield" Value="0x2000" />
+                        <property id="PRU Shared Data RAM Offset" Type="hiddenfield" Value="0x10000" />
+						<property id="PRU Program RAM Size" Type="hiddenfield" Value="0x2000" />
+						<property id="PRU Data RAM Size" Type="hiddenfield" Value="0x2000" />
+                        <property id="PRU Shared Data RAM Size" Type="hiddenfield" Value="0x3000" />
+						<property id="PRU Device Size" Type="hiddenfield" Value="0x100000" />
+						<!-- Project Wizard Settings -->
+                        <property Type="stringfield" Value="true" id="IsElfDefault" />
+                        <property Type="stringfield" Value="little" id="Endianness" />
+						<property Type="stringfield" Value="-D=am3358 -D=pru1 --ram_model --silicon_version=3 --hardware_mac=on" id="CompilerBuildOptions" />
+                        <property Type="stringfield" Value="--stack_size=0x100 --heap_size=0x100" id="LinkerBuildOptions" />
+                        <property Type="stringfield" Value="AM335x_PRU.cmd" id="LinkerCmd" />
+						<!-- END Project Wizard Settings -->
+						<property Type="filepathfield" Value="../../../emulation/gel/AM335x_PRU_ICSS_local.gel" id="GEL File"/>
+                         <instance href="../Modules/am335x/pru_icss_intc.xml" id="INTC" xml="pru_icss_intc.xml" xmlpath="../Modules/am335x/" description="INTC" baseaddr="0x00020000" endaddr="0x00021FFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <!-- <instance href="../Modules/am335x/pru_icss_pru_ctrl.xml" id="PRU0_CTRL" xml="pru_icss_pru_ctrl.xml" xmlpath="../Modules/am335x/" description="PRU0 Control Registers" baseaddr="0x00022000" endaddr="0x0002207F" size="0x0080" accessnumbytes="4" permissions="p" /> -->
+                         <!-- <instance href="../Modules/am335x/pru_icss_pru_debug.xml" id="PRU0_DEBUG" xml="pru_icss_pru_debug.xml" xmlpath="../Modules/am335x/" description="PRU0 Debug Registers" baseaddr="0x00022400" endaddr="0x000224FF" size="0x0100" accessnumbytes="4" permissions="p" /> -->
+                         <instance href="../Modules/am335x/pru_icss_pru_ctrl.xml" id="PRU1_CTRL" xml="pru_icss_pru_ctrl.xml" xmlpath="../Modules/am335x/" description="PRU1 Control Registers" baseaddr="0x00024000" endaddr="0x0002407F" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/pru_icss_pru_debug.xml" id="PRU1_DEBUG" xml="pru_icss_pru_debug.xml" xmlpath="../Modules/am335x/" description="PRU1 Debug Registers" baseaddr="0x00024400" endaddr="0x000244FF" size="0x0100" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/pru_icss_cfg.xml" id="PRU_CFG" xml="pru_icss_cfg.xml" xmlpath="../Modules/am335x/" description="CFG" baseaddr="0x00026000" endaddr="0x00027FFF" size="0x2000" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/pru_icss_iep.xml" id="IEP" xml="pru_icss_iep.xml" xmlpath="../Modules/am335x/" description="IEP" baseaddr="0x0002E000" endaddr="0x0002E3FF" size="0x0400" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRU_ICSS_MII_RT.xml" id="MII_RT_CFG" xml="PRU_ICSS_MII_RT.xml" xmlpath="../Modules/am335x/" description="MII_RT" baseaddr="0x00032000" endaddr="0x0003207F" size="0x0080" accessnumbytes="4" permissions="p" />
+                         <instance href="../Modules/am335x/PRU_ICSS_MDIO.xml" id="MDIO" xml="PRU_ICSS_MDIO.xml" xmlpath="../Modules/am335x/" description="MDIO" baseaddr="0x00032400" endaddr="0x000324FF" size="0x0100" accessnumbytes="4" permissions="p" />
+					</cpu>
+				</subpath>
+			</router>
+		</subpath>
+	</router>
+</device>

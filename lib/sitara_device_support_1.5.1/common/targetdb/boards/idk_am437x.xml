@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="IDK_AM437X" XML_version="1" desc="IDK_AM437X" description="AM437x Industrial Development Kit.">
+    <instance XML_version="1.2" desc="AM4379_0" href="devices/AM4379.xml" id="AM4379_0" xml="AM4379.xml" xmlpath="devices"/>
+    <device HW_revision="1" XML_version="1.2" description="AM43xx - Cortex A9 Embedded Processor" id="AM4379_0" partnum="AM4379">
+        <router HW_revision="1.0" XML_version="1.2" description="ICEPick_D Router" id="IcePick_D_0" isa="ICEPICK_D">
+            <subpath id="DAP">
+                <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_DebugSS" isa="CS_DAP">
+                    <subpath id="MPUSS">
+                        <cpu HW_revision="1.0" XML_version="1.2" description="CortexA9 CPU" id="CortexA9" isa="CortexA9">
+                            <property Type="filepathfield" Value="../../emulation/boards/idk_am437x/gel/idk_am437x.gel" id="GEL File"/>
+                        </cpu>
+                    </subpath>
+                </router>
+            </subpath>
+        </router>
+    </device>
+</board>

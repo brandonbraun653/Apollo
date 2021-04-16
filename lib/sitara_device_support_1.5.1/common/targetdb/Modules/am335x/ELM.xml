@@ -1,0 +1,1607 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="ELM" id="ELM">
+  
+  
+  <register acronym="ELM_REVISION" description="This register contains the IP revision code." id="ELM_REVISION" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="IP Revision, value 0 to FFFF FFFFh." end="0" id="REVISION" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYSCONFIG" description="This register allows controlling various parameters of the OCP interface." id="ELM_SYSCONFIG" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="OCP Clock activity when module is in IDLE mode (during wake up mode period)." end="8" id="CLOCKACTIVITYOCPz" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Slave interface power management (IDLE req/ack control)." end="3" id="SIDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="2" description="" end="2" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Module software reset. This bit is automatically reset by hardware (During reads, it always returns 0.). It has same effect as the OCP hardware reset." end="1" id="SOFTRESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Internal OCP clock gating strategy. (No module visible impact other than saving power.)" end="0" id="AUTOGATING" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYSSTATUS" description="" id="ELM_SYSSTATUS" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Internal reset monitoring (OCP domain). Undefined since: From hardware perspective, the reset state is 0. From software user perspective, when the accessible module is 1." end="0" id="RESETDONE" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_IRQSTATUS" description="This register doubles as a status register for the error-location processes." id="ELM_IRQSTATUS" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location status for a full page, based on the mask definition." end="8" id="PAGE_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Error-location status for syndrome polynomial 7." end="7" id="LOC_VALID_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Error-location status for syndrome polynomial 6." end="6" id="LOC_VALID_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Error-location status for syndrome polynomial 5." end="5" id="LOC_VALID_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Error-location status for syndrome polynomial 4." end="4" id="LOC_VALID_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Error-location status for syndrome polynomial 3." end="3" id="LOC_VALID_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Error-location status for syndrome polynomial 2." end="2" id="LOC_VALID_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Error-location status for syndrome polynomial 1." end="1" id="LOC_VALID_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Error-location status for syndrome polynomial 0." end="0" id="LOC_VALID_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_IRQENABLE" description="" id="ELM_IRQENABLE" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Page interrupt mask bit" end="8" id="PAGE_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Error-location interrupt mask bit for syndrome polynomial 7." end="7" id="LOCATION_MASK_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Error-location interrupt mask bit for syndrome polynomial 6." end="6" id="LOCATION_MASK_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Error-location interrupt mask bit for syndrome polynomial 5." end="5" id="LOCATION_MASK_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Error-location interrupt mask bit for syndrome polynomial 4." end="4" id="LOCATION_MASK_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Error-location interrupt mask bit for syndrome polynomial 3." end="3" id="LOCATION_MASK_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Error-location interrupt mask bit for syndrome polynomial 2." end="2" id="LOCATION_MASK_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Error-location interrupt mask bit for syndrome polynomial 1." end="1" id="LOCATION_MASK_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Error-location interrupt mask bit for syndrome polynomial 0." end="0" id="LOCATION_MASK_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_CONFIG" description="" id="ELM_LOCATION_CONFIG" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="" end="27" id="Reserved1" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="26" description="Maximum size of the buffers for which the error-location engine is used, in number of nibbles (4 bits entities), value 0 to 7FFh." end="16" id="ECC_SIZE" rwaccess="RW" width="11"></bitfield>
+    
+  <bitfield begin="15" description="" end="2" id="Reserved2" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Error correction level." end="0" id="ECC_BCH_LEVEL" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_PAGE_CTRL" description="" id="ELM_PAGE_CTRL" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Set to 1 if syndrome polynomial 7 is part of the page in page mode. Must be 0 in continuous mode." end="7" id="SECTOR_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Set to 1 if syndrome polynomial 6 is part of the page in page mode. Must be 0 in continuous mode." end="6" id="SECTOR_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Set to 1 if syndrome polynomial 5 is part of the page in page mode. Must be 0 in continuous mode." end="5" id="SECTOR_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Set to 1 if syndrome polynomial 4 is part of the page in page mode. Must be 0 in continuous mode." end="4" id="SECTOR_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Set to 1 if syndrome polynomial 3 is part of the page in page mode. Must be 0 in continuous mode." end="3" id="SECTOR_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Set to 1 if syndrome polynomial 2 is part of the page in page mode. Must be 0 in continuous mode." end="2" id="SECTOR_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Set to 1 if syndrome polynomial 1 is part of the page in page mode. Must be 0 in continuous mode." end="1" id="SECTOR_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Set to 1 if syndrome polynomial 0 is part of the page in page mode. Must be 0 in continuous mode." end="0" id="SECTOR_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_0_0" description="" id="ELM_SYNDROME_FRAGMENT_0_0" offset="0x400" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 0 to 31, value 0 to FFFF FFFFh." end="0" id="SYNDROME_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_1_0" description="" id="ELM_SYNDROME_FRAGMENT_1_0" offset="0x404" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 32 to 63, value 0 to FFFF FFFFh." end="0" id="SYNDROME_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_2_0" description="" id="ELM_SYNDROME_FRAGMENT_2_0" offset="0x408" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 64 to 95, value 0 to FFFF FFFFh." end="0" id="SYNDROME_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_3_0" description="" id="ELM_SYNDROME_FRAGMENT_3_0" offset="0x40C" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 96 to 127, value 0 to FFFF FFFFh." end="0" id="SYNDROME_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_4_0" description="" id="ELM_SYNDROME_FRAGMENT_4_0" offset="0x410" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 128 to 159, value 0 to FFFF FFFFh." end="0" id="SYNDROME_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_5_0" description="" id="ELM_SYNDROME_FRAGMENT_5_0" offset="0x414" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 160 to 191, value 0 to FFFF FFFFh." end="0" id="SYNDROME_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_6_0" description="" id="ELM_SYNDROME_FRAGMENT_6_0" offset="0x418" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Syndrome valid bit." end="16" id="SYNDROME_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Syndrome bits 192 to 207, value 0 to FFFFh." end="0" id="SYNDROME_6" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_0_1" description="" id="ELM_SYNDROME_FRAGMENT_0_1" offset="0x440" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 0 to 31, value 0 to FFFF FFFFh." end="0" id="SYNDROME_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_1_1" description="" id="ELM_SYNDROME_FRAGMENT_1_1" offset="0x444" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 32 to 63, value 0 to FFFF FFFFh." end="0" id="SYNDROME_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_2_1" description="" id="ELM_SYNDROME_FRAGMENT_2_1" offset="0x448" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 64 to 95, value 0 to FFFF FFFFh." end="0" id="SYNDROME_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_3_1" description="" id="ELM_SYNDROME_FRAGMENT_3_1" offset="0x44C" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 96 to 127, value 0 to FFFF FFFFh." end="0" id="SYNDROME_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_4_1" description="" id="ELM_SYNDROME_FRAGMENT_4_1" offset="0x450" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 128 to 159, value 0 to FFFF FFFFh." end="0" id="SYNDROME_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_5_1" description="" id="ELM_SYNDROME_FRAGMENT_5_1" offset="0x454" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 160 to 191, value 0 to FFFF FFFFh." end="0" id="SYNDROME_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_6_1" description="" id="ELM_SYNDROME_FRAGMENT_6_1" offset="0x458" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Syndrome valid bit." end="16" id="SYNDROME_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Syndrome bits 192 to 207, value 0 to FFFFh." end="0" id="SYNDROME_6" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_0_2" description="" id="ELM_SYNDROME_FRAGMENT_0_2" offset="0x480" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 0 to 31, value 0 to FFFF FFFFh." end="0" id="SYNDROME_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_1_2" description="" id="ELM_SYNDROME_FRAGMENT_1_2" offset="0x484" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 32 to 63, value 0 to FFFF FFFFh." end="0" id="SYNDROME_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_2_2" description="" id="ELM_SYNDROME_FRAGMENT_2_2" offset="0x488" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 64 to 95, value 0 to FFFF FFFFh." end="0" id="SYNDROME_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_3_2" description="" id="ELM_SYNDROME_FRAGMENT_3_2" offset="0x48C" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 96 to 127, value 0 to FFFF FFFFh." end="0" id="SYNDROME_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_4_2" description="" id="ELM_SYNDROME_FRAGMENT_4_2" offset="0x490" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 128 to 159, value 0 to FFFF FFFFh." end="0" id="SYNDROME_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_5_2" description="" id="ELM_SYNDROME_FRAGMENT_5_2" offset="0x494" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 160 to 191, value 0 to FFFF FFFFh." end="0" id="SYNDROME_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_6_2" description="" id="ELM_SYNDROME_FRAGMENT_6_2" offset="0x498" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Syndrome valid bit." end="16" id="SYNDROME_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Syndrome bits 192 to 207, value 0 to FFFFh." end="0" id="SYNDROME_6" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_0_3" description="" id="ELM_SYNDROME_FRAGMENT_0_3" offset="0x4C0" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 0 to 31, value 0 to FFFF FFFFh." end="0" id="SYNDROME_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_1_3" description="" id="ELM_SYNDROME_FRAGMENT_1_3" offset="0x4C4" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 32 to 63, value 0 to FFFF FFFFh." end="0" id="SYNDROME_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_2_3" description="" id="ELM_SYNDROME_FRAGMENT_2_3" offset="0x4C8" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 64 to 95, value 0 to FFFF FFFFh." end="0" id="SYNDROME_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_3_3" description="" id="ELM_SYNDROME_FRAGMENT_3_3" offset="0x4CC" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 96 to 127, value 0 to FFFF FFFFh." end="0" id="SYNDROME_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_4_3" description="" id="ELM_SYNDROME_FRAGMENT_4_3" offset="0x4D0" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 128 to 159, value 0 to FFFF FFFFh." end="0" id="SYNDROME_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_5_3" description="" id="ELM_SYNDROME_FRAGMENT_5_3" offset="0x4D4" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 160 to 191, value 0 to FFFF FFFFh." end="0" id="SYNDROME_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_6_3" description="" id="ELM_SYNDROME_FRAGMENT_6_3" offset="0x4D8" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Syndrome valid bit." end="16" id="SYNDROME_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Syndrome bits 192 to 207, value 0 to FFFFh." end="0" id="SYNDROME_6" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_0_4" description="" id="ELM_SYNDROME_FRAGMENT_0_4" offset="0x500" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 0 to 31, value 0 to FFFF FFFFh." end="0" id="SYNDROME_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_1_4" description="" id="ELM_SYNDROME_FRAGMENT_1_4" offset="0x504" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 32 to 63, value 0 to FFFF FFFFh." end="0" id="SYNDROME_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_2_4" description="" id="ELM_SYNDROME_FRAGMENT_2_4" offset="0x508" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 64 to 95, value 0 to FFFF FFFFh." end="0" id="SYNDROME_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_3_4" description="" id="ELM_SYNDROME_FRAGMENT_3_4" offset="0x50C" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 96 to 127, value 0 to FFFF FFFFh." end="0" id="SYNDROME_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_4_4" description="" id="ELM_SYNDROME_FRAGMENT_4_4" offset="0x510" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 128 to 159, value 0 to FFFF FFFFh." end="0" id="SYNDROME_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_5_4" description="" id="ELM_SYNDROME_FRAGMENT_5_4" offset="0x514" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 160 to 191, value 0 to FFFF FFFFh." end="0" id="SYNDROME_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_6_4" description="" id="ELM_SYNDROME_FRAGMENT_6_4" offset="0x518" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Syndrome valid bit." end="16" id="SYNDROME_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Syndrome bits 192 to 207, value 0 to FFFFh." end="0" id="SYNDROME_6" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_0_5" description="" id="ELM_SYNDROME_FRAGMENT_0_5" offset="0x540" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 0 to 31, value 0 to FFFF FFFFh." end="0" id="SYNDROME_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_1_5" description="" id="ELM_SYNDROME_FRAGMENT_1_5" offset="0x544" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 32 to 63, value 0 to FFFF FFFFh." end="0" id="SYNDROME_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_2_5" description="" id="ELM_SYNDROME_FRAGMENT_2_5" offset="0x548" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 64 to 95, value 0 to FFFF FFFFh." end="0" id="SYNDROME_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_3_5" description="" id="ELM_SYNDROME_FRAGMENT_3_5" offset="0x54C" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 96 to 127, value 0 to FFFF FFFFh." end="0" id="SYNDROME_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_4_5" description="" id="ELM_SYNDROME_FRAGMENT_4_5" offset="0x550" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 128 to 159, value 0 to FFFF FFFFh." end="0" id="SYNDROME_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_5_5" description="" id="ELM_SYNDROME_FRAGMENT_5_5" offset="0x554" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 160 to 191, value 0 to FFFF FFFFh." end="0" id="SYNDROME_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_6_5" description="" id="ELM_SYNDROME_FRAGMENT_6_5" offset="0x558" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Syndrome valid bit." end="16" id="SYNDROME_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Syndrome bits 192 to 207, value 0 to FFFFh." end="0" id="SYNDROME_6" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_0_6" description="" id="ELM_SYNDROME_FRAGMENT_0_6" offset="0x580" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 0 to 31, value 0 to FFFF FFFFh." end="0" id="SYNDROME_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_1_6" description="" id="ELM_SYNDROME_FRAGMENT_1_6" offset="0x584" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 32 to 63, value 0 to FFFF FFFFh." end="0" id="SYNDROME_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_2_6" description="" id="ELM_SYNDROME_FRAGMENT_2_6" offset="0x588" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 64 to 95, value 0 to FFFF FFFFh." end="0" id="SYNDROME_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_3_6" description="" id="ELM_SYNDROME_FRAGMENT_3_6" offset="0x58C" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 96 to 127, value 0 to FFFF FFFFh." end="0" id="SYNDROME_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_4_6" description="" id="ELM_SYNDROME_FRAGMENT_4_6" offset="0x590" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 128 to 159, value 0 to FFFF FFFFh." end="0" id="SYNDROME_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_5_6" description="" id="ELM_SYNDROME_FRAGMENT_5_6" offset="0x594" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 160 to 191, value 0 to FFFF FFFFh." end="0" id="SYNDROME_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_6_6" description="" id="ELM_SYNDROME_FRAGMENT_6_6" offset="0x598" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Syndrome valid bit." end="16" id="SYNDROME_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Syndrome bits 192 to 207, value 0 to FFFFh." end="0" id="SYNDROME_6" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_0_7" description="" id="ELM_SYNDROME_FRAGMENT_0_7" offset="0x5C0" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 0 to 31, value 0 to FFFF FFFFh." end="0" id="SYNDROME_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_1_7" description="" id="ELM_SYNDROME_FRAGMENT_1_7" offset="0x5C4" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 32 to 63, value 0 to FFFF FFFFh." end="0" id="SYNDROME_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_2_7" description="" id="ELM_SYNDROME_FRAGMENT_2_7" offset="0x5C8" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 64 to 95, value 0 to FFFF FFFFh." end="0" id="SYNDROME_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_3_7" description="" id="ELM_SYNDROME_FRAGMENT_3_7" offset="0x5CC" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 96 to 127, value 0 to FFFF FFFFh." end="0" id="SYNDROME_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_4_7" description="" id="ELM_SYNDROME_FRAGMENT_4_7" offset="0x5D0" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 128 to 159, value 0 to FFFF FFFFh." end="0" id="SYNDROME_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_5_7" description="" id="ELM_SYNDROME_FRAGMENT_5_7" offset="0x5D4" width="32">
+    
+  <bitfield begin="31" description="Syndrome bits 160 to 191, value 0 to FFFF FFFFh." end="0" id="SYNDROME_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_SYNDROME_FRAGMENT_6_7" description="" id="ELM_SYNDROME_FRAGMENT_6_7" offset="0x5D8" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Syndrome valid bit." end="16" id="SYNDROME_VALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Syndrome bits 192 to 207, value 0 to FFFFh." end="0" id="SYNDROME_6" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_STATUS_0" description="" id="ELM_LOCATION_STATUS_0" offset="0x800" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location process exit status." end="8" id="ECC_CORRECTABL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Number of errors detected and located, value 0 to 1Fh." end="0" id="ECC_NB_ERRORS" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_0_0" description="" id="ELM_ERROR_LOCATION_0_0" offset="0x880" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_1_0" description="" id="ELM_ERROR_LOCATION_1_0" offset="0x884" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_2_0" description="" id="ELM_ERROR_LOCATION_2_0" offset="0x888" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_3_0" description="" id="ELM_ERROR_LOCATION_3_0" offset="0x88C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_4_0" description="" id="ELM_ERROR_LOCATION_4_0" offset="0x890" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_5_0" description="" id="ELM_ERROR_LOCATION_5_0" offset="0x894" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_6_0" description="" id="ELM_ERROR_LOCATION_6_0" offset="0x898" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_7_0" description="" id="ELM_ERROR_LOCATION_7_0" offset="0x89C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_8_0" description="" id="ELM_ERROR_LOCATION_8_0" offset="0x8A0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_9_0" description="" id="ELM_ERROR_LOCATION_9_0" offset="0x8A4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_10_0" description="" id="ELM_ERROR_LOCATION_10_0" offset="0x8A8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_11_0" description="" id="ELM_ERROR_LOCATION_11_0" offset="0x8AC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_12_0" description="" id="ELM_ERROR_LOCATION_12_0" offset="0x8B0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_13_0" description="" id="ELM_ERROR_LOCATION_13_0" offset="0x8B4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_14_0" description="" id="ELM_ERROR_LOCATION_14_0" offset="0x8B8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_15_0" description="" id="ELM_ERROR_LOCATION_15_0" offset="0x8BC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_STATUS_1" description="" id="ELM_LOCATION_STATUS_1" offset="0x900" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location process exit status." end="8" id="ECC_CORRECTABL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Number of errors detected and located, value 0 to 1Fh." end="0" id="ECC_NB_ERRORS" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_0_1" description="" id="ELM_ERROR_LOCATION_0_1" offset="0x980" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_1_1" description="" id="ELM_ERROR_LOCATION_1_1" offset="0x984" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_2_1" description="" id="ELM_ERROR_LOCATION_2_1" offset="0x988" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_3_1" description="" id="ELM_ERROR_LOCATION_3_1" offset="0x98C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_4_1" description="" id="ELM_ERROR_LOCATION_4_1" offset="0x990" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_5_1" description="" id="ELM_ERROR_LOCATION_5_1" offset="0x994" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_6_1" description="" id="ELM_ERROR_LOCATION_6_1" offset="0x998" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_7_1" description="" id="ELM_ERROR_LOCATION_7_1" offset="0x99C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_8_1" description="" id="ELM_ERROR_LOCATION_8_1" offset="0x9A0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_9_1" description="" id="ELM_ERROR_LOCATION_9_1" offset="0x9A4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_10_1" description="" id="ELM_ERROR_LOCATION_10_1" offset="0x9A8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_11_1" description="" id="ELM_ERROR_LOCATION_11_1" offset="0x9AC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_12_1" description="" id="ELM_ERROR_LOCATION_12_1" offset="0x9B0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_13_1" description="" id="ELM_ERROR_LOCATION_13_1" offset="0x9B4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_14_1" description="" id="ELM_ERROR_LOCATION_14_1" offset="0x9B8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_15_1" description="" id="ELM_ERROR_LOCATION_15_1" offset="0x9BC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_STATUS_2" description="" id="ELM_LOCATION_STATUS_2" offset="0xA00" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location process exit status." end="8" id="ECC_CORRECTABL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Number of errors detected and located, value 0 to 1Fh." end="0" id="ECC_NB_ERRORS" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_0_2" description="" id="ELM_ERROR_LOCATION_0_2" offset="0xA80" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_1_2" description="" id="ELM_ERROR_LOCATION_1_2" offset="0xA84" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_2_2" description="" id="ELM_ERROR_LOCATION_2_2" offset="0xA88" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_3_2" description="" id="ELM_ERROR_LOCATION_3_2" offset="0xA8C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_4_2" description="" id="ELM_ERROR_LOCATION_4_2" offset="0xA90" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_5_2" description="" id="ELM_ERROR_LOCATION_5_2" offset="0xA94" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_6_2" description="" id="ELM_ERROR_LOCATION_6_2" offset="0xA98" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_7_2" description="" id="ELM_ERROR_LOCATION_7_2" offset="0xA9C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_8_2" description="" id="ELM_ERROR_LOCATION_8_2" offset="0xAA0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_9_2" description="" id="ELM_ERROR_LOCATION_9_2" offset="0xAA4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_10_2" description="" id="ELM_ERROR_LOCATION_10_2" offset="0xAA8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_11_2" description="" id="ELM_ERROR_LOCATION_11_2" offset="0xAAC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_12_2" description="" id="ELM_ERROR_LOCATION_12_2" offset="0xAB0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_13_2" description="" id="ELM_ERROR_LOCATION_13_2" offset="0xAB4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_14_2" description="" id="ELM_ERROR_LOCATION_14_2" offset="0xAB8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_15_2" description="" id="ELM_ERROR_LOCATION_15_2" offset="0xABC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_0_3" description="" id="ELM_ERROR_LOCATION_0_3" offset="0xB80" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_1_3" description="" id="ELM_ERROR_LOCATION_1_3" offset="0xB84" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_2_3" description="" id="ELM_ERROR_LOCATION_2_3" offset="0xB88" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_3_3" description="" id="ELM_ERROR_LOCATION_3_3" offset="0xB8C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_4_3" description="" id="ELM_ERROR_LOCATION_4_3" offset="0xB90" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_5_3" description="" id="ELM_ERROR_LOCATION_5_3" offset="0xB94" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_6_3" description="" id="ELM_ERROR_LOCATION_6_3" offset="0xB98" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_7_3" description="" id="ELM_ERROR_LOCATION_7_3" offset="0xB9C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_8_3" description="" id="ELM_ERROR_LOCATION_8_3" offset="0xBA0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_9_3" description="" id="ELM_ERROR_LOCATION_9_3" offset="0xBA4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_10_3" description="" id="ELM_ERROR_LOCATION_10_3" offset="0xBA8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_11_3" description="" id="ELM_ERROR_LOCATION_11_3" offset="0xBAC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_12_3" description="" id="ELM_ERROR_LOCATION_12_3" offset="0xBB0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_13_3" description="" id="ELM_ERROR_LOCATION_13_3" offset="0xBB4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_14_3" description="" id="ELM_ERROR_LOCATION_14_3" offset="0xBB8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_15_3" description="" id="ELM_ERROR_LOCATION_15_3" offset="0xBBC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_STATUS_3" description="" id="ELM_LOCATION_STATUS_3" offset="0xC00" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location process exit status." end="8" id="ECC_CORRECTABL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Number of errors detected and located, value 0 to 1Fh." end="0" id="ECC_NB_ERRORS" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_0_4" description="" id="ELM_ERROR_LOCATION_0_4" offset="0xC80" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_1_4" description="" id="ELM_ERROR_LOCATION_1_4" offset="0xC84" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_2_4" description="" id="ELM_ERROR_LOCATION_2_4" offset="0xC88" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_3_4" description="" id="ELM_ERROR_LOCATION_3_4" offset="0xC8C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_4_4" description="" id="ELM_ERROR_LOCATION_4_4" offset="0xC90" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_5_4" description="" id="ELM_ERROR_LOCATION_5_4" offset="0xC94" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_6_4" description="" id="ELM_ERROR_LOCATION_6_4" offset="0xC98" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_7_4" description="" id="ELM_ERROR_LOCATION_7_4" offset="0xC9C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_8_4" description="" id="ELM_ERROR_LOCATION_8_4" offset="0xCA0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_9_4" description="" id="ELM_ERROR_LOCATION_9_4" offset="0xCA4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_10_4" description="" id="ELM_ERROR_LOCATION_10_4" offset="0xCA8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_11_4" description="" id="ELM_ERROR_LOCATION_11_4" offset="0xCAC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_12_4" description="" id="ELM_ERROR_LOCATION_12_4" offset="0xCB0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_13_4" description="" id="ELM_ERROR_LOCATION_13_4" offset="0xCB4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_14_4" description="" id="ELM_ERROR_LOCATION_14_4" offset="0xCB8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_15_4" description="" id="ELM_ERROR_LOCATION_15_4" offset="0xCBC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_0_5" description="" id="ELM_ERROR_LOCATION_0_5" offset="0xD80" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_1_5" description="" id="ELM_ERROR_LOCATION_1_5" offset="0xD84" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_2_5" description="" id="ELM_ERROR_LOCATION_2_5" offset="0xD88" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_3_5" description="" id="ELM_ERROR_LOCATION_3_5" offset="0xD8C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_4_5" description="" id="ELM_ERROR_LOCATION_4_5" offset="0xD90" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_5_5" description="" id="ELM_ERROR_LOCATION_5_5" offset="0xD94" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_6_5" description="" id="ELM_ERROR_LOCATION_6_5" offset="0xD98" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_7_5" description="" id="ELM_ERROR_LOCATION_7_5" offset="0xD9C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_8_5" description="" id="ELM_ERROR_LOCATION_8_5" offset="0xDA0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_9_5" description="" id="ELM_ERROR_LOCATION_9_5" offset="0xDA4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_10_5" description="" id="ELM_ERROR_LOCATION_10_5" offset="0xDA8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_11_5" description="" id="ELM_ERROR_LOCATION_11_5" offset="0xDAC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_12_5" description="" id="ELM_ERROR_LOCATION_12_5" offset="0xDB0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_13_5" description="" id="ELM_ERROR_LOCATION_13_5" offset="0xDB4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_14_5" description="" id="ELM_ERROR_LOCATION_14_5" offset="0xDB8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_15_5" description="" id="ELM_ERROR_LOCATION_15_5" offset="0xDBC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_STATUS_4" description="" id="ELM_LOCATION_STATUS_4" offset="0xE00" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location process exit status." end="8" id="ECC_CORRECTABL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Number of errors detected and located, value 0 to 1Fh." end="0" id="ECC_NB_ERRORS" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_0_6" description="" id="ELM_ERROR_LOCATION_0_6" offset="0xE80" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_1_6" description="" id="ELM_ERROR_LOCATION_1_6" offset="0xE84" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_2_6" description="" id="ELM_ERROR_LOCATION_2_6" offset="0xE88" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_3_6" description="" id="ELM_ERROR_LOCATION_3_6" offset="0xE8C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_4_6" description="" id="ELM_ERROR_LOCATION_4_6" offset="0xE90" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_5_6" description="" id="ELM_ERROR_LOCATION_5_6" offset="0xE94" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_6_6" description="" id="ELM_ERROR_LOCATION_6_6" offset="0xE98" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_7_6" description="" id="ELM_ERROR_LOCATION_7_6" offset="0xE9C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_8_6" description="" id="ELM_ERROR_LOCATION_8_6" offset="0xEA0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_9_6" description="" id="ELM_ERROR_LOCATION_9_6" offset="0xEA4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_10_6" description="" id="ELM_ERROR_LOCATION_10_6" offset="0xEA8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_11_6" description="" id="ELM_ERROR_LOCATION_11_6" offset="0xEAC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_12_6" description="" id="ELM_ERROR_LOCATION_12_6" offset="0xEB0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_13_6" description="" id="ELM_ERROR_LOCATION_13_6" offset="0xEB4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_14_6" description="" id="ELM_ERROR_LOCATION_14_6" offset="0xEB8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_15_6" description="" id="ELM_ERROR_LOCATION_15_6" offset="0xEBC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_0_7" description="" id="ELM_ERROR_LOCATION_0_7" offset="0xF80" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_1_7" description="" id="ELM_ERROR_LOCATION_1_7" offset="0xF84" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_2_7" description="" id="ELM_ERROR_LOCATION_2_7" offset="0xF88" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_3_7" description="" id="ELM_ERROR_LOCATION_3_7" offset="0xF8C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_4_7" description="" id="ELM_ERROR_LOCATION_4_7" offset="0xF90" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_5_7" description="" id="ELM_ERROR_LOCATION_5_7" offset="0xF94" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_6_7" description="" id="ELM_ERROR_LOCATION_6_7" offset="0xF98" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_7_7" description="" id="ELM_ERROR_LOCATION_7_7" offset="0xF9C" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_8_7" description="" id="ELM_ERROR_LOCATION_8_7" offset="0xFA0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_9_7" description="" id="ELM_ERROR_LOCATION_9_7" offset="0xFA4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_10_7" description="" id="ELM_ERROR_LOCATION_10_7" offset="0xFA8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_11_7" description="" id="ELM_ERROR_LOCATION_11_7" offset="0xFAC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_12_7" description="" id="ELM_ERROR_LOCATION_12_7" offset="0xFB0" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_13_7" description="" id="ELM_ERROR_LOCATION_13_7" offset="0xFB4" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_14_7" description="" id="ELM_ERROR_LOCATION_14_7" offset="0xFB8" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_ERROR_LOCATION_15_7" description="" id="ELM_ERROR_LOCATION_15_7" offset="0xFBC" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Error-location bit address, 0 to 1FFFh." end="0" id="ECC_ERROR_LOCATION" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_STATUS_5" description="" id="ELM_LOCATION_STATUS_5" offset="0x1000" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location process exit status." end="8" id="ECC_CORRECTABL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Number of errors detected and located, value 0 to 1Fh." end="0" id="ECC_NB_ERRORS" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_STATUS_6" description="" id="ELM_LOCATION_STATUS_6" offset="0x1200" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location process exit status." end="8" id="ECC_CORRECTABL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Number of errors detected and located, value 0 to 1Fh." end="0" id="ECC_NB_ERRORS" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="ELM_LOCATION_STATUS_7" description="" id="ELM_LOCATION_STATUS_7" offset="0x1400" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Error-location process exit status." end="8" id="ECC_CORRECTABL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Number of errors detected and located, value 0 to 1Fh." end="0" id="ECC_NB_ERRORS" rwaccess="R" width="5"></bitfield>
+  </register>
+</module>

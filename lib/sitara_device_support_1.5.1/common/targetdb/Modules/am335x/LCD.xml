@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="LCD" id="LCD">
+  
+  
+  <register acronym="PID" description="" id="PID" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="The scheme of the register used. This field indicates the 3.5 Method." end="30" id="scheme" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="The function of the module being used." end="16" id="func" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="The Release number for this IP." end="11" id="rtl" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major Release Number" end="8" id="major" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Custom IP" end="6" id="custom" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor Release Number" end="0" id="minor" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="CTRL" description="" id="CTRL" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Clock divisor. Raster mode: Values of 2 through 255 are permitted and resulting pixel clock is lcd_clk/2 through lcd_clk/255. LIDD mode: Values of 0 through 255 are permitted with resulting MCLK of lcd_clk/1 through lcd_clk/255 where both 0 and 1 result in lcd_clk/1." end="8" id="clkdiv" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="" end="2" id="Reserved2" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="1" description="0 = On an underflow, the software has to restart the module 1 = On an underflow, the hardware will restart on the next frame" end="1" id="auto_uflow_restart" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="LCD Mode select. 0 = LCD Controller in LIDD Mode 1 = LCD Controller in Raster Mode" end="0" id="modesel" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="LIDD_CTRL" description="" id="LIDD_CTRL" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="CS0/CS1 Select for LIDD DMA writes. 0 = DMA writes to LIDD CS0 1 = DMA writes for LIDD CS1" end="9" id="dma_cs0_cs1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="LIDD DMA Enable 0 = Deactivate DMA control of LIDD interface. DMA control is released upon completion of transfer of the current frame of data (LIDD Frame Done) after this bit is cleared. The MPU has direct read/write access to the panel in this mode. 1 = Activate DMA to drive LIDD interface to support streaming data to smart panels. The MPU cannot access the panel directly in this mode." end="8" id="lidd_dma_en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Chip Select 1/Enable 1 (Secondary) Polarity Control 0 = Do Not Invert Chip Select 1/Enable 1. Chip Select 1 is active low by default. Enable 1 is active high by default. 1 = Invert Chip Select 1/Enable 1." end="7" id="cs1_e1_pol" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Chip Select 0/Enable 0 (Secondary) Polarity Control. 0 = Do Not Invert Chip Select 0/Enable 0. Chip Select 0 is active low by default. Enable 0 is active high by default. 1 = Invert Chip Select 0/Enable 0." end="6" id="cs0_e0_pol" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Write Strobe/Direction Polarity Control 0 = Do Not Invert Write Strobe/Direction. Write Strobe/Direction is active low/write low by default. 1 = Invert Write Strobe/Direction" end="5" id="ws_dir_pol" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Read Strobe/Direction Polarity Control. 0 = Do Not Invert Read Strobe/Direction. Read Strobe/Direction is active low/write low by default. 1 = Invert Read Strobe/Direction" end="4" id="rs_en_pol" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Address Latch Enable (ALE) Polarity Control 0 = Do Not Invert ALE. ALE is active low by default. 1 = Invert" end="3" id="alepol" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="LIDD Mode Select. Selects type of LCD display interface for the LIDD to drive: 000b = Sync MPU68 001b = Async MPU68 010b = Sync MPU80 011b = Async MPU80 100b = Hitachi (Async) 101b = N/A 110b = N/A 111b = N/A" end="0" id="lidd_mode_sel" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="LIDD_CS0_CONF" description="" id="LIDD_CS0_CONF" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Write Strobe Set-Up cycles. When performing a write access, this field defines the number of memclk cycles that Data Bus/Pad Output Enable, , the Direction bit, and Chip Select 0 have to be ready before the Write Strobe is asserted. The minimum value is 0x0." end="27" id="w_su" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="26" description="Write Strobe Duration cycles. Field value defines the number of memclk cycles for which the Write Strobe is held active when performing a write access. The minimum value is 0x1." end="21" id="w_strobe" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="20" description="Write Strobe Hold cycles. Field value defines the number of memclk cycles for which Data Bus/Pas Output Enable, ALE, the Direction bit, and Chip Select 0 are held after the Write Strobe is de-asserted when performing write access. The minimum value is 0x1." end="17" id="w_hold" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="16" description="Read Strobe Set-Up cycles. When performing a read access, this field defines the number of memclk cycles that Data Bus/Pad Output Enable, , the Direction bit, and Chip Select 0 have to be ready before the Read Strobe is asserted." end="12" id="r_su" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="11" description="Read Strobe Duration cycles. Field value defines the number of memclk cycles for which the Read Strobe is held active when performing a read access. The minimum value is 0x1." end="6" id="r_strobe" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="5" description="Read Strobe Hold cycles. Field value defines the number of memclk cycles for which Data Bus/Pad Output Enable, , the Direction bit, and Chip Select 0 are held after the Read Strobe is deasserted when performing a read access. The minimum value is 0x1." end="2" id="r_hold" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="1" description="Field value defines the number of memclk (ta+1) cycles between the end of one CS0 device access and the start of another CS0 device access unless the two accesses are both Reads. In this case, this delay is not incurred. The minimum value is 0x0." end="0" id="ta" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="LIDD_CS0_ADDR" description="" id="LIDD_CS0_ADDR" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="The LCD Controller supports a shared Address/Data output bus. A write to this register would initiate a bus write transaction. A read from this register would initiate a bus read transaction. CPU reads and writes to this register are not permitted if the LIDD module is in DMA mode (cfg_lidd_dma_en = 1). If the LIDD is being used as a generic bus interface, writing to this register can store adr_indx to an external transparent latch holding a 16-bit address. If the LIDD is being used to interface with a character based LCD panel in configuration mode, reading and writing to this register can be used to access the command instruction area of the panel." end="0" id="adr_indx" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="LIDD_CS0_DATA" description="" id="LIDD_CS0_DATA" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="The LCD Controller supports a shared Address/Data output bus. A write to this register would initiate a bus write transaction. A read from this register would initiate a bus read transaction. CPU reads and writes to this register are not permitted if the LIDD module is in DMA mode (cfg_lidd_dma_en = 1). If the LIDD is being used as a generic bus interface, writing to this register can store adr_indx to an external transparent latch holding a 16-bit address. If the LIDD is being used to interface with a character based LCD panel in configuration mode, reading and writing to this register can be used to access the command instruction area of the panel." end="0" id="data" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="LIDD_CS1_CONF" description="" id="LIDD_CS1_CONF" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Write Strobe Set-Up cycles. When performing a write access, this field defines the number of memclk cycles that Data Bus/Pad Output Enable, , the Direction bit, and Chip Select 1 have to be ready before the Write Strobe is asserted. The minimum value is 0x0." end="27" id="w_su" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="26" description="Write Strobe Duration cycles. Field value defines the number of memclk cycles for which the Write Strobe is held active when performing a write access. The minimum value is 0x1." end="21" id="w_strobe" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="20" description="Write Strobe Hold cycles. Field value defines the number of memclk cycles for which Data Bus/Pad Output Enable, ALE, the Direction bit, and Chip Select 1 are held after the Write Strobe is deasserted when performing a write access. The minimum value is 0x1." end="17" id="w_hold" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="16" description="Read Strobe Set-Up cycles. When performing a read access, this field defines the number of memclk cycles that Data Bus/Pad Output Enable, , the Direction bit, and Chip Select 1 have to be ready before the Read Strobe is asserted. The minimum value is 0x0." end="12" id="r_su" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="11" description="Read Strobe Duration cycles. Field value defines the number of memclk cycles for which the Read Strobe is held active when performing a read access. The minimum value is 0x1." end="6" id="r_strobe" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="5" description="Read Strobe Hold cycles. Field value defines the number of memclk cycles for which Data Bus/Pad Output Enable, , the Direction bit, and Chip Select 1 are held after the Read Strobe is deasserted when performing a read access. The minimum value is 0x1." end="2" id="r_hold" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="1" description="Field value defines the number of memclk (ta+1) cycles between the end of one CS1 device access and the start of another CS1 device access unless the two accesses are both Reads. In this case, this delay is not incurred. The minimum value is 0x0." end="0" id="ta" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="LIDD_CS1_ADDR" description="" id="LIDD_CS1_ADDR" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="The LCD Controller supports a shared Address/Data output bus. A write to this register would initiate a bus write transaction. A read from this register would initiate a bus read transaction. CPU reads and writes to this register are not permitted if the LIDD module is in DMA mode (cfg_lidd_dma_en = 1). If the LIDD is being used as a generic bus interface, writing to this register can store adr_indx to an external transparent latch holding a 16-bit address. If the LIDD is being used to interface with a character based LCD panel in configuration mode, reading and writing to this register can be used to access the command instruction area of the panel." end="0" id="adr_indx" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="LIDD_CS1_DATA" description="" id="LIDD_CS1_DATA" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="The LCD Controller supports a shared Address/Data output bus. A write to this register would initiate a bus write transaction. A read from this register would initiate a bus read transaction. CPU reads and writes to this register are not permitted if the LIDD module is in DMA mode (cfg_lidd_dma_en = 1). If the LIDD is being used as a generic bus interface, writing to this register can store adr_indx to an external transparent latch holding a 16-bit address. If the LIDD is being used to interface with a character based LCD panel in configuration mode, reading and writing to this register can be used to access the command instruction area of the panel." end="0" id="data" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RASTER_CTRL" description="" id="RASTER_CTRL" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="" end="27" id="Reserved1" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="26" description="24 bit Mode Packing Only used when cfg_tft24=1 and cfg_lcdtft=1. 0: 24-bit pixels are packed into 32 bit boundaries, which means 4 pixels are saved in every three words. Word 0: pix1[7:0], pix0[23:0]. Word 1: pix2[15:0], pix1[23:8]. Word 2: pix3[23:0], pix2[23:16]. 1: 24-bit pixels are stored unpacked in with the uppermost byte unused. Word 0: Unused[7:0], pix0[23:0]. Word 1: Unused[7:0], pix1[23:0]. Word 2: Unused[7:0], pix2[23:0]. Word3: Unused[7:0], pix3[23:0]." end="26" id="tft24unpacked" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="24 bit mode 0 = off 1 = on (24-bit data in active mode) The format of the framebuffer data depends on cfg_tft24unpacked." end="25" id="tft24" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Passive Matrix Mode only (cfg_lcdtft='0') and 16 bpp raw data framebuffers (bpp = ?00?. If the bpp field in the framebuffer palette header is ?00?(12/16/24 bpp source), then the DDR contains raw data and the palette lookup is bypassed. Only for this case, this bit selects whether the framebuffer format is 16 bpp 565 or 12 bpp. The Grayscaler can only take 12 bits per pixel. The framebuffer data is 16 bits per pixel 565 when stn565 is set to `1' and only the 4 most significant bits of each color component are sent to the Grayscaler input. 0: Framebuffer is 12 bpp packed in bits [11:0] 1: Framebuffer is 16 bpp 565" end="24" id="stn565" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="TFT Mode Alternate Signal Mapping for Palettized framebuffer. Must be `0' for all 12/16/24 bpp raw data formats. Can only be `1' for 1/2/4/8 bpp Palette Lookup data. Valid only in Active Matrix mode when cfg_lcdtft='1'. 0 = 4 bits per component output data for 1, 2, 4, and 8 bpp modes will be right aligned on lcd_pins (11:0) 1 = 4 bits per component output data for 1, 2, 4, and 8 bpp will be converted to 5,6,5, format and use pins (15:0) R3 R2 R1 R0 R3 G3 G2 G1 G0 G3 G2 B3 B2 B1 B0 B3" end="23" id="tftmap" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Nibble Mode This bit is used to determine palette indexing and is used in conjunction with cfg_rdorder. 0: Nibble mode is disabled 1: Nibble mode is enabled" end="22" id="nibmode" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Palette Loading Mode 00: Palette and data loading, reset value 01: Palette loading only 10: Data loading only For Raw Data (12/16/24 bpp) framebuffers, no palette lookup is employed. Thus, these framebuffers should use the data-only loading mode." end="20" id="palmode" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="19" description="Palette Loading Delay When loading the Palette from DDR, palette data is burst into the internal Palette SRAM from the Async FIFO. 1-, 2-, and 4-bit per pixel framebuffer encodings use a fixed 16-word entry palette residing above the video data. The 8 bit per pixel framebuffer encoding uses a 256-word entry palette residing above the video data. Likewise, 12, 16, and 24 bit per pixel framebuffer encodings also define a 256-word entry palette even though these encodings will not do a full bit-depth palette lookup. However, the 256-word palette entry must still be read from DDR as a framebuffer is fetched. Bursting in 256 words in sequential lcd_clk cycles may cause the Async FIFO to underflow depending on the SOC DDR burst bandwidth. This 8-bit reqdly parameter pauses reading of the Palette data from the Async FIFO between each burst of 16 words. The delay is in terms of lcd_clk (system clock) cycles. Value (0-255) used to specify the number of system clock cycles that should be paused between bursts of 16 word reads from the Async FIFO while loading the Palette SRAM. Programming reqdly=00h disables this pause when loading the palette table." end="12" id="reqdly" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="11" description="" end="10" id="Reserved2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Mono 8 bit 0: lcd_pixel_o\[3:0\] is used to output four pixel values to the panel each pixel clock transition 1: lcd_pixel_o\[7:0\] is used to output eight pixel values to the panel each pixel clock transition. This bit is ignored in all other modes." end="9" id="nono8b" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Raster Data Order Select 0: The frame buffer parsing for Palette Data lookup is from Bit 0 to bit 31 of the input word from the DMA output. 1: The fame buffer parsing for Palette Data lookup is from Bit 31 to Bit 0 of the input word from the DMA output. This bit has no effect on raw data framebuffers (12/16/24 bpp). This bit is used to determine palette indexing and is used in conjunction with cfg_nibmode." end="8" id="rdorder" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="LCD 0: Passive or display operation enabled, dither logic is enabled 1: Active or display operation enabled, external palette and DAC required, dither logic bypassed, pin timing changes to support continuous pixel clock, output enable, vsync, and hsync." end="7" id="lcdtft" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="2" id="Reserved3" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="1" description="Only Applies for Passive Matrix Panels LCD Monochrome 0: Color operation enabled 1: Monochrome operation enabled" end="1" id="lcdbw" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="LCD Controller Enable 0: LCD controller disabled 1: LCD controller enabled" end="0" id="lcden" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RASTER_TIMING_0" description="" id="RASTER_TIMING_0" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Horizontal Back Porch Lowbits Bits 7:0 of the horizontal back porch field. Encoded value (from 1-1024) used to specify the number of pixel clock periods to add to the beginning of a line transmission before the first set of pixels is output to the display (programmed value plus 1). Note that pixel clock is held in its inactive state during the beginning of the line wait period in passive display mode, and is permitted to transition in active display mode." end="24" id="hbp" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Horizontal Front Porch Lowbits Encoded value (from 1-1024) used to specify the number of pixel clock periods to add to the end of a line transmission before line clock is asserted (programmed value plus 1). Note that pixel clock is held in its inactive state during the end of line wait period in passive display mode, and is permitted to transition in active display mode." end="16" id="hfp" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Horizontal Sync Pulse Width Lowbits Bits 5:0 of the horizontal sync pulse width field. Encoded value (from 1-1024) used to specify the number of pixel clock periods to pulse the line clock at the end of each line (programmed value plus 1). Note that pixel clock is held in its inactive state during the generation of line clock in passive display mode, and is permitted to transition in active display mode" end="10" id="hsw" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="9" description="Pixels-per-line LSB[9:4] Encoded LSB value (from 1-1024) used to specify the number of pixels contained within each line on the LCD display (programmed to value minus one). PPL = 11'b{pplmsb, ppllsb, 4'b1111} + 1 ex: pplmsb=1'b1, pppllsb=6'0001000 PPL = 11'b{1, 000100, 1111}+ 1 = 1104d (decimal) pixels per line. In other words, PPL = 16*({pplmsb, ppllsb}+1)." end="4" id="ppllsb" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="3" description="Pixels-per-line MSB[10] Needed in order to support up to 2048 ppl" end="3" id="pplmsb" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="" end="0" id="Reserved1" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="RASTER_TIMING_1" description="" id="RASTER_TIMING_1" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Vertical Back Porch Value (from 0-255) use to specify the number of line clock periods to add to the beginning of a frame before the first set of pixels is output to the display. Note that line clock transitions during the insertion of the extra line clock periods." end="24" id="vbp" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Vertical Front Porch Value (from 0-255) used to specify the number of line clock periods to add to the end of each frame. Note that the line clock transitions during the insertion of the extra line clock periods." end="16" id="vfp" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Vertical Sync Width Pulse In active mode (lcdtft=1), encoded value (from 1-64) used to specify the number of line clock periods to set the lcd_fp pin active at the end of each frame after the (vfp) period elapses. The number of clock cycles is programmed value plus one. The frame clock is used as the VSYNC signal in active mode. In passive mode (lcdtft=0), encoded value (from 1-64) used to specify the number of extra line clock periods to insert after the vertical front porch (vfp) period has elapsed. Note that the width of lcd_fp is not affected by vsw in passive mode and line clock transitions during the insertion of the extra line clock periods (programmed value plus one)." end="10" id="vsw" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="9" description="Lines Per Panel Encoded value (programmed value range of {0:2047} represents an actual range of {1:2048}) used to specify the number of lines per panel. It represents the total number of lines on the LCD (programmed value plus one). Bit 10 of this field is in RASTER_TIMING_2." end="0" id="lpp" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="RASTER_TIMING_2" description="" id="RASTER_TIMING_2" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Bits 9:6 of the horizontal sync width field" end="27" id="hsw_highbits" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="26" description="Lines Per Panel Bit 10 Bit 10 of the lpp field in RASTER_TIMING_1" end="26" id="lpp_b10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Hsync/Vsync Pixel Clock Control On/Off 0 = lcd_lp and lcd_fp are driven on opposite edges of pixel clock than the lcd_pixel_o 1 = lcd_lp and lcd_fp are driven according to bit 24 Note that this bit MUST be set to `0' for Passive Matrix displays. The edge timing is fixed." end="25" id="phsvs_on_off" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Program HSYNC/VSYNC Rise or Fall 0: lcd_lp and lcd_fp are driven on the rising edge of pixel clock (bit 25 must be set to 1). 1: lcd_lp and lcd_fp are driven on the falling edge of pixel clock (bit 25 must be set to 1)." end="24" id="phsvs_rf" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Invert Output Enable 0 = lcd_ac pin is active high in active display mode 1 = lcd_ac pin is active low in active display mode Active display mode: data driven out of the LCD's data lines on programmed pixel clock edge where AC-bias is active. Note that ieo is ignored in passive display mode." end="23" id="ieo" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Invert Pixel Clock 0 = Data is driven on the LCD's data lines on the rising edge of lcd_cp 1 = Data is driven on the LCD's data lines in the falling edge of lcd_cp For Active Matrix output (cfg_lcdtft='1'), the Output Pixel Clock is a free running clock in that it transitions in horizontal blanking (including horizontal front porch, horizontal back porch) areas and all vertical blanking times. For Passive Matrix output (cfg_lcdtft='0'), the Output Pixel Clock on occurs when an output data value is written. It is in a return-to-zero state when cfg_ipc='0' and a return-to-one state when cfg_ipc='1.'" end="22" id="ipc" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Invert Hsync 0: lcd_lp pin is active high and inactive low 1: lcd_lp pin is active low and inactive high Active and passive mode: horizontal sync pulse/line clock active between lines, after the end of line wait period" end="21" id="ihs" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Invert Vsync 0 = lcd_fp pin is active high and inactive low 1 = lcd_fp pin is active low and inactive high Active mode: vertical sync pulse active between frames, after end of frame wait period Passive mode: frame clock active during first line of each frame" end="20" id="ivs" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="AC Bias Pins Transitions per Interrupt Value (from 0 to 15) used to specify the number of AC Bias pin transitions to count before setting the line count status (lcs) bit, signaling an interrupt request. Counter frozen when lcd is set, and is restarted when lcs is cleared by software. This function is disabled when acbi = b'0000'" end="16" id="acbi" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="AC Bias Pin Frequency Value (from 0-255) used to specify the number of line clocks to count before transitioning the AC Bias pin. This pin is used to periodically invert the polarity of the power supply to prevent DC charge build-up within the display. acb = Number of line clocks/toggle of the lcd_ac pin." end="8" id="acb" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="" end="6" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Bits 9:8 of the horizontal back porch field" end="4" id="hbp_highbits" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Bits 9:8 of the horizontal front porch field" end="0" id="hfp_highbits" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="RASTER_SUBPANEL" description="" id="RASTER_SUBPANEL" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Sub Panel Enable 0 = function disabled 1 = sub-panel function mode enabled" end="31" id="spen" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="" end="30" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="29" description="High or Low Signal This field indicates the position of the sub-panel based on the LPPT value. 0 = Default Pixel Data lines are at the top of the screen and the active video lines are at the bottom of the screen. 1 = Active video lines are at the top of the screen and Default Pixel Data lines are at the bottom of the screen." end="29" id="hols" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="" end="26" id="Reserved2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="25" description="Line Per Panel Threshold Encoded value (programmed value range of {0:2047} represents an actual range of {1:2048}) used to specify the number of lines on the bottom part of the panel. Bit10 of this field is in RASTER_SUBPANEL2. Hols determines whether Default Pixel Data is on the top (hols=''0') or on the bottom (hols='1'). Lppt defines the number of lines on the bottom part of the output." end="16" id="lppt" rwaccess="RW" width="10"></bitfield>
+    
+  <bitfield begin="15" description="Default Pixel Data LSB[15:0] DPD defines the default value of the pixel data sent to the panel for the lines until LPPT is reach or after passing LPPT" end="0" id="dpdlsb" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RASTER_SUBPANEL2" description="" id="RASTER_SUBPANEL2" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Lines Per Panel Threshold Bit 10 This register is Bit 10 of the lppt field in RASTER_SUBPANEL." end="8" id="lppt_b10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Default Pixel Data MSB [23:16] DPD defines the default value of the pixel data sent to the panel for the lines until LPPT is reached or after passing the LPPT" end="0" id="dpdmsb" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="LCDDMA_CTRL" description="" id="LCDDMA_CTRL" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="" end="19" id="Reserved1" rwaccess="RW" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Priority for the L3 OCP Master Bus" end="16" id="dma_master_prio" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="15" description="" end="11" id="Reserved2" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="10" description="DMA FIFO threshold. The DMA FIFO becomes ready when the number of words specified by this register from the frame buffer have been loaded. 000 = 8 001 = 16 010 = 32 011 = 64 100 = 128 101 = 256 110 = 512 111 = reserved" end="8" id="th_fifo_ready" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Burst Size setting for DMA transfers (all DMA transfers are 32 bits wide): 000 = burst size of 1 001 = burst size of 2 010 = burst size of 4 011 = burst size of 8 100 = burst size of 16 101 = N/A 110 = N/A 111 = N/A burst_size cannot be changed once the DMA is enabled in LIDD or Raster modes. In this case, the DMA must be disabled and the Done Interrupt must occur before the value in this register can be changed." end="4" id="burst_size" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="This bit controls the bytelane ordering of the data on the output of the DMA module. It works in conjunction with the big-endian bit. See the big-endian description for configuration guidelines." end="3" id="byte_swap" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="" end="2" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Big Endian Enable. Use this bit when the processor is operating in Big Endian mode AND writes to the frame buffer(s) are less than 32 bits wide. Only in this scenario do we need to change the byte alignment for data coming into the FIFO from the frame buffer(s). 0 = Big Endian data reordering disabled 1 = Big Endian data reordering enabled" end="1" id="bigendian" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Frame Mode 0 = one frame buffer (FB0 only) used 1 = two frame buffers used DMA ping-pongs between FB0 and FB1 in this mode" end="0" id="frame_mode" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="LCDDMA_FB0_BASE" description="" id="LCDDMA_FB0_BASE" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Frame Buffer 0 Base Address pointer" end="2" id="fb0_base" rwaccess="RW" width="30"></bitfield>
+    
+  <bitfield begin="1" description="" end="0" id="Reserved1" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="LCDDMA_FB0_CEILING" description="" id="LCDDMA_FB0_CEILING" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Frame Buffer 0 Ceiling Address pointer" end="2" id="fb0_ceil" rwaccess="RW" width="30"></bitfield>
+    
+  <bitfield begin="1" description="" end="0" id="Reserved1" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="LCDDMA_FB1_BASE" description="" id="LCDDMA_FB1_BASE" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Frame Buffer 1 Base Address pointer" end="2" id="fb1_base" rwaccess="RW" width="30"></bitfield>
+    
+  <bitfield begin="1" description="" end="0" id="Reserved1" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="LCDDMA_FB1_CEILING" description="" id="LCDDMA_FB1_CEILING" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Frame Buffer 1 Ceiling Address pointer" end="2" id="fb1_ceil" rwaccess="RW" width="30"></bitfield>
+    
+  <bitfield begin="1" description="" end="0" id="Reserved1" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="SYSCONFIG" description="" id="SYSCONFIG" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Configuration of the local initiator state management mode. By definition, initiator may generate read/write transaction as long as it is out of STANDBY state. 0: Force-standby mode: local initiator is unconditionally placed in standby state. Backup mode, for debug only. 1: No-standby mode: local initiator is unconditionally placed out of standby state. Backup mode, for debug only. 2: Smart-standby mode: local initiator standby status depends on local conditions, i.e. the module's functional requirement from the initiator. IP module shall not generate (initiator-related) wakeup events. 3: Reserved." end="4" id="standbymode" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Configuration of the local target state management mode. By definition, target can handle read/write transaction as long as it is out of IDLE state. 0: Force-idle mode: local target's idle state follows (acknowledges) the system's idle requests unconditionally, i.e. regardless of the IP module's internal requirements. Backup mode, for debug only. 1: No-idle mode: local target never enters idle state. Backup mode, for debug only. 2: Smart-idle mode: local target's idle state eventually follows (acknowledges) the system's idle requests, depending on the IP module's internal requirements. IP module shall not generate (IRQ- or DMA-request-related) wakeup events. 3: Reserved." end="2" id="idlemode" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="" end="0" id="Reserved2" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_RAW" description="" id="IRQSTATUS_RAW" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="RW" width="22"></bitfield>
+    
+  <bitfield begin="9" description="DMA End-of-Frame 1 Raw Interrupt Status and Set Read indicates raw status 0 = Inactive 1 = Active Writing 1 will set status. Writing 0 has no effect." end="9" id="eof1_raw_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="DMA End-of-Frame 0 Raw Interrupt Status and Set Read indicates raw status 0 = inactive 1 = active Writing 1 will set status. Writing 0 has no effect." end="8" id="eof0_raw_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DMA Palette Loaded Raw Interrupt Status and Set Read indicates raw status 0 = inactive 1 = active Writing 1 will set status. Writing 0 has no effect." end="6" id="pl_raw_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="DMA FIFO Underflow Raw Interrupt Status and Set LCD dithering logic not supplying data to FIFO at a sufficient rate, FIFO has completely emptied and data pin driver logic has attempted to take added data from FIFO. Read indicates raw status 0 = Inactive 1 = Active Writing 1 will set status. Writing 0 has no effect." end="5" id="fuf_raw_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="" end="4" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="For Passive Matrix Panels Only AC Bias Count Raw Interrupt Status and Set AC bias transition counter has decremented to zero, indicating that the lcd_ac_o line has transitioned the number of times which is specified by the acbi control bit-field. The counter is reloaded with the value in acbi but it is disabled until the user clears ABC. Read indicates raw status 0 = inactive 1 = active Writing 1 will set status. Writing 0 has no effect." end="3" id="acb_raw_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Frame Synchronization Lost Raw Interrupt Status and Set Read indicates raw status 0 = inactive 1 = active Writing 1 will set status. Writing 0 has no effect." end="2" id="sync_raw_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Raster Mode Frame Done Interrupt. Read indicates raw status. 0 = Inactive. 1 = Active. Writing 1 will set status. Writing 0 has no effect." end="1" id="recurrent_raster_done_raw_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Raster or LIDD Frame Done (shared, depends on whether Raster or LIDD mode enabled) Raw Interrupt Status and Set Read indicates raw status 0 = inactive 1 = active Writing 1 will set status. Writing 0 has no effect." end="0" id="done_raw_set" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS" description="" id="IRQSTATUS" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="RW" width="22"></bitfield>
+    
+  <bitfield begin="9" description="DMA End-of-Frame 1 Enabled Interrupt and Clear Read indicates enabled (masked) status 0 = inactive 1 = active Writing 1 will clear interrupt enable. Writing 0 has no effect." end="9" id="eof1_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="DMA End-of-Frame 0 Enabled Interrupt and Clear Read indicates enabled (masked) status 0 = inactive 1 = active Writing 1 will clear interrupt enable. Writing 0 has no effect." end="8" id="eof0_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DMA Palette Loaded Enabled Interrupt and Clear Read indicates enabled (masked) status 0 = inactive 1 = active Writing 1 will clear interrupt enable. Writing 0 has no effect." end="6" id="pl_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="DMA FIFO Underflow Enabled Interrupt and Clear LCD dithering logic not supplying data to FIFO at a sufficient rate, FIFO has completely emptied and data pin driver logic has attempted to take added data from FIFO. Read indicates enabled (masked) status 0 = inactive 1 = active Writing 1 will clear interrupt enable. Writing 0 has no effect." end="5" id="fuf_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="" end="4" id="Reserved3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="For Passive Matrix Panels Only AC Bias Count Enabled Interrupt and Clear AC bias transition counter has decremented to zero, indicating that the lcd_ac_o line has transitioned the number of times which is specified by the acbi control bit-field. The counter is reloaded with the value in acbi but it is disabled until the user clears ABC. Read indicates enabled (masked) status 0 = inactive 1 = active Writing 1 will clear interrupt enable. Writing 0 has no effect." end="3" id="acb_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Frame Synchronization Lost Enabled Interrupt and Clear Read indicates enabled status 0 = inactive 1 = active Writing 1 will clear interrupt enable. Writing 0 has no effect." end="2" id="sync_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Raster Frame Done Interrupt. Read indicates enabled status. 0 = Inactive. 1 = Active. Writing 1 will clear interrupt enable. Writing 0 has no effect." end="1" id="recurrent_raster_done_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Raster or LIDD Frame Done (shared, depends on whether Raster or LIDD mode enabled) Enabled Interrupt and Clear Read indicates enabled status 0 = inactive 1 = active Writing 1 will clear interrupt enable. Writing 0 has no effect." end="0" id="done_en_clr" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_SET" description="" id="IRQENABLE_SET" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="RW" width="22"></bitfield>
+    
+  <bitfield begin="9" description="DMA End-of-Frame 1 Interrupt Enable Set Read indicates enabled (mask) status 0 = disabled 1 = enabled Writing 1 will set interrupt enable. Writing 0 has no effect." end="9" id="eof1_en_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="DMA End-of-Frame 0 Interrupt Enable Set Read indicates enabled (mask) status 0 = disabled 1 = enabled Writing 1 will set interrupt enable. Writing 0 has no effect." end="8" id="eof0_en_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DMA Palette Loaded Interrupt Enable Set Read indicates enabled (mask) status 0 = disabled 1 = enabled Writing 1 will set interrupt enable. Writing 0 has no effect." end="6" id="pl_en_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="DMA FIFO Underflow Interrupt Enable Set LCD dithering logic not supplying data to FIFO at a sufficient rate, FIFO has completely emptied and data pin driver logic has attempted to take added data from FIFO. Read indicates enabled (mask) status 0 = disabled 1 = enabled Writing 1 will set interrupt enable. Writing 0 has no effect." end="5" id="fuf_en_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="" end="4" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="For Passive Matrix Panels Only AC Bias Count Interrupt Enable Set AC bias transition counter has decremented to zero, indicating that the lcd_ac_o line has transitioned the number of times which is specified by the acbi control bit-field. The counter is reloaded with the value in acbi but it is disabled until the user clears ABC. Read indicates enabled (mask) status 0 = disabled 1 = enabled Writing 1 will set interrupt enable. Writing 0 has no effect." end="3" id="acb_en_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Frame Synchronization Lost Interrupt Enable Set Read indicates enabled (mask) status 0 = disabled 1 = enabled Writing 1 will set interrupt enable. Writing 0 has no effect." end="2" id="sync_en_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Raster Done Interrupt Enable Set. Read indicates enabled (mask) status. 0 = Disabled. 1 = Enabled. Writing 1 will set interrupt enable. Writing 0 has no effect." end="1" id="recurrent_raster_done_en_set" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Raster or LIDD Frame Done (shared, depends on whether Raster or LIDD mode enabled) Interrupt Enable Set Read indicates enabled (mask) status 0 = disabled 1 = enabled Writing 1 will set interrupt enable." end="0" id="done_en_set" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_CLEAR" description="" id="IRQENABLE_CLEAR" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="RW" width="22"></bitfield>
+    
+  <bitfield begin="9" description="DMA End-of-Frame 1 Interrupt Enable Clear Read indicates enabled status. 0 = disabled 1 = enabled Writing 1 will clear interrupt enable. Writing 0 has no effect." end="9" id="eof1_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="DMA End-of-Frame 0 Interrupt Enable Clear Read indicates enabled status 0 = disabled 1 = enabled Writing 1 will clear interrupt enable. Writing 0 has no effect." end="8" id="eof0_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DMA Palette Loaded Interrupt Enable Clear Read indicates enabled status. 0 = disabled 1 = enabled Writing 1 will clear interrupt enable. Writing 0 has no effect." end="6" id="pl_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="DMA FIFO Underflow Interrupt Enable Clear LCD dithering logic not supplying data to FIFO at a sufficient rate, FIFO has completely emptied and data pin driver logic has attempted to take added data from FIFO. Read indicates enabled status. 0 = disabled 1 = enabled Writing 1 will clear interrupt enable. Writing 0 has no effect." end="5" id="fuf_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="" end="4" id="Reserved3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="For Passive Matrix Panels Only AC Bias Count Interrupt Enable Clear AC bias transition counter has decremented to zero, indicating that the lcd_ac_o line has transitioned the number of times which is specified by the acbi control bit-field. The counter is reloaded with the value in acbi but it is disabled until the user clears ABC. Read indicates enabled status. 0 = disabled 1 = enabled Writing 1 will clear interrupt enable. Writing 0 has no effect." end="3" id="acb_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Frame Synchronization Lost Interrupt Enable Clear Read indicates enabled status 0 = disabled 1 = enabled Writing 1 will clear interrupt enable. Writing 0 has no effect." end="2" id="sync_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Raster Done Interrupt Enable Clear. Read indicates enabled status. 0 = Disabled. 1 = Enabled. Writing 1 will clear interrupt enable. Writing 0 has no effect." end="1" id="recurrent_raster_done_en_clr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Raster or LIDD Frame Done (shared, depends on whether Raster or LIDD mode enabled) Interrupt Enable Clear. Read indicates enabled status. 0 = disabled 1 = enabled Writing 1 will clear interrupt enable. Writing 0 has no effect." end="0" id="done_en_clr" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CLKC_ENABLE" description="" id="CLKC_ENABLE" offset="0x6C" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Software Clock Enable for the DMA submodule. The DMA submodule runs on the L3 Clock domain." end="2" id="dma_clk_en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Software Clock Enable for the LIDD submodule (character displays). The LIDD submodule runs on the System Clock (lcd_clk) domain" end="1" id="lidd_clk_en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Software Clock Enable for the Core, which encompasses the Raster Active Matrix and Passive Matrix logic. The Core runs on the System Clock (lcd_clk) domain." end="0" id="core_clk_en" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CLKC_RESET" description="" id="CLKC_RESET" offset="0x70" width="32">
+    
+  <bitfield begin="31" description="" end="4" id="Reserved1" rwaccess="RW" width="28"></bitfield>
+    
+  <bitfield begin="3" description="Software Reset for the entire LCD module. 1 = Reset Enable 0 = Reset Disable" end="3" id="main_rst" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Software Reset for the DMA submodule. 1 = Reset Enable 0 = Reset Disable" end="2" id="dma_rst" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Software Reset for the LIDD submodule (character displays). 1 = Reset Enable 0 = Reset Disable" end="1" id="lidd_rst" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Software Reset for the Core, which encompasses the Raster Active Matrix and Passive Matrix logic. 1 = Reset Enable 0 = Reset Disable" end="0" id="core_rst" rwaccess="RW" width="1"></bitfield>
+  </register>
+</module>

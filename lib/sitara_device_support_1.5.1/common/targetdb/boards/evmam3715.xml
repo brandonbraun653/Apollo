@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="EVMAM3715" XML_version="1" desc="EVMAM3715" description="AM3715 EVM Board">
+	<instance XML_version="1.2" desc="AM3715" href="devices/AM3715.xml" id="AM3715_0" xml="AM3715.xml" xmlpath="devices"/>
+	<device id="AM3715_0" partnum="AM3715" HW_revision="1" XML_version="1" description="AM37x - Cortex A8 Embedded Processor">
+		<property Type="stringfield" Value="AM37x - Cortex A8" id="FilterString" />
+		<router HW_revision="1.0" XML_version="1.2" description="ICEPick_C Router" id="IcePick_C_0" isa="ICEPICK_C">
+			<subpath id="Subpath_2">
+				<router HW_revision="1.0" XML_version="1.2" description="CS_DAP_PC Router" id="CS_DAP_PC_0" isa="CS_DAP_PC">
+					<subpath id="Subpath_3">
+						<cpu HW_revision="1.0" XML_version="1.2" description="Cortex_A8 CPU" id="Cortex_A8_0" isa="Cortex_A8">
+							<property Type="filepathfield" Value="../../../emulation/boards/am_dm37x_evm/gel/am_dm37x_cortexA.gel" id="GEL File"/>
+						</cpu>
+					</subpath>
+				</router>
+			</subpath>
+		</router>
+	</device>
+</board>

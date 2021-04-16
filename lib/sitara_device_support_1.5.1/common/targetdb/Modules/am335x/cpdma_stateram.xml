@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="CPDMA_STATERAM" id="CPDMA_STATERAM">
+  
+  
+  <register acronym="TX0_HDP" description="CPDMA_STATERAM TX CHANNEL 0 HEAD DESC POINTER *" id="TX0_HDP" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="TX Channel (0..7) DMA Head Descriptor Pointer - Writing a TX DMA Buffer Descriptor address to a head pointer location initiates TX DMA operations in the queue for the selected channel. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="TX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX1_HDP" description="CPDMA_STATERAM TX CHANNEL 1 HEAD DESC POINTER *" id="TX1_HDP" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="TX Channel (0..7) DMA Head Descriptor Pointer - Writing a TX DMA Buffer Descriptor address to a head pointer location initiates TX DMA operations in the queue for the selected channel. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="TX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX2_HDP" description="CPDMA_STATERAM TX CHANNEL 2 HEAD DESC POINTER *" id="TX2_HDP" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="TX Channel (0..7) DMA Head Descriptor Pointer - Writing a TX DMA Buffer Descriptor address to a head pointer location initiates TX DMA operations in the queue for the selected channel. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="TX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX3_HDP" description="CPDMA_STATERAM TX CHANNEL 3 HEAD DESC POINTER *" id="TX3_HDP" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="TX Channel (0..7) DMA Head Descriptor Pointer - Writing a TX DMA Buffer Descriptor address to a head pointer location initiates TX DMA operations in the queue for the selected channel. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="TX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX4_HDP" description="CPDMA_STATERAM TX CHANNEL 4 HEAD DESC POINTER *" id="TX4_HDP" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="TX Channel (0..7) DMA Head Descriptor Pointer - Writing a TX DMA Buffer Descriptor address to a head pointer location initiates TX DMA operations in the queue for the selected channel. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="TX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX5_HDP" description="CPDMA_STATERAM TX CHANNEL 5 HEAD DESC POINTER *" id="TX5_HDP" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="TX Channel (0..7) DMA Head Descriptor Pointer - Writing a TX DMA Buffer Descriptor address to a head pointer location initiates TX DMA operations in the queue for the selected channel. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="TX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX6_HDP" description="CPDMA_STATERAM TX CHANNEL 6 HEAD DESC POINTER *" id="TX6_HDP" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="TX Channel (0..7) DMA Head Descriptor Pointer - Writing a TX DMA Buffer Descriptor address to a head pointer location initiates TX DMA operations in the queue for the selected channel. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="TX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX7_HDP" description="CPDMA_STATERAM TX CHANNEL 7 HEAD DESC POINTER *" id="TX7_HDP" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="TX Channel (0..7) DMA Head Descriptor Pointer - Writing a TX DMA Buffer Descriptor address to a head pointer location initiates TX DMA operations in the queue for the selected channel. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="TX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX0_HDP" description="CPDMA_STATERAM RX 0 CHANNEL 0 HEAD DESC POINTER *" id="RX0_HDP" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="RX DMA Head Descriptor Pointer - Writing an RX DMA Buffer Descriptor address to this location allows RX DMA operations in the selected channel when a channel frame is received. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="RX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX1_HDP" description="CPDMA_STATERAM RX 1 CHANNEL 1 HEAD DESC POINTER *" id="RX1_HDP" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="RX DMA Head Descriptor Pointer - Writing an RX DMA Buffer Descriptor address to this location allows RX DMA operations in the selected channel when a channel frame is received. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="RX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX2_HDP" description="CPDMA_STATERAM RX 2 CHANNEL 2 HEAD DESC POINTER *" id="RX2_HDP" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="RX DMA Head Descriptor Pointer - Writing an RX DMA Buffer Descriptor address to this location allows RX DMA operations in the selected channel when a channel frame is received. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="RX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX3_HDP" description="CPDMA_STATERAM RX 3 CHANNEL 3 HEAD DESC POINTER *" id="RX3_HDP" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="RX DMA Head Descriptor Pointer - Writing an RX DMA Buffer Descriptor address to this location allows RX DMA operations in the selected channel when a channel frame is received. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="RX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX4_HDP" description="CPDMA_STATERAM RX 4 CHANNEL 4 HEAD DESC POINTER *" id="RX4_HDP" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="RX DMA Head Descriptor Pointer - Writing an RX DMA Buffer Descriptor address to this location allows RX DMA operations in the selected channel when a channel frame is received. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="RX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX5_HDP" description="CPDMA_STATERAM RX 5 CHANNEL 5 HEAD DESC POINTER *" id="RX5_HDP" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="RX DMA Head Descriptor Pointer - Writing an RX DMA Buffer Descriptor address to this location allows RX DMA operations in the selected channel when a channel frame is received. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="RX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX6_HDP" description="CPDMA_STATERAM RX 6 CHANNEL 6 HEAD DESC POINTER *" id="RX6_HDP" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="RX DMA Head Descriptor Pointer - Writing an RX DMA Buffer Descriptor address to this location allows RX DMA operations in the selected channel when a channel frame is received. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="RX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX7_HDP" description="CPDMA_STATERAM RX 7 CHANNEL 7 HEAD DESC POINTER *" id="RX7_HDP" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="RX DMA Head Descriptor Pointer - Writing an RX DMA Buffer Descriptor address to this location allows RX DMA operations in the selected channel when a channel frame is received. Writing to these locations when they are non-zero is an error (except at reset). Host software must initialize these locations to zero on reset. " end="0" id="RX_HDP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX0_CP" description="CPDMA_STATERAM TX CHANNEL 0 COMPLETION POINTER REGISTER" id="TX0_CP" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Tx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. " end="0" id="TX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX1_CP" description="CPDMA_STATERAM TX CHANNEL 1 COMPLETION POINTER REGISTER *" id="TX1_CP" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Tx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. " end="0" id="TX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX2_CP" description="CPDMA_STATERAM TX CHANNEL 2 COMPLETION POINTER REGISTER *" id="TX2_CP" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Tx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. " end="0" id="TX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX3_CP" description="CPDMA_STATERAM TX CHANNEL 3 COMPLETION POINTER REGISTER *" id="TX3_CP" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Tx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. " end="0" id="TX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX4_CP" description="CPDMA_STATERAM TX CHANNEL 4 COMPLETION POINTER REGISTER *" id="TX4_CP" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Tx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. " end="0" id="TX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX5_CP" description="CPDMA_STATERAM TX CHANNEL 5 COMPLETION POINTER REGISTER *" id="TX5_CP" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="Tx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. " end="0" id="TX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX6_CP" description="CPDMA_STATERAM TX CHANNEL 6 COMPLETION POINTER REGISTER *" id="TX6_CP" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="Tx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. " end="0" id="TX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX7_CP" description="CPDMA_STATERAM TX CHANNEL 7 COMPLETION POINTER REGISTER *" id="TX7_CP" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="Tx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. " end="0" id="TX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX0_CP" description="CPDMA_STATERAM RX CHANNEL 0 COMPLETION POINTER REGISTER *" id="RX0_CP" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="Rx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. Note: The value read is the completion pointer (interrupt acknowledge) value that was written by the CPDMA DMA controller (port). The value written to this register by the host is compared with the value that the port wrote to determine if the interrupt should remain asserted. The value written is not actually stored in the location. The interrupt is deasserted if the two values are equal. " end="0" id="RX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX1_CP" description="CPDMA_STATERAM RX CHANNEL 1 COMPLETION POINTER REGISTER *" id="RX1_CP" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="Rx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. Note: The value read is the completion pointer (interrupt acknowledge) value that was written by the CPDMA DMA controller (port). The value written to this register by the host is compared with the value that the port wrote to determine if the interrupt should remain asserted. The value written is not actually stored in the location. The interrupt is deasserted if the two values are equal. " end="0" id="RX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX2_CP" description="CPDMA_STATERAM RX CHANNEL 2 COMPLETION POINTER REGISTER *" id="RX2_CP" offset="0x68" width="32">
+    
+  <bitfield begin="31" description="Rx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. Note: The value read is the completion pointer (interrupt acknowledge) value that was written by the CPDMA DMA controller (port). The value written to this register by the host is compared with the value that the port wrote to determine if the interrupt should remain asserted. The value written is not actually stored in the location. The interrupt is deasserted if the two values are equal. " end="0" id="RX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX3_CP" description="CPDMA_STATERAM RX CHANNEL 3 COMPLETION POINTER REGISTER *" id="RX3_CP" offset="0x6C" width="32">
+    
+  <bitfield begin="31" description="Rx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. Note: The value read is the completion pointer (interrupt acknowledge) value that was written by the CPDMA DMA controller (port). The value written to this register by the host is compared with the value that the port wrote to determine if the interrupt should remain asserted. The value written is not actually stored in the location. The interrupt is deasserted if the two values are equal. " end="0" id="RX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX4_CP" description="CPDMA_STATERAM RX CHANNEL 4 COMPLETION POINTER REGISTER *" id="RX4_CP" offset="0x70" width="32">
+    
+  <bitfield begin="31" description="Rx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. Note: The value read is the completion pointer (interrupt acknowledge) value that was written by the CPDMA DMA controller (port). The value written to this register by the host is compared with the value that the port wrote to determine if the interrupt should remain asserted. The value written is not actually stored in the location. The interrupt is deasserted if the two values are equal. " end="0" id="RX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX5_CP" description="CPDMA_STATERAM RX CHANNEL 5 COMPLETION POINTER REGISTER *" id="RX5_CP" offset="0x74" width="32">
+    
+  <bitfield begin="31" description="Rx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. Note: The value read is the completion pointer (interrupt acknowledge) value that was written by the CPDMA DMA controller (port). The value written to this register by the host is compared with the value that the port wrote to determine if the interrupt should remain asserted. The value written is not actually stored in the location. The interrupt is deasserted if the two values are equal. " end="0" id="RX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX6_CP" description="CPDMA_STATERAM RX CHANNEL 6 COMPLETION POINTER REGISTER *" id="RX6_CP" offset="0x78" width="32">
+    
+  <bitfield begin="31" description="Rx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. Note: The value read is the completion pointer (interrupt acknowledge) value that was written by the CPDMA DMA controller (port). The value written to this register by the host is compared with the value that the port wrote to determine if the interrupt should remain asserted. The value written is not actually stored in the location. The interrupt is deasserted if the two values are equal. " end="0" id="RX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX7_CP" description="CPDMA_STATERAM RX CHANNEL 7 COMPLETION POINTER REGISTER *" id="RX7_CP" offset="0x7C" width="32">
+    
+  <bitfield begin="31" description="Rx Completion Pointer Register - This register is written by the host with the buffer descriptor address for the last buffer processed by the host during interrupt processing. The port uses the value written to determine if the interrupt should be deasserted. Note: The value read is the completion pointer (interrupt acknowledge) value that was written by the CPDMA DMA controller (port). The value written to this register by the host is compared with the value that the port wrote to determine if the interrupt should remain asserted. The value written is not actually stored in the location. The interrupt is deasserted if the two values are equal. " end="0" id="RX_CP" rwaccess="RW" width="32"></bitfield>
+  </register>
+</module>

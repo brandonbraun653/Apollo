@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="GPEVM_AM65x_SiRevA" XML_version="1" desc="GPEVM_AM65x_SiRevA" description="AM65x/DRA80xM General Purpose Evaluation Module with silicon revision 1.x">
+    <instance XML_version="1.2" desc="AM6548_RevA_0" href="devices/AM6548_RevA.xml" id="AM6548_RevA_0" xml="AM6548_RevA.xml" xmlpath="devices"/>
+    <device HW_revision="1.0" XML_version="1.2" description="AM6548 - Cortex A53 Sitara(tm) Embedded Processor&#xA;Silicon Revision 1.x" id="AM6548_RevA_0" partnum="AM6548_RevA" simulation="no">
+        <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_0" isa="CS_DAP">
+            <subpath id="ComputeCluster_A53_0_0">
+                <cpu HW_revision="1.0" XML_version="1.2" description="CortexA53_0_0" deviceSim="false" id="CortexA53_0" isa="CortexA53">
+                    <property Type="filepathfield" Value="../../emulation/boards/am65x/gel/M4_DDR39SS/M4_R5orA53_Startup.gel" id="GEL File"/>
+                </cpu>
+            </subpath>
+            <subpath id="MCU_PULSAR_0">
+                <cpu HW_revision="1.0" XML_version="1.2" description="Cortex_R5 CPU" deviceSim="false" id="Cortex_R5_0" isa="Cortex_R5">
+                    <property Type="filepathfield" Value="../../emulation/boards/am65x/gel/M4_DDR39SS/M4_R5orA53_Startup.gel" id="GEL File"/>
+                </cpu>
+                </subpath>
+            <subpath id="DMSC">
+                <cpu HW_revision="1.0" XML_version="1.2" description="Cortex_M3 CPU" deviceSim="false" id="Cortex_M3_0" isa="Cortex_M3">
+                    <property Type="filepathfield" Value="../../emulation/boards/am65x/gel/AM65xEVM.gel" id="GEL File"/>
+                </cpu>
+            </subpath>
+        </router>
+    </device>
+</board>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRM_CEFUSE" id="PRM_CEFUSE">
+  
+  
+  <register acronym="PM_CEFUSE_PWRSTCTRL" description="This register controls the CEFUSE power state to reach upon a domain sleep transition" id="PM_CEFUSE_PWRSTCTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Power state change request when domain has already performed a sleep transition. Allows going into deeper low power state without waking up the power domain." end="4" id="LowPowerStateChange" rwaccess="RW" width="1">
+    <bitenum description="Do not request a low power state change." id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="Request a low power state change. This bit is automatically cleared when the power state is effectively changed or when power state is ON." id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="2" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Power state control" end="0" id="PowerState" rwaccess="RW" width="2">
+    <bitenum description="OFF state" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="1"></bitenum>
+    <bitenum description="INACTIVE state" id="INACT" token="INACT" value="2"></bitenum>
+    <bitenum description="ON State" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PM_CEFUSE_PWRSTST" description="This register provides a status on the current CEFUSE power domain state. [warm reset insensitive]" id="PM_CEFUSE_PWRSTST" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="26" id="Reserved1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="25" description="Last low power state entered. Set to 0x3 upon write of the same only. This register is intended for debug purpose only." end="24" id="LastPowerStateEntered" rwaccess="RW" width="2">
+    <bitenum description="Power domain was previously OFF" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Power domain was previously ON-ACTIVE" id="ON" token="ON" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="21" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Domain transition status" end="20" id="InTransition" rwaccess="R" width="1">
+    <bitenum description="No on-going transition on power domain" id="No" token="No" value="0"></bitenum>
+    <bitenum description="Power domain transition is in progress." id="Ongoing" token="Ongoing" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="19" description="Reserved" end="3" id="Reserved" rwaccess="R" width="17"></bitfield>
+    
+  <bitfield begin="2" description="Logic state status" end="2" id="LogicStateSt" rwaccess="R" width="1">
+    <bitenum description="Logic in domain is OFF" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Logic in domain is ON" id="ON" token="ON" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Current power state status" end="0" id="PowerStateSt" rwaccess="R" width="2">
+    <bitenum description="Power domain is OFF" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Power domain is in RETENTION" id="RET" token="RET" value="1"></bitenum>
+    <bitenum description="Power domain is ON-INACTIVE" id="INACTIVE" token="INACTIVE" value="2"></bitenum>
+    <bitenum description="Power domain is ON-ACTIVE" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+  </register>
+</module>

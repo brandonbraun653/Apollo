@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="ECAP" id="ECAP">
+  
+  
+  <register acronym="TSCTR" description="" id="TSCTR" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Active 32 bit counter register that is used as the capture time-base" end="0" id="TSCTR" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CTRPHS" description="" id="CTRPHS" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Counter phase value register that can be programmed for phase lag/lead. This register shadows TSCTR and is loaded into TSCTR upon either a SYNCI event or S/W force via a control bit. Used to achieve phase control synchronization with respect to other eCAP and EPWM time-bases." end="0" id="CTRPHS" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CAP1" description="" id="CAP1" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="This register can be loaded (written) by the following. (a) Time-Stamp (that is, counter value) during a capture event. (b) Software may be useful for test purposes. (c) APRD active register when used in APWM mode." end="0" id="CAP1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CAP2" description="" id="CAP2" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="This register can be loaded (written) by the following. (a) Time-Stamp (that is, counter value) during a capture event. (b) Software may be useful for test purposes. (c) APRD active register when used in APWM mode." end="0" id="CAP2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CAP3" description="" id="CAP3" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="In CMP mode, this is a time-stamp capture register. In APWM mode, this is the period shadow (APRD) register. You update the PWM period value through this register. In this mode, CAP3 shadows CAP1." end="0" id="CAP3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CAP4" description="" id="CAP4" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="In CMP mode, this is a time-stamp capture register. In APWM mode, this is the compare shadow (ACMP) register. You update the PWM compare value through this register. In this mode, CAP4 shadows CAP2." end="0" id="CAP4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ECCTL1" description="" id="ECCTL1" offset="0x28" width="16">
+    
+  <bitfield begin="15" description="Emulation Control" end="14" id="FREE_SOFT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Event Filter prescale select ..." end="9" id="PRESCALE" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="8" description="Enable Loading of CAP1 to CAP4 registers on a capture event" end="8" id="CAPLDEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Counter Reset on Capture Event 4" end="7" id="CTRRST4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Capture Event 4 Polarity select" end="6" id="CAP4POL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Counter Reset on Capture Event 3" end="5" id="CTRRST3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Capture Event 3 Polarity select" end="4" id="CAP3POL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Counter Reset on Capture Event 2" end="3" id="CTRRST2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Capture Event 2 Polarity select" end="2" id="CAP2POL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Counter Reset on Capture Event 1" end="1" id="CTRRST1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Capture Event 1 Polarity select" end="0" id="CAP1POL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ECCTL2" description="" id="ECCTL2" offset="0x2A" width="16">
+    
+  <bitfield begin="15" description="" end="11" id="Reserved1" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="APWM output polarity select. This is applicable only in APWM operating mode" end="10" id="APWMPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="CAP/APWM operating mode select" end="9" id="CAP_APWM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Software-forced Counter (TSCTR) Synchronizing. This provides a convenient software method to synchronize some or all ECAP time bases. In APWM mode, the synchronizing can also be done via the CTR = PRD event. Note: Selection CTR = PRD is meaningful only in APWM mode. However, you can choose it in CAP mode if you find doing so useful." end="8" id="SWSYNC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Sync-Out Select" end="6" id="SYNCO_SEL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Counter (TSCTR) Sync-In select mode" end="5" id="SYNCI_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Time Stamp (TSCTR) Counter Stop (freeze) Control" end="4" id="TSCTRSTOP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="One-Shot Re-Arming Control, that is, wait for stop trigger. Note: The re-arm function is valid in one shot or continuous mode." end="3" id="RE_ARM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Stop value for one-shot mode. This is the number (between 1 and 4) of captures allowed to occur before the CAP (1 through 4) registers are frozen, that is, capture sequence is stopped. Wrap value for continuous mode. This is the number (between 1 and 4) of the capture register in which the circular buffer wraps around and starts again. Notes: STOP_WRAP is compared to Mod4 counter and, when equal, the following two actions occur. (1) Mod4 counter is stopped (frozen). (2) Capture register loads are inhibited. In one-shot mode, further interrupt events are blocked until re-armed." end="1" id="STOP_WRAP" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="0" description="Continuous or one-shot mode control (applicable only in capture mode)" end="0" id="CONT_ONESHT" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ECEINT" description="The interrupt enable bits (CEVTn) block any of the selected events from generating an interrupt. Events will still be latched into the flag bit (ECFLG register) and can be forced or cleared via the ECFRC and ECCLR registers. The proper procedure for configuring peripheral modes and interrupts is: 1. Disable global interrupts. 2. Stop eCAP counter. 3. Disable eCAP interrupts. 4. Configure peripheral registers. 5. Clear spurious eCAP interrupt flags. 6. Enable eCAP interrupts. 7. Start eCAP counter. 8. Enable global interrupts." id="ECEINT" offset="0x2C" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Counter Equal Compare Interrupt Enable." end="7" id="CTR_CMP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Counter Equal Period Interrupt Enable." end="6" id="CTR_PRD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Counter Overflow Interrupt Enable." end="5" id="CTROVF" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Capture Event 4 Interrupt Enable." end="4" id="CEVT4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Capture Event 3 Interrupt Enable." end="3" id="CEVT3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Capture Event 2 Interrupt Enable." end="2" id="CEVT2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Capture Event 1 Interrupt Enable ." end="1" id="CEVT1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="Reserved2" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ECFLG" description="" id="ECFLG" offset="0x2E" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Compare Equal Compare Status Flag. This flag is only active in APWM mode." end="7" id="CTR_CMP" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Counter Equal Period Status Flag. This flag is only active in APWM mode." end="6" id="CTR_PRD" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Counter Overflow Status Flag. This flag is active in CAP and APWM mode." end="5" id="CTROVF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Capture Event 4 Status Flag This flag is only active in CAP mode." end="4" id="CEVT4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Capture Event 3 Status Flag. This flag is active only in CAP mode." end="3" id="CEVT3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Capture Event 2 Status Flag. This flag is only active in CAP mode." end="2" id="CEVT2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Capture Event 1 Status Flag. This flag is only active in CAP mode." end="1" id="CEVT1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Global Interrupt Status Flag" end="0" id="INT" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ECCLR" description="" id="ECCLR" offset="0x30" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Counter Equal Compare Status Flag" end="7" id="CTR_CMP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Counter Equal Period Status Flag" end="6" id="CTR_PRD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Counter Overflow Status Flag" end="5" id="CTROVF" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Capture Event 4 Status Flag" end="4" id="CEVT4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Capture Event 3 Status Flag" end="3" id="CEVT3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Capture Event 2 Status Flag" end="2" id="CEVT2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Capture Event 1 Status Flag" end="1" id="CEVT1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Global Interrupt Clear Flag" end="0" id="INT" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ECFRC" description="" id="ECFRC" offset="0x32" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Force Counter Equal Compare Interrupt" end="7" id="CTR_CMP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Force Counter Equal Period Interrupt" end="6" id="CTR_PRD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Force Counter Overflow" end="5" id="CTROVF" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Force Capture Event 4" end="4" id="CEVT4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Force Capture Event 3" end="3" id="CEVT3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Force Capture Event 2" end="2" id="CEVT2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Always reads back a 0. Force Capture Event 1" end="1" id="CEVT1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="Reserved2" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="REVID" description="" id="REVID" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="Revision ID." end="0" id="REV" rwaccess="R" width="32"></bitfield>
+  </register>
+</module>

@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="cpsw_port" id="cpsw_port">
+  
+  
+  <register acronym="P0_CONTROL" description="CPSW PORT 0 CONTROL REGISTER" id="P0_CONTROL" offset="0x0" width="32">
+    
+  <bitfield begin="30" description="Port 0 DLR CPDMA Channel   This field indicates the CPDMA channel that DLR packets will be   received on. " end="28" id="P0_DLR_CPDMA_CH" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="24" description="Port 0 Pass Priority Tagged   0 - Priority tagged packets have the zero VID replaced with the         input port P0_PORT_VLAN[11:0]   1 - Priority tagged packets are processed unchanged. " end="24" id="P0_PASS_PRI_TAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Port 0 VLAN LTYPE 2 enable 0 - disabled   1 - enabled " end="21" id="P0_VLAN_LTYPE2_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Port 0 VLAN LTYPE 1 enable 0 - disabled   1 - enabled " end="20" id="P0_VLAN_LTYPE1_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Port 0 DSCP Priority Enable   0 - DSCP priority disabled   1 - DSCP priority enabled.  All non-tagged IPV4 packets have         their received packet priority determined by mapping the          6 TOS bits through the port DSCP priority mapping registers. " end="16" id="P0_DSCP_PRI_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_MAX_BLKS" description="CPSW PORT 0 MAXIMUM FIFO BLOCKS REGISTER" id="P0_MAX_BLKS" offset="0x8" width="32">
+    
+  <bitfield begin="8" description="Transmit FIFO Maximum Blocks - This value is the maximum number of 1k  memory blocks that may be allocated to the FIFO's logical transmit priority  queues.  0x10 is the recommended value of p0_tx_max_blks.  Port 0  should remain in flow control mode. 0xe is the minimum value tx max blks. " end="4" id="P0_TX_MAX_BLKS" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="3" description="Receive FIFO Maximum Blocks - This value is the maximum number of 1k  memory blocks that may be allocated to the FIFO's logical receive queue. 0x4 is the recommended value.  0x3 is the minimum value rx max blks and  0x6 is the maximum value. " end="0" id="P0_RX_MAX_BLKS" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_BLK_CNT" description="CPSW PORT 0 FIFO BLOCK USAGE COUNT (READ ONLY)" id="P0_BLK_CNT" offset="0xC" width="32">
+    
+  <bitfield begin="8" description="Port 0 Transmit Block Count Usage - This value is the number of blocks  allocated to the FIFO logical transmit queues. " end="4" id="P0_TX_BLK_CNT" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="3" description="Port 0 Receive Block Count Usage - This value is the number of blocks  allocated to the FIFO logical receive queues. " end="0" id="P0_RX_BLK_CNT" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_TX_IN_CTL" description="CPSW PORT 0 TRANSMIT FIFO CONTROL" id="P0_TX_IN_CTL" offset="0x10" width="32">
+    
+  <bitfield begin="23" description="Transmit FIFO Input Rate Enable" end="20" id="TX_RATE_EN" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="17" description="Transmit FIFO Input Queue Type Select   00 - Normal priority mode   01 - Dual MAC mode   10 - Rate Limit mode   11 - reserved Note that Dual MAC mode is not compatible with escalation or shaping  because dual mac mode forces round robin priority on FIFO egress. " end="16" id="TX_IN_SEL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="Transmit FIFO Input Blocks to subtract in dual mac mode" end="12" id="TX_BLKS_REM" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="9" description="Transmit FIFO Words in queue" end="0" id="TX_PRI_WDS" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_PORT_VLAN" description="CPSW PORT 0 VLAN REGISTER" id="P0_PORT_VLAN" offset="0x14" width="32">
+    
+  <bitfield begin="15" description="Port VLAN Priority (7 is highest priority)" end="13" id="PORT_PRI" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Port CFI bit" end="12" id="PORT_CFI" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Port VLAN ID" end="0" id="PORT_VID" rwaccess="RW" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_TX_PRI_MAP" description="CPSW PORT 0 TX HEADER PRI TO SWITCH PRI MAPPING REGISTER" id="P0_TX_PRI_MAP" offset="0x18" width="32">
+    
+  <bitfield begin="29" description="Priority 7 - A packet header priority of 0x7 is given this switch queue pri." end="28" id="PRI7" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="25" description="Priority 6 - A packet header priority of 0x6 is given this switch queue pri." end="24" id="PRI6" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="21" description="Priority 5 - A packet header priority of 0x5 is given this switch queue pri." end="20" id="PRI5" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Priority 4 - A packet header priority of 0x4 is given this switch queue pri." end="16" id="PRI4" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority 3 - A packet header priority of 0x3 is given this switch queue pri." end="12" id="PRI3" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Priority 2 - A packet header priority of 0x2 is given this switch queue pri." end="8" id="PRI2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Priority 1 - A packet header priority of 0x1 is given this switch queue pri." end="4" id="PRI1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Priority 0 - A packet header priority of 0x0 is given this switch queue pri." end="0" id="PRI0" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_CPDMA_TX_PRI_MAP" description="CPSW CPDMA TX (PORT 0 RX) PKT PRIORITY TO HEADER PRIORITY" id="P0_CPDMA_TX_PRI_MAP" offset="0x1C" width="32">
+    
+  <bitfield begin="30" description="Priority 7 - A packet pri of 0x7 is mapped (changed) to this header packet pri." end="28" id="PRI7" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 6 - A packet pri of 0x6 is mapped (changed) to this header packet pri." end="24" id="PRI6" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 5 - A packet pri of 0x5 is mapped (changed) to this header packet pri." end="20" id="PRI5" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 4 - A packet pri of 0x4 is mapped (changed) to this header packet pri." end="16" id="PRI4" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 3 - A packet pri of 0x3 is mapped (changed) to this header packet pri." end="12" id="PRI3" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 2 - A packet pri of 0x2 is mapped (changed) to this header packet pri." end="8" id="PRI2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 1 - A packet pri of 0x1 is mapped (changed) to this header packet pri." end="4" id="PRI1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 0 - A packet pri of 0x0 is mapped (changed) to this header packet pri." end="0" id="PRI0" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_CPDMA_RX_CH_MAP" description="CPSW CPDMA RX (PORT 0 TX) SWITCH PRIORITY TO DMA CHANNEL" id="P0_CPDMA_RX_CH_MAP" offset="0x20" width="32">
+    
+  <bitfield begin="30" description="Port 2 Priority 3 packets go to this CPDMA Rx Channel" end="28" id="P2_PRI3" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Port 2 Priority 2 packets go to this CPDMA Rx Channel" end="24" id="P2_PRI2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Port 2 Priority 1 packets go to this CPDMA Rx Channel" end="20" id="P2_PRI1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Port 2 Priority 0 packets go to this CPDMA Rx Channel" end="16" id="P2_PRI0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Port 1 Priority 3 packets go to this CPDMA Rx Channel" end="12" id="P1_PRI3" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Port 1 Priority 2 packets go to this CPDMA Rx Channel" end="8" id="P1_PRI2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Port 1 Priority 1 packets go to this CPDMA Rx Channel" end="4" id="P1_PRI1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Port 1 Priority 0 packets go to this CPDMA Rx Channel" end="0" id="P1_PRI0" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_RX_DSCP_PRI_MAP0" description="CPSW PORT 0 RX DSCP PRIORITY TO RX PACKET MAPPING REG 0" id="P0_RX_DSCP_PRI_MAP0" offset="0x30" width="32">
+    
+  <bitfield begin="30" description="Priority 7 - A packet TOS of 0d7 is mapped to this received packet priority." end="28" id="PRI7" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 6 - A packet TOS of 0d6 is mapped to this received packet priority." end="24" id="PRI6" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 5 - A packet TOS of 0d5 is mapped to this received packet priority." end="20" id="PRI5" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 4 - A packet TOS of 0d4 is mapped to this received packet priority." end="16" id="PRI4" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 3 - A packet TOS of 0d3 is mapped to this received packet priority." end="12" id="PRI3" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 2 - A packet TOS of 0d2 is mapped to this received packet priority." end="8" id="PRI2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 1 - A packet TOS of 0d1 is mapped to this received packet priority." end="4" id="PRI1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 0 - A packet TOS of 0d0 is mapped to this received packet priority." end="0" id="PRI0" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_RX_DSCP_PRI_MAP1" description="CPSW PORT 0 RX DSCP PRIORITY TO RX PACKET MAPPING REG 1" id="P0_RX_DSCP_PRI_MAP1" offset="0x34" width="32">
+    
+  <bitfield begin="30" description="Priority 15 - A packet TOS of 0d15 is mapped to this received packet priority." end="28" id="PRI15" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 14 - A packet TOS of 0d14 is mapped to this received packet priority." end="24" id="PRI14" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 13 - A packet TOS of 0d13 is mapped to this received packet priority." end="20" id="PRI13" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 12 - A packet TOS of 0d12 is mapped to this received packet priority." end="16" id="PRI12" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 11 - A packet TOS of 0d11 is mapped to this received packet priority." end="12" id="PRI11" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 10 - A packet TOS of 0d10 is mapped to this received packet priority." end="8" id="PRI10" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 9  - A packet TOS of 0d9 is mapped to this received packet priority." end="4" id="PRI9" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 8  - A packet TOS of 0d8 is mapped to this received packet priority." end="0" id="PRI8" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_RX_DSCP_PRI_MAP2" description="CPSW PORT 0 RX DSCP PRIORITY TO RX PACKET MAPPING REG 2" id="P0_RX_DSCP_PRI_MAP2" offset="0x38" width="32">
+    
+  <bitfield begin="30" description="Priority 23 - A packet TOS of 0d23 is mapped to this received packet priority." end="28" id="PRI23" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 22 - A packet TOS of 0d22 is mapped to this received packet priority." end="24" id="PRI22" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 21 - A packet TOS of 0d21 is mapped to this received packet priority." end="20" id="PRI21" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 20 - A packet TOS of 0d20 is mapped to this received packet priority." end="16" id="PRI20" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 19 - A packet TOS of 0d19 is mapped to this received packet priority." end="12" id="PRI19" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 18 - A packet TOS of 0d18 is mapped to this received packet priority." end="8" id="PRI18" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 17 - A packet TOS of 0d17 is mapped to this received packet priority." end="4" id="PRI17" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 16 - A packet TOS of 0d16 is mapped to this received packet priority." end="0" id="PRI16" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_RX_DSCP_PRI_MAP3" description="CPSW PORT 0 RX DSCP PRIORITY TO RX PACKET MAPPING REG 3" id="P0_RX_DSCP_PRI_MAP3" offset="0x3C" width="32">
+    
+  <bitfield begin="30" description="Priority 31 - A packet TOS of 0d31 is mapped to this received packet priority." end="28" id="PRI31" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 30 - A packet TOS of 0d30 is mapped to this received packet priority." end="24" id="PRI30" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 29 - A packet TOS of 0d39 is mapped to this received packet priority." end="20" id="PRI29" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 28 - A packet TOS of 0d28 is mapped to this received packet priority." end="16" id="PRI28" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 27 - A packet TOS of 0d27 is mapped to this received packet priority." end="12" id="PRI27" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 26 - A packet TOS of 0d26 is mapped to this received packet priority." end="8" id="PRI26" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 25 - A packet TOS of 0d25 is mapped to this received packet priority." end="4" id="PRI25" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 24 - A packet TOS of 0d24 is mapped to this received packet priority." end="0" id="PRI24" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_RX_DSCP_PRI_MAP4" description="CPSW PORT 0 RX DSCP PRIORITY TO RX PACKET MAPPING REG 4" id="P0_RX_DSCP_PRI_MAP4" offset="0x40" width="32">
+    
+  <bitfield begin="30" description="Priority 39 - A packet TOS of 0d39 is mapped to this received packet priority." end="28" id="PRI39" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 38 - A packet TOS of 0d38 is mapped to this received packet priority." end="24" id="PRI38" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 37 - A packet TOS of 0d37 is mapped to this received packet priority." end="20" id="PRI37" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 36 - A packet TOS of 0d36 is mapped to this received packet priority." end="16" id="PRI36" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 35 - A packet TOS of 0d35 is mapped to this received packet priority." end="12" id="PRI35" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 34 - A packet TOS of 0d34 is mapped to this received packet priority." end="8" id="PRI34" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 33 - A packet TOS of 0d33 is mapped to this received packet priority." end="4" id="PRI33" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 32 - A packet TOS of 0d32 is mapped to this received packet priority." end="0" id="PRI32" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_RX_DSCP_PRI_MAP5" description="CPSW PORT 0 RX DSCP PRIORITY TO RX PACKET MAPPING REG 5" id="P0_RX_DSCP_PRI_MAP5" offset="0x44" width="32">
+    
+  <bitfield begin="30" description="Priority 47 - A packet TOS of 0d47 is mapped to this received packet priority." end="28" id="PRI47" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 46 - A packet TOS of 0d46 is mapped to this received packet priority." end="24" id="PRI46" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 45 - A packet TOS of 0d45 is mapped to this received packet priority." end="20" id="PRI45" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 44 - A packet TOS of 0d44 is mapped to this received packet priority." end="16" id="PRI44" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 43 - A packet TOS of 0d43 is mapped to this received packet priority." end="12" id="PRI43" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 42 - A packet TOS of 0d42 is mapped to this received packet priority." end="8" id="PRI42" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 41 - A packet TOS of 0d41 is mapped to this received packet priority." end="4" id="PRI41" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 40 - A packet TOS of 0d40 is mapped to this received packet priority." end="0" id="PRI40" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_RX_DSCP_PRI_MAP6" description="CPSW PORT 0 RX DSCP PRIORITY TO RX PACKET MAPPING REG 6" id="P0_RX_DSCP_PRI_MAP6" offset="0x48" width="32">
+    
+  <bitfield begin="30" description="Priority 55 - A packet TOS of 0d55 is mapped to this received packet priority." end="28" id="PRI55" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 54 - A packet TOS of 0d54 is mapped to this received packet priority." end="24" id="PRI54" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 53 - A packet TOS of 0d53 is mapped to this received packet priority." end="20" id="PRI53" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 52 - A packet TOS of 0d52 is mapped to this received packet priority." end="16" id="PRI52" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 51 - A packet TOS of 0d51 is mapped to this received packet priority." end="12" id="PRI51" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 50 - A packet TOS of 0d50 is mapped to this received packet priority." end="8" id="PRI50" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 49 - A packet TOS of 0d49 is mapped to this received packet priority." end="4" id="PRI49" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 48 - A packet TOS of 0d48 is mapped to this received packet priority." end="0" id="PRI48" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P0_RX_DSCP_PRI_MAP7" description="CPSW PORT 0 RX DSCP PRIORITY TO RX PACKET MAPPING REG 7" id="P0_RX_DSCP_PRI_MAP7" offset="0x4C" width="32">
+    
+  <bitfield begin="30" description="Priority 63 - A packet TOS of 0d63 is mapped to this received packet priority." end="28" id="PRI63" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 62 - A packet TOS of 0d62 is mapped to this received packet priority." end="24" id="PRI62" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 61 - A packet TOS of 0d61 is mapped to this received packet priority." end="20" id="PRI61" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 60 - A packet TOS of 0d60 is mapped to this received packet priority." end="16" id="PRI60" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 59 - A packet TOS of 0d59 is mapped to this received packet priority." end="12" id="PRI59" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 58 - A packet TOS of 0d58 is mapped to this received packet priority." end="8" id="PRI58" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 57 - A packet TOS of 0d57 is mapped to this received packet priority." end="4" id="PRI57" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 56 - A packet TOS of 0d56 is mapped to this received packet priority." end="0" id="PRI56" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_CONTROL" description="CPSW PORT 1 CONTROL REGISTER" id="P1_CONTROL" offset="0x100" width="32">
+    
+  <bitfield begin="24" description="Port 1 Pass Priority Tagged   0 - Priority tagged packets have the zero VID replaced with the         input port P1_PORT_VLAN[11:0]   1 - Priority tagged packets are processed unchanged. " end="24" id="P1_PASS_PRI_TAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Port 1 VLAN LTYPE 2 enable 0 - disabled   1 - VLAN LTYPE2 enabled on transmit and receive " end="21" id="P1_VLAN_LTYPE2_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Port 1 VLAN LTYPE 1 enable 0 - disabled   1 - VLAN LTYPE1 enabled on transmit and receive " end="20" id="P1_VLAN_LTYPE1_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Port 1 DSCP Priority Enable   0 - DSCP priority disabled   1 - DSCP priority enabled.  All non-tagged IPV4 packets have         their received packet priority determined by mapping the          6 TOS bits through the port DSCP priority mapping registers. " end="16" id="P1_DSCP_PRI_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Port 1 Time Sync Destination Port Number 320 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination port             number 320 (decimal) is enabled. " end="14" id="P1_TS_320" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Port 1 Time Sync Destination Port Number 319 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination port             number 319 (decimal) is enabled. " end="13" id="P1_TS_319" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Port 1 Time Sync Destination IP Address 132 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination IP address            number 132 (decimal) is enabled. " end="12" id="P1_TS_132" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Port 1 Time Sync Destination IP Address 131 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination IP address            number 131 (decimal) is enabled. " end="11" id="P1_TS_131" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Port 1 Time Sync Destination IP Address 130 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination IP address            number 130 (decimal) is enabled. " end="10" id="P1_TS_130" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Port 1 Time Sync Destination IP Address 129 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination IP address            number 129 (decimal) is enabled. " end="9" id="P1_TS_129" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Port 1 Time Sync Time To Live Non-zero enable. 0 = TTL must be zero. 1 = TTL may be any value." end="8" id="P1_TS_TTL_NONZERO" rwaccess="RW" width="1">
+    <bitenum description="" id="name" token="name" value=""></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="Port 1 Time Sync Annex D enable   0 - Annex D disabled   1 - Annex D enabled " end="4" id="P1_TS_ANNEX_D_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Port 1 Time Sync LTYPE 2 enable 0 - disabled   1 - enabled " end="3" id="P1_TS_LTYPE2_EN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Port 1 Time Sync LTYPE 1 enable 0 - disabled   1 - enabled " end="2" id="P1_TS_LTYPE1_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port 1 Time Sync Transmit Enable 0 - disabled   1 - enabled " end="1" id="P1_TS_TX_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Port 1 Time Sync Receive Enable   0 - Port 1 Receive Time Sync disabled   1 - Port 1 Receive Time Sync enabled " end="0" id="P1_TS_RX_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_MAX_BLKS" description="CPSW PORT 1 MAXIMUM FIFO BLOCKS REGISTER" id="P1_MAX_BLKS" offset="0x108" width="32">
+    
+  <bitfield begin="8" description="Transmit FIFO Maximum Blocks - This value is the maximum number of 1k  memory blocks that may be allocated to the FIFO's logical transmit priority  queues.  0x11 is the recommended value of p1_tx_max_blks unless the  port is in fullduplex  flow control mode.  In flow control mode, the  p1_rx_max_blks will need to increase in order to accept the required run  out in fullduplex mode.  This value will need to decrease by the amount of  increase in p1_rx_max_blks.  0xe is the minimum value tx max blks. " end="4" id="P1_TX_MAX_BLKS" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="3" description="Receive FIFO Maximum Blocks - This value is the maximum number of 1k  memory blocks that may be allocated to the FIFO's logical receive queue. This value must be greater than or equal to 0x3.  It should be increased In   fullduplex flow control mode to 0x5 or 0x6 depending on the required  runout space.  The p1_tx_max_blks value must be decreased by the  amount of increase in p1_rx_max_blks.  0x3 is the minimum value rx max  blks and 0x6 is the maximum value. " end="0" id="P1_RX_MAX_BLKS" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_BLK_CNT" description="CPSW PORT 1 FIFO BLOCK USAGE COUNT (READ ONLY)" id="P1_BLK_CNT" offset="0x10C" width="32">
+    
+  <bitfield begin="8" description="Port 1 Transmit Block Count Usage - This value is the number of blocks  allocated to the FIFO logical transmit queues. " end="4" id="P1_TX_BLK_CNT" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="3" description="Port 1 Receive Block Count Usage - This value is the number of blocks  allocated to the FIFO logical receive queues. " end="0" id="P1_RX_BLK_CNT" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_TX_IN_CTL" description="CPSW PORT 1 TRANSMIT FIFO CONTROL" id="P1_TX_IN_CTL" offset="0x110" width="32">
+    
+  <bitfield begin="27" description="Transmit FIFO Blocks that must be free before a non rate-limited CPDMA  channel can begin sending a packet to the FIFO. " end="24" id="HOST_BLKS_REM" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="Transmit FIFO Input Rate Enable" end="20" id="TX_RATE_EN" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="17" description="Transmit FIFO Input Queue Type Select   00 - Normal priority mode   01 - reserved   10 - Rate Limit mode   11 - reserved " end="16" id="TX_IN_SEL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="Transmit FIFO Input Blocks to subtract in dual mac mode and blocks to  subtract on non rate-limited traffic in rate-limit mode. " end="12" id="TX_BLKS_REM" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="9" description="Transmit FIFO Words in queue" end="0" id="TX_PRI_WDS" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_PORT_VLAN" description="CPSW PORT 1 VLAN REGISTER" id="P1_PORT_VLAN" offset="0x114" width="32">
+    
+  <bitfield begin="15" description="Port VLAN Priority (7 is highest priority)" end="13" id="PORT_PRI" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Port CFI bit" end="12" id="PORT_CFI" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Port VLAN ID" end="0" id="PORT_VID" rwaccess="RW" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_TX_PRI_MAP" description="CPSW PORT 1 TX HEADER PRIORITY TO SWITCH PRI MAPPING REGISTER" id="P1_TX_PRI_MAP" offset="0x118" width="32">
+    
+  <bitfield begin="29" description="Priority 7 - A packet header priority of 0x7 is given this switch queue pri." end="28" id="PRI7" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="25" description="Priority 6 - A packet header priority of 0x6 is given this switch queue pri." end="24" id="PRI6" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="21" description="Priority 5 - A packet header priority of 0x5 is given this switch queue pri." end="20" id="PRI5" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Priority 4 - A packet header priority of 0x4 is given this switch queue pri." end="16" id="PRI4" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority 3 - A packet header priority of 0x3 is given this switch queue pri." end="12" id="PRI3" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Priority 2 - A packet header priority of 0x2 is given this switch queue pri." end="8" id="PRI2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Priority 1 - A packet header priority of 0x1 is given this switch queue pri." end="4" id="PRI1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Priority 0 - A packet header priority of 0x0 is given this switch queue pri." end="0" id="PRI0" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_TS_SEQ_MTYPE" description="CPSW PORT 1 TIME SYNC SEQUENCE ID OFFSET AND MSG TYPE." id="P1_TS_SEQ_MTYPE" offset="0x11C" width="32">
+    
+  <bitfield begin="21" description="Port 1 Time Sync Sequence ID Offset   This is the number of octets that the sequence ID is offset in the tx    and rx time sync message header.  The minimum value is 6. " end="16" id="P1_TS_SEQ_ID_OFFSET" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="15" description="Port 1 Time Sync Message Type Enable -   Each bit in this field enables the corresponding message type in    receive and transmit time sync messages (Bit 0 enables message    type 0 etc.). " end="0" id="P1_TS_MSG_TYPE_EN" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_SA_LO" description="CPSW CPGMAC_SL1 SOURCE ADDRESS LOW REGISTER" id="P1_SA_LO" offset="0x120" width="32">
+    
+  <bitfield begin="15" description="Source Address Lower 8 bits (byte 0)" end="8" id="MACSRCADDR_7_0" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Source Address bits 15:8      (byte 1)" end="0" id="MACSRCADDR_15_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_SA_HI" description="CPSW CPGMAC_SL1 SOURCE ADDRESS HIGH REGISTER" id="P1_SA_HI" offset="0x124" width="32">
+    
+  <bitfield begin="31" description="Source Address bits 23:16 (byte 2)" end="24" id="MACSRCADDR_23_16" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Source Address bits 31:24 (byte 3)" end="16" id="MACSRCADDR_31_24" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Source Address bits 39:32 (byte 4)" end="8" id="MACSRCADDR_39_32" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Source Address bits 47:40 (byte 5)" end="0" id="MACSRCADDR_47_40" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_SEND_PERCENT" description="CPSW PORT 1 TRANSMIT QUEUE SEND PERCENTAGES" id="P1_SEND_PERCENT" offset="0x128" width="32">
+    
+  <bitfield begin="22" description="Priority 3 Transmit Percentage - This percentage value is sent from FIFO  priority 3 (maximum) when the p1_pri3_shape_en is set (queue shaping  enabled).  This is the percentage of the wire that packets from priority 3  receive (which includes interpacket gap and preamble bytes).   If shaping is  enabled on this queue then this value must be between zero and 0d100 (not  inclusive). " end="16" id="PRI3_SEND_PERCENT" rwaccess="RW" width="7"></bitfield>
+    
+  <bitfield begin="14" description="Priority 2 Transmit Percentage - This percentage value is sent from FIFO  priority 2 (maximum) when the p1_pri2_shape_en is set (queue shaping  enabled).  This is the percentage of the wire that packets from priority 2  receive (which includes interpacket gap and preamble bytes).   If shaping is  enabled on this queue then this value must be between zero and 0d100 (not  inclusive). " end="8" id="PRI2_SEND_PERCENT" rwaccess="RW" width="7"></bitfield>
+    
+  <bitfield begin="6" description="Priority 1 Transmit Percentage - This percentage value is sent from FIFO  priority 1 (maximum) when the p1_pri1_shape_en is set (queue shaping  enabled).  This is the percentage of the wire that packets from priority 1  receive (which includes interpacket gap and preamble bytes).   If shaping is  enabled on this queue then this value must be between zero and 0d100 (not  inclusive). " end="0" id="PRI1_SEND_PERCENT" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_RX_DSCP_PRI_MAP0" description="CPSW PORT 1 RX DSCP PRIORITY TO RX PACKET MAPPING REG 0" id="P1_RX_DSCP_PRI_MAP0" offset="0x130" width="32">
+    
+  <bitfield begin="30" description="Priority 7 - A packet TOS of 0d7 is mapped to this received packet priority." end="28" id="PRI7" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 6 - A packet TOS of 0d6 is mapped to this received packet priority." end="24" id="PRI6" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 5 - A packet TOS of 0d5 is mapped to this received packet priority." end="20" id="PRI5" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 4 - A packet TOS of 0d4 is mapped to this received packet priority." end="16" id="PRI4" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 3 - A packet TOS of 0d3 is mapped to this received packet priority." end="12" id="PRI3" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 2 - A packet TOS of 0d2 is mapped to this received packet priority." end="8" id="PRI2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 1 - A packet TOS of 0d1 is mapped to this received packet priority." end="4" id="PRI1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 0 - A packet TOS of 0d0 is mapped to this received packet priority." end="0" id="PRI0" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_RX_DSCP_PRI_MAP1" description="CPSW PORT 1 RX DSCP PRIORITY TO RX PACKET MAPPING REG 1" id="P1_RX_DSCP_PRI_MAP1" offset="0x134" width="32">
+    
+  <bitfield begin="30" description="Priority 15 - A packet TOS of 0d15 is mapped to this received packet priority." end="28" id="PRI15" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 14 - A packet TOS of 0d14 is mapped to this received packet priority." end="24" id="PRI14" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 13 - A packet TOS of 0d13 is mapped to this received packet priority." end="20" id="PRI13" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 12 - A packet TOS of 0d12 is mapped to this received packet priority." end="16" id="PRI12" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 11 - A packet TOS of 0d11 is mapped to this received packet priority." end="12" id="PRI11" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 10 - A packet TOS of 0d10 is mapped to this received packet priority." end="8" id="PRI10" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 9  - A packet TOS of 0d9 is mapped to this received packet priority." end="4" id="PRI9" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 8  - A packet TOS of 0d8 is mapped to this received packet priority." end="0" id="PRI8" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_RX_DSCP_PRI_MAP2" description="CPSW PORT 1 RX DSCP PRIORITY TO RX PACKET MAPPING REG 2" id="P1_RX_DSCP_PRI_MAP2" offset="0x138" width="32">
+    
+  <bitfield begin="30" description="Priority 23 - A packet TOS of 0d23 is mapped to this received packet priority." end="28" id="PRI23" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 22 - A packet TOS of 0d22 is mapped to this received packet priority." end="24" id="PRI22" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 21 - A packet TOS of 0d21 is mapped to this received packet priority." end="20" id="PRI21" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 20 - A packet TOS of 0d20 is mapped to this received packet priority." end="16" id="PRI20" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 19 - A packet TOS of 0d19 is mapped to this received packet priority." end="12" id="PRI19" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 18 - A packet TOS of 0d18 is mapped to this received packet priority." end="8" id="PRI18" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 17 - A packet TOS of 0d17 is mapped to this received packet priority." end="4" id="PRI17" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 16 - A packet TOS of 0d16 is mapped to this received packet priority." end="0" id="PRI16" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_RX_DSCP_PRI_MAP3" description="CPSW PORT 1 RX DSCP PRIORITY TO RX PACKET MAPPING REG 3" id="P1_RX_DSCP_PRI_MAP3" offset="0x13C" width="32">
+    
+  <bitfield begin="30" description="Priority 31 - A packet TOS of 0d31 is mapped to this received packet priority." end="28" id="PRI31" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 30 - A packet TOS of 0d30 is mapped to this received packet priority." end="24" id="PRI30" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 29 - A packet TOS of 0d39 is mapped to this received packet priority." end="20" id="PRI29" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 28 - A packet TOS of 0d28 is mapped to this received packet priority." end="16" id="PRI28" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 27 - A packet TOS of 0d27 is mapped to this received packet priority." end="12" id="PRI27" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 26 - A packet TOS of 0d26 is mapped to this received packet priority." end="8" id="PRI26" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 25 - A packet TOS of 0d25 is mapped to this received packet priority." end="4" id="PRI25" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 24 - A packet TOS of 0d24 is mapped to this received packet priority." end="0" id="PRI24" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_RX_DSCP_PRI_MAP4" description="CPSW PORT 1 RX DSCP PRIORITY TO RX PACKET MAPPING REG 4" id="P1_RX_DSCP_PRI_MAP4" offset="0x140" width="32">
+    
+  <bitfield begin="30" description="Priority 39 - A packet TOS of 0d39 is mapped to this received packet priority." end="28" id="PRI39" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 38 - A packet TOS of 0d38 is mapped to this received packet priority." end="24" id="PRI38" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 37 - A packet TOS of 0d37 is mapped to this received packet priority." end="20" id="PRI37" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 36 - A packet TOS of 0d36 is mapped to this received packet priority." end="16" id="PRI36" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 35 - A packet TOS of 0d35 is mapped to this received packet priority." end="12" id="PRI35" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 34 - A packet TOS of 0d34 is mapped to this received packet priority." end="8" id="PRI34" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 33 - A packet TOS of 0d33 is mapped to this received packet priority." end="4" id="PRI33" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 32 - A packet TOS of 0d32 is mapped to this received packet priority." end="0" id="PRI32" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_RX_DSCP_PRI_MAP5" description="CPSW PORT 1 RX DSCP PRIORITY TO RX PACKET MAPPING REG 5" id="P1_RX_DSCP_PRI_MAP5" offset="0x144" width="32">
+    
+  <bitfield begin="30" description="Priority 47 - A packet TOS of 0d47 is mapped to this received packet priority." end="28" id="PRI47" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 46 - A packet TOS of 0d46 is mapped to this received packet priority." end="24" id="PRI46" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 45 - A packet TOS of 0d45 is mapped to this received packet priority." end="20" id="PRI45" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 44 - A packet TOS of 0d44 is mapped to this received packet priority." end="16" id="PRI44" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 43 - A packet TOS of 0d43 is mapped to this received packet priority." end="12" id="PRI43" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 42 - A packet TOS of 0d42 is mapped to this received packet priority." end="8" id="PRI42" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 41 - A packet TOS of 0d41 is mapped to this received packet priority." end="4" id="PRI41" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 40 - A packet TOS of 0d40 is mapped to this received packet priority." end="0" id="PRI40" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_RX_DSCP_PRI_MAP6" description="CPSW PORT 1 RX DSCP PRIORITY TO RX PACKET MAPPING REG 6" id="P1_RX_DSCP_PRI_MAP6" offset="0x148" width="32">
+    
+  <bitfield begin="30" description="Priority 55 - A packet TOS of 0d55 is mapped to this received packet priority." end="28" id="PRI55" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 54 - A packet TOS of 0d54 is mapped to this received packet priority." end="24" id="PRI54" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 53 - A packet TOS of 0d53 is mapped to this received packet priority." end="20" id="PRI53" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 52 - A packet TOS of 0d52 is mapped to this received packet priority." end="16" id="PRI52" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 51 - A packet TOS of 0d51 is mapped to this received packet priority." end="12" id="PRI51" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 50 - A packet TOS of 0d50 is mapped to this received packet priority." end="8" id="PRI50" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 49 - A packet TOS of 0d49 is mapped to this received packet priority." end="4" id="PRI49" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 48 - A packet TOS of 0d48 is mapped to this received packet priority." end="0" id="PRI48" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P1_RX_DSCP_PRI_MAP7" description="CPSW PORT 1 RX DSCP PRIORITY TO RX PACKET MAPPING REG 7" id="P1_RX_DSCP_PRI_MAP7" offset="0x14C" width="32">
+    
+  <bitfield begin="30" description="Priority 63 - A packet TOS of 0d63 is mapped to this received packet priority." end="28" id="PRI63" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 62 - A packet TOS of 0d62 is mapped to this received packet priority." end="24" id="PRI62" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 61 - A packet TOS of 0d61 is mapped to this received packet priority." end="20" id="PRI61" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 60 - A packet TOS of 0d60 is mapped to this received packet priority." end="16" id="PRI60" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 59 - A packet TOS of 0d59 is mapped to this received packet priority." end="12" id="PRI59" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 58 - A packet TOS of 0d58 is mapped to this received packet priority." end="8" id="PRI58" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 57 - A packet TOS of 0d57 is mapped to this received packet priority." end="4" id="PRI57" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 56 - A packet TOS of 0d56 is mapped to this received packet priority." end="0" id="PRI56" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_CONTROL" description="CPSW_3GF PORT 2 CONTROL REGISTER" id="P2_CONTROL" offset="0x200" width="32">
+    
+  <bitfield begin="24" description="Port 2 Pass Priority Tagged   0 - Priority tagged packets have the zero VID replaced with the         input port P2_PORT_VLAN[11:0]   1 - Priority tagged packets are processed unchanged. " end="24" id="P2_PASS_PRI_TAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Port 2 VLAN LTYPE 2 enable 0 - disabled   1 - VLAN LTYPE2 enabled on transmit and receive " end="21" id="P2_VLAN_LTYPE2_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Port 2 VLAN LTYPE 1 enable 0 - disabled   1 - VLAN LTYPE1 enabled on transmit and receive " end="20" id="P2_VLAN_LTYPE1_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Port 0 DSCP Priority Enable   0 - DSCP priority disabled   1 - DSCP priority enabled.  All non-tagged IPV4 packets have         their received packet priority determined by mapping the          6 TOS bits through the port DSCP priority mapping registers. " end="16" id="P2_DSCP_PRI_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Port 2 Time Sync Destination Port Number 320 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination port             number 320 (decimal) is enabled. " end="14" id="P2_TS_320" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Port 2 Time Sync Destination Port Number 319 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination port             number 319 (decimal) is enabled. " end="13" id="P2_TS_319" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Port 2 Time Sync Destination IP Address 132 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination IP address            number 132 (decimal) is enabled. " end="12" id="P2_TS_132" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Port 2 Time Sync Destination IP Address 131 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination IP address            number 131 (decimal) is enabled. " end="11" id="P2_TS_131" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Port 2 Time Sync Destination IP Address 130 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination IP address            number 130 (decimal) is enabled. " end="10" id="P2_TS_130" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Port 2 Time Sync Destination IP Address 129 enable 0 - disabled 1 - Annex D (UDP/IPv4) time sync packet destination IP address            number 129 (decimal) is enabled. " end="9" id="P2_TS_129" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Port 2 Time Sync Time To Live Non-zero enable. 0 = TTL must be zero. 1 = TTL may be any value." end="8" id="P2_TS_TTL_NONZERO" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Port 2 Time Sync Annex D enable   0 - Annex D disabled   1 - Annex D enabled " end="4" id="P2_TS_ANNEX_D_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Port 2 Time Sync LTYPE 2 enable 0 - disabled   1 - enabled " end="3" id="P2_TS_LTYPE2_EN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Port 2 Time Sync LTYPE 1 enable 0 - disabled   1 - enabled " end="2" id="P2_TS_LTYPE1_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port 2 Time Sync Transmit Enable 0 - disabled   1 - enabled " end="1" id="P2_TS_TX_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Port 2 Time Sync Receive Enable   0 - Port 1 Receive Time Sync disabled   1 - Port 1 Receive Time Sync enabled " end="0" id="P2_TS_RX_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_MAX_BLKS" description="CPSW PORT 2 MAXIMUM FIFO BLOCKS REGISTER" id="P2_MAX_BLKS" offset="0x208" width="32">
+    
+  <bitfield begin="8" description="Transmit FIFO Maximum Blocks - This value is the maximum number of 1k  memory blocks that may be allocated to the FIFO's logical transmit priority  queues.  0x11 is the recommended value of p2_tx_max_blks unless the  port is in fullduplex  flow control mode.  In flow control mode, the  p2_rx_max_blks will need to increase in order to accept the required run  out in fullduplex mode.  This value will need to decrease by the amount of  increase in p2_rx_max_blks.  0xe is the minimum value tx max blks. " end="4" id="P2_TX_MAX_BLKS" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="3" description="Receive FIFO Maximum Blocks - This value is the maximum number of 1k  memory blocks that may be allocated to the FIFO's logical receive queue. This value must be greater than or equal to 0x3.  It should be increased In   fullduplex flow control mode to 0x5 or 0x6 depending on the required  runout space.  The p2_tx_max_blks value must be decreased by the  amount of increase in p2_rx_max_blks.  0x3 is the minimum value rx max  blks and 0x6 is the maximum value. " end="0" id="P2_RX_MAX_BLKS" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_BLK_CNT" description="CPSW PORT 2 FIFO BLOCK USAGE COUNT (READ ONLY)" id="P2_BLK_CNT" offset="0x20C" width="32">
+    
+  <bitfield begin="8" description="Port 2 Transmit Block Count Usage - This value is the number of blocks  allocated to the FIFO logical transmit queues. " end="4" id="P2_TX_BLK_CNT" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="3" description="Port 2 Receive Block Count Usage - This value is the number of blocks  allocated to the FIFO logical receive queues. " end="0" id="P2_RX_BLK_CNT" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_TX_IN_CTL" description="CPSW PORT 2 TRANSMIT FIFO CONTROL" id="P2_TX_IN_CTL" offset="0x210" width="32">
+    
+  <bitfield begin="27" description="Transmit FIFO Blocks that must be free before a non rate-limited CPDMA  channel can begin sending a packet to the FIFO. " end="24" id="HOST_BLKS_REM" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="Transmit FIFO Input Rate Enable" end="20" id="TX_RATE_EN" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="17" description="Transmit FIFO Input Queue Type Select   00 - Normal priority mode   01 - reserved   10 - Rate Limit mode   11 - reserved " end="16" id="TX_IN_SEL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="Transmit FIFO Input Blocks to subtract in dual mac mode and blocks to  subtract on non rate-limited traffic in rate-limit mode. " end="12" id="TX_BLKS_REM" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="9" description="Transmit FIFO Words in queue" end="0" id="TX_PRI_WDS" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_PORT_VLAN" description="CPSW PORT 2 VLAN REGISTER" id="P2_PORT_VLAN" offset="0x214" width="32">
+    
+  <bitfield begin="15" description="Port VLAN Priority (7 is highest priority)" end="13" id="PORT_PRI" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Port CFI bit" end="12" id="PORT_CFI" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Port VLAN ID" end="0" id="PORT_VID" rwaccess="RW" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_TX_PRI_MAP" description="CPSW PORT 2 TX HEADER PRIORITY TO SWITCH PRI MAPPING REGISTER" id="P2_TX_PRI_MAP" offset="0x218" width="32">
+    
+  <bitfield begin="29" description="Priority 7 - A packet header priority of 0x7 is given this switch queue pri." end="28" id="PRI7" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="25" description="Priority 6 - A packet header priority of 0x6 is given this switch queue pri." end="24" id="PRI6" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="21" description="Priority 5 - A packet header priority of 0x5 is given this switch queue pri." end="20" id="PRI5" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Priority 4 - A packet header priority of 0x4 is given this switch queue pri." end="16" id="PRI4" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority 3 - A packet header priority of 0x3 is given this switch queue pri." end="12" id="PRI3" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Priority 2 - A packet header priority of 0x2 is given this switch queue pri." end="8" id="PRI2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Priority 1 - A packet header priority of 0x1 is given this switch queue pri." end="4" id="PRI1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Priority 0 - A packet header priority of 0x0 is given this switch queue pri." end="0" id="PRI0" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_TS_SEQ_MTYPE" description="CPSW_3GF PORT 2 TIME SYNC SEQUENCE ID OFFSET AND MSG TYPE." id="P2_TS_SEQ_MTYPE" offset="0x21C" width="32">
+    
+  <bitfield begin="21" description="Port 2 Time Sync Sequence ID Offset   This is the number of octets that the sequence ID is offset in the tx    and rx time sync message header.  The minimum value is 6. " end="16" id="P2_TS_SEQ_ID_OFFSET" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="15" description="Port 2 Time Sync Message Type Enable -   Each bit in this field enables the corresponding message type in    receive and transmit time sync messages (Bit 0 enables message    type 0 etc.). " end="0" id="P2_TS_MSG_TYPE_EN" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_SA_LO" description="CPSW CPGMAC_SL2 SOURCE ADDRESS LOW REGISTER" id="P2_SA_LO" offset="0x220" width="32">
+    
+  <bitfield begin="15" description="Source Address Lower 8 bits (byte 0)" end="8" id="MACSRCADDR_7_0" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Source Address bits 15:8      (byte 1)" end="0" id="MACSRCADDR_15_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_SA_HI" description="CPSW CPGMAC_SL2 SOURCE ADDRESS HIGH REGISTER" id="P2_SA_HI" offset="0x224" width="32">
+    
+  <bitfield begin="31" description="Source Address bits 23:16 (byte 2)" end="24" id="MACSRCADDR_23_16" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Source Address bits 31:23 (byte 3)" end="16" id="MACSRCADDR_31_23" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Source Address bits 39:32 (byte 4)" end="8" id="MACSRCADDR_39_32" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Source Address bits 47:40 (byte 5)" end="0" id="MACSRCADDR_47_40" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_SEND_PERCENT" description="CPSW PORT 2 TRANSMIT QUEUE SEND PERCENTAGES" id="P2_SEND_PERCENT" offset="0x228" width="32">
+    
+  <bitfield begin="22" description="Priority 3 Transmit Percentage - This percentage value is sent from FIFO  priority 3 (maximum) when the p1_pri3_shape_en is set (queue shaping  enabled).  This is the percentage of the wire that packets from priority 3  receive (which includes interpacket gap and preamble bytes).   If shaping is  enabled on this queue then this value must be between zero and 0d100 (not  inclusive). " end="16" id="PRI3_SEND_PERCENT" rwaccess="RW" width="7"></bitfield>
+    
+  <bitfield begin="14" description="Priority 2 Transmit Percentage - This percentage value is sent from FIFO  priority 2 (maximum) when the p1_pri2_shape_en is set (queue shaping  enabled).  This is the percentage of the wire that packets from priority 2  receive (which includes interpacket gap and preamble bytes).   If shaping is  enabled on this queue then this value must be between zero and 0d100 (not  inclusive). " end="8" id="PRI2_SEND_PERCENT" rwaccess="RW" width="7"></bitfield>
+    
+  <bitfield begin="6" description="Priority 1 Transmit Percentage - This percentage value is sent from FIFO  priority 1 (maximum) when the p1_pri1_shape_en is set (queue shaping  enabled).  This is the percentage of the wire that packets from priority 1  receive (which includes interpacket gap and preamble bytes).   If shaping is  enabled on this queue then this value must be between zero and 0d100 (not  inclusive). " end="0" id="PRI1_SEND_PERCENT" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_RX_DSCP_PRI_MAP0" description="CPSW PORT 2 RX DSCP PRIORITY TO RX PACKET MAPPING REG 0" id="P2_RX_DSCP_PRI_MAP0" offset="0x230" width="32">
+    
+  <bitfield begin="30" description="Priority 7 - A packet TOS of 0d7 is mapped to this received packet priority." end="28" id="PRI7" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 6 - A packet TOS of 0d6 is mapped to this received packet priority." end="24" id="PRI6" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 5 - A packet TOS of 0d5 is mapped to this received packet priority." end="20" id="PRI5" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 4 - A packet TOS of 0d4 is mapped to this received packet priority." end="16" id="PRI4" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 3 - A packet TOS of 0d3 is mapped to this received packet priority." end="12" id="PRI3" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 2 - A packet TOS of 0d2 is mapped to this received packet priority." end="8" id="PRI2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 1 - A packet TOS of 0d1 is mapped to this received packet priority." end="4" id="PRI1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 0 - A packet TOS of 0d0 is mapped to this received packet priority." end="0" id="PRI0" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_RX_DSCP_PRI_MAP1" description="CPSW PORT 2 RX DSCP PRIORITY TO RX PACKET MAPPING REG 1" id="P2_RX_DSCP_PRI_MAP1" offset="0x234" width="32">
+    
+  <bitfield begin="30" description="Priority 15 - A packet TOS of 0d15 is mapped to this received packet priority." end="28" id="PRI15" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 14 - A packet TOS of 0d14 is mapped to this received packet priority." end="24" id="PRI14" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 13 - A packet TOS of 0d13 is mapped to this received packet priority." end="20" id="PRI13" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 12 - A packet TOS of 0d12 is mapped to this received packet priority." end="16" id="PRI12" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 11 - A packet TOS of 0d11 is mapped to this received packet priority." end="12" id="PRI11" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 10 - A packet TOS of 0d10 is mapped to this received packet priority." end="8" id="PRI10" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 9  - A packet TOS of 0d9 is mapped to this received packet priority." end="4" id="PRI9" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 8  - A packet TOS of 0d8 is mapped to this received packet priority." end="0" id="PRI8" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_RX_DSCP_PRI_MAP2" description="CPSW PORT 2 RX DSCP PRIORITY TO RX PACKET MAPPING REG 2" id="P2_RX_DSCP_PRI_MAP2" offset="0x238" width="32">
+    
+  <bitfield begin="30" description="Priority 23 - A packet TOS of 0d23 is mapped to this received packet priority." end="28" id="PRI23" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 22 - A packet TOS of 0d22 is mapped to this received packet priority." end="24" id="PRI22" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 21 - A packet TOS of 0d21 is mapped to this received packet priority." end="20" id="PRI21" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 20 - A packet TOS of 0d20 is mapped to this received packet priority." end="16" id="PRI20" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 19 - A packet TOS of 0d19 is mapped to this received packet priority." end="12" id="PRI19" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 18 - A packet TOS of 0d18 is mapped to this received packet priority." end="8" id="PRI18" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 17 - A packet TOS of 0d17 is mapped to this received packet priority." end="4" id="PRI17" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 16 - A packet TOS of 0d16 is mapped to this received packet priority." end="0" id="PRI16" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_RX_DSCP_PRI_MAP3" description="CPSW PORT 2 RX DSCP PRIORITY TO RX PACKET MAPPING REG 3" id="P2_RX_DSCP_PRI_MAP3" offset="0x23C" width="32">
+    
+  <bitfield begin="30" description="Priority 31 - A packet TOS of 0d31 is mapped to this received packet priority." end="28" id="PRI31" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 30 - A packet TOS of 0d30 is mapped to this received packet priority." end="24" id="PRI30" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 29 - A packet TOS of 0d39 is mapped to this received packet priority." end="20" id="PRI29" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 28 - A packet TOS of 0d28 is mapped to this received packet priority." end="16" id="PRI28" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 27 - A packet TOS of 0d27 is mapped to this received packet priority." end="12" id="PRI27" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 26 - A packet TOS of 0d26 is mapped to this received packet priority." end="8" id="PRI26" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 25 - A packet TOS of 0d25 is mapped to this received packet priority." end="4" id="PRI25" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 24 - A packet TOS of 0d24 is mapped to this received packet priority." end="0" id="PRI24" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_RX_DSCP_PRI_MAP4" description="CPSW PORT 2 RX DSCP PRIORITY TO RX PACKET MAPPING REG 4" id="P2_RX_DSCP_PRI_MAP4" offset="0x240" width="32">
+    
+  <bitfield begin="30" description="Priority 39 - A packet TOS of 0d39 is mapped to this received packet priority." end="28" id="PRI39" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 38 - A packet TOS of 0d38 is mapped to this received packet priority." end="24" id="PRI38" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 37 - A packet TOS of 0d37 is mapped to this received packet priority." end="20" id="PRI37" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 36 - A packet TOS of 0d36 is mapped to this received packet priority." end="16" id="PRI36" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 35 - A packet TOS of 0d35 is mapped to this received packet priority." end="12" id="PRI35" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 34 - A packet TOS of 0d34 is mapped to this received packet priority." end="8" id="PRI34" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 33 - A packet TOS of 0d33 is mapped to this received packet priority." end="4" id="PRI33" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 32 - A packet TOS of 0d32 is mapped to this received packet priority." end="0" id="PRI32" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_RX_DSCP_PRI_MAP5" description="CPSW PORT 2 RX DSCP PRIORITY TO RX PACKET MAPPING REG 5" id="P2_RX_DSCP_PRI_MAP5" offset="0x244" width="32">
+    
+  <bitfield begin="30" description="Priority 47 - A packet TOS of 0d47 is mapped to this received packet priority." end="28" id="PRI47" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 46 - A packet TOS of 0d46 is mapped to this received packet priority." end="24" id="PRI46" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 45 - A packet TOS of 0d45 is mapped to this received packet priority." end="20" id="PRI45" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 44 - A packet TOS of 0d44 is mapped to this received packet priority." end="16" id="PRI44" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 43 - A packet TOS of 0d43 is mapped to this received packet priority." end="12" id="PRI43" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 42 - A packet TOS of 0d42 is mapped to this received packet priority." end="8" id="PRI42" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 41 - A packet TOS of 0d41 is mapped to this received packet priority." end="4" id="PRI41" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 40 - A packet TOS of 0d40 is mapped to this received packet priority." end="0" id="PRI40" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_RX_DSCP_PRI_MAP6" description="CPSW PORT 2 RX DSCP PRIORITY TO RX PACKET MAPPING REG 6" id="P2_RX_DSCP_PRI_MAP6" offset="0x248" width="32">
+    
+  <bitfield begin="30" description="Priority 55 - A packet TOS of 0d55 is mapped to this received packet priority." end="28" id="PRI55" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 54 - A packet TOS of 0d54 is mapped to this received packet priority." end="24" id="PRI54" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 53 - A packet TOS of 0d53 is mapped to this received packet priority." end="20" id="PRI53" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 52 - A packet TOS of 0d52 is mapped to this received packet priority." end="16" id="PRI52" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 51 - A packet TOS of 0d51 is mapped to this received packet priority." end="12" id="PRI51" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 50 - A packet TOS of 0d50 is mapped to this received packet priority." end="8" id="PRI50" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 49 - A packet TOS of 0d49 is mapped to this received packet priority." end="4" id="PRI49" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 48 - A packet TOS of 0d48 is mapped to this received packet priority." end="0" id="PRI48" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="P2_RX_DSCP_PRI_MAP7" description="CPSW PORT 2 RX DSCP PRIORITY TO RX PACKET MAPPING REG 7" id="P2_RX_DSCP_PRI_MAP7" offset="0x24C" width="32">
+    
+  <bitfield begin="30" description="Priority 63 - A packet TOS of 0d63 is mapped to this received packet priority." end="28" id="PRI63" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="Priority 62 - A packet TOS of 0d62 is mapped to this received packet priority." end="24" id="PRI62" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="22" description="Priority 61 - A packet TOS of 0d61 is mapped to this received packet priority." end="20" id="PRI61" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="18" description="Priority 60 - A packet TOS of 0d60 is mapped to this received packet priority." end="16" id="PRI60" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="14" description="Priority 59 - A packet TOS of 0d59 is mapped to this received packet priority." end="12" id="PRI59" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="10" description="Priority 58 - A packet TOS of 0d58 is mapped to this received packet priority." end="8" id="PRI58" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Priority 57 - A packet TOS of 0d57 is mapped to this received packet priority." end="4" id="PRI57" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Priority 56 - A packet TOS of 0d56 is mapped to this received packet priority." end="0" id="PRI56" rwaccess="RW" width="3"></bitfield>
+  </register>
+</module>

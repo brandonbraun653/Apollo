@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="ICE_AM3359" XML_version="1" desc="ICE_AM3359" description="AM3359 Industrial Communications Engine">
+	<instance XML_version="1.2" desc="AM3359" href="devices/AM3359.xml" id="AM3359_0" xml="AM3359.xml" xmlpath="devices"/>
+	<device id="AM3359_0" partnum="AM3359" HW_revision="1" XML_version="2" desc="AM3359" description="AM33x - Cortex A8 Embedded Processor">
+		<property Type="stringfield" Value="AM33x - Cortex A8" id="FilterString" />
+		<router HW_revision="1.0" XML_version="1.2" description="ICEPick_D Router" id="IcePick_D_0" isa="ICEPICK_D">
+			<subpath desc="DAP" id="subpath_12">
+				<router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_0" isa="CS_DAP">
+					<subpath id="ModenaSS">
+						<cpu HW_revision="1.0" XML_version="1.2" desc="CortxA8" description="Cortex_A8 CPU" deviceSim="false" id="CortexA8" isa="Cortex_A8">
+							<property Type="filepathfield" Value="../../../emulation/boards/ice_am3359/gel/TMDXICE3359.gel" id="GEL File"/>
+						</cpu>
+					</subpath>
+				</router>
+			</subpath>
+		</router>
+	</device>
+</board>

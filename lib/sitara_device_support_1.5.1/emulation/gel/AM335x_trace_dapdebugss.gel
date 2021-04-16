@@ -1,0 +1,723 @@
+/*--------------------------------------------------------------*/
+/*AM335X_trace_dapdebugSS.gel                                              */
+/* version 0.10                                                 */
+/*                                                              */
+/* SUMMARY: utilities related to Trace                          */
+/*                                                              */
+/*                                                              */
+/* This gel file is recommanded to be attached to dap_debugSS   */
+/* Author: Wenzhong Liu                                         */
+/* Author: Zhenyu Wang                                          */
+/*--------------------------------------------------------------*/
+
+
+//-----------------------------------------------------------------------------
+
+// Claim control & status register (CCSR) bits - note: the "claim control &
+// status register" is the upper 4-bits (31-28) of each resources control register
+#define OWNERSHIP_MASK           (0x3 << 30)   // ownership mask bits
+#define OWNERSHIP_CMD_CLAIM      (0x1 << 30)   // cmd bits to claim resource
+#define OWNERSHIP_CMD_ENABLE     (0x1 << 31)   // cmd bits to enable claimed resource
+#define OWNERSHIP_CMD_OVERRIDE   (0x1 << 29)   // cmd bits to 
+
+
+// System level definition
+#define L3_OCMC_RAM0       (unsigned int)(0x40300000)    // 32-bit Ex/R/W OCMC SRAM (256KB)
+#define L3_OCMC_RAM1       (unsigned int)(0x40400000)    // 32-bit Ex/R/W OCMC SRAM (256KB)
+
+#define L3_GEML2_BADDR     (unsigned int)(0x40800000)    // GEM UMAP0 (L2 RAM) 256KB
+#define L3_GEML1P_BADDR    (unsigned int)(0x40E00000)    // GEM L1P Cache/RAM   32KB
+#define L3_GEML1D_BADDR    (unsigned int)(0x40F00000)    // GEM L1D Cache/RAM   32KB
+#define L3_SECSS_BADDR     (unsigned int)(0x41000000)    // Security Subsystem  16MB
+
+#define L3_FCFG_BADDR      (unsigned int)(0x44000000)    // L3Fast cfg registers
+#define L3_MCFG_BADDR      (unsigned int)(0x44400000)    // L3Mid  cfg registers
+#define L3_SCFG_BADDR      (unsigned int)(0x44800000)    // L3Slow cfg registers 
+
+#define L3_L4FW_CFG_BADDR  (unsigned int)(0x47C00000)    // Firewall CFG domain (4MB)
+#define L3_SLOW_PER_BADDR  (unsigned int)(0x48000000)    // Slow Peripheral domain (16MB)
+
+#define L3_TPCC_BADDR      (unsigned int)(0x49000000)    // TPCC  Registers (1MB)
+#define L3_TPTC0_BADDR     (unsigned int)(0x49800000)    // TPTC0 Registers (1MB)
+#define L3_TPTC1_BADDR     (unsigned int)(0x49900000)    // TPTC0 Registers (1MB)
+#define L3_TPTC2_BADDR     (unsigned int)(0x49A00000)    // TPTC0 Registers (1MB)
+#define L3_TPTC3_BADDR     (unsigned int)(0x49B00000)    // TPTC0 Registers (1MB)
+
+#define L3_FAST_PER_BADDR  (unsigned int)(0x4A000000)    // Fast Peripheral domain (16MB)
+#define L3_DBGSS_BADDR     (unsigned int)(0x4B000000)    // debugSS Subsystem (16MB)
+#define L3_EMIF0_CFG_BADDR (unsigned int)(0x4C000000)    // EMIF0 CFG registers (16MB)
+#define L3_EMIF1_CFG_BADDR (unsigned int)(0x4D000000)    // EMIF0 CFG registers (16MB)
+#define L3_DMM_CFG_BADDR   (unsigned int)(0x4E000000)    // DMM   CFG registers (32MB)
+#define L3_GPMC_CFG_BADDR  (unsigned int)(0x50000000)    // GPMC  CFG registers (16MB)
+
+#define L3_IVA2_CFG_BADDR  (unsigned int)(0x53000000)    // IVA-HD2 Host Port (16MB)
+#define L3_IVA2_SL2_BADDR  (unsigned int)(0x54000000)    // IVA-HD2 SL2 Port  (16MB)
+#define L3_DUCATI_SL_BADDR (unsigned int)(0x55000000)    // Ducati Slave Port (16MB)
+#define L3_SGX530_SL_BADDR (unsigned int)(0x56000000)    // SGX530 Slave Port (16MB)
+#define L3_TPPSS_SL_BADDR  (unsigned int)(0x57000000)    // TPPSS Slave Port (16MB)
+#define L3_IVA0_CFG_BADDR  (unsigned int)(0x58000000)    // IVA-HD0 Host Port (16MB)
+#define L3_IVA0_SL2_BADDR  (unsigned int)(0x59000000)    // IVA-HD0 SL2 Port  (16MB)
+#define L3_IVA1_CFG_BADDR  (unsigned int)(0x5A000000)    // IVA-HD1 Host Port (16MB)
+#define L3_IVA1_SL2_BADDR  (unsigned int)(0x5B000000)    // IVA-HD1 SL2 Port  (16MB)
+
+#define L3_TILER_DATA_BADDR (unsigned int)(0x60000000)   // Tiler Window (512MB)
+#define L3_EMIF0_DATA_BADDR (unsigned int)(0x80000000)   // EMIF0 data (1GB)
+#define L3_EMIF1_DATA_BADDR (unsigned int)(0xC0000000)   // EMIF0 data (1GB)
+//#define L3_DMM_DATA_BADDR (unsigned int)(0x1 00000000) // DMM   data (4GB)
+
+
+//
+// L4 Slow Peripheral Memory Map
+//
+#define L4S_CFG_AP_BADDR   (unsigned int)(0x48000000)    // Address/Protection (AP) (2KB)
+#define L4S_CFG_LA_BADDR   (unsigned int)(0x48000800)    // Link Agent (LA)         (2KB)
+#define L4S_CFG_IP0_BADDR  (unsigned int)(0x48001000)    // Initiator Port (IP0)    (1KB)
+#define L4S_CFG_IP1_BADDR  (unsigned int)(0x48001400)    // Initiator Port (IP1)    (1KB)
+
+#define L4S_EFUSE_BADDR    (unsigned int)(0x48008000)    // Module (not L4 Interconnect) (4KB)
+#define L4S_SYS_MMU_BADDR  (unsigned int)(0x48010000)    // Module (4KB)
+#define L4S_DMTIMER0_BADDR (unsigned int)(0x4802C000)    // Module (4KB)
+#define L4S_DMTIMER1_BADDR (unsigned int)(0x4802E000)    // Module (4KB)
+#define L4S_GPIO0_BADDR    (unsigned int)(0x48032000)    // Module (4KB)
+#define L4S_DMTIMER2_BADDR (unsigned int)(0x48040000)    // Module (4KB)
+#define L4S_DMTIMER3_BADDR (unsigned int)(0x48042000)    // Module (4KB)
+#define L4S_DMTIMER4_BADDR (unsigned int)(0x48044000)    // Module (4KB)
+#define L4S_DMTIMER5_BADDR (unsigned int)(0x48046000)    // Module (4KB)
+#define L4S_DMTIMER6_BADDR (unsigned int)(0x48048000)    // Module (4KB)
+#define L4S_DMTIMER7_BADDR (unsigned int)(0x4804A000)    // Module (4KB)
+#define L4S_GPIO1_BADDR    (unsigned int)(0x4804C000)    // Module (4KB)
+
+#define L4S_RTC_BADDR      (unsigned int)(0x480C0000)    // Module (4KB)
+#define L4S_WDT1_BADDR     (unsigned int)(0x480C2000)    // Module (4KB)
+#define L4S_MAILBOX_BADDR  (unsigned int)(0x480C8000)    // Module (4KB)
+#define L4S_SPINLOCK_BADDR (unsigned int)(0x480CA000)    // Module (4KB)
+
+#define L4S_SYSCTL_BADDR   (unsigned int)(0x48140000)    // Control Module (128KB)
+#define L4S_PRCM_BADDR     (unsigned int)(0x48180000)    // Control Module ( 12KB)
+#define L4S_OCPWP_BADDR    (unsigned int)(0x4818C000)    // Control Module (  4KB)
+#define L4S_P1500_BADDR    (unsigned int)(0x4818E000)    // Control Module (  4KB)
+
+//
+// L4 Firewall Peripheral Memory Map
+//
+#define L4FW_CFG_AP_BADDR   (unsigned int)(0x47C00000)   // Address/Protection (AP) (2KB)
+#define L4FW_CFG_LA_BADDR   (unsigned int)(0x47C00800)   // Link Agent (LA)         (2KB)
+#define L4FW_CFG_IP0_BADDR  (unsigned int)(0x47C01000)   // Initiator Port (IP0)    (1KB)
+#define L4FW_CFG_IP1_BADDR  (unsigned int)(0x47C01400)   // Initiator Port (IP1)    (1KB)
+
+#define L4FW_VLYQN_BADDR    (unsigned int)(0x47C06000)   // Module (not L4 Interconnect) (4KB)
+#define L4FW_EMIF_BADDR     (unsigned int)(0x47C0C000)   // Module (4KB)
+#define L4FW_GPMC_BADDR     (unsigned int)(0x47C0E000)   // Module (4KB)
+#define L4FW_OCMCRAM0_BADDR (unsigned int)(0x47C10000)   // Module (4KB)
+#define L4FW_OCMCRAM1_BADDR (unsigned int)(0x47C12000)   // Module (4KB)
+#define L4FW_SGX530_BADDR   (unsigned int)(0x47C14000)   // Module (4KB)
+#define L4FW_GEM_SDMA_BADDR (unsigned int)(0x47C16000)   // Module (4KB)
+#define L4FW_DUCATI_BADDR   (unsigned int)(0x47C18000)   // Module (4KB)
+#define L4FW_PCIE_BADDR     (unsigned int)(0x47C1A000)   // Module (4KB)
+#define L4FW_TPPSS_BADDR    (unsigned int)(0x47C1C000)   // Module (4KB)
+#define L4FW_IVA_SL2_BADDR  (unsigned int)(0x47C1E000)   // Module (4KB)
+#define L4FW_IVA_CFG_BADDR  (unsigned int)(0x47C20000)   // Module (4KB)
+#define L4FW_SECSS_BADDR    (unsigned int)(0x47C2A000)   // Module (4KB)
+#define L4FW_TPTC01_BADDR   (unsigned int)(0x47C30000)   // Module (4KB)
+#define L4FW_TPCC_BADDR     (unsigned int)(0x47C38000)   // Module (4KB)
+#define L4FW_DBGSS_BADDR    (unsigned int)(0x47C3E000)   // Module (4KB)  (DebugSS)
+
+
+//
+// For Test/Emu devices, all processors can not access to DebugSS without
+// enabling following FW_DBGSS register (bit[15:12]=0xF) via DAP port (AHB only)
+// 
+#define FW_DBGSS_MRM_PERM_REGION0_LOW  *(unsigned int *)(L4FW_DBGSS_BADDR+0x88)
+
+
+//
+// Netra Control Module Offset definition
+// 
+#define SC_CFG_BADDR        (L4S_SYSCTL_BADDR+0x0000)    // OCP cfg regs (-0x0020)
+#define SC_BOOT_BADDR       (L4S_SYSCTL_BADDR+0x0040)    // Device Boot Regs(-0x00FC)
+#define SC_SEC_EFUSE_BADDR  (L4S_SYSCTL_BADDR+0x0100)    // Security/eFuse regs (-0x02FC)
+#define SC_SEC_SSM_BADDR    (L4S_SYSCTL_BADDR+0x0300)    // Sec State-Machine regs (-0x03FC)
+#define SC_PLL_CTRL_BADDR   (L4S_SYSCTL_BADDR+0x0400)    // PLL Control regs (-0x05FC)
+#define SC_SEC_EFUSE_BADDR  (L4S_SYSCTL_BADDR+0x0600)    // Device Cfg regs (-0x07FC)
+#define SC_SEC_EFUSE_BADDR  (L4S_SYSCTL_BADDR+0x0800)    // PAD Control regs (-0x0FFC)
+
+#define SC_SEC_CTRL_A8      *(unsigned int *)(L4S_SYSCTL_BADDR+0x100)  // Sys Security Ctl reg (from A8)
+#define SC_SEC_HW_PARAM_A8  *(unsigned int *)(L4S_SYSCTL_BADDR+0x104)  // SW_HW_Parameters (from A8)
+#define SC_SEC_EMU_CTRL_A8  *(unsigned int *)(L4S_SYSCTL_BADDR+0x108)  // Emulation Sec Ctl reg (from A8)
+
+#define SC_SEC_TAP_CTRL     *(unsigned int *)(L4S_SYSCTL_BADDR+0x180)  // JTAG TAP enabling/disabling (via primary mst)
+#define SC_SEC_EMU_CTRL_M3  *(unsigned int *)(L4S_SYSCTL_BADDR+0x298)  // Emulation Sec Ctl reg (from M3)
+
+//
+// Netra PRCM Instance Offset definition
+//
+#define PRCM_PRM_DEVICE     (L4S_PRCM_BADDR+0x0000)    // (256Bytes)
+#define PRCM_CM_DEVICE      (L4S_PRCM_BADDR+0x0100)    // (256Bytes)
+#define PRCM_OCP_SOCKET_PRM (L4S_PRCM_BADDR+0x0200)    // (256Bytes)
+#define PRCM_CM_DPLL        (L4S_PRCM_BADDR+0x0300)    // (256Bytes)
+#define PRCM_CM_ACTIVE      (L4S_PRCM_BADDR+0x0400)    // (256Bytes)
+#define PRCM_CM_DEFAULT     (L4S_PRCM_BADDR+0x0500)    // (256Bytes)
+#define PRCM_CM_IVAHD0      (L4S_PRCM_BADDR+0x0600)    // (256Bytes)
+#define PRCM_CM_IVAHD1      (L4S_PRCM_BADDR+0x0700)    // (256Bytes)
+#define PRCM_CM_IVAHD2      (L4S_PRCM_BADDR+0x0800)    // (256Bytes)
+#define PRCM_CM_SGX         (L4S_PRCM_BADDR+0x0900)    // (256Bytes)
+#define PRCM_PRM_ACTIVE     (L4S_PRCM_BADDR+0x0A00)    // (256Bytes)
+#define PRCM_PRM_DEFAULT    (L4S_PRCM_BADDR+0x0B00)    // (256Bytes)
+#define PRCM_PRM_IVAHD0     (L4S_PRCM_BADDR+0x0C00)    // (256Bytes)
+#define PRCM_PRM_IVAHD1     (L4S_PRCM_BADDR+0x0D00)    // (256Bytes)
+#define PRCM_PRM_IVAHD2     (L4S_PRCM_BADDR+0x0E00)    // (256Bytes)
+#define PRCM_PRM_SGX        (L4S_PRCM_BADDR+0x0F00)    // (256Bytes)
+#define PRCM_CM_ALWON       (L4S_PRCM_BADDR+0x1400)    // (1KBytes)
+#define PRCM_PRM_ALWON      (L4S_PRCM_BADDR+0x1800)    // (1KBytes)
+
+
+
+#define PRCM_DEBUGSS_CLKCTRL *(unsigned int *)(L4S_PRCM_BADDR+0x15E0) // 
+                            // b[31:30] - rsved,
+                            // b[29:27] - STM_PMD_CLKDIVSEL (default-2, valid - 1,2,4)
+                            // b[26:24] - TRC_PMD_CLKDIVSEL (default-2, valid - 1,2,4)
+                            // b[23:22] - STM_PMD_CLKSEL (0-SysClk, 1-RefClkA(defalut))
+                            // b[21:20] - TRC_PMD_CLKSEL (0-SysClk, 1-RefClkA(defalut))
+                            // b19      - rsved
+                            // b18      - STBST (module standby status) 0-functional (defautl)
+                            // b[17:16] - IDLEST (module idel status) See definition.
+                            // b[15:10] - rsved
+                            // b9       - OPTCLK_DEBUG_CLKA (0-disabled, 1-enabled(default))
+                            // b8       - OPTCLK_DEBUG_SYSCLK (same as above).
+                            // b[7:2]   - rsved
+                            // b[1:0]   - MODULEMODE (2-module is explicityly enabled (default))
+
+//
+// DebugSS base address definition
+//
+#define DBGSS_APB_EXT      (unsigned int)(0x8000000)     // 128 kbyte 
+#define DBGSS_APB_DRM      (unsigned int)(0x8020000)     // 4 kbyte
+#define DBGSS_APB_STMCFG   (unsigned int)(0x8021000)     // 4 kbyte
+#define DBGSS_APB_ETB      (unsigned int)(0x8022000)     // 4 kbyte
+#define DBGSS_APB_TPIU     (unsigned int)(0x8023000)     // 4 kbyte
+#define DBGSS_APB_TF0      (unsigned int)(0x8024000)     // 4 kbyte
+#define DBGSS_APB_EXT_PERI (unsigned int)(0x8026000)     // 4 kbyte
+
+#define DBGSS_SLV_STM      (L3_DBGSS_BADDR+0x000000)     // for 256*4k chan
+#define DBGSS_SLV_STM1K    (L3_DBGSS_BADDR+0x100000)     // for 256*1k chan
+#define DBGSS_SLV_EXT      (L3_DBGSS_BADDR+0x140000)     // 128 kbyte 
+#define DBGSS_SLV_DRM      (L3_DBGSS_BADDR+0x160000)     // 4 kbyte
+#define DBGSS_SLV_STMCFG   (L3_DBGSS_BADDR+0x161000)     // 4 kbyte
+#define DBGSS_SLV_ETB      (L3_DBGSS_BADDR+0x162000)     // 4 kbyte
+#define DBGSS_SLV_TPIU     (L3_DBGSS_BADDR+0x163000)     // 4 kbyte
+#define DBGSS_SLV_TF0      (L3_DBGSS_BADDR+0x164000)     // 4 kbyte
+#define DBGSS_SLV_EXT_PERI (L3_DBGSS_BADDR+0x166000)     // 4 kbyte
+
+ // DRM registers of DebugSS
+#define DRM_ID            *(unsigned int *)(DBGSS_SLV_DRM+0x000)  // Peri ID
+#define DRM_CFG           *(unsigned int *)(DBGSS_SLV_DRM+0x010)
+                          //  Cfg - b1-SoftReset(reset DRM module)
+                          //  b0-rsvd for OCPAutoIdle
+#define DRM_SYSSTATUS     *(unsigned int *)(DBGSS_SLV_DRM+0x014)
+                          //  system sts - b0-ResetDone (RO)
+#define DRM_CAPABILITIES  *(unsigned int *)(DBGSS_SLV_DRM+0x018)
+                          // capabilities - b6:0-numPeri,
+                          //  b10:7-numSusp
+                          //  b15:11-numCSTraceData_Pin,
+                          //  b20:16-numDSPTraceData_Pin
+                          //  b21-HAS_CSTrace, b22-Has_STMTrace,
+                          //  b26:23-numDSP, b31:27-numDevPin
+#define DRM_CLKGEN_CFG    *(unsigned int *)(DBGSS_SLV_DRM+0x020)
+                          //  b0 -select PDLO/PMD clk (0-PDLO,1-PMD)
+#define DRM_PDLO_TRC_CTL  *(unsigned int *)(DBGSS_SLV_DRM+0x024)
+                          //  b20:16-DLY_B (0=1delay else, 1=32delay)
+                          //  b15:13-DIV_SEL (0-CLK/1, 7-CLK/16)
+                          //  b12:8 -DLY_A, b6:5-REFSEL (gate width sel)
+                          //  b4-EXECMEAS, b3-DLO_SEL, b2-CLK_EN
+                          //  b1-OSC_EN, b0-AUTO
+#define DRM_PDLO_TRC_LMT  *(unsigned int *)(DBGSS_SLV_DRM+0x028)
+                          //  b11:0-LOW_LIMIT, b26:16-HI_LIMIT
+#define DRM_PDLO_TRC_STS  *(unsigned int *)(DBGSS_SLV_DRM+0x02C)
+                          //  b11:0-COUNT, b12-ABOVE, b13-BELOW, b14-complete,
+                          //  b15-check, b16-SW_DONE, b17-MEAS_SEL
+#define DRM_PDLO_STM_CTL  *(unsigned int *)(DBGSS_SLV_DRM+0x030)  // 
+#define DRM_PDLO_STM_LMT  *(unsigned int *)(DBGSS_SLV_DRM+0x034)
+                          //  b11:0-LOW_LIMIT, b26:16-HI_LIMIT 
+#define DRM_PDLO_STM_STS  *(unsigned int *)(DBGSS_SLV_DRM+0x038)
+                          //  b11:0-COUNT, b12-ABOVE,
+                          //  b13-BELOW, b14-complete,
+                          //  b15-check, b16-SW_DONE, b17-MEAS_SEL
+
+#define DRM_CS_TRACE_CFG  *(unsigned int *)(DBGSS_SLV_DRM+0x040)
+                          //  CS trace cfg -
+                          //  b0-clk_sel (0-edge sampling, 1-center) 
+#define DRM_CLAIM         *(unsigned int *)(DBGSS_SLV_DRM+0x050)
+                          //  b31:30-ownership(1-clim,2-enable),
+                          //  b29-dbgOverride, b28-owner(0-dbg own pins,1-app)
+#define DRM_DSP_DECODE    *(unsigned int *)(DBGSS_SLV_DRM+0x064)
+                          //  b3:0-which DSP is assigned to the DPs.
+#define DRM_CTL(n)        *(unsigned int *)(DBGSS_SLV_DRM+0x080+4*n)
+                          //  b7:0-PM_Ctrl, b25-DP_Oen(RW) (total 0-24)
+                          //  b26-DP_Out(RW), b27-DP_In(R),
+                          //  b28-BitIO_En(W), b29-App_own(R)
+                          //  b30-Dbg_only(R), b31-override(RW)
+#define DRM_DEMUX_CTL(n)  *(unsigned int *)(DBGSS_SLV_DRM+0x100+4*n)
+                          //  d1:0,3:2,5:4,7:6-Demux-EMU<0-3> (total 0-14)
+                          //  00-Xtrig, 01-HS-RTDX, 10-Trace, 11-rsvd.
+#define DRM_SUSP_CTL(n)   *(unsigned int *)(DBGSS_SLV_DRM+0x200+4*n)
+                          //  b0-sensCtrl, b3-suspend_default (total 0-127)
+                          //  b7:4-suspend_sel
+#define DRM_DAP_SEC_CTL   *(unsigned int *)(DBGSS_SLV_DRM+0x400)
+                          //  b0-ForceDAPPubUserDebugEn (MreqSup=0)
+                          //  b3:1-ForceDAPPubDomainEn (000-dm0, .. 111-dm7).
+                          //  b4-ForceDAPSecPublicDebugEn (MreqSec=0)
+                          //  b5-ForceDAPSecUserDebugEn (MreqSup=0)
+                          //  b17:6-DOM[11:0] - debug operating mode.
+
+
+ // DPM control mode definition - the DRM_CFG register
+#define DPM_MODE_TRI_STAT        (0x0)
+#define DPM_MODE_TRIG            (0x1)
+#define DPM_MODE_STM_DATA0       (0x2)
+#define DPM_MODE_STM_DATA1       (0x3)
+#define DPM_MODE_STM_DATA2       (0x4)
+#define DPM_MODE_STM_DATA3       (0x5)
+#define DPM_MODE_STM_CLK         (0x6)
+#define DPM_MODE_CS_DATAA        (0x7)
+#define DPM_MODE_CS_DATAB        (0x8)
+#define DPM_MODE_CS_CTRL         (0x9)
+#define DPM_MODE_CS_CLK          (0xA)
+#define DPM_MODE_DSP_DATAA       (0xB)
+#define DPM_MODE_DSP_DATAB       (0xC)
+#define DPM_MODE_DSP_CLK         (0xD)
+
+#define DPM_BITIOMODE_ENABLE     (0x10000000)
+#define DPM_BITIOMODE_OUT_ZERO   (0x00000000)
+#define DPM_BITIOMODE_OUT_ONE    (0x04000000)
+#define DPM_BITIOMODE_OEN_LOW    (0x00000000)
+#define DPM_BITIOMODE_OEN_HIGH   (0x02000000)
+
+
+// ETB_CS of DebugSS
+#define ETB_RDP         *(unsigned int *)(DBGSS_SLV_ETB+0x004)
+                        //  RAM depth - b[31:0] defines the depth in words.
+#define ETB_STS         *(unsigned int *)(DBGSS_SLV_ETB+0x00C)
+                        //  Status - b0-full,b1-triggered,b2-AcqComp,b3-FtEmpty
+#define ETB_RRD         *(unsigned int *)(DBGSS_SLV_ETB+0x010)
+                        //  RAM read data 
+#define ETB_RRP         *(unsigned int *)(DBGSS_SLV_ETB+0x014)
+                        //  RAM read pointer - b[CSETB_ADDR_WIDTH-1:0]
+#define ETB_RWP         *(unsigned int *)(DBGSS_SLV_ETB+0x018)
+                        //  RAM write pointer - b[CSETB_ADDR_WIDTH-1:0]
+#define ETB_TRG         *(unsigned int *)(DBGSS_SLV_ETB+0x01C)
+                        //  Trigger counter - b[CSETB_ADDR_WIDTH-1:0]
+#define ETB_CTL         *(unsigned int *)(DBGSS_SLV_ETB+0x020)
+                        //  Trace ctl - b0 - TraceCapEn (1-enable race capture) 
+#define ETB_RWD         *(unsigned int *)(DBGSS_SLV_ETB+0x024)
+                        //  RAM write data reg
+#define ETB_FFSR        *(unsigned int *)(DBGSS_SLV_ETB+0x300)
+                        //  Formatter/flush sts -                                                                               //  b0-FlInProg(AFVALIDS),b1-FtStopped(ATREADYS)
+#define ETB_FFCR        *(unsigned int *)(DBGSS_SLV_ETB+0x304)
+                        //  Formatter/flush ctl - b0- EnFTC, b1-EnFCont,
+                        //  b4-FOnFlIn (generte flush using the FLUSHIN IF),
+                        //  b5-FOnTrig (generate flush using Trig event)
+                        //   b6-FOnMan  (generate a flush, cleard after serived)
+                        //   b8-TrigIn  (indicat a tirg on TRIGIN being asserted)
+                        //   b9-TrigEvt (Indicate a trig on a Trigger Event)
+                        //   b10-TrigFl (Indicate a Flush completion - AFREADYS)
+                        //   b12-StopFl (Stop formatter when a flush has completed)
+                        //   b13-StopTrig (stop formatter when a trigger EV has been observed)
+#define ETB_ITMISCOP0   *(unsigned int *)(DBGSS_SLV_ETB+0xEE0)
+                        //  Integration test -
+                        //  b0-ACQCOMP (WO set ACQCOMP)),b1-FULL (WO set FULL)
+#define ETB_ITTRFLINACK *(unsigned int *)(DBGSS_SLV_ETB+0xEE4)
+                        //  Test trigIn/flushIn ack -
+                        //  b0-TRIGINACK(WO), b1-FLUSHINACK(WO)
+#define ETB_ITMRFLIN    *(unsigned int *)(DBGSS_SLV_ETB+0xEE8)
+                        //  Test trigIn/flushIn -
+                        //  b0-TRIGIN (RO), b1-FLUSHIN (RO)
+#define ETB_ITATBDATA0  *(unsigned int *)(DBGSS_SLV_ETB+0xEEC)
+                        //  Test ATB data - b5:0-ATDATA[31,23,15,7,0] (RO)
+#define ETB_ITATBCTR2   *(unsigned int *)(DBGSS_SLV_ETB+0xEF0)
+                        //  Test ATB ctl2 -
+                        //  b0-set ATREADYS (WO), b1-set AFVALIDS(WO)
+#define ETB_ITATBCTR1   *(unsigned int *)(DBGSS_SLV_ETB+0xEF4)
+                        //  Test ATB ctl1 - b6:0-value of ATID (RO)
+#define ETB_ITATBCTR0   *(unsigned int *)(DBGSS_SLV_ETB+0xEF8)
+                        //  Test ATB ctl0 - b0-ATVALIDS(RO, b1-AFREADYS(RO)
+                        //  b9:8-ATBYTESS(RO)
+#define ETB_MODE        *(unsigned int *)(DBGSS_SLV_ETB+0xF00)   // ETB CS management regs.
+#define ETB_CLAIM_SET   *(unsigned int *)(DBGSS_SLV_ETB+0xFA0)   // Claim tag set reg.
+#define ETB_CLAIM_CLR   *(unsigned int *)(DBGSS_SLV_ETB+0xFA4)   // Claim tag clear reg 
+#define ETB_LOCK        *(unsigned int *)(DBGSS_SLV_ETB+0xFB0)   // Lock access reg
+#define ETB_LOCK_STS    *(unsigned int *)(DBGSS_SLV_ETB+0xFB4)   // Lock status reg
+#define ETB_AUTH_STS    *(unsigned int *)(DBGSS_SLV_ETB+0xFB8)   // authentication status reg
+#define ETB_DEVICE_ID   *(unsigned int *)(DBGSS_SLV_ETB+0xFC8)   // device ID
+#define ETB_DEVICE_TYPE *(unsigned int *)(DBGSS_SLV_ETB+0xFCC)   // device type ID reg
+#define ETB_PERI_ID4    *(unsigned int *)(DBGSS_SLV_ETB+0xFD0)   // Peri ID4
+#define ETB_PERI_ID5    *(unsigned int *)(DBGSS_SLV_ETB+0xFD4)   // Peri ID5
+#define ETB_PERI_ID6    *(unsigned int *)(DBGSS_SLV_ETB+0xFD8)   // Peri ID6
+#define ETB_PERI_ID7    *(unsigned int *)(DBGSS_SLV_ETB+0xFDC)   // Peri ID7
+#define ETB_PERI_ID0    *(unsigned int *)(DBGSS_SLV_ETB+0xFE0)   // Peri ID0
+#define ETB_PERI_ID1    *(unsigned int *)(DBGSS_SLV_ETB+0xFE4)   // Peri ID1
+#define ETB_PERI_ID2    *(unsigned int *)(DBGSS_SLV_ETB+0xFE8)   // Peri ID2
+#define ETB_PERI_ID3    *(unsigned int *)(DBGSS_SLV_ETB+0xFEC)   // Peri ID3
+#define ETB_COMP_ID0    *(unsigned int *)(DBGSS_SLV_ETB+0xFF0)   // Comp ID0
+#define ETB_COMP_ID1    *(unsigned int *)(DBGSS_SLV_ETB+0xFF4)   // Comp ID1
+#define ETB_COMP_ID2    *(unsigned int *)(DBGSS_SLV_ETB+0xFF8)   // Comp ID2
+#define ETB_COMP_ID3    *(unsigned int *)(DBGSS_SLV_ETB+0xFFC)   // Comp ID3
+
+
+ // STM registers of DebugSS
+#define STM_REVISION    *(unsigned int *)(DBGSS_SLV_STMCFG+0x000)
+                                         // STM ID reg (0x00000010)
+#define STM_SYSCONFIG   *(unsigned int *)(DBGSS_SLV_STMCFG+0x010)
+                                         // STM sysCfg (b0-OCPAutoIdel, b1-SoftRst)
+#define STM_SYSSTATUS   *(unsigned int *)(DBGSS_SLV_STMCFG+0x014)
+                                         // STM sysSTS (b0-RstDone, b8-FIFOEmpty)
+#define STM_SWMCTRL0    *(unsigned int *)(DBGSS_SLV_STMCFG+0x024)
+                                         // SW m ctl0 - b31:28]=ownner,
+                                         // b16:14=DebugTrcEn,Trig1En,Trig0En
+#define STM_SWMCTRL1    *(unsigned int *)(DBGSS_SLV_STMCFG+0x028)
+                                         // SW m ctl1 - b6:0,14:8,22:16,30:24- MReqMstID[6:0]
+#define STM_SWMCTRL2    *(unsigned int *)(DBGSS_SLV_STMCFG+0x02C)
+                                         // SW m ctl2 - b1:0,9:8,17:16,25:24 -MReqMstID[1:0] msk
+#define STM_SWMCTRL3    *(unsigned int *)(DBGSS_SLV_STMCFG+0x030)
+                                         // SW m ctl3 - b2:0,10:8,18:16,26:24 -MReqDomain[2:0]
+#define STM_SWMCTRL4    *(unsigned int *)(DBGSS_SLV_STMCFG+0x034)
+                                         // SW m ctl4 - b2:0,10:8,18:16,26:24 -MReqDomain[2:0] msk
+#define STM_HWMCTRL     *(unsigned int *)(DBGSS_SLV_STMCFG+0x038)
+                                         // HW m ctl  - b6;2,14:10,22:18,30:26 -MReqMstID[6:2]
+#define STM_PTI_CFG     *(unsigned int *)(DBGSS_SLV_STMCFG+0x03C)
+                                         // PTIcfg - b3-clkEdge,b5:4-size,b6-autoIdle
+                                         //    b7-clkGating,b8-en
+#define STM_PTI_COUNTD  *(unsigned int *)(DBGSS_SLV_STMCFG+0x040)
+                                         // PTIcountdown - b7:0-NullCount with b2:0==b100
+#define STM_ATB_CONFIG  *(unsigned int *)(DBGSS_SLV_STMCFG+0x044)
+                                         // ATBcfg - b2:0-LTSRefClk,b11:8-MSTRpt
+                                         //    b15:12-CHRpt,b16-ATBEn
+#define STM_ATB_POINTER *(unsigned int *)(DBGSS_SLV_STMCFG+0x048)
+                                         // ATB msgHdrPntr - b2:0-HP0,b3-HPrsnt0
+                                         //    b6:4-HP1,b7-HPrsnt1
+#define STM_ATB_ID      *(unsigned int *)(DBGSS_SLV_STMCFG+0x04C)
+                                         // ATB ID - b6:0 tied-off.
+#define STM_TESTCONTROL *(unsigned int *)(DBGSS_SLV_STMCFG+0x050)
+                                         // STM testCtl - b0-TestMode,b2:1-TestPatternSel
+                                         //    b3-SimplePatSel
+
+#define STM_MODE_CTL    *(unsigned int *)(DBGSS_SLV_STMCFG+0xF00)
+                                         // Integration mode ctl -
+                                         //    b0-ITM (0-func mode, 1-STM Intgt Test Mode)
+#define STM_OUTPUT      *(unsigned int *)(DBGSS_SLV_STMCFG+0xF04)
+                                         // integration output -                                                                                              // b11:0-OutBitSel,b12-IntegEn,b27:16-NumOputs
+#define STM_INPUT       *(unsigned int *)(DBGSS_SLV_STMCFG+0xF08)
+                                         // integration input -                                                                                               // b11:0-InBitSel,b12-IntegEn,b27:16-NumIputs
+#define STM_CLAIM_SET   *(unsigned int *)(DBGSS_SLV_STMCFG+0xFA0)
+                                         // Claim tag set - b0 (1 to set)
+#define STM_CLAIM_CLR   *(unsigned int *)(DBGSS_SLV_STMCFG+0xFA4)
+                                         // Claim tag clr - b0 (1 to clr)
+#define STM_LOCK        *(unsigned int *)(DBGSS_SLV_STMCFG+0xFB0)
+                                         // (Un)Lock key - 0xC5ACCE55 (only affect app w)
+#define STM_LOCK_STS    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFB4)
+                                         // Lock status - b0-LockImplemented
+                                         //    b1-LockStatus, b2-8bitLock?
+#define STM_AUTH_STS    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFB8)
+                                         // Authentication status reg
+
+#define STM_DEVICE_ID   *(unsigned int *)(DBGSS_SLV_STMCFG+0xFC8)
+                                         // Device ID - b7:0-FIFODepth
+                                         // b8-TimeStamp (1-TS presetn in STM) 
+#define STM_DEVICE_TYPE *(unsigned int *)(DBGSS_SLV_STMCFG+0xFCC)
+                                         // device type - b7:0-device type (0x63)
+#define STM_PERI_ID4    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFD0)   // Peri ID4 (0x00)
+#define STM_PERI_ID5    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFD4)   // Peri ID5 (0x00)
+#define STM_PERI_ID6    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFD8)   // Peri ID6 (0x00)
+#define STM_PERI_ID7    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFDC)   // Peri ID7 (0x00)
+#define STM_PERI_ID0    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFE0)   // Peri ID0 (0x20)
+#define STM_PERI_ID1    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFE4)   // Peri ID1 (0x71)
+#define STM_PERI_ID2    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFE8)   // Peri ID2 (0x11)
+#define STM_PERI_ID3    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFEC)   // Peri ID3 (0x00)
+#define STM_COMP_ID0    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFF0)   // Comp ID0 (0x0D)
+#define STM_COMP_ID1    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFF4)   // Comp ID1 (0x90)
+#define STM_COMP_ID2    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFF8)   // Comp ID2 (0x05)
+#define STM_COMP_ID3    *(unsigned int *)(DBGSS_SLV_STMCFG+0xFFC)   // Comp ID3 (0xB1)
+
+// Unlock register
+#define CS_UNLOCK_VALUE         (0xC5ACCE55)     // 
+
+#define OWNERSHIP_CMD_CLAIM     (0x1<<30)        // 
+#define OWNERSHIP_CMD_ENABLE    (0x2<<30)        //
+#define OWNERSHIP_CMD_OVERRIDE  (0x1<<29)        // Emulator grab ownership forcely
+#define OWNERSHIP_STS_AVAILABLE (0x0<<30)        // 
+#define OWNERSHIP_STS_CLAIMED   (0x1<<30)        // 
+#define OWNERSHIP_STS_ENABLEED  (0x2<<30)        // 
+#define OWNERSHIP_STS_OWNER_MSK (0x1<<28)        // bit[28]=0 - Debugger own, 1-app own.
+
+// CS_TF0 and CS_TF1 of DebugSS
+#define TF0_TF_CTL      *(unsigned int *)(DBGSS_SLV_TF0+0x000)
+                                         // Funnel ctl (0x300)- b0,1,2,3,4,5,6,7-EnSx.
+                                         // b11:8-HT 
+#define TF0_PRI_CTL     *(unsigned int *)(DBGSS_SLV_TF0+0x004)
+                                         // Pri ctl (0xFAC688)- 
+                                         //   b2:0,5:3,8:6,11:9,14:12,17:15,20:18,23:21-PriPort
+#define TF0_MODE        *(unsigned int *)(DBGSS_SLV_TF0+0xF00)   // Integration mode ctl reg.
+#define TF0_CLAIM_SET   *(unsigned int *)(DBGSS_SLV_TF0+0xFA0)   // Claim tag set reg.
+#define TF0_CLAIM_CLR   *(unsigned int *)(DBGSS_SLV_TF0+0xFA4)   // Claim tag clear reg
+#define TF0_LOCK        *(unsigned int *)(DBGSS_SLV_TF0+0xFB0)   // Lock access reg
+#define TF0_LOCK_STS    *(unsigned int *)(DBGSS_SLV_TF0+0xFB4)   // Lock status reg (0x0/0x3)
+
+//From Control register and GPIO xsl file
+#define PAD_CNTRL_EMU2      *(unsigned int*)(0x44E109b0)
+#define PAD_CNTRL_EMU3      *(unsigned int*)(0x44E109b4)
+#define PAD_CNTRL_EMU4      *(unsigned int*)(0x44E10960)
+
+#define GPIO0_CLOCK_ADDR    *(unsigned int*) 0x44E00408
+#define PRCM_OCMC_CLOCK     *(unsigned int*) 0x44E0002c
+
+menuitem "Enable_Trace";
+
+hotmenu Enable_ETB_STM_Trace()
+{
+    enableDebugSSFirewall();
+    GEL_TextOut( "INFO: enable Trace Funnelfor STM trace on port 7\n");  
+    TF0_LOCK   = CS_UNLOCK_VALUE;        // 
+    TF0_TF_CTL = 0x380;                  // Enable ATB slave port7 and HT=3.
+
+}
+
+hotmenu Enable_ETB_CortexA8_Trace()
+{
+    enableDebugSSFirewall();
+    GEL_TextOut( "INFO: enable Trace Funnel for CS-A8 ETM trace on port 0\n");  
+    TF0_LOCK   = CS_UNLOCK_VALUE;        // 
+    TF0_TF_CTL = 0x301;                  // Enable ATB slave port0 and HT=3.
+    //ETM_POWER_DOWN_STATUS = 0x1;         // Enable ETM module
+}
+
+hotmenu Disable_ETB_Trace()
+{
+    GEL_TextOut( "INFO: disable Trace Funnel for trace\n"); 
+    TF0_LOCK   = CS_UNLOCK_VALUE;        // 
+    TF0_TF_CTL = 0x00;                   // disable all ATB slave ports and HT=3.
+    TF0_LOCK   = 0;                      // 
+}
+
+hotmenu Enable_STM_4PinMode_Trace()
+{
+    enableDebugSSFirewall();
+    GEL_TextOut( "INFO: set DP[4:0] for STM trace (DP0=d0, DP1=d1, DP2=clk, DP3=d2, DP4=d4\n" ,,,,,);
+    DRM_CLAIM = OWNERSHIP_CMD_CLAIM;                 // claim
+    DRM_CLAIM = OWNERSHIP_CMD_ENABLE;                // Enable
+    DRM_CTL(0) = (0x80000000 | DPM_MODE_STM_DATA0);  // set DP0 as STM trace data0
+    DRM_CTL(1) = (0x80000000 | DPM_MODE_STM_DATA1);  // set DP0 as STM trace data1
+    DRM_CTL(2) = (0x80000000 | DPM_MODE_STM_CLK  );  // set DP0 as STM trace clock
+    DRM_CTL(3) = (0x80000000 | DPM_MODE_STM_DATA2);  // set DP0 as STM trace data2
+    DRM_CTL(4) = (0x80000000 | DPM_MODE_STM_DATA3);  // set DP0 as STM trace data3
+    STM_traceClockPDLO();
+    Enable_Pad_Registers_For_STM_trace_Pins_EMU0_EMU4();
+    GEL_TextOut( "Configure STM to 4 pin mode on DRM is done");
+}
+
+hotmenu Enable_STM_1PinMode_Trace()
+{
+    enableDebugSSFirewall();
+    DRM_CLAIM = OWNERSHIP_CMD_CLAIM;                 // claim
+    DRM_CLAIM = OWNERSHIP_CMD_ENABLE;                // Enable
+    DRM_CTL(0) = (0x80000000 | DPM_MODE_STM_DATA0);  // set DP0 as STM trace data0
+    DRM_CTL(1) = (0x80000000 | DPM_MODE_STM_CLK  );   // set DP1 as STM trace clock
+    DRM_CTL(2) = (0x80000000 | 0);  // clear the remaining pin to set it to tri-state
+    DRM_CTL(3) = (0x80000000 | 0);  // clear the remaining pin to set it to tri-state
+    DRM_CTL(4) = (0x80000000 | 0);  // clear the remaining pin to set it to tri-state
+    STM_traceClockPDLO();
+    Enable_Pad_Registers_For_STM_trace_Pins_EMU0_EMU4();    
+    GEL_TextOut( "Configure STM to 1 pin mode on DRM is done");
+}
+
+hotmenu Disable_STM_Pin_Trace()
+{
+	enableDebugSSFirewall();
+    DRM_CLAIM = OWNERSHIP_CMD_CLAIM;                 // claim
+    DRM_CLAIM = OWNERSHIP_CMD_ENABLE;                // Enable
+    DRM_CTL(0) = (0x80000000 | 0);  // set DP0 as STM trace data0
+    DRM_CTL(1) = (0x80000000 | 0);   // set DP1 as STM trace clock
+    DRM_CTL(2) = (0x80000000 | 0);  // clear the remaining pin to set it to tri-state
+    DRM_CTL(3) = (0x80000000 | 0);  // clear the remaining pin to set it to tri-state
+    DRM_CTL(4) = (0x80000000 | 0);  // clear the remaining pin to set it to tri-state    
+    GEL_TextOut( "Disable STM pin trace on DRM is done");
+}
+
+/*****************************************************************************/
+/*   This function is to configure PDM to proivde a clock source to STM Pin trace              */
+/*   This function current configurate the clock speed to around 90MHz.                        */
+/*   This line is mainly used to fine tune the clock speed: DRM_PDLO_STM_CTL |= (5) << 16;     */
+/*   Increase the value in () will lower the clock speed and vice versa
+/*****************************************************************************/
+STM_traceClockPDM()    
+{
+    unsigned int   tmp;
+
+    GEL_TextOut( "INFO: STM trace using PDM clock with divider %x\n"  ,,,,, stmPDMClkDivider );
+    DRM_CLKGEN_CFG = 0x01;           // Select PDM (0 is for PDLO);
+
+    tmp = PRCM_DEBUGSS_CLKCTRL;
+    GEL_TextOut( "INFO: before change - PRCM_DEBUGSS_CLKCTRL = %x\n"  ,,,,, tmp );
+
+	//Hard code the divider to be 2 here, which translate to 62.5MHz. If the divider value is 1,
+	//PTI clock will be 125MHz, which exceed the maximum support frequncy (100MHz) of sd560v2 emaultor
+    tmp = (tmp & 0xFCFFFFFF) | ((2)<<24);
+    PRCM_DEBUGSS_CLKCTRL = tmp;      // b[31:30] - rsved,
+                                     // b[29:27] - STM_PMD_CLKDIVSEL (default-2, valid - 1,2,4)
+                                     // b[26:24] - TRC_PMD_CLKDIVSEL (default-2, valid - 1,2,4)
+                                     // b[23:22] - STM_PMD_CLKSEL (0-SysClk, 1-RefClkA(defalut))
+                                     // b[21:20] - TRC_PMD_CLKSEL (0-SysClk, 1-RefClkA(defalut))
+                                     // b19      - rsved
+                                     // b18      - STBST (module standby status) 0-functional (defautl)
+                                     // b[17:16] - IDLEST (module idel status) See definition.
+                                     // b[15:10] - rsved
+                                     // b9       - OPTCLK_DEBUG_CLKA (0-disabled, 1-enabled(default))
+                                     // b8       - OPTCLK_DEBUG_SYSCLK (same as above).
+                                     // b[7:2]   - rsved
+                                     // b[1:0]   - MODULEMODE (2-module is explicityly enabled (default))
+
+    tmp = PRCM_DEBUGSS_CLKCTRL;
+    GEL_TextOut( "INFO: after change - PRCM_DEBUGSS_CLKCTRL = %x\n"  ,,,,, tmp );
+}
+
+/*****************************************************************************/
+/*   This function is to configure PDLO to proivde a clock source to STM Pin trace                                      */
+/*   This function current configurate the clock speed to around 90MHz.                                                   */
+/*   This line is mainly used to fine tune the clock speed: DRM_PDLO_STM_CTL |= (5) << 16;                   */
+/*   Increase the value in () will lower the clock speed and vice versa
+/*****************************************************************************/
+STM_traceClockPDLO()
+{
+
+    DRM_CLKGEN_CFG = 0x0;               // Select PDLO (1 is for PDM)
+    //To be added
+    // Choose PDLO clock as clock source to STM module
+   
+        // Open EMUSS firewall (note this will only work if L3_3 clock domain
+        // is not gated (which is it by default on SDC device........)
+        // You need to run Configure_CM2_provide_clkdebugss() first otherwise
+        // the disconnect bridge will cause in-band errors to be returned (:)
+        // This allows non-secure access in EMU/TEST device to go through
+        // Also needed for testing software messages on EMU/TEST device.
+      // *(int*)SEC_EMU_MRM_PERM_REG_LOW_0 = 0xFFFFFFFF;            
+
+   // Initialize register to reset state
+   DRM_PDLO_STM_CTL = 0x00000000;
+
+   // Set divider to 1
+   DRM_PDLO_STM_CTL = (0x1 << 11);
+
+   // set refsel assuming 38MHz sysclk (/128)
+   DRM_PDLO_STM_CTL |= (0x1 << 5);
+
+   // configure dly_a value to control the speed. the lower this value is
+   // the higher the clock speed. The value of 165 here gives PTI clock at
+   // 90MHz +-5%
+   DRM_PDLO_STM_CTL |= (18) << 16;
+
+   DRM_PDLO_STM_CTL |= 0x0800;
+   // enable clock
+   DRM_PDLO_STM_CTL |= 0x4;
+
+   // enable oscillator
+   DRM_PDLO_STM_CTL |= 0x2;
+
+    GEL_TextOut("Configure CLKGEN CLKMUX for PDLO clock to STM/TPIU \n");
+
+}
+
+
+enableDebugSSFirewall()
+{
+    //
+    // This call is needed on Test/Emu device (not needed for GP device).
+    // Note: user can do this manually via DAP memory window (AHB port) too.
+    // 
+    FW_DBGSS_MRM_PERM_REGION0_LOW = 0xffffffff;
+    GEL_TextOut( "INFO: after setting - DebugSS's configure register MRM_PERMISSION_REGION_0_LOW = %x\n" 
+                  ,,,,, FW_DBGSS_MRM_PERM_REGION0_LOW );
+
+    Setup_Power();
+
+}
+
+Enable_Pattern_Generator_in_STM_4_pin_mode()
+{
+ /* Enable Pattern Generator in STM */
+  // unlock access of stm (ONLY needed for application access)
+   STM_LOCK = 0xC5ACCE55;
+
+   // Release any prior ownership
+   STM_SWMCTRL0 = 0x20000000;
+
+   // claim ownersip
+    STM_SWMCTRL0 = 0x40000000;
+   // Set PTISize and PTIEnable
+   // Double data rate
+   // 4-pin data
+    STM_PTI_CFG = (0x0 << 3) |
+                            (0x2 << 4) |
+                            (0x1 << 8);
+
+   // Enable Simple Pattern A
+    STM_TESTCONTROL = 0x1; 
+   // Enable STM
+    STM_SWMCTRL0 = 0x80000000;
+   GEL_TextOut("Enable Pattern Generator in STM,4 pin mode \n"); 
+}
+
+
+Enable_Pattern_Generator_in_STM_1_pin_mode()
+{
+ /* Enable Pattern Generator in STM */
+  // unlock access of stm (ONLY needed for application access)
+   STM_LOCK = CS_UNLOCK_VALUE;
+
+   // Release any prior ownership
+   STM_SWMCTRL0 = 0x20000000;
+
+   // claim ownersip
+    STM_SWMCTRL0 = 0x40000000;
+   // Set PTISize and PTIEnable
+   // Double data rate
+   // 1-pin data
+    STM_PTI_CFG = (0x0 << 3) |
+                            (0x0 << 4) |
+                            (0x1 << 8);
+
+   // Enable Simple Pattern A
+    STM_TESTCONTROL = 0x1; 
+   // Enable STM
+   STM_SWMCTRL0 = 0x80000000;
+   GEL_TextOut("Enable Pattern Generator in STM, 1 pin mpde\n"); 
+}
+
+Enable_Pad_Registers_For_STM_trace_Pins_EMU0_EMU4()
+{
+    PAD_CNTRL_EMU2 |= 0x2;
+    PAD_CNTRL_EMU3 |= 0x2;
+    PAD_CNTRL_EMU4 |= 0x2;
+}
+
+Disable_Pad_Registers_For_STM_trace_Pins_EMU0_EMU4()
+{
+    PAD_CNTRL_EMU2 &= 0xFFFFFF00;
+    PAD_CNTRL_EMU3 &= 0xFFFFFF00;
+    PAD_CNTRL_EMU4 &= 0xFFFFFF00;
+}
+
+Setup_Power()
+{
+    int temp;
+	
+    GPIO0_CLOCK_ADDR=0x40002;
+
+    temp = GPIO0_CLOCK_ADDR;
+
+    if ((temp & 0x3) !=0x2)
+    {
+        GEL_TextOut("Enable GPIO0 Clock fail!\n");
+    }
+
+    GEL_TextOut("Enable GPIO0 Clock pass!\n");   
+
+}
+

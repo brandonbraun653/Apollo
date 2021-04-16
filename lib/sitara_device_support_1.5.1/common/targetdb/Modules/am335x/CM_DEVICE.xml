@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="CM_DEVICE" id="CM_DEVICE">
+  
+  
+  <register acronym="CM_CLKOUT_CTRL" description="This register provides the control over CLKOUT2 output" id="CM_CLKOUT_CTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="This bit controls the external clock activity" end="7" id="CLKOUT2EN" rwaccess="RW" width="1">
+    <bitenum description="SYS_CLKOUT2 is disabled" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="SYS_CLKOUT2 is enabled" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="Reserved" end="6" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="THis  field controls the external clock divison factor" end="3" id="CLKOUT2DIV" rwaccess="RW" width="3">
+    <bitenum description="SYS_CLKOUT2/1" id="DIV1" token="DIV1" value="0"></bitenum>
+    <bitenum description="SYS_CLKOUT2/2" id="DIV2" token="DIV2" value="1"></bitenum>
+    <bitenum description="SYS_CLKOUT2/3" id="DIV3" token="DIV3" value="2"></bitenum>
+    <bitenum description="SYS_CLKOUT2/4" id="DIV4" token="DIV4" value="3"></bitenum>
+    <bitenum description="SYS_CLKOUT2/5" id="DIV5" token="DIV5" value="4"></bitenum>
+    <bitenum description="SYS_CLKOUT2/6" id="DIV6" token="DIV6" value="5"></bitenum>
+    <bitenum description="SYS_CLKOUT2/7" id="DIV7" token="DIV7" value="6"></bitenum>
+    <bitenum description="SYS_CLKOUT2/8" id="DIV8" token="DIV8" value="7"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="This field selects the external output clock source" end="0" id="CLKOUT2SOURCE" rwaccess="RW" width="3">
+    <bitenum description="Select 32KHz Oscillator O/P" id="SEL0" token="SEL0" value="0"></bitenum>
+    <bitenum description="Select L3 Clock" id="SEL1" token="SEL1" value="1"></bitenum>
+    <bitenum description="Select DDR PHY Clock" id="SEL2" token="SEL2" value="2"></bitenum>
+    <bitenum description="Select 192Mhz clock from PER PLL" id="SEL4" token="SEL4" value="3"></bitenum>
+    <bitenum description="Select LCD Pixel Clock" id="SEL5" token="SEL5" value="4"></bitenum>
+  </bitfield>
+  </register>
+</module>

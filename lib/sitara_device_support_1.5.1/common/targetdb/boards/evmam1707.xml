@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<board 	id="EVMAM1707" XML_version="1" desc="EVMAM1707" description="Spectrum Digital AM1707 EVM Board">
+  <instance XML_version="1.2" desc="AM1707_0" href="devices/AM1707.xml" id="AM1707_0" xml="AM1707.xml" xmlpath="devices"/>
+    <device HW_revision="1" XML_version="1.2" description="AM17x - ARM9 Embedded Processor" id="AM1707_0" partnum="AM1707">
+      <router HW_revision="" XML_version="1.2" description="" id="device_0" isa="ICEPICK_C">
+        <subpath id="device_3">
+          <cpu HW_revision="" XML_version="1.2" description="" id="device_4" isa="ARM9">
+            <property Type="filepathfield" Value="../../emulation/boards/evmam1707_v1/gel/evmam1707.gel" id="GEL File"/>
+          </cpu>
+        </subpath>
+      </router>
+    </device>
+</board>
+       

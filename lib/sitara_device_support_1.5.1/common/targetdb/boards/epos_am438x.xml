@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="EPOSAM438X" XML_version="1" desc="EPOSAM438X" description="AM438x EPOS.">
+    <instance XML_version="1.2" desc="AM4388_0" href="devices/AM4388.xml" id="AM4388_0" xml="AM4388.xml" xmlpath="devices"/>
+    <device HW_revision="1" XML_version="1.2" description="AM43xx - Cortex A9 Embedded Processor" id="AM4388_0" partnum="AM4388">
+        <router HW_revision="1.0" XML_version="1.2" description="ICEPick_D Router" id="IcePick_D_0" isa="ICEPICK_D">
+            <subpath id="DAP">
+                <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_DebugSS" isa="CS_DAP">
+                    <subpath id="MPUSS">
+                        <cpu HW_revision="1.0" XML_version="1.2" description="CortexA9 CPU" id="CortexA9" isa="CortexA9">
+                            <property Type="filepathfield" Value="../../emulation/boards/epos_am438x/gel/epos_am438x.gel" id="GEL File"/>
+                        </cpu>
+                    </subpath>
+                </router>
+            </subpath>
+        </router>
+    </device>
+</board>

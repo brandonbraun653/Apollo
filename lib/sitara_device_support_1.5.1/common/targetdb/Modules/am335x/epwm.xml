@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="EPWM" id="EPWM">
+  
+  
+  <register acronym="TBCTL" description="" id="TBCTL" offset="0x0" width="16">
+    
+  <bitfield begin="15" description=" Emulation Mode Bits.  These bits select the behavior of the ePWM time-base counter during emulation suspend events.  Emulation debug events can be set up in the Debug Subsystem. " end="14" id="FREE_SOFT" rwaccess="RW" width="2">
+    <bitenum description="Free run" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Free run" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Stop when counter completes a whole cycle. (a) Up-count mode - stop when the time-base counter = period (TBCNT = TBPRD). (b) Down-count mode - stop when the time-base counter = 0000 (TBCNT = 0000h). (c) Up-down-count mode - stop when the time-base counter = 0000 (TBCNT = 0000h)." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Stop after the next time-base counter increment or decrement" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description=" Phase Direction Bit.  This bit is only used when the time-base counter is configured in the up-down-count mode.  The PHSDIR bit indicates the direction the time-base counter (TBCNT) will count after a synchronization event occurs and a new phase value is loaded from the phase (TBPHS) register.  This is irrespective of the direction of the counter before the synchronization event..  In the up-count and down-count modes this bit is ignored. " end="13" id="PHSDIR" rwaccess="RW" width="1">
+    <bitenum description="Count up after the synchronization event." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Count down after the synchronization event." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description=" Time-base Clock Prescale Bits.  These bits determine part of the time-base clock prescale value.  TBCLK = SYSCLKOUT/(HSPCLKDIV * CLKDIV) " end="10" id="CLKDIV" rwaccess="RW" width="3">
+    <bitenum description="/128" id="en_8_0x7" token="en_8_0x7" value="0x7"></bitenum>
+    <bitenum description="/64" id="en_7_0x6" token="en_7_0x6" value="0x6"></bitenum>
+    <bitenum description="/32" id="en_6_0x5" token="en_6_0x5" value="0x5"></bitenum>
+    <bitenum description="/16" id="en_5_0x4" token="en_5_0x4" value="0x4"></bitenum>
+    <bitenum description="/8" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="/4" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="/2" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="/1 (default on reset)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description=" High-Speed Time-base Clock Prescale Bits.  These bits determine part of the time-base clock prescale value.  TBCLK = SYSCLKOUT/(HSPCLKDIV * CLKDIV).  This divisor emulates the HSPCLK in the TMS320x281x system as used on the Event Manager (EV) peripheral. " end="7" id="HSPCLKDIV" rwaccess="RW" width="3">
+    <bitenum description="/14" id="en_8_0x7" token="en_8_0x7" value="0x7"></bitenum>
+    <bitenum description="/12" id="en_7_0x6" token="en_7_0x6" value="0x6"></bitenum>
+    <bitenum description="/10" id="en_6_0x5" token="en_6_0x5" value="0x5"></bitenum>
+    <bitenum description="/8" id="en_5_0x4" token="en_5_0x4" value="0x4"></bitenum>
+    <bitenum description="/6" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="/4" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="/2 (default on reset)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="/1" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description=" Software Forced Synchronization Pulse." end="6" id="SWFSYNC" rwaccess="RW" width="1">
+    <bitenum description="Writing a 1 forces a one-time synchronization pulse to be generated. This event is ORed with the EPWMxSYNCI input of the ePWM module. SWFSYNC is valid (operates) only when EPWMxSYNCI is selected by SYNCOSEL = 00." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Writing a 0 has no effect and reads always return a 0." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description=" Synchronization Output Select.  These bits select the source of the EPWMxSYNCO signal. " end="4" id="SYNCOSEL" rwaccess="RW" width="2">
+    <bitenum description="Disable EPWMxSYNCO signal" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="CTR = CMPB - Time-base counter equal to counter-compare B (TBCNT = CMPB)" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="CTR = 0 - Time-base counter equal to zero (TBCNT = 0000h)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="EPWMxSYNC:" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description=" Active Period Register Load From Shadow Register Select" end="3" id="PRDLD" rwaccess="RW" width="1">
+    <bitenum description="Load the TBPRD register immediately without using a shadow register. A write or read to the TBPRD register directly accesses the active register." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="The period register (TBPRD) is loaded from its shadow register when the time-base counter, TBCNT, is equal to zero. A write or read to the TBPRD register accesses the shadow register." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description=" Counter Register Load From Phase Register Enable" end="2" id="PHSEN" rwaccess="RW" width="1">
+    <bitenum description="Load the time-base counter with the phase register when an EPWMxSYNCI input signal occurs or when a software synchronization is forced by the SWFSYNC bit." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do not load the time-base counter (TBCNT) from the time-base phase register (TBPHS)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Counter Mode.  The time-base counter mode is normally configured once and not changed during normal operation.  If you change the mode of the counter, the change will take effect at the next TBCLK edge and the current counter value shall increment or decrement from the value before the mode change.  These bits set the time-base counter mode of operation as follows: " end="0" id="CTRMODE" rwaccess="RW" width="2">
+    <bitenum description="Stop-freeze counter operation (default on reset)" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Up-down-count mode" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Down-count mode" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Up-count mode" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TBSTS" description="" id="TBSTS" offset="0x2" width="16">
+    
+  <bitfield begin="15" description=" " end="3" id="RESERVED_1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="2" description=" Time-Base Counter Max Latched Status Bit." end="2" id="CTRMAX" rwaccess="" width="1">
+    <bitenum description="Reading a 1 on this bit indicates that the time-base counter reached the max value 0xFFFF. Writing a 1 to this bit will clear the latched event." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Reading a 0 indicates the time-base counter never reached its maximum value. Writing a 0 will have no effect." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Input Synchronization Latched Status Bit." end="1" id="SYNCI" rwaccess="W" width="1">
+    <bitenum description="Reading a 1 on this bit indicates that an external synchronization event has occurred (EPWMxSYNCI). Writing a 1 to this bit will clear the latched event." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Writing a 0 will have no effect. Reading a 0 indicates no external synchronization event has occurred." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description=" Time-Base Counter Direction Status Bit.  At reset, the counter is frozen, therefore, this bit has no meaning.  To make this bit meaningful, you must first set the appropriate mode via TBCTL[CTRMODE]. " end="0" id="CTRDIR" rwaccess="R" width="1">
+    <bitenum description="Time-Base Counter is currently counting up." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Time-Base Counter is currently counting down." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TBPHSHR" description="" id="TBPHSHR" offset="0x4" width="16">
+    
+  <bitfield begin="15" description=" Time-base phase high-resolution bits" end="8" id="TBPHSH" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description=" " end="0" id="RESERVED_1" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="TBPHS" description="This register is only available on ePWM instances that include the high-resolution PWM (HRPWM) extension, otherwise, this location is reserved." id="TBPHS" offset="0x6" width="16">
+    
+  <bitfield begin="15" description=" These bits set time-base counter phase of the selected ePWM relative to the time-base that is supplying the synchronization input signal.  (a) If TBCTL[PHSEN] = 0, then the synchronization event is ignored and the time-base counter is not loaded with the phase.  (b) If TBCTL[PHSEN] = 1, then the time-base counter (TBCNT) will be loaded with the phase (TBPHS) when a synchronization event occurs.  The synchronization event can be initiated by the input synchronization signal (EPWMxSYNCI) or by a software forced synchronization.  " end="0" id="TBPHS" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="TBCNT" description="" id="TBCNT" offset="0x8" width="16">
+    
+  <bitfield begin="15" description=" Reading these bits gives the current time-base counter value.  Writing to these bits sets the current time-base counter value.  The update happens as soon as the write occurs.  The write is NOT synchronized to the time-base clock (TBCLK) and the register is not shadowed." end="0" id="TBCNT" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="TBPRD" description="" id="TBPRD" offset="0xA" width="16">
+    
+  <bitfield begin="15" description=" These bits determine the period of the time-base counter.  This sets the PWM frequency.  Shadowing of this register is enabled and disabled by the TBCTL[PRDLD] bit.  By default this register is shadowed.  (a) If TBCTL[PRDLD] = 0, then the shadow is enabled and any write or read will automatically go to the shadow register.  In this case, the active register will be loaded from the shadow register when the time-base counter equals zero.  (b) If TBCTL[PRDLD] = 1, then the shadow is disabled and any write or read will go directly to the active register, that is the register actively controlling the hardware.  (c) The active and shadow registers share the same memory map address.  " end="0" id="TBPRD" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMPCTL" description="" id="CMPCTL" offset="0xE" width="16">
+    
+  <bitfield begin="15" description=" " end="10" id="RESERVED_1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="9" description=" Counter-compare B (CMPB) Shadow Register Full Status Flag.  This bit self clears once a load-strobe occurs. " end="9" id="SHDWBFULL" rwaccess="R" width="1">
+    <bitenum description="Indicates the CMPB shadow FIFO is full. A CPU write will overwrite current shadow value." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="CMPB shadow FIFO not full yet" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description=" Counter-compare A (CMPA) Shadow Register Full Status Flag.  The flag bit is set when a 32 bit write to CMPA:CMPAHR register or a 16 bit write to CMPA register is made.  A 16 bit write to CMPAHR register will not affect the flag.  This bit self clears once a load-strobe occurs. " end="8" id="SHDWAFULL" rwaccess="R" width="1">
+    <bitenum description="Indicates the CMPA shadow FIFO is full, a CPU write will overwrite the current shadow value." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="CMPA shadow FIFO not full yet" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description=" " end="7" id="RESERVED_2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description=" Counter-compare B (CMPB) Register Operating Mode." end="6" id="SHDWBMODE" rwaccess="RW" width="1">
+    <bitenum description="Immediate mode. Only the active compare B register is used. All writes and reads directly access the active register for immediate compare action." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Shadow mode. Operates as a double buffer. All writes via the CPU access the shadow register." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description=" " end="5" id="RESERVED_3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description=" Counter-compare A (CMPA) Register Operating Mode." end="4" id="SHDWAMODE" rwaccess="RW" width="1">
+    <bitenum description="Immediate mode. Only the active compare register is used. All writes and reads directly access the active register for immediate compare action" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Shadow mode. Operates as a double buffer. All writes via the CPU access the shadow register." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description=" Active Counter-Compare B (CMPB) Load From Shadow Select Mode.  This bit has no effect in immediate mode (CMPCTL[SHDWBMODE] = 1). " end="2" id="LOADBMODE" rwaccess="RW" width="2">
+    <bitenum description="Freeze (no loads possible)" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Load on either CTR = 0 or CTR = PRD" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Load on CTR = PRD - Time-base counter equal to period (TBCNT = TBPRD)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Load on CTR = 0 - Time-base counter equal to zero (TBCNT = 0000h)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Active Counter-Compare A (CMPA) Load From Shadow Select Mode.  This bit has no effect in immediate mode (CMPCTL[SHDWAMODE] = 1). " end="0" id="LOADAMODE" rwaccess="RW" width="2">
+    <bitenum description="Freeze (no loads possible)" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Load on either CTR = 0 or CTR = PRD" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Load on CTR = PRD - Time-base counter equal to period (TBCNT = TBPRD)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Load on CTR = 0 - Time-base counter equal to zero (TBCNT = 0000h)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CMPAHR" description="This register is only available on ePWM instances that include the high-resolution PWM (HRPWM) extension; otherwise, this location is reserved." id="CMPAHR" offset="0x10" width="16">
+    
+  <bitfield begin="15" description=" Compare A High-Resolution register bits for MEP step control.  A minimum value of 1h is needed to enable HRPWM capabilities.  Valid MEP range of operation  1-255h.  " end="8" id="CMPAHR" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description=" " end="0" id="RESERVED_1" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMPA" description="" id="CMPA" offset="0x12" width="16">
+    
+  <bitfield begin="15" description=" The value in the active CMPA register is continuously compared to the time-base counter (TBCNT).  When the values are equal, the counter-compare module generates a &quot;time-base counter equal to counter compare A&quot; event.  This event is sent to the action-qualifier where it is qualified and converted it into one or more actions.  These actions can be applied to either the EPWMxA or the EPWMxB output depending on the configuration of the AQCTLA and AQCTLB registers.  The actions that can be defined in the AQCTLA and AQCTLB registers include the following.  (a) Do nothing the event is ignored.  (b) Clear - Pull the EPWMxA and/or EPWMxB signal low.  (c) Set - Pull the EPWMxA and/or EPWMxB signal high.  (d) Toggle the EPWMxA and/or EPWMxB signal.  Shadowing of this register is enabled and disabled by the CMPCTL[SHDWAMODE] bit.  By default this register is shadowed.  (a) If CMPCTL[SHDWAMODE] = 0, then the shadow is enabled and any write or read will automatically go to the shadow register.  In this case, the CMPCTL[LOADAMODE] bit field determines which event will load the active register from the shadow register.  (b) Before a write, the CMPCTL[SHDWAFULL] bit can be read to determine if the shadow register is currently full.  (c) If CMPCTL[SHDWAMODE] = 1, then the shadow register is disabled and any write or read will go directly to the active register, that is the register actively controlling the hardware.  (d) In either mode, the active and shadow registers share the same memory map address.  " end="0" id="CMPA" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMPB" description="" id="CMPB" offset="0x14" width="16">
+    
+  <bitfield begin="15" description=" The value in the active CMPB register is continuously compared to the time-base counter (TBCNT).  When the values are equal, the counter-compare module generates a &quot;time-base counter equal to counter compare B&quot; event.  This event is sent to the action-qualifier where it is qualified and converted it into one or more actions.  These actions can be applied to either the EPWMxA or the EPWMxB output depending on the configuration of the AQCTLA and AQCTLB registers.  The actions that can be defined in the AQCTLA and AQCTLB registers include the following.  (a) Do nothing, the event is ignored.  (b) Clear - Pull the EPWMxA and/or EPWMxB signal low.  (c) Set - Pull the EPWMxA and/or EPWMxB signal high.  (d) Toggle the EPWMxA and/or EPWMxB signal.  Shadowing of this register is enabled and disabled by the CMPCTL[SHDWBMODE] bit.  By default this register is shadowed.  (a) If CMPCTL[SHDWBMODE] = 0, then the shadow is enabled and any write or read will automatically go to the shadow register.  In this case, the CMPCTL[LOADBMODE] bit field determines which event will load the active register from the shadow register: (b) Before a write, the CMPCTL[SHDWBFULL] bit can be read to determine if the shadow register is currently full.  (c) If CMPCTL[SHDWBMODE] = 1, then the shadow register is disabled and any write or read will go directly to the active register, that is the register actively controlling the hardware.  (d) In either mode, the active and shadow registers share the same memory map address.  " end="0" id="CMPB" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="AQCTLA" description="" id="AQCTLA" offset="0x16" width="16">
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Action when the time-base counter equals the active CMPB register and the counter is decrementing." end="10" id="CBD" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxA output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxA output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxA output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description=" Action when the counter equals the active CMPB register and the counter is incrementing." end="8" id="CBU" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxA output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxA output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxA output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description=" Action when the counter equals the active CMPA register and the counter is decrementing." end="6" id="CAD" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxA output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxA output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxA output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description=" Action when the counter equals the active CMPA register and the counter is incrementing." end="4" id="CAU" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxA output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxA output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxA output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description=" Action when the counter equals the period.  Note: By definition, in count up-down mode when the counter equals period the direction is defined as 0 or counting down. " end="2" id="PRD" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxA output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxA output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxA output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Action when counter equals zero.  Note: By definition, in count up-down mode when the counter equals 0 the direction is defined as 1 or counting up. " end="0" id="ZRO" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxA output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxA output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxA output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="AQCTLB" description="" id="AQCTLB" offset="0x18" width="16">
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Action when the counter equals the active CMPB register and the counter is decrementing." end="10" id="CBD" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxB output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxB output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxB output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description=" Action when the counter equals the active CMPB register and the counter is incrementing." end="8" id="CBU" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxB output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxB output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxB output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description=" Action when the counter equals the active CMPA register and the counter is decrementing." end="6" id="CAD" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxB output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxB output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxB output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description=" Action when the counter equals the active CMPA register and the counter is incrementing." end="4" id="CAU" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxB output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxB output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxB output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description=" Action when the counter equals the period.  Note: By definition, in count up-down mode when the counter equals period the direction is defined as 0 or counting down. " end="2" id="PRD" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxB output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxB output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxB output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Action when counter equals zero.  Note: By definition, in count up-down mode when the counter equals 0 the direction is defined as 1 or counting up. " end="0" id="ZRO" rwaccess="RW" width="2">
+    <bitenum description="Toggle EPWMxB output - low output signal will be forced high, and a high signal will be forced low." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set - force EPWMxB output high." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear - force EPWMxB output low." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Do nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="AQSFRC" description="" id="AQSFRC" offset="0x1A" width="16">
+    
+  <bitfield begin="15" description=" " end="8" id="RESERVED_1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description=" AQCSFRC Active Register Reload From Shadow Options." end="6" id="RLDCSF" rwaccess="RW" width="2">
+    <bitenum description="Load immediately (the active register is directly accessed by the CPU and is not loaded from the shadow register)." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Load on event counter equals zero or counter equals period" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Load on event counter equals period" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Load on event counter equals zero" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description=" One-Time Software Forced Event on Output B." end="5" id="OTSFB" rwaccess="RW" width="1">
+    <bitenum description="Initiates a single s/w forced event" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Writing a 0 (zero) has no effect. Always reads back a 0. This bit is auto cleared once a write to this register is complete, that is, a forced event is initiated. This is a one-shot forced event. It can be overridden by another subsequent event on output B." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description=" Action when One-Time Software Force B Is invoked" end="3" id="ACTSFB" rwaccess="RW" width="2">
+    <bitenum description="Toggle (Low -> High, High -> Low). Note: This action is not qualified by counter direction (CNT_dir)" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set (high)" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear (low)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Does nothing (action disabled)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description=" One-Time Software Forced Event on Output A." end="2" id="OTSFA" rwaccess="RW" width="1">
+    <bitenum description="Initiates a single software forced event." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Writing a 0 (zero) has no effect. Always reads back a 0. This bit is auto cleared once a write to this register is complete (that is, a forced event is initiated)." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Action When One-Time Software Force A Is Invoked." end="0" id="ACTSFA" rwaccess="RW" width="2">
+    <bitenum description="Toggle (Low -> High, High -> Low). Note: This action is not qualified by counter direction (CNT_dir)" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Set (high)." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Clear (low)." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Does nothing (action disabled)." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="AQCSFRC" description="" id="AQCSFRC" offset="0x1C" width="16">
+    
+  <bitfield begin="15" description=" " end="4" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="3" description=" Continuous Software Force on Output B.  In immediate mode, a continuous force takes effect on the next TBCLK edge.  In shadow mode, a continuous force takes effect on the next TBCLK edge after a shadow load into the active register.  To configure shadow mode, use AQSFRC[RLDCSF]. " end="2" id="CSFB" rwaccess="RW" width="2">
+    <bitenum description="Software forcing is disabled and has no effect" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Forces a continuous high on output B" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Forces a continuous low on output B" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Forcing disabled, that is, has no effect" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Continuous Software Force on Output A In immediate mode, a continuous force takes effect on the next TBCLK edge.  In shadow mode, a continuous force takes effect on the next TBCLK edge after a shadow load into the active register. " end="0" id="CSFA" rwaccess="RW" width="2">
+    <bitenum description="Software forcing is disabled and has no effect" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Forces a continuous high on output A" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Forces a continuous low on output A" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Forcing disabled, that is, has no effect" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="DBCTL" description="" id="DBCTL" offset="0x1E" width="16">
+    
+  <bitfield begin="15" description=" " end="6" id="RESERVED_1" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="5" description=" Dead Band Input Mode Control.  Bit 5 controls the S5 switch and bit 4 controls the S4 switch.  This allows you to select the input source to the falling-edge and rising-edge delay.  To produce classical dead-band waveforms, the default is EPWMxA In is the source for both falling and rising-edge delays. " end="4" id="IN_MODE" rwaccess="RW" width="2">
+    <bitenum description="EPWMxB In (from the action-qualifier) is the source for both rising-edge delay and falling-edge delayed signal." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="EPWMxA In (from the action-qualifier) is the source for rising-edge delayed signal. EPWMxB In (from the action-qualifier) is the source for falling-edge delayed signal." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="EPWMxB In (from the action-qualifier) is the source for rising-edge delayed signal. EPWMxA In (from the action-qualifier) is the source for falling-edge delayed signal." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="EPWMxA In (from the action-qualifier) is the source for both falling-edge and rising-edge delay." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description=" Polarity Select Control.  Bit 3 controls the S3 switch and bit 2 controls the S2 switch.  This allows you to selectively invert one of the delayed signals before it is sent out of the dead-band submodule.  The following descriptions correspond to classical upper/lower switch control as found in one leg of a digital motor control inverter.  These assume that DBCTL[OUT_MODE] = 1,1 and DBCTL[IN_MODE] = 0,0.  Other enhanced modes are also possible, but not regarded as typical usage modes.   " end="2" id="POLSEL" rwaccess="RW" width="2">
+    <bitenum description="Active low (AL) mode. Both EPWMxA and EPWMxB are inverted." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Active high complementary (AHC). EPWMxB is inverted." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Active low complementary (ALC) mode. EPWMxA is inverted." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Active high (AH) mode. Neither EPWMxA nor EPWMxB is inverted (default)." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Dead-band Output Mode Control.  Bit 1 controls the S1 switch and bit 0 controls the S0 switch.  This allows you to selectively enable or bypass the dead-band generation for the falling-edge and rising-edge delay. " end="0" id="OUT_MODE" rwaccess="RW" width="2">
+    <bitenum description="Dead-band is fully enabled for both rising-edge delay on output EPWMxA and falling-edge delay on output EPWMxB. The input signal for the delay is determined by DBCTL[IN_MODE]." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Disable falling-edge delay. The EPWMxB signal from the action-qualifier is passed straight through to the EPWMxB input of the PWM-chopper submodule. The rising-edge delayed signal is seen on output EPWMxA. The input signal for the delay is determined by DBCTL[IN_MODE]." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Disable rising-edge delay. The EPWMxA signal from the action-qualifier is passed straight through to the EPWMxA input of the PWM-chopper submodule. The falling-edge delayed signal is seen on output EPWMxB. The input signal for the delay is determined by DBCTL[IN_MODE]." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Dead-band generation is bypassed for both output signals. In this mode, both the EPWMxA and EPWMxB output signals from the action-qualifier are passed directly to the PWM-chopper submodule. In this mode, the POLSEL and IN_MODE bits have no effect." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="DBRED" description="" id="DBRED" offset="0x20" width="16">
+    
+  <bitfield begin="15" description=" " end="10" id="RESERVED_1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="9" description=" Rising Edge Delay Count.  10 bit counter." end="0" id="DEL" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DBFED" description="" id="DBFED" offset="0x22" width="16">
+    
+  <bitfield begin="15" description=" " end="10" id="RESERVED_1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="9" description=" Falling Edge Delay Count.  10 bit counter" end="0" id="DEL" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="TZSEL" description="" id="TZSEL" offset="0x24" width="16">
+    
+  <bitfield begin="15" description=" Trip-zone n (TZn) select.  One-Shot (OSHT) trip-zone enable/disable.  When any of the enabled pins go low, a one-shot trip event occurs for this ePWM module.  When the event occurs, the action defined in the TZCTL register is taken on the EPWMxA and EPWMxB outputs.  The one-shot trip condition remains latched until you clear the condition via the TZCLR register. " end="8" id="OSHTn" rwaccess="RW" width="8">
+    <bitenum description="Enable TZn as a one-shot trip source for this ePWM module." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Disable TZn as a one-shot trip source for this ePWM module." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description=" Trip-zone n (TZn) select.  Cycle-by-Cycle (CBC) trip-zone enable/disable.  When any of the enabled pins go low, a cycle-by-cycle trip event occurs for this ePWM module.  When the event occurs, the action defined in the TZCTL register is taken on the EPWMxA and EPWMxB outputs.  A cycle-by-cycle trip condition is automatically cleared when the time-base counter reaches zero. " end="0" id="CBCn" rwaccess="RW" width="8">
+    <bitenum description="Enable TZn as a CBC trip source for this ePWM module." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Disable TZn as a CBC trip source for this ePWM module." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TZCTL" description="" id="TZCTL" offset="0x28" width="16">
+    
+  <bitfield begin="15" description=" " end="4" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="3" description=" When a trip event occurs the following action is taken on output EPWMxB.  Which trip-zone pins can cause an event is defined in the TZSEL register. " end="2" id="TZB" rwaccess="RW" width="2">
+    <bitenum description="Do nothing, no action is taken on EPWMxB." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Force EPWMxB to a low state" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Force EPWMxB to a high state" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="High impedance (EPWMxB = High-impedance state)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" When a trip event occurs the following action is taken on output EPWMxA.  Which trip-zone pins can cause an event is defined in the TZSEL register. " end="0" id="TZA" rwaccess="RW" width="2">
+    <bitenum description="Do nothing, no action is taken on EPWMxA." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Force EPWMxA to a low state" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Force EPWMxA to a high state" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="High impedance (EPWMxA = High-impedance state)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TZEINT" description="" id="TZEINT" offset="0x2A" width="16">
+    
+  <bitfield begin="15" description=" " end="3" id="RESERVED_1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="2" description=" Trip-zone One-Shot Interrupt Enable" end="2" id="OST" rwaccess="RW" width="1">
+    <bitenum description="Enable Interrupt generation; a one-shot trip event will cause a EPWMxTZINT interrupt." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Disable one-shot interrupt generation" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Trip-zone Cycle-by-Cycle Interrupt Enable" end="1" id="CBC" rwaccess="RW" width="1">
+    <bitenum description="Enable interrupt generation; a cycle-by-cycle trip event will cause an EPWMxTZINT interrupt." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Disable cycle-by-cycle interrupt generation." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description=" " end="0" id="RESERVED_2" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TZFLG" description="" id="TZFLG" offset="0x2C" width="16">
+    
+  <bitfield begin="15" description=" " end="3" id="RESERVED_1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="2" description=" Latched Status Flag for A One-Shot Trip Event." end="2" id="OST" rwaccess="R" width="1">
+    <bitenum description="Indicates a trip event has occurred on a pin selected as a one-shot trip source. This bit is cleared by writing the appropriate value to the TZCLR register." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="No one-shot trip event has occurred." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Latched Status Flag for Cycle-By-Cycle Trip Event" end="1" id="CBC" rwaccess="R" width="1">
+    <bitenum description="Indicates a trip event has occurred on a pin selected as a cycle-by-cycle trip source. The TZFLG[CBC] bit will remain set until it is manually cleared by the user. If the cycle-by-cycle trip event is still present when the CBC bit is cleared, then CBC will be immediately set again. The specified condition on the pins is automatically cleared when the ePWM time-base counter reaches zero (TBCNT = 0000h) if the trip condition is no longer present. The condition on the pins is only cleared when the TBCNT = 0000h no matter where in the cycle the CBC flag is cleared. This bit is cleared by writing the appropriate value to the TZCLR register." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="No cycle-by-cycle trip event has occurred." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description=" Latched Trip Interrupt Status Flag" end="0" id="INT" rwaccess="R" width="1">
+    <bitenum description="Indicates an EPWMxTZINT interrupt was generated because of a trip condition. No further EPWMxTZINT interrupts will be generated until this flag is cleared. If the interrupt flag is cleared when either CBC or OST is set, then another interrupt pulse will be generated. Clearing all flag bits will prevent further interrupts. This bit is cleared by writing the appropriate value to the TZCLR register." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Indicates no interrupt has been generated." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TZCLR" description="" id="TZCLR" offset="0x2E" width="16">
+    
+  <bitfield begin="15" description=" " end="3" id="RESERVED_1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="2" description=" Clear Flag for One-Shot Trip (OST) Latch" end="2" id="OST" rwaccess="RW" width="1">
+    <bitenum description="Clears this Trip (set) condition." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Has no effect. Always reads back a 0." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Clear Flag for Cycle-By-Cycle (CBC) Trip Latch" end="1" id="CBC" rwaccess="RW" width="1">
+    <bitenum description="Clears this Trip (set) condition." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Has no effect. Always reads back a 0." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description=" Global Interrupt Clear Flag" end="0" id="INT" rwaccess="RW" width="1">
+    <bitenum description="Clears the trip-interrupt flag for this ePWM module (TZFLG[INT]). Note: No further EPWMxTZINT interrupts will be generated until the flag is cleared. If the TZFLG[INT] bit is cleared and any of the other flag bits are set, then another interrupt pulse will be generated. Clearing all flag bits will prevent further interrupts." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Has no effect. Always reads back a 0." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TZFRC" description="" id="TZFRC" offset="0x30" width="16">
+    
+  <bitfield begin="15" description=" " end="3" id="RESERVED_1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="2" description=" Force a One-Shot Trip Event via Software" end="2" id="OST" rwaccess="RW" width="1">
+    <bitenum description="Forces a one-shot trip event and sets the TZFLG[OST] bit." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Writing of 0 is ignored. Always reads back a 0." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Force a Cycle-by-Cycle Trip Event via Software" end="1" id="CBC" rwaccess="RW" width="1">
+    <bitenum description="Forces a cycle-by-cycle trip event and sets the TZFLG[CBC] bit." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Writing of 0 is ignored. Always reads back a 0." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description=" " end="0" id="RESERVED_2" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ETSEL" description="" id="ETSEL" offset="0x32" width="16">
+    
+  <bitfield begin="15" description=" " end="4" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="3" description=" Enable ePWM Interrupt (EPWMx_INT) Generation" end="3" id="INTEN" rwaccess="RW" width="1">
+    <bitenum description="Enable EPWMx_INT generation" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Disable EPWMx_INT generation" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description=" ePWM Interrupt (EPWMx_INT) Selection Options" end="0" id="INTSEL" rwaccess="RW" width="3">
+    <bitenum description="Enable event - time-base counter equal to CMPB when the timer is decrementing." id="en_8_0x7" token="en_8_0x7" value="0x7"></bitenum>
+    <bitenum description="Enable event - time-base counter equal to CMPB when the timer is incrementing." id="en_7_0x6" token="en_7_0x6" value="0x6"></bitenum>
+    <bitenum description="Enable event time-base counter equal to CMPA when the timer is decrementing." id="en_6_0x5" token="en_6_0x5" value="0x5"></bitenum>
+    <bitenum description="Enable event time-base counter equal to CMPA when the timer is incrementing." id="en_5_0x4" token="en_5_0x4" value="0x4"></bitenum>
+    <bitenum description="Reserved" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Enable event time-base counter equal to period (TBCNT = TBPRD)" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Enable event time-base counter equal to zero. (TBCNT = 0000h)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Reserved" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="ETPS" description="" id="ETPS" offset="0x34" width="16">
+    
+  <bitfield begin="15" description=" " end="4" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="3" description=" ePWM Interrupt Event (EPWMx_INT) Counter Register.  These bits indicate how many selected ETSEL[INTSEL] events have occurred.  These bits are automatically cleared when an interrupt pulse is generated.  If interrupts are disabled, ETSEL[INT] = 0 or the interrupt flag is set, ETFLG[INT] = 1, the counter will stop counting events when it reaches the period value ETPS[INTCNT] = ETPS[INTPRD]. " end="2" id="INTCNT" rwaccess="R" width="2">
+    <bitenum description="3 events have occurred." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="2 events have occurred." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="1 event has occurred." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="No events have occurred." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" ePWM Interrupt (EPWMx_INT) Period Select.  These bits determine how many selected ETSEL[INTSEL] events need to occur before an interrupt is generated.  To be generated, the interrupt must be enabled (ETSEL[INT] = 1).  If the interrupt status flag is set from a previous interrupt (ETFLG[INT] = 1) then no interrupt will be generated until the flag is cleared via the ETCLR[INT] bit.  This allows for one interrupt to be pending while another is still being serviced.  Once the interrupt is generated, the ETPS[INTCNT] bits will automatically be cleared.  Writing a INTPRD value that is the same as the current counter value will trigger an interrupt if it is enabled and the status flag is clear.  Writing a INTPRD value that is less than the current counter value will result in an undefined state.  If a counter event occurs at the same instant as a new zero or non-zero INTPRD value is written, the counter is incremented. " end="0" id="INTPRD" rwaccess="RW" width="2">
+    <bitenum description="Generate interrupt on ETPS[INTCNT] = 1,1 (third event)" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Generate interrupt on ETPS[INTCNT] = 1,0 (second event)" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Generate an interrupt on the first event INTCNT = 01 (first event)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Disable the interrupt event counter. No interrupt will be generated and ETFRC[INT] is ignored." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="ETFLG" description="" id="ETFLG" offset="0x36" width="16">
+    
+  <bitfield begin="15" description=" " end="1" id="RESERVED_1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="0" description=" Latched ePWM Interrupt (EPWMx_INT) Status Flag" end="0" id="INT" rwaccess="R" width="1">
+    <bitenum description="Indicates that an ePWMx interrupt (EWPMx_INT) was generated. No further interrupts will be generated until the flag bit is cleared. Up to one interrupt can be pending while the ETFLG[INT] bit is still set. If an interrupt is pending, it will not be generated until after the ETFLG[INT] bit is cleared." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Indicates no event occurred" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="ETCLR" description="" id="ETCLR" offset="0x38" width="16">
+    
+  <bitfield begin="15" description=" " end="1" id="RESERVED_1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="0" description=" ePWM Interrupt (EPWMx_INT) Flag Clear Bit" end="0" id="INT" rwaccess="R" width="1">
+    <bitenum description="Clears the ETFLG[INT] flag bit and enable further interrupts pulses to be generated. NOTE: Interrupts can also used as DMA events, and this will also enable further DMA events to be generated" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Writing a 0 has no effect. Always reads back a 0." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="ETFRC" description="" id="ETFRC" offset="0x3A" width="16">
+    
+  <bitfield begin="15" description=" " end="1" id="RESERVED_1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="0" description=" INT Force Bit.  The interrupt will only be generated if the event is enabled in the ETSEL register.  The INT flag bit will be set regardless. " end="0" id="INT" rwaccess="R" width="1">
+    <bitenum description="Generates an interrupt on EPWMxINT and set the INT flag bit. This bit is used for test purposes." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Writing 0 to this bit will be ignored. Always reads back a 0." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PCCTL" description="" id="PCCTL" offset="0x3C" width="16">
+    
+  <bitfield begin="15" description=" " end="11" id="RESERVED_1" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description=" Chopping Clock Duty Cycle" end="8" id="CHPDUTY" rwaccess="RW" width="3">
+    <bitenum description="Reserved." id="en_8_0x7" token="en_8_0x7" value="0x7"></bitenum>
+    <bitenum description="Duty = 7/8 (87.5%)" id="en_7_0x6" token="en_7_0x6" value="0x6"></bitenum>
+    <bitenum description="Duty = 6/8 (75.0%)" id="en_6_0x5" token="en_6_0x5" value="0x5"></bitenum>
+    <bitenum description="Duty = 5/8 (62.5%)" id="en_5_0x4" token="en_5_0x4" value="0x4"></bitenum>
+    <bitenum description="Duty = 4/8 (50.0%)" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Duty = 3/8 (37.5%)" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Duty = 2/8 (25.0%)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Duty = 1/8 (12.5%)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description=" Chopping Clock Frequency" end="5" id="CHPFREQ" rwaccess="RW" width="3">
+    <bitenum description="Divide by 8." id="en_8_0x7" token="en_8_0x7" value="0x7"></bitenum>
+    <bitenum description="Divide by 7." id="en_7_0x6" token="en_7_0x6" value="0x6"></bitenum>
+    <bitenum description="Divide by 6." id="en_6_0x5" token="en_6_0x5" value="0x5"></bitenum>
+    <bitenum description="Divide by 5." id="en_5_0x4" token="en_5_0x4" value="0x4"></bitenum>
+    <bitenum description="Divide by 4." id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="Divide by 3." id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="Divide by 2." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Divide by 1 (no prescale)." id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description=" One-Shot Pulse Width" end="1" id="OSHTWTH" rwaccess="RW" width="4">
+    <bitenum description="16 - SYSCLKOUT/8 wide" id="en_5_0xF" token="en_5_0xF" value="0xF"></bitenum>
+    <bitenum description="4 - SYSCLKOUT/8 wide" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="3 - SYSCLKOUT/8 wide" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="2 - SYSCLKOUT/8 wide" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="1 - SYSCLKOUT/8 wide" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description=" PWM-chopping Enable" end="0" id="CHPEN" rwaccess="RW" width="1">
+    <bitenum description="Enable chopping function" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="Disable (bypass) PWM chopping function" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="HRCNFG" description="This register is only available on ePWM instances that include the high-resolution PWM (HRPWM) extension; otherwise, this location is reserved." id="HRCNFG" offset="0xC0" width="16">
+    
+  <bitfield begin="15" description=" " end="4" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="3" description=" Shadow mode bit - Selects the time event that loads the CMPAHR shadow value into the active register.  Note: Load mode selection is valid only if CTLMODE = 0 has been selected.  You should select this event to match the selection of the CMPA load mode (CMPCTL[LOADMODE] bits) in the EPWM module as follows: 0x 0: Load on CTR = 0  Time-base counter equal to zero (TBCNT = 0000h) 0x 1: Load on CTR = PRD  Time-base counter equal to period (TBCNT = TBPRD) 0x 2: Load on either CTR = 0 or CTR = PRD (should not be used with HRPWM) 0x 3: Freeze (no loads possible     should not be used with HRPWM) " end="3" id="HRLOAD" rwaccess="RW" width="1">
+    <bitenum description="CTR = 0 (counter equals zero)" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="CTR = PRD (counter equal period)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description=" Control Mode Bits - Selects the register (CMP or TBPHS) that controls the MEP." end="2" id="CTLMODE" rwaccess="RW" width="1">
+    <bitenum description="TBPHSHR(8) Register controls the edge position (this is phase control mode)." id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="CMPAHR(8) Register controls the edge position (this is duty control mode). (default on reset)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description=" Edge Mode Bits - Selects the edge of the PWM that is controlled by the micro-edge position (MEP) logic." end="0" id="EDGMODE" rwaccess="RW" width="2">
+    <bitenum description="MEP control of both edges" id="en_4_0x3" token="en_4_0x3" value="0x3"></bitenum>
+    <bitenum description="MEP control of falling edge" id="en_3_0x2" token="en_3_0x2" value="0x2"></bitenum>
+    <bitenum description="MEP control of rising edge" id="en_2_0x1" token="en_2_0x1" value="0x1"></bitenum>
+    <bitenum description="HRPWM capability is disabled (default on reset)" id="en_1_0x0" token="en_1_0x0" value="0x0"></bitenum>
+  </bitfield>
+  </register>
+</module>

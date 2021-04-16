@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRU_ICSS_PRU_CTRL" id="PRU_ICSS_PRU_CTRL">
+  
+  
+  <register acronym="CTRL" description="CONTROL REGISTER" id="CTRL" offset="0x0" page="2" width="32">
+    
+  <bitfield begin="31" description=" Program Counter Reset Value: This field controls the address where the PRU will start executing code from after it is taken out of reset." end="16" id="PCTR_RST_VAL" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="15" description=" Run State: This bit indicates whether the PRU is currently executing an instruction or is halted.  0 = PRU is halted and host has access to the instruction RAM and debug registers regions.  1 = PRU is currently running and the host is locked out of the instruction RAM and debug registers regions.  This bit is used by an external debug agent to know when the PRU has actually halted when waiting for a HALT instruction to execute, a single step to finish, or any other time when the pru_enable has been cleared." end="15" id="RUNSTATE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="14" description=" Reserved." end="14" id="RESERVED_1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="13" description=" " end="9" id="RESERVED_2" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="8" description="  Single Step Enable: This bit controls whether or not the PRU will only execute a single instruction when enabled.  0 = PRU will free run when enabled.  1 = PRU will execute a single instruction and then the pru_enable bit will be cleared.  Note that this bit does not actually enable the PRU, it only sets the policy for how much code will be run after the PRU is enabled.  The pru_enable bit must be explicitly asserted.  It is legal to initialize both the single_step and pru_enable bits simultaneously.  (Two independent writes are not required to cause the stated functionality.)" end="8" id="SINGLE_STEP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="  PRU Cycle Counter Enable: Enables PRU cycle counters.  0 = Counters not enabled  1 = Counters enabled" end="3" id="CTR_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="  PRU Sleep Indicator: This bit indicates whether or not the PRU is currently asleep.  0 = PRU is not asleep   1 = PRU is asleep If this bit is written to a 0, the PRU will be forced to power up from sleep mode." end="2" id="SLEEPING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" Processor Enable: This bit controls whether or not the PRU is allowed to fetch new instructions.  0 = PRU is disabled.  1 = PRU is enabled.  If this bit is de-asserted while the PRU is currently running and has completed the initial cycle of a multi-cycle instruction (LBxO,SBxO,SCAN, etc.), the current instruction will be allowed to complete before the PRU pauses execution.  Otherwise, the PRU will halt immediately.  Because of the unpredictability/timing sensitivity of the instruction execution loop, this bit is not a reliable indication of whether or not the PRU is currently running.  The pru_state bit should be consulted for an absolute indication of the run state of the core.  When the PRU is halted, its internal state remains coherent therefore this bit can be reasserted without issuing a software reset and the PRU will resume processing exactly where it left off in the instruction stream." end="1" id="EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Soft Reset: When this bit is cleared, the PRU will be reset.  This bit is set back to 1 on the next cycle after it has been cleared." end="0" id="SOFT_RST_N" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="STS" description="STATUS REGISTER" id="STS" offset="0x4" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="16" id="RESERVED_1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="  Program Counter: This field is a registered (1 cycle delayed) reflection of the PRU program counter.  Note that the PC is an instruction address where each instruction is a 32 bit word.  This is not a byte address and to compute the byte address just multiply the PC by 4 (PC of  2 = byte address of 0x8, or PC of  8 = byte address of 0x20)." end="0" id="PCTR" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="WAKEUP_EN" description="WAKEUP ENABLE REGISTER" id="WAKEUP_EN" offset="0x8" page="2" width="32">
+    
+  <bitfield begin="31" description=" Wakeup Enables: This field is ANDed with the incoming R31 status inputs (whose bit positions were specified in the stmap parameter) to produce a vector which is unary ORed to produce the status_wakeup source for the core.  Setting any bit in this vector will allow the corresponding status input to wake up the core when it is asserted high.  The PRU should set this enable vector prior to executing a SLP (sleep) instruction to ensure that the desired sources can wake up the core." end="0" id="BITWISE_ENS" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CYCLE" description="CYCLE COUNT. This register counts the number of cycles for which the PRU has been enabled." id="CYCLE" offset="0xC" page="2" width="32">
+    
+  <bitfield begin="31" description=" This value is incremented by 1 for every cycle during which the PRU is enabled and the counter is enabled (both bits EN and CTR_EN set in the PRU control register).  Counting halts while the PRU is disabled or counter is disabled, and resumes when re-eneabled.  Counter clears the CTR_EN bit in the PRU control register when the count reaches 0xFFFFFFFF.  (Count does does not wrap).  The register can be read at any time.  The register can be cleared when the counter or PRU is disabled.  Clearing this register also clears the PRU Stall Count Register." end="0" id="CYCLECOUNT" rwaccess="" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="STALL" description="STALL COUNT. This register counts the number of cycles for which the PRU has been enabled, but unable to fetch a new instruction. It is linked to the Cycle Count Register (0x0C) such that this register reflects the stall cycles measured over the same cycles as counted by the cycle count register. Thus the value of this register is always less than or equal to cycle count." id="STALL" offset="0x10" page="2" width="32">
+    
+  <bitfield begin="31" description=" This value is incremented by 1 for every cycle during which the PRU is enabled and the counter is enabled (both bits EN and CTR_EN set in the PRU control register), and the PRU was unable to fetch a new instruction for any reason." end="0" id="STALLCOUNT" rwaccess="" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CTBIR0" description="CONSTANT TABLE BLOCK INDEX REGISTER 0. This register is used to set the block indices which are used to modify entries 24 and 25 in the PRU Constant Table. This register can be written by the PRU whenever it needs to change to a new base pointer for a block in the State / Scratchpad RAM. This function is useful since the PRU is often processing multiple processing threads which require it to change contexts. The PRU can use this register to avoid requiring excessive amounts of code for repetitive context switching. The format of this register is as follows:" id="CTBIR0" offset="0x20" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="24" id="RESERVED_1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="  PRU Constant Entry 25 Block Index: This field sets the value that will appear in bits  11:8 of entry 25 in the PRU Constant Table." end="16" id="C25_BLK_IDX" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description=" " end="8" id="RESERVED_2" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description=" PRU Constant Entry 24 Block Index: This field sets the value that will appear in bits  11:8 of entry 24 in the PRU Constant Table." end="0" id="C24_BLK_IDX" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CTBIR1" description="CONSTANT TABLE BLOCK INDEX REGISTER 1. This register is used to set the block indices which are used to modify entries 24 and 25 in the PRU Constant Table. This register can be written by the PRU whenever it needs to change to a new base pointer for a block in the State / Scratchpad RAM. This function is useful since the PRU is often processing multiple processing threads which require it to change contexts. The PRU can use this register to avoid requiring excessive amounts of code for repetitive context switching. The format of this register is as follows:" id="CTBIR1" offset="0x24" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="24" id="RESERVED_1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="  PRU Constant Entry 27 Block Index: This field sets the value that will appear in bits  11:8 of entry 27 in the PRU Constant Table." end="16" id="C27_BLK_IDX" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description=" " end="8" id="RESERVED_2" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="  PRU Constant Entry 26 Block Index: This field sets the value that will appear in bits  11:8 of entry 26 in the PRU Constant Table." end="0" id="C26_BLK_IDX" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CTPPR0" description="CONSTANT TABLE PROGRAMMABLE POINTER REGISTER 0. This register allows the PRU to set up the 256-byte page index for entries 28 and 29 in the PRU Constant Table which serve as general purpose pointers which can be configured to point to any locations inside the session router address map. This register is useful when the PRU needs to frequently access certain structures inside the session router address space whose locations are not hard coded such as tables in scratchpad memory. This register is formatted as follows:" id="CTPPR0" offset="0x28" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Constant Entry 29 Pointer: This field sets the value that will appear in bits  23:8 of entry 29 in the PRU Constant Table." end="16" id="C29_POINTER" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="15" description=" PRU Constant Entry 28 Pointer: This field sets the value that will appear in bits  23:8 of entry 28 in the PRU Constant Table." end="0" id="C28_POINTER" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="CTPPR1" description="CONSTANT TABLE PROGRAMMABLE POINTER REGISTER 1. This register functions the same as the PRU Constant Table Programmable Pointer Register 0 but allows the PRU to control entries 30 and 31 in the PRU Constant Table. This register is formatted as follows:" id="CTPPR1" offset="0x2C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Constant Entry 31 Pointer: This field sets the value that will appear in bits  23:8 of entry 31 in the PRU Constant Table." end="16" id="C31_POINTER" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="15" description=" PRU Constant Entry 30 Pointer: This field sets the value that will appear in bits  23:8 of entry 30 in the PRU Constant Table." end="0" id="C30_POINTER" rwaccess="RW" width="16"></bitfield>
+  </register>
+</module>

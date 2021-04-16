@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="TIMER" id="TIMER">
+  
+  
+  <register acronym="TIDR" description="This read only register contains the revision number of the module. A write to this register has no effect. This register is used by software to track features, bugs, and compatibility." id="TIDR" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Used to distinguish between old scheme and current." end="30" id="SCHEME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="Function indicates a software compatible module family." end="16" id="FUNC" rwaccess="RW" width="12"></bitfield>
+    
+  <bitfield begin="15" description="RTL Version (R)." end="11" id="R_RTL" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major Revision (X)." end="8" id="X_MAJOR" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Indicates a special version for a particular device." end="6" id="CUSTOM" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor Revision (Y)." end="0" id="Y_MINOR" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="TIOCP_CFG" description="This register allows controlling various parameters of the OCP interface." id="TIOCP_CFG" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="" end="4" id="Reserved1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="Power management, req/ack control" end="2" id="IDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Emulation mode" end="1" id="EMUFREE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Software reset." end="0" id="SOFTRESET" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_RAW" description="Component interrupt request status. Check the corresponding secondary status register. Raw status is set even if event is not enabled. Write 1 to set the (raw) status, mostly for debug." id="IRQSTATUS_RAW" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="IRQ status for Capture" end="2" id="TCAR_IT_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="IRQ status for Overflow" end="1" id="OVF_IT_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="IRQ status for Match" end="0" id="MAT_IT_FLAG" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS" description="Component interrupt request status. Check the corresponding secondary status register. Enabled status is not set unless event is enabled. Write 1 to clear the status after interrupt has been serviced (raw status gets cleared, that is, even if not enabled)." id="IRQSTATUS" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="IRQ status for Capture" end="2" id="TCAR_IT_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="IRQ status for Overflow" end="1" id="OVF_IT_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="IRQ status for Match" end="0" id="MAT_IT_FLAG" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_SET" description="Component interrupt request enable. Write 1 to set (enable interrupt). Readout equal to corresponding _CLR register." id="IRQENABLE_SET" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="IRQ enable for Compare" end="2" id="TCAR_EN_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="IRQ enable for Overflow" end="1" id="OVF_EN_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="IRQ enable for Match" end="0" id="MAT_EN_FLAG" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_CLR" description="Component interrupt request enable. Write 1 to clear (disable interrupt). Readout equal to corresponding _SET register." id="IRQENABLE_CLR" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="IRQ enable for Compare" end="2" id="TCAR_EN_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="IRQ enable for Overflow" end="1" id="OVF_EN_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="IRQ enable for Match" end="0" id="MAT_EN_FLAG" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQWAKEEN" description="Wakeup-enabled events taking place when module is idle will generate an asynchronous wakeup." id="IRQWAKEEN" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Wakeup generation for Compare" end="2" id="TCAR_WUP_ENA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Wakeup generation for Overflow" end="1" id="OVF_WUP_ENA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Wakeup generation for Match" end="0" id="MAT_WUP_ENA" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCLR" description="When the TCM field passed from (00) to any other combination then the TCAR_IT_FLAG and the edge detection logic are cleared. The ST bit of TCLR register may be updated from the OCP interface or reset due to one-shot overflow. The OCP interface update has the priority." id="TCLR" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="" end="15" id="Reserved1" rwaccess="R" width="17"></bitfield>
+    
+  <bitfield begin="14" description="General purpose output this register drives directly the PORGPOCFG output pin" end="14" id="GPO_CFG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Capture mode." end="13" id="CAPT_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Pulse or toggle mode on PORTIMERPWM output pin" end="12" id="PT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Trigger output mode on PORTIMERPWM output pin" end="10" id="TRG" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Transition Capture Mode on PIEVENTCAPT input pin" end="8" id="TCM" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="This bit should be set or clear while the timer is stopped or the trigger is off" end="7" id="SCPWM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="CE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Prescaler enable" end="5" id="PRE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Pre-scale clock Timer value" end="2" id="PTV" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="" end="1" id="AR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="In the case of one-shot mode selected (AR = 0), this bit is automatically reset by internal logic when the counter is overflowed." end="0" id="ST" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCRR" description="The TCRR register is a 32-bit register, 16-bit addressable. The MCU can perform a 32-bit access or two 16-bit accesses to access the register . Note that since the OCP clock is completely asynchronous with the timer clock, some synchronization is done in order to make sure that the TCRR value is not read while it is being incremented. In 16-bit mode the following sequence must be followed to read the TCRR register properly: First, perform an OCP Read Transaction to Read the lower 16-bit of the TCRR register (offset = 28h). When the TCRR is read and synchronized, the lower 16-bit LSBs are driven onto the output OCP data bus and the upper 16-bit MSBs of the TCRR register are stored in a temporary register. Second, perform an OCP Read Transaction to read the upper 16-bit of the TCRR register (offset = 2Ah). During this Read, the value of the upper 16-bit MSBs that has been temporary register is forwarded onto the output OCP data bus. So, to read the value of TCRR correctly, the first OCP read access has to be to the lower 16-bit (offset = 28h), followed by OCP read access to the upper 16-bit (offset = 2Ah). As the TCRR is updated using more sources (shadow_in_tcrr, incremented value of tcrr, TLDR and 0 ), a priority order will be defined: The first priority is the OCP update. The second is the reload way (triggered through TTGR reg. or following an auto-reload overflow). The third is the one-shot overflow reset to 0. The last is the incremented value." id="TCRR" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Value of TIMER counter" end="0" id="TIMER_COUNTER" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TLDR" description="LOAD_VALUE must be different than the timer overflow value (FFFF FFFFh)." id="TLDR" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Timer counter value loaded on overflow in auto-reload mode or on TTGR write access" end="0" id="LOAD_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TTGR" description="The read value of this register is always FFFF FFFFh." id="TTGR" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Writing in the TTGR register, TCRR will be loaded from TLDR and prescaler counter will be cleared. Reload will be done regardless of the AR field value of TCLR register." end="0" id="TTGR_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TWPS" description="In posted mode the software must read the pending write status bits (Timer Write Posted Status register bits [4:0]) to insure that following write access will not be discarded due to on going write synchronization process. These bits are automatically cleared by internal logic when the write to the corresponding register is acknowledged." id="TWPS" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="When equal to 1, a write is pending to the TMAR register" end="4" id="W_PEND_TMAR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="When equal to 1, a write is pending to the TTGR register" end="3" id="W_PEND_TTGR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="When equal to 1, a write is pending to the TLDR register" end="2" id="W_PEND_TLDR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="When equal to 1, a write is pending to the TCRR register" end="1" id="W_PEND_TCRR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="When equal to 1, a write is pending to the TCLR register" end="0" id="W_PEND_TCLR" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TMAR" description="The compare logic consists of a 32-bit wide, read/write data TMAR register and logic to compare counter s current value with the value stored in the TMAR register." id="TMAR" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Value to be compared to the timer counter" end="0" id="COMPARE_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCAR1" description="When the appropriate (rising, falling or both) transition is detected in the edge detection logic the current counter value is stored to the TCAR1 register. Note that since the OCP clock is completely asynchronous with the timer clock, some synchronization is done in order to make sure that the TCAR1 value is not read while it is being updated due to some capture event. In 16-bit mode the following sequence must be followed to read the TCAR1 register properly:" id="TCAR1" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Timer counter value captured on an external event trigger" end="0" id="CAPTURED_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TSICR" description="Access to this register is not stalled even if the timer is in non-posted mode configuration. To abort any wrong behavior, software can permanently reset the functional part of the module. Also in case of a wrong hardware PIFREQRATIO tied the POSTED field can be reprogrammed on the fly, so deadlock situation cannot happen. Reset value of POSTED depends on hardware integration module at design time. Software must read POSTED field to get the hardware module configuration." id="TSICR" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="PIFREQRATIO" end="2" id="POSTED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="This bit resets all the function parts of the module. During reads it always returns 0. " end="1" id="SFT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="Reserved2" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCAR2" description="When the appropriate (rising, falling or both) transition is detected in the edge detection logic and the capture on second event is activated from the control register (TCLR), the current counter value is stored to the TCAR2 register. Note that since the OCP clock is completely asynchronous with the timer clock, some synchronization is done in order to make sure that the TCAR2 value is not read while it is being updated due to some capture event. In 16-bit mode the following sequence must be followed to read the TCAR2 register properly: First, perform an OCP Read Transaction to Read the lower 16-bits of the TCAR2 register. Second, perform an OCP Read Transaction to read the upper 16-bits of the TCAR2 register." id="TCAR2" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="Timer counter value captured on an external event trigger" end="0" id="CAPTURED_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+</module>

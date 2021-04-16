@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRU_ICSS_CFG" id="PRU_ICSS_CFG">
+  
+  
+  <register acronym="REVID" description="The Revision Register contains the ID and revision information." id="REVID" offset="0x0" page="2" width="32">
+    
+  <bitfield begin="31" description=" Revision ID" end="0" id="REVID" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SYSCFG" description="The System Configuration Register defines the power IDLE and STANDBY modes." id="SYSCFG" offset="0x4" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="6" id="RESERVED_1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description=" Status bit for wait state.  0 = Ready for Transaction  1 = Wait until 0" end="5" id="SUB_MWAIT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="  1 = Initiate standby sequence.  0 = Enable OCP master ports." end="4" id="STANDBY_INIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description=" 0h = Force standby mode: Initiator unconditionally in standby (standby = 1).  1h = No standby mode: Initiator unconditionally out of standby (standby = 0).  2h = Smart standby mode: Standby requested by initiator depending on internal conditions.  3h = Reserved." end="2" id="STANDBY_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description=" 0h = Force-idle mode.  1h = No-idle mode.  2h = Smart-idle mode.  3h =  Reserved." end="0" id="IDLE_MODE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPCFG0" description="The General Purpose Configuration 0 Register defines the GPI/O configuration for PRU0." id="GPCFG0" offset="0x8" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="26" id="RESERVED_1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="25" description=" Defines which shadow register is currently getting used for GPO shifting.  0 = gpo_sh0 is selected  1 = gpo_sh1 is selected" end="25" id="PRU0_GPO_SH_SEL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description=" Divisor value (divide by  PRU0_GPO_DIV1 + 1).  0h = div 1.0.  1h = div 1.5.  2h = div 2.0.  ..  1eh = div 16.0.  1fh = reserved." end="20" id="PRU0_GPO_DIV1" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="19" description=" Divisor value (divide by PRU0_GPO_DIV0 + 1).  0h = div 1.0.  1h = div 1.5.  2h = div 2.0.  ..  1eh = div 16.0.  1fh = reserved." end="15" id="PRU0_GPO_DIV0" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="14" description="  0 = Direct output mode  1 = Serial output mode" end="14" id="PRU0_GPO_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description=" Start Bit event for 28-bit shift mode.  PRU0_GPI_SB (pru0_r31_status[29]) is set when first capture of a 1 on pru0_r31_status[0].  Read  1: Start Bit event occurred.  Read  0: Start Bit event has not occurred.  Write  1:  Will clear PRU0_GPI_SB and clear the whole shift register.  Write  0: No Effect." end="13" id="PRU0_GPI_SB" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description=" Divisor value (divide by  PRU0_GPI_DIV1 + 1).  0h = div 1.0.  1h = div 1.5.  2h = div 2.0.  ..  1eh = div 16.0.  1fh = reserved." end="8" id="PRU0_GPI_DIV1" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description=" Divisor value (divide by  PRU0_GPI_DIV0 + 1).  0h = div 1.0.  1h = div 1.5.  2h = div 2.0.  ..  1eh = div 16.0.  1fh = reserved." end="3" id="PRU0_GPI_DIV0" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="2" description=" Parallel  16-bit capture mode clock edge.  0 = Use the positive edge of pru0_r31_status[16]  1 = Use the negative edge of pru0_r31_status[16]" end="2" id="PRU0_GPI_CLK_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" 0h = Direct connection mode.  1h =  16-bit parallel capture mode.  2h =  28-bit shift mode.  3h = Reserved." end="0" id="PRU0_GPI_MODE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPCFG1" description="The General Purpose Configuration 1 Register defines the GPI/O configuration for PRU1." id="GPCFG1" offset="0xC" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="26" id="RESERVED_1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="25" description=" Defines which shadow register is currently getting used for GPO shifting.  0 = gpo_sh0 is selected  1 = gpo_sh1 is selected" end="25" id="PRU1_GPO_SH_SEL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description=" Divisor value (divide by  PRU1_GPO_DIV1 + 1).  0h = div 1.0.  1h = div 1.5.  2h = div 2.0.  ..  1eh = div 16.0.  1fh = reserved." end="20" id="PRU1_GPO_DIV1" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="19" description=" Divisor value (divide by PRU1_GPO_DIV0 + 1).  0h = div 1.0.  1h = div 1.5.  2h = div 2.0.  ..  1eh = div 16.0.  1fh = reserved." end="15" id="PRU1_GPO_DIV0" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="14" description="  0 = Direct output mode  1 = Serial output mode" end="14" id="PRU1_GPO_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description=" 28-bit shift mode Start Bit event.  PRU1_GPI_SB (pru1_r31_status[29]) is set when first capture of a 1 on pru1_r31_status[0].  Read  1: Start Bit event occurred.  Read  0: Start Bit event has not occurred.  Write  1:  Will clear PRU1_GPI_SB and clear the whole shift register.  Write  0: No Effect." end="13" id="PRU1_GPI_SB" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description=" Divisor value (divide by  PRU1_GPI_DIV1 + 1).  0h = div 1.0.  1h = div 1.5.  2h = div 2.0.  ..  1eh = div 16.0.  1fh = reserved." end="8" id="PRU1_GPI_DIV1" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description=" Divisor value (divide by  PRU1_GPI_DIV0 + 1).  0h = div 1.0.  1h = div 1.5.  2h = div 2.0.  ..  1eh = div 16.0.  1fh = reserved." end="3" id="PRU1_GPI_DIV0" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="2" description=" Parallel  16-bit capture mode clock edge.  0 = Use the positive edge of pru1_r31_status[16]  1 = Use the negative edge of pru1_r31_status[16]" end="2" id="PRU1_GPI_CLK_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" 0h = Direct connection mode.  1h =  16-bit parallel capture mode.  2h =  28-bit shift mode.  3h = Reserved." end="0" id="PRU1_GPI_MODE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="CGR" description="The Clock Gating Register controls the state of Clock Management of the different modules. Software should not clear {module}_CLK_EN until {module}_CLK_STOP_ACK is 0x1." id="CGR" offset="0x10" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="18" id="RESERVED_1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description=" IEP clock enable.  0 = Disable Clock  1 = Enable Clock" end="17" id="IEP_CLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description=" Acknowledgement that IEP clock can be stopped.  0 = Not Ready to Gate Clock  1 = Ready to Gate Clock" end="16" id="IEP_CLK_STOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description=" IEP request to stop clock.  0 = do not request to stop Clock  1 = request to stop Clock" end="15" id="IEP_CLK_STOP_REQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description=" ECAP clock enable.  0 = Disable Clock  1 = Enable Clock" end="14" id="ECAP_CLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description=" Acknowledgement that ECAP clock can be stopped.  0 = Not Ready to Gate Clock  1 = Ready to Gate Clock" end="13" id="ECAP_CLK_STOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="12" description=" ECAP request to stop clock.  0 = do not request to stop Clock  1 = request to stop Clock" end="12" id="ECAP_CLK_STOP_REQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description=" UART clock enable.  0 = Disable Clock  1 = Enable Clock" end="11" id="UART_CLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description=" Acknowledgement that UART clock can be stopped.  0 = Not Ready to Gate Clock  1 = Ready to Gate Clock" end="10" id="UART_CLK_STOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description=" UART request to stop clock.  0 = do not request to stop Clock  1 = request to stop Clock" end="9" id="UART_CLK_STOP_REQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description=" INTC clock enable.  0 = Disable Clock  1 = Enable Clock" end="8" id="INTC_CLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description=" Acknowledgement that INTC clock can be stopped.  0 = Not Ready to Gate Clock  1 = Ready to Gate Clock" end="7" id="INTC_CLK_STOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description=" INTC request to stop clock.  0 = do not request to stop Clock  1 = request to stop Clock" end="6" id="INTC_CLK_STOP_REQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description=" PRU1 clock enable.  0 = Disable Clock  1 = Enable Clock" end="5" id="PRU1_CLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description=" Acknowledgement that PRU1 clock can be stopped.  0 = Not Ready to Gate Clock  1 = Ready to Gate Clock" end="4" id="PRU1_CLK_STOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description=" PRU1 request to stop clock.  0 = do not request to stop Clock  1 = request to stop Clock" end="3" id="PRU1_CLK_STOP_REQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description=" PRU0 clock enable.  0 = Disable Clock  1 = Enable Clock" end="2" id="PRU0_CLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" Acknowledgement that PRU0 clock can be stopped.  0 = Not Ready to Gate Clock  1 = Ready to Gate Clock" end="1" id="PRU0_CLK_STOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" PRU0 request to stop clock.  0 = do not request to stop Clock  1 = request to stop Clock" end="0" id="PRU0_CLK_STOP_REQ" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ISRP" description="The IRQ Status Raw Parity register is a snapshot of the IRQ raw status for the PRU ICSS memory parity events. The raw status is set even if the event is not enabled." id="ISRP" offset="0x14" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="20" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description=" RAM Parity Error RAW for Byte3, Byte2, Byte1, Byte0.  Note RAM_PE_RAW[0] maps to Byte0.  Write 0: No action.  Read 0: No event pending.  Read 1: Event pending.  Write 1: Set event (debug)." end="16" id="RAM_PE_RAW" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" PRU1 DMEM Parity Error RAW for Byte3, Byte2, Byte1, Byte0.  Note PRU1_DMEM_PE_RAW[0] maps to Byte0.  Write 0: No action.  Read 0: No event pending.  Read 1: Event pending.  Write 1: Set event (debug)." end="12" id="PRU1_DMEM_PE_RAW" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" PRU1 IMEM Parity Error RAW for Byte3, Byte2, Byte1, Byte0.  Note PRU1_IMEM_PE_RAW[0] maps to Byte0.  Write 0: No action.  Read 0: No event pending.  Read 1: Event pending.  Write 1: Set event (debug)." end="8" id="PRU1_IMEM_PE_RAW" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" PRU0 DMEM Parity Error RAW for Byte3, Byte2, Byte1, Byte0.  Note PRU0_DMEM_PE_RAW[0] maps to Byte0.  Write 0: No action.  Read 0: No event pending.  Read 1: Event pending.  Write 1: Set event (debug) ." end="4" id="PRU0_DMEM_PE_RAW" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" PRU0 IMEM Parity Error RAW for Byte3, Byte2, Byte1, Byte0.  Note PRU0_IRAM_PE_RAW[0] maps to Byte0.  Write 0: No action.  Read 0: No event pending.  Read 1: Event pending.  Write 1: Set event (debug) ." end="0" id="PRU0_IMEM_PE_RAW" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ISP" description="The IRQ Status Parity Register is a snapshot of the IRQ status for the PRU ICSS memory parity events. The status is set only if the event is enabled. Write 1 to clear the status after the interrupt has been serviced." id="ISP" offset="0x18" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="20" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description=" RAM Parity Error for Byte3, Byte2, Byte1, Byte0.  Note RAM_PE[0] maps to Byte0.  Write 0: No action.  Read 0: No (enabled)  event pending.  Read 1: Event pending.  Write 1: Clear event." end="16" id="RAM_PE" rwaccess="" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" PRU1 DMEM Parity Error  for Byte3, Byte2, Byte1, Byte0.  Note PRU1_DMEM_PE[0] maps to Byte0.  Write 0: No action.  Read 0: No (enabled)  event pending.  Read 1: Event pending.  Write 1: Clear event." end="12" id="PRU1_DMEM_PE" rwaccess="" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" PRU1 IMEM Parity Error  for Byte3, Byte2, Byte1, Byte0.  Note PRU1_IMEM_PE[0] maps to Byte0.  Write 0: No action.  Read 0: No (enabled) event pending.  Read 1: Event pending.  Write 1: Clear event." end="8" id="PRU1_IMEM_PE" rwaccess="" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" PRU0 DMEM Parity Error for Byte3, Byte2, Byte1, Byte0.  Note PRU0_DMEM_PE[0] maps to Byte0.  Write 0: No action.  Read 0: No(enabled)  event pending.  Read 1: Event pending.  Write 1: Clear event." end="4" id="PRU0_DMEM_PE" rwaccess="" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" PRU0 IMEM Parity Error for Byte3, Byte2, Byte1, Byte0.  Note PRU0_IMEM_PE[0] maps to Byte0.  Write 0: No action.  Read 0: No (enabled) event pending.  Read 1: Event pending.  Write 1: Clear event." end="0" id="PRU0_IMEM_PE" rwaccess="" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="IESP" description="The IRQ Enable Set Parity Register enables the IRQ PRU ICSS memory parity events." id="IESP" offset="0x1C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="20" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description=" RAM Parity Error Set Enable for Byte3, Byte2, Byte1, Byte0.  Note RAM_PE_SET[0] maps to Byte0.  Write 0: No action.  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Enable interrupt." end="16" id="RAM_PE_SET" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" PRU1 DMEM Parity Error Set Enable for Byte3, Byte2, Byte1, Byte0.  Note PRU1_DMEM_PE_SET[0] maps to Byte0.  Write 0: No action.  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Enable interrupt." end="12" id="PRU1_DMEM_PE_SET" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" PRU1 IMEM Parity Error Set Enable for Byte3, Byte2, Byte1, Byte0.  Note PRU1_IMEM_PE_SET[0] maps to Byte0.  Write 0: No action.  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Enable interrupt." end="8" id="PRU1_IMEM_PE_SET" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" PRU0 DMEM Parity Error Set Enable for Byte3, Byte2, Byte1, Byte0.  Note PRU0_DMEM_PE_SET[0] maps to Byte0.  Write 0: No action.  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Enable interrupt." end="4" id="PRU0_DMEM_PE_SET" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" PRU0 IMEM Parity Error Set Enable for Byte3, Byte2, Byte1, Byte0.  Note PRU0_IMEM_PE_SET[0] maps to Byte0.  Write 0: No action.  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Enable interrupt." end="0" id="PRU0_IMEM_PE_SET" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="IECP" description="The IRQ Enable Clear Parity Register disables the IRQ PRU ICSS memory parity events." id="IECP" offset="0x20" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="16" id="RESERVED_1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description=" PRU1 DMEM Parity Error Clear Enable for Byte3, Byte2, Byte1, Byte0.  Note PRU1_DMEM_PE_CLR[0] maps to Byte0.  Write 0: No action.  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Disable interrupt." end="12" id="PRU1_DMEM_PE_CLR" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" PRU1 IMEM Parity Error Clear Enable for Byte3, Byte2, Byte1, Byte0.  Note PRU1_IMEM_PE_CLR[0] maps to Byte0.  Write 0: No action.  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Disable interrupt." end="8" id="PRU1_IMEM_PE_CLR" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" PRU0 DMEM Parity Error Clear Enable for Byte3, Byte2, Byte1, Byte0.  Note PRU0_DMEM_PE_CLR[0] maps to Byte0.  Write 0: No action.  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Disable interrupt." end="4" id="PRU0_DMEM_PE_CLR" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" PRU0 IMEM Parity Error Clear Enable for Byte3, Byte2, Byte1, Byte0.  Note PRU0_IMEM_PE_CLR[0] maps to Byte0.  Write 0: No action .  Read 0: Interrupt disabled (masked).  Read 1: Interrupt enabled.  Write 1: Disable interrupt." end="0" id="PRU0_IMEM_PE_CLR" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="PMAO" description="The PRU Master OCP Address Offset Register enables for the PRU OCP Master Port Address to have an offset of minus 0x0008_0000. This enables the PRU to access External Host address space starting at 0x0000_0000." id="PMAO" offset="0x28" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="2" id="RESERVED_1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description=" PRU1 OCP Master Port Address Offset Enable.  0 = Disable address offset.  1 = Enable address offset of -0x0008_0000." end="1" id="PMAO_PRU1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" PRU0 OCP Master Port Address Offset Enable.  0 = Disable address offset.  1 = Enable address offset of -0x0008_0000." end="0" id="PMAO_PRU0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEPCLK" description="The IEP Clock Source Register defines the source of the IEP clock." id="IEPCLK" offset="0x30" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="1" id="RESERVED_1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="  0 = iep_clk is the source.  1 = ocp_clk  is the source." end="0" id="OCP_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="SPP" description="The Scratch Pad Priority and Configuration Register defines the access priority assigned to the PRU cores and configures the scratch pad XFR shift functionality." id="SPP" offset="0x34" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="2" id="RESERVED_1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description=" Enables XIN/XOUT shift functionality.  When enabled, R0 [4:0] (internal to PRU) defines the  32-bit offset for XIN and XOUT operations with the scratch pad.  0 = Disabled.  1 = Enabled." end="1" id="XFR_SHIFT_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Defines which PRU wins write cycle arbitration to a common scratch pad bank.  The PRU which has higher priority will always perform the write cycle with no wait states.  The lower PRU will get stalled/wait states until higher PRU is not performing write cycles.  If the lower priority PRU writes to the same byte has the higher priority PRU, then the lower priority PRU will over write the bytes.  0 = PRU0 has highest priority.  1 = PRU1 has highest priority." end="0" id="PRU1_PAD_HP_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="PIN_MX" description="The Pin Mux Select Register defines the state of the PRU ICSS internal pinmuxing." id="PIN_MX" offset="0x40" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="8" id="RESERVED_1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description=" Defines the state of PIN_MUX_SEL [1:0] for internal pinmuxing." end="0" id="PIN_MUX_SEL" rwaccess="RW" width="8"></bitfield>
+  </register>
+</module>

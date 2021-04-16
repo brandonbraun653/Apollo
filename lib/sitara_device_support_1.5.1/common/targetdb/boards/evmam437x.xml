@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="EVMAM437X" XML_version="1" desc="EVMAM437X" description="AM437x Evaluation Module.">
+    <instance XML_version="1.2" desc="AM4378_0" href="devices/AM4378.xml" id="AM4378_0" xml="AM4378.xml" xmlpath="devices"/>
+    <device HW_revision="1" XML_version="1.2" description="AM43xx - Cortex A9 Embedded Processor" id="AM4378_0" partnum="AM4378">
+        <router HW_revision="1.0" XML_version="1.2" description="ICEPick_D Router" id="IcePick_D_0" isa="ICEPICK_D">
+            <subpath id="DAP">
+                <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_DebugSS" isa="CS_DAP">
+                    <subpath id="MPUSS">
+                        <cpu HW_revision="1.0" XML_version="1.2" description="CortexA9 CPU" id="CortexA9" isa="CortexA9">
+                            <property Type="filepathfield" Value="../../emulation/boards/evmam437x/gel/evmam437x.gel" id="GEL File"/>
+                        </cpu>
+                    </subpath>
+                </router>
+            </subpath>
+        </router>
+    </device>
+</board>

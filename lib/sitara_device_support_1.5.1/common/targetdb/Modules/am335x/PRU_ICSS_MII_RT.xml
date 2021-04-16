@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRU_ICSS_MII_RT" id="PRU_ICSS_MII_RT">
+  
+  
+  <register acronym="RXCFG0" description="RX CONFIG0" id="RXCFG0" offset="0x0" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="7" id="RESERVED_1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description=" Enables auto-forward of received preamble. #br# When enabled, this will forward the preamble nibbles including the SFD to the TX L1 FIFO that is attached to the PRU. #br# First data byte seen by PRU R31 and/or RX L2 is destination address (DA). #br# Odd number of preamble nibbles is supported in this mode. #br# For example, 0x55D. #br# Note that new RX should only occur after the current TX completes. #br# 0x#br# 0: Disable 0x#br# 1: Enable, it must disable RX_CUT_PREAMBLE and TX_AUTO_PREAMBLE" end="6" id="RX_AUTOFWD_PRE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description=" Defines the order of Byte0/1 placement for RX R31 and RX L2. #br# Note that if TX_AUTO_SEQUENCE enabled, this bit cannot get enable since TX_BYTE_SWAP on swaps the PRU output. #br# This bit must be selected/updated when the port is disabled or there is no traffic. #br# 0x#br# 0: R31#br# [15:8]/RXL2#br# [15:8] = Byte1{Nibble3,Nibble2} R31[ #br# 7:0]/RXL2#br# [7:0] = Byte0{Nibble1,Nibble0} 0x#br# 1: R31#br# [15:8]/RXL2#br# [15:8] = Byte0{Nibble1,Nibble0} R31[ #br# 7:0]/RXL2#br# [7:0] = Byte1{Nibble3,Nibble2} Nibble0 is the first nibble received." end="5" id="RX_BYTE_SWAP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description=" Enables RX L2 buffer. #br# 0x#br# 0: Disable (RX L2 can function as generic scratch pad) 0x#br# 1: Enable" end="4" id="RX_L2_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description=" Selects receive data source. #br# Typically, the setting for this will not be identical for the two MII receive configuration registers. #br# 0x#br# 0: MII RX Data from Port 0 (default for RXCFG0) 0x#br# 1: MII RX Data from Port 1 (default for RXCFG1)" end="3" id="RX_MUX_SEL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description=" Removes received preamble. #br# 0x#br# 0: All data from Ethernet PHY are passed on to PRU register. #br# This assumes Ethernet PHY which does not shorten the preamble. #br# 0x#br# 1: MII interface suppresses preamble and sync frame delimiter. #br# First data byte seen by PRU register is destination address." end="2" id="RX_CUT_PREAMBLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" " end="1" id="RESERVED_2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Enables the receive traffic currently selected by RX_MUX_SELECT. #br# 0x#br# 0: Disable 0x#br# 1: Enable" end="0" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXCFG1" description="RX CONFIG1" id="RXCFG1" offset="0x4" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="7" id="RESERVED_1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description=" Enables auto-forward of received preamble. #br# When enabled, this will forward the preamble nibbles including the SFD to the TX L1 FIFO that is attached to the PRU. #br# First data byte seen by PRU R31 and/or RX L2 is destination address (DA). #br# Odd number of preamble nibbles is supported in this mode. #br# For example, 0x55D. #br# Note that new RX should only occur after the current TX completes. #br# 0x#br# 0: Disable 0x#br# 1: Enable, it must disable RX_CUT_PREAMBLE and TX_AUTO_PREAMBLE" end="6" id="RX_AUTOFWD_PRE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description=" Defines the order of Byte0/1 placement for RX R31 and RX L2. #br# Note that if TX_AUTO_SEQUENCE enabled, this bit cannot get enable since TX_BYTE_SWAP on swaps the PRU output. #br# This bit must be selected/updated when the port is disabled or there is no traffic. #br# 0x#br# 0: R31#br# [15:8]/RXL2#br# [15:8] = Byte1{Nibble3,Nibble2} R31[ #br# 7:0]/RXL2#br# [7:0] = Byte0{Nibble1,Nibble0} 0x#br# 1: R31#br# [15:8]/RXL2#br# [15:8] = Byte0{Nibble1,Nibble0} R31[ #br# 7:0]/RXL2#br# [7:0] = Byte1{Nibble3,Nibble2} Nibble0 is the first nibble received." end="5" id="RX_BYTE_SWAP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description=" Enables RX L2 buffer. #br# 0x#br# 0: Disable (RX L2 can function as generic scratch pad) 0x#br# 1: Enable" end="4" id="RX_L2_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description=" Selects receive data source. #br# Typically, the setting for this will not be identical for the two MII receive configuration registers. #br# 0x#br# 0: MII RX Data from Port 0 (default for RXCFG0) 0x#br# 1: MII RX Data from Port 1 (default for RXCFG1)" end="3" id="RX_MUX_SEL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description=" Removes received preamble. #br# 0x#br# 0: All data from Ethernet PHY are passed on to PRU register. #br# This assumes Ethernet PHY which does not shorten the preamble. #br# 0x#br# 1: MII interface suppresses preamble and sync frame delimiter. #br# First data byte seen by PRU register is destination address." end="2" id="RX_CUT_PREAMBLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" " end="1" id="RESERVED_2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Enables the receive traffic currently selected by RX_MUX_SELECT. #br# 0x#br# 0: Disable 0x#br# 1: Enable" end="0" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXCFG0" description="TX CONFIG0" id="TXCFG0" offset="0x10" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="31" id="RESERVED_1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" To ensure the MII_RT IO timing values published in the device data manual, the ocp_clk must be configured for 200 MHz and TX_CLK_DELAY must be set to 6h. Updated TX_CLK_DELAY bit description for TXCFG0 Register." end="28" id="TX_CLK_DELAY" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description=" " end="26" id="RESERVED_2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="25" description=" Defines the minimum time interval (delay) between receiving the RXDV for the current frame and the start of the transmit interface sending data to the MII interface. #br# Delay value is in units of MII_RT clock cycles, which uses the ocp_clk (default is 200MHz, or 5ns). #br# Default TX_START_DELAY value is 320ns, which is optimized for minimum latency at 16 bit processing. #br# Counter is started with RX_DV signal going active. #br# Transmit interface stops sending data when no more data is written into transmit interface by PRU along with TX_EOF marker bit set. #br# If the TX FIFO has data when the delay expires, then TX will start sending data. #br# But if the TX FIFO is empty, it will not start until the TX FIFO is not empty. #br# It is possible to overflow the TX FIFO with the max delay setting when auto-forwarding is enabled since the time delay is larger than the amount of data it needs to store. #br# As long as TX L1 FIFO overflows, software will need to issue a TX_RESET to reset the TX FIFO. #br# The total delay is #br# 64-byte times (size of TX FIFO), but you need to allow delays for synchronization. #br# Do to this fact, the maximum delay should be 80ns less when auto forwarding is enabled. #br# Therefore, 0x3F0 is the maximum in this configuration." end="16" id="TX_START_DELAY" rwaccess="RW" width="10"></bitfield>
+    
+  <bitfield begin="15" description=" " end="10" id="RESERVED_3" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="9" description=" Enables transmit auto-sequence. #br# Note the transmit data source is determined by TX_MUX_SEL setting. #br# 0x#br# 0: Disable 0x#br# 1: Enable, transmit state machine based on events on receiver path that is connected to the respective transmitter. #br# Also, the masking logic is disabled and only the MII data is used. #br# " end="9" id="TX_AUTO_SEQUENCE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description=" Selects transmit data source. #br# The default/reset setting for TX Port 0 is 1. #br# This setting permits MII TX Port 0 to receive data from PRU1 and the MII TX Port 1 which is connected to PRU0 by default. #br# 0x#br# 0: Data from PRU0 (default for TXCFG1) 0x#br# 1: Data from PRU1 (default for TXCFG0)" end="8" id="TX_MUX_SEL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Defines the order of Byte0/1 placement for TX R30. #br# This bit must be selected/updated when the port is disabled or there is no traffic. #br# 0x#br# 0: R30#br# [15:8] = Byte1{Nibble3,Nibble2} R30[ #br# 7:0] = Byte0{Nibble1,Nibble0} R30#br# [31:24] = TX_MASK#br# [15:8] R30#br# [23:16] = TX_MASK#br# [7:0] 0x#br# 1: R30#br# [15:8] = Byte0{Nibble1,Nibble0} R30[ #br# 7:0] = Byte1{Nibble3,Nibble2} R30#br# [31:24] = TX_MASK#br# [7:0] R30#br# [23:16] = TX_MASK#br# [15:8] Nibble0 is the first nibble received." end="3" id="TX_BYTE_SWAP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description=" Enables transmit self clear on TX_EOF event. #br# Note that iep.cmp[3] must be set before transmission will start for TX0, and iep_cmp[4] for TX1. #br# This is a new dependency, in addition to TX L1 FIFO not empty and TX_START_DELAY expiration, to start transmission. #br# 0x#br# 0: Disable 0x#br# 1: Enable, TX_ENABLE will be clear for a TX_EOF event by itself." end="2" id="TX_EN_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" Transmit data auto-preamble. #br# 0x#br# 0: PRU will provide full preamble 0x#br# 1: TX FIFO will insert pre-amble automatically. #br# Note that the TX FIFO does not get preloaded with the preamble until the first write occurs. #br# This can cause the latency to be larger than the minimum latency." end="1" id="TX_AUTO_PREAMBLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Enables transmit traffic on TX PORT. #br# If TX_EN_MODE is set, then TX_ENABLE will self clear during a TX_EOF event. #br# Note Software can use this to pre-fill the TX FIFO and then start the TX frame during non-ECS operations. #br# 0x#br# 0: TX PORT is disabled/stopped immediately 0x#br# 1: TX PORT is enabled and the frame will start once the IPG counter expired and TX Start Delay counter has expired" end="0" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXCFG1" description="TX CONFIG1" id="TXCFG1" offset="0x14" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="31" id="RESERVED_1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" To ensure the MII_RT IO timing values published in the device data manual, the ocp_clk must be configured for 200 MHz and TX_CLK_DELAY must be set to 6h." end="28" id="TX_CLK_DELAY" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description=" " end="26" id="RESERVED_2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="25" description=" Defines the minimum time interval (delay) between receiving the RXDV for the current frame and the start of the transmit interface sending data to the MII interface. #br# Delay value is in units of MII_RT clock cycles, which uses the ocp_clk (default is 200MHz, or 5ns). #br# Default TX_START_DELAY value is 320ns, which is optimized for minimum latency at 16 bit processing. #br# Counter is started with RX_DV signal going active. #br# Transmit interface stops sending data when no more data is written into transmit interface by PRU along with TX_EOF marker bit set. #br# If the TX FIFO has data when the delay expires, then TX will start sending data. #br# But if the TX FIFO is empty, it will not start until the TX FIFO is not empty. #br# It is possible to overflow the TX FIFO with the max delay setting when auto-forwarding is enabled since the time delay is larger than the amount of data it needs to store. #br# As long as TX L1 FIFO overflows, software will need to issue a TX_RESET to reset the TX FIFO. #br# The total delay is #br# 64-byte times (size of TX FIFO), but you need to allow delays for synchronization. #br# Do to this fact, the maximum delay should be 80ns less when auto forwarding is enabled. #br# Therefore, 0x3F0 is the maximum in this configuration." end="16" id="TX_START_DELAY" rwaccess="RW" width="10"></bitfield>
+    
+  <bitfield begin="15" description=" " end="10" id="RESERVED_3" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="9" description=" Enables transmit auto-sequence. #br# Note the transmit data source is determined by TX_MUX_SEL setting. #br# 0x#br# 0: Disable 0x#br# 1: Enable, transmit state machine based on events on receiver path that is connected to the respective transmitter. #br# Also, the masking logic is disabled and only the MII data is used. #br# " end="9" id="TX_AUTO_SEQUENCE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description=" Selects transmit data source. #br# The default/reset setting for TX Port 0 is 1. #br# This setting permits MII TX Port 0 to receive data from PRU1 and the MII TX Port 1 which is connected to PRU0 by default. #br# 0x#br# 0: Data from PRU0 (default for TXCFG1) 0x#br# 1: Data from PRU1 (default for TXCFG0)" end="8" id="TX_MUX_SEL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Defines the order of Byte0/1 placement for TX R30. #br# This bit must be selected/updated when the port is disabled or there is no traffic. #br# 0x#br# 0: R30#br# [15:8] = Byte1{Nibble3,Nibble2} R30[ #br# 7:0] = Byte0{Nibble1,Nibble0} R30#br# [31:24] = TX_MASK#br# [15:8] R30#br# [23:16] = TX_MASK#br# [7:0] 0x#br# 1: R30#br# [15:8] = Byte0{Nibble1,Nibble0} R30[ #br# 7:0] = Byte1{Nibble3,Nibble2} R30#br# [31:24] = TX_MASK#br# [7:0] R30#br# [23:16] = TX_MASK#br# [15:8] Nibble0 is the first nibble received." end="3" id="TX_BYTE_SWAP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description=" Enables transmit self clear on TX_EOF event. #br# Note that iep.cmp[3] must be set before transmission will start for TX0, and iep_cmp[4] for TX1. #br# This is a new dependency, in addition to TX L1 FIFO not empty and TX_START_DELAY expiration, to start transmission. #br# 0x#br# 0: Disable 0x#br# 1: Enable, TX_ENABLE will be clear for a TX_EOF event by itself." end="2" id="TX_EN_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" Transmit data auto-preamble. #br# 0x#br# 0: PRU will provide full preamble 0x#br# 1: TX FIFO will insert pre-amble automatically. #br# Note that the TX FIFO does not get preloaded with the preamble until the first write occurs. #br# This can cause the latency to be larger than the minimum latency." end="1" id="TX_AUTO_PREAMBLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Enables transmit traffic on TX PORT. #br# If TX_EN_MODE is set, then TX_ENABLE will self clear during a TX_EOF event. #br# Note Software can use this to pre-fill the TX FIFO and then start the TX frame during non-ECS operations. #br# 0x#br# 0: TX PORT is disabled/stopped immediately 0x#br# 1: TX PORT is enabled and the frame will start once the IPG counter expired and TX Start Delay counter has expired" end="0" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXCRC0" description="TX CYCLIC REDUNDANCY CHECK0" id="TXCRC0" offset="0x20" page="2" width="32">
+    
+  <bitfield begin="31" description=" FCS (CRC32) data can be read by PRU for diagnostics. #br# It is only valid after 6 clocks after a TX_CRC_HIGH command is given." end="0" id="TX_CRC32" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXCRC1" description="TX CYCLIC REDUNDANCY CHECK1" id="TXCRC1" offset="0x24" page="2" width="32">
+    
+  <bitfield begin="31" description=" FCS (CRC32) data can be read by PRU for diagnostics. #br# It is only valid after 6 clocks after a TX_CRC_HIGH command is given." end="0" id="TX_CRC32" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXIPG0" description="TX INTERPACKET GAP0" id="TXIPG0" offset="0x30" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" Defines the minimum of transmit Inter Packet Gap (IPG) which is the number of ocp_clk cycles between the de-assertion of TX_EN and the assertion of TX_EN. #br# The start of the TX will get delayed when the incoming packet IPG is less than defined minimum value. #br# In general, software should program in increments of 8, 40ns to insure the extra delays takes effect." end="0" id="TX_IPG" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXIPG1" description="TX INTERPACKET GAP1" id="TXIPG1" offset="0x34" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" Defines the minimum of transmit Inter Packet Gap (IPG) which is the number of ocp_clk cycles between the de-assertion of TX_EN and the assertion of TX_EN. #br# The start of the TX will get delayed when the incoming packet IPG is less than defined minimum value. #br# In general, software should program in increments of 8, 40ns to insure the extra delays takes effect." end="0" id="TX_IPG" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRS0" description="PORT RAW STATUS0" id="PRS0" offset="0x38" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="2" id="RESERVED_1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description=" Current state of pr1_mii0_crs" end="1" id="pr1_mii0_crs" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Current state of pr1_mii0_col" end="0" id="pr1_mii0_col" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRS1" description="PORT RAW STATUS1" id="PRS1" offset="0x3C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="2" id="RESERVED_1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description=" Current state of pr1_mii1_crs" end="1" id="pr1_mii1_crs" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Current state of pr1_mii1_col" end="0" id="pr1_mii1_col" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXFRMS0" description="RX FRAME SIZE0" id="RXFRMS0" offset="0x40" page="2" width="32">
+    
+  <bitfield begin="31" description=" Defines the maximum received frame count. #br# If the total byte count of the received frame is more than defined value, RX_MAX_FRM_ERR will get set. #br# 0x#br# 0: 1 byte after SFD and including CRC. #br# N: N+1 bytes after SFD and including CRC Note if the incoming frame is truncated at the marker, RX_CRC and RX_NIBBLE_ODD will not get asserted. Changed RX_MAX_FRM_CNT reset value from 0h to 5F1h." end="16" id="RX_MAX_FRM_CNT" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="15" description=" Defines the minimum received frame count. #br# If the total byte count of received frame is less than defined value, RX_MIN_FRM_ERR will get set. #br# 0x#br# 0: 1 byte after SFD and including CRC. #br# N: N+1 bytes after SFD and including CRC Changed RX_MIN_FRM_CNT reset value from 9E1h to 3Fh." end="0" id="RX_MIN_FRM_CNT" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXFRMS1" description="RX FRAME SIZE1" id="RXFRMS1" offset="0x44" page="2" width="32">
+    
+  <bitfield begin="31" description=" Defines the maximum received frame count. #br# If the total byte count of the received frame is more than defined value, RX_MAX_FRM_ERR will get set. #br# 0x#br# 0: 1 byte after SFD and including CRC. #br# N: N+1 bytes after SFD and including CRC Note if the incoming frame is truncated at the marker, RX_CRC and RX_NIBBLE_ODD will not get asserted." end="16" id="RX_MAX_FRM_CNT" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="15" description=" Defines the minimum received frame count. #br# If the total byte count of received frame is less than defined value, RX_MIN_FRM_ERR will get set. #br# 0x#br# 0: 1 byte after SFD and including CRC. #br# N: N+1 bytes after SFD and including CRC" end="0" id="RX_MIN_FRM_CNT" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXPCNT0" description="RX PREAMABLE COUNT0" id="RXPCNT0" offset="0x48" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="8" id="RESERVED_1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description=" Defines the maximum number of nibbles until the start of frame delimiter (SFD) event occurred (i.e. #br# matches 0x5D). #br# RX_MAX_PRE_COUNT_ERR will be set if the preamble counts more than the value of RX_MAX_PRE_CNT. #br# If the SFD does not occur within 16 nibbles, the error will assert and the incoming frame will be truncated. #br# 0x#br# 0: Disabled 0x#br# 1: Reserved 0x#br# 2: 4th nibble needs to have built 0x5D 0xe: 16th nibble needs to have built 0x5D Note the 16th nibble is transmitted." end="4" id="RX_MAX_PRE_CNT" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Defines the minimum number of nibbles until the start of frame delimiter (SFD) event occurred, which is matched the value 0x5D. #br# RX_MIN_PRE_COUNT_ERR will be set if the preamble counts less than the value of RX_MIN_PRE_CNT. #br# 0x#br# 0: Disabled 0x#br# 1: 1 0x5 before 0x5D 0x#br# 2: 2 0x5 before 0x5D N: N 0x5 before 0x5D Note it does not need to be 0x5. #br# " end="0" id="RX_MIN_PRE_CNT" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXPCNT1" description="RX PREAMABLE COUNT1" id="RXPCNT1" offset="0x4C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="8" id="RESERVED_1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description=" Defines the maximum number of nibbles until the start of frame delimiter (SFD) event occurred (i.e. #br# matches 0x5D). #br# RX_MAX_PRE_COUNT_ERR will be set if the preamble counts more than the value of RX_MAX_PRE_CNT. #br# If the SFD does not occur within 16 nibbles, the error will assert and the incoming frame will be truncated. #br# 0x#br# 0: Disabled 0x#br# 1: Reserved 0x#br# 2: 4th nibble needs to have built 0x5D 0xe: 16th nibble needs to have built 0x5D Note the 16th nibble is transmitted." end="4" id="RX_MAX_PRE_CNT" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Defines the minimum number of nibbles until the start of frame delimiter (SFD) event occurred, which is matched the value 0x5D. #br# RX_MIN_PRE_COUNT_ERR will be set if the preamble counts less than the value of RX_MIN_PRE_CNT. #br# 0x#br# 0: Disabled 0x#br# 1: 1 0x5 before 0x5D 0x#br# 2: 2 0x5 before 0x5D N: N 0x5 before 0x5D Note it does not need to be 0x5. #br# " end="0" id="RX_MIN_PRE_CNT" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXERR0" description="RX ERROR0" id="RXERR0" offset="0x50" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="4" id="RESERVED_1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description=" Error status of received frame is more than the value of RX_MAX_FRM_CNT. #br# 0x#br# 0: No error occurred 0x#br# 1: Error occurred" end="3" id="RX_MAX_FRM_CNT_ERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description=" Error status of received frame is less than the value of RX_MIN_FRM_CNT. #br# 0x#br# 0: No error occurred 0x#br# 1: Error occurred" end="2" id="RX_MIN_FRM_CNT_ERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" Error status of received preamble nibble is more than the value of RX_MAX_PRE_CNT. #br# 0x#br# 0: No error occurred 0x#br# 1: Error occurred" end="1" id="RX_MAX_PRE_CNT_ERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Error status of received preamble nibble is less than the value of RX_MIN_PRE_CNT. #br# 0x#br# 0: No error occurred 0x#br# 1: Error occurred" end="0" id="RX_MIN_PRE_CNT_ERR" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXERR1" description="RX ERROR1" id="RXERR1" offset="0x54" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="4" id="RESERVED_1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description=" Error status of received frame is more than the value of RX_MAX_FRM_CNT. #br# 0x#br# 0: No error occurred 0x#br# 1: Error occurred" end="3" id="RX_MAX_FRM_CNT_ERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description=" Error status of received frame is less than the value of RX_MIN_FRM_CNT. #br# 0x#br# 0: No error occurred 0x#br# 1: Error occurred" end="2" id="RX_MIN_FRM_CNT_ERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description=" Error status of received preamble nibble is more than the value of RX_MAX_PRE_CNT. #br# 0x#br# 0: No error occurred 0x#br# 1: Error occurred" end="1" id="RX_MAX_PRE_CNT_ERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Error status of received preamble nibble is less than the value of RX_MIN_PRE_CNT. #br# 0x#br# 0: No error occurred 0x#br# 1: Error occurred" end="0" id="RX_MIN_PRE_CNT_ERR" rwaccess="R" width="1"></bitfield>
+  </register>
+</module>

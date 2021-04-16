@@ -1,0 +1,70 @@
+/****************************************************************************/
+/*  AM335x_PRU_ICSS_local.gel                                               */
+/*  Copyright (c) 2016  Texas Instruments Incorporated                      */
+/*  Author: Rafael de Souza                                                 */
+/*  Rev: 1.0                                                                */
+/*                                                                          */
+/*  Description: This GEL file is loaded with each PRU core.                */
+/*               It primarily configures the PRU memory map for             */
+/*               Code Composer Studio to properly display the valid         */
+/*               memory regions of the PRU core.                            */
+/*               The routine OnTargetConnect can be customized to add       */
+/*               other HW initialization routines.                          */
+/*                                                                          */
+/****************************************************************************/
+
+menuitem "Memory_Map"
+
+hotmenu Enable_Memory_map()
+{
+	PRU_ICSS_Memory_Map();
+}
+
+hotmenu Disable_Memory_map()
+{
+	GEL_MapReset();
+	GEL_MapOff();
+}
+
+OnTargetConnect()
+{
+	PRU_ICSS_Memory_Map();
+}
+
+/*********************************************/
+/*         PRU_ICSS Memory Map               */
+/*                                           */
+/*   0x00000000 - 0x00002000   Program RAM   */
+/*   0x00000000 - 0x00002000   Data RAM0     */
+/*   0x00002000 - 0x00004000   Data RAM1     */
+/*   0x00010000 - 0x00013000   Shared RAM    */
+/*   0x00020000 - 0x00022000   PRUSS_INTC    */
+/*   0x00022000 - 0x00022400   PRU0 Control  */
+/*   0x00024000 - 0x00024400   PRU1 Control  */
+/*   0x00026000 - 0x00028000   CFG           */
+/*   0x00028000 - 0x0002A000   UART0         */
+/*   0x0002E000 - 0x00030000   IEP           */
+/*   0x00030000 - 0x00032000   eCAP0         */
+/*   0x00032000 - 0x00034000   MII RT        */
+/*   0x00034000 - 0x00036000   MDIO          */
+/*********************************************/
+
+PRU_ICSS_Memory_Map()
+{
+    GEL_MapReset();
+	GEL_MapOn();
+
+    GEL_MapAdd(0x00000000,0,0x2000,1,1);            /* Program RAM  */
+    GEL_MapAdd(0x00000000,1,0x2000,1,1);            /* Data RAM0    */
+    GEL_MapAdd(0x00002000,1,0x2000,1,1);            /* Data RAM1    */
+    GEL_MapAdd(0x00010000,2,0x3000,1,1);            /* Shared RAM   */
+    GEL_MapAdd(0x00020000,2,0x2000,1,1);            /* PRUSS_INTC   */
+    GEL_MapAdd(0x00022000,2,0x400,1,1);             /* PRU0 Control */
+    GEL_MapAdd(0x00024000,2,0x400,1,1);             /* PRU1 Control */
+    GEL_MapAdd(0x00026000,2,0x2000,1,1);            /* CFG          */
+    GEL_MapAdd(0x00028000,2,0x2000,1,1);            /* UART0        */
+    GEL_MapAdd(0x0002E000,2,0x2000,1,1);            /* IEP          */
+    GEL_MapAdd(0x00030000,2,0x2000,1,1);            /* eCAP0        */
+    GEL_MapAdd(0x00032000,2,0x2000,1,1);            /* MII RT       */
+    GEL_MapAdd(0x00034000,2,0x2000,1,1);            /* MDIO         */
+}

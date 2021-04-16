@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="cpsw_stats" id="cpsw_stats">
+  
+  
+  <register acronym="GOODRX" description="Good Rx Frames" id="GOODRX" offset="0x0" width="32"></register>
+  <register acronym="BROADCAST_RX_FRAMES" description="Broadcast Rx Frames" id="BROADCAST_RX_FRAMES" offset="0x4" width="32"></register>
+  <register acronym="MULTICAST_RX_FRAMES" description="Multicast Rx Frames" id="MULTICAST_RX_FRAMES" offset="0x8" width="32"></register>
+  <register acronym="PAUSE_RX_FRAMES" description="Pause Rx Frames" id="PAUSE_RX_FRAMES" offset="0x0C" width="32"></register>
+  <register acronym="RX_CRC_ERRORS" description="Rx CRC Errors" id="RX_CRC_ERRORS" offset="0x10" width="32"></register>
+  <register acronym="RX_ALIGN_ERRORS" description="Rx Align Errors" id="RX_ALIGN_ERRORS" offset="0x14" width="32"></register>
+  <register acronym="OVERSIZE_RX_FRAMES" description="Oversize Rx Frames" id="OVERSIZE_RX_FRAMES" offset="0x18" width="32"></register>
+  <register acronym="RX_JABBERS" description="Rx Jabbers" id="RX_JABBERS" offset="0x1C" width="32"></register>
+  <register acronym="UNDERSIZE_RX_FRAMES" description="Undersize Rx Frames" id="UNDERSIZE_RX_FRAMES" offset="0x20" width="32"></register>
+  <register acronym="RX_FRAGMENTS" description="Rx Fragments" id="RX_FRAGMENTS" offset="0x24" width="32"></register>
+  <register acronym="RX_OCTETS" description="Rx Octets" id="RX_OCTETS" offset="0x30" width="32"></register>
+  <register acronym="GOOD_TX_FRAMES" description="Good Tx Frames" id="GOOD_TX_FRAMES" offset="0x34" width="32"></register>
+  <register acronym="BROADCAST_TX_FRAMES" description="Broadcast Tx Frames" id="BROADCAST_TX_FRAMES" offset="0x38" width="32"></register>
+  <register acronym="MULTICAST_TX_FRAMES" description="Multicast Tx Frames" id="MULTICAST_TX_FRAMES" offset="0x3C" width="32"></register>
+  <register acronym="PAUSE_TX_FRAMES" description="Pause Tx Frames" id="PAUSE_TX_FRAMES" offset="0x40" width="32"></register>
+  <register acronym="DEFERRED_TX_FRAMES" description="Deferred Tx Frames" id="DEFERRED_TX_FRAMES" offset="0x44" width="32"></register>  
+  <register acronym="COLLISIONS" description="Collisions" id="COLLISIONS" offset="0x48" width="32"></register>
+  <register acronym="SINGLE_COLLISION_TX_FRAMES" description="Single Collision Tx Frames" id="SINGLE_COLLISION_TX_FRAMES" offset="0x4C" width="32"></register>
+  <register acronym="MULTIPLE_COLLISION_TX_FRAMES" description="Multiple Collision Tx Frames" id="MULTIPLE_COLLISION_TX_FRAMES" offset="0x50" width="32"></register>
+  <register acronym="EXCESSIVE_COLLISIONS" description="Excessive Collisions" id="EXCESSIVE_COLLISIONS" offset="0x54" width="32"></register>
+  <register acronym="LATE_COLLISIONS" description="Late Collisions" id="LATE_COLLISIONS" offset="0x58" width="32"></register>
+  <register acronym="TX_UNDERRUN" description="Tx Underrun" id="TX_UNDERRUN" offset="0x5C" width="32"></register>
+  <register acronym="CARRIER_SENSE_ERRORS" description="Carrier Sense Errors" id="CARRIER_SENSE_ERRORS" offset="0x60" width="32"></register>
+  <register acronym="TX_OCTETS" description="Tx Octets" id="TX_OCTETS" offset="0x64" width="32"></register>
+  <register acronym="RX_TX_64_OCTET_FRAMES" description="Rx + Tx 64 Octet Frames" id="RX_TX_64_OCTET_FRAMES" offset="0x68" width="32"></register>
+  <register acronym="RX_TX_65_OCTET_FRAMES" description="Rx + Tx 65-127 Octet Frames" id="RX_TX_65_OCTET_FRAMES" offset="0x6C" width="32"></register>
+  <register acronym="RX_TX_128_OCTET_FRAMES" description="Rx + Tx 128-255 Octet Frames" id="RX_TX_128_OCTET_FRAMES" offset="0x70" width="32"></register>
+  <register acronym="RX_TX_256_OCTET_FRAMES" description="Rx + Tx 256-511 Octet Frames" id="RX_TX_256_OCTET_FRAMES" offset="0x74" width="32"></register>
+  <register acronym="RX_TX_512_OCTET_FRAMES" description="Rx + Tx 512-1023 Octet Frames" id="RX_TX_512_OCTET_FRAMES" offset="0x78" width="32"></register>
+  <register acronym="RX_TX_1024_OCTET_FRAMES" description="Rx + Tx 1204_Up Octet Frames" id="RX_TX_1024_OCTET_FRAMES" offset="0x7C" width="32"></register>
+  <register acronym="NET_OCTETS" description="Net Octets" id="NET_OCTETS" offset="0x80" width="32"></register>
+  <register acronym="RX_START_OF_FRAME_OVERRUNS" description="Rx Start of Frame Overruns" id="RX_START_OF_FRAME_OVERRUNS" offset="0x84" width="32"></register>
+  <register acronym="RX_MIDDLE_OF_FRAME_OVERRUNS" description="Rx Middle of Frame Overruns" id="RX_MIDDLE_OF_FRAME_OVERRUNS" offset="0x88" width="32"></register>
+  <register acronym="RX_DMA_OVERRUNS" description="Rx DMA Overruns" id="RX_DMA_OVERRUNS" offset="0x8C" width="32"></register>
+</module>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="CM_DPLL" id="CM_DPLL">
+  
+  
+  <register acronym="CLKSEL_TIMER7_CLK" description="Selects  the Mux select line for TIMER7 clock [warm reset insensitive]" id="CLKSEL_TIMER7_CLK" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Selects  the Mux select line for TIMER7 clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="2">
+    <bitenum description="Select TCLKIN clock" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select CLK_M_OSC clock" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select CLK_32KHZ clock" id="SEL3" token="SEL3" value="2"></bitenum>
+    <bitenum description="Reserved" id="SEL4" token="SEL4" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_TIMER2_CLK" description="Selects  the Mux select line for TIMER2 clock [warm reset insensitive]" id="CLKSEL_TIMER2_CLK" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Selects  the Mux select line for TIMER2 clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="2">
+    <bitenum description="Select TCLKIN clock" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select CLK_M_OSC clock" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select CLK_32KHZ clock" id="SEL3" token="SEL3" value="2"></bitenum>
+    <bitenum description="Reserved" id="SEL4" token="SEL4" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_TIMER3_CLK" description="Selects  the Mux select line for TIMER3 clock [warm reset insensitive]" id="CLKSEL_TIMER3_CLK" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Selects  the Mux select line for TIMER3 clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="2">
+    <bitenum description="Select TCLKIN clock" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select CLK_M_OSC clock" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select CLK_32KHZ clock" id="SEL3" token="SEL3" value="2"></bitenum>
+    <bitenum description="Reserved" id="SEL4" token="SEL4" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_TIMER4_CLK" description="Selects  the Mux select line for TIMER4 clock [warm reset insensitive]" id="CLKSEL_TIMER4_CLK" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Selects  the Mux select line for TIMER4 clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="2">
+    <bitenum description="Select TCLKIN clock" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select CLK_M_OSC clock" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select CLK_32KHZ clock" id="SEL3" token="SEL3" value="2"></bitenum>
+    <bitenum description="Reserved" id="SEL4" token="SEL4" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_MAC_CLKSEL" description="Selects  the clock divide ration for MII clock [warm reset insensitive]" id="CM_MAC_CLKSEL" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="MII Clock Divider Selection. This bit is warm reset insensitive when CPSW RESET_ISO is enabled" end="2" id="MII_CLK_SEL" rwaccess="RW" width="1">
+    <bitenum description="Selects 1/2 divider of SYSCLK2" id="SEL0" token="SEL0" value="0"></bitenum>
+    <bitenum description="Selects 1/5 divide ratio of SYSCLK2" id="SEL1" token="SEL1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Reserved" end="0" id="Reserved" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_TIMER5_CLK" description="Selects  the Mux select line for TIMER5 clock [warm reset insensitive]" id="CLKSEL_TIMER5_CLK" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Selects  the Mux select line for TIMER5 clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="2">
+    <bitenum description="Select TCLKIN clock" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select CLK_M_OSC clock" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select CLK_32KHZ clock" id="SEL3" token="SEL3" value="2"></bitenum>
+    <bitenum description="Reserved" id="SEL4" token="SEL4" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_TIMER6_CLK" description="Selects  the Mux select line for TIMER6 clock [warm reset insensitive]" id="CLKSEL_TIMER6_CLK" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Selects  the Mux select line for TIMER6 clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="2">
+    <bitenum description="Select TCLKIN clock" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select CLK_M_OSC clock" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select CLK_32KHZ clock" id="SEL3" token="SEL3" value="2"></bitenum>
+    <bitenum description="Reserved" id="SEL4" token="SEL4" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CPTS_RFT_CLKSEL" description="Selects  the Mux select line for CPTS RFT clock [warm reset insensitive]" id="CM_CPTS_RFT_CLKSEL" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="3" id="Reserved" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Reserved" end="2" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Reserved" end="1" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Selects  the Mux select line for cpgmac rft clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="1">
+    <bitenum description="Selects CORE_CLKOUTM5" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Selects CORE_CLKOUTM4" id="SEL2" token="SEL2" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_TIMER1MS_CLK" description="Selects  the Mux select line for TIMER1 clock [warm reset insensitive]" id="CLKSEL_TIMER1MS_CLK" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="3" id="Reserved" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Selects  the Mux select line for DMTIMER_1MS clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="3">
+    <bitenum description="Select CLK_M_OSC clock" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select CLK_32KHZ clock" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select TCLKIN clock" id="SEL3" token="SEL3" value="2"></bitenum>
+    <bitenum description="Select CLK_RC32K clock" id="SEL4" token="SEL4" value="3"></bitenum>
+    <bitenum description="Selects the CLK_32768 from 32KHz Crystal Osc" id="SEL5" token="SEL5" value="4"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_GFX_FCLK" description="Selects  the divider value for GFX clock [warm reset insensitive]" id="CLKSEL_GFX_FCLK" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Selects  the clock on gfx fclk [warm reset insensitive]" end="1" id="CLKSEL_GFX_FCLK" rwaccess="RW" width="1">
+    <bitenum description="SGX FCLK is from CORE PLL (same as L3 clock)" id="SEL0" token="SEL0" value="0"></bitenum>
+    <bitenum description="SGX FCLK is from PER PLL (192 MHz clock)" id="SEL1" token="SEL1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Selects  the divider value on gfx fclk [warm reset insensitive]" end="0" id="CLKDIV_SEL_GFX_FCLK" rwaccess="RW" width="1">
+    <bitenum description="SGX FCLK is same as L3 Clock or 192MHz Clock" id="DIV1" token="DIV1" value="0"></bitenum>
+    <bitenum description="SGX FCLK is L3 clock/2 or 192Mhz/2" id="DIV2" token="DIV2" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_PRU_ICSS_OCP_CLK" description="Controls  the Mux select line for PRU-ICSS OCP clock [warm reset insensitive]" id="CLKSEL_PRU_ICSS_OCP_CLK" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Controls Mux Select of PRU-ICSS OCP clock mux" end="0" id="CLKSEL" rwaccess="RW" width="1">
+    <bitenum description="Select L3F clock as OCP Clock of PRU-ICSS" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select DISP DPLL clock as OCP clock of PRU-ICSS" id="SEL2" token="SEL2" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_LCDC_PIXEL_CLK" description="Controls  the Mux select line for LCDC PIXEL clock [warm reset insensitive]" id="CLKSEL_LCDC_PIXEL_CLK" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Controls the Mux Select of LCDC PIXEL clock" end="0" id="CLKSEL" rwaccess="RW" width="2">
+    <bitenum description="Select DISP PLL CLKOUTM2" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select CORE PLL CLKOUTM5" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select PER PLL CLKOUTM2" id="SEL3" token="SEL3" value="2"></bitenum>
+    <bitenum description="Reserved" id="SEL4" token="SEL4" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_WDT1_CLK" description="Selects  the Mux select line for Watchdog1 clock [warm reset insensitive]" id="CLKSEL_WDT1_CLK" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Selects  the Mux select line for WDT1 clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="1">
+    <bitenum description="Select 32KHZ clock from RC Oscillator" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select 32KHZ from 32K Clock divider" id="SEL2" token="SEL2" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSEL_GPIO0_DBCLK" description="Selects  the Mux select line for GPIO0 debounce clock [warm reset insensitive]" id="CLKSEL_GPIO0_DBCLK" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Selects  the Mux select line for GPIO0 debounce  clock [warm reset insensitive]" end="0" id="CLKSEL" rwaccess="RW" width="2">
+    <bitenum description="Select 32KHZ clock from RC Oscillator" id="SEL1" token="SEL1" value="0"></bitenum>
+    <bitenum description="Select 32KHZ from 32K Crystal Oscillator" id="SEL2" token="SEL2" value="1"></bitenum>
+    <bitenum description="Select 32KHz from Clock Divider" id="SEL3" token="SEL3" value="2"></bitenum>
+  </bitfield>
+  </register>
+</module>

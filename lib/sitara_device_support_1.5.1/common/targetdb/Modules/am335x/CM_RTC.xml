@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="CM_RTC" id="CM_RTC">
+  
+  
+  <register acronym="CM_RTC_RTC_CLKCTRL" description="This register manages the RTC clocks." id="CM_RTC_RTC_CLKCTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_RTC_CLKSTCTRL" description="This register enables the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_RTC_CLKSTCTRL" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="26" id="Reserved1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="25" description="Reserved" end="11" id="Reserved2" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="10" description="Reserved" end="10" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="This field indicates the state of the 32K RTC clock in the domain." end="9" id="CLKACTIVITY_RTC_32KCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="This field indicates the state of the L4 RTC clock in the domain." end="8" id="CLKACTIVITY_L4_RTC_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="2" id="Reserved" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the RTC clock domains." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+</module>

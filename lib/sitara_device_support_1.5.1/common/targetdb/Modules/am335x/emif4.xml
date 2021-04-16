@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="EMIF4D" id="EMIF4D">
+  
+  
+  <register acronym="EMIF_MOD_ID_REV" description="" id="EMIF_MOD_ID_REV" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Used to distinguish between old and current schemes." end="30" id="reg_scheme" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="EMIF module ID." end="16" id="reg_module_id" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="RTL Version." end="11" id="reg_rtl_version" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major Revision." end="8" id="reg_major_revision" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="" end="6" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor Revision." end="0" id="reg_minor_revision" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="STATUS" description="" id="STATUS" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Big Endian. Reflects the value on the config_big_endian port that defines whether the EMIF is in big or little endian mode.  0 = Little endian. 1 = Big endian." end="31" id="reg_be" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Dual Clock mode. Reflects the value on the config_dual_clk_mode port that defines whether the ocp_clk and m_clk are asynchronous. 0 = ocp_clk = m_clk. 1 = Asynchronous ocp_clk and m_clk." end="30" id="reg_dual_clk_mode" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Fast Init. Reflects the value on the config_fast_init port that defines whether the EMIF fast initialization mode has been enabled. 0 = Fast init disabled. 1 = Fast init enabled." end="29" id="reg_fast_init" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="28" description="" end="3" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="2" description="DDR PHY Ready. Reflects the value on the phy_ready port (active high) that defines whether the DDR PHY is ready for normal operation." end="2" id="reg_phy_dll_ready" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="" end="0" id="Reserved2" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_CONFIG" description="" id="SDRAM_CONFIG" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="SDRAM Type selection. Set to 0 for DDR1, set to 1 for LPDDR1, set to 2 for DDR2, set to 3 for DDR3. All other values are reserved." end="29" id="reg_sdram_type" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Internal bank position. Set to 0 to assign internal bank address bits from lower OCP address bits, as shown in the tables for  OCP Address to DDR2/3/mDDR Address Mapping. Set to 1, 2, or 3 to assign internal bank address bits from higher OCP address, as shown in the tables for  OCP Address to DDR2/3/mDDR Address Mapping." end="27" id="reg_ibank_pos" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="26" description="DDR2 and DDR3 termination resistor value. Set to 0 to disable termination. For DDR2, set to 1 for 75 ohm, set to 2 for 150 ohm, and set to 3 for 50 ohm. For DDR3, set to 1 for RZQ/4, set to 2 for RZQ/2, set to 3 for RZQ/6, set to 4 for RZQ/12, and set to 5 for RZQ/8. All other values are reserved." end="24" id="reg_ddr_term" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="DDR2 differential DQS enable. Set to 0 for single ended DQS. Set to 1 for differential DQS." end="23" id="reg_ddr2_ddqs" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="DDR3 Dynamic ODT. Set to 0 to turn off dynamic ODT. Set to 1 for RZQ/4 and set to 2 for RZQ/2. All other values are reserved." end="21" id="reg_dyn_odt" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="20" description="Disable DLL select. Set to 1 to disable DLL inside SDRAM." end="20" id="reg_ddr_disable_dll" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="SDRAM drive strength. For DDR1/DDR2, set to 0 for normal, and set to 1 for weak drive strength. For DDR3, set to 0 for RZQ/6 and set to 1 for RZQ/7. For LPDDR1, set to 0 for full, set to 1 for 1/2, set to 2 for 1/4, and set to 3 for 1/8 drive strength. All other values are reserved." end="18" id="reg_sdram_drive" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="DDR3 CAS Write latency. Value of 0, 1, 2, and 3 (CAS write latency of 5, 6, 7, and 8) are supported. Use the lowest value supported for best performance. All other values are reserved." end="16" id="reg_cwl" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="SDRAM data bus width. Set to 0 for 32-bit and set to 1 for 16-bit. All other values are reserved." end="14" id="reg_narrow_mode" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="CAS Latency. The value of this field defines the CAS latency to be used when accessing connected SDRAM devices. Value of 2, 3, 5, and 6 (CAS latency of 2, 3, 1.5, and 2.5) are supported for DDR1. Value of 2, 3, 4, and 5 (CAS latency of 2, 3, 4, and 5) are supported for DDR2. Value of 2, 4, 6, 8, 10, 12, and 14 (CAS latency of 5, 6, 7, 8, 9, 10, and 11) are supported for DDR3. Value of 2 and 3 (CAS latency of 2 and 3) are supported for LPDDR1. All other values are reserved." end="10" id="reg_cl" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="9" description="Row Size. Defines the number of row address bits of connected SDRAM devices. Set to 0 for 9 row bits, set to 1 for 10 row bits, set to 2 for 11 row bits, set to 3 for 12 row bits, set to 4 for 13 row bits, set to 5 for 14 row bits, set to 6 for 15 row bits, and set to 7 for 16 row bits. This field is only used when reg_ibank_pos field in SDRAM Config register is set to 1, 2, or 3, or reg_ebank_pos field in SDRAM Config_2 register is set to 1." end="7" id="reg_rowsize" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="6" description="Internal Bank setup. Defines number of banks inside connected SDRAM devices. Set to 0 for 1 bank, set to 1 for 2 banks, set to 2 for 4 banks, and set to 3 for 8 banks. All other values are reserved." end="4" id="reg_ibank" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="External chip select setup. Defines whether SDRAM accesses will use 1 or 2 chip select lines. Set to 0 to use pad_cs_o_n[0] only. All other values reserved." end="3" id="reg_ebank" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Page Size. Defines the internal page size of connected SDRAM devices. Set to 0 for 256-word page (8 column bits), set to 1 for 512-word page (9 column bits), set to 2 for 1024-word page (10 column bits), and set to 3 for 2048-word page (11 column bits). All other values are reserved." end="0" id="reg_pagesize" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_CONFIG_2" description="" id="SDRAM_CONFIG_2" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Reserved." end="30" id="Reserved5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="External bank position. Set to 0 to assign external bank address bits from lower OCP address, as shown in the tables for  OCP Address to DDR2/3/mDDR Address Mapping. Set to 1 to assign external bank address bits from higher OCP address bits, as shown in the tables for  OCP Address to DDR2/3/mDDR Address Mapping." end="27" id="reg_ebank_pos" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="" end="6" id="Reserved3" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="5" description="Reserved." end="4" id="Reserved7" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="" end="3" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Reserved." end="0" id="Reserved6" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_REF_CTRL" description="" id="SDRAM_REF_CTRL" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Initialization and Refresh disable. When set to 1, EMIF will disable SDRAM initialization and refreshes, but will carry out SDRAM write/read transactions." end="31" id="reg_initref_dis" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="" end="30" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="29" description="DDR3 Self Refresh temperature range. Set to 0 for normal operating temperature range and set to 1 for extended operating temperature range when the reg_asr field is set to 0. This bit must be set to 0 if the reg_asr field is set to 1. A write to this field will cause the EMIF to start the SDRAM initialization sequence." end="29" id="reg_srt" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="DDR3 Auto Self Refresh enable. Set to 1 for auto Self Refresh enable. Set to 0 for manual Self Refresh reference indicated by the reg_srt field. A write to this field will cause the EMIF to start the SDRAM initialization sequence." end="28" id="reg_asr" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Partial Array Self Refresh. These bits get loaded into the Extended Mode Register of an LPDDR1 or DDR3 during initialization. For LPDDR1, set to 0 for full array, set to 1 for 1/2 array, set to 2 for 1/4 array, set to 5 for 1/8 array, and set to 6 for 1/16 array to be refreshed. For DDR3, set to 0 for full array, set to 1 or 5 for 1/2 array, set to 2 or 6 for 1/4 array, set to 3 or 7 for 1/8 array, and set to 4 for 3/4 array to be refreshed. All other values are reserved. A write to this field will cause the EMIF to start the SDRAM initialization sequence." end="24" id="reg_pasr" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="16" id="Reserved3" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Refresh Rate. Value in this field is used to define the rate at which connected SDRAM devices will be refreshed. SDRAM refresh rate = EMIF rate / reg_refresh_rate where EMIF rate is equal to m_clk rate. If reg_refresh_rate andlt (8*reg_t_rfc)+reg_t_rp+reg_t_rcd+20 then it will be loaded with (8*reg_t_rfc)+reg_t_rp+reg_t_rcd+20. This is done to avoid lock-up situations when illegal values are programmed." end="0" id="reg_refresh_rate" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_REF_CTRL_SHDW" description="" id="SDRAM_REF_CTRL_SHDW" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Shadow field for reg_refresh_rate. This field is loaded into reg_refresh_rate field in SDRAM Refresh Control register when SIdleAck is asserted. This register is not auto corrected when the value is invalid." end="0" id="reg_refresh_rate_shdw" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_TIM_1" description="" id="SDRAM_TIM_1" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Minimum number of m_clk cycles from Precharge to Activate or Refresh, minus one." end="25" id="reg_t_rp" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="24" description="Minimum number of m_clk cycles from Activate to Read or Write, minus one." end="21" id="reg_t_rcd" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="20" description="Minimum number of m_clk cycles from last Write transfer to Pre-charge, minus one. The SDRAM initialization sequence will be started when the value of this field is changed from the previous value and the EMIF is in DDR2 mode." end="17" id="reg_t_wr" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="16" description="Minimum number of m_clk cycles from Activate to Pre-charge, minus one. reg_t_ras >= reg_t_rcd." end="12" id="reg_t_ras" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="11" description="Minimum number of m_clk cycles from Activate to Activate, minus one." end="6" id="reg_t_rc" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="5" description="Minimum number of m_clk cycles from Activate to Activate for a different bank, minus one. For an 8-bank DDR2, this field must be equal to ((((4*tRRD)+(2*tCK))/(4*tCK))-1)." end="3" id="reg_t_rrd" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Minimum number of m_clk cycles from last Write to Read, minus one." end="0" id="reg_t_wtr" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_TIM_1_SHDW" description="" id="SDRAM_TIM_1_SHDW" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Shadow field for reg_t_rp. This field is loaded into reg_t_rp field in SDRAM Timing 1 register when SIdleAck is asserted." end="25" id="reg_t_rp_shdw" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="24" description="Shadow field for reg_t_rcd. This field is loaded into reg_t_rcd field in SDRAM Timing 1 register when SIdleAck is asserted." end="21" id="reg_t_rcd_shdw" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="20" description="Shadow field for reg_t_wr. This field is loaded into reg_t_wr field in SDRAM Timing 1 register when SIdleAck is asserted. initialization sequence will be started when the value of this field is changed from the previous value and the EMIF is in DDR2 mode." end="17" id="reg_t_wr_shdw" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="16" description="Shadow field for reg_t_ras. This field is loaded into reg_t_ras field in SDRAM Timing 1 register when SIdleAck is asserted." end="12" id="reg_t_ras_shdw" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="11" description="Shadow field for reg_t_rc. This field is loaded into reg_t_rc field in SDRAM Timing 1 register when SIdleAck is asserted." end="6" id="reg_t_rc_shdw" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="5" description="Shadow field for reg_t_rrd. This field is loaded into reg_t_rrd field in SDRAM Timing 1 register when SIdleAck is asserted." end="3" id="reg_t_rrd_shdw" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Shadow field for reg_t_wtr. This field is loaded into reg_t_wtr field in SDRAM Timing 1 register when SIdleAck is asserted." end="0" id="reg_t_wtr_shdw" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_TIM_2" description="" id="SDRAM_TIM_2" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Minimum number of m_clk cycles from Powerdown exit to any command other than a Read command, minus one. For DDR2 and LPDDR1, this field must satisfy greater of tXP or tCKE." end="28" id="reg_t_xp" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="Minimum number of m_clk cycles from ODT enable to write data driven for DDR2 and DDR3. reg_t_odt must be equal to tAOND." end="25" id="reg_t_odt" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="24" description="Minimum number of m_clk cycles from Self-Refresh exit to any command other than a Read command, minus one." end="16" id="reg_t_xsnr" rwaccess="RW" width="9"></bitfield>
+    
+  <bitfield begin="15" description="Minimum number of m_clk cycles from Self-Refresh exit to a Read command, minus one." end="6" id="reg_t_xsrd" rwaccess="RW" width="10"></bitfield>
+    
+  <bitfield begin="5" description="Minimum number of m_clk cycles from the last Read command to a Pre-charge command for DDR2, minus one." end="3" id="reg_t_rtp" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Minimum number of m_clk cycles between pad_cke_o changes, minus one." end="0" id="reg_t_cke" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_TIM_2_SHDW" description="" id="SDRAM_TIM_2_SHDW" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Shadow field for reg_t_xp. This field is loaded into reg_t_xp field in SDRAM Timing 2 register when SIdleAck is asserted." end="28" id="reg_t_xp_shdw" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="Shadow field for reg_t_odt. This field is loaded into reg_t_odt field in SDRAM Timing 2 register when SIdleAck is asserted." end="25" id="reg_t_odt_shdw" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="24" description="Shadow field for reg_t_xsnr. This field is loaded into reg_t_xsnr field in SDRAM Timing 2 register when SIdleAck is asserted." end="16" id="reg_t_xsnr_shdw" rwaccess="RW" width="9"></bitfield>
+    
+  <bitfield begin="15" description="Shadow field for reg_t_xsrd. This field is loaded into reg_t_xsrd field in SDRAM Timing 2 register when SIdleAck is asserted." end="6" id="reg_t_xsrd_shdw" rwaccess="RW" width="10"></bitfield>
+    
+  <bitfield begin="5" description="Shadow field for reg_t_rtp. This field is loaded into reg_t_rtp field in SDRAM Timing 2 register when SIdleAck is asserted." end="3" id="reg_t_rtp_shdw" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Shadow field for reg_t_cke. This field is loaded into reg_t_cke field in SDRAM Timing 2 register when SIdleAck is asserted." end="0" id="reg_t_cke_shdw" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_TIM_3" description="" id="SDRAM_TIM_3" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Minimum number of DDR clock cycles for PHY DLL to unlock. A value of N will be equal to N x 128 clocks." end="28" id="reg_t_pdll_ul" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="" end="24" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="23" description="Reserved." end="21" id="Reserved3" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Number of DDR clock clock cycles for a ZQCS command, minus one." end="15" id="reg_zq_zqcs" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="14" description="Reserved." end="13" id="Reserved2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="12" description="Minimum number of DDR clock cycles from Refresh or Load Mode to Refresh or Activate, minus one." end="4" id="reg_t_rfc" rwaccess="RW" width="9"></bitfield>
+    
+  <bitfield begin="3" description="Maximum number of reg_refresh_rate intervals from Activate to Precharge command. This field must be equal to ((tRASmax / tREFI)-1) rounded down to the next lower integer. This field is only applicable for mDDR. This field must be programmed to 0xF for other SDRAM types." end="0" id="reg_t_ras_max" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="SDRAM_TIM_3_SHDW" description="" id="SDRAM_TIM_3_SHDW" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Minimum number of DDR clock cycles for PHY DLL to unlock. A value of N will be equal to N x 128 clocks." end="28" id="reg_t_pdll_ul" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="" end="24" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="23" description="Reserved." end="21" id="Reserved3" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Number of DDR clock clock cycles for a ZQCS command, minus one." end="15" id="reg_zq_zqcs" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="14" description="Reserved." end="13" id="Reserved2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="12" description="Minimum number of DDR clock cycles from Refresh or Load Mode to Refresh or Activate, minus one." end="4" id="reg_t_rfc" rwaccess="RW" width="9"></bitfield>
+    
+  <bitfield begin="3" description="Maximum number of reg_refresh_rate intervals from Activate to Precharge command. This field must be equal to ((tRASmax / tREFI)-1) rounded down to the next lower integer. This field is only applicable for mDDR. This field must be programmed to 0xF for other SDRAM types." end="0" id="reg_t_ras_max" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="PWR_MGMT_CTRL" description="" id="PWR_MGMT_CTRL" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Power Mangement timer for Power-Down. The EMIF will put the external SDRAM in Power-Down mode after the EMIF is idle for these number of m_clk cycles and if reg_lp_mode field is set to 4. Set to 0 to immediately enter Power-Down mode. Set to 1 for 16 clocks. Set to 2 for 32 clocks. Set to 3 for 64 clocks. Set to 4 for 128 clocks. Set to 5 for 256 clocks. Set to 6 for 512 clocks. Set to 7 for 1024 clocks. Set to 8 for 2048 clocks. Set to 9 for 4096 clocks. Set to 10 for 8192 clocks. Set to 11 for 16384 clocks. Set to 12 for 32768 clocks. Set to 13 for 65536 clocks. Set to 14 for 131072 clocks. Set to 15 for 262144 clocks.  Note:  After updating this field, at least one dummy read access to SDRAM is required for the new value to take affect." end="12" id="reg_pd_tim" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Deep Power Down enable. Set to 0 for normal operation. Set to 1 to enter deep power down mode. This mode will override the reg_lp_mode field setting." end="11" id="reg_dpd_en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Automatic Power Management enable. Set to 1 for Clock Stop, set to 2 for Self Refresh, and set to 4 for Power-Down. All other values will disable automatic power management." end="8" id="reg_lp_mode" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Power Mangement timer for Self Refresh. The EMIF will put the external SDRAM in Self Refresh mode after the EMIF is idle for these number of m_clk cycles and if reg_lp_mode field is set to 2. Set to 0 to immediately enter Self Refresh mode. Set to 1 for 16 clocks. Set to 2 for 32 clocks. Set to 3 for 64 clocks. Set to 4 for 128 clocks. Set to 5 for 256 clocks. Set to 6 for 512 clocks. Set to 7 for 1024 clocks. Set to 8 for 2048 clocks. Set to 9 for 4096 clocks. Set to 10 for 8192 clocks. Set to 11 for 16384 clocks. Set to 12 for 32768 clocks. Set to 13 for 65536 clocks. Set to 14 for 131072 clocks. Set to 15 for 262144 clocks. Note:  After updating this field, at least one dummy read access to SDRAM is required for the new value to take affect." end="4" id="reg_sr_tim" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Power Mangement timer for Clock Stop. The EMIF will put the external SDRAM in Clock Stop mode after the EMIF is idle for these number of m_clk cycles and if reg_lp_mode field is set to 1. Set to 0 to immediately enter Clock Stop mode. Set to 1 for 16 clocks. Set to 2 for 32 clocks. Set to 3 for 64 clocks. Set to 4 for 128 clocks. Set to 5 for 256 clocks. Set to 6 for 512 clocks. Set to 7 for 1024 clocks. Set to 8 for 2048 clocks. Set to 9 for 4096 clocks. Set to 10 for 8192 clocks. Set to 11 for 16384 clocks. Set to 12 for 32768 clocks. Set to 13 for 65536 clocks. Set to 14 for 131072 clocks. Set to 15 for 262144 clocks. Note:  After updating this field, at least one dummy read access to SDRAM is required for the new value to take affect." end="0" id="reg_cs_tim" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="PWR_MGMT_CTRL_SHDW" description="" id="PWR_MGMT_CTRL_SHDW" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Shadow field for reg_pd_tim. This field is loaded into reg_pd_tim field in Power Management Control register when SIdleAck is asserted." end="8" id="reg_pd_tim_shdw" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Shadow field for reg_sr_tim. This field is loaded into reg_sr_tim field in Power Management Control register when SIdleAck is asserted." end="4" id="reg_sr_tim_shdw" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Shadow field for reg_cs_tim. This field is loaded into reg_cs_tim field in Power Management Control register when SIdleAck is asserted." end="0" id="reg_cs_tim_shdw" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="INT_CONFIG" id="INT_CONFIG" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="Reserved for future use." end="24" id="Reserved" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Priority Raise Counter for class of service 1. Number of m_clk cycles after which the EMIF momentarily raises the priority of the class of service 1 commands in the Command FIFO. A value of N will be equal to N x 16 clocks." end="16" id="REG_COS_COUNT_1" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Priority Raise Counter for class of service 2. Number of m_clk cycles after which the EMIF momentarily raises the priority of the class of service 2 commands in the Command FIFO. A value of N will be equal to N x 16 clocks." end="8" id="REG_COS_COUNT_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Priority Raise Old Counter. Number of m_clk cycles after which the EMIF momentarily raises the priority of the oldest command in the OCP Command FIFO. A value of N will be equal to N x 16 clocks." end="0" id="REG_PR_OLD_COUNT" rwaccess="" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="INT_CFG_VAL_1" id="INT_CFG_VAL_1" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="L3 OCP data bus width for a particular configuration. 0 = 32 bit wide. 1 = 64 bit wide. 2 = 128 bit wide. 3 = 256 bit wide." end="30" id="REG_SYS_BUS_WIDTH" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Reserved for future use." end="16" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Write Data FIFO depth for a particular configuration." end="8" id="REG_WR_FIFO_DEPTH" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Command FIFO depth for a particular configuration." end="0" id="REG_CMD_FIFO_DEPTH" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="INT_CFG_VAL_2" description=" " id="INT_CFG_VAL_2" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="Reserved for future use." end="24" id="Reserved" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Register Read Data FIFO depth for a particular configuration." end="16" id="REG_RREG_FIFO_DEPTH" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="15" description="SDRAM Read Data FIFO depth for a particular configuration." end="8" id="REG_RSD_FIFO_DEPTH" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Read Command FIFO depth for a particular configuration." end="0" id="REG_RCMD_FIFO_DEPTH" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="PERF_CNT_1" description="" id="PERF_CNT_1" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="32-bit counter that can be configured as specified in the Performance Counter Config Register and Performance Counter Master Region Select Register." end="0" id="reg_counter1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="PERF_CNT_2" description="" id="PERF_CNT_2" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="32-bit counter that can be configured as specified in the Performance Counter Config Register and Performance Counter Master Region Select Register." end="0" id="reg_counter2" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="PERF_CNT_CFG" description="" id="PERF_CNT_CFG" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="MConnID filter enable for Performance Counter 2 register." end="31" id="reg_cntr2_mconnid_en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Chip Select filter enable for Performance Counter 2 register." end="30" id="reg_cntr2_region_en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="" end="20" id="Reserved1" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="19" description="Filter configuration for Performance Counter 2. Refer to table for details." end="16" id="reg_cntr2_cfg" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="MConnID filter enable for Performance Counter 1 register." end="15" id="reg_cntr1_mconnid_en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Chip Select filter enable for Performance Counter 1 register." end="14" id="reg_cntr1_region_en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="" end="4" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="3" description="Filter configuration for Performance Counter 1. Refer to table for details." end="0" id="reg_cntr1_cfg" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="PERF_CNT_SEL" description="" id="PERF_CNT_SEL" offset="0x8C" width="32">
+    
+  <bitfield begin="31" description="MConnID for Performance Counter 2 register." end="24" id="reg_mconnid2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="" end="18" id="Reserved1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="17" description="MAddrSpace for Performance Counter 2 register." end="16" id="reg_region_sel2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="MConnID for Performance Counter 1 register." end="8" id="reg_mconnid1" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="" end="2" id="Reserved2" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="1" description="MAddrSpace for Performance Counter 1 register." end="0" id="reg_region_sel1" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="PERF_CNT_TIM" description="" id="PERF_CNT_TIM" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="32-bit counter that continuously counts number for m_clk cycles elapsed after EMIF is brought out of reset." end="0" id="reg_total_time" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="READ_IDLE_CTRL" description="" id="READ_IDLE_CTRL" offset="0x98" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="The Read Idle Length field determines the minimum size (reg_read_idle_len-1 clock cycles) of Read Idle window for the read idle detection as well as the force read idle time." end="16" id="reg_read_idle_len" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="9" id="Reserved2" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="8" description="The Read Idle Interval field determines the maximum interval ((reg_read_idle_interval-1)*64 clock cycles) between read idle detections or force. A value of zero disables the read idle function." end="0" id="reg_read_idle_interval" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="READ_IDLE_CTRL_SHDW" description="" id="READ_IDLE_CTRL_SHDW" offset="0x9C" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="Shadow field for reg_read_idle_len. This field is loaded into reg_read_idle_len field in Read Idle Control register when SIdleAck is asserted" end="16" id="reg_read_idle_len_shdw" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="9" id="Reserved2" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="8" description="Shadow field for reg_read_idle_interval. This field is loaded into reg_read_idle_interval field in Read Idle Control register when SIdleAck is asserted." end="0" id="reg_read_idle_interval_shdw" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_RAW_SYS" description="" id="IRQSTATUS_RAW_SYS" offset="0xA4" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Reserved." end="2" id="Reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Raw status of system OCP interrupt. Write 1 to set the (raw) status, mostly for debug. Writing a 0 has no effect." end="1" id="reg_ta_sys" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Raw status of system OCP interrupt. Write 1 to set the (raw) status, mostly for debug. Writing a 0 has no effect." end="0" id="reg_err_sys" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_SYS" description="" id="IRQSTATUS_SYS" offset="0xAC" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Reserved." end="2" id="Reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Enabled status of system OCP interrupt. Write 1 to clear the status after interrupt has been serviced (raw status gets cleared, i.e. even if not enabled). Writing a 0 has no effect." end="1" id="reg_ta_sys" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enabled status of system OCP interrupt. Write 1 to clear the status after interrupt has been serviced (raw status gets cleared, i.e. even if not enabled). Writing a 0 has no effect." end="0" id="reg_err_sys" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_SET_SYS" description="" id="IRQENABLE_SET_SYS" offset="0xB4" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Reserved." end="2" id="Reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Enable set for system OCP interrupt. Writing a 1 will enable the interrupt, and set this bit as well as the corresponding Interrupt Enable Clear Register. Writing a 0 has no effect." end="1" id="reg_en_ta_sys" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enable set for system OCP interrupt. Writing a 1 will enable the interrupt, and set this bit as well as the corresponding Interrupt Enable Clear Register. Writing a 0 has no effect." end="0" id="reg_en_err_sys" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_CLR_SYS" description="" id="IRQENABLE_CLR_SYS" offset="0xBC" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Reserved." end="2" id="Reserved2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Enable clear for system OCP interrupt. Writing a 1 will disable the interrupt, and clear this bit as well as the corresponding Interrupt Enable Set Register. Writing a 0 has no effect." end="1" id="reg_en_ta_sys" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enable clear for system OCP interrupt. Writing a 1 will disable the interrupt, and clear this bit as well as the corresponding Interrupt Enable Set Register. Writing a 0 has no effect." end="0" id="reg_en_err_sys" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ZQ_CONFIG" description="" id="ZQ_CONFIG" offset="0xC8" width="32">
+    
+  <bitfield begin="31" description="Writing a 1 enables ZQ calibration for CS1." end="31" id="reg_zq_cs1en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Writing a 1 enables ZQ calibration for CS0." end="30" id="reg_zq_cs0en" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="ZQ Dual Calibration enable. Allows both ranks to be ZQ calibrated simultaneously. Setting this bit requires both chip selects to have a seerate calibration resistor per device." end="29" id="reg_zq_dualcalen" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="ZQCL on Self Refresh, Active Power-Down, and Precharge Power-Down exit enable. Writing a 1 enables the issuing of ZQCL on Self-Refresh, Active Power-Down, and Precharge Power-Down exit." end="28" id="reg_zq_sfexiten" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="" end="20" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="19" description="Indicates the number of ZQCL intervals that make up a ZQINIT interval, minus one." end="18" id="reg_zq_zqinit_mult" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Indicates the number of ZQCS intervals that make up a ZQCL interval, minus one. ZQCS interval is defined by reg_zq_zqcs in SDRAM Timing 3 Register." end="16" id="reg_zq_zqcl_mult" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="Number of refresh periods between ZQCS commans. This field supports between one refresh period to 256 ms between ZQCS calibration commands. Refresh period is defined by reg_refresh_rate in SDRAM Refresh Control register." end="0" id="reg_zq_refinterval" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RDWR_LVL_RMP_WIN" description=" " id="RDWR_LVL_RMP_WIN" offset="0xD4" width="32">
+    
+  <bitfield begin="31" description="Reserved." end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Incremental leveling ramp window in number of refresh periods. The value programmed is minus one the required value. Refresh period is defined by reg_refresh_rate in SDRAM Refresh Control register." end="0" id="REG_RDWRLVLINC_RMP_WIN" rwaccess="R" width="13"></bitfield>
+  </register>
+  
+  
+  <register acronym="RDWR_LVL_RMP_CTRL" id="RDWR_LVL_RMP_CTRL" offset="0xD8" width="32">
+    
+  <bitfield begin="31" description="Read-Write Leveling enable.  Set 1 to enable leveling. Set 0 to disable leveling." end="31" id="REG_RDWRLVL_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Incremental leveling pre-scalar in number of refresh periods during ramp window. The value programmed is minus one the required value. Refresh period is defined by reg_refresh_rate in SDRAM Refresh Control register." end="24" id="REG_RDWRLVLINC_RMP_PRE" rwaccess="" width="7"></bitfield>
+    
+  <bitfield begin="23" description="Incremental read data eye training interval during ramp window. Number of reg_rdwrlvlinc_rmp_pre intervals between incremental read data eye training. A value of 0 will disable incremental read data eye training during ramp window." end="16" id="REG_RDLVLINC_RMP_INT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Incremental read DQS gate training interval during ramp window. Number of reg_rdwrlvlinc_rmp_pre intervals between incremental read DQS gate training. A value of 0 will disable incremental read DQS gate training during ramp window." end="8" id="REG_RDLVLGATEINC_RMP_INT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Incremental write leveling interval during ramp window. Number of reg_rdwrlvlinc_rmp_pre intervals between incremental write leveling. A value of 0 will disable incremental write leveling during ramp window." end="0" id="REG_WRLVLINC_RMP_INT" rwaccess="" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RDWR_LVL_CTRL" description="Read-Write Leveling Control Register" id="RDWR_LVL_CTRL" offset="0xDC" width="32">
+    
+  <bitfield begin="31" description="Full leveling trigger. Writing a 1 to this field triggers full read and write leveling. This bit will self-clear to 0." end="31" id="REG_RDWRLVLFULL_START" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Incremental leveling pre-scalar in number of refresh periods. The value programmed is minus one the required value. Refresh period is defined by reg_refresh_rate in SDRAM Refresh Control register." end="24" id="REG_RDWRLVLINC_PRE" rwaccess="" width="7"></bitfield>
+    
+  <bitfield begin="23" description="Incremental read data eye training interval. Number of reg_rdwrlvlinc_pre intervals between incremental read data eye training. A value of 0 will disable incremental read data eye training." end="16" id="REG_RDLVLINC_INT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="Incremental read DQS gate training interval. Number of reg_rdwrlvlinc_pre intervals between incremental read DQS gate training. A value of 0 will disable incremental read DQS gate training." end="8" id="REG_RDLVLGATEINC_INT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Incremental write leveling interval. Number of reg_rdwrlvlinc_pre intervals between incremental write leveling. A value of 0 will disable incremental write leveling." end="0" id="REG_WRLVLINC_INT" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="DDR_PHY_CTRL_1" description="A write to the DDR PHY Control 1 register must be followed by a write to the SDRAM_CONFIG register to ensure that the control update/acknowledge protocol is performed on the DID. If CAS latency = 5, the minimum read latency = 5 + 2 = 7 and reg_read_latency must be programmed as 7 - 1 = 6. The maximum read latency = 5 + 7 = 12 and reg_read_latency must be programmed as 12 - 1 = 11." id="DDR_PHY_CTRL_1" offset="0xE4" width="32">
+    
+  <bitfield begin="31" description="Reserved." end="21" id="Reserved1" rwaccess="RW" width="11"></bitfield>
+    
+  <bitfield begin="20" description="0 = Power down PHY data macros. 1 = Enable power to PHY data macros." end="20" id="reg_phy_enable_dynamic_pwrdn" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Reserved." end="16" id="Reserved2" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="Writing a 1 to this bit will hold the PHY macros in reset. Writing a 0 will bring PHY macros out of reset." end="15" id="reg_phy_rst_n" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Reserved." end="14" id="Reserved3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Value to drive on the 2-bit local_odt PHY outputs when reg_phy_dynamic_pwrdn_enable is asserted and a read is not in progress and reg_phy_dynamic_pwrdn_enable. Typically this is the value required to disable termination  (00) to save power when idle." end="12" id="reg_phy_idle_local_odt" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This bit controls the value assigned to the reg_phy_wr_local_odt input on the data macros. Always set to 00." end="10" id="reg_phy_wr_local_odt" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Value to drive on the 2-bit local_odt PHY outputs when output enable is not asserted and a read is in progress (where ‘in progress’ is defined as after a read command is issued and until all read data has been returned all the way to the controller.) Typically this is set to the value required to enable termination at the desired strength for read usage. 00 = ODT off. 01 = ODT off. 10 = Full thevenin load. 11 = Half thevenin load." end="8" id="reg_phy_rd_local_odt" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="Reserved." end="5" id="Reserved4" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="4" description="This field defines the latency for read data from DDR SDRAM in number of DDR clock cycles. The value applied should be equal to the required value minus one. The maximum read latency supported by the DDR PHY is equal to CAS latency plus 7 clock cycles. The minimum read latency must be equal to CAS latency plus 2 clock cycle." end="0" id="reg_read_latency" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="DDR_PHY_CTRL_1_SHDW" description="A write to the DDR PHY Control 1 register must be followed by a write to the SDRAM_CONFIG register to ensure that the control update/acknowledge protocol is performed on the DID. If CAS latency = 5, the minimum read latency = 5 + 2 = 7 and reg_read_latency must be programmed as 7 - 1 = 6. The maximum read latency = 5 + 7 = 12 and reg_read_latency must be programmed as 12 - 1 = 11." id="DDR_PHY_CTRL_1_SHDW" offset="0xE8" width="32">
+    
+  <bitfield begin="31" description="Reserved." end="21" id="Reserved1" rwaccess="RW" width="11"></bitfield>
+    
+  <bitfield begin="20" description="0 = Power down PHY data macros. 1 = Enable power to PHY data macros." end="20" id="reg_phy_enable_dynamic_pwrdn" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Reserved." end="16" id="Reserved2" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="Writing a 1 to this bit will hold the PHY macros in reset. Writing a 0 will bring PHY macros out of reset." end="15" id="reg_phy_rst_n" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Reserved." end="14" id="Reserved3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Value to drive on the 2-bit local_odt PHY outputs when reg_phy_dynamic_pwrdn_enable is asserted and a read is not in progress and reg_phy_dynamic_pwrdn_enable. Typically this is the value required to disable termination  (00) to save power when idle." end="12" id="reg_phy_idle_local_odt" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This bit controls the value assigned to the reg_phy_wr_local_odt input on the data macros. Always set to 00." end="10" id="reg_phy_wr_local_odt" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Value to drive on the 2-bit local_odt PHY outputs when output enable is not asserted and a read is in progress (where ‘in progress’ is defined as after a read command is issued and until all read data has been returned all the way to the controller.) Typically this is set to the value required to enable termination at the desired strength for read usage. 00 = ODT off. 01 = ODT off. 10 = Full thevenin load. 11 = Half thevenin load." end="8" id="reg_phy_rd_local_odt" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="Reserved." end="5" id="Reserved4" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="4" description="This field defines the latency for read data from DDR SDRAM in number of DDR clock cycles. The value applied should be equal to the required value minus one. The maximum read latency supported by the DDR PHY is equal to CAS latency plus 7 clock cycles. The minimum read latency must be equal to CAS latency plus 2 clock cycle." end="0" id="reg_read_latency" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRI_COS_MAP" id="PRI_COS_MAP" offset="0x100" width="32">
+    
+  <bitfield begin="31" description="Set 1 to enable priority to class of service mapping. Set 0 to disable mapping." end="31" id="REG_PRI_COS_MAP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Reserved." end="16" id="Reserved" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="15" description="Class of service for commands with priority of 7. Value can be 1 or 2. Setting a value of 0 or 3 will not assign any class of service." end="14" id="REG_PRI_7_COS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Class of service for commands with priority of 6. Value can be 1 or 2. Setting a value of 0 or 3 will not assign any class of service." end="12" id="REG_PRI_6_COS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Class of service for commands with priority of 5. Value can be 1 or 2. Setting a value of 0 or 3 will not assign any class of service." end="10" id="REG_PRI_5_COS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Class of service for commands with priority of 4. Value can be 1 or 2. Setting a value of 0 or 3 will not assign any class of service." end="8" id="REG_PRI_4_COS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="Class of service for commands with priority of 3. Value can be 1 or 2. Setting a value of 0 or 3 will not assign any class of service." end="6" id="REG_PRI_3_COS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Class of service for commands with priority of 2. Value can be 1 or 2. Setting a value of 0 or 3 will not assign any class of service." end="4" id="REG_PRI_2_COS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Class of service for commands with priority of 1. Value can be 1 or 2. Setting a value of 0 or 3 will not assign any class of service." end="2" id="REG_PRI_1_COS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Class of service for commands with priority of 0. Value can be 1 or 2. Setting a value of 0 or 3 will not assign any class of service." end="0" id="REG_PRI_0_COS" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="CONNID_COS_1_MAP" id="CONNID_COS_1_MAP" offset="0x104" width="32">
+    
+  <bitfield begin="31" description="Set 1 to enable connection ID to class of service 1 mapping. Set 0 to disable mapping." end="31" id="REG_CONNID_COS_1_MAP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Connection ID value 1 for class of service 1." end="23" id="REG_CONNID_1_COS_1" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="22" description="Mask for connection ID value 1 for class of service 1.  0 = disable masking.  1 = mask connection ID bit 0.  2 = mask connection ID bits 1:0.  3 = mask connection ID bits 2:0.  4 = mask connection ID bits 3:0.  5 = mask connection ID bits 4:0.  6 = mask connection ID bits 5:0.  7 = mask connection ID bits 6:0." end="20" id="REG_MSK_1_COS_1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="19" description="Connection ID value 2 for class of service 1." end="12" id="REG_CONNID_2_COS_1" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="11" description="Mask for connection ID value 2 for class of service 1.  0 = disable masking.  1 = mask connection ID bit 0.  2 = mask connection ID bits 1:0.  3 = mask connection ID bits 2:0." end="10" id="REG_MSK_2_COS_1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Connection ID value 3 for class of service 1." end="2" id="REG_CONNID_3_COS_1" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="1" description="Mask for connection ID. Value 3 for class of service 1. 0 = disable masking.  1 = mask connection ID bit 0. 2 = mask connection ID bits 1:0. 3 = mask connection ID bits 2:0." end="0" id="REG_MSK_3_COS_1" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="CONNID_COS_2_MAP" description=" " id="CONNID_COS_2_MAP" offset="0x108" width="32">
+    
+  <bitfield begin="31" description="Set 1 to enable connection ID to class of service 2 mapping. Set 0 to disable mapping." end="31" id="REG_CONNID_COS_2_MAP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Connection ID value 1 for class of service 2." end="23" id="REG_CONNID_1_COS_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="22" description="Mask for connection ID. Value 1 for class of service 2. 0 = disable masking. 1 = mask connection ID bit 0. 2= mask connection ID bits 1:0. 3= mask connection ID bits 2:0. 4 = mask connection ID bits 3:0. 5 = mask connection ID bits 4:0. 6 = mask connection ID bits 5:0. 7 = mask connection ID bits 6:0." end="20" id="REG_MSK_1_COS_2" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="19" description="Connection ID value 2 for class of service 2." end="12" id="REG_CONNID_2_COS_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="11" description="Mask for connection ID. Value 2 for class of service 2. 0 = disable masking. 1 = mask connection ID bit 0. 2 = mask connection ID bits 1:0. 3 = mask connection ID bits 2:0." end="10" id="REG_MSK_2_COS_2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Connection ID value 3 for class of service 2." end="2" id="REG_CONNID_3_COS_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="1" description="Mask for connection ID. Value 3 for class of service 2. 0 = disable masking. 1 = mask connection ID bit 0. 2 = mask connection ID bits 1:0. 3 = mask connection ID bits 2:0." end="0" id="REG_MSK_3_COS_2" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="RD_WR_EXEC_THRSH" id="RD_WR_EXEC_THRSH" offset="0x120" width="32">
+    
+  <bitfield begin="31" description="Reserved." end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Write Threshold. Number of SDRAM write bursts after which the EMIF arbitration will switch to executing read commands. The value programmed is always minus one the required number." end="8" id="REG_WR_THRSH" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="Reserved." end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Read Threshold. Number of SDRAM read bursts after which the EMIF arbitration will switch to executing write commands. The value programmed is always minus one the required number." end="0" id="REG_RD_THRSH" rwaccess="RW" width="5"></bitfield>
+  </register>
+</module>

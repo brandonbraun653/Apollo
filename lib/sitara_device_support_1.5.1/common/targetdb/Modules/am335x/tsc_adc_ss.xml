@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="tsc_adc_ss" id="tsc_adc_ss">
+  
+  
+  <register acronym="REVISION" description="Revision Register" id="REVISION" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="HL 0.8 scheme" end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Always read as 0.  Writes have no affect." end="28" id="RESERVED" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="Functional Number" end="16" id="FUNC" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="RTL revision. Will vary depending on release." end="11" id="R_RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major revision." end="8" id="X_MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Custom revision." end="6" id="CUSTOM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor revision" end="0" id="Y_MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="SYSCONFIG" description="SysConfig Register" id="SYSCONFIG" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="4" id="RESERVED" rwaccess="RW" width="28"></bitfield>
+    
+  <bitfield begin="3" description="00 =  Force Idle (always acknowledges). 01 =  No Idle Mode (never acknowledges). 10 =  Smart-Idle Mode. 11 =  Smart Idle with Wakeup." end="2" id="IdleMode" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Reserved" end="0" id="RESERVED1" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_RAW" description="IRQ status (unmasked)" id="IRQSTATUS_RAW" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="RESERVED" rwaccess="RW" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="10" id="PEN_IRQ_synchronized" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="9" id="Pen_Up_Event" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="8" id="Out_of_Range" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="7" id="FIFO1_Underflow" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="6" id="FIFO1_Overrun" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="5" id="FIFO1_Threshold" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="4" id="FIFO0_Underflow" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="3" id="FIFO0_Overrun" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="2" id="FIFO0_Threshold" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="1" id="End_of_Sequence" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Write 0 =  No action. Write 1 =  Set event (debug). Read 0 =  No event pending. Read 1 =  Event pending." end="0" id="HW_Pen_Event_asynchronous" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS" description="IRQ status (masked)" id="IRQSTATUS" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="RESERVED" rwaccess="RW" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="10" id="HW_Pen_Event_synchronous" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="9" id="Pen_Up_event" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="8" id="Out_of_Range" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="7" id="FIFO1_Underflow" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="6" id="FIFO1_Overrun" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="5" id="FIFO1_Threshold" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="4" id="FIFO0_Underflow" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="3" id="FIFO0_Overrun" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="2" id="FIFO0_Threshold" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="1" id="End_of_Sequence" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Write 0 =  No action. Read 0 =  No (enabled) event pending. Read 1 =  Event pending. Write 1 =  Clear (raw) event." end="0" id="HW_Pen_Event_asynchronous" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_SET" description="IRQ enable set bits" id="IRQENABLE_SET" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="RESERVED" rwaccess="RW" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Enable interrupt." end="10" id="HW_Pen_Event_synchronous" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Enable interrupt." end="9" id="Pen_Up_event" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Enable interrupt." end="8" id="Out_of_Range" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Write 0 = No action. Read 0 =  Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Enable interrupt." end="7" id="FIFO1_Underflow" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Write 0 =  No action. Read 0 =  Interrupt disabled (masked). Read 1 =  Interrupt enabled. Write 1 =  Enable interrupt." end="6" id="FIFO1_Overrun" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Enable interrupt." end="5" id="FIFO1_Threshold" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Write 0 =  No action. Read 0 =  Interrupt disabled (masked). Read 1 =  Interrupt enabled. Write 1 =  Enable interrupt." end="4" id="FIFO0_Underflow" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Write 0 =  No action. Read 0 =  Interrupt disabled (masked). Read 1 =  Interrupt enabled. Write 1 =  Enable interrupt." end="3" id="FIFO0_Overrun" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Enable interrupt." end="2" id="FIFO0_Threshold" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Enable interrupt." end="1" id="End_of_Sequence" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Write 0 =  No action. Read 0 =  Interrupt disabled (masked). Read 1 =  Interrupt enabled. Write 1 =  Enable interrupt." end="0" id="HW_Pen_Event_asynchronous" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_CLR" description="IRQ enable clear bits" id="IRQENABLE_CLR" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="RESERVED" rwaccess="RW" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="10" id="HW_Pen_Event_synchronous" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="9" id="Pen_Up_Event" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="8" id="Out_of_Range" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="7" id="FIFO1_Underflow" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="6" id="FIFO1_Overrun" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="5" id="FIFO1_Threshold" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="4" id="FIFO0_Underflow" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="3" id="FIFO0_Overrun" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="2" id="FIFO0_Threshold" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="1" id="End_of_Sequence" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Write 0 = No action. Read 0 = Interrupt disabled (masked). Read 1 = Interrupt enabled. Write 1 = Disable interrupt." end="0" id="HW_Pen_Event_asynchronous" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQWAKEUP" description="IRQ wakeup enable" id="IRQWAKEUP" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="RESERVED" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Wakeup generation for HW Pen event. 0 = Wakeup disabled. 1 = Wakeup enabled." end="0" id="WAKEEN0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMAENABLE_SET" description="Per-Line DMA set" id="DMAENABLE_SET" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="RESERVED" rwaccess="RW" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Enable DMA request FIFO 1. Write 0 = No action. Read 0 = DMA line disabled. Read 1 = DMA line enabled. Write 1 = Enable DMA line." end="1" id="Enable_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enable DMA request FIFO 0. Write 0 = No action. Read 0 = DMA line disabled. Read 1 = DMA line enabled. Write 1 = Enable DMA line." end="0" id="Enable_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMAENABLE_CLR" description="Per-Line DMA clr" id="DMAENABLE_CLR" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="RESERVED" rwaccess="RW" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Disable DMA request FIFO 1. Write 0 = No action. Read 0 = DMA line disabled. Read 1 = DMA line enabled. Write 1 = Disable DMA line." end="1" id="Enable_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Disable DMA request FIFO 0. Write 0 = No action. Read 0 = DMA line disabled. Read 1 = DMA line enabled. Write 1 = Disable DMA line." end="0" id="Enable_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CTRL" description="@TSC_ADC_SS Control Register" id="CTRL" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="RESERVED" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="0 = SW steps are not pre-empted by HW events. 1 = SW steps are pre-empted by HW events" end="9" id="HW_preempt" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="0 = Map HW event to Pen touch irq (from AFE). 1 = Map HW event to HW event input." end="8" id="HW_event_mapping" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="0 = Touchscreen transistors disabled. 1 = Touchscreen transistors enabled" end="7" id="Touch_Screen_Enable" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="These two bits are sent directly to the AFE Pen Ctrl inputs.   Bit 6 controls the Wiper touch (5 wire modes)Bit 5 controls the X+ touch (4 wire modes)User also needs to make sure the ground path is connected properly for pen interrupt to occur (using the StepConfig registers)Refer to section 4 interrupts for more information" end="5" id="AFE_Pen_Ctrl" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="4" description="ADC Power Down control. 0 = AFE is powered up (default). 1 = Write 1 to power down AFE (the tsc_adc_ss enable (bit 0) should also be set to off)" end="4" id="Power_Down" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Select Bias to AFE. 0 = Internal. 1 = Reserved." end="3" id="ADC_Bias_Select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="0 = Step configuration registers are protected (not writable). 1 = Step configuration registers are not protected (writable)." end="2" id="StepConfig_WriteProtect_n_active_low" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Writing 1 to this bit will store the Step ID number with the captured ADC data in the FIFO. 0 = Write zeroes. 1 = Store the channel ID tag." end="1" id="Step_ID_tag" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="TSC_ADC_SS module enable bit. After programming all the steps and configuration registers, write a 1to this bit to turn on TSC_ADC_SS. Writing a 0 will disable the module (after the current conversion)." end="0" id="Enable" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ADCSTAT" description="General Status bits @TSC_ADC_SS_Sequencer_Status Register" id="ADCSTAT" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="-" end="8" id="RESERVED" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="PEN_IRQ[1] status" end="7" id="PEN_IRQ1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="PEN_IRQ[0] status" end="6" id="PEN_IRQ0" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Status of OCP FSM and ADC FSM. 0 = Idle. 1 = Busy." end="5" id="FSM_BUSY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Encoded values:. 10000 = Idle. 10001 = Charge. 00000 = Step 1. 00001 = Step 2. 00010 = Step 3. 00011 = Step 4. 00100 = Step 5. 00101 = Step 6. 00110 = Step 7. 00111 = Step 8. 01000 = Step 9. 01001 = Step 10. 01010 = Step 11. 01011 = Step 12. 01100 = Step 13. 01101 = Step 14. 01110 = Step 15. 01111 = Step 16." end="0" id="STEP_ID" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="ADCRANGE" description="High and Low Range Threshold@TSC_ADC_SS_Range_Check Register" id="ADCRANGE" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Sampled ADC data is compared to this value.   If the sampled data is greater than the value, then an interrupt is generated." end="16" id="High_Range_Data" rwaccess="RW" width="12"></bitfield>
+    
+  <bitfield begin="15" description="Reserved." end="12" id="RESERVED2" rwaccess="" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Sampled ADC data is compared to this value.   If the sampled data is less than the value, then an interrupt is generated." end="0" id="Low_Range_Data" rwaccess="RW" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="ADC_CLKDIV" description="ADC clock divider register@TSC_ADC_SS_Clock_Divider Register" id="ADC_CLKDIV" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="RESERVED" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="The input ADC clock will be divided by this value and sent to the AFE.   Program to the value minus 1" end="0" id="ADC_ClkDiv" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="ADC_MISC" description="AFE misc debug@TSC_ADC_SS_MISC Register" id="ADC_MISC" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="RESERVED." end="8" id="RESERVED" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Connected to AFE Spare Output pins. Reserved in normal operation." end="4" id="AFE_Spare_Output" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Connected to AFE Spare Input pins. Reserved in normal operation." end="0" id="AFE_Spare_Input" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPENABLE" description="Step Enable" id="STEPENABLE" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="RESERVED." end="17" id="RESERVED" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="Enable step 16" end="16" id="STEP16" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Enable step 15" end="15" id="STEP15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Enable step 14" end="14" id="STEP14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Enable step 13" end="13" id="STEP13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Enable step 12" end="12" id="STEP12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Enable step 11" end="11" id="STEP11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Enable step 10" end="10" id="STEP10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Enable step 9" end="9" id="STEP9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Enable step 8" end="8" id="STEP8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Enable step 7" end="7" id="STEP7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Enable step 6" end="6" id="STEP6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Enable step 5" end="5" id="STEP5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Enable step 4" end="4" id="STEP4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Enable step 3" end="3" id="STEP3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Enable step  2" end="2" id="STEP2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Enable step  1" end="1" id="STEP1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enable TS Charge step" end="0" id="TS_Charge" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IDLECONFIG" description="Idle Step configuration@TSC_ADC_SS_IDLE_StepConfig Register" id="IDLECONFIG" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="26" id="RESERVED1" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin. 0 = Single Ended. 1 = Differential Pair Enable." end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration. 00 = VSSA_ADC. 01 = XNUR. 10 = YNLR. 11 = VREFN." end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration. 0000 = Channel 1. 0111 = Channel 8. 1xxx = VREFN." end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for neg differential. 0000 = Channel 1. 0111 = Channel 8. 1xxx = VREFN." end="15" id="SEL_INM_SWM3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration. 000 = VDDA_ADC. 001 = XPUL. 010 = YPLL. 011 = VREFP. 1xx = Reserved." end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW  configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Reserved" end="0" id="RESERVED" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="TS_CHARGE_STEPCONFIG" description="TS Charge StepConfiguration@TSC_ADC_SS_TS_Charge_StepConfig Register" id="TS_CHARGE_STEPCONFIG" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="26" id="RESERVED1" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin. 0 = Single Ended. 1 = Differential Pair Enable." end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration. 00 = VSSA. 01 = XNUR. 10 = YNLR. 11 = VREFN." end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration. 0000 = Channel 1. 0111 = Channel 8.  1xxx = VREFN." end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for neg differential. 0000 = Channel 1. 0111 = Channel 8. 1xxx = VREFN." end="15" id="SEL_INM_SWM3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration. 000 = VDDA. 001 = XPUL. 010 = YPLL. 011 = VREFP.  1xx = INTREF." end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Reserved" end="0" id="RESERVED" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="TS_CHARGE_DELAY" description="TS Charge Delay Register@TSC_ADC_SS_TS_Charge_StepDelay Register" id="TS_CHARGE_DELAY" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Program the # of ADC clock cycles to wait between applying the step configuration registers and going back to the IDLE state. (Value must be greater than 0.)" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG1" description="Step Configuration  1" id="STEPCONFIG1" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO 1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW  configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW  configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW  configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samplings to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY1" description="Step Delay Register 1" id="STEPDELAY1" offset="0x68" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG2" description="Step Configuration 2" id="STEPCONFIG2" offset="0x6C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW  configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY2" description="Step Delay Register 2" id="STEPDELAY2" offset="0x70" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG3" description="Step Configuration  3" id="STEPCONFIG3" offset="0x74" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY3" description="Step Delay Register 3" id="STEPDELAY3" offset="0x78" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG4" description="Step Configuration  4" id="STEPCONFIG4" offset="0x7C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY4" description="Step Delay Register 4" id="STEPDELAY4" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG5" description="Step Configuration  5" id="STEPCONFIG5" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY5" description="Step Delay Register 5" id="STEPDELAY5" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG6" description="Step Configuration  6" id="STEPCONFIG6" offset="0x8C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY6" description="Step Delay Register 6" id="STEPDELAY6" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG7" description="Step Configuration  7" id="STEPCONFIG7" offset="0x94" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY7" description="Step Delay Register 7" id="STEPDELAY7" offset="0x98" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG8" description="Step Configuration  8" id="STEPCONFIG8" offset="0x9C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY8" description="Step Delay Register 8" id="STEPDELAY8" offset="0xA0" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG9" description="Step Configuration  9" id="STEPCONFIG9" offset="0xA4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO 1. = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY9" description="Step Delay Register 9" id="STEPDELAY9" offset="0xA8" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG10" description="Step Configuration  10" id="STEPCONFIG10" offset="0xAC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY10" description="Step Delay Register 10" id="STEPDELAY10" offset="0xB0" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG11" description="Step Configuration  11" id="STEPCONFIG11" offset="0xB4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY11" description="Step Delay Register 11" id="STEPDELAY11" offset="0xB8" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG12" description="Step Configuration  12" id="STEPCONFIG12" offset="0xBC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY12" description="Step Delay Register 12" id="STEPDELAY12" offset="0xC0" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG13" description="Step Configuration  13" id="STEPCONFIG13" offset="0xC4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY13" description="Step Delay Register 13" id="STEPDELAY13" offset="0xC8" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG14" description="Step Configuration  14" id="STEPCONFIG14" offset="0xCC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY14" description="Step Delay Register 14" id="STEPDELAY14" offset="0xD0" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG15" description="Step Configuration  15" id="STEPCONFIG15" offset="0xD4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY15" description="Step Delay Register 15" id="STEPDELAY15" offset="0xD8" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPCONFIG16" description="Step Configuration  16" id="STEPCONFIG16" offset="0xDC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="28" id="RESERVED" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="27" description="0 = Disable out-of-range check. 1 = Compare ADC data with range check register." end="27" id="Range_check" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Sampled data will be stored in FIFO. 0 = FIFO. 1 = FIFO1." end="26" id="FIFO_select" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Differential Control Pin" end="25" id="Diff_CNTRL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="SEL_RFM pins SW configuration" end="23" id="SEL_RFM_SWC_1_0" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="SEL_INP pins SW configuration" end="19" id="SEL_INP_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="18" description="SEL_INM pins for negative differential" end="15" id="SEL_INM_SWC_3_0" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="14" description="SEL_RFP pins SW configuration" end="12" id="SEL_RFP_SWC_2_0" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="11" description="WPNSW pin SW configuration" end="11" id="WPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="YPNSW pin SW configuration" end="10" id="YPNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="XNPSW pin SW configuration" end="9" id="XNPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="YNNSW pin SW configuration" end="8" id="YNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="YPPSW pin SW configuration" end="7" id="YPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="XNNSW pin SW configuration" end="6" id="XNNSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="XPPSW pin SW configuration" end="5" id="XPPSW_SWC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Number of samples to average: 000 = No average. 001 = 2 samples average. 010 = 4 samples average. 011 = 8 samples average. 100 = 16 samples average." end="2" id="Averaging" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="00 = SW enabled, one-shot. 01 = SW enabled, continuous. 10 = HW synchronized, one-shot. 11 = HW synchronized, continuous." end="0" id="Mode" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="STEPDELAY16" description="Step Delay Register 16" id="STEPDELAY16" offset="0xE0" width="32">
+    
+  <bitfield begin="31" description="This register will control the number of ADC clock cycles to sample (hold SOC high).    Any value programmed here will be added to the minimum requirement of 1 clock cycle." end="24" id="SampleDelay" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="18" id="RESERVED" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="17" description="Program the number of ADC clock cycles to wait after applying the step configuration registers and before sending the start of ADC conversion" end="0" id="OpenDelay" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="FIFO0COUNT" description="FIFO0 word count@TSC_ADC_SS_FIFO0 Word Count Register" id="FIFO0COUNT" offset="0xE4" width="32">
+    
+  <bitfield begin="31" description="RESERVED" end="7" id="RESERVED" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Number of words currently in the FIFO0" end="0" id="Words_in_FIFO0" rwaccess="R" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="FIFO0THRESHOLD" description="FIFO0 Threshold trigger@TSC_ADC_SS_FIFO0 Threshold Level Register" id="FIFO0THRESHOLD" offset="0xE8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="RESERVED" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Program the desired FIFO0 data sample level to  reach before generating interrupt to CPU (program to value minus 1)" end="0" id="FIFO0_threshold_Level" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMA0REQ" description="FIFO0 DMA req0 trigger@TSC_ADC_SS_FIFO0 DMA REQUEST Register" id="DMA0REQ" offset="0xEC" width="32">
+    
+  <bitfield begin="31" description="RESERVED" end="6" id="RESERVED" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Number of words in FIFO0 before generating a DMA request (program to value minus 1)" end="0" id="DMA_Request_Level" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="FIFO1COUNT" description="FIFO1 word count@TSC_ADC_SS_FIFO1 Word Count Register" id="FIFO1COUNT" offset="0xF0" width="32">
+    
+  <bitfield begin="31" description="RESERVED" end="7" id="RESERVED" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Number of words currently in the FIFO0" end="0" id="Words_in_FIFO0" rwaccess="R" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="FIFO1THRESHOLD" description="FIFO1 Threshold trigger@TSC_ADC_SS_FIFO1 Threshold Level Register" id="FIFO1THRESHOLD" offset="0xF4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="RESERVED" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Program the desired FIFO0 data sample level to  reach before generating interrupt to CPU (program to value minus 1)" end="0" id="FIFO0_threshold_Level" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMA1REQ" description="FIFO1  DMA req1 trigger@TSC_ADC_SS_FIFO1 DMA Request Register" id="DMA1REQ" offset="0xF8" width="32">
+    
+  <bitfield begin="31" description="RESERVED" end="6" id="RESERVED" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Number of words in FIFO0 before generating a DMA request (program to value minus 1)" end="0" id="DMA_Request_Level" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="FIFO0DATA" description="ADC_ FIFO0 _READ Data @TSC_ADC_SS_FIFO0 READ Register" id="FIFO0DATA" offset="0x100" width="32">
+    
+  <bitfield begin="31" description="RESERVED." end="20" id="RESERVED" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="Optional ID tag of channel that captured the data.   If tag option is disabled, these bits will be 0." end="16" id="ADCCHNLID" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="12" id="RESERVED1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="12 bit sampled ADC converted data value stored in FIFO 0." end="0" id="ADCDATA" rwaccess="R" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="FIFO1DATA" description="ADC FIFO1_READ Data@TSC_ADC_SS_FIFO1 READ Register" id="FIFO1DATA" offset="0x200" width="32">
+    
+  <bitfield begin="31" description="RESERVED" end="20" id="RESERVED" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="Optional ID tag of channel that captured the data.   If tag option is disabled, these bits will be 0." end="16" id="ADCCHNLID" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="15" description="RESERVED" end="12" id="RESERVED1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="12 bit sampled ADC converted data value stored in FIFO 1." end="0" id="ADCDATA" rwaccess="R" width="12"></bitfield>
+  </register>
+</module>

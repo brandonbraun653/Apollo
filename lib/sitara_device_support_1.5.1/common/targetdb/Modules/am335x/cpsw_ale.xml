@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="cpsw_ale" id="cpsw_ale">
+  
+  
+  <register acronym="IDVER" description="ADDRESS LOOKUP ENGINE ID/VERSION REGISTER" id="IDVER" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="ALE Identification Value" end="16" id="IDENT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="ALE Major Version Value" end="8" id="MAJ_VER" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="ALE Minor Version Value" end="0" id="MINOR_VER" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CONTROL" description="ADDRESS LOOKUP ENGINE CONTROL REGISTER" id="CONTROL" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Enable ALE -    0 - Drop all packets   1 - Enable ALE packet processing " end="31" id="ENABLE_ALE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Clear ALE address table - Setting this bit causes the ALE hardware to  write all table bit values to zero.  Software must perform a clear table  operation as part of the ALE setup/configuration process.  Setting this  bit causes all ALE accesses to be held up for 64 clocks while the clear is  performed.  Access to all ALE registers will be blocked (wait states) until  the 64 clocks have completed.  This bit cannot be read as one because  the read is blocked until the clear table is completed at which time this bit  is cleared to zero. " end="30" id="CLEAR_TABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Age Out Address Table Now - Setting this bit causes the ALE hardware  to remove (free up) any ageable table entry that does not have a set  touch bit.   This bit is cleared when the age out process has completed.   This bit may be read.  The age out process takes 4096 clocks best case  (no ale packet processing during ageout) and 66550 clocks absolute  worst case. " end="29" id="AGE_OUT_NOW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Enable Port 0 (Host Port) unicast flood   0 - do not flood unknown unicast packets to host port (p0)   1 - flood unknown unicast packets to host port (p0) " end="8" id="EN_P0_UNI_FLOOD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Learn No VID -    0 - VID is learned with the source address   1 - VID is not learned with the source address (source address is not         tied to VID). " end="7" id="LEARN_NO_VID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Enable VLAN ID = 0 Mode   0 - Process the packet with VID = PORT_VLAN[11:0].   1 - Process the packet with VID = 0. " end="6" id="EN_VID0_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Enable OUI Deny Mode - When set this bit indicates that a packet with a  non OUI table entry matching source address will be dropped to the host  unless the destination address matches a multicast table entry with the  super bit set. " end="5" id="ENABLE_OUI_DENY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="ALE Bypass - When set, all packets received on ports 0 and 1 are sent  to the host (only to the host). " end="4" id="BYPASS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Rate Limit Transmit mode -   0 - Broadcast and multicast rate limit counters are received port based   1 - Broadcast and multicast rate limit counters are transmit port based. " end="3" id="RATE_LIMIT_TX" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="ALE VLAN Aware - Determines what is done if VLAN not found.   0 - Flood if VLAN not found   1 - Drop packet if VLAN not found " end="2" id="VLAN_AWARE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Enable MAC Authorization Mode - Mac authorization mode requires that  all table entries be made by the host software.  There are no learned  address in authorization mode and the packet will be dropped if the  source address is not found (and the destination address is not a  multicast address with the super table entry bit set).     0 - The ALE is not in MAC authorization mode   1 - The ALE is in MAC authorization mode " end="1" id="ENABLE_AUTH_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enable Broadcast and Multicast Rate Limit   0 - Broadcast/Multicast rates not limited   1 - Broadcast/Multicast packet reception limited to the port control  register rate limit fields. " end="0" id="ENABLE_RATE_LIMIT" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRESCALE" description="ADDRESS LOOKUP ENGINE PRESCALE REGISTER" id="PRESCALE" offset="0x10" width="32">
+    
+  <bitfield begin="19" description="ALE Prescale Register - The input clock is divided by this value for use  in the multicast/broadcast rate limiters.  The minimum operating value is  0x10.  The prescaler is off when the value is zero. " end="0" id="PRESCALE" rwaccess="RW" width="20"></bitfield>
+  </register>
+  
+  
+  <register acronym="UNKNOWN_VLAN" description="ADDRESS LOOKUP ENGINE UNKNOWN VLAN REGISTER" id="UNKNOWN_VLAN" offset="0x18" width="32">
+    
+  <bitfield begin="29" description="Unknown VLAN Force Untagged Egress." end="24" id="UNKNOWN_FORCE_UNTAGGED_EGRESS" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="21" description="Unknown VLAN Registered Multicast Flood Mask" end="16" id="UNKNOWN_REG_MCAST_FLOOD_MASK" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="13" description="Unknown VLAN Multicast Flood Mask" end="8" id="UNKNOWN_MCAST_FLOOD_MASK" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="5" description="Unknown VLAN Member List" end="0" id="UNKNOWN_VLAN_MEMBER_LIST" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="TBLCTL" description="ADDRESS LOOKUP ENGINE TABLE CONTROL" id="TBLCTL" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="Write Bit - This bit is always read as zero. Writing a 1 to this bit causes the three table word register values to be  written to the entry_pointer  location in the address table.   Writing a 0 to this bit causes the three table word register values to be  loaded from the entry_pointer location in the address table so that they  may be subsequently read.   A read of any ALE address location will be stalled until the read or write  has completed. " end="31" id="WRITE_RDZ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Table Entry Pointer -  The entry_pointer contains the table entry value  that will be read/written with accesses to the table word registers. " end="0" id="ENTRY_POINTER" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="TBLW2" description="ADDRESS LOOKUP ENGINE TABLE WORD 2 REGISTER" id="TBLW2" offset="0x34" width="32">
+    
+  <bitfield begin="7" description="Table entry bits 71:64" end="0" id="ENTRY71_64" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="TBLW1" description="ADDRESS LOOKUP ENGINE TABLE WORD 1 REGISTER" id="TBLW1" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Table entry bits 63:32" end="0" id="ENTRY63_32" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TBLW0" description="ADDRESS LOOKUP ENGINE TABLE WORD 0 REGISTER" id="TBLW0" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Table entry bits 31:0" end="0" id="ENTRY31_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="PORTCTL0" description="ADDRESS LOOKUP ENGINE PORT 0 CONTROL REGISTER" id="PORTCTL0" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Broadcast Packet Rate Limit -   Each prescale pulse loads this field into the port broadcast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Broadcast rate limiting is enabled by a non-zero  value in this field " end="24" id="BCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Multicast Packet Rate Limit - Each prescale pulse loads this field into the port multicast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Multicast rate limiting is enabled by a non-zero  value in this field. " end="16" id="MCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="5" description="No Souce Address Update - When set the port is disabled from  updating the source port number in an ALE table entry. " end="5" id="NO_SA_UPDATE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="No Learn Mode - When set the port is disabled from learning an  address. " end="4" id="NO_LEARN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="VLAN ID Ingress Check - If VLAN not found then drop the packet.   Packets with an unknown (default) VLAN will be dropped. " end="3" id="VID_INGRESS_CHECK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Drop Untagged Packets - Drop non-VLAN tagged ingress packets." end="2" id="DROP_UNTAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port State   0 - Disabled   1 - Blocked   2 - Learn   3 - Forward " end="0" id="PORT_STATE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="PORTCTL1" description="ADDRESS LOOKUP ENGINE PORT 1 CONTROL REGISTER" id="PORTCTL1" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Broadcast Packet Rate Limit -   Each prescale pulse loads this field into the port broadcast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Broadcast rate limiting is enabled by a non-zero  value in this field " end="24" id="BCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Multicast Packet Rate Limit - Each prescale pulse loads this field into the port multicast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Multicast rate limiting is enabled by a non-zero  value in this field. " end="16" id="MCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="5" description="No Souce Address Update - When set the port is disabled from  updating the source port number in an ALE table entry. " end="5" id="NO_SA_UPDATE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="No Learn Mode - When set the port is disabled from learning an  address. " end="4" id="NO_LEARN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="VLAN ID Ingress Check - If VLAN not found then drop the packet.   Packets with an unknown (default) VLAN will be dropped. " end="3" id="VID_INGRESS_CHECK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Drop Untagged Packets - Drop non-VLAN tagged ingress packets." end="2" id="DROP_UNTAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port State   0 - Disabled   1 - Blocked   2 - Learn   3 - Forward " end="0" id="PORT_STATE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="PORTCTL2" description="ADDRESS LOOKUP ENGINE PORT 2 CONTROL REGISTER" id="PORTCTL2" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Broadcast Packet Rate Limit -   Each prescale pulse loads this field into the port broadcast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Broadcast rate limiting is enabled by a non-zero  value in this field " end="24" id="BCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Multicast Packet Rate Limit - Each prescale pulse loads this field into the port multicast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Multicast rate limiting is enabled by a non-zero  value in this field. " end="16" id="MCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="5" description="No Souce Address Update - When set the port is disabled from  updating the source port number in an ALE table entry. " end="5" id="NO_SA_UPDATE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="No Learn Mode - When set the port is disabled from learning an  address. " end="4" id="NO_LEARN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="VLAN ID Ingress Check - If VLAN not found then drop the packet.   Packets with an unknown (default) VLAN will be dropped. " end="3" id="VID_INGRESS_CHECK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Drop Untagged Packets - Drop non-VLAN tagged ingress packets." end="2" id="DROP_UNTAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port State   0 - Disabled   1 - Blocked   2 - Learn   3 - Forward " end="0" id="PORT_STATE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="PORTCTL3" description="ADDRESS LOOKUP ENGINE PORT 3 CONTROL REGISTER" id="PORTCTL3" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Broadcast Packet Rate Limit -   Each prescale pulse loads this field into the port broadcast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Broadcast rate limiting is enabled by a non-zero  value in this field " end="24" id="BCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Multicast Packet Rate Limit - Each prescale pulse loads this field into the port multicast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Multicast rate limiting is enabled by a non-zero  value in this field. " end="16" id="MCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="5" description="No Souce Address Update - When set the port is disabled from  updating the source port number in an ALE table entry. " end="5" id="NO_SA_UPDATE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="No Learn Mode - When set the port is disabled from learning an  address. " end="4" id="NO_LEARN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="VLAN ID Ingress Check - If VLAN not found then drop the packet.   Packets with an unknown (default) VLAN will be dropped. " end="3" id="VID_INGRESS_CHECK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Drop Untagged Packets - Drop non-VLAN tagged ingress packets." end="2" id="DROP_UNTAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port State   0 - Disabled   1 - Blocked   2 - Learn   3 - Forward " end="0" id="PORT_STATE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="PORTCTL4" description="ADDRESS LOOKUP ENGINE PORT 4 CONTROL REGISTER" id="PORTCTL4" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Broadcast Packet Rate Limit -   Each prescale pulse loads this field into the port broadcast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Broadcast rate limiting is enabled by a non-zero  value in this field " end="24" id="BCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Multicast Packet Rate Limit - Each prescale pulse loads this field into the port multicast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Multicast rate limiting is enabled by a non-zero  value in this field. " end="16" id="MCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="5" description="No Souce Address Update - When set the port is disabled from  updating the source port number in an ALE table entry. " end="5" id="NO_SA_UPDATE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="No Learn Mode - When set the port is disabled from learning an  address. " end="4" id="NO_LEARN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="VLAN ID Ingress Check - If VLAN not found then drop the packet.   Packets with an unknown (default) VLAN will be dropped. " end="3" id="VID_INGRESS_CHECK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Drop Untagged Packets - Drop non-VLAN tagged ingress packets." end="2" id="DROP_UNTAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port State   0 - Disabled   1 - Blocked   2 - Learn   3 - Forward " end="0" id="PORT_STATE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="PORTCTL5" description="ADDRESS LOOKUP ENGINE PORT 5 CONTROL REGISTER" id="PORTCTL5" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="Broadcast Packet Rate Limit -   Each prescale pulse loads this field into the port broadcast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Broadcast rate limiting is enabled by a non-zero  value in this field " end="24" id="BCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Multicast Packet Rate Limit - Each prescale pulse loads this field into the port multicast rate limit  counter.   The port counters are decremented with each packet received  or transmitted depending on whether the mode is transmit or receive.  If  the counters decrement to zero, then further packets are rate limited until  the next prescale pulse.  Multicast rate limiting is enabled by a non-zero  value in this field. " end="16" id="MCAST_LIMIT" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="5" description="No Souce Address Update - When set the port is disabled from  updating the source port number in an ALE table entry. " end="5" id="NO_SA_UPDATE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="No Learn Mode - When set the port is disabled from learning an  address. " end="4" id="NO_LEARN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="VLAN ID Ingress Check - If VLAN not found then drop the packet.   Packets with an unknown (default) VLAN will be dropped. " end="3" id="VID_INGRESS_CHECK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Drop Untagged Packets - Drop non-VLAN tagged ingress packets." end="2" id="DROP_UNTAGGED" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port State   0 - Disabled   1 - Blocked   2 - Learn " end="0" id="PORT_STATE" rwaccess="RW" width="2"></bitfield>
+  </register>
+</module>

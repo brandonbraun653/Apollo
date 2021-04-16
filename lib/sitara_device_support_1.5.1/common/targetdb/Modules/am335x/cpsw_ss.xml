@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="cpsw_ss" id="cpsw_ss">
+  
+  
+  <register acronym="ID_VER" description="ID VERSION REGISTER" id="ID_VER" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="3G Identification Value" end="16" id="CPSW_3G_IDENT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="3G RTL Version Value" end="11" id="CPSW_3G_RTL_VER" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="3G Major Version Value" end="8" id="CPSW_3G_MAJ_VER" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="3G Minor Version Value" end="0" id="CPSW_3G_MINOR_VER" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CONTROL" description="SWITCH CONTROL REGISTER" id="CONTROL" offset="0x4" width="32">
+    
+  <bitfield begin="3" description="DLR enable   0 - DLR is disabled.  DLR packets will not be moved to queue priority 3         and will not be separated out onto dlr_cpdma_ch.   1 - DLR is disabled.  DLR packets be moved to destination port  transmit         queue priority 3 and will be separated out onto dlr_cpdma_ch when          packet is to egress on port 0. " end="3" id="DLR_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Port 0  VLAN Encapsulation (egress):   0 - Port 2 receive packets (from 3G) are not VLAN          encapsulated.   1 - Port 2 receive packets (from 3G) are VLAN         encapsulated. " end="2" id="RX_VLAN_ENCAP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="VLAN Aware Mode:   0 - 3G is in the VLAN unaware mode.   1 - 3G is in the VLAN aware mode. " end="1" id="VLAN_AWARE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="FIFO Loopback Mode    0 - Loopback is disabled   1 - FIFO Loopback mode enabled.  Each packet received           is turned around and sent out on the same port's transmit path.         Port 2 receive is fixed on channel zero.  The RXSOFOVERRUN         statistic will increment for every packet sent in FIFO loopback  mode. " end="0" id="FIFO_LOOPBACK" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="SOFT_RESET" description="SOFT RESET REGISTER" id="SOFT_RESET" offset="0x8" width="32">
+    
+  <bitfield begin="0" description="Software reset - Writing a one to this bit causes the 3G logic to be  reset.  After writing a one to this bit, it may be polled to determine if the  reset has occurred.  If a one is read, the reset has not yet occurred.  If a  zero is read then reset has occurred. " end="0" id="SOFT_RESET" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="STAT_PORT_EN" description="STATISTICS PORT ENABLE REGISTER" id="STAT_PORT_EN" offset="0xC" width="32">
+    
+  <bitfield begin="2" description="Port 2 (GMII2 and Port 2 FIFO) Statistics Enable   0 - Port 2 statistics are not enabled.   1 - Port 2 statistics are enabled. " end="2" id="P2_STAT_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port 1 (GMII1 and Port 1 FIFO) Statistics Enable   0 - Port 1 statistics are not enabled.   1 - Port 1 statistics are enabled. " end="1" id="P1_STAT_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Port 0 Statistics Enable   0 - Port 0 statistics are not enabled   1 - Port 0 statistics are enabled. FIFO overruns (SOFOVERRUNS) are the only port 0 statistics that are  enabled to be kept. " end="0" id="P0_STAT_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="PTYPE" description="TRANSMIT PRIORITY TYPE REGISTER" id="PTYPE" offset="0x10" width="32">
+    
+  <bitfield begin="21" description="Port 2 Queue Priority 3 Transmit Shape Enable - If there is only one  shaping queue then it must be priority 3. " end="21" id="P2_PRI3_SHAPE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Port 2 Queue Priority 2 Transmit Shape Enable - If there are two  shaping queues then they must be priorities 3 and 2. " end="20" id="P2_PRI2_SHAPE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Port 2 Queue Priority 1 Transmit Shape Enable - If there are three  shaping queues all three bits should be set. " end="19" id="P2_PRI1_SHAPE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Port 1 Queue Priority 3 Transmit Shape Enable - If there is only one  shaping queue then it must be priority 3. " end="18" id="P1_PRI3_SHAPE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Port 1 Queue Priority 2 Transmit Shape Enable- If there are two shaping  queues then they must be priorities 3 and 2. " end="17" id="P1_PRI2_SHAPE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Port 1 Queue Priority 1 Transmit Shape Enable- If there are three  shaping queues all three bits should be set. " end="16" id="P1_PRI1_SHAPE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Port 2 Priority Type Escalate -    0 - Port 2 priority type fixed   1 - Port 2 priority type escalate Escalate should not be used with queue shaping. " end="10" id="P2_PTYPE_ESC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Port 1 Priority Type Escalate -    0 - Port 1 priority type fixed   1 - Port 1 priority type escalate Escalate should not be used with queue shaping. " end="9" id="P1_PTYPE_ESC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Port 0 Priority Type Escalate -    0 - Port 0 priority type fixed   1 - Port 0 priority type escalate Escalate should not be used with queue shaping. " end="8" id="P0_PTYPE_ESC" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Escalate Priority Load Value   When a port is in escalate priority, this is the number of higher priority   packets sent before the next lower priority is allowed to send a packet.     Escalate priority allows lower priority packets to be sent at a fixed rate   relative to the next higher priority. " end="0" id="ESC_PRI_LD_VAL" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="SOFT_IDLE" description="SOFTWARE IDLE" id="SOFT_IDLE" offset="0x14" width="32">
+    
+  <bitfield begin="0" description="Software Idle - Setting this bit causes the switch fabric to stop forwarding  packets at the next start of packet.   " end="0" id="SOFT_IDLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="THRU_RATE" description="THROUGHPUT RATE" id="THRU_RATE" offset="0x18" width="32">
+    
+  <bitfield begin="15" description="CPGMAC_SL Switch FIFO receive through rate. This register value is the maximum throughput of the ethernet ports to the  crossbar SCR.  The default is one 8-byte word for every 3 CLK periods  maximum. " end="12" id="SL_RX_THRU_RATE" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="CPDMA Switch FIFO receive through rate. This register value is the maximum throughput of the CPDMA host port to  the crossbar SCR.  The default is one 8-byte word for every 3 CLK periods  maximum. " end="0" id="CPDMA_THRU_RATE" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GAP_THRESH" description="CPGMAC_SL SHORT GAP THRESHOLD" id="GAP_THRESH" offset="0x1C" width="32">
+    
+  <bitfield begin="4" description="CPGMAC_SL Short Gap Threshold - This is the CPGMAC_SL associated FIFO transmit block usage value for  triggering TX_SHORT_GAP. " end="0" id="GAP_THRESH" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_START_WDS" description="TRANSMIT START WORDS" id="TX_START_WDS" offset="0x20" width="32">
+    
+  <bitfield begin="10" description="FIFO Packet Transmit (egress) Start Words. This value is the number of required packet words in the transmit FIFO  before the packet egress will begin.  This value is non-zero to preclude  underrun.  Decimal 32 is the recommended value.  It should not be  increased unnecessairly to prevent adding to the switch latency. " end="0" id="TX_START_WDS" rwaccess="RW" width="11"></bitfield>
+  </register>
+  
+  
+  <register acronym="FLOW_CONTROL" description="FLOW CONTROL" id="FLOW_CONTROL" offset="0x24" width="32">
+    
+  <bitfield begin="2" description="Port 2 Receive flow control enable" end="2" id="P2_FLOW_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Port 1 Receive flow control enable" end="1" id="P1_FLOW_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Port 0 Receive flow control enable" end="0" id="P0_FLOW_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="VLAN_LTYPE" description="LTYPE1 AND LTYPE 2 REGISTER" id="VLAN_LTYPE" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Time Sync VLAN LTYPE2   This VLAN LTYPE value is used for tx and rx.  This is the inner   VLAN if both are present. " end="16" id="VLAN_LTYPE2" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Time Sync VLAN LTYPE1   This VLAN LTYPE value is used for tx and rx.  This is the outer   VLAN if both are present. " end="0" id="VLAN_LTYPE1" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="TS_LTYPE" description="VLAN_LTYPE1 AND VLAN_LTYPE2 REGISTER" id="TS_LTYPE" offset="0x2C" width="32">
+    
+  <bitfield begin="21" description="Time Sync LTYPE2   This is an Ethertype value to match for tx and rx time sync packets. " end="16" id="TS_LTYPE2" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="15" description="Time Sync LTYPE1   This is an ethertype value to match for tx and rx time sync packets. " end="0" id="TS_LTYPE1" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DLR_LTYPE" description="DLR LTYPE REGISTER" id="DLR_LTYPE" offset="0x30" width="32">
+    
+  <bitfield begin="15" description="DLR LTYPE" end="0" id="DLR_LTYPE" rwaccess="RW" width="16"></bitfield>
+  </register>
+</module>

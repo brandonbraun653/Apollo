@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="IDK_AM571X" XML_version="1" desc="IDK_AM571X" description="AM571x Industrial Development Kit with silicon revision 2.x">
+    <instance XML_version="1.2" desc="AM5718_0" href="devices/AM5718.xml" id="AM5718_0" xml="AM5718.xml" xmlpath="devices"/>
+    <device HW_revision="1.1" XML_version="1.2" description="AM5718 - Cortex A15 Embedded Processor" id="AM5718_0" partnum="AM5718">
+        <router HW_revision="1.0" XML_version="1.2" description="ICEPick_D Router" id="IcePick_D_0" isa="ICEPICK_D">
+            <property Name="Support System Reset While Connected" Type="hiddenfield" Value="0" ID="device.SystemResetWhileConnected" />
+            <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_ICEPickD_Utility.gel" id="GEL File"/>
+            <subpath id="IVA_iCONT1">
+                <cpu HW_revision="1.0" XML_version="1.2" description="ARM9_ICONT1" id="ARM9_ICONT1" isa="ARM9">
+                    <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_ivahd_startup.gel" id="GEL File"/>
+                </cpu>
+            </subpath>
+            <subpath id="IVA_iCONT2">
+                <cpu HW_revision="1.0" XML_version="1.2" description="ARM9_ICONT2" id="ARM9_ICONT2" isa="ARM9">
+                    <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_ivahd_startup.gel" id="GEL File"/>
+                </cpu>
+            </subpath>
+            <subpath id="IPU_1_C0">
+                <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_1" isa="CS_DAP">
+                    <subpath id="CortexM4_IPU_1_C0">
+                        <cpu HW_revision="1.0" XML_version="1.2" description="Cortex_M4 CPU" id="Cortex_M4_0" isa="Cortex_M4">
+                            <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_cortexM4_startup.gel" id="GEL File"/>
+                        </cpu>
+                    </subpath>
+                </router>
+            </subpath>
+            <subpath id="IPU_1_C1">
+                <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_2" isa="CS_DAP">
+                    <subpath id="CortexM4_IPU_1_C1">
+                        <cpu HW_revision="1.0" XML_version="1.2" description="Cortex_M4 CPU" id="Cortex_M4_1" isa="Cortex_M4">
+                            <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_cortexM4_startup.gel" id="GEL File"/>
+                        </cpu>
+                    </subpath>
+                </router>
+            </subpath>
+            <subpath id="DSP">
+                <cpu HW_revision="1.0" XML_version="1.2" description="C66xx CGEM+FP CPU" id="C66xx_DSP" isa="TMS320C66XX">
+                    <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_dsp_startup.gel" id="GEL File"/>
+                </cpu>
+            </subpath>
+            <subpath id="dap">
+                <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_0" isa="CS_DAP">
+                    <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_dap_startup.gel" id="GEL File"/>
+                    <subpath id="Cortex_A15_MPUSS">
+                        <router HW_revision="1.0" XML_version="1.2" description="CS_DAP_PC Router" id="CS_DAP_PC_0" isa="CS_DAP_PC">
+                            <subpath id="cortex_a15_0">
+                                <cpu HW_revision="1.0" XML_version="1.2" description="CortexA15 CPU" id="CortexA15_0" isa="CortexA15">
+                                    <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_cortexa15_cpu0_startup.gel" id="GEL File"/>
+                                </cpu>
+                            </subpath>
+                            <property Type="filepathfield" Value="../../../emulation/boards/am571x/gel/AM571x_CS_DAP_PC_Utility.gel" id="GEL File"/>
+                        </router>
+                    </subpath>
+                </router>
+            </subpath>
+        </router>
+    </device>
+</board>

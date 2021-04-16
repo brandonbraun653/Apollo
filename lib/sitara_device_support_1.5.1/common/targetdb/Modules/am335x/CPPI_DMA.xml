@@ -1,0 +1,1713 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="CPPI_DMA" id="CPPI_DMA">
+  
+  
+  <register acronym="DMAREVID" id="DMAREVID" offset="0x0" width="32">
+    
+  <bitfield begin="29" description="Module ID field" end="16" id="MODID" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="15" description="RTL revision. Will vary depending on release." end="11" id="REVRTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major revision." end="8" id="REVMAJ" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Minor revision. CPPI DMA Revision Register " end="0" id="REVMIN" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="TDFDQ" id="TDFDQ" offset="0x4" width="32">
+    
+  <bitfield begin="13" description="This field controls which of the 4 Queue  Managers the DMA will access in order to  allocate a channel teardown descriptor from  the teardown descriptor queue. " end="12" id="TD_DESC_QMGR" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls which of the 2K queues in  the indicated queue manager should be read in  order to allocate channel teardown descriptors. CPPI DMA Teardown Free Descriptor Queue Control Register " end="0" id="TD_DESC_QNUM" rwaccess="RW" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMAEMU" id="DMAEMU" offset="0x8" width="32">
+    
+  <bitfield begin="1" description="Control for emulation pause request 1 = Does not force emu_pause_req low 0 = Forces emu_pause_req low " end="1" id="SOFT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enable for emulation suspend CPPI DMA Emulation Control Register " end="0" id="FREE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR0" id="TXGCR0" offset="0x800" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR0" id="RXGCR0" offset="0x808" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA0" id="RXHPCRA0" offset="0x80C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB0" id="RXHPCRB0" offset="0x810" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR1" id="TXGCR1" offset="0x820" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR1" id="RXGCR1" offset="0x828" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA1" id="RXHPCRA1" offset="0x82C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB1" id="RXHPCRB1" offset="0x830" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR2" id="TXGCR2" offset="0x840" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR2" id="RXGCR2" offset="0x848" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA2" id="RXHPCRA2" offset="0x84C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB2" id="RXHPCRB2" offset="0x850" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR3" id="TXGCR3" offset="0x860" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR3" id="RXGCR3" offset="0x868" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA3" id="RXHPCRA3" offset="0x86C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB3" id="RXHPCRB3" offset="0x870" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR4" id="TXGCR4" offset="0x880" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR4" id="RXGCR4" offset="0x888" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA4" id="RXHPCRA4" offset="0x88C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB4" id="RXHPCRB4" offset="0x890" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR5" id="TXGCR5" offset="0x8A0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR5" id="RXGCR5" offset="0x8A8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA5" id="RXHPCRA5" offset="0x8AC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB5" id="RXHPCRB5" offset="0x8B0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR6" id="TXGCR6" offset="0x8C0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR6" id="RXGCR6" offset="0x8C8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA6" id="RXHPCRA6" offset="0x8CC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB6" id="RXHPCRB6" offset="0x8D0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR7" id="TXGCR7" offset="0x8E0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR7" id="RXGCR7" offset="0x8E8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA7" id="RXHPCRA7" offset="0x8EC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB7" id="RXHPCRB7" offset="0x8F0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR8" id="TXGCR8" offset="0x900" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR8" id="RXGCR8" offset="0x908" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA8" id="RXHPCRA8" offset="0x90C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB8" id="RXHPCRB8" offset="0x910" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR9" id="TXGCR9" offset="0x920" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR9" id="RXGCR9" offset="0x928" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA9" id="RXHPCRA9" offset="0x92C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB9" id="RXHPCRB9" offset="0x930" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR10" id="TXGCR10" offset="0x940" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR10" id="RXGCR10" offset="0x948" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA10" id="RXHPCRA10" offset="0x94C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB10" id="RXHPCRB10" offset="0x950" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR11" id="TXGCR11" offset="0x960" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR11" id="RXGCR11" offset="0x968" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA11" id="RXHPCRA11" offset="0x96C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB11" id="RXHPCRB11" offset="0x970" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR12" id="TXGCR12" offset="0x980" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR12" id="RXGCR12" offset="0x988" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA12" id="RXHPCRA12" offset="0x98C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB12" id="RXHPCRB12" offset="0x990" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR13" id="TXGCR13" offset="0x9A0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR13" id="RXGCR13" offset="0x9A8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA13" id="RXHPCRA13" offset="0x9AC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB13" id="RXHPCRB13" offset="0x9B0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR14" id="TXGCR14" offset="0x9C0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR14" id="RXGCR14" offset="0x9C8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA14" id="RXHPCRA14" offset="0x9CC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB14" id="RXHPCRB14" offset="0x9D0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR15" id="TXGCR15" offset="0x9E0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR15" id="RXGCR15" offset="0x9E8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA15" id="RXHPCRA15" offset="0x9EC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB15" id="RXHPCRB15" offset="0x9F0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR16" id="TXGCR16" offset="0xA00" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR16" id="RXGCR16" offset="0xA08" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA16" id="RXHPCRA16" offset="0xA0C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB16" id="RXHPCRB16" offset="0xA10" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR17" id="TXGCR17" offset="0xA20" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR17" id="RXGCR17" offset="0xA28" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA17" id="RXHPCRA17" offset="0xA2C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB17" id="RXHPCRB17" offset="0xA30" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR18" id="TXGCR18" offset="0xA40" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR18" id="RXGCR18" offset="0xA48" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA18" id="RXHPCRA18" offset="0xA4C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB18" id="RXHPCRB18" offset="0xA50" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR19" id="TXGCR19" offset="0xA60" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR19" id="RXGCR19" offset="0xA68" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA19" id="RXHPCRA19" offset="0xA6C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB19" id="RXHPCRB19" offset="0xA70" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR20" id="TXGCR20" offset="0xA80" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR20" id="RXGCR20" offset="0xA88" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA20" id="RXHPCRA20" offset="0xA8C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB20" id="RXHPCRB20" offset="0xA90" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR21" id="TXGCR21" offset="0xAA0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR21" id="RXGCR21" offset="0xAA8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA21" id="RXHPCRA21" offset="0xAAC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB21" id="RXHPCRB21" offset="0xAB0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR22" id="TXGCR22" offset="0xAC0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR22" id="RXGCR22" offset="0xAC8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA22" id="RXHPCRA22" offset="0xACC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB22" id="RXHPCRB22" offset="0xAD0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR23" id="TXGCR23" offset="0xAE0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR23" id="RXGCR23" offset="0xAE8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA23" id="RXHPCRA23" offset="0xAEC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB23" id="RXHPCRB23" offset="0xAF0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR24" id="TXGCR24" offset="0xB00" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR24" id="RXGCR24" offset="0xB08" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA24" id="RXHPCRA24" offset="0xB0C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB24" id="RXHPCRB24" offset="0xB10" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR25" id="TXGCR25" offset="0xB20" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR25" id="RXGCR25" offset="0xB28" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA25" id="RXHPCRA25" offset="0xB2C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB25" id="RXHPCRB25" offset="0xB30" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR26" id="TXGCR26" offset="0xB40" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR26" id="RXGCR26" offset="0xB48" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA26" id="RXHPCRA26" offset="0xB4C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB26" id="RXHPCRB26" offset="0xB50" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR27" id="TXGCR27" offset="0xB60" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR27" id="RXGCR27" offset="0xB68" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA27" id="RXHPCRA27" offset="0xB6C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB27" id="RXHPCRB27" offset="0xB70" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR28" id="TXGCR28" offset="0xB80" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR28" id="RXGCR28" offset="0xB88" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA28" id="RXHPCRA28" offset="0xB8C" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB28" id="RXHPCRB28" offset="0xB90" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXGCR29" id="TXGCR29" offset="0xBA0" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is complete. " end="31" id="TX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Setting this bit will request the channel to be torn down.  This field  will remain set after a channel teardown is complete. " end="30" id="TX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="This field controls the default queue manager number that will be  used to queue teardown descriptors back to the host. " end="12" id="TX_DEFAULT_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field controls the default queue number within the selected  queue manager onto which teardown descriptors will be queued  back to the host. Table 98 -Tx Channel N Global Configuration Registers " end="0" id="TX_DEFAULT_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXGCR29" id="RXGCR29" offset="0xBA8" width="32">
+    
+  <bitfield begin="31" description="This field enables or disables the channel 0 = channel is disabled 1 = channel is enabled This field will be cleared after a channel teardown is  complete. " end="31" id="RX_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="This field indicates whether or not an Rx teardown operation  is complete.  This field should be cleared when a channel is  initialized.  This field will be set after a channel teardown is  complete. " end="30" id="RX_TEARDOWN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Setting this bit causes the CPPI DMA to be suspended for rx  channels.  If a pause is being requested and the channel is  not in a packet then drop the credit. " end="29" id="RX_PAUSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="This bit controls the error handling mode for the channel and  is only used when channel errors (i.e. descriptor or buffer  starvation occurs): 0 = Starvation errors result in dropping packet and reclaiming  any used descriptor or buffer resources back to the original  queues/pools they were allocated to 1 = Starvation errors result in subsequent re-try of the  descriptor allocation operation.  In this mode, the DMA will  return to the IDLE state without saving it's internal operational  state back to the internal state RAM and without issuing an  advance operation on the FIFO interface.  This results in the  DMA re-initiating the FIFO block transfer at a later time with  the intention that additional free buffers and/or descriptors  will have been added. Regardless of the value of this bit, the DMA will assert the  cdma_rx_sof_overrun (for SOP) or cdma_rx_mof_overrun  (for non-SOP) when   " end="24" id="RX_ERROR_HANDLING" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="23" description="This field specifies the number of bytes that are to be  skipped in the SOP buffer before beginning to write the  payload.  This value must be less than the minimum size of a  buffer in the system.  Valid values are 0 - 255 bytes. " end="16" id="RX_SOP_OFFSET" rwaccess="W" width="8"></bitfield>
+    
+  <bitfield begin="15" description="This field indicates the default descriptor type to use: 0 = Reserved 1 = Host 2 = Reserved 3 = Reserved The actual descriptor type that will be used for reception can be overridden by information provided in the CPPI FIFO data block." end="14" id="RX_DEFAULT_DESC_TYPE" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="13" description="This field indicates the default receive queue manager that  this channel should use.  The actual receive queue manager  index can be overridden by information provided in the CPPI  FIFO data block. " end="12" id="RX_DEFAULT_RQ_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the default receive queue that this channel  should use.  The actual receive queue that will be used for  reception can be overridden by information provided in the  CPPI FIFO data block. Table 99 -Rx Channel N Global Configuration Registers " end="0" id="RX_DEFAULT_RQ_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRA29" id="RXHPCRA29" offset="0xBAC" width="32">
+    
+  <bitfield begin="29" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="28" id="RX_HOST_FDQ1_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 2nd Rx buffer in a host type packet " end="16" id="RX_HOST_FDQ1_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for the second Rx buffer in a host type packet." end="12" id="RX_HOST_FDQ0_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 1st Rx buffer in a host type packet Table 100 -Rx Channel N Host Packet Configuration Registers A " end="0" id="RX_HOST_FDQ0_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXHPCRB29" id="RXHPCRB29" offset="0xBB0" width="32">
+    
+  <bitfield begin="29" description="This field specifies which  Manager should be used for the 4th or  later Rx buffers in a host type packet " end="28" id="RX_HOST_FDQ3_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="27" description="This field specifies which Free Descriptor Queue should be  used for the 4th or later Rx  buffers in a host type packet " end="16" id="RX_HOST_FDQ3_QNUM" rwaccess="W" width="12"></bitfield>
+    
+  <bitfield begin="13" description="This field specifies which Buffer Manager should be used for  the 3rd Rx buffer in a host type packet " end="12" id="RX_HOST_FDQ2_QMGR" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="11" description="This field specifies which Free Descriptor / Buffer Pool should  be used for the 3rd Rx buffer in a host type packet Table 101 -Rx Channel N Host Packet Configuration Registers B " end="0" id="RX_HOST_FDQ2_QNUM" rwaccess="W" width="12"></bitfield>
+  </register>
+</module>

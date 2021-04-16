@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="USBSS" id="USBSS">
+  
+  
+  <register acronym="REVREG" id="REVREG" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Used to distinguish between legacy interface scheme and current. 0 = Legacy 1 = Current " end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="Function indicates a software compatible module family." end="16" id="FUNC" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="RTL revision. Will vary depending on release." end="11" id="R_RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major revision." end="8" id="X_MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Custom revision" end="6" id="CUSTOM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor revision. USBSS Revision Register " end="0" id="Y_MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="SYSCONFIG" id="SYSCONFIG" offset="0x10" width="32">
+    
+  <bitfield begin="11" description="Active low clock enable for usb0_ocp_clk 0 = enable 1 = disable " end="11" id="USB0_OCP_EN_N" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Active low clock enable for phy0_utmi_clk 0 = enable 1 = disable " end="10" id="PHY0_UTMI_EN_N" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Active low clock enable for usb1_ocp_clk 0 = enable 1 = disable " end="9" id="USB1_OCP_EN_N" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Active low clock enable for phy1_utmi_clk 0 = enable 1 = disable " end="8" id="PHY1_UTMI_EN_N" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Configuration of the local initiator state management mode. 0 = force-standby mode. 1 = no-standby mode. 2 = smart-standby mode. 3 = Reserved. " end="4" id="STANDBY_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Configuration of the local target state management mode. 0 = force-idle mode. 1 = no-idle mode. 2 = smart-idle mode. 3 = Reserved. " end="2" id="IDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Sensitivity to emulation (debug) suspend input signal. 0 = sensitive to emulation suspend 1 = NOT sensitive to emulation suspend " end="1" id="FREEEMU" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Software reset of USBSS, USB0, and USB1 modules Write 0 = No action. Write 1 = Initiate software reset. Read 0 = Reset done, no action. Read 1 = Reset ongoing. " end="0" id="SOFT_RESET" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATRAW" id="IRQSTATRAW" offset="0x24" width="32">
+    
+  <bitfield begin="11" description="Interrupt status for USB1 Rx CPPI DMA packet completion  status " end="11" id="RX_PKT_CMP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Interrupt status for USB1 Tx CPPI DMA packet completion  status " end="10" id="TX_PKT_CMP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt status for USB0 Rx CPPI DMA packet completion  status " end="9" id="RX_PKT_CMP_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt status for USB0 Tx CPPI DMA packet completion  status " end="8" id="TX_PKT_CMP_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt status when the packet is completed, the differ bits  is set, and the Packet Descriptor is pushed into the queue  manager " end="2" id="PD_CMP_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt status when queue manager cannot allocate an Rx  buffer in the middle of a packet. " end="1" id="RX_MOP_STARVATION" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt status when queue manager cannot allocate an Rx  buffer at the start of a packet. USBSS IRQ_STATUS_RAW Register " end="0" id="RX_SOP_STARVATION" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTAT" id="IRQSTAT" offset="0x28" width="32">
+    
+  <bitfield begin="11" description="Interrupt status for USB1 Rx CPPI DMA packet completion  status " end="11" id="RX_PKT_CMP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Interrupt status for USB1 Tx CPPI DMA packet completion  status " end="10" id="TX_PKT_CMP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt status for USB0 Rx CPPI DMA packet completion  status " end="9" id="RX_PKT_CMP_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt status for USB0 Tx CPPI DMA packet completion  status " end="8" id="TX_PKT_CMP_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt status when the packet is completed, the differ bits  is set,  and the Packet Descriptor is pushed into the queue  manager " end="2" id="PD_CMP_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt status when queue manager cannot allocate an Rx  buffer in the middle of a packet. " end="1" id="RX_MOP_STARVATION" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt status when queue manager cannot allocate an Rx  buffer at the start of a packet. USBSS IRQ_STATUS Register " end="0" id="RX_SOP_STARVATION" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLER" id="IRQENABLER" offset="0x2C" width="32">
+    
+  <bitfield begin="11" description="Interrupt enable for USB1 Rx CPPI DMA packet completion  status " end="11" id="RX_PKT_CMP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Interrupt enable for USB1 Tx CPPI DMA packet completion  status " end="10" id="TX_PKT_CMP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt enable for USB0 Rx CPPI DMA packet completion  status " end="9" id="RX_PKT_CMP_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt enable for USB0 Tx CPPI DMA packet completion  status " end="8" id="TX_PKT_CMP_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt enable when the packet is completed, the differ bits  is set,  and the Packet Descriptor is pushed into the queue  manager " end="2" id="PD_CMP_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt enable when queue manager cannot allocate an Rx  buffer in the middle of a packet. " end="1" id="RX_MOP_STARVATION" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt enable when queue manager cannot allocate an Rx  buffer at the start of a packet. USBSS IRQ_ENABLE_SET Register " end="0" id="RX_SOP_STARVATION" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQCLEARR" id="IRQCLEARR" offset="0x30" width="32">
+    
+  <bitfield begin="11" description="Interrupt enable for USB1 Rx CPPI DMA packet completion  status " end="11" id="RX_PKT_CMP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Interrupt enable for USB1 Tx CPPI DMA packet completion  status " end="10" id="TX_PKT_CMP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt enable for USB0 Rx CPPI DMA packet completion  status " end="9" id="RX_PKT_CMP_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt enable for USB0 Tx CPPI DMA packet completion  status " end="8" id="TX_PKT_CMP_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt enable when the packet is completed, the differ bits  is set,  and the Packet Descriptor is pushed into the queue  manager " end="2" id="PD_CMP_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt enable when queue manager cannot allocate an Rx  buffer in the middle of a packet. " end="1" id="RX_MOP_STARVATION" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt enable when queue manager cannot allocate an Rx  buffer at the start of a packet. USBSS IRQ_ENABLE_CLR Register " end="0" id="RX_SOP_STARVATION" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDTX00" id="IRQDMATHOLDTX00" offset="0x100" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 3." end="24" id="DMA_THRES_TX0_3" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 2." end="16" id="DMA_THRES_TX0_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 1." end="8" id="DMA_THRES_TX0_1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDTX01" id="IRQDMATHOLDTX01" offset="0x104" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 7." end="24" id="DMA_THRES_TX0_7" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 6." end="16" id="DMA_THRES_TX0_6" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 5." end="8" id="DMA_THRES_TX0_5" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 4. USBSS IRQ_DMA_THRSHOLD_TX0_1 Register " end="0" id="DMA_THRES_TX0_4" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDTX02" id="IRQDMATHOLDTX02" offset="0x108" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint  11. " end="24" id="DMA_THRES_TX0_11" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint  10. " end="16" id="DMA_THRES_TX0_10" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 9." end="8" id="DMA_THRES_TX0_9" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint 8. USBSS IRQ_DMA_THRSHOLD_TX0_2 Register " end="0" id="DMA_THRES_TX0_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDTX03" id="IRQDMATHOLDTX03" offset="0x10C" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint  15. " end="24" id="DMA_THRES_TX0_15" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint  14. " end="16" id="DMA_THRES_TX0_14" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint  13. " end="8" id="DMA_THRES_TX0_13" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for tx_pkt_cmp_0 for USB0 Endpoint  12. USBSS IRQ_DMA_THRSHOLD_TX0_3 Register " end="0" id="DMA_THRES_TX0_12" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDRX00" id="IRQDMATHOLDRX00" offset="0x110" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 3." end="24" id="DMA_THRES_RX0_3" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 2." end="16" id="DMA_THRES_RX0_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 1." end="8" id="DMA_THRES_RX0_1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDRX01" id="IRQDMATHOLDRX01" offset="0x114" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 7." end="24" id="DMA_THRES_RX0_7" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 6." end="16" id="DMA_THRES_RX0_6" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 5." end="8" id="DMA_THRES_RX0_5" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 4. USBSS IRQ_DMA_THRSHOLD_RX0_1 Register " end="0" id="DMA_THRES_RX0_4" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDRX02" id="IRQDMATHOLDRX02" offset="0x118" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint  11. " end="24" id="DMA_THRES_RX0_11" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint  10. " end="16" id="DMA_THRES_RX0_10" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 9." end="8" id="DMA_THRES_RX0_9" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint 8. USBSS IRQ_DMA_THRSHOLD_RX0_2 Register " end="0" id="DMA_THRES_RX0_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDRX03" id="IRQDMATHOLDRX03" offset="0x11C" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint  15. " end="24" id="DMA_THRES_RX0_15" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint  14. " end="16" id="DMA_THRES_RX0_14" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint  13. " end="8" id="DMA_THRES_RX0_13" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for rx_pkt_cmp_0 for USB0 Endpoint  12. USBSS IRQ_DMA_THRSHOLD_RX0_3 Register " end="0" id="DMA_THRES_RX0_12" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDTX10" id="IRQDMATHOLDTX10" offset="0x120" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 3." end="24" id="DMA_THRES_TX1_3" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 2." end="16" id="DMA_THRES_TX1_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 1." end="8" id="DMA_THRES_TX1_1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDTX11" id="IRQDMATHOLDTX11" offset="0x124" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 7." end="24" id="DMA_THRES_TX1_7" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 6." end="16" id="DMA_THRES_TX1_6" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 5." end="8" id="DMA_THRES_TX1_5" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 4. USBSS IRQ_DMA_THRSHOLD_TX1_1 Register " end="0" id="DMA_THRES_TX1_4" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDTX12" id="IRQDMATHOLDTX12" offset="0x128" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint  11. " end="24" id="DMA_THRES_TX1_11" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint  10. " end="16" id="DMA_THRES_TX1_10" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 9." end="8" id="DMA_THRES_TX1_9" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint 8. USBSS IRQ_DMA_THRSHOLD_TX1_2 Register " end="0" id="DMA_THRES_TX1_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDTX13" id="IRQDMATHOLDTX13" offset="0x12C" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint  15. " end="24" id="DMA_THRES_TX1_15" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint  14. " end="16" id="DMA_THRES_TX1_14" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint  13. " end="8" id="DMA_THRES_TX1_13" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for tx_pkt_cmp_0 for USB1 Endpoint  12. USBSS IRQ_DMA_THRSHOLD_TX1_3 Register " end="0" id="DMA_THRES_TX1_12" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDRX10" id="IRQDMATHOLDRX10" offset="0x130" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 3." end="24" id="DMA_THRES_RX1_3" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 2." end="16" id="DMA_THRES_RX1_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 1." end="8" id="DMA_THRES_RX1_1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDRX11" id="IRQDMATHOLDRX11" offset="0x134" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 7." end="24" id="DMA_THRES_RX1_7" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 6." end="16" id="DMA_THRES_RX1_6" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 5." end="8" id="DMA_THRES_RX1_5" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 4. USBSS IRQ_DMA_THRSHOLD_RX1_1 Register " end="0" id="DMA_THRES_RX1_4" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDRX12" id="IRQDMATHOLDRX12" offset="0x138" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint  11. " end="24" id="DMA_THRES_RX1_11" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint  10. " end="16" id="DMA_THRES_RX1_10" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 9." end="8" id="DMA_THRES_RX1_9" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint 8. USBSS IRQ_DMA_THRSHOLD_RX1_2 Register " end="0" id="DMA_THRES_RX1_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMATHOLDRX13" id="IRQDMATHOLDRX13" offset="0x13C" width="32">
+    
+  <bitfield begin="31" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint  15. " end="24" id="DMA_THRES_RX1_15" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint  14. " end="16" id="DMA_THRES_RX1_14" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint  13. " end="8" id="DMA_THRES_RX1_13" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="DMA threshold value for rx_pkt_cmp_0 for USB1 Endpoint  12. USBSS IRQ_DMA_THRSHOLD_RX1_3 Register " end="0" id="DMA_THRES_RX1_12" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMAENABLE0" id="IRQDMAENABLE0" offset="0x140" width="32">
+    
+  <bitfield begin="31" description="DMA threshold enable value for rx_pkt_cmp_0 for USB0  Endpoint 15. ... ... ... ... ... " end="31" id="DMA_EN_RX0_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="DMA threshold enable value for rx_pkt_cmp_0 for USB0  Endpoint 1. " end="17" id="DMA_EN_RX0_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold enable value for tx_pkt_cmp_0 for USB0  Endpoint 15. ... ... ... ... ... " end="15" id="DMA_EN_TX0_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="DMA threshold enable value for tx_pkt_cmp_0 for USB0  Endpoint 2. " end="2" id="DMA_EN_TX0_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="DMA threshold enable value for tx_pkt_cmp_0 for USB0  Endpoint 1. " end="0" id="DMA_EN_TX0_1" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQDMAENABLE1" id="IRQDMAENABLE1" offset="0x144" width="32">
+    
+  <bitfield begin="31" description="DMA threshold enable value for rx_pkt_cmp_1 for USB1  Endpoint 15. ... ... ... ... ... " end="31" id="DMA_EN_RX1_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="DMA threshold enable value for rx_pkt_cmp_1 for USB1  Endpoint 1. " end="17" id="DMA_EN_RX1_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="DMA threshold enable value for tx_pkt_cmp_1 for USB1  Endpoint 15. ... ... ... ... ... " end="15" id="DMA_EN_TX1_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="DMA threshold enable value for tx_pkt_cmp_1 for USB1  Endpoint 1. " end="1" id="DMA_EN_TX1_1" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDTX00" id="IRQFRAMETHOLDTX00" offset="0x200" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  3. " end="24" id="FRAME_THRES_TX1_3" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  2. " end="16" id="FRAME_THRES_TX1_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  1. " end="8" id="FRAME_THRES_TX1_1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDTX01" id="IRQFRAMETHOLDTX01" offset="0x204" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  7. " end="24" id="FRAME_THRES_TX1_7" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  6. " end="16" id="FRAME_THRES_TX1_6" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  5. " end="8" id="FRAME_THRES_TX1_5" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  4. USBSS IRQ_FRAME_THRSHOLD_TX0_1 Register " end="0" id="FRAME_THRES_TX1_4" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDTX02" id="IRQFRAMETHOLDTX02" offset="0x208" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  11. " end="24" id="FRAME_THRES_TX1_11" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  10. " end="16" id="FRAME_THRES_TX1_10" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  9. " end="8" id="FRAME_THRES_TX1_9" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  8. USBSS IRQ_FRAME_THRSHOLD_TX0_2 Register " end="0" id="FRAME_THRES_TX1_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDTX03" id="IRQFRAMETHOLDTX03" offset="0x20C" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  15. " end="24" id="FRAME_THRES_TX1_15" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  14. " end="16" id="FRAME_THRES_TX1_14" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  13. " end="8" id="FRAME_THRES_TX1_13" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for tx_pkt_cmp_0 for USB0 Endpoint  12. USBSS IRQ_FRAME_THRSHOLD_TX0_3 Register " end="0" id="FRAME_THRES_TX1_12" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDRX00" id="IRQFRAMETHOLDRX00" offset="0x210" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  3. " end="24" id="FRAME_THRES_RX1_3" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  2. " end="16" id="FRAME_THRES_RX1_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  1. " end="8" id="FRAME_THRES_RX1_1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDRX01" id="IRQFRAMETHOLDRX01" offset="0x214" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  7. " end="24" id="FRAME_THRES_RX1_7" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  6. " end="16" id="FRAME_THRES_RX1_6" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  5. " end="8" id="FRAME_THRES_RX1_5" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  4. USBSS IRQ_FRAME_THRSHOLD_RX0_1 Register " end="0" id="FRAME_THRES_RX1_4" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDRX02" id="IRQFRAMETHOLDRX02" offset="0x218" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  11. " end="24" id="FRAME_THRES_RX1_11" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  10. " end="16" id="FRAME_THRES_RX1_10" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  9. " end="8" id="FRAME_THRES_RX1_9" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  8. USBSS IRQ_FRAME_THRSHOLD_RX0_2 Register " end="0" id="FRAME_THRES_RX1_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDRX03" id="IRQFRAMETHOLDRX03" offset="0x21C" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  15. " end="24" id="FRAME_THRES_RX1_15" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  14. " end="16" id="FRAME_THRES_RX1_14" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  13. " end="8" id="FRAME_THRES_RX1_13" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for rx_pkt_cmp_0 for USB0 Endpoint  12. USBSS IRQ_FRAME_THRSHOLD_RX0_3 Register " end="0" id="FRAME_THRES_RX1_12" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDTX10" id="IRQFRAMETHOLDTX10" offset="0x220" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  3. " end="24" id="FRAME_THRES_TX1_3" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  2. " end="16" id="FRAME_THRES_TX1_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  1. " end="8" id="FRAME_THRES_TX1_1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDTX11" id="IRQFRAMETHOLDTX11" offset="0x224" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  7. " end="24" id="FRAME_THRES_TX1_7" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  6. " end="16" id="FRAME_THRES_TX1_6" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  5. " end="8" id="FRAME_THRES_TX1_5" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  4. USBSS IRQ_FRAME_THRSHOLD_TX1_1 Register " end="0" id="FRAME_THRES_TX1_4" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDTX12" id="IRQFRAMETHOLDTX12" offset="0x228" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  11. " end="24" id="FRAME_THRES_TX1_11" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  10. " end="16" id="FRAME_THRES_TX1_10" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  9. " end="8" id="FRAME_THRES_TX1_9" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  8. USBSS IRQ_FRAME_THRSHOLD_TX1_2 Register " end="0" id="FRAME_THRES_TX1_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDTX13" id="IRQFRAMETHOLDTX13" offset="0x22C" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  15. " end="24" id="FRAME_THRES_TX1_15" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  14. " end="16" id="FRAME_THRES_TX1_14" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  13. " end="8" id="FRAME_THRES_TX1_13" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for tx_pkt_cmp_0 for USB1 Endpoint  12. USBSS IRQ_FRAME_THRSHOLD_TX1_3 Register " end="0" id="FRAME_THRES_TX1_12" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDRX10" id="IRQFRAMETHOLDRX10" offset="0x230" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  3. " end="24" id="FRAME_THRES_RX1_3" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  2. " end="16" id="FRAME_THRES_RX1_2" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  1. " end="8" id="FRAME_THRES_RX1_1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDRX11" id="IRQFRAMETHOLDRX11" offset="0x234" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  7. " end="24" id="FRAME_THRES_RX1_7" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  6. " end="16" id="FRAME_THRES_RX1_6" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  5. " end="8" id="FRAME_THRES_RX1_5" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  4. USBSS IRQ_FRAME_THRSHOLD_RX1_1 Register " end="0" id="FRAME_THRES_RX1_4" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDRX12" id="IRQFRAMETHOLDRX12" offset="0x238" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  11. " end="24" id="FRAME_THRES_RX1_11" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  10. " end="16" id="FRAME_THRES_RX1_10" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  9. " end="8" id="FRAME_THRES_RX1_9" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  8. USBSS IRQ_FRAME_THRSHOLD_RX1_2 Register " end="0" id="FRAME_THRES_RX1_8" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMETHOLDRX13" id="IRQFRAMETHOLDRX13" offset="0x23C" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  15. " end="24" id="FRAME_THRES_RX1_15" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="23" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  14. " end="16" id="FRAME_THRES_RX1_14" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  13. " end="8" id="FRAME_THRES_RX1_13" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="FRAME threshold value for rx_pkt_cmp_0 for USB1 Endpoint  12. USBSS IRQ_FRAME_THRSHOLD_RX1_3 Register " end="0" id="FRAME_THRES_RX1_12" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMEENABLE0" id="IRQFRAMEENABLE0" offset="0x240" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold enable value for rx_pkt_cmp_0 for USB0  Endpoint 15. ... ... ... ... ... " end="31" id="FRAME_EN_RX0_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="FRAME threshold enable value for rx_pkt_cmp_0 for USB0  Endpoint 1. " end="17" id="FRAME_EN_RX0_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold enable value for tx_pkt_cmp_0 for USB0  Endpoint 15. ... ... ... ... ... " end="15" id="FRAME_EN_TX0_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="FRAME threshold enable value for tx_pkt_cmp_0 for USB0  Endpoint 1. " end="1" id="FRAME_EN_TX0_1" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQFRAMEENABLE1" id="IRQFRAMEENABLE1" offset="0x244" width="32">
+    
+  <bitfield begin="31" description="FRAME threshold enable value for rx_pkt_cmp_1 for USB1  Endpoint 15. ... ... ... ... ... " end="31" id="FRAME_EN_RX1_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="FRAME threshold enable value for rx_pkt_cmp_1 for USB1  Endpoint 1. " end="17" id="FRAME_EN_RX1_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="FRAME threshold enable value for tx_pkt_cmp_1 for USB1  Endpoint 15. ... ... ... ... ... " end="15" id="FRAME_EN_TX1_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="FRAME threshold enable value for tx_pkt_cmp_1 for USB1  Endpoint 1. " end="1" id="FRAME_EN_TX1_1" rwaccess="RW" width="1"></bitfield>
+  </register>
+</module>

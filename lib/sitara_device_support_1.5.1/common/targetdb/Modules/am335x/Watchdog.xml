@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="WATCHDOG_TIMER" id="WATCHDOG_TIMER">
+  
+  
+  <register acronym="WDT_WIDR" description="Watchdog Identification Register" id="WDT_WIDR" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="IP Revision" end="0" id="REVISION" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WDSC" description="The Watchdog System Control Register controls the various parameters of the L4 interface." id="WDT_WDSC" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Emulation mode" end="5" id="EMUFREE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Configuration of the local target state management mode.By definition, target can handle read/write transaction as long as it is out of IDLE state." end="3" id="IDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="2" description="" end="2" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Software reset. (Optional) " end="1" id="SOFTRESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="Reserved3" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WDST" description="The Watchdog Status Register provides status information about the module." id="WDT_WDST" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Internal module reset monitoring" end="0" id="RESETDONE" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WISR" description="The Watchdog Interrupt Status Register shows which interrupt events are pending inside the module." id="WDT_WISR" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Pending delay interrupt status." end="1" id="DLY_IT_FLAG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Pending overflow interrupt status." end="0" id="OVF_IT_FLAG" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WIER" description="The Watchdog Interrupt Enable Register controls (enable/disable) the interrupt events." id="WDT_WIER" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Delay interrupt enable/disable" end="1" id="DLY_IT_ENA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Overflow interrupt enable/disable" end="0" id="OVF_IT_ENA" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WCLR" description="The Watchdog Control Register controls the prescaler stage of the counter." id="WDT_WCLR" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Prescaler enable/disable configuration" end="5" id="PRE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Prescaler value. The timer counter is prescaled with the value: 2**PTV. Example: PTV = 3 then counter increases value if started after 8 functional clock periods. On reset, it is loaded from PI_PTV_RESET_VALUE input port." end="2" id="PTV" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="1" description="" end="0" id="Reserved2" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WCRR" description="The Watchdog Counter Register holds the value of the internal counter." id="WDT_WCRR" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Value of the timer counter register" end="0" id="TIMER_COUNTER" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WLDR" description="The Watchdog Load Register holds the timer load value." id="WDT_WLDR" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Value of the timer load register" end="0" id="TIMER_LOAD" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WTGR" description="Writing a different value than the one already written in the Watchdog Trigger Register does a watchdog counter reload." id="WDT_WTGR" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Value of the trigger register" end="0" id="TTGR_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WWPS" description="The Watchdog Write Posting Bits Register contains the write posting bits for all writeable functional registers." id="WDT_WWPS" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Write pending for register WDLY" end="5" id="W_PEND_WDLY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Write pending for register WSPR" end="4" id="W_PEND_WSPR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Write pending for register WTGR" end="3" id="W_PEND_WTGR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Write pending for register WLDR" end="2" id="W_PEND_WLDR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Write pending for register WCRR" end="1" id="W_PEND_WCRR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Write pending for register WCLR" end="0" id="W_PEND_WCLR" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WDLY" description="The Watchdog Delay Configuration Register holds the delay value that controls the internal pre-overflow event detection." id="WDT_WDLY" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Value of the delay register" end="0" id="WDLY_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WSPR" description="The Watchdog Start/Stop Register holds the start-stop value that controls the internal start-stop FSM." id="WDT_WSPR" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Value of the start-stop register" end="0" id="WSPR_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WIRQSTATRAW" description="In the Watchdog Raw Interrupt Status Register, IRQ unmasked status, status set per-event raw interrupt status vector, line 0. Raw status is set even if event is not enabled. Write 1 to set the (raw) status, mostly for debug." id="WDT_WIRQSTATRAW" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Settable raw status for delay event" end="1" id="EVENT_DLY" rwaccess="R/W1S" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Settable raw status for overflow event" end="0" id="EVENT_OVF" rwaccess="R/W1S" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WIRQSTAT" description="In the Watchdog Interrupt Status Register, IRQ masked status, status clear per-event enabled interrupt status vector, line 0. Enabled status is not set unless event is enabled. Write 1 to clear the status after interrupt has been serviced (raw status gets cleared, that is, even if not enabled)." id="WDT_WIRQSTAT" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Clearable, enabled status for delay event" end="1" id="EVENT_DLY" rwaccess="R/W1C" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Clearable, enabled status for overflow event" end="0" id="EVENT_OVF" rwaccess="R/W1C" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WIRQENSET" description="In the Watchdog Interrupt Enable Set Register, IRQ enable set per-event interrupt enable bit vector, line 0. Write 1 to set (enable interrupt). Readout equal to corresponding _CLR register." id="WDT_WIRQENSET" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Enable for delay event" end="1" id="ENABLE_DLY" rwaccess="R/W1S" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enable for overflow event" end="0" id="ENABLE_OVF" rwaccess="R/W1S" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WDT_WIRQENCLR" description="In the Watchdog Interrupt Enable Clear Register, IRQ enable clear per-event interrupt enable bit vector, line 0. Write 1 to clear (disable interrupt). Readout equal to corresponding _SET register." id="WDT_WIRQENCLR" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Enable for delay event" end="1" id="ENABLE_DLY" rwaccess="R/W1C" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enable for overflow event" end="0" id="ENABLE_OVF" rwaccess="R/W1C" width="1"></bitfield>
+  </register>
+</module>

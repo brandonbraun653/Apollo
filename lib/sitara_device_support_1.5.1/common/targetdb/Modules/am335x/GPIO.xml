@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="GPIO" id="GPIO">
+  
+  
+  <register acronym="GPIO_REVISION" description="The GPIO revision register is a read only register containing the revision number of the GPIO module. A write to this register has no effect, the same as the reset." id="GPIO_REVISION" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Used to distinguish between old Scheme and current." end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="Indicates a software compatible module family." end="16" id="FUNC" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="RTL version" end="11" id="RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major Revision" end="8" id="MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Indicates a special version for a particular device." end="6" id="CUSTOM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor Revision" end="0" id="MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_SYSCONFIG" description="The GPIO_SYSCONFIG register controls the various parameters of the L4 interconnect. When the AUTOIDLE bit is set, the GPIO_DATAIN read command has a 3 OCP cycle latency due to the data in sample gating mechanism. When the AUTOIDLE bit is not set, the GPIO_DATAIN read command has a 2 OCP cycle latency." id="GPIO_SYSCONFIG" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Power Management, Req/Ack control." end="3" id="IDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="2" description="" end="2" id="ENAWAKEUP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Software reset. This bit is automatically reset by the hardware. During reads, it always returns 0." end="1" id="SOFTRESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Internal interface clock gating strategy" end="0" id="AUTOIDLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQSTATUS_RAW_0" description="The GPIO_IRQSTATUS_RAW_0 register provides core status information for the interrupt handling, showing all active events (enabled and not enabled). The fields are read-write. Writing a 1 to a bit sets it to 1, that is, triggers the IRQ (mostly for debug). Writing a 0 has no effect, that is, the register value is not be modified. Only enabled, active events trigger an actual interrupt request on the IRQ output line." id="GPIO_IRQSTATUS_RAW_0" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="Interrupt n status." end="0" id="INTLINE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQSTATUS_RAW_1" description="The GPIO_IRQSTATUS_RAW_1 register provides core status information for the interrupt handling, showing all active events (enabled and not enabled). The fields are read-write. Writing a 1 to a bit sets it to 1, that is, triggers the IRQ (mostly for debug). Writing a 0 has no effect, that is, the register value is not be modified. Only enabled, active events trigger an actual interrupt request on the IRQ output line." id="GPIO_IRQSTATUS_RAW_1" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Interrupt n status." end="0" id="INTLINE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQSTATUS_0" description="The GPIO_IRQSTATUS_0 register provides core status information for the interrupt handling, showing all active events which have been enabled. The fields are read-write. Writing a 1 to a bit clears the bit to 0, that is, clears the IRQ. Writing a 0 has no effect, that is, the register value is not modified. Only enabled, active events trigger an actual interrupt request on the IRQ output line." id="GPIO_IRQSTATUS_0" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Interrupt n status." end="0" id="INTLINE_n" rwaccess="R/W1C" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQSTATUS_1" description="The GPIO_IRQSTATUS_1 register provides core status information for the interrupt handling, showing all active events which have been enabled. The fields are read-write. Writing a 1 to a bit clears the bit to 0, that is, clears the IRQ. Writing a 0 has no effect, that is, the register value is not modified. Only enabled, active events trigger an actual interrupt request on the IRQ output line." id="GPIO_IRQSTATUS_1" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Interrupt n status." end="0" id="INTLINE_n" rwaccess="R/W1C" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQSTATUS_SET_0" description="All 1-bit fields in the GPIO_IRQSTATUS_SET_0 register enable a specific interrupt event to trigger an interrupt request. Writing a 1 to a bit enables the interrupt field. Writing a 0 has no effect, that is, the register value is not modified." id="GPIO_IRQSTATUS_SET_0" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Interrupt n enable" end="0" id="INTLINE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQSTATUS_SET_1" description="All 1-bit fields in the GPIO_IRQSTATUS_SET_1 register enable a specific interrupt event to trigger an interrupt request. Writing a 1 to a bit enables the interrupt field. Writing a 0 has no effect, that is, the register value is not modified." id="GPIO_IRQSTATUS_SET_1" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Interrupt n enable" end="0" id="INTLINE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQSTATUS_CLR_0" description="All 1-bit fields in the GPIO_IRQSTATUS_CLR_0 register clear a specific interrupt event. Writing a 1 to a bit disables the interrupt field. Writing a 0 has no effect, that is, the register value is not modified." id="GPIO_IRQSTATUS_CLR_0" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Interrupt n enable" end="0" id="INTLINE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQSTATUS_CLR_1" description="All 1-bit fields in the GPIO_IRQSTATUS_CLR_1 register clear a specific interrupt event. Writing a 1 to a bit disables the interrupt field. Writing a 0 has no effect, that is, the register value is not modified." id="GPIO_IRQSTATUS_CLR_1" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Interrupt n enable" end="0" id="INTLINE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQWAKEN_0" description="Per-event wakeup enable vector (corresponding to first line of interrupt). Every 1-bit field in the GPIO_IRQWAKEN_0 register enables a specific (synchronous) IRQ request source to generate an asynchronous wakeup (on the appropriate swakeup line). This register allows the user to mask the expected transition on input GPIO from generating a wakeup request. The GPIO_IRQWAKEN_0 is programmed synchronously with the interface clock before any Idle mode request coming from the host processor. Note: In Force-Idle mode, the module wake-up feature is totally inhibited. The wake-up generation can also be gated at module level using the EnaWakeUp bit from GPIO_SYSCONFIG register. " id="GPIO_IRQWAKEN_0" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Wakeup Enable for Interrupt Line" end="0" id="INTLINE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_IRQWAKEN_1" description="Per-event wakeup enable vector (corresponding to second line of interrupt). Every 1-bit field in the GPIO_IRQWAKEN_1 register enables a specific (synchronous) IRQ request source to generate an asynchronous wakeup (on the appropriate swakeup line). This register allows the user to mask the expected transition on input GPIO from generating a wakeup request. The GPIO_IRQWAKEN_1 is programmed synchronously with the interface clock before any Idle mode request coming from the host processor. Note: In Force-Idle mode, the module wake-up feature is totally inhibited. The wake-up generation can also be gated at module level using the EnaWakeUp bit from GPIO_SYSCONFIG register." id="GPIO_IRQWAKEN_1" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Wakeup Enable for Interrupt Line" end="0" id="INTLINE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_SYSSTATUS" description="The GPIO_SYSSTATUS register provides the reset status information about the GPIO module. It is a read-only register; a write to this register has no effect." id="GPIO_SYSSTATUS" offset="0x114" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Reset status information." end="0" id="RESETDONE" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_CTRL" description="The GPIO_CTRL register controls the clock gating functionality. The DISABLEMODULE bit controls a clock gating feature at the module level. When set, this bit forces the clock gating for all internal clock paths. Module internal activity is suspended. System interface is not affected by this bit. System interface clock gating is controlled with the AUTOIDLE bit in the system configuration register (GPIO_SYSCONFIG). This bit is to be used for power saving when the module is not used because of the multiplexing configuration selected at the chip level. This bit has precedence over all other internal configuration bits." id="GPIO_CTRL" offset="0x130" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Gating Ratio. Controls the clock gating for the event detection logic." end="1" id="GATINGRATIO" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="0" description="Module Disable" end="0" id="DISABLEMODULE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_OE" description="The GPIO_OE register is used to enable the pins output capabilities. At reset, all the GPIO related pins are configured as input and output capabilities are disabled. This register is not used within the module, its only function is to carry the pads configuration. When the application is using a pin as an output and does not want interrupt generation from this pin, the application can/has to properly configure the Interrupt Enable registers." id="GPIO_OE" offset="0x134" width="32">
+    
+  <bitfield begin="31" description="Output Data Enable" end="0" id="OUTPUTEN_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_DATAIN" description="The GPIO_DATAIN register is used to register the data that is read from the GPIO pins. The GPIO_DATAIN register is a read-only register. The input data is sampled synchronously with the interface clock and then captured in the GPIO_DATAIN register synchronously with the interface clock. So, after changing, GPIO pin levels are captured into this register after two interface clock cycles (the required cycles to synchronize and to write the data). When the AUTOIDLE bit in the system configuration register (GPIO_SYSCONFIG) is set, the GPIO_DATAIN read command has a 3 OCP cycle latency due to the data in sample gating mechanism. When the AUTOIDLE bit is not set, the GPIO_DATAIN read command has a 2 OCP cycle latency." id="GPIO_DATAIN" offset="0x138" width="32">
+    
+  <bitfield begin="31" description="Sampled Input Data" end="0" id="DATAIN" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_DATAOUT" description="The GPIO_DATAOUT register is used for setting the value of the GPIO output pins. Data is written to the GPIO_DATAOUT register synchronously with the interface clock. This register can be accessed with direct read/write operations or using the alternate Set/Clear feature. This feature enables to set or clear specific bits of this register with a single write access to the set data output register (GPIO_SETDATAOUT) or to the clear data output register (GPIO_CLEARDATAOUT) address. " id="GPIO_DATAOUT" offset="0x13C" width="32">
+    
+  <bitfield begin="31" description="Data to set on output pins" end="0" id="DATAOUT" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_LEVELDETECT0" description="The GPIO_LEVELDETECT0 register is used to enable/disable for each input lines the low-level (0) detection to be used for the interrupt request generation. Enabling at the same time high-level detection and low-level detection for one given pin makes a constant interrupt generator. " id="GPIO_LEVELDETECT0" offset="0x140" width="32">
+    
+  <bitfield begin="31" description="Low Level Interrupt Enable" end="0" id="LEVELDETECT0_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_LEVELDETECT1" description="The GPIO_LEVELDETECT1 register is used to enable/disable for each input lines the high-level (1) detection to be used for the interrupt request generation. Enabling at the same time high-level detection and low-level detection for one given pin makes a constant interrupt generator. " id="GPIO_LEVELDETECT1" offset="0x144" width="32">
+    
+  <bitfield begin="31" description="High Level Interrupt Enable" end="0" id="LEVELDETECT1_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_RISINGDETECT" description="The GPIO_RISINGDETECT register is used to enable/disable for each input lines the rising-edge (transition 0 to 1) detection to be used for the interrupt request generation. " id="GPIO_RISINGDETECT" offset="0x148" width="32">
+    
+  <bitfield begin="31" description="Rising Edge Interrupt Enable" end="0" id="RISINGDETECT_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_FALLINGDETECT" description="The GPIO_FALLINGDETECT register is used to enable/disable for each input lines the falling-edge (transition 1 to 0) detection to be used for the interrupt request generation." id="GPIO_FALLINGDETECT" offset="0x14C" width="32">
+    
+  <bitfield begin="31" description="Falling Edge Interrupt Enable" end="0" id="FALLINGDETECT_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_DEBOUNCENABLE" description="The GPIO_DEBOUNCENABLE register is used to enable/disable the debouncing feature for each input line." id="GPIO_DEBOUNCENABLE" offset="0x150" width="32">
+    
+  <bitfield begin="31" description="Input Debounce Enable" end="0" id="DEBOUNCEENABLE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_DEBOUNCINGTIME" description="The GPIO_DEBOUNCINGTIME register controls debouncing time (the value is global for all ports). The debouncing cell is running with the debouncing clock (32 kHz), this register represents the number of the clock cycle(s) (31 s long) to be used." id="GPIO_DEBOUNCINGTIME" offset="0x154" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="RW" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Input Debouncing Value in 31 microsecond steps. Debouncing time = (DEBOUNCETIME + 1) - 31 microseconds" end="0" id="DEBOUNCETIME" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_CLEARDATAOUT" description="Writing a 1 to a bit in the GPIO_CLEARDATAOUT register clears to 0 the corresponding bit in the GPIO_DATAOUT register; writing a 0 has no effect. A read of the GPIO_CLEARDATAOUT register returns the value of the data output register (GPIO_DATAOUT). " id="GPIO_CLEARDATAOUT" offset="0x190" width="32">
+    
+  <bitfield begin="31" description="Clear Data Output Register" end="0" id="INTLINE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIO_SETDATAOUT" description="Writing a 1 to a bit in the GPIO_SETDATAOUT register sets to 1 the corresponding bit in the GPIO_DATAOUT register; writing a 0 has no effect. A read of the GPIO_SETDATAOUT register returns the value of the data output register (GPIO_DATAOUT). " id="GPIO_SETDATAOUT" offset="0x194" width="32">
+    
+  <bitfield begin="31" description="Set Data Output Register" end="0" id="INTLINE_n" rwaccess="RW" width="32"></bitfield>
+  </register>
+</module>

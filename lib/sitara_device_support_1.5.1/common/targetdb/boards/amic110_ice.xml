@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<board 	id="ICE_AMIC110" XML_version="1" desc="ICE_AMIC110" description="AMIC110 Industrial Communications Engine (ICE)&#xA;TMDXICE110">
+    <instance XML_version="1.2" desc="AMIC110_0" href="devices/AMIC110.xml" id="AMIC110_0" xml="AMIC110.xml" xmlpath="devices"/>
+    <device HW_revision="1" XML_version="1.2" description="AMIC110 - Cortex A8 Embedded Processor" id="AMIC110_0" partnum="AMIC110" simulation="no">
+        <router HW_revision="1.0" XML_version="1.2" description="ICEPick_D Router" id="IcePick_D_0" isa="ICEPICK_D">
+            <subpath id="subpath_11">
+                <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_M3" isa="CS_DAP">
+                    <subpath id="M3_wakeupSS_sp">
+                        <cpu HW_revision="1.0" XML_version="1.2" desc="M3_wakeupSS_0" description="Cortex_M3 CPU" deviceSim="false" id="M3_wakeupSS" isa="Cortex_M3"/>
+                    </subpath>
+                </router>
+            </subpath>
+        <subpath id="subpath_12">
+                <router HW_revision="1.0" XML_version="1.2" description="CS_DAP Router" id="CS_DAP_0" isa="CS_DAP">
+                    <subpath id="ModenaSS">
+                        <cpu HW_revision="1.0" XML_version="1.2" description="Cortex_A8 CPU" id="CortexA8" isa="Cortex_A8">
+                            <property Type="filepathfield" Value="../../emulation/boards/ice_amic110/gel/iceAMIC110.gel" id="GEL File"/>
+                        </cpu>
+                    </subpath>
+                </router>
+            </subpath>
+        </router>
+    </device>
+</board>

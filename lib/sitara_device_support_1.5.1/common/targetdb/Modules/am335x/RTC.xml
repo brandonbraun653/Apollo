@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="RTC" id="RTC">
+  
+  
+  <register acronym="SECONDS_REG" description="The SECONDS_REG is used to program the required seconds value of the current time. Seconds are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent. If the seconds value is 45, then the value of SEC0 is 5 and value of SEC1 is 4." id="SECONDS_REG" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="2nd digit of seconds, Range is 0 to 5" end="4" id="SEC1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of seconds, Range is 0 to 9" end="0" id="SEC0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="MINUTES_REG" description="The MINUTES_REG is used to program the minutes value of the current time. Minutes are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent. If the minutes value is 32, then the value of MIN0 is 2 and value of MIN1 is 3." id="MINUTES_REG" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="2nd digit of minutes, Range is 0 to 5" end="4" id="MIN1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of minutes, Range is 0 to 9" end="0" id="MIN0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="HOURS_REG" description="The HOURS_REG is used to program the hours value of the current time. Hours are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent. In 24Hr time mode if you want to set the hour as 18, then HOUR0 is set as 8 and HOUR1 is set as 1." id="HOURS_REG" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Only used in PM_AM mode (otherwise 0)" end="7" id="PM_nAM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="2nd digit of hours, Range is 0 to 2" end="4" id="HOUR1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of hours, Range is 0 to 9" end="0" id="HOUR0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="DAYS_REG" description="The DAYS_REG is used to program the day of the month value of the current date. Days are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent. If the day value of the date is 28, DAY0 is set as 8 and DAY1 is set as 2." id="DAYS_REG" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="2nd digit of days, Range is 0 to 3" end="4" id="DAY1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of days, Range is 0 to 9" end="0" id="DAY0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="MONTHS_REG" description="The MONTHS_REG is used to set the month in the year value of the current date. Months are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent. Usual notation is taken for month value: 1 = January, 2 = February, continuing until 12 = December." id="MONTHS_REG" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="2nd digit of months, Range is 0 to 1" end="4" id="MONTH1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of months, Range is 0 to 9" end="0" id="MONTH0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="YEARS_REG" description="The YEARS_REG is used to program the year value of the current date. The year value is represented by only the last 2 digits and is stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent. The year 1979 is programmed as 79 with YEAR0 set as 9 and YEAR1 set as 7." id="YEARS_REG" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="2nd digit of years, Range is 0 to 9" end="4" id="YEAR1" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of years, Range is 0 to 9" end="0" id="YEAR0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="WEEKS_REG" description="The WEEKS_REG is used to program the day of the week value of the current date. The day of the week is stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent. Sunday is treated as 0, Monday 1, and ending at Saturday with 6." id="WEEKS_REG" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="1st digit of days in a week, Range from 0 (Sunday) to 6 (Saturday)" end="0" id="WEEK" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM_SECONDS_REG" description="The ALARM_SECONDS_REG is used to program the second value for the alarm interrupt. Seconds are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM_SECONDS_REG" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="2nd digit of seconds, Range is 0 to 5" end="4" id="ALARMSEC1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of seconds, Range is 0 to 9" end="0" id="ALARMSEC0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM_MINUTES_REG" description="The ALARM_MINUTES_REG is used to program the minute value for the alarm interrupt. Minutes are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM_MINUTES_REG" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="2nd digit of minutes, Range is 0 to 5" end="4" id="ALARM_MIN1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of minutes, Range is 0 to 9" end="0" id="ALARM_MIN0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM_HOURS_REG" description="The ALARM_HOURS_REG is used to program the hour value for the alarm interrupt. Hours are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM_HOURS_REG" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Only used in PM_AM mode (otherwise 0)" end="7" id="ALARM_PM_nAM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="2nd digit of hours, Range is 0 to 2" end="4" id="ALARM_HOUR1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of hours, Range is 0 to 9" end="0" id="ALARM_HOUR0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM_DAYS_REG" description="The ALARM_DAYS_REG is used to program the day of the month value for the alarm interrupt. Days are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM_DAYS_REG" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="2nd digit for days, Range from 0 to 3" end="4" id="ALARM_DAY1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="1st digit for days, Range from 0 to 9" end="0" id="ALARM_DAY0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM_MONTHS_REG" description="The ALARM_MONTHS_REG is used to program the month in the year value for the alarm interrupt. The month is stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM_MONTHS_REG" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="2nd digit of months, Range from 0 to 1" end="4" id="ALARM_MONTH1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of months, Range from 0 to 9" end="0" id="ALARM_MONTH0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM_YEARS_REG" description="The ALARM_YEARS_REG is used to program the year for the alarm interrupt. Only the last two digits are used to represent the year and is stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM_YEARS_REG" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="2nd digit of years, Range from 0 to 9" end="4" id="ALARM_YEAR1" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of years, Range from 0 to 9" end="0" id="ALARM_YEAR0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_CTRL_REG" description="The RTC_CTRL_REG contains the controls to enable/disable the RTC, set the 12/24 hour time mode, to enable the 30 second rounding feature, and to STOP/START the RTC. The SET_32_COUNTER bit must only be used when the RTC is frozen. The RTC_DISABLE bit must only be used to completely disable the RTC function. When this bit is set, the 32 kHz clock is gated and the RTC is frozen. From this point, resetting this bit to zero can lead to unexpected behavior. This bit should only be used if the RTC function is unwanted in the application, in order to save power. MODE_12_24: It is possible to switch between the two modes at any time without disturbing the RTC. Read or write is always performed with the current mode. Auto compensation is enabled by the AUTO_COMP bit. If the COMP_REG value is positive, compensation occurs after the second change event. COMP_REG cycles are removed from the next second. If the COMP_REG value is negative, compensation occurs before the second change event. COMP_REG cycles are added to the current second. This enables it to compensate with one 32-kHz period accuracy each hour. The ROUND_30S bit is a toggle bit; the ARM can only write 1 and the RTC clears it. If the ARM sets the ROUND_30S bit and then reads it, the ARM reads 1 until the round-to-the-closest-minute is performed at the next second. The ARM can stop the RTC by clearing the STOP_RTC bit (owing to internal resynchronization, the RUN bit of the status register (STATUS_REG) must be checked to ensure that the RTC is frozen), then update TC values, and re-start the RTC by resetting the STOP_RTC bit." id="RTC_CTRL_REG" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Disable RTC module and gate 32-kHz reference clock." end="6" id="RTC_DISABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Set the 32-kHz counter with the value stored in the compensation registers when the SET_32_COUNTER bit is set." end="5" id="SET_32_COUNTER" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Test mode." end="4" id="TEST_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Enable 12-hour mode for HOURS and ALARMHOURS registers." end="3" id="MODE_12_24" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Enable oscillator compensation mode." end="2" id="AUTO_COMP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Enable one-time rounding to nearest minute on next time register read." end="1" id="ROUND_30S" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Stop the RTC 32-kHz counter." end="0" id="STOP_RTC" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_STATUS_REG" description="The RTC_STATUS_REG contains bits that signal the status of interrupts, events to the processor. Status for the alarm interrupt and timer events are notified by the register. The alarm interrupt keeps its low level until the ARM writes 1 in the ALARM bit of the RTC_STATUS_REG register. ALARM2: This bit will indicate the status of the alarm interrupt. Writing a 1 to the bit clears the interrupt. ALARM: This bit will indicate the status of the alarm interrupt. Writing a 1 to the bit clears the interrupt. 1D_EVENT1: This bit will indicate if a day event has occurred. An interrupt will be generated to the processor based on the masking of the interrupt controller. 1H_EVENT1: This bit will indicate if an hour event has occurred. An interrupt will be generated to the processor based on the masking of the interrupt controller. 1M_EVENT1: This bit will indicate if a minute event has occurred. An interrupt will be generated to the processor based on the masking of the interrupt controller. 1S_EVENT1: This bit will indicate if a second event has occurred. An interrupt will be generated to the processor based on the masking of the interrupt controller. RUN: This bit will indicate if RTC is frozen or it is running. The RUN bit shows the real state of the RTC. Indeed, because the STOP_RTC signal is resynchronized on 32-kHz clock the action of this bit is delayed. BUSY: This bit will give the status of RTC module. The Time and alarm registers can be modified only when this bit is 0. The timer interrupt is a negative edge sensitive low-level pulse (1 OCP cycle duration)." id="RTC_STATUS_REG" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Indicates that an alarm2 interrupt has been generated. Software needs to wait 31 s before it clears this status to allow pmic_pwr_enable 1 ' 0 transmission." end="7" id="ALARM2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Indicates that an alarm interrupt has been generated" end="6" id="ALARM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="One day has occurred" end="5" id="_1D_EVENT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="One hour has occurred" end="4" id="_1H_EVENT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="One minute has occurred" end="3" id="_1M_EVENT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="One second has occurred" end="2" id="_1S_EVENT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="RTC is frozen or is running." end="1" id="RUN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Status of RTC module." end="0" id="BUSY" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_INTERRUPTS_REG" description="The RTC_INTERRUPTS_REG is used to enable or disable the RTC from generating interrupts. The timer interrupt and alarm interrupt can be controlled using this register. The ARM must respect the BUSY period to prevent spurious interrupt. To set a period timer interrupt, the respective period value must be set in the EVERY field. For example, to set a periodic timer interrupt for every hour, the EVERY field has to be set to 2. Along with this the IT_TIMER bit also has to be set for the periodic interrupt to be generated. IT_ALARM bit has to be set to generate an alarm interrupt." id="RTC_INTERRUPTS_REG" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Enable one interrupt when the alarm value is reached (TC ALARM2 registers) by the TC registers" end="4" id="IT_ALARM2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Enable one interrupt when the alarm value is reached (TC ALARM registers) by the TC registers" end="3" id="IT_ALARM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Enable periodic interrupt." end="2" id="IT_TIMER" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt period." end="0" id="EVERY" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_COMP_LSB_REG" description="The COMP_LSB_REG is used to program the LSB value of the 32 kHz periods to be added to the 32 kHz counter every hour. This is used to compensate the oscillator drift. The COMP_LSB_REG works together with the compensation (MSB) register (COMP_MSB_REG). The AUTOCOMP bit in the control register (CTRL_REG) must be enabled for compensation to take place. This register must be written in two's complement. That means that to add one 32-kHz oscillator period every hour, the ARM must write FFFFh into RTC_COMP_MSB_REG and RTC_COMP_LSB_REG. To remove one 32-kHz oscillator period every hour, the ARM must write 0001h into RTC_COMP_MSB_REG and RTC_COMP_LSB_REG. The 7FFFh value is forbidden." id="RTC_COMP_LSB_REG" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Indicates number of 32-kHz periods to be added into the 32-kHz counter every hour" end="0" id="RTC_COMP_LSB" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_COMP_MSB_REG" description="The COMP_MSB_REG is used to program the MSB value of the 32 kHz periods to be added to the 32 kHz counter every hour. This is used to compensate the oscillator drift. The COMP_MSB_REG works together with the compensation (LSB) register (COMP_LSB_REG) to set the hourly oscillator compensation value. The AUTOCOMP bit in the control register (CTRL_REG) must be enabled for compensation to take place. This register must be written in two's complement. That means that to add one 32-kHz oscillator period every hour, the ARM must write FFFFh into RTC_COMP_MSB_REG and RTC_COMP_LSB_REG. To remove one 32-kHz oscillator period every hour, the ARM must write 0001h into RTC_COMP_MSB_REG and RTC_COMP_LSB_REG. The 7FFFh value is forbidden." id="RTC_COMP_MSB_REG" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Indicates number of 32-kHz periods to be added into the 32-kHz counter every hour" end="0" id="RTC_COMP_MSB" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_OSC_REG" description="" id="RTC_OSC_REG" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="32-kHz clock enable post clock mux of rtc_32k_clk_rtc_32k_aux_clk and rtc_32k_clk_rtc_32k_clk" end="6" id="_32KCLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="5" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Disable the oscillator and apply high impedance to the output" end="4" id="OSC32K_GZ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="32-kHz clock source select" end="3" id="_32KCLK_SEL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="External feedback resistor" end="2" id="RES_SELECT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Inverter size adjustment" end="1" id="SW2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Inverter size adjustment" end="0" id="SW1" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_SCRATCH0_REG" description="The RTC_SCRATCH0_REG is used to hold some required values for the RTC register." id="RTC_SCRATCH0_REG" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="Scratch registers, available to program" end="0" id="RTCSCRATCH0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_SCRATCH1_REG" description="The RTC_SCRATCH1_REG is used to hold some required values for the RTC register." id="RTC_SCRATCH1_REG" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="Scratch registers, available to program" end="0" id="RTCSCRATCH1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_SCRATCH2_REG" description="The RTC_SCRATCH2_REG is used to hold some required values for the RTC register." id="RTC_SCRATCH2_REG" offset="0x68" width="32">
+    
+  <bitfield begin="31" description="Scratch registers, available to program" end="0" id="RTCSCRATCH2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="KICK0R" description="The kick registers (KICKnR) are used to enable and disable write protection on the RTC registers. Out of reset, the RTC registers are write-protected. To disable write protection, correct keys must be written to the KICKnR registers. The Kick0 register allows writing to unlock the kick0 data. To disable RTC register write protection, the value of 83E7 0B13h must be written to KICK0R, followed by the value of 95A4 F1E0h written to KICK1R. RTC register write protection is enabled when any value is written to KICK0R." id="KICK0R" offset="0x6C" width="32">
+    
+  <bitfield begin="31" description="Kick0 data" end="0" id="KICK0" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="KICK1R" description="The kick registers (KICKnR) are used to enable and disable write protection on the RTC registers. Out of reset, the RTC registers are write-protected. To disable write protection, correct keys must be written to the KICKnR registers. The Kick1 register allows writing to unlock the kick1 data and the kicker mechanism to write to other MMRs. To disable RTC register write protection, the value of 83E7 0B13h must be written to KICK0R, followed by the value of 95A4 F1E0h written to KICK1R. " id="KICK1R" offset="0x70" width="32">
+    
+  <bitfield begin="31" description="Kick1 data" end="0" id="KICK1" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_REVISION" description="" id="RTC_REVISION" offset="0x74" width="32">
+    
+  <bitfield begin="31" description="Used to distinguish between old scheme and current" end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="Function indicates a software compatible module family" end="16" id="FUNC" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="RTL Version (R)" end="11" id="R_RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major Revision" end="8" id="X_MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Indicates a special version for a particular device" end="6" id="CUSTOM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor Revision (Y)" end="0" id="Y_MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_SYSCONFIG" description="" id="RTC_SYSCONFIG" offset="0x78" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Configuration of the local target state management mode, By definition target can handle read/write transaction as long as it is out of IDLE state." end="0" id="IDLEMODE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_IRQWAKEEN" description="" id="RTC_IRQWAKEEN" offset="0x7C" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Wakeup generation for event Alarm." end="1" id="ALARM_WAKEEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Wakeup generation for event Timer." end="0" id="TIMER_WAKEEN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM2_SECONDS_REG" description="The ALARM2_SECONDS_REG is used to program the second value for the alarm2 time. Seconds are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM2_SECONDS_REG" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="2nd digit of seconds, Range is 0 to 5" end="4" id="ALARM2_SEC1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of seconds, Range is 0 to 9" end="0" id="ALARM2_SEC0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM2_MINUTES_REG" description="The ALARM2_MINUTES_REG is used to program the minute value for the alarm2 time. Minutes are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM2_MINUTES_REG" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="2nd digit of minutes, Range is 0 to 5" end="4" id="ALARM2_MIN1" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of minutes, Range is 0 to 9" end="0" id="ALARM2_MIN0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM2_HOURS_REG" description="The ALARM2_HOURS_REG is used to program the hour value for the alarm2 time. Hours are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM2_HOURS_REG" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Only used in PM_AM mode (otherwise 0)" end="7" id="ALARM2_PM_nAM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="2nd digit of hours, Range is 0 to 2" end="4" id="ALARM2_HOUR1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of hours, Range is 0 to 9" end="0" id="ALARM2_HOUR0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM2_DAYS_REG" description="The ALARM2_DAYS_REG is used to program the day of the month value for the alarm2 date. Days are stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM2_DAYS_REG" offset="0x8C" width="32">
+    
+  <bitfield begin="31" description="" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="2nd digit for days, Range from 0 to 3" end="4" id="ALARM2_DAY1" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="1st digit for days, Range from 0 to 9" end="0" id="ALARM2_DAY0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM2_MONTHS_REG" description="The ALARM2_MONTHS_REG is used to program the month in the year value for the alarm2 date. The month is stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM2_MONTHS_REG" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="2nd digit of months, Range from 0 to 1" end="4" id="ALARM2_MONTH1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of months, Range from 0 to 9" end="0" id="ALARM2_MONTH0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ALARM2_YEARS_REG" description="The ALARM2_YEARS_REG is used to program the year for the alarm2 date. Only the last two digits are used to represent the year and stored as BCD format. In BCD format, the decimal numbers 0 through 9 are encoded with their binary equivalent." id="ALARM2_YEARS_REG" offset="0x94" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="2nd digit of years, Range from 0 to 9" end="4" id="ALARM2_YEAR1" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="1st digit of years, Range from 0 to 9" end="0" id="ALARM2_YEAR0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_PMIC" description="" id="RTC_PMIC" offset="0x98" width="32">
+    
+  <bitfield begin="31" description="" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Power state machine state." end="17" id="PWR_ENABLE_SM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="16" description="Enable for PMIC_POWER_EN signal" end="16" id="PWR_ENABLE_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="External wakeup status. Write 1 to clear EXT_WAKEUP_STATUS[n] status of ext_wakeup[n]." end="12" id="EXT_WAKEUP_STATUS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="11" description="External wakeup debounce enabled. EXT_WAKEUP_DB_EN[n] controls ext_wakeup[n]" end="8" id="EXT_WAKEUP_DB_EN" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="External wakeup inputs polarity. EXT_WAKEUP_POL[n] controls ext_wakeup[n]." end="4" id="EXT_WAKEUP_POL" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Enable external wakeup inputs. EXT_WAKEUP_EN[n] controls ext_wakeup[n]." end="0" id="EXT_WAKEUP_EN" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="RTC_DEBOUNCE" description="The debounce timer uses the 32768-Hz clock. It allows choosing the timing or the accuracy of debouncing . A register receives a bit from the reference pin. You will choose the timing if you use the debouncing like a timer, or you will choose the accuracy if you use the debouncing like a real debouncing. The debouncing will be finished when the reference pin will stay the same value (defined in DEBOUNCE_REG) for a defined time." id="RTC_DEBOUNCE" offset="0x9C" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Debounce time. A value, n, other than 0 results in a debounce time of 30.52 s*(n+1)." end="0" id="DEBOUNCE_REG" rwaccess="RW" width="8"></bitfield>
+  </register>
+</module>

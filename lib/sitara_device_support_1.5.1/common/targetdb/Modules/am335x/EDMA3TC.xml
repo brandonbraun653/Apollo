@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="EDMA3TC" id="EDMA3TC">
+  
+  
+  <register acronym="PID" description="The peripheral identification register (PID) is a constant register that uniquely identifies the EDMA3TC and specific revision of the EDMA3TC." id="PID" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Peripheral identifier, value 0 to FFFF FFFFh. Reset for PID[31] to PID[16] is 0333h. Reset for PID[15] to PID[0] is 4425h." end="0" id="PID" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCCFG" description="" id="TCCFG" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Destination register FIFO depth parameterization." end="8" id="DREGDEPTH" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="6" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Bus width parameterization." end="4" id="BUSWIDTH" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="" end="3" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="FIFO size" end="0" id="FIFOSIZE" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCSTAT" description="" id="TCSTAT" offset="0x100" width="32">
+    
+  <bitfield begin="31" description="" end="14" id="Reserved1" rwaccess="R" width="18"></bitfield>
+    
+  <bitfield begin="13" description="Destination FIFO start pointer. Represents the offset to the head entry of the destination register FIFO, in units of entries. Value 0 to 3h." end="12" id="DFSTRTPTR" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="11" description="" end="9" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="8" description="" end="8" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Destination active state. Specifies the number of transfer requests (TRs) that are resident in the destination register FIFO at a given instant. This bit field can be primarily used for advanced debugging. Legal values are constrained by the destination register FIFO depth parameterization (DSTREGDEPTH) parameter." end="4" id="DSTACTV" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="3" description="" end="3" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Write status active" end="2" id="WSACTV" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Source active state" end="1" id="SRCACTV" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Program register set busy" end="0" id="PROGBUSY" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ERRSTAT" description="" id="ERRSTAT" offset="0x120" width="32">
+    
+  <bitfield begin="31" description="" end="4" id="Reserved1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="MMR address error." end="3" id="MMRAERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Transfer request (TR) error event." end="2" id="TRERR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="" end="1" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Bus error event." end="0" id="BUSERR" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ERREN" description="When any of the enable bits are set, a bit set in the corresponding ERRSTAT causes an assertion of the EDMA3TC interrupt." id="ERREN" offset="0x124" width="32">
+    
+  <bitfield begin="31" description="" end="4" id="Reserved1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt enable for MMR address error (MMRAERR)." end="3" id="MMRAERR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt enable for transfer request error (TRERR)." end="2" id="TRERR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="" end="1" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt enable for bus error (BUSERR)." end="0" id="BUSERR" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ERRCLR" description="" id="ERRCLR" offset="0x128" width="32">
+    
+  <bitfield begin="31" description="" end="4" id="Reserved1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt enable clear for the MMRAERR bit in the error status register (ERRSTAT)." end="3" id="MMRAERR" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt enable clear for the TRERR bit in the error status register (ERRSTAT)." end="2" id="TRERR" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="1" description="" end="1" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt clear for the BUSERR bit in the error status register (ERRSTAT)." end="0" id="BUSERR" rwaccess="W" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ERRDET" description="" id="ERRDET" offset="0x12C" width="32">
+    
+  <bitfield begin="31" description="" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Transfer completion chaining enable. Contains the TCCHEN value in the channel options parameter (OPT) programmed by the channel controller for the read or write transaction that resulted in an error." end="17" id="TCCHEN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Transfer completion interrupt enable. Contains the TCINTEN value in the channel options parameter (OPT) programmed by the channel controller for the read or write transaction that resulted in an error." end="16" id="TCINTEN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Transfer complete code. Contains the TCC value in the channel options parameter (OPT) programmed by the channel controller for the read or write transaction that resulted in an error." end="8" id="TCC" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="7" description="" end="4" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Transaction status. Stores the nonzero status/error code that was detected on the read status or write status bus. If read status and write status are returned on the same cycle, then the EDMA3TC chooses nonzero version. If both are nonzero, then the write status is treated as higher priority." end="0" id="STAT" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="ERRCMD" description="" id="ERRCMD" offset="0x130" width="32">
+    
+  <bitfield begin="31" description="" end="2" id="Reserved1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="" end="1" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Error evaluate" end="0" id="EVAL" rwaccess="W" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RDRATE" description="The EDMA3 transfer controller issues read commands at a rate controlled by the read rate register (RDRATE). The RDRATE defines the number of idle cycles that the read controller must wait before issuing subsequent commands. This applies both to commands within a transfer request packet (TRP) and for commands that are issued for different transfer requests (TRs). For instance, if RDRATE is set to 4 cycles between reads, there are 3 inactive cycles between reads. RDRATE allows flexibility in transfer controller access requests to an endpoint. For an application, RDRATE can be manipulated to slow down the access rate, so that the endpoint may service requests from other masters during the inactive EDMA3TC cycles. Note: The RDRATE value for a transfer controller is expected to be static, as it is decided based on the application requirement. It is not recommended to change the RDRATE value on the fly." id="RDRATE" offset="0x140" width="32">
+    
+  <bitfield begin="31" description="" end="3" id="Reserved1" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Read rate. Controls the number of cycles between read commands. This is a global setting that applies to all TRs for this EDMA3TC." end="0" id="RDRATE" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="SAOPT" description="The Source Active Options Register (SAOPT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SAOPT" offset="0x240" width="32">
+    
+  <bitfield begin="31" description="" end="23" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="22" description="Transfer complete chaining enable" end="22" id="TCCHEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="" end="21" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Transfer complete interrupt enable." end="20" id="TCINTEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="" end="18" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Transfer complete code. This 6 bit code is used to set the relevant bit in CER or IPR of the EDMA3PCC module." end="12" id="TCC" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="11" description="" end="11" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="FIFO width. Applies if either SAM or DAM is set to constant addressing mode." end="8" id="FWID" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Transfer priority. Reflects the values programmed in the QUEPRI register in the EDMACC." end="4" id="PRI" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved6" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Destination address mode within an array" end="1" id="DAM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Source address mode within an array" end="0" id="SAM" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="SASRC" description="The Source Active Source Address Register (SASRC) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SASRC" offset="0x244" width="32">
+    
+  <bitfield begin="31" description="Source address for program register set. EDMA3TC updates value according to source addressing mode (SAM bit in the source active options register, SAOPT). Value 0 to FFFFh." end="0" id="SADDR" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SACNT" description="The Source Active Count Register (SACNT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SACNT" offset="0x248" width="32">
+    
+  <bitfield begin="31" description="B dimension count. Number of arrays to be transferred, where each array is ACNT in length. It is decremented after each read command appropriately. Represents the amount of data remaining to be read. It should be 0 when transfer request (TR) is complete. Value 0 to FFFFh." end="16" id="BCNT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="A dimension count. Number of bytes to be transferred in first dimension. It is decremented after each read command appropriately. Represents the amount of data remaining to be read. It should be 0 when transfer request (TR) is complete. Value 0 to FFFFh." end="0" id="ACNT" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="SADST" description="The Source Active Destination Address Register (SADST) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SADST" offset="0x24C" width="32">
+    
+  <bitfield begin="31" description="" end="0" id="Reserved1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SABIDX" description="The Source Active Source B-Dimension Index Register (SABIDX) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SABIDX" offset="0x250" width="32">
+    
+  <bitfield begin="31" description="B-Index offset between destination arrays. Represents the offset in bytes between the starting address of each destination. Always reads as 0." end="16" id="DBIDX" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="B-Index offset between source arrays. Represents the offset in bytes between the starting address of each source array. Value 0 to FFFFh." end="0" id="SBIDX" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="SAMPPRXY" description="The Source Active Memory Protection Proxy Register (SAMPPRXY) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SAMPPRXY" offset="0x254" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Privilege level. The privilege level used by the host to set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. The privilege ID is used while issuing read and write command to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIV of the host that set up the DMA transaction." end="8" id="PRIV" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="4" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Privilege ID. This contains the privilege ID of the host that set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. This PRIVID value is used while issuing read and write commands to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIVID of the host that set up the DMA transaction. Value 0 to Fh." end="0" id="PRIVID" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="SACNTRLD" description="The Source Active Count Reload Register (SACNTRLD) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SACNTRLD" offset="0x258" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="A-count reload value. Represents the originally programmed value of ACNT. The reload value is used to reinitialize ACNT after each array is serviced. Value 0 to FFFFh." end="0" id="ACNTRLD" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="SASRCBREF" description="The Source Active Source Address B-Reference Register (SASRCBREF) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SASRCBREF" offset="0x25C" width="32">
+    
+  <bitfield begin="31" description="Source address B-reference. Represents the starting address for the array currently being read. Value 0 to FFFF FFFFh." end="0" id="SADDRBREF" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SADSTBREF" description="The Source Active Destination Address B-Reference Register (SADSTBREF) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="SADSTBREF" offset="0x260" width="32">
+    
+  <bitfield begin="31" description="" end="0" id="Reserved1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFCNTRLD" description="The Destination FIFO Count Reload Register (DFCNTRLD) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFCNTRLD" offset="0x280" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="A-count reload value. Represents the originally programmed value of ACNT. The reload value is used to reinitialize ACNT after each array is serviced. Value 0 to FFFFh." end="0" id="ACNTRLD" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFSRCBREF" description="The Destination FIFO Source Address B-Reference Register (DFSRCBREF) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFSRCBREF" offset="0x284" width="32">
+    
+  <bitfield begin="31" description="" end="0" id="Reserved1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFDSTBREF" description="The Destination FIFO Destination Address B-Reference Register (DFDSTBREF) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFDSTBREF" offset="0x288" width="32">
+    
+  <bitfield begin="31" description="Destination address reference for the destination FIFO register set. Represents the starting address for the array currently being written. Value 0 to FFFF FFFFh." end="0" id="DADDRBREF" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFOPT0" description="The Destination FIFO Options Register (DFOPT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFOPT0" offset="0x300" width="32">
+    
+  <bitfield begin="31" description="" end="23" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="22" description="Transfer complete chaining enable" end="22" id="TCCHEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="" end="21" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Transfer complete interrupt enable." end="20" id="TCINTEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="" end="18" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Transfer complete code. This 6 bit code is used to set the relevant bit in CER or IPR of the EDMA3PCC module." end="12" id="TCC" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="11" description="" end="11" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="FIFO width. Applies if either SAM or DAM is set to constant addressing mode." end="8" id="FWID" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Transfer priority" end="4" id="PRI" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved6" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Destination address mode within an array" end="1" id="DAM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Source address mode within an array" end="0" id="SAM" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFSRC0" description="The Destination FIFO Source Address Register (DFSRC) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFSRC0" offset="0x304" width="32">
+    
+  <bitfield begin="31" description="" end="0" id="Reserved1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFCNT0" description="The Destination FIFO Count Register (DFCNT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFCNT0" offset="0x308" width="32">
+    
+  <bitfield begin="31" description="B-dimension count. Number of arrays to be transferred, where each array is ACNT in length. Count/count remaining for destination register set. Represents the amount of data remaining to be written. Value 0 to FFFFh." end="16" id="BCNT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="A-dimension count. Number of bytes to be transferred in first dimension count/count remaining for destination register set. Represents the amount of data remaining to be written. Value 0 to FFFFh." end="0" id="ACNT" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFDST0" description="The Destination FIFO Destination Address Register (DFDST) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFDST0" offset="0x30C" width="32">
+    
+  <bitfield begin="31" description="Destination address for the destination FIFO register set. When a transfer request (TR) is complete, the final value should be the address of the last write command issued." end="0" id="DADDR" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFBIDX0" description="The Destination FIFO B-Index Register (DFBIDX) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFBIDX0" offset="0x310" width="32">
+    
+  <bitfield begin="31" description="B-Index offset between destination arrays. Represents the offset in bytes between the starting address of each destination. Value 0 to FFFFh." end="16" id="DBIDX" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Always read as 0." end="0" id="SBIDX" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFMPPRXY0" description="The Destination FIFO Memory Protection Proxy Register (DFMPPRXY) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFMPPRXY0" offset="0x314" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Privilege level. This contains the Privilege level used by the EDMA3 programmer to set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. The privilege ID is used while issuing read and write command to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIV of the host that set up the DMA transaction." end="8" id="PRIV" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="4" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Privilege ID. This contains the Privilege ID of the EDMA3 programmer that set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. This PRIVID value is used while issuing read and write commands to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIVID of the host that set up the DMA transaction. Value 0 to Fh." end="0" id="PRIVID" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFOPT1" description="The Destination FIFO Options Register (DFOPT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFOPT1" offset="0x340" width="32">
+    
+  <bitfield begin="31" description="" end="23" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="22" description="Transfer complete chaining enable" end="22" id="TCCHEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="" end="21" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Transfer complete interrupt enable." end="20" id="TCINTEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="" end="18" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Transfer complete code. This 6 bit code is used to set the relevant bit in CER or IPR of the EDMA3PCC module." end="12" id="TCC" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="11" description="" end="11" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="FIFO width. Applies if either SAM or DAM is set to constant addressing mode." end="8" id="FWID" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Transfer priority" end="4" id="PRI" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved6" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Destination address mode within an array" end="1" id="DAM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Source address mode within an array" end="0" id="SAM" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFSRC1" description="The Destination FIFO Source Address Register (DFSRC) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFSRC1" offset="0x344" width="32">
+    
+  <bitfield begin="31" description="" end="0" id="Reserved1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFCNT1" description="The Destination FIFO Count Register (DFCNT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFCNT1" offset="0x348" width="32">
+    
+  <bitfield begin="31" description="B-dimension count. Number of arrays to be transferred, where each array is ACNT in length. Count/count remaining for destination register set. Represents the amount of data remaining to be written. Value 0 to FFFFh." end="16" id="BCNT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="A-dimension count. Number of bytes to be transferred in first dimension count/count remaining for destination register set. Represents the amount of data remaining to be written. Value 0 to FFFFh." end="0" id="ACNT" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFDST1" description="The Destination FIFO Destination Address Register (DFDST) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFDST1" offset="0x34C" width="32">
+    
+  <bitfield begin="31" description="Destination address for the destination FIFO register set. When a transfer request (TR) is complete, the final value should be the address of the last write command issued." end="0" id="DADDR" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFBIDX1" description="The Destination FIFO B-Index Register (DFBIDX) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFBIDX1" offset="0x350" width="32">
+    
+  <bitfield begin="31" description="B-Index offset between destination arrays. Represents the offset in bytes between the starting address of each destination. Value 0 to FFFFh." end="16" id="DBIDX" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Always read as 0." end="0" id="SBIDX" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFMPPRXY1" description="The Destination FIFO Memory Protection Proxy Register (DFMPPRXY) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFMPPRXY1" offset="0x354" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Privilege level. This contains the Privilege level used by the EDMA3 programmer to set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. The privilege ID is used while issuing read and write command to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIV of the host that set up the DMA transaction." end="8" id="PRIV" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="4" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Privilege ID. This contains the Privilege ID of the EDMA3 programmer that set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. This PRIVID value is used while issuing read and write commands to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIVID of the host that set up the DMA transaction. Value 0 to Fh." end="0" id="PRIVID" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFOPT2" description="The Destination FIFO Options Register (DFOPT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFOPT2" offset="0x380" width="32">
+    
+  <bitfield begin="31" description="" end="23" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="22" description="Transfer complete chaining enable" end="22" id="TCCHEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="" end="21" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Transfer complete interrupt enable." end="20" id="TCINTEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="" end="18" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Transfer complete code. This 6 bit code is used to set the relevant bit in CER or IPR of the EDMA3PCC module." end="12" id="TCC" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="11" description="" end="11" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="FIFO width. Applies if either SAM or DAM is set to constant addressing mode." end="8" id="FWID" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Transfer priority" end="4" id="PRI" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved6" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Destination address mode within an array" end="1" id="DAM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Source address mode within an array" end="0" id="SAM" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFSRC2" description="The Destination FIFO Source Address Register (DFSRC) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFSRC2" offset="0x384" width="32">
+    
+  <bitfield begin="31" description="" end="0" id="Reserved1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFCNT2" description="The Destination FIFO Count Register (DFCNT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFCNT2" offset="0x388" width="32">
+    
+  <bitfield begin="31" description="B-dimension count. Number of arrays to be transferred, where each array is ACNT in length. Count/count remaining for destination register set. Represents the amount of data remaining to be written. Value 0 to FFFFh." end="16" id="BCNT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="A-dimension count. Number of bytes to be transferred in first dimension count/count remaining for destination register set. Represents the amount of data remaining to be written. Value 0 to FFFFh." end="0" id="ACNT" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFDST2" description="The Destination FIFO Destination Address Register (DFDST) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFDST2" offset="0x38C" width="32">
+    
+  <bitfield begin="31" description="Destination address for the destination FIFO register set. When a transfer request (TR) is complete, the final value should be the address of the last write command issued." end="0" id="DADDR" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFBIDX2" description="The Destination FIFO B-Index Register (DFBIDX) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFBIDX2" offset="0x390" width="32">
+    
+  <bitfield begin="31" description="B-Index offset between destination arrays. Represents the offset in bytes between the starting address of each destination. Value 0 to FFFFh." end="16" id="DBIDX" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Always read as 0." end="0" id="SBIDX" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFMPPRXY2" description="The Destination FIFO Memory Protection Proxy Register (DFMPPRXY) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFMPPRXY2" offset="0x394" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Privilege level. This contains the Privilege level used by the EDMA3 programmer to set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. The privilege ID is used while issuing read and write command to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIV of the host that set up the DMA transaction." end="8" id="PRIV" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="4" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Privilege ID. This contains the Privilege ID of the EDMA3 programmer that set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. This PRIVID value is used while issuing read and write commands to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIVID of the host that set up the DMA transaction. Value 0 to Fh." end="0" id="PRIVID" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFOPT3" description="The Destination FIFO Options Register (DFOPT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFOPT3" offset="0x3C0" width="32">
+    
+  <bitfield begin="31" description="" end="23" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="22" description="Transfer complete chaining enable" end="22" id="TCCHEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="" end="21" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Transfer complete interrupt enable." end="20" id="TCINTEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="" end="18" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Transfer complete code. This 6 bit code is used to set the relevant bit in CER or IPR of the EDMA3PCC module." end="12" id="TCC" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="11" description="" end="11" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="FIFO width. Applies if either SAM or DAM is set to constant addressing mode." end="8" id="FWID" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Transfer priority" end="4" id="PRI" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved6" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Destination address mode within an array" end="1" id="DAM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Source address mode within an array" end="0" id="SAM" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFSRC3" description="The Destination FIFO Source Address Register (DFSRC) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFSRC3" offset="0x3C4" width="32">
+    
+  <bitfield begin="31" description="" end="0" id="Reserved1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFCNT3" description="The Destination FIFO Count Register (DFCNT) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFCNT3" offset="0x3C8" width="32">
+    
+  <bitfield begin="31" description="B-dimension count. Number of arrays to be transferred, where each array is ACNT in length. Count/count remaining for destination register set. Represents the amount of data remaining to be written. Value 0 to FFFFh." end="16" id="BCNT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="A-dimension count. Number of bytes to be transferred in first dimension count/count remaining for destination register set. Represents the amount of data remaining to be written. Value 0 to FFFFh." end="0" id="ACNT" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFDST3" description="The Destination FIFO Destination Address Register (DFDST) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFDST3" offset="0x3CC" width="32">
+    
+  <bitfield begin="31" description="Destination address for the destination FIFO register set. When a transfer request (TR) is complete, the final value should be the address of the last write command issued." end="0" id="DADDR" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFBIDX3" description="The Destination FIFO B-Index Register (DFBIDX) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFBIDX3" offset="0x3D0" width="32">
+    
+  <bitfield begin="31" description="B-Index offset between destination arrays. Represents the offset in bytes between the starting address of each destination. Value 0 to FFFFh." end="16" id="DBIDX" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Always read as 0." end="0" id="SBIDX" rwaccess="R" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="DFMPPRXY3" description="The Destination FIFO Memory Protection Proxy Register (DFMPPRXY) is an EDMA3TC channel register. The EDMA3TC channel registers are split into three parts: the programming registers, the source active registers, and the destination FIFO register. The program register set is programmed by the channel controller, and is for internal use. The other two sets are read-only and provided to facilitate advanced debug capabilities. The number of destination FIFO register sets depends on the destination FIFO depth. TC0 has a FIFO depth of 2, so there are two sets of destination FIFO registers associated with TC0. TC1, TC2, and TC3 have a destination FIFO depth of 4, so there are four sets of destination FIFO registers for each of these transfer controllers." id="DFMPPRXY3" offset="0x3D4" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Privilege level. This contains the Privilege level used by the EDMA3 programmer to set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. The privilege ID is used while issuing read and write command to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIV of the host that set up the DMA transaction." end="8" id="PRIV" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="4" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Privilege ID. This contains the Privilege ID of the EDMA3 programmer that set up the parameter entry in the channel controller. This field is set up when the associated TR is submitted to the EDMA3TC. This PRIVID value is used while issuing read and write commands to the target endpoints so that the target endpoints can perform memory protection checks based on the PRIVID of the host that set up the DMA transaction. Value 0 to Fh." end="0" id="PRIVID" rwaccess="R" width="4"></bitfield>
+  </register>
+</module>

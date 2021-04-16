@@ -1,0 +1,1552 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="CM_PER" id="CM_PER">
+  
+  
+  <register acronym="CM_PER_L4LS_CLKSTCTRL" description="This register enables the domain power state transition. It controls the SW supervised clock domain state transition between ON-PER and ON-INPER states. It also hold one status bit per clock input of the domain." id="CM_PER_L4LS_CLKSTCTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="29" id="Reserved5" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="This field indicates the state of the TIMER6 CLKTIMER  clock in the domain." end="28" id="CLKACTIVITY_TIMER6_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="27" description="This field indicates the state of the TIMER5 CLKTIMER  clock in the domain." end="27" id="CLKACTIVITY_TIMER5_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="26" description="Reserved." end="26" id="Reserved6" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="This field indicates the state of the SPI_GCLK  clock in the domain." end="25" id="CLKACTIVITY_SPI_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="24" description="This field indicates the state of the I2C _FCLK  clock in the domain." end="24" id="CLKACTIVITY_I2C_FCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="23" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Reserved." end="22" id="Reserved7" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="This field indicates the state of the GPIO3_GDBCLK  clock in the domain." end="21" id="CLKACTIVITY_GPIO_3_GDBCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="20" description="This field indicates the state of the GPIO2_ GDBCLK clock in the domain." end="20" id="CLKACTIVITY_GPIO_2_GDBCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="19" description="This field indicates the state of the GPIO1_GDBCLK  clock in the domain." end="19" id="CLKACTIVITY_GPIO_1_GDBCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="18" description="Reserved." end="18" id="Reserved8" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="This field indicates the state of the LCD clock in the domain." end="17" id="CLKACTIVITY_LCDC_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="16" description="This field indicates the state of the TIMER4 CLKTIMER  clock in the domain." end="16" id="CLKACTIVITY_TIMER4_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="This field indicates the state of the TIMER3 CLKTIMER  clock in the domain." end="15" id="CLKACTIVITY_TIMER3_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="This field indicates the state of the TIMER2 CLKTIMER  clock in the domain." end="14" id="CLKACTIVITY_TIMER2_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="This field indicates the state of the TIMER7 CLKTIMER  clock in the domain." end="13" id="CLKACTIVITY_TIMER7_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Reserved" end="12" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="11" description="This field indicates the state of the CAN_CLK clock in the domain." end="11" id="CLKACTIVITY_CAN_CLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="This field indicates the state of the UART_GFCLK  clock in the domain." end="10" id="CLKACTIVITY_UART_GFCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Reserved" end="9" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This field indicates the state of the L4LS_GCLK  clock in the domain." end="8" id="CLKACTIVITY_L4LS_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="2" id="Reserved" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the L4 SLOW clock domain in PER power domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L3S_CLKSTCTRL" description="This register  enables  the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_L3S_CLKSTCTRL" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="26" id="Reserved1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="25" description="Reserved" end="11" id="Reserved2" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="10" description="Reserved" end="10" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Reserved" end="9" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Reserved" end="8" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="5" id="Reserved" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Reserved" end="4" id="Reserved6" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="This field indicates the state of the  L3S_GCLK clock in the domain." end="3" id="CLKACTIVITY_L3S_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Reserved" end="2" id="Reserved7" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the L3 Slow clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L4FW_CLKSTCTRL" description="This register enables the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_L4FW_CLKSTCTRL" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="26" id="Reserved1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="25" description="Reserved" end="11" id="Reserved2" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="10" description="Reserved" end="10" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Reserved" end="9" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This field indicates the state of the L4FW clock  in the domain." end="8" id="CLKACTIVITY_L4FW_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="2" id="Reserved" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the L4 Firewall clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="" id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L3_CLKSTCTRL" description="This register  enables  the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_L3_CLKSTCTRL" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="This field indicates the state of the  MCASP_GCLK clock in the domain." end="7" id="CLKACTIVITY_MCASP_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="This field indicates the state of the  CLKACTIVITY_CPTS_RFT_GCLK clock in the domain." end="6" id="CLKACTIVITY_CPTS_RFT_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Reserved" end="5" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the  L3_GCLK clock in the domain." end="4" id="CLKACTIVITY_L3_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="This field indicates the state of the  MMC_GCLK clock in the domain." end="3" id="CLKACTIVITY_MMC_FCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="This field indicates the state of the  EMIF_GCLK clock in the domain." end="2" id="CLKACTIVITY_EMIF_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the L3 clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_CPGMAC0_CLKCTRL" description="This register manages the CPSW clocks." id="CM_PER_CPGMAC0_CLKCTRL" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status. This bit is warm reset insensitive when CPSW RESET_ISO is enabled" end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status. This bit is warm reset insensitive when CPSW RESET_ISO is enabled" end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed. This bit is warm reset insensitive when CPSW RESET_ISO is enabled" end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_LCDC_CLKCTRL" description="This register manages the LCD clocks." id="CM_PER_LCDC_CLKCTRL" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_USB0_CLKCTRL" description="This register manages the USB clocks." id="CM_PER_USB0_CLKCTRL" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TPTC0_CLKCTRL" description="This register manages the TPTC clocks." id="CM_PER_TPTC0_CLKCTRL" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_EMIF_CLKCTRL" description="This register manages the EMIF clocks." id="CM_PER_EMIF_CLKCTRL" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_OCMCRAM_CLKCTRL" description="This register manages the OCMC clocks." id="CM_PER_OCMCRAM_CLKCTRL" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_GPMC_CLKCTRL" description="This register manages the GPMC clocks." id="CM_PER_GPMC_CLKCTRL" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_MCASP0_CLKCTRL" description="This register manages the MCASP0 clocks." id="CM_PER_MCASP0_CLKCTRL" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_UART5_CLKCTRL" description="This register manages the UART5 clocks." id="CM_PER_UART5_CLKCTRL" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_MMC0_CLKCTRL" description="This register manages the MMC0 clocks." id="CM_PER_MMC0_CLKCTRL" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_ELM_CLKCTRL" description="This register manages the ELM clocks." id="CM_PER_ELM_CLKCTRL" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_I2C2_CLKCTRL" description="This register manages the I2C2 clocks." id="CM_PER_I2C2_CLKCTRL" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_I2C1_CLKCTRL" description="This register manages the I2C1 clocks." id="CM_PER_I2C1_CLKCTRL" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_SPI0_CLKCTRL" description="This register manages the SPI0 clocks." id="CM_PER_SPI0_CLKCTRL" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_SPI1_CLKCTRL" description="This register manages the SPI1 clocks." id="CM_PER_SPI1_CLKCTRL" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L4LS_CLKCTRL" description="This register manages the L4LS clocks." id="CM_PER_L4LS_CLKCTRL" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L4FW_CLKCTRL" description="This register manages the L4FW clocks." id="CM_PER_L4FW_CLKCTRL" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_MCASP1_CLKCTRL" description="This register manages the MCASP1 clocks." id="CM_PER_MCASP1_CLKCTRL" offset="0x68" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_UART1_CLKCTRL" description="This register manages the UART1 clocks." id="CM_PER_UART1_CLKCTRL" offset="0x6C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_UART2_CLKCTRL" description="This register manages the UART2 clocks." id="CM_PER_UART2_CLKCTRL" offset="0x70" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_UART3_CLKCTRL" description="This register manages the UART3 clocks." id="CM_PER_UART3_CLKCTRL" offset="0x74" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_UART4_CLKCTRL" description="This register manages the UART4 clocks." id="CM_PER_UART4_CLKCTRL" offset="0x78" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TIMER7_CLKCTRL" description="This register manages the TIMER7 clocks." id="CM_PER_TIMER7_CLKCTRL" offset="0x7C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TIMER2_CLKCTRL" description="This register manages the TIMER2 clocks." id="CM_PER_TIMER2_CLKCTRL" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TIMER3_CLKCTRL" description="This register manages the TIMER3 clocks." id="CM_PER_TIMER3_CLKCTRL" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TIMER4_CLKCTRL" description="This register manages the TIMER4 clocks." id="CM_PER_TIMER4_CLKCTRL" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_GPIO1_CLKCTRL" description="This register manages the GPIO1 clocks." id="CM_PER_GPIO1_CLKCTRL" offset="0xAC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Optional functional clock control." end="18" id="OPTFCLKEN_GPIO_1_GDBCLK" rwaccess="RW" width="1">
+    <bitenum description="Optional functional clock is disabled" id="FCLK_DIS" token="FCLK_DIS" value="0"></bitenum>
+    <bitenum description="Optional functional clock is enabled" id="FCLK_EN" token="FCLK_EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guaranteed to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_GPIO2_CLKCTRL" description="This register manages the GPIO2 clocks." id="CM_PER_GPIO2_CLKCTRL" offset="0xB0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Optional functional clock control." end="18" id="OPTFCLKEN_GPIO_2_GDBCLK" rwaccess="RW" width="1">
+    <bitenum description="Optional functional clock is disabled" id="FCLK_DIS" token="FCLK_DIS" value="0"></bitenum>
+    <bitenum description="Optional functional clock is enabled" id="FCLK_EN" token="FCLK_EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_GPIO3_CLKCTRL" description="This register manages the GPIO3 clocks." id="CM_PER_GPIO3_CLKCTRL" offset="0xB4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Optional functional clock control." end="18" id="OPTFCLKEN_GPIO_3_GDBCLK" rwaccess="RW" width="1">
+    <bitenum description="Optional functional clock is disabled" id="FCLK_DIS" token="FCLK_DIS" value="0"></bitenum>
+    <bitenum description="Optional functional clock is enabled" id="FCLK_EN" token="FCLK_EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TPCC_CLKCTRL" description="This register manages the TPCC clocks." id="CM_PER_TPCC_CLKCTRL" offset="0xBC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_DCAN0_CLKCTRL" description="This register manages the DCAN0 clocks." id="CM_PER_DCAN0_CLKCTRL" offset="0xC0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_DCAN1_CLKCTRL" description="This register manages the DCAN1 clocks." id="CM_PER_DCAN1_CLKCTRL" offset="0xC4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_EPWMSS1_CLKCTRL" description="This register manages the PWMSS1 clocks." id="CM_PER_EPWMSS1_CLKCTRL" offset="0xCC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_EMIF_FW_CLKCTRL" description="This register manages the EMIF Firewall clocks." id="CM_PER_EMIF_FW_CLKCTRL" offset="0xD0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_EPWMSS0_CLKCTRL" description="This register manages the PWMSS0 clocks." id="CM_PER_EPWMSS0_CLKCTRL" offset="0xD4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_EPWMSS2_CLKCTRL" description="This register manages the PWMSS2 clocks." id="CM_PER_EPWMSS2_CLKCTRL" offset="0xD8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L3_INSTR_CLKCTRL" description="This register manages the L3 INSTR clocks." id="CM_PER_L3_INSTR_CLKCTRL" offset="0xDC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L3_CLKCTRL" description="This register manages the L3 Interconnect clocks." id="CM_PER_L3_CLKCTRL" offset="0xE0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_IEEE5000_CLKCTRL" description="This register manages the IEEE1500 clocks." id="CM_PER_IEEE5000_CLKCTRL" offset="0xE4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_PRU_ICSS_CLKCTRL" description="This register manages the PRU-ICSS clocks." id="CM_PER_PRU_ICSS_CLKCTRL" offset="0xE8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TIMER5_CLKCTRL" description="This register manages the TIMER5 clocks." id="CM_PER_TIMER5_CLKCTRL" offset="0xEC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TIMER6_CLKCTRL" description="This register manages the TIMER6 clocks." id="CM_PER_TIMER6_CLKCTRL" offset="0xF0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_MMC1_CLKCTRL" description="This register manages the MMC1 clocks." id="CM_PER_MMC1_CLKCTRL" offset="0xF4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_MMC2_CLKCTRL" description="This register manages the MMC2 clocks." id="CM_PER_MMC2_CLKCTRL" offset="0xF8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TPTC1_CLKCTRL" description="This register manages the TPTC1 clocks." id="CM_PER_TPTC1_CLKCTRL" offset="0xFC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_TPTC2_CLKCTRL" description="This register manages the TPTC2 clocks." id="CM_PER_TPTC2_CLKCTRL" offset="0x100" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_SPINLOCK_CLKCTRL" description="This register manages the SPINLOCK clocks." id="CM_PER_SPINLOCK_CLKCTRL" offset="0x10C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_MAILBOX0_CLKCTRL" description="This register manages the MAILBOX0 clocks." id="CM_PER_MAILBOX0_CLKCTRL" offset="0x110" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L4HS_CLKSTCTRL" description="This register  enables  the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_L4HS_CLKSTCTRL" offset="0x11C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="This field indicates the state of the  CPSW_5MHZ_GCLK clock in the domain." end="6" id="CLKACTIVITY_CPSW_5MHZ_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="This field indicates the state of the  CPSW_50MHZ_GCLK clock in the domain." end="5" id="CLKACTIVITY_CPSW_50MHZ_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the  CPSW_250MHZ_GCLK clock in the domain." end="4" id="CLKACTIVITY_CPSW_250MHZ_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="This field indicates the state of the  L4HS_GCLK clock in the domain." end="3" id="CLKACTIVITY_L4HS_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Reserved" end="2" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the L4 Fast clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_L4HS_CLKCTRL" description="This register manages the L4 Fast clocks." id="CM_PER_L4HS_CLKCTRL" offset="0x120" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_OCPWP_L3_CLKSTCTRL" description="This register  enables  the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_OCPWP_L3_CLKSTCTRL" offset="0x12C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="This field indicates the state of the  OCPWP L4 clock in the domain." end="5" id="CLKACTIVITY_OCPWP_L4_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the  OCPWP L3 clock in the domain." end="4" id="CLKACTIVITY_OCPWP_L3_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="2" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the OCPWP clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_OCPWP_CLKCTRL" description="This register manages the OCPWP clocks." id="CM_PER_OCPWP_CLKCTRL" offset="0x130" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_PRU_ICSS_CLKSTCTRL" description="This register  enables  the clock domain state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_PRU_ICSS_CLKSTCTRL" offset="0x140" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="This field indicates the state of the  PRU-ICSS UART clock in the domain." end="6" id="CLKACTIVITY_PRU_ICSS_UART_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="This field indicates the state of the  PRU-ICSS IEP clock in the domain." end="5" id="CLKACTIVITY_PRU_ICSS_IEP_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the  PRU-ICSS OCP clock in the domain." end="4" id="CLKACTIVITY_PRU_ICSS_OCP_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="2" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the PRU-ICSS OCP clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_CPSW_CLKSTCTRL" description="This register  enables  the clock domain state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_CPSW_CLKSTCTRL" offset="0x144" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the  CPSW 125 MHz OCP clock in the domain." end="4" id="CLKACTIVITY_CPSW_125MHz_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="2" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the CPSW OCP clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_LCDC_CLKSTCTRL" description="This register  enables  the clock domain state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_LCDC_CLKSTCTRL" offset="0x148" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="This field indicates the state of the  LCDC L4 OCP clock in the domain." end="5" id="CLKACTIVITY_LCDC_L4_OCP_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the  LCDC L3 OCP clock in the domain." end="4" id="CLKACTIVITY_LCDC_L3_OCP_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="2" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the LCDC OCP clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_CLKDIV32K_CLKCTRL" description="This register manages the CLKDIV32K clocks." id="CM_PER_CLKDIV32K_CLKCTRL" offset="0x14C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_PER_CLK_24MHZ_CLKSTCTRL" description="This register  enables  the clock domain state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_PER_CLK_24MHZ_CLKSTCTRL" offset="0x150" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the  24MHz clock in the domain." end="4" id="CLKACTIVITY_CLK_24MHZ_GCLK" rwaccess="R" width="1">
+    <bitenum description="" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="2" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the 24MHz clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+</module>

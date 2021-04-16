@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="PRM_IRQ" id="PRM_IRQ">
+  
+  
+  <register acronym="REVISION_PRM" description="This register contains the IP revision code for the PRCM" id="REVISION_PRM" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reads returns 0." end="8" id="reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="IP revision [7:4] Major revision [3:0] Minor revision Examples: 0x10 for 1.0, 0x21 for 2.1" end="0" id="Rev" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_IRQSTATUS_MPU" description="This register provides status on MPU interrupt events. An event is logged whether interrupt generation for the event  is enabled or not. SW is required to clear a set bit by writing a '1' into the bit-position to be cleared." id="PRM_IRQSTATUS_MPU" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved2" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="interrupt status for usb dpll recaliberation" end="15" id="dpll_per_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="interrupt status for ddr dpll recaliberation" end="14" id="dpll_ddr_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="interrupt status for disp dpll recaliberation" end="13" id="dpll_disp_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="interrupt status for core dpll recaliberation" end="12" id="dpll_core_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="interrupt status for mpu dpll recaliberation" end="11" id="dpll_mpu_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="Software supervised wakeup completed event interrupt status" end="10" id="ForceWkup_st" rwaccess="RW" width="1">
+    <bitenum description="No interrupt" id="IRQ_fal" token="IRQ_fal" value="0"></bitenum>
+    <bitenum description="Interrupt is pending" id="IRQ_tru" token="IRQ_tru" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Reserved" end="9" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Software supervised transition completed event interrupt status (any domain)" end="8" id="Transition_st" rwaccess="RW" width="1">
+    <bitenum description="No interrupt" id="IRQ_fal" token="IRQ_fal" value="0"></bitenum>
+    <bitenum description="Interrupt is pending" id="IRQ_tru" token="IRQ_tru" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="0" id="Reserved" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_IRQENABLE_MPU" description="This register is used to enable and disable events used to trigger MPU interrupt activation. " id="PRM_IRQENABLE_MPU" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved4" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Interrupt enable for disp dpll recaliberation" end="15" id="dpll_disp_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="Interrupt enable for ddr dpll recaliberation" end="14" id="dpll_ddr_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Interrupt enable for usb dpll recaliberation" end="13" id="dpll_per_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Interrupt enable for core dpll recaliberation" end="12" id="dpll_core_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Interrupt enable for mpu dpll recaliberation" end="11" id="dpll_mpu_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="Software supervised Froce Wakeup completed event interrupt enable" end="10" id="ForceWkup_en" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is masked" id="irq_msk" token="irq_msk" value="0"></bitenum>
+    <bitenum description="Interrupt is enabled" id="irq_en" token="irq_en" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Reserved" end="9" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Software supervised transition completed event interrupt enable (any domain)" end="8" id="Transition_en" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is masked" id="irq_msk" token="irq_msk" value="0"></bitenum>
+    <bitenum description="Interrupt is enabled" id="irq_en" token="irq_en" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Reserved" end="1" id="Reserved1" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="0" description="Reserved" end="0" id="Reserved" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_IRQSTATUS_M3" description="This register provides status on MPU interrupt events. An event is logged whether interrupt generation for the event  is enabled or not. SW is required to clear a set bit by writing a '1' into the bit-position to be cleared." id="PRM_IRQSTATUS_M3" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved2" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="interrupt status for usb dpll recaliberation" end="15" id="dpll_per_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="interrupt status for ddr dpll recaliberation" end="14" id="dpll_ddr_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="interrupt status for disp dpll recaliberation" end="13" id="dpll_disp_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="interrupt status for core dpll recaliberation" end="12" id="dpll_core_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="interrupt status for mpu dpll recaliberation" end="11" id="dpll_mpu_recal_st" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="Software supervised wakeup completed event interrupt status" end="10" id="ForceWkup_st" rwaccess="RW" width="1">
+    <bitenum description="No interrupt" id="IRQ_fal" token="IRQ_fal" value="0"></bitenum>
+    <bitenum description="Interrupt is pending" id="IRQ_tru" token="IRQ_tru" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Reserved" end="9" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Software supervised transition completed event interrupt status (any domain)" end="8" id="Transition_st" rwaccess="RW" width="1">
+    <bitenum description="No interrupt" id="IRQ_fal" token="IRQ_fal" value="0"></bitenum>
+    <bitenum description="Interrupt is pending" id="IRQ_tru" token="IRQ_tru" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="0" id="Reserved" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="PRM_IRQENABLE_M3" description="This register is used to enable and disable events used to trigger MPU interrupt activation. " id="PRM_IRQENABLE_M3" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved4" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Interrupt enable for disp dpll recaliberation" end="15" id="dpll_disp_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="Interrupt enable for ddr dpll recaliberation" end="14" id="dpll_ddr_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Interrupt enable for usb dpll recaliberation" end="13" id="dpll_per_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Interrupt enable for core dpll recaliberation" end="12" id="dpll_core_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Interrupt enable for mpu dpll recaliberation" end="11" id="dpll_mpu_recal_en" rwaccess="RW" width="1">
+    <bitenum description="Disables dpll recaliberation" id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="ENAbles dpll recaliberation" id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="Software supervised Froce Wakeup completed event interrupt enable" end="10" id="ForceWkup_en" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is masked" id="irq_msk" token="irq_msk" value="0"></bitenum>
+    <bitenum description="Interrupt is enabled" id="irq_en" token="irq_en" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Reserved" end="9" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Software supervised transition completed event interrupt enable (any domain)" end="8" id="Transition_en" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is masked" id="irq_msk" token="irq_msk" value="0"></bitenum>
+    <bitenum description="Interrupt is enabled" id="irq_en" token="irq_en" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Reserved" end="1" id="Reserved1" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="0" description="Reserved" end="0" id="Reserved" rwaccess="R" width="1"></bitfield>
+  </register>
+</module>

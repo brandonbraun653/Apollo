@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="SPI" id="SPI">
+  
+  
+  <register acronym="MCSPI_REVISION" description="The McSPI system configuration register (MCSPI_REVISION) allows control of various parameters of the module interface. It is not sensitive to software reset." id="MCSPI_REVISION" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Used to distinguish between old scheme and current." end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="Function indicates a software compatible module family. If there is no level of software compatibility a new Func number (and hence REVISION) should be assigned." end="16" id="FUNC" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="R_RTL bit." end="11" id="R_RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="X_MAJOR bit." end="8" id="X_MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="CUSTOM bit." end="6" id="CUSTOM" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Y_MINOR bit." end="0" id="Y_MINOR" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_SYSCONFIG" description="The McSPI system configuration register (MCSPI_SYSCONFIG) allows control of various parameters of the module interface. It is not sensitive to software reset." id="MCSPI_SYSCONFIG" offset="0x110" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Clocks activity during wake-up mode period." end="8" id="CLOCKACTIVITY" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Power management." end="3" id="SIDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="2" description="" end="2" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Software reset. During reads it always returns 0." end="1" id="SOFTRESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Internal OCP Clock gating strategy." end="0" id="AUTOIDLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_SYSSTATUS" description="The McSPI system status register (MCSPI_SYSSTATUS) provides status information about the module excluding the interrupt status information." id="MCSPI_SYSSTATUS" offset="0x114" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Internal Reset Monitoring." end="0" id="RESETDONE" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_IRQSTATUS" description="The McSPI interrupt status register (MCSPI_IRQSTATUS) regroups all the status of the module internal events that can generate an interrupt." id="MCSPI_IRQSTATUS" offset="0x118" width="32">
+    
+  <bitfield begin="31" description="" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="End of word (EOW) count event when a channel is enabled using the FIFO buffer and the channel has sent the number of McSPI words defined by the MCSPI_XFERLEVEL[WCNT]." end="17" id="EOW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="" end="16" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="15" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Receiver register is full or almost full. Only when Channel 3 is enabled. This bit indicate FIFO almost full status when built-in FIFO is used for receive register (MCSPI_CH3CONF[FFE3R] is set). " end="14" id="RX3_FULL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Transmitter register underflow. Only when Channel 3 is enabled. The transmitter register is empty (not updated by Host or DMA with new data) before its time slot assignment. Exception: No TX_underflow event when no data has been loaded into the transmitter register since channel has been enabled. " end="13" id="TX3_UNDERFLOW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Transmitter register is empty or almost empty. This bit indicate FIFO almost full status when built-in FIFO is used for transmit register (MCSPI_CH3CONF[FFE3W] is set). Note: Enabling the channel automatically raises this event." end="12" id="TX3_EMPTY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="" end="11" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Receiver register full or almost full. Channel 2 This bit indicate FIFO almost full status when built-in FIFO is used for receive register (MCSPI_CH3CONF[FFE2R] is set)." end="10" id="RX2_FULL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Transmitter register underflow. Channel 2" end="9" id="TX2_UNDERFLOW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Transmitter register empty or almost empty. Channel 2. This bit indicate FIFO almost full status when built-in FIFO is used for transmit register (MCSPI_CH3CONF[FFE2W] is set)." end="8" id="TX2_EMPTY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Receiver register full or almost full. Channel 1. This bit indicate FIFO almost full status when built-in FIFO is use for receive register (MCSPI_CH3CONF[FFE1R] is set)." end="6" id="RX1_FULL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Transmitter register underflow. Channel 1." end="5" id="TX1_UNDERFLOW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Transmitter register empty or almost empty. Channel 1. This bit indicate FIFO almost full status when built-in FIFO is use for transmit register (MCSPI_CH3CONF[FFE1W] is set)." end="4" id="TX1_EMPTY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Receiver register overflow (slave mode only). Channel 0." end="3" id="RX0_OVERFLOW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Receiver register full or almost full. Channel 0. Receiver register full or almost full. Channel 0" end="2" id="RX0_FULL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Transmitter register underflow. Channel 0." end="1" id="TX0_UNDERFLOW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Transmitter register empty or almost empty. Channel 0. This bit indicate FIFO almost full status when built-in FIFO is use for transmit register (MCSPI_CH3CONF[FFE0W] is set)." end="0" id="TX0_EMPTY" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_IRQENABLE" description="This McSPI interrupt enable register (MCSPI_IRQENABLE) enables/disables the module internal sources of interrupt, on an event-by-event basis." id="MCSPI_IRQENABLE" offset="0x11C" width="32">
+    
+  <bitfield begin="31" description="" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="End of word count interrupt enable." end="17" id="EOWKE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="" end="16" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="15" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="14" description="MCSPI_RX3 receiver register full or almost full interrupt enable (channel 3)." end="14" id="RX3_FULL_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="MCSPI_TX3 transmitter register underflow interrupt enable (channel 3)." end="13" id="TX3_UNDERFLOW_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="MCSPI_TX3 transmitter register empty or almost empty interrupt enable (channel 3)." end="12" id="TX3_EMPTY_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="" end="11" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="MCSPI_RX2 receiver register full or almost full interrupt enable (channel 2)." end="10" id="RX2_FULL_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="MCSPI_TX2 transmitter register underflow interrupt enable (channel 2)." end="9" id="TX2_UNDERFLOW_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="MCSPI_TX2 transmitter register empty or almost empty interrupt enable (channel 2)." end="8" id="TX2_EMPTY_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="MCSPI_RX1 receiver register full or almost full interrupt enable (channel 1)" end="6" id="RX1_FULL_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="MCSPI_TX1 transmitter register underflow interrupt enable (channel 1)." end="5" id="TX1_UNDERFLOW_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="MCSPI_TX1 transmitter register empty or almost empty interrupt enable (channel 1)." end="4" id="TX1_EMPTY_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="MCSPI_RX0 receivier register overflow interrupt enable (channel 0)." end="3" id="RX0_OVERFLOW_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="MCSPI_RX0 receiver register full or almost full interrupt enable (channel 0)." end="2" id="RX0_FULL_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="MCSPI_TX0 transmitter register underflow interrupt enable (channel 0)." end="1" id="TX0_UNDERFLOW_ENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="MCSPI_TX0 transmitter register empty or almost empty interrupt enable (channel 0)." end="0" id="TX0_EMPTY_ENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_SYST" description="This McSPI system register (MCSPI_SYST) is used to configure the system interconnect either internally to the peripheral bus or externally to the device I/O pads, when the module is configured in the system test (SYSTEST) mode. " id="MCSPI_SYST" offset="0x124" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Set status bit. This bit must be cleared prior attempting to clear a status bit of the MCSPI_ IRQSTATUS register." end="11" id="SSB" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Sets the direction of the SPIEN[3:0] lines and SPICLK line." end="10" id="SPIENDIR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Sets the direction of the SPIDAT[1]." end="9" id="SPIDATDIR1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Sets the direction of the SPIDAT[0]." end="8" id="SPIDATDIR0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="SPICLK line (signal data value)" end="6" id="SPICLK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="SPIDAT[1] line (signal data value)" end="5" id="SPIDAT_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="SPIDAT[0] line (signal data value)" end="4" id="SPIDAT_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="SPIEN[3] line (signal data value)" end="3" id="SPIEN_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="SPIEN[2] line (signal data value)" end="2" id="SPIEN_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="SPIEN[1] line (signal data value)" end="1" id="SPIEN_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="SPIEN[0] line (signal data value)" end="0" id="SPIEN_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_MODULCTRL" description="This McSPI module control register (MCSPI_MODULCTRL) is used to configure the serial port interface." id="MCSPI_MODULCTRL" offset="0x128" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="FIFO DMA Address 256 bit aligned. This register is used when a FIFO is managed by the module and DMA connected to the controller provides only 256 bit aligned address. If this bit is set the enabled channel which uses the FIFO has its datas managed through MCSPI_DAFTX and MCSPI_DAFRX registers instead of MCSPI_TX(i) and MCSPI_RX(i) registers. " end="8" id="FDAA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Multiple word ocp access. This register can only be used when a channel is enabled using a FIFO. It allows the system to perform multiple SPI word access for a single 32 bit OCP word access. This is possible for WL less than 16." end="7" id="MOA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Initial SPI delay for first transfer. This register is an option only available in SINGLE master mode, The controller waits for a delay to transmit the first SPI word after channel enabled and corresponding TX register filled. This delay is based on SPI output frequency clock, No clock output provided to the boundary and chip select is not active in 4 pin mode within this period. " end="4" id="INITDLY" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="Enables the system test mode" end="3" id="SYSTEM_TEST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Master/ Slave" end="2" id="MS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Pin mode selection. This register is used to configure the SPI pin mode, in master or slave mode. If asserted the controller only use SIMO,SOMI and SPICLK clock pin for SPI transfers. " end="1" id="PIN34" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Single channel / Multi Channel (master mode only)." end="0" id="SINGLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH0CONF" description="The McSPI channel 0 configuration register (MCSPI_CH0CONF) is used to configure channel 0." id="MCSPI_CH0CONF" offset="0x12C" width="32">
+    
+  <bitfield begin="31" description="" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Clock divider granularity. This register defines the granularity of channel clock divider: power of two or one clock cycle granularity. When this bit is set the register MCSPI_CHCTRL[EXTCLK] must be configured to reach a maximum of 4096 clock divider ratio. Then The clock divider ratio is a concatenation of MCSPI_CHCONF[CLKD] and MCSPI_CHCTRL[EXTCLK] values." end="29" id="CLKG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="FIFO enabled for receive. Only one channel can have this bit set." end="28" id="FFER" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="FIFO enabled for transmit. Only one channel can have this bit set." end="27" id="FFEW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Chip select time control. These two bits define the number of interface clock cycles between CS toggling and first or last edge of SPI clock." end="25" id="TCS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Start bit polarity." end="24" id="SBPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Start bit enable for SPI transfer." end="23" id="SBE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Channel 0 only and slave mode only: SPI slave select signal detection. Reserved bits (read returns 0) for other cases." end="21" id="SPIENSLV" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="20" description="Manual SPIEN assertion to keep SPIEN active between SPI words (single channel master mode only)." end="20" id="FORCE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Turbo mode." end="19" id="TURBO" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Input select" end="18" id="IS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Transmission enable for data line 1 (SPIDATAGZEN[1])" end="17" id="DPE1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Transmission enable for data line 0 (SPIDATAGZEN[0])" end="16" id="DPE0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="DMA read request. The DMA read request line is asserted when the channel is enabled and new data is available in the receive register of the channel. The DMA read request line is deasserted on read completion of the receive register of the channel." end="15" id="DMAR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="DMA write request. The DMA write request line is asserted when the channel is enabled and the MCSPI_TX0 register of the channel is empty. The DMA write request line is deasserted on load completion of the MCSPI_TX0 register of the channel." end="14" id="DMAW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Transmit/receive modes." end="12" id="TRM" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="SPI word length." end="7" id="WL" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="6" description="SPIEN polarity" end="6" id="EPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Frequency divider for SPICLK (only when the module is a Master SPI device). A programmable clock divider divides the SPI reference clock (CLKSPIREF) with a 4 bit value, and results in a new clock SPICLK available to shift-in and shift-out data. By default the clock divider ratio has a power of two granularity when MCSPI_CHCONF[CLKG] is cleared, Otherwise this register is the 4 LSB bit of a 12 bit register concatenated with clock divider extension MCSPI_CHCTRL[EXTCLK] register. The value description below defines the clock ratio when MCSPI_CHCONF[CLKG] is cleared to 0. " end="2" id="CLKD" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="1" description="SPICLK polarity" end="1" id="POL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="SPICLK phase" end="0" id="PHA" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH0STAT" description="The McSPI channel 0 status register (MCSPI_CH0STAT) provides status information about the McSPI channel 0 FIFO transmit buffer register (MCSPI_TX0) and the McSPI channel 0 FIFO receive buffer register (MCSPI_RX0) of channel 0. " id="MCSPI_CH0STAT" offset="0x130" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Channel 0 FIFO receive buffer full status." end="6" id="RXFFF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Channel 0 FIFO receive buffer empty status." end="5" id="RXFFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Channel 0 FIFO transmit buffer full status." end="4" id="TXFFF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Channel 0 FIFO transmit buffer empty status." end="3" id="TXFFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Channel 0 end-of-transfer status. The definitions of beginning and end of transfer vary with master versus slave and the transfer format (transmit/receive mode, turbo mode)." end="2" id="EOT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Channel 0 transmitter register status. The bit is cleared when the host writes the most significant byte of the SPI word in the MCSPI_TX0 register. The bit is set when enabling the channel 0 , and also when the SPI word is transferred from the MCSPI_TX0 register to the shift register." end="1" id="TXS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Channel 0 receiver register status. The bit is cleared when enabling the channel i, and also when the host reads the most significant byte of the received SPI word from the MCSPI_RX0 register. The bit is set when the received SPI word is transferred from the shift register to the MCSPI_RX0 register. " end="0" id="RXS" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH0CTRL" description="" id="MCSPI_CH0CTRL" offset="0x134" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Clock ratio extension. Used to concatenate with the CLKD bit field in MCSPI_CH0CONF for clock ratio only when granularity is 1 clock cycle (CLKG bit in MCSPI_CH0CONF set to 1). Then the maximum value reached is a 4096 clock divider ratio." end="8" id="EXTCLK" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="" end="1" id="Reserved2" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="Channel 0 enable." end="0" id="EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_TX0" description="" id="MCSPI_TX0" offset="0x138" width="32">
+    
+  <bitfield begin="31" description="Channel 0 data to transmit." end="0" id="TDATA" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_RX0" description="The McSPI channel 0 FIFO receive buffer register (MCSPI_RX0) contains a single McSPI word received through the serial link. Little endian host access SPI 8 bit word on 0; big endian host accesses on 3h. " id="MCSPI_RX0" offset="0x13C" width="32">
+    
+  <bitfield begin="31" description="Channel 0 received data." end="0" id="RDATA" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH1CONF" description="The McSPI channel 1 configuration register (MCSPI_CH1CONF) is used to configure channel 1." id="MCSPI_CH1CONF" offset="0x140" width="32">
+    
+  <bitfield begin="31" description="" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Clock divider granularity. This register defines the granularity of channel clock divider: power of two or one clock cycle granularity. When this bit is set the register MCSPI_CHCTRL[EXTCLK] must be configured to reach a maximum of 4096 clock divider ratio. Then The clock divider ratio is a concatenation of MCSPI_CHCONF[CLKD] and MCSPI_CHCTRL[EXTCLK] values." end="29" id="CLKG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="FIFO enabled for receive. Only one channel can have this bit set." end="28" id="FFER" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="FIFO enabled for transmit. Only one channel can have this bit set." end="27" id="FFEW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Chip select time control. These two bits define the number of interface clock cycles between CS toggling and first or last edge of SPI clock." end="25" id="TCS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Start bit polarity." end="24" id="SBPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Start bit enable for SPI transfer." end="23" id="SBE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Channel 0 only and slave mode only: SPI slave select signal detection. Reserved bits (read returns 0) for other cases." end="21" id="SPIENSLV" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="20" description="Manual SPIEN assertion to keep SPIEN active between SPI words (single channel master mode only)." end="20" id="FORCE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Turbo mode." end="19" id="TURBO" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Input select" end="18" id="IS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Transmission enable for data line 1 (SPIDATAGZEN[1])" end="17" id="DPE1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Transmission enable for data line 0 (SPIDATAGZEN[0])" end="16" id="DPE0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="DMA read request. The DMA read request line is asserted when the channel is enabled and new data is available in the receive register of the channel. The DMA read request line is deasserted on read completion of the receive register of the channel." end="15" id="DMAR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="DMA write request. The DMA write request line is asserted when the channel is enabled and the MCSPI_TX1 register of the channel is empty. The DMA write request line is deasserted on load completion of the MCSPI_TX1 register of the channel." end="14" id="DMAW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Transmit/receive modes." end="12" id="TRM" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="SPI word length." end="7" id="WL" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="6" description="SPIEN polarity" end="6" id="EPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Frequency divider for SPICLK (only when the module is a Master SPI device). A programmable clock divider divides the SPI reference clock (CLKSPIREF) with a 4 bit value, and results in a new clock SPICLK available to shift-in and shift-out data. By default the clock divider ratio has a power of two granularity when MCSPI_CHCONF[CLKG] is cleared, Otherwise this register is the 4 LSB bit of a 12 bit register concatenated with clock divider extension MCSPI_CHCTRL[EXTCLK] register. The value description below defines the clock ratio when MCSPI_CHCONF[CLKG] is cleared to 0. " end="2" id="CLKD" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="1" description="SPICLK polarity" end="1" id="POL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="SPICLK phase" end="0" id="PHA" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH1STAT" description="The McSPI channel 1 status register (MCSPI_CH1STAT) provides status information about the McSPI channel 1 FIFO transmit buffer register (MCSPI_TX1) and the McSPI channel 1 FIFO receive buffer register (MCSPI_RX1) of channel 1. " id="MCSPI_CH1STAT" offset="0x144" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Channel 1 FIFO receive buffer full status." end="6" id="RXFFF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Channel 1 FIFO receive buffer empty status." end="5" id="RXFFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Channel 1 FIFO transmit buffer full status." end="4" id="TXFFF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Channel 1 FIFO transmit buffer empty status." end="3" id="TXFFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Channel 1 end-of-transfer status. The definitions of beginning and end of transfer vary with master versus slave and the transfer format (transmit/receive mode, turbo mode)." end="2" id="EOT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Channel 1 transmitter register status. The bit is cleared when the host writes the most significant byte of the SPI word in the MCSPI_TX1 register. The bit is set when enabling the channel 1 , and also when the SPI word is transferred from the MCSPI_TX1 register to the shift register." end="1" id="TXS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Channel 1 receiver register status. The bit is cleared when enabling the channel i, and also when the host reads the most significant byte of the received SPI word from the MCSPI_RX1 register. The bit is set when the received SPI word is transferred from the shift register to the MCSPI_RX1 register. " end="0" id="RXS" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH1CTRL" description="" id="MCSPI_CH1CTRL" offset="0x148" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Clock ratio extension. Used to concatenate with the CLKD bit field in MCSPI_CH1CONF for clock ratio only when granularity is 1 clock cycle (CLKG bit in MCSPI_CH1CONF set to 1). Then the maximum value reached is a 4096 clock divider ratio." end="8" id="EXTCLK" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="" end="1" id="Reserved2" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="Channel 1 enable." end="0" id="EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_TX1" description="" id="MCSPI_TX1" offset="0x14C" width="32">
+    
+  <bitfield begin="31" description="Channel 1 data to transmit." end="0" id="TDATA" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_RX1" description="The McSPI channel 1 FIFO receive buffer register (MCSPI_RX1) contains a single McSPI word received through the serial link. Little endian host access SPI 8 bit word on 0; big endian host accesses on 3h. " id="MCSPI_RX1" offset="0x150" width="32">
+    
+  <bitfield begin="31" description="Channel 1 received data." end="0" id="RDATA" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH2CONF" description="The McSPI channel 2 configuration register (MCSPI_CH2CONF) is used to configure channel 2." id="MCSPI_CH2CONF" offset="0x154" width="32">
+    
+  <bitfield begin="31" description="" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Clock divider granularity. This register defines the granularity of channel clock divider: power of two or one clock cycle granularity. When this bit is set the register MCSPI_CHCTRL[EXTCLK] must be configured to reach a maximum of 4096 clock divider ratio. Then The clock divider ratio is a concatenation of MCSPI_CHCONF[CLKD] and MCSPI_CHCTRL[EXTCLK] values." end="29" id="CLKG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="FIFO enabled for receive. Only one channel can have this bit set." end="28" id="FFER" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="FIFO enabled for transmit. Only one channel can have this bit set." end="27" id="FFEW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Chip select time control. These two bits define the number of interface clock cycles between CS toggling and first or last edge of SPI clock." end="25" id="TCS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Start bit polarity." end="24" id="SBPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Start bit enable for SPI transfer." end="23" id="SBE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Channel 0 only and slave mode only: SPI slave select signal detection. Reserved bits (read returns 0) for other cases." end="21" id="SPIENSLV" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="20" description="Manual SPIEN assertion to keep SPIEN active between SPI words (single channel master mode only)." end="20" id="FORCE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Turbo mode." end="19" id="TURBO" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Input select" end="18" id="IS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Transmission enable for data line 1 (SPIDATAGZEN[1])" end="17" id="DPE1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Transmission enable for data line 0 (SPIDATAGZEN[0])" end="16" id="DPE0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="DMA read request. The DMA read request line is asserted when the channel is enabled and new data is available in the receive register of the channel. The DMA read request line is deasserted on read completion of the receive register of the channel." end="15" id="DMAR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="DMA write request. The DMA write request line is asserted when the channel is enabled and the MCSPI_TX2 register of the channel is empty. The DMA write request line is deasserted on load completion of the MCSPI_TX2 register of the channel." end="14" id="DMAW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Transmit/receive modes." end="12" id="TRM" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="SPI word length." end="7" id="WL" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="6" description="SPIEN polarity" end="6" id="EPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Frequency divider for SPICLK (only when the module is a Master SPI device). A programmable clock divider divides the SPI reference clock (CLKSPIREF) with a 4 bit value, and results in a new clock SPICLK available to shift-in and shift-out data. By default the clock divider ratio has a power of two granularity when MCSPI_CHCONF[CLKG] is cleared, Otherwise this register is the 4 LSB bit of a 12 bit register concatenated with clock divider extension MCSPI_CHCTRL[EXTCLK] register. The value description below defines the clock ratio when MCSPI_CHCONF[CLKG] is cleared to 0. " end="2" id="CLKD" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="1" description="SPICLK polarity" end="1" id="POL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="SPICLK phase" end="0" id="PHA" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH2STAT" description="The McSPI channel 2 status register (MCSPI_CH2STAT) provides status information about the McSPI channel 2 FIFO transmit buffer register (MCSPI_TX2) and the McSPI channel 2 FIFO receive buffer register (MCSPI_RX2) of channel 2. " id="MCSPI_CH2STAT" offset="0x158" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Channel 2 FIFO receive buffer full status." end="6" id="RXFFF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Channel 2 FIFO receive buffer empty status." end="5" id="RXFFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Channel 2 FIFO transmit buffer full status." end="4" id="TXFFF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Channel 2 FIFO transmit buffer empty status." end="3" id="TXFFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Channel 2 end-of-transfer status. The definitions of beginning and end of transfer vary with master versus slave and the transfer format (transmit/receive mode, turbo mode)." end="2" id="EOT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Channel 2 transmitter register status. The bit is cleared when the host writes the most significant byte of the SPI word in the MCSPI_TX2 register. The bit is set when enabling the channel 2 , and also when the SPI word is transferred from the MCSPI_TX2 register to the shift register." end="1" id="TXS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Channel 2 receiver register status. The bit is cleared when enabling the channel i, and also when the host reads the most significant byte of the received SPI word from the MCSPI_RX2 register. The bit is set when the received SPI word is transferred from the shift register to the MCSPI_RX2 register. " end="0" id="RXS" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH2CTRL" description="" id="MCSPI_CH2CTRL" offset="0x15C" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Clock ratio extension. Used to concatenate with the CLKD bit field in MCSPI_CH2CONF for clock ratio only when granularity is 1 clock cycle (CLKG bit in MCSPI_CH2CONF set to 1). Then the maximum value reached is a 4096 clock divider ratio." end="8" id="EXTCLK" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="" end="1" id="Reserved2" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="Channel 2 enable." end="0" id="EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_TX2" description="" id="MCSPI_TX2" offset="0x160" width="32">
+    
+  <bitfield begin="31" description="Channel 2 data to transmit." end="0" id="TDATA" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_RX2" description="The McSPI channel 2 FIFO receive buffer register (MCSPI_RX2) contains a single McSPI word received through the serial link. Little endian host access SPI 8 bit word on 0; big endian host accesses on 3h. " id="MCSPI_RX2" offset="0x164" width="32">
+    
+  <bitfield begin="31" description="Channel 2 received data." end="0" id="RDATA" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH3CONF" description="The McSPI channel 3 configuration register (MCSPI_CH3CONF) is used to configure channel 3." id="MCSPI_CH3CONF" offset="0x168" width="32">
+    
+  <bitfield begin="31" description="" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Clock divider granularity. This register defines the granularity of channel clock divider: power of two or one clock cycle granularity. When this bit is set the register MCSPI_CHCTRL[EXTCLK] must be configured to reach a maximum of 4096 clock divider ratio. Then The clock divider ratio is a concatenation of MCSPI_CHCONF[CLKD] and MCSPI_CHCTRL[EXTCLK] values." end="29" id="CLKG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="FIFO enabled for receive. Only one channel can have this bit set." end="28" id="FFER" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="FIFO enabled for transmit. Only one channel can have this bit set." end="27" id="FFEW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Chip select time control. These two bits define the number of interface clock cycles between CS toggling and first or last edge of SPI clock." end="25" id="TCS" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Start bit polarity." end="24" id="SBPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Start bit enable for SPI transfer." end="23" id="SBE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Channel 0 only and slave mode only: SPI slave select signal detection. Reserved bits (read returns 0) for other cases." end="21" id="SPIENSLV" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="20" description="Manual SPIEN assertion to keep SPIEN active between SPI words (single channel master mode only)." end="20" id="FORCE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Turbo mode." end="19" id="TURBO" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Input select" end="18" id="IS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Transmission enable for data line 1 (SPIDATAGZEN[1])" end="17" id="DPE1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Transmission enable for data line 0 (SPIDATAGZEN[0])" end="16" id="DPE0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="DMA read request. The DMA read request line is asserted when the channel is enabled and new data is available in the receive register of the channel. The DMA read request line is deasserted on read completion of the receive register of the channel." end="15" id="DMAR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="DMA write request. The DMA write request line is asserted when the channel is enabled and the MCSPI_TX3 register of the channel is empty. The DMA write request line is deasserted on load completion of the MCSPI_TX3 register of the channel." end="14" id="DMAW" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Transmit/receive modes." end="12" id="TRM" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="SPI word length." end="7" id="WL" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="6" description="SPIEN polarity" end="6" id="EPOL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Frequency divider for SPICLK (only when the module is a Master SPI device). A programmable clock divider divides the SPI reference clock (CLKSPIREF) with a 4 bit value, and results in a new clock SPICLK available to shift-in and shift-out data. By default the clock divider ratio has a power of two granularity when MCSPI_CHCONF[CLKG] is cleared, Otherwise this register is the 4 LSB bit of a 12 bit register concatenated with clock divider extension MCSPI_CHCTRL[EXTCLK] register. The value description below defines the clock ratio when MCSPI_CHCONF[CLKG] is cleared to 0. " end="2" id="CLKD" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="1" description="SPICLK polarity" end="1" id="POL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="SPICLK phase" end="0" id="PHA" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH3STAT" description="The McSPI channel 3 status register (MCSPI_CH3STAT) provides status information about the McSPI channel 3 FIFO transmit buffer register (MCSPI_TX3) and the McSPI channel 3 FIFO receive buffer register (MCSPI_RX3) of channel 3. " id="MCSPI_CH3STAT" offset="0x16C" width="32">
+    
+  <bitfield begin="31" description="" end="7" id="Reserved1" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Channel 3 FIFO receive buffer full status." end="6" id="RXFFF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Channel 3 FIFO receive buffer empty status." end="5" id="RXFFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Channel 3 FIFO transmit buffer full status." end="4" id="TXFFF" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Channel 3 FIFO transmit buffer empty status." end="3" id="TXFFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Channel 3 end-of-transfer status. The definitions of beginning and end of transfer vary with master versus slave and the transfer format (transmit/receive mode, turbo mode)." end="2" id="EOT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Channel 3 transmitter register status. The bit is cleared when the host writes the most significant byte of the SPI word in the MCSPI_TX3 register. The bit is set when enabling the channel 3 , and also when the SPI word is transferred from the MCSPI_TX3 register to the shift register." end="1" id="TXS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Channel 3 receiver register status. The bit is cleared when enabling the channel i, and also when the host reads the most significant byte of the received SPI word from the MCSPI_RX3 register. The bit is set when the received SPI word is transferred from the shift register to the MCSPI_RX3 register. " end="0" id="RXS" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_CH3CTRL" description="" id="MCSPI_CH3CTRL" offset="0x170" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Clock ratio extension. Used to concatenate with the CLKD bit field in MCSPI_CH3CONF for clock ratio only when granularity is 1 clock cycle (CLKG bit in MCSPI_CH3CONF set to 1). Then the maximum value reached is a 4096 clock divider ratio." end="8" id="EXTCLK" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="" end="1" id="Reserved2" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="Channel 3 enable." end="0" id="EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_TX3" description="" id="MCSPI_TX3" offset="0x174" width="32">
+    
+  <bitfield begin="31" description="Channel 3 data to transmit." end="0" id="TDATA" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_RX3" description="The McSPI channel 3 FIFO receive buffer register (MCSPI_RX3) contains a single McSPI word received through the serial link. Little endian host access SPI 8 bit word on 0; big endian host accesses on 3h. " id="MCSPI_RX3" offset="0x178" width="32">
+    
+  <bitfield begin="31" description="Channel 3 received data." end="0" id="RDATA" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_XFERLEVEL" description="The McSPI transfer levels register (MCSPI_XFERLEVEL) provides the transfer levels needed while using the FIFO buffer during transfer." id="MCSPI_XFERLEVEL" offset="0x17C" width="32">
+    
+  <bitfield begin="31" description="SPI word counter. Holds the programmable value of the number of SPI words to be transferred on the channel that is using the FIFO buffer. When the transfer has started, a read back of this register returns the current SPI word transfer index." end="16" id="WCNT" rwaccess="RW" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Buffer almost full. Holds the programmable almost full level value used to determine almost full buffer condition. If you want an interrupt or a DMA read request to be issued during a receive operation when the data buffer holds at least n bytes, then the buffer MCSPI_MODULCTRL[AFL] must be set with n - 1." end="8" id="AFL" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Buffer almost empty. Holds the programmable almost empty level value used to determine almost empty buffer condition. If you want an interrupt or a DMA write request to be issued during a transmit operation when the data buffer is able to receive n bytes, then the buffer MCSPI_MODULCTRL[AEL] must be set with n - 1." end="0" id="AEL" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_DAFTX" description="The McSPI DMA address aligned FIFO transmitter register (MCSPI_DAFTX) contains the SPI words to transmit on the serial link when FIFO is used and the DMA address is aligned on 256 bit. This register is an image of one of the MCSPI_TX(i) registers corresponding to the channel which have its FIFO enabled. The SPI words are transferred with MSB first. See Chapter Access to data registers for the list of supported accesses." id="MCSPI_DAFTX" offset="0x180" width="32">
+    
+  <bitfield begin="31" description="FIFO Data to transmit with DMA 256 bit aligned address. This register is used only when MCSPI_MODULCTRL[FDAA] is set to 1, and only one of the MCSPI_CH(i)CONF[FFEW] of enabled channels is set. Without these conditions, any access to this register will return a null value." end="0" id="DAFTDATA" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCSPI_DAFRX" description="The McSPI DMA address aligned FIFO receiver register (MCSPI_DAFRX) contains the SPI words to received on the serial link when FIFO used and DMA address is aligned on 256 bit. This register is an image of one of MCSPI_RX(i) register corresponding to the channel which have its FIFO enabled. " id="MCSPI_DAFRX" offset="0x1A0" width="32">
+    
+  <bitfield begin="31" description="FIFO Received Data with DMA 256 bit aligned address. This register is used only when MCSPI_MODULCTRL[FDAA] is set to 1, and only one of the MCSPI_CH(i)CONF[FFER] of enabled channels is set. Without these conditions, any access to this register will return a null value." end="0" id="DAFRDATA" rwaccess="R" width="32"></bitfield>
+  </register>
+</module>

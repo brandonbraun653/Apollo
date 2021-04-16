@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRU_ICSS_INTC" id="PRU_ICSS_INTC">
+  
+  
+  <register acronym="REVID" description="Revision ID Register" id="REVID" offset="0x0" page="2" width="32">
+    
+  <bitfield begin="31" description=" SCHEME" end="30" id="REV_SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description=" " end="28" id="RESERVED_1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description=" MODULE ID" end="16" id="REV_MODULE" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description=" RTL REVISIONS" end="11" id="REV_RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description=" MAJOR REVISION" end="8" id="REV_MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description=" CUSTOM REVISION" end="6" id="REV_CUSTOM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description=" MINOR REVISION" end="0" id="REV_MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="CR" description="The Control Register holds global control parameters and can forces a soft reset on the module." id="CR" offset="0x4" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="5" id="RESERVED_1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description=" Reserved." end="4" id="RESERVED_2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description=" The nesting mode.  0 = no nesting  1 = automatic individual nesting (per host interrupt)  2 = automatic global nesting (over all host interrupts)  3 = manual nesting " end="2" id="NEST_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description=" Reserved." end="1" id="RESERVED_3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" " end="0" id="RESERVED_4" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GER" description="The Global Host Interrupt Enable Register enables all the host interrupts. Individual host interrupts are still enabled or disabled from their individual enables and are not overridden by the global enable." id="GER" offset="0x10" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="1" id="RESERVED_1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description=" The current global enable value when read.  Writes set the global enable." end="0" id="EN_HINT_ANY" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GNLR" description="The Global Nesting Level Register allows the checking and setting of the global nesting level across all host interrupts when automatic global nesting mode is set. The nesting level is the channel (and all of lower priority) that are nested out because of a current interrupt. This register is only available when nesting is configured." id="GNLR" offset="0x1C" page="2" width="32">
+    
+  <bitfield begin="31" description=" Always read as 0.  Writes of 1 override the automatic nesting and set the nesting_level to the written data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" The current global nesting level (highest channel that is nested).  Writes set the nesting level.  In auto nesting mode this value is updated internally unless the auto_override bit is set." end="0" id="GLB_NEST_LEVEL" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="SISR" description="The System Interrupt Status Indexed Set Register allows setting the status of an interrupt. The interrupt to set is the index value written. This sets the Raw Status Register bit of the given index." id="SISR" offset="0x20" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" Writes set the status of the interrupt given in the index value.  Reads return 0." end="0" id="STS_SET_IDX" rwaccess="W" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="SICR" description="The System Interrupt Status Indexed Clear Register allows clearing the status of an interrupt. The interrupt to clear is the index value written. This clears the Raw Status Register bit of the given index." id="SICR" offset="0x24" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" Writes clear the status of the interrupt given in the index value.  Reads return 0." end="0" id="STS_ClR_IDX" rwaccess="W" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="EISR" description="The System Interrupt Enable Indexed Set Register allows enabling an interrupt. The interrupt to enable is the index value written. This sets the Enable Register bit of the given index." id="EISR" offset="0x28" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" Writes set the enable of the interrupt given in the index value.  Reads return 0." end="0" id="EN_SET_IDX" rwaccess="W" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="EICR" description="The System Interrupt Enable Indexed Clear Register allows disabling an interrupt. The interrupt to disable is the index value written. This clears the Enable Register bit of the given index." id="EICR" offset="0x2C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" Writes clear the enable of the interrupt given in the index value.  Reads return 0." end="0" id="EN_CLR_IDX" rwaccess="W" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIEISR" description="The Host Interrupt Enable Indexed Set Register allows enabling a host interrupt output. The host interrupt to enable is the index value written. This enables the host interrupt output or triggers the output again if already enabled." id="HIEISR" offset="0x34" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" Writes set the enable of the host interrupt given in the index value.  Reads return 0." end="0" id="HINT_EN_SET_IDX" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIDISR" description="The Host Interrupt Enable Indexed Clear Register allows disabling a host interrupt output. The host interrupt to disable is the index value written. This disables the host interrupt output." id="HIDISR" offset="0x38" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" Writes clear the enable of the host interrupt given in the index value.  Reads return 0." end="0" id="HINT_EN_CLR_IDX" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPIR" description="The Global Prioritized Index Register shows the interrupt number of the highest priority interrupt pending across all the host interrupts." id="GPIR" offset="0x80" page="2" width="32">
+    
+  <bitfield begin="31" description=" No Interrupt is pending.  Can be used by host to test for a negative value to see if no interrupts are pending." end="31" id="GLB_NONE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" The currently highest priority interrupt index pending across all the host interrupts." end="0" id="GLB_PRI_INTR" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="SRSR0" description="The System Interrupt Status Raw/Set Register0 show the pending enabled status of the system interrupts 0 to 31. Software can write to the Status Set Registers to set a system interrupt without a hardware trigger. There is one bit per system interrupt." id="SRSR0" offset="0x200" page="2" width="32">
+    
+  <bitfield begin="31" description=" System interrupt raw status and setting of the system interrupts 0 to 31.  Reads return the raw status.  Write a 1 in a bit position to set the status of the system interrupt.  Writing a 0 has no effect." end="0" id="RAW_STS_31_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SRSR1" description="The System Interrupt Status Raw/Set Register1 show the pending enabled status of the system interrupts 32 to 63. Software can write to the Status Set Registers to set a system interrupt without a hardware trigger. There is one bit per system interrupt." id="SRSR1" offset="0x204" page="2" width="32">
+    
+  <bitfield begin="31" description=" System interrupt raw status and setting of the system interrupts 32 to 63.  Reads return the raw status.  Write a 1 in a bit position to set the status of the system interrupt.  Writing a 0 has no effect." end="0" id="RAW_STS_63_32" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SECR0" description="The System Interrupt Status Enabled/Clear Register0 show the pending enabled status of the system interrupts 0 to 31. Software can write to the Status Clear Registers to clear a system interrupt after it has been serviced. If a system interrupt status is not cleared then another host interrupt may not be triggered or another host interrupt may be triggered incorrectly. There is one bit per system interrupt." id="SECR0" offset="0x280" page="2" width="32">
+    
+  <bitfield begin="31" description=" System interrupt enabled status and clearing of the system interrupts 0 to 31.  Reads return the enabled status (before enabling with the Enable Registers).  Write a 1 in a bit position to clear the status of the system interrupt.  Writing a 0 has no effect." end="0" id="ENA_STS_31_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SECR1" description="The System Interrupt Status Enabled/Clear Register1 show the pending enabled status of the system interrupts 32 to 63. Software can write to the Status Clear Registers to clear a system interrupt after it has been serviced. If a system interrupt status is not cleared then another host interrupt may not be triggered or another host interrupt may be triggered incorrectly. There is one bit per system interrupt." id="SECR1" offset="0x284" page="2" width="32">
+    
+  <bitfield begin="31" description=" System interrupt enabled status and clearing of the system interrupts 32 to 63.  Reads return the enabled status (before enabling with the Enable Registers).  Write a 1 in a bit position to clear the status of the system interrupt.  Writing a 0 has no effect." end="0" id="ENA_STS_63_32" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ESR0" description="The System Interrupt Enable Set Register0 enables system interrupts 0 to 31 to trigger outputs. System interrupts that are not enabled do not interrupt the host. There is a bit per system interrupt." id="ESR0" offset="0x300" page="2" width="32">
+    
+  <bitfield begin="31" description=" System interrupt enables system interrupts 0 to 31.  Read returns the enable value ( 0 = disabled,  1 = enabled).  Write a 1 in a bit position to set that enable.  Writing a 0 has no effect." end="0" id="EN_SET_31_0" rwaccess="" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ESR1" description="The System Interrupt Enable Set Register1 enables system interrupts 32 to 63 to trigger outputs. System interrupts that are not enabled do not interrupt the host. There is a bit per system interrupt." id="ESR1" offset="0x304" page="2" width="32">
+    
+  <bitfield begin="31" description=" System interrupt enables system interrupts 32 to 63.  Read returns the enable value ( 0 = disabled,  1 = enabled).  Write a 1 in a bit position to set that enable.  Writing a 0 has no effect." end="0" id="EN_SET_63_32" rwaccess="" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ECR0" description="The System Interrupt Enable Clear Register0 disables system interrupts 0 to 31 to map to channels. System interrupts that are not enabled do not interrupt the host. There is a bit per system interrupt." id="ECR0" offset="0x380" page="2" width="32">
+    
+  <bitfield begin="31" description=" System interrupt enables system interrupts 0 to 31.  Read returns the enable value ( 0 = disabled,  1 = enabled).  Write a 1 in a bit position to clear that enable.  Writing a 0 has no effect." end="0" id="EN_CLR_31_0" rwaccess="" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="ECR1" description="The System Interrupt Enable Clear Register1 disables system interrupts 32 to 63 to map to channels. System interrupts that are not enabled do not interrupt the host. There is a bit per system interrupt." id="ECR1" offset="0x384" page="2" width="32">
+    
+  <bitfield begin="31" description=" System interrupt enables system interrupts 32 to 63.  Read returns the enable value ( 0 = disabled,  1 = enabled).  Write a 1 in a bit position to clear that enable.  Writing a 0 has no effect." end="0" id="EN_CLR_63_32" rwaccess="" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR0" description="The Channel Map Register0 specify the channel for the system interrupts 0 to 3. There is one register per 4 system interrupts." id="CMR0" offset="0x400" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 3" end="24" id="CH_MAP_3" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 2" end="16" id="CH_MAP_2" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 1" end="8" id="CH_MAP_1" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 0" end="0" id="CH_MAP_0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR1" description="The Channel Map Register1 specify the channel for the system interrupts 4 to 7. There is one register per 4 system interrupts." id="CMR1" offset="0x404" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 7" end="24" id="CH_MAP_7" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 6" end="16" id="CH_MAP_6" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 5" end="8" id="CH_MAP_5" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 4" end="0" id="CH_MAP_4" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR2" description="The Channel Map Register2 specify the channel for the system interrupts 8 to 11. There is one register per 4 system interrupts." id="CMR2" offset="0x408" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 11" end="24" id="CH_MAP_11" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 10" end="16" id="CH_MAP_10" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 9" end="8" id="CH_MAP_9" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 8" end="0" id="CH_MAP_8" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR3" description="The Channel Map Register3 specify the channel for the system interrupts 12 to 15. There is one register per 4 system interrupts." id="CMR3" offset="0x40C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 15" end="24" id="CH_MAP_15" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 14" end="16" id="CH_MAP_14" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 13" end="8" id="CH_MAP_13" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 12" end="0" id="CH_MAP_12" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR4" description="The Channel Map Register4 specify the channel for the system interrupts 16 to 19. There is one register per 4 system interrupts." id="CMR4" offset="0x410" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 19" end="24" id="CH_MAP_19" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 18" end="16" id="CH_MAP_18" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 17" end="8" id="CH_MAP_17" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 16" end="0" id="CH_MAP_16" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR5" description="The Channel Map Register5 specify the channel for the system interrupts 20 to 23. There is one register per 4 system interrupts." id="CMR5" offset="0x414" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 23" end="24" id="CH_MAP_23" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 22" end="16" id="CH_MAP_22" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 21" end="8" id="CH_MAP_21" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 20" end="0" id="CH_MAP_20" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR6" description="The Channel Map Register6 specify the channel for the system interrupts 24 to 27. There is one register per 4 system interrupts." id="CMR6" offset="0x418" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 27" end="24" id="CH_MAP_27" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 26" end="16" id="CH_MAP_26" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 25" end="8" id="CH_MAP_25" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 24" end="0" id="CH_MAP_24" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR7" description="The Channel Map Register7 specify the channel for the system interrupts 28 to 31. There is one register per 4 system interrupts." id="CMR7" offset="0x41C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 31" end="24" id="CH_MAP_31" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 30" end="16" id="CH_MAP_30" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 29" end="8" id="CH_MAP_29" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 28" end="0" id="CH_MAP_28" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR8" description="The Channel Map Register8 specify the channel for the system interrupts 32 to 35. There is one register per 4 system interrupts." id="CMR8" offset="0x420" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 35" end="24" id="CH_MAP_35" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 34" end="16" id="CH_MAP_34" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 33" end="8" id="CH_MAP_33" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 32" end="0" id="CH_MAP_32" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR9" description="The Channel Map Register9 specify the channel for the system interrupts 36 to 39. There is one register per 4 system interrupts." id="CMR9" offset="0x424" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 39" end="24" id="CH_MAP_39" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 38" end="16" id="CH_MAP_38" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 37" end="8" id="CH_MAP_37" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 36" end="0" id="CH_MAP_36" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR10" description="The Channel Map Register10 specify the channel for the system interrupts 40 to 43. There is one register per 4 system interrupts." id="CMR10" offset="0x428" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 43" end="24" id="CH_MAP_43" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 42" end="16" id="CH_MAP_42" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 41" end="8" id="CH_MAP_41" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 40" end="0" id="CH_MAP_40" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR11" description="The Channel Map Register11 specify the channel for the system interrupts 44 to 47. There is one register per 4 system interrupts." id="CMR11" offset="0x42C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 47" end="24" id="CH_MAP_47" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 46" end="16" id="CH_MAP_46" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 45" end="8" id="CH_MAP_45" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 44" end="0" id="CH_MAP_44" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR12" description="The Channel Map Register12 specify the channel for the system interrupts 48 to 51. There is one register per 4 system interrupts." id="CMR12" offset="0x430" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 51" end="24" id="CH_MAP_51" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 50" end="16" id="CH_MAP_50" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 49" end="8" id="CH_MAP_49" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 48" end="0" id="CH_MAP_48" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR13" description="The Channel Map Register13 specify the channel for the system interrupts 52 to 55. There is one register per 4 system interrupts." id="CMR13" offset="0x434" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 55" end="24" id="CH_MAP_55" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 54" end="16" id="CH_MAP_54" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 53" end="8" id="CH_MAP_53" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 52" end="0" id="CH_MAP_52" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR14" description="The Channel Map Register14 specify the channel for the system interrupts 56 to 59. There is one register per 4 system interrupts." id="CMR14" offset="0x438" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 59" end="24" id="CH_MAP_59" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 58" end="16" id="CH_MAP_58" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 57" end="8" id="CH_MAP_57" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 56" end="0" id="CH_MAP_56" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMR15" description="The Channel Map Register15 specify the channel for the system interrupts 60 to 63. There is one register per 4 system interrupts." id="CMR15" offset="0x43C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" Sets the channel for the system interrupt 63" end="24" id="CH_MAP_63" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" Sets the channel for the system interrupt 62" end="16" id="CH_MAP_62" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" Sets the channel for the system interrupt 61" end="8" id="CH_MAP_61" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" Sets the channel for the system interrupt 60" end="0" id="CH_MAP_60" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="HMR0" description="The Host Interrupt Map Register0 define the host interrupt for channels 0 to 3. There is one register per 4 channels. Channels with forced host interrupt mappings will have their fields read-only." id="HMR0" offset="0x800" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" HOST INTERRUPT MAP FOR CHANNEL 3" end="24" id="HINT_MAP_3" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" HOST INTERRUPT MAP FOR CHANNEL 2" end="16" id="HINT_MAP_2" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" HOST INTERRUPT MAP FOR CHANNEL 1" end="8" id="HINT_MAP_1" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" HOST INTERRUPT MAP FOR CHANNEL 0" end="0" id="HINT_MAP_0" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="HMR1" description="The Host Interrupt Map Register1 define the host interrupt for channels 4 to 7. There is one register per 4 channels. Channels with forced host interrupt mappings will have their fields read-only." id="HMR1" offset="0x804" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="28" id="RESERVED_1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description=" HOST INTERRUPT MAP FOR CHANNEL 7" end="24" id="HINT_MAP_7" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description=" " end="20" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description=" HOST INTERRUPT MAP FOR CHANNEL 6" end="16" id="HINT_MAP_6" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description=" " end="12" id="RESERVED_3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description=" HOST INTERRUPT MAP FOR CHANNEL 5" end="8" id="HINT_MAP_5" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_4" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" HOST INTERRUPT MAP FOR CHANNEL 4" end="0" id="HINT_MAP_4" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="HMR2" description="The Host Interrupt Map Register2 define the host interrupt for channels 8 to 9. There is one register per 4 channels. Channels with forced host interrupt mappings will have their fields read-only." id="HMR2" offset="0x808" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="12" id="RESERVED_1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description=" HOST INTERRUPT MAP FOR CHANNEL 9" end="8" id="HINT_MAP_9" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description=" " end="4" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" HOST INTERRUPT MAP FOR CHANNEL 8" end="0" id="HINT_MAP_8" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR0" description="The Host Interrupt Prioritized Index Register0 shows the highest priority current pending interrupt for the host interrupt 0. There is one register per host interrupt." id="HIPIR0" offset="0x900" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_0" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 0 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_0" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR1" description="The Host Interrupt Prioritized Index Register1 shows the highest priority current pending interrupt for the host interrupt 1. There is one register per host interrupt." id="HIPIR1" offset="0x904" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 1 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_1" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR2" description="The Host Interrupt Prioritized Index Register2 shows the highest priority current pending interrupt for the host interrupt 2. There is one register per host interrupt." id="HIPIR2" offset="0x908" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 2 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_2" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR3" description="The Host Interrupt Prioritized Index Register3 shows the highest priority current pending interrupt for the host interrupt 3. There is one register per host interrupt." id="HIPIR3" offset="0x90C" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 3 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_3" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR4" description="The Host Interrupt Prioritized Index Register4 shows the highest priority current pending interrupt for the host interrupt 4. There is one register per host interrupt." id="HIPIR4" offset="0x910" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 4 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_4" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR5" description="The Host Interrupt Prioritized Index Register5 shows the highest priority current pending interrupt for the host interrupt 5. There is one register per host interrupt." id="HIPIR5" offset="0x914" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 5 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_5" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR6" description="The Host Interrupt Prioritized Index Register6 shows the highest priority current pending interrupt for the host interrupt 6. There is one register per host interrupt." id="HIPIR6" offset="0x918" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_6" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 6 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_6" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR7" description="The Host Interrupt Prioritized Index Register7 shows the highest priority current pending interrupt for the host interrupt 7. There is one register per host interrupt." id="HIPIR7" offset="0x91C" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_7" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 7 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_7" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR8" description="The Host Interrupt Prioritized Index Register8 shows the highest priority current pending interrupt for the host interrupt 8. There is one register per host interrupt." id="HIPIR8" offset="0x920" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_8" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 8 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_8" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIPIR9" description="The Host Interrupt Prioritized Index Register9 shows the highest priority current pending interrupt for the host interrupt 9. There is one register per host interrupt." id="HIPIR9" offset="0x924" page="2" width="32">
+    
+  <bitfield begin="31" description=" No pending interrupt." end="31" id="NONE_HINT_9" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="10" id="RESERVED_1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="9" description=" HOST INT 9 PRIORITIZED INTERRUPT.  Interrupt number of the highest priority pending interrupt for this host interrupt." end="0" id="PRI_HINT_9" rwaccess="R" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="SIPR0" description="The System Interrupt Polarity Register0 define the polarity of the system interrupts 0 to 31. There is a polarity for each system interrupt. The polarity of all system interrupts is active high; always write 1 to the bits of this register." id="SIPR0" offset="0xD00" page="2" width="32">
+    
+  <bitfield begin="31" description=" Interrupt polarity of the system interrupts 0 to 31.  0 = active low.  1 = active high." end="0" id="POLARITY_31_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SIPR1" description="The System Interrupt Polarity Register1 define the polarity of the system interrupts 32 to 63. There is a polarity for each system interrupt. The polarity of all system interrupts is active high; always write 1 to the bits of this register." id="SIPR1" offset="0xD04" page="2" width="32">
+    
+  <bitfield begin="31" description=" Interrupt polarity of the system interrupts 32 to 63.  0 = active low.  1 = active high." end="0" id="POLARITY_63_32" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SITR0" description="The System Interrupt Type Register0 define the type of the system interrupts 0 to 31. There is a type for each system interrupt. The type of all system interrupts is pulse; always write 0 to the bits of this register." id="SITR0" offset="0xD80" page="2" width="32">
+    
+  <bitfield begin="31" description=" Interrupt type of the system interrupts 0 to 31.  0 = level or pulse interrupt.  1 = edge interrupt (required edge detect)." end="0" id="TYPE_31_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="SITR1" description="The System Interrupt Type Register1 define the type of the system interrupts 32 to 63. There is a type for each system interrupt. The type of all system interrupts is pulse; always write 0 to the bits of this register." id="SITR1" offset="0xD84" page="2" width="32">
+    
+  <bitfield begin="31" description=" Interrupt type of the system interrupts 32 to 63.  0 = level or pulse interrupt.  1 = edge interrupt (required edge detect)." end="0" id="TYPE_63_32" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR0" description="The Host Interrupt Nesting Level Register0 display and control the nesting level for host interrupt 0. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR0" offset="0x1100" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_0" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR1" description="The Host Interrupt Nesting Level Register1 display and control the nesting level for host interrupt 1. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR1" offset="0x1104" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_1" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR2" description="The Host Interrupt Nesting Level Register2 display and control the nesting level for host interrupt 2. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR2" offset="0x1108" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_2" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR3" description="The Host Interrupt Nesting Level Register3 display and control the nesting level for host interrupt 3. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR3" offset="0x110C" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_3" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR4" description="The Host Interrupt Nesting Level Register4 display and control the nesting level for host interrupt 4. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR4" offset="0x1110" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_4" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR5" description="The Host Interrupt Nesting Level Register5 display and control the nesting level for host interrupt 5. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR5" offset="0x1114" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_5" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR6" description="The Host Interrupt Nesting Level Register6 display and control the nesting level for host interrupt 6. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR6" offset="0x1118" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_6" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR7" description="The Host Interrupt Nesting Level Register7 display and control the nesting level for host interrupt 7. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR7" offset="0x111C" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_7" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR8" description="The Host Interrupt Nesting Level Register8 display and control the nesting level for host interrupt 8. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR8" offset="0x1120" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_8" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HINLR9" description="The Host Interrupt Nesting Level Register9 display and control the nesting level for host interrupt 9. The nesting level controls which channel and lower priority channels are nested. There is one register per host interrupt." id="HINLR9" offset="0x1124" page="2" width="32">
+    
+  <bitfield begin="31" description=" Reads return 0.  Writes of a 1 override the auto updating of the nesting_level and use the write data." end="31" id="AUTO_OVERRIDE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="30" description=" " end="9" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="8" description=" Reads return the current nesting level for the host interrupt.  Writes set the nesting level for the host interrupt.  In auto mode the value is updated internally unless the auto_override is set and then the write data is used." end="0" id="NEST_HINT_9" rwaccess="RW" width="9"></bitfield>
+  </register>
+  
+  
+  <register acronym="HIER" description="The Host Interrupt Enable Registers enable or disable individual host interrupts. These work separately from the global enables. There is one bit per host interrupt. These bits are updated when writing to the Host Interrupt Enable Index Set and Host Interrupt Enable Index Clear registers." id="HIER" offset="0x1500" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="10" id="RESERVED_1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description=" The enable of the host interrupts (one per bit).  0 = disabled  1 = enabled" end="0" id="EN_HINT" rwaccess="RW" width="10"></bitfield>
+  </register>
+</module>

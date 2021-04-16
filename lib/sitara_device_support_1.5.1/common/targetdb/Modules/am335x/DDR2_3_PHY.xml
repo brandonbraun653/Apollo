@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="DDR2_3_mDDR_PHY" id="DDR2_3_mDDR_PHY">
+  
+  
+  <register acronym="CMD0_REG_PHY_CTRL_SLAVE_RATIO_0" description="" id="CMD0_REG_PHY_CTRL_SLAVE_RATIO_0" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for address/command launch timing in DDR PHY macro. This is the fraction of a clock cycle represented by the shift to be applied to the read DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="CMD_SLAVE_RATIO" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMD0_REG_PHY_DLL_LOCK_DIFF_0" description="" id="CMD0_REG_PHY_DLL_LOCK_DIFF_0" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="" end="4" id="Reserved1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="The max number of delay line taps variation allowed while maintaining the master DLL lock.This is calculated as total jitter/ delay line tap size, where total jitter is half of (incoming clock jitter (pp) + delay line jitter (pp)). " end="0" id="DLL_LOCK_DIFF" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMD0_REG_PHY_INVERT_CLKOUT_0" description="" id="CMD0_REG_PHY_INVERT_CLKOUT_0" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Inverts the polarity of DRAM clock." end="0" id="INVERT_CLK_SEL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMD1_REG_PHY_CTRL_SLAVE_RATIO_0" description="" id="CMD1_REG_PHY_CTRL_SLAVE_RATIO_0" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for address/command launch timing in DDR PHY macro. This is the fraction of a clock cycle represented by the shift to be applied to the read DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="CMD_SLAVE_RATIO" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMD1_REG_PHY_DLL_LOCK_DIFF_0" description="" id="CMD1_REG_PHY_DLL_LOCK_DIFF_0" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="" end="4" id="Reserved1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="The max number of delay line taps variation allowed while maintaining the master DLL lock.This is calculated as total jitter/ delay line tap size, where total jitter is half of (incoming clock jitter (pp) + delay line jitter (pp)). " end="0" id="DLL_LOCK_DIFF" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMD1_REG_PHY_INVERT_CLKOUT_0" description="" id="CMD1_REG_PHY_INVERT_CLKOUT_0" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Inverts the polarity of DRAM clock." end="0" id="INVERT_CLK_SEL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMD2_REG_PHY_CTRL_SLAVE_RATIO_0" description="" id="CMD2_REG_PHY_CTRL_SLAVE_RATIO_0" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for address/command launch timing in DDR PHY macro. This is the fraction of a clock cycle represented by the shift to be applied to the read DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="CMD_SLAVE_RATIO" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMD2_REG_PHY_DLL_LOCK_DIFF_0" description="" id="CMD2_REG_PHY_DLL_LOCK_DIFF_0" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="" end="4" id="Reserved1" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="The max number of delay line taps variation allowed while maintaining the master DLL lock.This is calculated as total jitter/ delay line tap size, where total jitter is half of (incoming clock jitter (pp) + delay line jitter (pp)). " end="0" id="DLL_LOCK_DIFF" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="CMD2_REG_PHY_INVERT_CLKOUT_0" description="" id="CMD2_REG_PHY_INVERT_CLKOUT_0" offset="0x94" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Inverts the polarity of DRAM clock." end="0" id="INVERT_CLK_SEL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_RD_DQS_SLAVE_RATIO_0" description="" id="DATA0_REG_PHY_RD_DQS_SLAVE_RATIO_0" offset="0xC8" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="RW" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for Read DQS slave DLL for CS0. This is the fraction of a clock cycle represented by the shift to be applied to the read DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="RD_DQS_SLAVE_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_WR_DQS_SLAVE_RATIO_0" description="" id="DATA0_REG_PHY_WR_DQS_SLAVE_RATIO_0" offset="0xDC" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for Write DQS slave DLL for CS0. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="_WR_DQS_SLAVE_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_WRLVL_INIT_RATIO_0" description="" id="DATA0_REG_PHY_WRLVL_INIT_RATIO_0" offset="0xF0" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="The user programmable init ratio used by Write Leveling FSM when DATA0/1_REG_PHY_WRLVL_INIT_MODE_0 register value set to 1 " end="0" id="WRLVL_INIT_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_WRLVL_INIT_MODE_0" description="" id="DATA0_REG_PHY_WRLVL_INIT_MODE_0" offset="0xF8" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="The user programmable init ratio selection mode for Write Leveling FSM." end="0" id="WRLVL_INIT_MODE_SEL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_GATELVL_INIT_RATIO_0" description="" id="DATA0_REG_PHY_GATELVL_INIT_RATIO_0" offset="0xFC" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="The user programmable init ratio used by DQS Gate Training FSM when DATA0/1/_REG_PHY_GATELVL_INIT_MODE_0 register value set to 1." end="0" id="GATELVL_INIT_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_GATELVL_INIT_MODE_0" description="" id="DATA0_REG_PHY_GATELVL_INIT_MODE_0" offset="0x104" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="User programmable init ratio selection mode for DQS Gate Training FSM." end="0" id="GATELVL_INIT_MODE_SEL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_FIFO_WE_SLAVE_RATIO_0" description="" id="DATA0_REG_PHY_FIFO_WE_SLAVE_RATIO_0" offset="0x108" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for fifo we for CS0. " end="0" id="RD_DQS_GATE_SLAVE_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_DQ_OFFSET_0" description="" id="DATA0_REG_PHY_DQ_OFFSET_0" offset="0x11C" width="32"></register>
+  
+  
+  <register acronym="DATA0_REG_PHY_WR_DATA_SLAVE_RATIO_0" description="" id="DATA0_REG_PHY_WR_DATA_SLAVE_RATIO_0" offset="0x120" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for write data slave DLL for CS0. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="WR_DATA_SLAVE_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_USE_RANK0_DELAYS" description="" id="DATA0_REG_PHY_USE_RANK0_DELAYS" offset="0x134" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Delay Selection" end="0" id="PHY_USE_RANK0_DELAYS_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA0_REG_PHY_DLL_LOCK_DIFF_0" description="" id="DATA0_REG_PHY_DLL_LOCK_DIFF_0" offset="0x138" width="32"></register>
+  
+  
+  <register acronym="DATA1_REG_PHY_RD_DQS_SLAVE_RATIO_0" description="" id="DATA1_REG_PHY_RD_DQS_SLAVE_RATIO_0" offset="0x16C" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="RW" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for Read DQS slave DLL for CS0. This is the fraction of a clock cycle represented by the shift to be applied to the read DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="RD_DQS_SLAVE_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_WR_DQS_SLAVE_RATIO_0" description="" id="DATA1_REG_PHY_WR_DQS_SLAVE_RATIO_0" offset="0x180" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for Write DQS slave DLL for CS0. This is the fraction of a clock cycle represented by the shift to be applied to the write DQS in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="_WR_DQS_SLAVE_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_WRLVL_INIT_RATIO_0" description="" id="DATA1_REG_PHY_WRLVL_INIT_RATIO_0" offset="0x194" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="The user programmable init ratio used by Write Leveling FSM when DATA0/1_REG_PHY_WRLVL_INIT_MODE_0 register value set to 1 " end="0" id="WRLVL_INIT_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_WRLVL_INIT_MODE_0" description="" id="DATA1_REG_PHY_WRLVL_INIT_MODE_0" offset="0x19C" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="The user programmable init ratio selection mode for Write Leveling FSM." end="0" id="WRLVL_INIT_MODE_SEL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_GATELVL_INIT_RATIO_0" description="" id="DATA1_REG_PHY_GATELVL_INIT_RATIO_0" offset="0x1A0" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="The user programmable init ratio used by DQS Gate Training FSM when DATA0/1/_REG_PHY_GATELVL_INIT_MODE_0 register value set to 1." end="0" id="GATELVL_INIT_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_GATELVL_INIT_MODE_0" description="" id="DATA1_REG_PHY_GATELVL_INIT_MODE_0" offset="0x1A8" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="User programmable init ratio selection mode for DQS Gate Training FSM." end="0" id="GATELVL_INIT_MODE_SEL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_FIFO_WE_SLAVE_RATIO_0" description="" id="DATA1_REG_PHY_FIFO_WE_SLAVE_RATIO_0" offset="0x1AC" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for fifo we for CS0. " end="0" id="RD_DQS_GATE_SLAVE_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_DQ_OFFSET_1" description="" id="DATA1_REG_PHY_DQ_OFFSET_1" offset="0x1C0" width="32"></register>
+  
+  
+  <register acronym="DATA1_REG_PHY_WR_DATA_SLAVE_RATIO_0" description="" id="DATA1_REG_PHY_WR_DATA_SLAVE_RATIO_0" offset="0x1C4" width="32">
+    
+  <bitfield begin="31" description="" end="20" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="" end="10" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="9" description="Ratio value for write data slave DLL for CS0. This is the fraction of a clock cycle represented by the shift to be applied to the write DQ muxes in units of 256ths. In other words, the full-cycle tap value from the master DLL will be scaled by this number over 256 to get the delay value for the slave delay line. " end="0" id="WR_DATA_SLAVE_RATIO_CS0" rwaccess="RW" width="10"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_USE_RANK0_DELAYS" description="" id="DATA1_REG_PHY_USE_RANK0_DELAYS" offset="0x1D8" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Delay Selection" end="0" id="PHY_USE_RANK0_DELAYS_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DATA1_REG_PHY_DLL_LOCK_DIFF_0" description="" id="DATA1_REG_PHY_DLL_LOCK_DIFF_0" offset="0x1DC" width="32"></register>
+</module>

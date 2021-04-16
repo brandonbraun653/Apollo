@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRU_ICSS_PRU_DEBUG" id="PRU_ICSS_PRU_DEBUG">
+  
+  
+  <register acronym="GPREG0" description="DEBUG PRU GENERAL PURPOSE REGISTER 0. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG0" offset="0x0" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG1" description="DEBUG PRU GENERAL PURPOSE REGISTER 1. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG1" offset="0x4" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG2" description="DEBUG PRU GENERAL PURPOSE REGISTER 2. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG2" offset="0x8" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG3" description="DEBUG PRU GENERAL PURPOSE REGISTER 3. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG3" offset="0xC" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG4" description="DEBUG PRU GENERAL PURPOSE REGISTER 4. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG4" offset="0x10" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG5" description="DEBUG PRU GENERAL PURPOSE REGISTER 5. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG5" offset="0x14" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG6" description="DEBUG PRU GENERAL PURPOSE REGISTER 6. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG6" offset="0x18" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG7" description="DEBUG PRU GENERAL PURPOSE REGISTER 7. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG7" offset="0x1C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG7" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG8" description="DEBUG PRU GENERAL PURPOSE REGISTER 8. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG8" offset="0x20" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG8" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG9" description="DEBUG PRU GENERAL PURPOSE REGISTER 9. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG9" offset="0x24" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG9" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG10" description="DEBUG PRU GENERAL PURPOSE REGISTER 10. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG10" offset="0x28" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG10" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG11" description="DEBUG PRU GENERAL PURPOSE REGISTER 11. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG11" offset="0x2C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG11" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG12" description="DEBUG PRU GENERAL PURPOSE REGISTER 12. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG12" offset="0x30" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG12" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG13" description="DEBUG PRU GENERAL PURPOSE REGISTER 13. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG13" offset="0x34" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG13" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG14" description="DEBUG PRU GENERAL PURPOSE REGISTER 14. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG14" offset="0x38" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG14" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG15" description="DEBUG PRU GENERAL PURPOSE REGISTER 15. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG15" offset="0x3C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG15" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG16" description="DEBUG PRU GENERAL PURPOSE REGISTER 16. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG16" offset="0x40" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG16" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG17" description="DEBUG PRU GENERAL PURPOSE REGISTER 17. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG17" offset="0x44" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG17" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG18" description="DEBUG PRU GENERAL PURPOSE REGISTER 18. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG18" offset="0x48" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG18" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG19" description="DEBUG PRU GENERAL PURPOSE REGISTER 19. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG19" offset="0x4C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG19" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG20" description="DEBUG PRU GENERAL PURPOSE REGISTER 20. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG20" offset="0x50" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG20" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG21" description="DEBUG PRU GENERAL PURPOSE REGISTER 21. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG21" offset="0x54" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG21" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG22" description="DEBUG PRU GENERAL PURPOSE REGISTER 22. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG22" offset="0x58" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG22" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG23" description="DEBUG PRU GENERAL PURPOSE REGISTER 23. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG23" offset="0x5C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG23" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG24" description="DEBUG PRU GENERAL PURPOSE REGISTER 24. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG24" offset="0x60" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG24" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG25" description="DEBUG PRU GENERAL PURPOSE REGISTER 25. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG25" offset="0x64" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG25" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG26" description="DEBUG PRU GENERAL PURPOSE REGISTER 26. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG26" offset="0x68" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG26" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG27" description="DEBUG PRU GENERAL PURPOSE REGISTER 27. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG27" offset="0x6C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG27" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG28" description="DEBUG PRU GENERAL PURPOSE REGISTER 28. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG28" offset="0x70" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG28" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG29" description="DEBUG PRU GENERAL PURPOSE REGISTER 29. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG29" offset="0x74" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG29" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG30" description="DEBUG PRU GENERAL PURPOSE REGISTER 30. This register allows an external agent to debug the PRU while it is disabled. Reading or writing to these registers will have the same effect as a read or write to these registers from an internal instruction in the PRU. For R30, this includes generation of the pulse outputs whenever the register is written." id="GPREG30" offset="0x78" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal GP Register n: Reading / writing this field directly inspects/modifies the corresponding internal register in the PRU internal regfile." end="0" id="GP_REG30" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPREG31" description="" id="GPREG31" offset="0x7C" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="0" id="GP_REG31" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG0" description="DEBUG PRU CONSTANTS TABLE ENTRY 0. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG0" offset="0x80" page="2" width="32">
+    
+  <bitfield begin="31" description="  PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG0" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG1" description="DEBUG PRU CONSTANTS TABLE ENTRY 1. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG1" offset="0x84" page="2" width="32">
+    
+  <bitfield begin="31" description="  PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG2" description="DEBUG PRU CONSTANTS TABLE ENTRY 2. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG2" offset="0x88" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG2" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG3" description="DEBUG PRU CONSTANTS TABLE ENTRY 3. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG3" offset="0x8C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG3" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG4" description="DEBUG PRU CONSTANTS TABLE ENTRY 4. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG4" offset="0x90" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG4" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG5" description="DEBUG PRU CONSTANTS TABLE ENTRY 5. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG5" offset="0x94" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG5" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG6" description="DEBUG PRU CONSTANTS TABLE ENTRY 6. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG6" offset="0x98" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG6" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG7" description="DEBUG PRU CONSTANTS TABLE ENTRY 7. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG7" offset="0x9C" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG7" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG8" description="DEBUG PRU CONSTANTS TABLE ENTRY 8. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG8" offset="0xA0" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG8" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG9" description="DEBUG PRU CONSTANTS TABLE ENTRY 9. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG9" offset="0xA4" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG9" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG10" description="DEBUG PRU CONSTANTS TABLE ENTRY 10. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG10" offset="0xA8" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG10" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG11" description="DEBUG PRU CONSTANTS TABLE ENTRY 11. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG11" offset="0xAC" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG11" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG12" description="DEBUG PRU CONSTANTS TABLE ENTRY 12. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG12" offset="0xB0" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG12" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG13" description="DEBUG PRU CONSTANTS TABLE ENTRY 13. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG13" offset="0xB4" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG13" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG14" description="DEBUG PRU CONSTANTS TABLE ENTRY 14. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG14" offset="0xB8" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG14" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG15" description="DEBUG PRU CONSTANTS TABLE ENTRY 15. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG15" offset="0xBC" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG15" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG16" description="DEBUG PRU CONSTANTS TABLE ENTRY 16. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG16" offset="0xC0" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG16" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG17" description="DEBUG PRU CONSTANTS TABLE ENTRY 17. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG17" offset="0xC4" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG17" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG18" description="DEBUG PRU CONSTANTS TABLE ENTRY 18. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG18" offset="0xC8" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG18" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG19" description="DEBUG PRU CONSTANTS TABLE ENTRY 19. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG19" offset="0xCC" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG19" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG20" description="DEBUG PRU CONSTANTS TABLE ENTRY 20. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG20" offset="0xD0" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG20" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG21" description="DEBUG PRU CONSTANTS TABLE ENTRY 21. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG21" offset="0xD4" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG21" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG22" description="DEBUG PRU CONSTANTS TABLE ENTRY 22. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG22" offset="0xD8" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG22" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG23" description="DEBUG PRU CONSTANTS TABLE ENTRY 23. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG23" offset="0xDC" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table." end="0" id="CT_REG23" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG24" description="DEBUG PRU CONSTANTS TABLE ENTRY 24. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG24" offset="0xE0" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table.  This entry is partially programmable through the C24_BLK_INDEX in the PRU Control register.  The reset value for this Constant Table Entry is 0x00000n00, n=C24_BLK_INDEX[3:0]." end="0" id="CT_REG24" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG25" description="DEBUG PRU CONSTANTS TABLE ENTRY 25. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG25" offset="0xE4" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table.  This entry is partially programmable through the C25_BLK_INDEX in the PRU Control register.  The reset value for this Constant Table Entry is 0x00002n00, n=C25_BLK_INDEX[3:0]." end="0" id="CT_REG25" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG26" description="DEBUG PRU CONSTANTS TABLE ENTRY 26. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG26" offset="0xE8" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table.  This entry is partially programmable through the C26_BLK_INDEX in the PRU Control register.  The reset value for this Constant Table Entry is 0x0002En00, n=C26_BLK_INDEX[3:0]." end="0" id="CT_REG26" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG27" description="DEBUG PRU CONSTANTS TABLE ENTRY 27. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG27" offset="0xEC" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table.  This entry is partially programmable through the C27_BLK_INDEX in the PRU Control register.  The reset value for this Constant Table Entry is 0x00032n00, n=C27_BLK_INDEX[3:0]." end="0" id="CT_REG27" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG28" description="DEBUG PRU CONSTANTS TABLE ENTRY 28. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG28" offset="0xF0" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table.  This entry is partially programmable through the C28_POINTER in the PRU Control register.  The reset value for this Constant Table Entry is 0x00nnnn00, nnnn=C28_POINTER[15:0]." end="0" id="CT_REG28" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG29" description="DEBUG PRU CONSTANTS TABLE ENTRY 29. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG29" offset="0xF4" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table.  This entry is partially programmable through the C29_POINTER in the PRU Control register.  The reset value for this Constant Table Entry is 0x49nnnn00, nnnn=C29_POINTER[15:0]." end="0" id="CT_REG29" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG30" description="DEBUG PRU CONSTANTS TABLE ENTRY 30. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG30" offset="0xF8" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table.  This entry is partially programmable through the C30_POINTER in the PRU Control register.  The reset value for this Constant Table Entry is 0x40nnnn00, nnnn=C30_POINTER[15:0]." end="0" id="CT_REG30" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CT_REG31" description="DEBUG PRU CONSTANTS TABLE ENTRY 31. This register allows an external agent to debug the PRU while it is disabled. Since some of the constants table entries may actually depend on system inputs / and or the internal state of the PRU, these registers are provided to allow an external agent to easily determine the state of the constants table." id="CT_REG31" offset="0xFC" page="2" width="32">
+    
+  <bitfield begin="31" description=" PRU Internal Constants Table Entry n: Reading this field directly inspects the corresponding entry in the PRU internal constants table.  This entry is partially programmable through the C31_POINTER in the PRU Control register.  The reset value for this Constant Table Entry is 0x80nnnn00, nnnn=C31_POINTER[15:0]." end="0" id="CT_REG31" rwaccess="R" width="32"></bitfield>
+  </register>
+</module>

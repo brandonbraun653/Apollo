@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="cpsw_wr" id="cpsw_wr">
+  
+  
+  <register acronym="IDVER" description="SUBSYSTEM ID VERSION REGISTER" id="IDVER" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Scheme value" end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="function value" end="16" id="FUNCTION" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="rtl version" end="11" id="RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="major version" end="8" id="MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="custom version" end="6" id="CUSTOM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="minor version" end="0" id="MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="SOFT_RESET" description="SUBSYSTEM SOFT RESET REGISTER" id="SOFT_RESET" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Software reset - Writing a one to this bit causes the CPGMACSS_R logic  to be reset (INT, REGS, CPPI).  Software reset occurs on the clock  following the register bit write. " end="0" id="SOFT_RESET" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CONTROL" description="SUBSYSTEM CONTROL REGISTER" id="CONTROL" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="4" id="Reserved" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="Configuration of the local initiator state management mode. By definition, initiator may generate read/write transaction as long as it is out of STANDBY state. " end="2" id="MMR_STDBYMODE" rwaccess="RW" width="2">
+    <bitenum description="Local initiator is unconditionally placed in standbystate." id="Force-standby mode" token="Force-standby mode" value="0"></bitenum>
+    <bitenum description="Local initiator is unconditionally placed out of standby state." id="No-standby mode" token="No-standby mode" value="1"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Configuration of the local initiator state management mode. By definition, initiator may generate read/write transaction as long as it is out of IDLE state.  " end="0" id="MMR_IDLEMODE" rwaccess="RW" width="2">
+    <bitenum description="Local initiator is unconditionally placed in idle state." id="Force-idle mode" token="Force-idle mode" value="0"></bitenum>
+    <bitenum description="Local initiator is unconditionally placed out of idle state." id="No-idle mode" token="No-idle mode" value="1"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INT_CONTROL" description="SUBSYSTEM INTERRUPT CONTROL" id="INT_CONTROL" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Interrupt Test - Test bit to the interrupt pacing blocks" end="31" id="INT_TEST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Reserved" end="22" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt Pacing Enable Bus    int_pace_en[0] - Enables C0_Rx_Pulse Pacing (0 is pacing bypass)    int_pace_en[1] - Enables C0_Tx_Pulse Pacing (0 is pacing bypass)    int_pace_en[2] - Enables C1_Rx_Pulse Pacing (0 is pacing bypass)    int_pace_en[3] - Enables C1_Tx_Pulse Pacing (0 is pacing bypass)    int_pace_en[4] - Enables C2_Rx_Pulse Pacing (0 is pacing bypass)    int_pace_en[5] - Enables C2_Tx_Pulse Pacing (0 is pacing bypass) " end="16" id="INT_PACE_EN" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="12" id="Reserved" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Interrupt Counter Prescaler -  The number of  MAIN_CLK periods in 4us." end="0" id="INT_PRESCALE" rwaccess="R" width="12"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_RX_THRESH_EN" description="SUBSYSTEM CORE 0 RECEIVE THRESHOLD INT ENABLE REGISTER" id="C0_RX_THRESH_EN" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 0 Receive Threshold Enable -  Each bit in this register corresponds to  the bit in the receive threshold interrupt that is enabled to generate an  interrupt on C0_RX_THRESH_PULSE. " end="0" id="C0_RX_THRESH_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_RX_EN" description="SUBSYSTEM CORE 0 RECEIVE INTERRUPT ENABLE REGISTER" id="C0_RX_EN" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 0 Receive Enable -  Each bit in this register corresponds to the bit in  the rx interrupt that is enabled to generate an interrupt on C0_RX_PULSE. " end="0" id="C0_RX_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_TX_EN" description="SUBSYSTEM CORE 0 TRANSMIT INTERRUPT ENABLE REGISTER" id="C0_TX_EN" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 0 Transmit Enable -  Each bit in this register corresponds to the bit in  the tx interrupt that is enabled to generate an interrupt on C0_TX_PULSE. " end="0" id="C0_TX_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_MISC_EN" description="SUBSYSTEM CORE 0 MISC INTERRUPT ENABLE REGISTER" id="C0_MISC_EN" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Core 0 Misc Enable -  Each bit in this register corresponds to the  miscellaneous interrupt (evnt_pend, stat_pend, host_pend, mdio_linkint,  mdio_userint) that is enabled to generate an interrupt on C0_Misc_PULSE. " end="0" id="C0_MISC_EN" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_RX_THRESH_EN" description="SUBSYSTEM CORE 1 RECEIVE THRESHOLD INT ENABLE REGISTER" id="C1_RX_THRESH_EN" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 1 Receive Threshold Enable -  Each bit in this register corresponds to  the bit in the receive threshold interrupt that is enabled to generate an  interrupt on C1_RX_THRESH_PULSE. " end="0" id="C1_RX_THRESH_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_RX_EN" description="SUBSYSTEM CORE 1 RECEIVE INTERRUPT ENABLE REGISTER" id="C1_RX_EN" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 1 Receive Enable -  Each bit in this register corresponds to the bit in  the rx interrupt that is enabled to generate an interrupt on C1_RX_PULSE. " end="0" id="C1_RX_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_TX_EN" description="SUBSYSTEM CORE 1 TRANSMIT INTERRUPT ENABLE REGISTER" id="C1_TX_EN" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 1 Transmit Enable -  Each bit in this register corresponds to the bit in  the tx interrupt that is enabled to generate an interrupt on C1_TX_PULSE. " end="0" id="C1_TX_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_MISC_EN" description="SUBSYSTEM CORE 1 MISC INTERRUPT ENABLE REGISTER" id="C1_MISC_EN" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Core 1 Misc Enable -  Each bit in this register corresponds to the  miscellaneous interrupt (evnt_pend, stat_pend, host_pend, mdio_linkint,  mdio_userint) that is enabled to generate an interrupt on C1_Misc_PULSE. " end="0" id="C1_MISC_EN" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_RX_THRESH_EN" description="SUBSYSTEM CORE 2 RECEIVE THRESHOLD INT ENABLE REGISTER" id="C2_RX_THRESH_EN" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 2 Receive Threshold Enable -  Each bit in this register corresponds to  the bit in the receive threshold interrupt that is enabled to generate an  interrupt on C2_RX_THRESH_PULSE. " end="0" id="C2_RX_THRESH_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_RX_EN" description="SUBSYSTEM CORE 2 RECEIVE INTERRUPT ENABLE REGISTER" id="C2_RX_EN" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 2 Receive Enable -  Each bit in this register corresponds to the bit in  the rx interrupt that is enabled to generate an interrupt on C2_RX_PULSE. " end="0" id="C2_RX_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_TX_EN" description="SUBSYSTEM CORE 2 TRANSMIT INTERRUPT ENABLE REGISTER" id="C2_TX_EN" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 2 Transmit Enable -  Each bit in this register corresponds to the bit in  the tx interrupt that is enabled to generate an interrupt on C2_TX_PULSE. " end="0" id="C2_TX_EN" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_MISC_EN" description="SUBSYSTEM CORE 2 MISC INTERRUPT ENABLE REGISTER" id="C2_MISC_EN" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Core 2 Misc Enable -  Each bit in this register corresponds to the  miscellaneous interrupt (evnt_pend, stat_pend, host_pend, mdio_linkint,  mdio_userint) that is enabled to generate an interrupt on C2_Misc_PULSE. " end="0" id="C2_MISC_EN" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_RX_THRESH_STAT" description="SUBSYSTEM CORE 0 RX THRESHOLD MASKED INT STATUS REGISTER" id="C0_RX_THRESH_STAT" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 0 Receive Threshold Masked Interrupt Status -  Each bit in this read  only register corresponds to the bit in the receive threshold interrupt that is  enabled and generating an interrupt on C0_RX_THRESH_PULSE. " end="0" id="C0_RX_THRESH_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_RX_STAT" description="SUBSYSTEM CORE 0 RX INTERRUPT MASKED INT STATUS REGISTER" id="C0_RX_STAT" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 0 Receive Masked Interrupt Status -  Each bit in this read only register  corresponds to the bit in the Rx interrupt that is enabled and generating an  interrupt on C0_RX_PULSE. " end="0" id="C0_RX_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_TX_STAT" description="SUBSYSTEM CORE 0 TX INTERRUPT MASKED INT STATUS REGISTER" id="C0_TX_STAT" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 0 Transmit Masked Interrupt Status -  Each bit in this read only  register corresponds to the bit in the Tx interrupt that is enabled and  generating an interrupt on C0_TX_PULSE . " end="0" id="C0_TX_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_MISC_STAT" description="SUBSYSTEM CORE 0 MISC INTERRUPT MASKED INT STATUS REGISTER" id="C0_MISC_STAT" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Core 0 Misc Masked Interrupt Status -  Each bit in this register corresponds  to the miscellaneous interrupt (evnt_pend, stat_pend, host_pend,  mdio_linkint, mdio_userint) that is enabled and generating an interrupt on  C0_MISC_PULSE . " end="0" id="C0_MISC_STAT" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_RX_THRESH_STAT" description="SUBSYSTEM CORE 1 RX THRESHOLD  MASKED INT STATUS REGISTER" id="C1_RX_THRESH_STAT" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 1 Receive Threshold Masked Interrupt Status -  Each bit in this  register corresponds to the bit in the receive threshold interrupt that is  enabled and generating an interrupt on C1_RX_THRESH_PULSE. " end="0" id="C1_RX_THRESH_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_RX_STAT" description="SUBSYSTEM CORE 1 RECEIVE MASKED INTERRUPT STATUS REGISTER" id="C1_RX_STAT" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 1 Receive Masked Interrupt Status -  Each bit in this register  corresponds to the bit in the Rx interrupt that is enabled and generating an  interrupt on C1_RX_PULSE. " end="0" id="C1_RX_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_TX_STAT" description="SUBSYSTEM CORE 1 TRANSMIT MASKED INTERRUPT STATUS REGISTER" id="C1_TX_STAT" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 1 Transmit Masked Interrupt Status -  Each bit in this register  corresponds to the bit in the Tx interrupt that is enabled and generating an  interrupt on C1_TX_PULSE. " end="0" id="C1_TX_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_MISC_STAT" description="SUBSYSTEM CORE 1 MISC MASKED INTERRUPT STATUS REGISTER" id="C1_MISC_STAT" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Core 1 Misc Masked Interrupt Status -  Each bit in this register corresponds  to the miscellaneous interrupt (evnt_pend, stat_pend, host_pend,  mdio_linkint, mdio_userint) that is enabled and generating an interrupt on  C1_MISC_PULSE . " end="0" id="C1_MISC_STAT" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_RX_THRESH_STAT" description="SUBSYSTEM CORE 2 RX THRESHOLD MASKED INT STATUS REGISTER" id="C2_RX_THRESH_STAT" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 2 Receive Threshold Masked Interrupt Status -  Each bit in this  register corresponds to the bit in the receive threshold interrupt that is  enabled and generating an interrupt on C2_RX_THRESH_PULSE. " end="0" id="C2_RX_THRESH_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_RX_STAT" description="SUBSYSTEM CORE 2 RECEIVE MASKED INTERRUPT STATUS REGISTER" id="C2_RX_STAT" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 2 Receive Masked Interrupt Status -  Each bit in this register  corresponds to the bit in the Rx interrupt that is enabled and generating an  interrupt on C2_RX_PULSE. " end="0" id="C2_RX_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_TX_STAT" description="SUBSYSTEM CORE 2 TRANSMIT MASKED INTERRUPT STATUS REGISTER" id="C2_TX_STAT" offset="0x68" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Core 2 Transmit Masked Interrupt Status -  Each bit in this register  corresponds to the bit in the Tx interrupt that is enabled and generating an  interrupt on C2_TX_PULSE. " end="0" id="C2_TX_STAT" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_MISC_STAT" description="SUBSYSTEM CORE 2 MISC MASKED INTERRUPT STATUS REGISTER" id="C2_MISC_STAT" offset="0x6C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Core 2 Misc Masked Interrupt Status -  Each bit in this register corresponds  to the miscellaneous interrupt (evnt_pend, stat_pend, host_pend,  mdio_linkint, mdio_userint) that is enabled and generating an interrupt on  C2_MISC_PULSE . " end="0" id="C2_MISC_STAT" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_RX_IMAX" description="SUBSYSTEM CORE 0 RECEIVE INTERRUPTS PER MILLISECOND" id="C0_RX_IMAX" offset="0x70" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Core 0 Receive Interrupts per Millisecond -  The maximum number of  interrupts per millisecond generated on C0_RX_PULSE if pacing is  enabled for this interrupt. " end="0" id="C0_RX_IMAX" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="C0_TX_IMAX" description="SUBSYSTEM CORE 0 TRANSMIT INTERRUPTS PER MILLISECOND" id="C0_TX_IMAX" offset="0x74" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Core 0 Transmit Interrupts per Millisecond -  The maximum number of  interrupts per millisecond generated on C0_TX_PULSE if pacing is enabled  for this interrupt. " end="0" id="C0_TX_IMAX" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_RX_IMAX" description="SUBSYSTEM CORE 1 RECEIVE INTERRUPTS PER MILLISECOND" id="C1_RX_IMAX" offset="0x78" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Core 1 Receive Interrupts per Millisecond -  The maximum number of  interrupts per millisecond generated on C1_RX_PULSE if pacing is  enabled for this interrupt. " end="0" id="C1_RX_IMAX" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="C1_TX_IMAX" description="SUBSYSTEM CORE 1 TRANSMIT INTERRUPTS PER MILLISECOND" id="C1_TX_IMAX" offset="0x7C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Core 1 Transmit Interrupts per Millisecond -  The maximum number of  interrupts per millisecond generated on C1_TX_PULSE if pacing is enabled  for this interrupt. " end="0" id="C1_TX_IMAX" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_RX_IMAX" description="SUBSYSTEM CORE 2 RECEIVE INTERRUPTS PER MILLISECOND" id="C2_RX_IMAX" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Core 2 Receive Interrupts per Millisecond -  The maximum number of  interrupts per millisecond generated on C2_RX_PULSE if pacing is  enabled for this interrupt. " end="0" id="C2_RX_IMAX" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="C2_TX_IMAX" description="SUBSYSTEM CORE 2 TRANSMIT INTERRUPTS PER MILLISECOND" id="C2_TX_IMAX" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Core 2 Transmit Interrupts per Millisecond -  The maximum number of  interrupts per millisecond generated on C2_TX_PULSE if pacing is enabled  for this interrupt. " end="0" id="C2_TX_IMAX" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="RGMII_CTL" description="RGMII CONTROL SIGNAL REGISTER" id="RGMII_CTL" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="RGMII 2 Fullduplex - This is the CPRGMII fullduplex output signal.   0 - Half-duplex mode   1 - Fullduplex mode " end="7" id="RGMII2_FULLDUPLEX" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="RGMII2 Speed - This is the CPRGMI speed output signal  00 - 10Mbps mode  01 - 100Mbps mode  10 - 1000Mbps (gig) mode  11 - reserved " end="5" id="RGMII2_SPEED" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="4" description="RGMII2 Link Indicator - This is the CPRGMII link output signal  0 - RGMII2 link is down  1 - RGMII2 link is up " end="4" id="RGMII2_LINK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RGMII1 Fullduplex - This is the CPRGMII fullduplex output signal.   0 - Half-duplex mode   1 - Fullduplex mode " end="3" id="RGMII1_FULLDUPLEX" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RGMII1 Speed - This is the CPRGMII speed output signal  00 - 10Mbps mode  01 - 100Mbps mode  10 - 1000Mbps (gig) mode  11 - reserved " end="1" id="RGMII1_SPEED" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="0" description="RGMII1 Link Indicator - This is the CPRGMII link output signal  0 - RGMII1 link is down " end="0" id="RGMII1_LINK" rwaccess="R" width="1"></bitfield>
+  </register>
+</module>

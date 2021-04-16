@@ -1,0 +1,1314 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="CM_WKUP" id="CM_WKUP">
+  
+  
+  <register acronym="CM_WKUP_CLKSTCTRL" description="This register enables the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_WKUP_CLKSTCTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="15" id="Reserved1" rwaccess="R" width="17"></bitfield>
+    
+  <bitfield begin="14" description="This field indicates the state of the ADC  clock in the domain." end="14" id="CLKACTIVITY_ADC_FCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="This field indicates the state of the TIMER1 clock in the domain." end="13" id="CLKACTIVITY_TIMER1_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="This field indicates the state of the UART0 clock in the domain." end="12" id="CLKACTIVITY_UART0_GFCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="This field indicates the state of the I2C0  clock in the domain." end="11" id="CLKACTIVITY_I2C0_GFCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="This field indicates the state of the WKUPTIMER_GCLK  clock in the domain." end="10" id="CLKACTIVITY_TIMER0_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="" end="9" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This field indicates the state of the WKUPGPIO_DBGICLK  clock in the domain." end="8" id="CLKACTIVITY_GPIO0_GDBCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="5" id="Reserved" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the WDT1_GCLK  clock in the domain." end="4" id="CLKACTIVITY_WDT1_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="This field indicates the state of the SMARTREFGLEX SYSCLK  clock in the domain." end="3" id="CLKACTIVITY_SR_SYSCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="This field indicates the state of the L4_WKUP  clock in the domain." end="2" id="CLKACTIVITY_L4_WKUP_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the always on clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_CONTROL_CLKCTRL" description="This register manages the Control Module clocks." id="CM_WKUP_CONTROL_CLKCTRL" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_GPIO0_CLKCTRL" description="This register manages the GPIO0 clocks." id="CM_WKUP_GPIO0_CLKCTRL" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Optional functional clock control." end="18" id="OPTFCLKEN_GPIO0_GDBCLK" rwaccess="RW" width="1">
+    <bitenum description="Optional functional clock is disabled" id="FCLK_DIS" token="FCLK_DIS" value="0"></bitenum>
+    <bitenum description="Optional functional clock is enabled" id="FCLK_EN" token="FCLK_EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_L4WKUP_CLKCTRL" description="This register manages the L4WKUP clocks." id="CM_WKUP_L4WKUP_CLKCTRL" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_TIMER0_CLKCTRL" description="This register manages the TIMER0 clocks." id="CM_WKUP_TIMER0_CLKCTRL" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_DEBUGSS_CLKCTRL" description="This register manages the DEBUGSS clocks." id="CM_WKUP_DEBUGSS_CLKCTRL" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="" end="30" id="OPTCLK_DEBUG_CLKA" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="" end="27" id="stm_pmd_clkdivsel" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="26" description="" end="24" id="trc_pmd_clkdivsel" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="22" id="stm_pmd_clksel" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="21" description="" end="20" id="trc_pmd_clksel" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="19" description="Optional functional clock control." end="19" id="OPTFCLKEN_DBGSYSCLK" rwaccess="RW" width="1">
+    <bitenum description="Optional functional clock is disabled" id="FCLK_DIS" token="FCLK_DIS" value="0"></bitenum>
+    <bitenum description="Optional functional clock is enabled" id="FCLK_EN" token="FCLK_EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_L3_AON_CLKSTCTRL" description="This register enables the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_L3_AON_CLKSTCTRL" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="26" id="Reserved1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="25" description="Reserved" end="11" id="Reserved2" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="10" description="Reserved" end="8" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="5" id="Reserved" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="This field indicates the state of the Debugss CLKA clock in the domain." end="4" id="CLKACTIVITY_DEBUG_CLKA" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="This field indicates the state of the L3_AON  clock in the domain." end="3" id="CLKACTIVITY_L3_AON_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="This field indicates the state of the Debugss sysclk  clock in the domain." end="2" id="CLKACTIVITY_DBGSYSCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the L3 AON clock domain." end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="NO_SLEEP: Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="SW_SLEEP: Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="SW_WKUP: Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_AUTOIDLE_DPLL_MPU" description="This register provides automatic control over the DPLL activity." id="CM_AUTOIDLE_DPLL_MPU" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="3" id="Reserved" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="This feature is not supported." end="0" id="AUTO_DPLL_MODE" rwaccess="RW" width="3">
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_IDLEST_DPLL_MPU" description="This register allows monitoring the master clock activity. This register is read only and automatically updated.[warm reset insensitive]" id="CM_IDLEST_DPLL_MPU" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="DPLL MN_BYPASS status" end="8" id="ST_MN_BYPASS" rwaccess="R" width="1">
+    <bitenum description="DPLL is not in MN_Bypass" id="NO_MNBYPASS" token="NO_MNBYPASS" value="0"></bitenum>
+    <bitenum description="DPLL is in MN_Bypass" id="MN_BYPASS" token="MN_BYPASS" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="1" id="Reserved" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="DPLL clock activity" end="0" id="ST_DPLL_CLK" rwaccess="R" width="1">
+    <bitenum description="DPLL is either in bypass mode or in stop mode." id="DPLL_UNLOCKED" token="DPLL_UNLOCKED" value="0"></bitenum>
+    <bitenum description="DPLL is LOCKED" id="DPLL_LOCKED" token="DPLL_LOCKED" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_DELTAMSTEP_DPLL_MPU" description="Control the DeltaMStep parameter for Spread Spectrum Clocking technique DeltaMStep is split into fractional and integer part. [warm reset insensitive]" id="CM_SSC_DELTAMSTEP_DPLL_MPU" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="20" id="Reserved" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="Integer part for DeltaM coefficient" end="18" id="DELTAMSTEP_INTEGER" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Fractional part for DeltaM coefficient" end="0" id="DELTAMSTEP_FRACTION" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_MODFREQDIV_DPLL_MPU" description="Control the Modulation Frequency (Fm) for Spread Spectrum Clocking technique by defining it as a ratio of DPLL_REFCLK/4 Fm = [DPLL_REFCLK/4]/MODFREQDIV MODFREQDIV = MODFREQDIV_MANTISSA * 2^MODFREQDIV_EXPONENT [warm reset insensitive]" id="CM_SSC_MODFREQDIV_DPLL_MPU" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="Reserved1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Set the Exponent component of MODFREQDIV factor" end="8" id="MODFREQDIV_EXPONENT" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Set the Mantissa component of MODFREQDIV factor" end="0" id="MODFREQDIV_MANTISSA" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKSEL_DPLL_MPU" description="This register provides controls over the DPLL." id="CM_CLKSEL_DPLL_MPU" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="24" id="Reserved2" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Selects CLKINP or CLKINPULOW as Bypass Clock" end="23" id="DPLL_BYP_CLKSEL" rwaccess="RW" width="1">
+    <bitenum description="Selects CLKINP Clock as BYPASS Clock" id="Sel0" token="Sel0" value="0"></bitenum>
+    <bitenum description="Selects CLKINPULOW as Bypass Clock" id="Sel1" token="Sel1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="22" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="18" description="DPLL multiplier factor (2 to 2047). This register is automatically cleared to 0 when the DPLL_EN field in the *CLKMODE_DPLL* register is set to select MN Bypass mode. (equal to input M of DPLL; M=2 to 2047 => DPLL multiplies by M)." end="8" id="DPLL_MULT" rwaccess="RW" width="11">
+    <bitenum description="Reserved" id="0" token="0" value="0"></bitenum>
+    <bitenum description="Reserved" id="1" token="1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DPLL divider factor (0 to 127) (equal to input N of DPLL; actual division factor is N+1)." end="0" id="DPLL_DIV" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_AUTOIDLE_DPLL_DDR" description="This register provides automatic control over the DPLL activity." id="CM_AUTOIDLE_DPLL_DDR" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="3" id="Reserved" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="AUTO_DPLL_MODE is not supported." end="0" id="AUTO_DPLL_MODE" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_IDLEST_DPLL_DDR" description="This register allows monitoring the master clock activity. This register is read only and automatically updated. [warm reset insensitive]" id="CM_IDLEST_DPLL_DDR" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="DPLL MN_BYPASS status" end="8" id="ST_MN_BYPASS" rwaccess="R" width="1">
+    <bitenum description="DPLL is not in MN_Bypass" id="NO_MNBYPASS" token="NO_MNBYPASS" value="0"></bitenum>
+    <bitenum description="DPLL is in MN_Bypass" id="MN_BYPASS" token="MN_BYPASS" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="1" id="Reserved" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="DPLL clock activity" end="0" id="ST_DPLL_CLK" rwaccess="R" width="1">
+    <bitenum description="DPLL is either in bypass mode or in stop mode." id="DPLL_UNLOCKED" token="DPLL_UNLOCKED" value="0"></bitenum>
+    <bitenum description="DPLL is LOCKED" id="DPLL_LOCKED" token="DPLL_LOCKED" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_DELTAMSTEP_DPLL_DDR" description="Control the DeltaMStep parameter for Spread Spectrum Clocking technique DeltaMStep is split into fractional and integer part. [warm reset insensitive]" id="CM_SSC_DELTAMSTEP_DPLL_DDR" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="20" id="Reserved" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="Integer part for DeltaM coefficient" end="18" id="DELTAMSTEP_INTEGER" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Fractional setting for DeltaMStep parameter" end="0" id="DELTAMSTEP_FRACTION" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_MODFREQDIV_DPLL_DDR" description="Control the Modulation Frequency (Fm) for Spread Spectrum Clocking technique by defining it as a ratio of DPLL_REFCLK/4 Fm = [DPLL_REFCLK/4]/MODFREQDIV MODFREQDIV = MODFREQDIV_MANTISSA * 2^MODFREQDIV_EXPONENT [warm reset insensitive]" id="CM_SSC_MODFREQDIV_DPLL_DDR" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="Reserved1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Set the Exponent component of MODFREQDIV factor" end="8" id="MODFREQDIV_EXPONENT" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Set the Mantissa component of MODFREQDIV factor" end="0" id="MODFREQDIV_MANTISSA" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKSEL_DPLL_DDR" description="This register provides controls over the DPLL." id="CM_CLKSEL_DPLL_DDR" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="24" id="Reserved2" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Select CLKINP orr CLKINPULOW as bypass clock" end="23" id="DPLL_BYP_CLKSEL" rwaccess="RW" width="1">
+    <bitenum description="Selects CLKINP Clock as BYPASS Clock" id="Sel0" token="Sel0" value="0"></bitenum>
+    <bitenum description="Selects CLKINPULOW as Bypass Clock" id="Sel1" token="Sel1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="22" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="18" description="DPLL multiplier factor (2 to 2047). This register is automatically cleared to 0 when the DPLL_EN field in the *CLKMODE_DPLL* register is set to select MN Bypass mode. (equal to input M of DPLL; M=2 to 2047 => DPLL multiplies by M)." end="8" id="DPLL_MULT" rwaccess="RW" width="11">
+    <bitenum description="Reserved" id="0" token="0" value="0"></bitenum>
+    <bitenum description="Reserved" id="1" token="1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DPLL divider factor (0 to 127) (equal to input N of DPLL; actual division factor is N+1)." end="0" id="DPLL_DIV" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_AUTOIDLE_DPLL_DISP" description="This register provides automatic control over the DPLL activity." id="CM_AUTOIDLE_DPLL_DISP" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="3" id="Reserved" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="AUTO_DPLL_MODE is not supported." end="0" id="AUTO_DPLL_MODE" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_IDLEST_DPLL_DISP" description="This register allows monitoring the master clock activity. This register is read only and automatically updated. [warm reset insensitive]" id="CM_IDLEST_DPLL_DISP" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="DPLL MN_BYPASS status" end="8" id="ST_MN_BYPASS" rwaccess="R" width="1">
+    <bitenum description="DPLL is not in MN_Bypass" id="NO_MNBYPASS" token="NO_MNBYPASS" value="0"></bitenum>
+    <bitenum description="DPLL is in MN_Bypass" id="MN_BYPASS" token="MN_BYPASS" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="1" id="Reserved" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="DPLL clock activity" end="0" id="ST_DPLL_CLK" rwaccess="R" width="1">
+    <bitenum description="DPLL is either in bypass mode or in stop mode." id="DPLL_UNLOCKED" token="DPLL_UNLOCKED" value="0"></bitenum>
+    <bitenum description="DPLL is LOCKED" id="DPLL_LOCKED" token="DPLL_LOCKED" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_DELTAMSTEP_DPLL_DISP" description="Control the DeltaMStep parameter for Spread Spectrum Clocking technique DeltaMStep is split into fractional and integer part. [warm reset insensitive]" id="CM_SSC_DELTAMSTEP_DPLL_DISP" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="20" id="Reserved" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="Integer part for DeltaM coefficient" end="18" id="DELTAMSTEP_INTEGER" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Fractional setting for DeltaMStep parameter" end="0" id="DELTAMSTEP_FRACTION" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_MODFREQDIV_DPLL_DISP" description="Control the Modulation Frequency (Fm) for Spread Spectrum Clocking technique by defining it as a ratio of DPLL_REFCLK/4 Fm = [DPLL_REFCLK/4]/MODFREQDIV MODFREQDIV = MODFREQDIV_MANTISSA * 2^MODFREQDIV_EXPONENT [warm reset insensitive]" id="CM_SSC_MODFREQDIV_DPLL_DISP" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="Reserved1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Set the Exponent component of MODFREQDIV factor" end="8" id="MODFREQDIV_EXPONENT" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Set the Mantissa component of MODFREQDIV factor" end="0" id="MODFREQDIV_MANTISSA" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKSEL_DPLL_DISP" description="This register provides controls over the DPLL." id="CM_CLKSEL_DPLL_DISP" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="24" id="Reserved2" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="Select CLKINP or CLKINPULOW as bypass clock" end="23" id="DPLL_BYP_CLKSEL" rwaccess="RW" width="1">
+    <bitenum description="Selects CLKINP Clock as BYPASS Clock" id="Sel0" token="Sel0" value="0"></bitenum>
+    <bitenum description="Selects CLKINPULOW as Bypass Clock" id="Sel1" token="Sel1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="22" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="18" description="DPLL multiplier factor (2 to 2047). This register is automatically cleared to 0 when the DPLL_EN field in the *CLKMODE_DPLL* register is set to select MN Bypass mode. (equal to input M of DPLL; M=2 to 2047 => DPLL multiplies by M)." end="8" id="DPLL_MULT" rwaccess="RW" width="11">
+    <bitenum description="Reserved" id="0" token="0" value="0"></bitenum>
+    <bitenum description="Reserved" id="1" token="1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DPLL divider factor (0 to 127) (equal to input N of DPLL; actual division factor is N+1)." end="0" id="DPLL_DIV" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_AUTOIDLE_DPLL_CORE" description="This register provides automatic control over the DPLL activity." id="CM_AUTOIDLE_DPLL_CORE" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="3" id="Reserved" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="This feature is not supported." end="0" id="AUTO_DPLL_MODE" rwaccess="RW" width="3">
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+    <bitenum description="" id="" token="" value=""></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_IDLEST_DPLL_CORE" description="This register allows monitoring the master clock activity. This register is read only and automatically updated. [warm reset insensitive]" id="CM_IDLEST_DPLL_CORE" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="DPLL MN_BYPASS status" end="8" id="ST_MN_BYPASS" rwaccess="R" width="1">
+    <bitenum description="DPLL is not in MN_Bypass" id="NO_MNBYPASS" token="NO_MNBYPASS" value="0"></bitenum>
+    <bitenum description="DPLL is in MN_Bypass" id="MN_BYPASS" token="MN_BYPASS" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="1" id="Reserved" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="DPLL clock activity" end="0" id="ST_DPLL_CLK" rwaccess="R" width="1">
+    <bitenum description="DPLL is either in bypass mode or in stop mode." id="DPLL_UNLOCKED" token="DPLL_UNLOCKED" value="0"></bitenum>
+    <bitenum description="DPLL is LOCKED" id="DPLL_LOCKED" token="DPLL_LOCKED" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_DELTAMSTEP_DPLL_CORE" description="Control the DeltaMStep parameter for Spread Spectrum Clocking technique DeltaMStep is split into fractional and integer part. [warm reset insensitive]" id="CM_SSC_DELTAMSTEP_DPLL_CORE" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="20" id="Reserved" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="Integer part for DeltaM coefficient" end="18" id="DELTAMSTEP_INTEGER" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Fractional setting for DeltaMStep parameter" end="0" id="DELTAMSTEP_FRACTION" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_MODFREQDIV_DPLL_CORE" description="Control the Modulation Frequency (Fm) for Spread Spectrum Clocking technique by defining it as a ratio of DPLL_REFCLK/4 Fm = [DPLL_REFCLK/4]/MODFREQDIV MODFREQDIV = MODFREQDIV_MANTISSA * 2^MODFREQDIV_EXPONENT [warm reset insensitive]" id="CM_SSC_MODFREQDIV_DPLL_CORE" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="Reserved1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Set the Exponent component of MODFREQDIV factor" end="8" id="MODFREQDIV_EXPONENT" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Set the Mantissa component of MODFREQDIV factor" end="0" id="MODFREQDIV_MANTISSA" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKSEL_DPLL_CORE" description="This register provides controls over the DPLL." id="CM_CLKSEL_DPLL_CORE" offset="0x68" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="23" id="Reserved2" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="22" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="18" description="DPLL multiplier factor (2 to 2047). This register is automatically cleared to 0 when the DPLL_EN field in the *CLKMODE_DPLL* register is set to select MN Bypass mode. (equal to input M of DPLL; M=2 to 2047 => DPLL multiplies by M)" end="8" id="DPLL_MULT" rwaccess="RW" width="11">
+    <bitenum description="Reserved" id="Reserved_0" token="Reserved_0" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved_1" token="Reserved_1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DPLL divider factor (0 to 127) (equal to input N of DPLL; actual division factor is N+1)." end="0" id="DPLL_DIV" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_AUTOIDLE_DPLL_PER" description="This register provides automatic control over the DPLL activity." id="CM_AUTOIDLE_DPLL_PER" offset="0x6C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="3" id="Reserved" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="AUTO_DPLL_MODE is not supported." end="0" id="AUTO_DPLL_MODE" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_IDLEST_DPLL_PER" description="This register allows monitoring the master clock activity. This register is read only and automatically updated. [warm reset insensitive]" id="CM_IDLEST_DPLL_PER" offset="0x70" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="DPLL MN_BYPASS status" end="8" id="ST_MN_BYPASS" rwaccess="R" width="1">
+    <bitenum description="DPLL is not in MN_Bypass" id="NO_MNBYPASS" token="NO_MNBYPASS" value="0"></bitenum>
+    <bitenum description="DPLL is in MN_Bypass" id="MN_BYPASS" token="MN_BYPASS" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="1" id="Reserved" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="DPLL clock activity" end="0" id="ST_DPLL_CLK" rwaccess="R" width="1">
+    <bitenum description="DPLL is either in bypass mode or in stop mode." id="DPLL_UNLOCKED" token="DPLL_UNLOCKED" value="0"></bitenum>
+    <bitenum description="DPLL is LOCKED" id="DPLL_LOCKED" token="DPLL_LOCKED" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_DELTAMSTEP_DPLL_PER" description="Control the DeltaMStep parameter for Spread Spectrum Clocking technique DeltaMStep is split into fractional and integer part. [warm reset insensitive]" id="CM_SSC_DELTAMSTEP_DPLL_PER" offset="0x74" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="20" id="Reserved" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description="Integer part for DeltaM coefficient" end="18" id="DELTAMSTEP_INTEGER" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Fractional setting for DeltaMStep parameter" end="0" id="DELTAMSTEP_FRACTION" rwaccess="RW" width="18"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_SSC_MODFREQDIV_DPLL_PER" description="Control the Modulation Frequency (Fm) for Spread Spectrum Clocking technique by defining it as a ratio of DPLL_REFCLK/4 Fm = [DPLL_REFCLK/4]/MODFREQDIV MODFREQDIV = MODFREQDIV_MANTISSA * 2^MODFREQDIV_EXPONENT [warm reset insensitive]" id="CM_SSC_MODFREQDIV_DPLL_PER" offset="0x78" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="11" id="Reserved1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="10" description="Set the Exponent component of MODFREQDIV factor" end="8" id="MODFREQDIV_EXPONENT" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="7" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Set the Mantissa component of MODFREQDIV factor" end="0" id="MODFREQDIV_MANTISSA" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKDCOLDO_DPLL_PER" description="This register provides controls over the digitally controlled oscillator output of the PER DPLL." id="CM_CLKDCOLDO_DPLL_PER" offset="0x7C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Automatic power down for CLKDCOLDO o/p when it is gated" end="12" id="DPLL_CLKDCOLDO_PWDN" rwaccess="RW" width="1">
+    <bitenum description="Keep CLKDCOLDO o/p powered on even when it is gated" id="ALWAYS_ACTIVE" token="ALWAYS_ACTIVE" value="0"></bitenum>
+    <bitenum description="Automatically power down CLKDCOLDO o/p when it is gated." id="AUTO_PWDN" token="AUTO_PWDN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Reserved" end="10" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="9" description="DPLL CLKDCOLDO status" end="9" id="ST_DPLL_CLKDCOLDO" rwaccess="R" width="1">
+    <bitenum description="The clock output is enabled" id="CLK_ENABLED" token="CLK_ENABLED" value="0"></bitenum>
+    <bitenum description="The clock output is gated" id="CLK_GATED" token="CLK_GATED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Control gating of DPLL CLKDCOLDO" end="8" id="DPLL_CLKDCOLDO_GATE_CTRL" rwaccess="RW" width="1">
+    <bitenum description="Automatically gate this clock when there is no dependency for it" id="CLK_AUTOGATE" token="CLK_AUTOGATE" value="0"></bitenum>
+    <bitenum description="Force this clock to stay enabled even if there is no request" id="CLK_ENABLE" token="CLK_ENABLE" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="0" id="Reserved2" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_DIV_M4_DPLL_CORE" description="This register provides controls over the CLKOUT1 o/p of the HSDIVIDER." id="CM_DIV_M4_DPLL_CORE" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="13" id="Reserved2" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Automatic power down for HSDIVIDER M4 divider and hence CLKOUT1 output when the o/p clock is gated." end="12" id="HSDIVIDER_CLKOUT1_PWDN" rwaccess="RW" width="1">
+    <bitenum description="Keep M4 divider powered on even when CLKOUT1 is gated." id="ALWAYS_ACTIVE" token="ALWAYS_ACTIVE" value="0"></bitenum>
+    <bitenum description="Automatically power down M4 divider when CLKOUT1 is gated." id="AUTO_PWDN" token="AUTO_PWDN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Reserved" end="10" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="9" description="HSDIVIDER CLKOUT1 status" end="9" id="ST_HSDIVIDER_CLKOUT1" rwaccess="R" width="1">
+    <bitenum description="The clock output is enabled" id="CLK_ENABLED" token="CLK_ENABLED" value="0"></bitenum>
+    <bitenum description="The clock output is gated" id="CLK_GATED" token="CLK_GATED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Control gating of HSDIVIDER CLKOUT1" end="8" id="HSDIVIDER_CLKOUT1_GATE_CTRL" rwaccess="RW" width="1">
+    <bitenum description="Automatically gate this clock when there is no dependency for it" id="CLK_AUTOGATE" token="CLK_AUTOGATE" value="0"></bitenum>
+    <bitenum description="Force this clock to stay enabled even if there is no request" id="CLK_ENABLE" token="CLK_ENABLE" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Toggle on this status bit after changing HSDIVIDER_CLKOUT1_DIV indicates that the change in divider value has taken effect" end="5" id="HSDIVIDER_CLKOUT1_DIVCHACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="DPLL post-divider factor, M4, for internal clock generation. Divide values from 1 to 31." end="0" id="HSDIVIDER_CLKOUT1_DIV" rwaccess="RW" width="5">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_DIV_M5_DPLL_CORE" description="This register provides controls over the CLKOUT2 o/p of the HSDIVIDER." id="CM_DIV_M5_DPLL_CORE" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="13" id="Reserved2" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Automatic power down for HSDIVIDER M5 divider and hence CLKOUT2 output when the o/p clock is gated." end="12" id="HSDIVIDER_CLKOUT2_PWDN" rwaccess="RW" width="1">
+    <bitenum description="Keep M5 divider powered on even when CLKOUT2 is gated." id="ALWAYS_ACTIVE" token="ALWAYS_ACTIVE" value="0"></bitenum>
+    <bitenum description="Automatically power down M5 divider when CLKOUT2 is gated." id="AUTO_PWDN" token="AUTO_PWDN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Reserved" end="10" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="9" description="HSDIVIDER CLKOUT2 status" end="9" id="ST_HSDIVIDER_CLKOUT2" rwaccess="R" width="1">
+    <bitenum description="The clock output is enabled" id="CLK_ENABLED" token="CLK_ENABLED" value="0"></bitenum>
+    <bitenum description="The clock output is gated" id="CLK_GATED" token="CLK_GATED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Control gating of HSDIVIDER CLKOUT2" end="8" id="HSDIVIDER_CLKOUT2_GATE_CTRL" rwaccess="RW" width="1">
+    <bitenum description="Automatically gate this clock when there is no dependency for it" id="CLK_AUTOGATE" token="CLK_AUTOGATE" value="0"></bitenum>
+    <bitenum description="Force this clock to stay enabled even if there is no request" id="CLK_ENABLE" token="CLK_ENABLE" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Toggle on this status bit after changing HSDIVIDER_CLKOUT2_DIV indicates that the change in divider value has taken effect" end="5" id="HSDIVIDER_CLKOUT2_DIVCHACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="DPLL post-divider factor, M5, for internal clock generation. Divide values from 1 to 31." end="0" id="HSDIVIDER_CLKOUT2_DIV" rwaccess="RW" width="5">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKMODE_DPLL_MPU" description="This register allows controlling the DPLL modes." id="CM_CLKMODE_DPLL_MPU" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Select Triangular Spread Spectrum clocking.  Always write 0. 0 = Triangular Spread Spectrum Clocking is selected. 1 = Reserved." end="15" id="DPLL_SSC_TYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Control if only low frequency spread is required" end="14" id="DPLL_SSC_DOWNSPREAD" rwaccess="RW" width="1">
+    <bitenum description="When SSC is enabled, clock frequency is spread on both sides of the programmed frequency" id="FULL_SPREAD" token="FULL_SPREAD" value="0"></bitenum>
+    <bitenum description="When SSC is enabled, clock frequency is spread only on the lower side of the programmed frequency" id="LOW_SPREAD" token="LOW_SPREAD" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Acknowledgement from the DPLL regarding start and stop of Spread Spectrum Clocking feature" end="13" id="DPLL_SSC_ACK" rwaccess="R" width="1">
+    <bitenum description="SSC has been turned off on PLL o/ps" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC has been turned on on PLL o/ps" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Enable or disable Spread Spectrum Clocking" end="12" id="DPLL_SSC_EN" rwaccess="RW" width="1">
+    <bitenum description="SSC disabled" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Enable the REGM4XEN mode of the DPLL. Please check the DPLL documentation to check when this mode can be enabled." end="11" id="DPLL_REGM4XEN" rwaccess="R" width="1">
+    <bitenum description="REGM4XEN mode of the DPLL is disabled" id="DISABLED" token="DISABLED" value="0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="Set the DPLL in Low Power mode. Check the DPLL documentation to see when this can be enabled." end="10" id="DPLL_LPMODE_EN" rwaccess="RW" width="1">
+    <bitenum description="Low power mode of the DPLL is disabled" id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Low power mode of the DPLL is enabled" id="ENABLED" token="ENABLED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="If enabled, the clock ramping feature is used applied during the lock process, as well as the relock process.  If disabled, the clock ramping feature is used only during the first lock." end="9" id="DPLL_RELOCK_RAMP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This bit allows to enable or disable the automatic recalibration feature of the DPLL. The DPLL will automatically start a recalibration process upon assertion of the DPLL's RECAL flag if this bit is set." end="8" id="DPLL_DRIFTGUARD_EN" rwaccess="RW" width="1">
+    <bitenum description="DRIFTGUARD feature is disabled" id="Diasbled" token="Diasbled" value="0"></bitenum>
+    <bitenum description="DRIFTGUARD feature is enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Selects the time in terms of DPLL REFCLKs spent at each stage of the clock ramping process" end="5" id="DPLL_RAMP_RATE" rwaccess="RW" width="3">
+    <bitenum description="2 REFCLKs" id="REFCLKx2" token="REFCLKx2" value="0"></bitenum>
+    <bitenum description="4 REFCLKs" id="REFCLKx4" token="REFCLKx4" value="1"></bitenum>
+    <bitenum description="8 REFCLKs" id="REFCLKx8" token="REFCLKx8" value="2"></bitenum>
+    <bitenum description="16 REFCLKs" id="REFCLKx16" token="REFCLKx16" value="3"></bitenum>
+    <bitenum description="32 REFCLKs" id="REFCLKx32" token="REFCLKx32" value="4"></bitenum>
+    <bitenum description="64 REFCLKs" id="REFCLKx64" token="REFCLKx64" value="5"></bitenum>
+    <bitenum description="128 REFCLKs" id="REFCLKx128" token="REFCLKx128" value="6"></bitenum>
+    <bitenum description="512 REFCLKs" id="REFCLKx512" token="REFCLKx512" value="7"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="The DPLL provides an output clock frequency ramping feature when switching from bypass clock to normal clock during lock and re-lock. The frequency ramping will happen in a maximum of 4 steps in frequency before the DPLL's frequency lock indicator is asserted.  This register is used to enable/disable the DPLL ramping feature. If enabled, it is also used to select the algorithm used for clock ramping" end="3" id="DPLL_RAMP_LEVEL" rwaccess="RW" width="2">
+    <bitenum description="CLKOUT     => No ramping CLKOUTX2 => No ramping" id="RAMP_DISABLE" token="RAMP_DISABLE" value="0"></bitenum>
+    <bitenum description="CLKOUT     => Bypass clk -> Fout/8 -> Fout/4 -> Fout/2 -> Fout CLKOUTX2 => Bypass clk -> Foutx2/8 -> Foutx2/4 -> Foutx2/2 -> Foutx2" id="RAMP_ALGO1" token="RAMP_ALGO1" value="1"></bitenum>
+    <bitenum description="CLKOUT     => Bypass clk -> Fout/4 -> Fout/2 -> Fout/1.5 -> Fout CLKOUTX2 => Bypass clk -> Foutx2/4 -> Foutx2/2 -> Foutx2/1.5 -> Foutx2" id="RAMP_ALGO2" token="RAMP_ALGO2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="DPLL control. Upon Warm Reset, the PRCM DPLL control state machine updates this register to reflect MN Bypass mode." end="0" id="DPLL_EN" rwaccess="RW" width="3">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved1" token="Reserved1" value="1"></bitenum>
+    <bitenum description="Reserved" id="Reserved2" token="Reserved2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved3" token="Reserved3" value="3"></bitenum>
+    <bitenum description="Put the DPLL in MN Bypass mode. The DPLL_MULT register bits are reset to 0 automatically by putting the DPLL in this mode." id="DPLL_MN_BYP_MODE" token="DPLL_MN_BYP_MODE" value="4"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Low Power mode." id="DPLL_LP_BYP_MODE" token="DPLL_LP_BYP_MODE" value="5"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Fast Relock mode." id="DPLL_FR_BYP_MODE" token="DPLL_FR_BYP_MODE" value="6"></bitenum>
+    <bitenum description="Enables the DPLL in Lock mode" id="DPLL_LOCK_MODE" token="DPLL_LOCK_MODE" value="7"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKMODE_DPLL_PER" description="This register allows controlling the DPLL modes." id="CM_CLKMODE_DPLL_PER" offset="0x8C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Select Triangular Spread Spectrum clocking.  Always write 0. 0 = Triangular Spread Spectrum Clocking is selected. 1 = Reserved." end="15" id="DPLL_SSC_TYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Control if only low frequency spread is required" end="14" id="DPLL_SSC_DOWNSPREAD" rwaccess="RW" width="1">
+    <bitenum description="When SSC is enabled, clock frequency is spread on both sides of the programmed frequency" id="FULL_SPREAD" token="FULL_SPREAD" value="0"></bitenum>
+    <bitenum description="When SSC is enabled, clock frequency is spread only on the lower side of the programmed frequency" id="LOW_SPREAD" token="LOW_SPREAD" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Acknowledgement from the DPLL regarding start and stop of Spread Spectrum Clocking feature" end="13" id="DPLL_SSC_ACK" rwaccess="R" width="1">
+    <bitenum description="SSC has been turned off on PLL o/ps" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC has been turned on on PLL o/ps" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Enable or disable Spread Spectrum Clocking" end="12" id="DPLL_SSC_EN" rwaccess="RW" width="1">
+    <bitenum description="SSC disabled" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Reserved" end="3" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="2" description="DPLL control.  Upon Warm Reset, the PRCM DPLL control state machine updates this register to reflect DPLL Low Power Stop mode." end="0" id="DPLL_EN" rwaccess="RW" width="3">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+    <bitenum description="Put the DPLL in Low Power Stop mode" id="DPLL_LP_STP_MODE" token="DPLL_LP_STP_MODE" value="1"></bitenum>
+    <bitenum description="Reserved2" id="Reserved2" token="Reserved2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved3" token="Reserved3" value="3"></bitenum>
+    <bitenum description="Put the DPLL in MN Bypass mode. The DPLL_MULT register bits are reset to 0 automatically by putting the DPLL in this mode." id="DPLL_MN_BYP_MODE" token="DPLL_MN_BYP_MODE" value="4"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Low Power mode." id="DPLL_LP_BYP_MODE" token="DPLL_LP_BYP_MODE" value="5"></bitenum>
+    <bitenum description="Reserved" id="Reserved6" token="Reserved6" value="6"></bitenum>
+    <bitenum description="Enables the DPLL in Lock mode" id="DPLL_LOCK_MODE" token="DPLL_LOCK_MODE" value="7"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKMODE_DPLL_CORE" description="This register allows controlling the DPLL modes." id="CM_CLKMODE_DPLL_CORE" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Select Triangular Spread Spectrum clocking.  Always write 0. 0 = Triangular Spread Spectrum Clocking is selected. 1 = Reserved." end="15" id="DPLL_SSC_TYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Control if only low frequency spread is required" end="14" id="DPLL_SSC_DOWNSPREAD" rwaccess="RW" width="1">
+    <bitenum description="When SSC is enabled, clock frequency is spread on both sides of the programmed frequency" id="FULL_SPREAD" token="FULL_SPREAD" value="0"></bitenum>
+    <bitenum description="When SSC is enabled, clock frequency is spread only on the lower side of the programmed frequency" id="LOW_SPREAD" token="LOW_SPREAD" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Acknowledgement from the DPLL regarding start and stop of Spread Spectrum Clocking feature" end="13" id="DPLL_SSC_ACK" rwaccess="R" width="1">
+    <bitenum description="SSC has been turned off on PLL o/ps" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC has been turned on on PLL o/ps" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Enable or disable Spread Spectrum Clocking" end="12" id="DPLL_SSC_EN" rwaccess="RW" width="1">
+    <bitenum description="SSC disabled" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Enable the REGM4XEN mode of the DPLL. Please check the DPLL documentation to check when this mode can be enabled." end="11" id="DPLL_REGM4XEN" rwaccess="R" width="1">
+    <bitenum description="REGM4XEN mode of the DPLL is disabled" id="DISABLED" token="DISABLED" value="0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="Set the DPLL in Low Power mode. Check the DPLL documentation to see when this can be enabled." end="10" id="DPLL_LPMODE_EN" rwaccess="RW" width="1">
+    <bitenum description="Low power mode of the DPLL is disabled" id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Low power mode of the DPLL is enabled" id="ENABLED" token="ENABLED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="If enabled, the clock ramping feature is used applied during the lock process, as well as the relock process.  If disabled, the clock ramping feature is used only during the first lock." end="9" id="DPLL_RELOCK_RAMP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This bit allows to enable or disable the automatic recalibration feature of the DPLL. The DPLL will automatically start a recalibration process upon assertion of the DPLL's RECAL flag if this bit is set." end="8" id="DPLL_DRIFTGUARD_EN" rwaccess="RW" width="1">
+    <bitenum description="DRIFTGUARD feature is disabled" id="Diasbled" token="Diasbled" value="0"></bitenum>
+    <bitenum description="DRIFTGUARD feature is enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Selects the time in terms of DPLL REFCLKs spent at each stage of the clock ramping process" end="5" id="DPLL_RAMP_RATE" rwaccess="RW" width="3">
+    <bitenum description="2 REFCLKs" id="REFCLKx2" token="REFCLKx2" value="0"></bitenum>
+    <bitenum description="4 REFCLKs" id="REFCLKx4" token="REFCLKx4" value="1"></bitenum>
+    <bitenum description="8 REFCLKs" id="REFCLKx8" token="REFCLKx8" value="2"></bitenum>
+    <bitenum description="16 REFCLKs" id="REFCLKx16" token="REFCLKx16" value="3"></bitenum>
+    <bitenum description="32 REFCLKs" id="REFCLKx32" token="REFCLKx32" value="4"></bitenum>
+    <bitenum description="64 REFCLKs" id="REFCLKx64" token="REFCLKx64" value="5"></bitenum>
+    <bitenum description="128 REFCLKs" id="REFCLKx128" token="REFCLKx128" value="6"></bitenum>
+    <bitenum description="512 REFCLKs" id="REFCLKx512" token="REFCLKx512" value="7"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="The DPLL provides an output clock frequency ramping feature when switching from bypass clock to normal clock during lock and re-lock. The frequency ramping will happen in a maximum of 4 steps in frequency before the DPLL's frequency lock indicator is asserted.  This register is used to enable/disable the DPLL ramping feature. If enabled, it is also used to select the algorithm used for clock ramping" end="3" id="DPLL_RAMP_LEVEL" rwaccess="RW" width="2">
+    <bitenum description="CLKOUT     => No ramping CLKOUTX2 => No ramping" id="RAMP_DISABLE" token="RAMP_DISABLE" value="0"></bitenum>
+    <bitenum description="CLKOUT     => Bypass clk -> Fout/8 -> Fout/4 -> Fout/2 -> Fout CLKOUTX2 => Bypass clk -> Foutx2/8 -> Foutx2/4 -> Foutx2/2 -> Foutx2" id="RAMP_ALGO1" token="RAMP_ALGO1" value="1"></bitenum>
+    <bitenum description="CLKOUT     => Bypass clk -> Fout/4 -> Fout/2 -> Fout/1.5 -> Fout CLKOUTX2 => Bypass clk -> Foutx2/4 -> Foutx2/2 -> Foutx2/1.5 -> Foutx2" id="RAMP_ALGO2" token="RAMP_ALGO2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="DPLL control. Upon Warm Reset, the PRCM DPLL control state machine updates this register to reflect MN Bypass mode." end="0" id="DPLL_EN" rwaccess="RW" width="3">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved1" token="Reserved1" value="1"></bitenum>
+    <bitenum description="Reserved" id="Reserved2" token="Reserved2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved3" token="Reserved3" value="3"></bitenum>
+    <bitenum description="Put the DPLL in MN Bypass mode. The DPLL_MULT register bits are reset to 0 automatically by putting the DPLL in this mode." id="DPLL_MN_BYP_MODE" token="DPLL_MN_BYP_MODE" value="4"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Low Power mode." id="DPLL_LP_BYP_MODE" token="DPLL_LP_BYP_MODE" value="5"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Fast Relock mode." id="DPLL_FR_BYP_MODE" token="DPLL_FR_BYP_MODE" value="6"></bitenum>
+    <bitenum description="Enables the DPLL in Lock mode" id="DPLL_LOCK_MODE" token="DPLL_LOCK_MODE" value="7"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKMODE_DPLL_DDR" description="This register allows controlling the DPLL modes." id="CM_CLKMODE_DPLL_DDR" offset="0x94" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Select Triangular Spread Spectrum clocking.  Always write 0. 0 = Triangular Spread Spectrum Clocking is selected. 1 = Reserved." end="15" id="DPLL_SSC_TYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Control if only low frequency spread is required" end="14" id="DPLL_SSC_DOWNSPREAD" rwaccess="RW" width="1">
+    <bitenum description="When SSC is enabled, clock frequency is spread on both sides of the programmed frequency" id="FULL_SPREAD" token="FULL_SPREAD" value="0"></bitenum>
+    <bitenum description="When SSC is enabled, clock frequency is spread only on the lower side of the programmed frequency" id="LOW_SPREAD" token="LOW_SPREAD" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Acknowledgement from the DPLL regarding start and stop of Spread Spectrum Clocking feature" end="13" id="DPLL_SSC_ACK" rwaccess="R" width="1">
+    <bitenum description="SSC has been turned off on PLL o/ps" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC has been turned on on PLL o/ps" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Enable or disable Spread Spectrum Clocking" end="12" id="DPLL_SSC_EN" rwaccess="RW" width="1">
+    <bitenum description="SSC disabled" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Enable the REGM4XEN mode of the DPLL. Please check the DPLL documentation to check when this mode can be enabled." end="11" id="DPLL_REGM4XEN" rwaccess="R" width="1">
+    <bitenum description="REGM4XEN mode of the DPLL is disabled" id="DISABLED" token="DISABLED" value="0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="Set the DPLL in Low Power mode. Check the DPLL documentation to see when this can be enabled." end="10" id="DPLL_LPMODE_EN" rwaccess="RW" width="1">
+    <bitenum description="Low power mode of the DPLL is disabled" id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Low power mode of the DPLL is enabled" id="ENABLED" token="ENABLED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="If enabled, the clock ramping feature is used applied during the lock process, as well as the relock process.  If disabled, the clock ramping feature is used only during the first lock." end="9" id="DPLL_RELOCK_RAMP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This bit allows to enable or disable the automatic recalibration feature of the DPLL. The DPLL will automatically start a recalibration process upon assertion of the DPLL's RECAL flag if this bit is set." end="8" id="DPLL_DRIFTGUARD_EN" rwaccess="RW" width="1">
+    <bitenum description="DRIFTGUARD feature is disabled" id="Diasbled" token="Diasbled" value="0"></bitenum>
+    <bitenum description="DRIFTGUARD feature is enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Selects the time in terms of DPLL REFCLKs spent at each stage of the clock ramping process" end="5" id="DPLL_RAMP_RATE" rwaccess="RW" width="3">
+    <bitenum description="2 REFCLKs" id="REFCLKx2" token="REFCLKx2" value="0"></bitenum>
+    <bitenum description="4 REFCLKs" id="REFCLKx4" token="REFCLKx4" value="1"></bitenum>
+    <bitenum description="8 REFCLKs" id="REFCLKx8" token="REFCLKx8" value="2"></bitenum>
+    <bitenum description="16 REFCLKs" id="REFCLKx16" token="REFCLKx16" value="3"></bitenum>
+    <bitenum description="32 REFCLKs" id="REFCLKx32" token="REFCLKx32" value="4"></bitenum>
+    <bitenum description="64 REFCLKs" id="REFCLKx64" token="REFCLKx64" value="5"></bitenum>
+    <bitenum description="128 REFCLKs" id="REFCLKx128" token="REFCLKx128" value="6"></bitenum>
+    <bitenum description="512 REFCLKs" id="REFCLKx512" token="REFCLKx512" value="7"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="The DPLL provides an output clock frequency ramping feature when switching from bypass clock to normal clock during lock and re-lock. The frequency ramping will happen in a maximum of 4 steps in frequency before the DPLL's frequency lock indicator is asserted.  This register is used to enable/disable the DPLL ramping feature. If enabled, it is also used to select the algorithm used for clock ramping" end="3" id="DPLL_RAMP_LEVEL" rwaccess="RW" width="2">
+    <bitenum description="CLKOUT     => No ramping CLKOUTX2 => No ramping" id="RAMP_DISABLE" token="RAMP_DISABLE" value="0"></bitenum>
+    <bitenum description="CLKOUT     => Bypass clk -> Fout/8 -> Fout/4 -> Fout/2 -> Fout CLKOUTX2 => Bypass clk -> Foutx2/8 -> Foutx2/4 -> Foutx2/2 -> Foutx2" id="RAMP_ALGO1" token="RAMP_ALGO1" value="1"></bitenum>
+    <bitenum description="CLKOUT     => Bypass clk -> Fout/4 -> Fout/2 -> Fout/1.5 -> Fout CLKOUTX2 => Bypass clk -> Foutx2/4 -> Foutx2/2 -> Foutx2/1.5 -> Foutx2" id="RAMP_ALGO2" token="RAMP_ALGO2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="DPLL control. Upon Warm Reset, the PRCM DPLL control state machine updates this register to reflect MN Bypass mode." end="0" id="DPLL_EN" rwaccess="RW" width="3">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved1" token="Reserved1" value="1"></bitenum>
+    <bitenum description="Reserved" id="Reserved2" token="Reserved2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved3" token="Reserved3" value="3"></bitenum>
+    <bitenum description="Put the DPLL in MN Bypass mode. The DPLL_MULT register bits are reset to 0 automatically by putting the DPLL in this mode." id="DPLL_MN_BYP_MODE" token="DPLL_MN_BYP_MODE" value="4"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Low Power mode." id="DPLL_LP_BYP_MODE" token="DPLL_LP_BYP_MODE" value="5"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Fast Relock mode." id="DPLL_FR_BYP_MODE" token="DPLL_FR_BYP_MODE" value="6"></bitenum>
+    <bitenum description="Enables the DPLL in Lock mode" id="DPLL_LOCK_MODE" token="DPLL_LOCK_MODE" value="7"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKMODE_DPLL_DISP" description="This register allows controlling the DPLL modes." id="CM_CLKMODE_DPLL_DISP" offset="0x98" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Select Triangular Spread Spectrum clocking.  Always write 0. 0 = Triangular Spread Spectrum Clocking is selected. 1 = Reserved." end="15" id="DPLL_SSC_TYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Control if only low frequency spread is required" end="14" id="DPLL_SSC_DOWNSPREAD" rwaccess="RW" width="1">
+    <bitenum description="When SSC is enabled, clock frequency is spread on both sides of the programmed frequency" id="FULL_SPREAD" token="FULL_SPREAD" value="0"></bitenum>
+    <bitenum description="When SSC is enabled, clock frequency is spread only on the lower side of the programmed frequency" id="LOW_SPREAD" token="LOW_SPREAD" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Acknowledgement from the DPLL regarding start and stop of Spread Spectrum Clocking feature" end="13" id="DPLL_SSC_ACK" rwaccess="R" width="1">
+    <bitenum description="SSC has been turned off on PLL o/ps" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC has been turned on on PLL o/ps" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Enable or disable Spread Spectrum Clocking" end="12" id="DPLL_SSC_EN" rwaccess="RW" width="1">
+    <bitenum description="SSC disabled" id="Disabled" token="Disabled" value="0"></bitenum>
+    <bitenum description="SSC enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Enable the REGM4XEN mode of the DPLL. Please check the DPLL documentation to check when this mode can be enabled." end="11" id="DPLL_REGM4XEN" rwaccess="R" width="1">
+    <bitenum description="REGM4XEN mode of the DPLL is disabled" id="DISABLED" token="DISABLED" value="0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="Set the DPLL in Low Power mode. Check the DPLL documentation to see when this can be enabled." end="10" id="DPLL_LPMODE_EN" rwaccess="RW" width="1">
+    <bitenum description="Low power mode of the DPLL is disabled" id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Low power mode of the DPLL is enabled" id="ENABLED" token="ENABLED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="If enabled, the clock ramping feature is used applied during the lock process, as well as the relock process.  If disabled, the clock ramping feature is used only during the first lock." end="9" id="DPLL_RELOCK_RAMP_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This bit allows to enable or disable the automatic recalibration feature of the DPLL. The DPLL will automatically start a recalibration process upon assertion of the DPLL's RECAL flag if this bit is set." end="8" id="DPLL_DRIFTGUARD_EN" rwaccess="RW" width="1">
+    <bitenum description="DRIFTGUARD feature is disabled" id="Diasbled" token="Diasbled" value="0"></bitenum>
+    <bitenum description="DRIFTGUARD feature is enabled" id="Enabled" token="Enabled" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Selects the time in terms of DPLL REFCLKs spent at each stage of the clock ramping process" end="5" id="DPLL_RAMP_RATE" rwaccess="RW" width="3">
+    <bitenum description="2 REFCLKs" id="REFCLKx2" token="REFCLKx2" value="0"></bitenum>
+    <bitenum description="4 REFCLKs" id="REFCLKx4" token="REFCLKx4" value="1"></bitenum>
+    <bitenum description="8 REFCLKs" id="REFCLKx8" token="REFCLKx8" value="2"></bitenum>
+    <bitenum description="16 REFCLKs" id="REFCLKx16" token="REFCLKx16" value="3"></bitenum>
+    <bitenum description="32 REFCLKs" id="REFCLKx32" token="REFCLKx32" value="4"></bitenum>
+    <bitenum description="64 REFCLKs" id="REFCLKx64" token="REFCLKx64" value="5"></bitenum>
+    <bitenum description="128 REFCLKs" id="REFCLKx128" token="REFCLKx128" value="6"></bitenum>
+    <bitenum description="512 REFCLKs" id="REFCLKx512" token="REFCLKx512" value="7"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="The DPLL provides an output clock frequency ramping feature when switching from bypass clock to normal clock during lock and re-lock. The frequency ramping will happen in a maximum of 4 steps in frequency before the DPLL's frequency lock indicator is asserted.  This register is used to enable/disable the DPLL ramping feature. If enabled, it is also used to select the algorithm used for clock ramping" end="3" id="DPLL_RAMP_LEVEL" rwaccess="RW" width="2">
+    <bitenum description="CLKOUT     => No ramping CLKOUTX2 => No ramping" id="RAMP_DISABLE" token="RAMP_DISABLE" value="0"></bitenum>
+    <bitenum description="CLKOUT     => Bypass clk -> Fout/8 -> Fout/4 -> Fout/2 -> Fout CLKOUTX2 => Bypass clk -> Foutx2/8 -> Foutx2/4 -> Foutx2/2 -> Foutx2" id="RAMP_ALGO1" token="RAMP_ALGO1" value="1"></bitenum>
+    <bitenum description="CLKOUT     => Bypass clk -> Fout/4 -> Fout/2 -> Fout/1.5 -> Fout CLKOUTX2 => Bypass clk -> Foutx2/4 -> Foutx2/2 -> Foutx2/1.5 -> Foutx2" id="RAMP_ALGO2" token="RAMP_ALGO2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="DPLL control. Upon Warm Reset, the PRCM DPLL control state machine updates this register to reflect MN Bypass mode." end="0" id="DPLL_EN" rwaccess="RW" width="3">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved1" token="Reserved1" value="1"></bitenum>
+    <bitenum description="Reserved" id="Reserved2" token="Reserved2" value="2"></bitenum>
+    <bitenum description="Reserved" id="Reserved3" token="Reserved3" value="3"></bitenum>
+    <bitenum description="Put the DPLL in MN Bypass mode. The DPLL_MULT register bits are reset to 0 automatically by putting the DPLL in this mode." id="DPLL_MN_BYP_MODE" token="DPLL_MN_BYP_MODE" value="4"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Low Power mode." id="DPLL_LP_BYP_MODE" token="DPLL_LP_BYP_MODE" value="5"></bitenum>
+    <bitenum description="Put the DPLL in Idle Bypass Fast Relock mode." id="DPLL_FR_BYP_MODE" token="DPLL_FR_BYP_MODE" value="6"></bitenum>
+    <bitenum description="Enables the DPLL in Lock mode" id="DPLL_LOCK_MODE" token="DPLL_LOCK_MODE" value="7"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_CLKSEL_DPLL_PERIPH" description="This register provides controls over the DPLL." id="CM_CLKSEL_DPLL_PERIPH" offset="0x9C" width="32">
+    
+  <bitfield begin="31" description="Sigma-Delta divider select (2-255). This factor must be set by s/w to ensure optimum jitter performance. DPLL_SD_DIV = CEILING ([DPLL_MULT/(DPLL_DIV+1)] * CLKINP / 250), where CLKINP is the input clock of the DPLL in MHz). Must be set with M and N factors, and must not be changed once DPLL is locked." end="24" id="DPLL_SD_DIV" rwaccess="RW" width="8">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved1" token="Reserved1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="23" description="Reserved" end="23" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Reserved" end="20" id="Reserved" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="DPLL multiplier factor (2 to 4095). This register is automatically cleared to 0 when the DPLL_EN field in the *CLKMODE_DPLL* register is set to select MN Bypass mode. (equal to input M of DPLL; M=2 to 4095 => DPLL multiplies by M)." end="8" id="DPLL_MULT" rwaccess="RW" width="12">
+    <bitenum description="Reserved" id="0" token="0" value="0"></bitenum>
+    <bitenum description="Reserved" id="1" token="1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="DPLL divider factor (0 to 255) (equal to input N of DPLL; actual division factor is N+1)." end="0" id="DPLL_DIV" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_DIV_M2_DPLL_DDR" description="This register provides controls over the M2 divider of the DPLL." id="CM_DIV_M2_DPLL_DDR" offset="0xA0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="DPLL CLKOUT status" end="9" id="ST_DPLL_CLKOUT" rwaccess="R" width="1">
+    <bitenum description="The clock output is gated" id="CLK_GATED" token="CLK_GATED" value="0"></bitenum>
+    <bitenum description="The clock output is enabled" id="CLK_ENABLED" token="CLK_ENABLED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Control gating of DPLL CLKOUT" end="8" id="DPLL_CLKOUT_GATE_CTRL" rwaccess="RW" width="1">
+    <bitenum description="Automatically gate this clock when there is no dependency for it" id="CLK_AUTOGATE" token="CLK_AUTOGATE" value="0"></bitenum>
+    <bitenum description="Force this clock to stay enabled even if there is no request" id="CLK_ENABLE" token="CLK_ENABLE" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Toggle on this status bit after changing DPLL_CLKOUT_DIV indicates that the change in divider value has taken effect" end="5" id="DPLL_CLKOUT_DIVCHACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="DPLL M2 post-divider factor (1 to 31)." end="0" id="DPLL_CLKOUT_DIV" rwaccess="RW" width="5">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_DIV_M2_DPLL_DISP" description="This register provides controls over the M2 divider of the DPLL." id="CM_DIV_M2_DPLL_DISP" offset="0xA4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="DPLL CLKOUT status" end="9" id="ST_DPLL_CLKOUT" rwaccess="R" width="1">
+    <bitenum description="The clock output is gated" id="CLK_GATED" token="CLK_GATED" value="0"></bitenum>
+    <bitenum description="The clock output is enabled" id="CLK_ENABLED" token="CLK_ENABLED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Control gating of DPLL CLKOUT" end="8" id="DPLL_CLKOUT_GATE_CTRL" rwaccess="RW" width="1">
+    <bitenum description="Automatically gate this clock when there is no dependency for it" id="CLK_AUTOGATE" token="CLK_AUTOGATE" value="0"></bitenum>
+    <bitenum description="Force this clock to stay enabled even if there is no request" id="CLK_ENABLE" token="CLK_ENABLE" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Toggle on this status bit after changing DPLL_CLKOUT_DIV indicates that the change in divider value has taken effect" end="5" id="DPLL_CLKOUT_DIVCHACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="DPLL M2 post-divider factor (1 to 31)." end="0" id="DPLL_CLKOUT_DIV" rwaccess="RW" width="5">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_DIV_M2_DPLL_MPU" description="This register provides controls over the M2 divider of the DPLL." id="CM_DIV_M2_DPLL_MPU" offset="0xA8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="DPLL CLKOUT status" end="9" id="ST_DPLL_CLKOUT" rwaccess="R" width="1">
+    <bitenum description="The clock output is gated" id="CLK_GATED" token="CLK_GATED" value="0"></bitenum>
+    <bitenum description="The clock output is enabled" id="CLK_ENABLED" token="CLK_ENABLED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Control gating of DPLL CLKOUT" end="8" id="DPLL_CLKOUT_GATE_CTRL" rwaccess="RW" width="1">
+    <bitenum description="Automatically gate this clock when there is no dependency for it" id="CLK_AUTOGATE" token="CLK_AUTOGATE" value="0"></bitenum>
+    <bitenum description="Force this clock to stay enabled even if there is no request" id="CLK_ENABLE" token="CLK_ENABLE" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Toggle on this status bit after changing DPLL_CLKOUT_DIV indicates that the change in divider value has taken effect" end="5" id="DPLL_CLKOUT_DIVCHACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="DPLL M2 post-divider factor (1 to 31)." end="0" id="DPLL_CLKOUT_DIV" rwaccess="RW" width="5">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_DIV_M2_DPLL_PER" description="This register provides controls over the M2 divider of the DPLL." id="CM_DIV_M2_DPLL_PER" offset="0xAC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="Reserved" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="DPLL CLKOUT status" end="9" id="ST_DPLL_CLKOUT" rwaccess="R" width="1">
+    <bitenum description="The clock output is gated" id="CLK_GATED" token="CLK_GATED" value="0"></bitenum>
+    <bitenum description="The clock output is enabled" id="CLK_ENABLED" token="CLK_ENABLED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Control gating of DPLL CLKOUT" end="8" id="DPLL_CLKOUT_GATE_CTRL" rwaccess="RW" width="1">
+    <bitenum description="Automatically gate this clock when there is no dependency for it" id="CLK_AUTOGATE" token="CLK_AUTOGATE" value="0"></bitenum>
+    <bitenum description="Force this clock to stay enabled even if there is no request" id="CLK_ENABLE" token="CLK_ENABLE" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Toggle on this status bit after changing DPLL_CLKOUT_DIV indicates that the change in divider value has taken effect" end="7" id="DPLL_CLKOUT_DIVCHACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="DPLL M2 post-divider factor (1 to 31)." end="0" id="DPLL_CLKOUT_DIV" rwaccess="RW" width="7">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_WKUP_M3_CLKCTRL" description="This register manages the WKUP M3 clocks." id="CM_WKUP_WKUP_M3_CLKCTRL" offset="0xB0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Module standby status." end="18" id="STBYST" rwaccess="R" width="1">
+    <bitenum description="Module is functional (not in standby)" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is in standby" id="Standby" token="Standby" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="17" description="Reserved" end="2" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_UART0_CLKCTRL" description="This register manages the UART0 clocks." id="CM_WKUP_UART0_CLKCTRL" offset="0xB4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_I2C0_CLKCTRL" description="This register manages the I2C0 clocks." id="CM_WKUP_I2C0_CLKCTRL" offset="0xB8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_ADC_TSC_CLKCTRL" description="This register manages the ADC clocks." id="CM_WKUP_ADC_TSC_CLKCTRL" offset="0xBC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_SMARTREFLEX0_CLKCTRL" description="This register manages the SmartReflex0 clocks." id="CM_WKUP_SMARTREFLEX0_CLKCTRL" offset="0xC0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_TIMER1_CLKCTRL" description="This register manages the TIMER1 clocks." id="CM_WKUP_TIMER1_CLKCTRL" offset="0xC4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_SMARTREFLEX1_CLKCTRL" description="This register manages the SmartReflex1 clocks." id="CM_WKUP_SMARTREFLEX1_CLKCTRL" offset="0xC8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="18" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_L4_WKUP_AON_CLKSTCTRL" description="This register enables the domain power state transition. It controls the SW supervised clock domain state transition between ON-ACTIVE and ON-INACTIVE states. It also hold one status bit per clock input of the domain." id="CM_L4_WKUP_AON_CLKSTCTRL" offset="0xCC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="26" id="Reserved1" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="25" description="Reserved" end="14" id="Reserved2" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="13" description="Reserved" end="8" id="Reserved4" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="4" id="Reserved" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="3" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="This field indicates the state of the L4_WKUP  clock in the domain." end="2" id="CLKACTIVITY_L4_WKUP_AON_GCLK" rwaccess="R" width="1">
+    <bitenum description="Corresponding clock is gated" id="Inact" token="Inact" value="0"></bitenum>
+    <bitenum description="Corresponding clock is active" id="Act" token="Act" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Controls the clock state transition of the always on L4 clock domain.  " end="0" id="CLKTRCTRL" rwaccess="RW" width="2">
+    <bitenum description="Sleep transition cannot be initiated. Wakeup transition may however occur." id="NO_SLEEP" token="NO_SLEEP" value="0"></bitenum>
+    <bitenum description="Start a software forced sleep transition on the domain." id="SW_SLEEP" token="SW_SLEEP" value="1"></bitenum>
+    <bitenum description="Start a software forced wake-up transition on the domain." id="SW_WKUP" token="SW_WKUP" value="2"></bitenum>
+    <bitenum description="Reserved." id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_WKUP_WDT1_CLKCTRL" description="This register manages the WDT1 clocks." id="CM_WKUP_WDT1_CLKCTRL" offset="0xD4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="Reserved" end="18" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Module idle status." end="16" id="IDLEST" rwaccess="R" width="2">
+    <bitenum description="Module is fully functional, including OCP" id="Func" token="Func" value="0"></bitenum>
+    <bitenum description="Module is performing transition: wakeup, or sleep, or sleep abortion" id="Trans" token="Trans" value="1"></bitenum>
+    <bitenum description="Module is in Idle mode (only OCP part). It is functional if using separate functional clock" id="Idle" token="Idle" value="2"></bitenum>
+    <bitenum description="Module is disabled and cannot be accessed" id="Disable" token="Disable" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="2" id="Reserved" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="Control the way mandatory clocks are managed." end="0" id="MODULEMODE" rwaccess="RW" width="2">
+    <bitenum description="Module is disable by SW. Any OCP access to module results in an error, except if resulting from a module wakeup (asynchronous wakeup)." id="DISABLED" token="DISABLED" value="0"></bitenum>
+    <bitenum description="Reserved" id="RESERVED_1" token="RESERVED_1" value="1"></bitenum>
+    <bitenum description="Module is explicitly enabled. Interface clock (if not used for functions) may be gated according to the clock domain state. Functional clocks are guarantied to stay present. As long as in this configuration, power domain sleep transition cannot happen." id="ENABLE" token="ENABLE" value="2"></bitenum>
+    <bitenum description="Reserved" id="RESERVED" token="RESERVED" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="CM_DIV_M6_DPLL_CORE" description="This register provides controls over the CLKOUT3 o/p of the HSDIVIDER. [warm reset insensitive]" id="CM_DIV_M6_DPLL_CORE" offset="0xD8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="13" id="Reserved2" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Automatic power down for HSDIVIDER M6 divider and hence CLKOUT3 output when the o/p clock is gated." end="12" id="HSDIVIDER_CLKOUT3_PWDN" rwaccess="RW" width="1">
+    <bitenum description="Keep M6 divider powered on even when CLKOUT3 is gated." id="ALWAYS_ACTIVE" token="ALWAYS_ACTIVE" value="0"></bitenum>
+    <bitenum description="Automatically power down M6 divider when CLKOUT3 is gated." id="AUTO_PWDN" token="AUTO_PWDN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Reserved" end="10" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="9" description="HSDIVIDER CLKOUT3 status" end="9" id="ST_HSDIVIDER_CLKOUT3" rwaccess="R" width="1">
+    <bitenum description="The clock output is enabled" id="CLK_ENABLED" token="CLK_ENABLED" value="0"></bitenum>
+    <bitenum description="The clock output is gated" id="CLK_GATED" token="CLK_GATED" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Control gating of HSDIVIDER CLKOUT3" end="8" id="HSDIVIDER_CLKOUT3_GATE_CTRL" rwaccess="RW" width="1">
+    <bitenum description="Automatically gate this clock when there is no dependency for it" id="CLK_AUTOGATE" token="CLK_AUTOGATE" value="0"></bitenum>
+    <bitenum description="Force this clock to stay enabled even if there is no request" id="CLK_ENABLE" token="CLK_ENABLE" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="6" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Toggle on this status bit after changing HSDIVIDER_CLKOUT3_DIV indicates that the change in divider value has taken effect" end="5" id="HSDIVIDER_CLKOUT3_DIVCHACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="DPLL post-divider factor, M6, for internal clock generation. Divide values from 1 to 31." end="0" id="HSDIVIDER_CLKOUT3_DIV" rwaccess="RW" width="5">
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="0"></bitenum>
+  </bitfield>
+  </register>
+</module>

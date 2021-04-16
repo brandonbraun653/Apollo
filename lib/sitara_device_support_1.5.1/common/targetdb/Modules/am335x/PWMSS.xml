@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="SFSDFSFSDFSDF23523543$%$%#q" id="PWMSS">
+  
+  
+  <register acronym="IDVER" description="The IP revision register is used by software to track features, bugs, and compatibility." id="IDVER" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Used to distinguish between the old scheme and current." end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="" end="28" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="FUNC" end="16" id="FUNC" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="RTL version (R), maintained by IP design owner." end="11" id="R_RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major revision (X)" end="8" id="X_MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="CUSTOM" end="6" id="CUSTOM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor revision (Y)" end="0" id="Y_MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="SYSCONFIG" description="The system configuration register is used for clock management configuration." id="SYSCONFIG" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="" end="6" id="Reserved1" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Configuration of the local initiator state management mode. By definition, initiator may generate read/write transaction as long as it is out of STANDBY state." end="4" id="STANDBYMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Configuration of the local target state management mode. By definition, target can handle read/write transaction as long as it is out of IDLE state." end="2" id="IDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Sensitivity to emulation (debug) suspend input signal." end="1" id="FREEEMU" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Software reset (optional)" end="0" id="SOFTRESET" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CLKCONFIG" description="The clock configuration register is used in the PWMSS submodule for clkstop req and clk_en control." id="CLKCONFIG" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="This bit controls the clkstop_req input to the ePWM module." end="9" id="ePWMCLKSTOP_REQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This bit controls the clk_en input to the ePWM module." end="8" id="ePWMCLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="6" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="This bit controls the clkstop_req input to the eQEP module" end="5" id="eQEPCLKSTOP_REQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="This bit controls the clk_en input to the eQEP module." end="4" id="eQEPCLK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="This bit controls the clkstop_req input to the eCAP module." end="1" id="eCAPCLKSTOP_REQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="This bit controls the clk_en input to the eCAP module." end="0" id="eCAPCLK_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CLKSTATUS" description="The clock status register is used in the PWMSS submodule for clkstop ack and clk_en ack status." id="CLKSTATUS" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="This bit is the clkstop_req_ack status output of the ePWM module." end="9" id="ePWM_CLKSTOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="This bit is the clk_en status output of the ePWM module." end="8" id="ePWM_CLK_EN_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="6" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="This bit is the clkstop_req_ack status output of the eQEP module." end="5" id="eQEP_CLKSTOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="This bit is the clk_en status output of the eQEP module." end="4" id="eQEP_CLK_EN_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="This bit is the clkstop_req_ack status output of the eCAP module." end="1" id="eCAP_CLKSTOP_ACK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="This bit is the clk_en status output of the eCAP module." end="0" id="eCAP_CLK_EN_ACK" rwaccess="R" width="1"></bitfield>
+  </register>
+</module>

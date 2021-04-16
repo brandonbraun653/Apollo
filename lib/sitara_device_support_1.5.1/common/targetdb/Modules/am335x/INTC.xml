@@ -1,0 +1,1981 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="INTC" id="INTC">
+  
+  
+  <register acronym="INTC_REVISION" description="This register contains the IP revision code  " id="INTC_REVISION" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="IP revision [7:4] Major revision [3:0] Minor revision Examples: 0x10 for 1.0, 0x21 for 2.1" end="0" id="Rev" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_SYSCONFIG" description="This register controls the various parameters of the OCP interface  " id="INTC_SYSCONFIG" offset="0x10" width="32">
+    
+  <bitfield begin="4" description="Write 0's for future compatibility.                                     Reads returns 0" end="3" id="RESERVED" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Software reset.  Set this bit to trigger a module reset. The bit is automatically reset by the hardware.  During reads, it always returns 0." end="1" id="SoftReset" rwaccess="RW" width="1">
+    <bitenum description="Always returns 0" id="always_r" token="always_r" value="0"></bitenum>
+    <bitenum description="no functional effect" id="nofun_w" token="nofun_w" value="0"></bitenum>
+    <bitenum description="never happens" id="never_r" token="never_r" value="1"></bitenum>
+    <bitenum description="The module is reset" id="rstMode_w" token="rstMode_w" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Internal OCP clock gating strategy" end="0" id="Autoidle" rwaccess="RW" width="1">
+    <bitenum description="OCP clock is free running" id="clkfree" token="clkfree" value="0"></bitenum>
+    <bitenum description="Automatic OCP clock gating strategy is applied, bnased on the OCP interface activity" id="autoClkGate" token="autoClkGate" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_SYSSTATUS" description="This register provides status information about the module  " id="INTC_SYSSTATUS" offset="0x14" width="32">
+    
+  <bitfield begin="7" description="Reserved for OCP socket status information Read  returns 0" end="1" id="RESERVED" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="Internal reset monitoring" end="0" id="ResetDone" rwaccess="R" width="1">
+    <bitenum description="Internal module reset is on-going" id="rstOngoing" token="rstOngoing" value="0"></bitenum>
+    <bitenum description="Reset completed" id="rstComp" token="rstComp" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_SIR_IRQ" description="This register supplies the currently active IRQ interrupt number.  " id="INTC_SIR_IRQ" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Spurious IRQ flag" end="7" id="SpuriousIRQ" rwaccess="RW" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Active IRQ number" end="0" id="ActiveIRQ" rwaccess="RW" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_SIR_FIQ" description="This register supplies the currently active FIQ interrupt number  " id="INTC_SIR_FIQ" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Spurious FIQ flag" end="7" id="SpuriousFIQ" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Active FIQ number" end="0" id="ActiveFIQ" rwaccess="R" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_CONTROL" description="This register contains the new interrupt agreement bits  " id="INTC_CONTROL" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                                     Reads returns 0" end="2" id="RESERVED" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Reset FIQ output and enable new FIQ generation" end="1" id="NewFIQAgr" rwaccess="W" width="1">
+    <bitenum description="no function effect" id="nofun_w" token="nofun_w" value="0"></bitenum>
+    <bitenum description="Reset FIQ output and enable new FIQ generation" id="NewFiq_w" token="NewFiq_w" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New IRQ generation" end="0" id="NewIRQAgr" rwaccess="W" width="1">
+    <bitenum description="no function effect" id="nofun_w" token="nofun_w" value="0"></bitenum>
+    <bitenum description="Reset IRQ output and enable new IRQ generation" id="NewIrq_w" token="NewIrq_w" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PROTECTION" description="This register controls protection of the other registers.  This register can only be accessed in priviledged mode, regardless of the curent value of the protection bit.  " id="INTC_PROTECTION" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                                     Reads returns 0" end="1" id="RESERVED" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Protection mode" end="0" id="Protection" rwaccess="RW" width="1">
+    <bitenum description="Protection mode disabled (default)" id="ProtMDis" token="ProtMDis" value="0"></bitenum>
+    <bitenum description="Protection mode enabled.  When enabled, only priviledged mode can access registers." id="ProtMEnb" token="ProtMEnb" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_IDLE" description="This register controls the clock auto-idle for the functional clock and the input synchronisers  " id="INTC_IDLE" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                                     Reads returns 0" end="2" id="RESERVED" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Input synchroniser clock auto-gating" end="1" id="Turbo" rwaccess="RW" width="1">
+    <bitenum description="Input synchroniser clock is free running (default)" id="SyncFree" token="SyncFree" value="0"></bitenum>
+    <bitenum description="Input synchroniser clock is auto-gated based on interrupt input activity" id="SyncAuto" token="SyncAuto" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Functional clock auto-idle mode" end="0" id="FuncIdle" rwaccess="RW" width="1">
+    <bitenum description="Functional clock gating strategy is applied (default)" id="FuncAuto" token="FuncAuto" value="0"></bitenum>
+    <bitenum description="Functional clock is free-running" id="FuncFree" token="FuncFree" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_IRQ_PRIORITY" description="This register supplies the currently active IRQ priority level" id="INTC_IRQ_PRIORITY" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="Spurious IRQ flag" end="7" id="SpuriousIRQflag" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Current IRQ priority" end="0" id="IRQPriority" rwaccess="R" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_FIQ_PRIORITY" description="This register supplies the currently active FIQ priority level" id="INTC_FIQ_PRIORITY" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="Spurious FIQ flag" end="7" id="SpuriousFIQflag" rwaccess="R" width="25"></bitfield>
+    
+  <bitfield begin="6" description="Current FIQ priority" end="0" id="FIQPriority" rwaccess="R" width="7"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_THRESHOLD" description="This register sets the priority threshold" id="INTC_THRESHOLD" offset="0x68" width="32">
+    
+  <bitfield begin="31" description="Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Priority threshold (used values 0x00-0x1f or 0x00-0x3f, 0xff disables the threshold)." end="0" id="PriorityThreshold" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ITR0" description="This register shows the raw interrupt input status before masking  " id="INTC_ITR0" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="Interrupt status before masking" end="0" id="Itr" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR0" description="This register contains the interrupt mask  " id="INTC_MIR0" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="Interrupt mask" end="0" id="Mir" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR_CLEAR0" description="This register is used to clear the interrupt mask bits.  " id="INTC_MIR_CLEAR0" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="Write 1 clears the mask bit to 0, reads return 0" end="0" id="MirClear" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR_SET0" description="This register is used to set the interrupt mask bits.  " id="INTC_MIR_SET0" offset="0x8C" width="32">
+    
+  <bitfield begin="31" description="Write 1 sets the mask bit to 1, reads return 0" end="0" id="MirSet" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ISR_SET0" description="This register is used to set the software interrupt bits.  It is also used to read the currently active software interrupts.  " id="INTC_ISR_SET0" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="Reads returns the currently active software interrupts, Write 1 sets the software interrupt bits to 1" end="0" id="IsrSet" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ISR_CLEAR0" description="This register is used to clear the software interrupt bits  " id="INTC_ISR_CLEAR0" offset="0x94" width="32">
+    
+  <bitfield begin="31" description="Write 1 clears the sofware interrupt bits to 0, reads return 0" end="0" id="IsrClear" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PENDING_IRQ0" description="This register contains the IRQ status after masking  " id="INTC_PENDING_IRQ0" offset="0x98" width="32">
+    
+  <bitfield begin="31" description="IRQ status after masking" end="0" id="PendingIRQ" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PENDING_FIQ0" description="This register contains the FIQ status after masking  " id="INTC_PENDING_FIQ0" offset="0x9C" width="32">
+    
+  <bitfield begin="31" description="FIQ status after masking" end="0" id="PendingFIQ" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ITR1" description="This register shows the raw interrupt input status before masking  " id="INTC_ITR1" offset="0xA0" width="32">
+    
+  <bitfield begin="31" description="Interrupt status before masking" end="0" id="Itr" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR1" description="This register contains the interrupt mask  " id="INTC_MIR1" offset="0xA4" width="32">
+    
+  <bitfield begin="31" description="Interrupt mask" end="0" id="Mir" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR_CLEAR1" description="This register is used to clear the interrupt mask bits.  " id="INTC_MIR_CLEAR1" offset="0xA8" width="32">
+    
+  <bitfield begin="31" description="Write 1 clears the mask bit to 0, reads return 0" end="0" id="MirClear" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR_SET1" description="This register is used to set the interrupt mask bits.  " id="INTC_MIR_SET1" offset="0xAC" width="32">
+    
+  <bitfield begin="31" description="Write 1 sets the mask bit to 1, reads return 0" end="0" id="MirSet" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ISR_SET1" description="This register is used to set the software interrupt bits.  It is also used to read the currently active software interrupts.  " id="INTC_ISR_SET1" offset="0xB0" width="32">
+    
+  <bitfield begin="31" description="Reads returns the currently active software interrupts, Write 1 sets the software interrupt bits to 1" end="0" id="IsrSet" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ISR_CLEAR1" description="This register is used to clear the software interrupt bits  " id="INTC_ISR_CLEAR1" offset="0xB4" width="32">
+    
+  <bitfield begin="31" description="Write 1 clears the sofware interrupt bits to 0, reads return 0" end="0" id="IsrClear" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PENDING_IRQ1" description="This register contains the IRQ status after masking  " id="INTC_PENDING_IRQ1" offset="0xB8" width="32">
+    
+  <bitfield begin="31" description="IRQ status after masking" end="0" id="PendingIRQ" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PENDING_FIQ1" description="This register contains the FIQ status after masking  " id="INTC_PENDING_FIQ1" offset="0xBC" width="32">
+    
+  <bitfield begin="31" description="FIQ status after masking" end="0" id="PendingFIQ" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ITR2" description="This register shows the raw interrupt input status before masking  " id="INTC_ITR2" offset="0xC0" width="32">
+    
+  <bitfield begin="31" description="Interrupt status before masking" end="0" id="Itr" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR2" description="This register contains the interrupt mask  " id="INTC_MIR2" offset="0xC4" width="32">
+    
+  <bitfield begin="31" description="Interrupt mask" end="0" id="Mir" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR_CLEAR2" description="This register is used to clear the interrupt mask bits.  " id="INTC_MIR_CLEAR2" offset="0xC8" width="32">
+    
+  <bitfield begin="31" description="Write 1 clears the mask bit to 0, reads return 0" end="0" id="MirClear" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR_SET2" description="This register is used to set the interrupt mask bits.  " id="INTC_MIR_SET2" offset="0xCC" width="32">
+    
+  <bitfield begin="31" description="Write 1 sets the mask bit to 1, reads return 0" end="0" id="MirSet" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ISR_SET2" description="This register is used to set the software interrupt bits.  It is also used to read the currently active software interrupts.  " id="INTC_ISR_SET2" offset="0xD0" width="32">
+    
+  <bitfield begin="31" description="Reads returns the currently active software interrupts, Write 1 sets the software interrupt bits to 1" end="0" id="IsrSet" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ISR_CLEAR2" description="This register is used to clear the software interrupt bits  " id="INTC_ISR_CLEAR2" offset="0xD4" width="32">
+    
+  <bitfield begin="31" description="Write 1 clears the sofware interrupt bits to 0, reads return 0" end="0" id="IsrClear" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PENDING_IRQ2" description="This register contains the IRQ status after masking  " id="INTC_PENDING_IRQ2" offset="0xD8" width="32">
+    
+  <bitfield begin="31" description="IRQ status after masking" end="0" id="PendingIRQ" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PENDING_FIQ2" description="This register contains the FIQ status after masking  " id="INTC_PENDING_FIQ2" offset="0xDC" width="32">
+    
+  <bitfield begin="31" description="FIQ status after masking" end="0" id="PendingFIQ" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ITR3" description="This register shows the raw interrupt input status before masking  " id="INTC_ITR3" offset="0xE0" width="32">
+    
+  <bitfield begin="31" description="Interrupt status before masking" end="0" id="Itr" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR3" description="This register contains the interrupt mask  " id="INTC_MIR3" offset="0xE4" width="32">
+    
+  <bitfield begin="31" description="Interrupt mask" end="0" id="Mir" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR_CLEAR3" description="This register is used to clear the interrupt mask bits.  " id="INTC_MIR_CLEAR3" offset="0xE8" width="32">
+    
+  <bitfield begin="31" description="Write 1 clears the mask bit to 0, reads return 0" end="0" id="MirClear" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_MIR_SET3" description="This register is used to set the interrupt mask bits.  " id="INTC_MIR_SET3" offset="0xEC" width="32">
+    
+  <bitfield begin="31" description="Write 1 sets the mask bit to 1, reads return 0" end="0" id="MirSet" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ISR_SET3" description="This register is used to set the software interrupt bits.  It is also used to read the currently active software interrupts.  " id="INTC_ISR_SET3" offset="0xF0" width="32">
+    
+  <bitfield begin="31" description="Reads returns the currently active software interrupts, Write 1 sets the software interrupt bits to 1" end="0" id="IsrSet" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ISR_CLEAR3" description="This register is used to clear the software interrupt bits  " id="INTC_ISR_CLEAR3" offset="0xF4" width="32">
+    
+  <bitfield begin="31" description="Write 1 clears the sofware interrupt bits to 0, reads return 0" end="0" id="IsrClear" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PENDING_IRQ3" description="This register contains the IRQ status after masking  " id="INTC_PENDING_IRQ3" offset="0xF8" width="32">
+    
+  <bitfield begin="31" description="IRQ status after masking" end="0" id="PendingIRQ" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_PENDING_FIQ3" description="This register contains the FIQ status after masking  " id="INTC_PENDING_FIQ3" offset="0xFC" width="32">
+    
+  <bitfield begin="31" description="FIQ status after masking" end="0" id="PendingFIQ" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_0" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_0" offset="0x100" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"></bitenum>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_1" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_1" offset="0x104" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_2" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_2" offset="0x108" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_3" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_3" offset="0x10C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_4" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_4" offset="0x110" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_5" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_5" offset="0x114" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_6" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_6" offset="0x118" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_7" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_7" offset="0x11C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_8" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_8" offset="0x120" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_9" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_9" offset="0x124" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_10" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_10" offset="0x128" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_11" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_11" offset="0x12C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_12" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_12" offset="0x130" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_13" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_13" offset="0x134" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_14" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_14" offset="0x138" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_15" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_15" offset="0x13C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_16" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_16" offset="0x140" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_17" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_17" offset="0x144" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_18" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_18" offset="0x148" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_19" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_19" offset="0x14C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_20" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_20" offset="0x150" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_21" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_21" offset="0x154" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_22" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_22" offset="0x158" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_23" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_23" offset="0x15C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_24" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_24" offset="0x160" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_25" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_25" offset="0x164" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_26" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_26" offset="0x168" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_27" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_27" offset="0x16C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_28" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_28" offset="0x170" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_29" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_29" offset="0x174" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_30" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_30" offset="0x178" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_31" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_31" offset="0x17C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_32" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_32" offset="0x180" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_33" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_33" offset="0x184" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_34" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_34" offset="0x188" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_35" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_35" offset="0x18C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_36" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_36" offset="0x190" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_37" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_37" offset="0x194" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_38" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_38" offset="0x198" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_39" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_39" offset="0x19C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_40" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_40" offset="0x1A0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_41" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_41" offset="0x1A4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_42" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_42" offset="0x1A8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_43" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_43" offset="0x1AC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_44" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_44" offset="0x1B0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_45" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_45" offset="0x1B4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_46" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_46" offset="0x1B8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_47" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_47" offset="0x1BC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_48" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_48" offset="0x1C0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_49" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_49" offset="0x1C4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_50" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_50" offset="0x1C8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_51" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_51" offset="0x1CC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_52" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_52" offset="0x1D0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_53" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_53" offset="0x1D4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_54" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_54" offset="0x1D8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_55" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_55" offset="0x1DC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_56" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_56" offset="0x1E0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_57" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_57" offset="0x1E4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_58" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_58" offset="0x1E8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_59" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_59" offset="0x1EC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_60" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_60" offset="0x1F0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_61" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_61" offset="0x1F4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_62" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_62" offset="0x1F8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_63" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_63" offset="0x1FC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_64" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_64" offset="0x200" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_65" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_65" offset="0x204" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_66" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_66" offset="0x208" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_67" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_67" offset="0x20C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_68" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_68" offset="0x210" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_69" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_69" offset="0x214" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_70" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_70" offset="0x218" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_71" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_71" offset="0x21C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_72" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_72" offset="0x220" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_73" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_73" offset="0x224" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_74" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_74" offset="0x228" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_75" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_75" offset="0x22C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_76" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_76" offset="0x230" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_77" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_77" offset="0x234" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_78" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_78" offset="0x238" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_79" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_79" offset="0x23C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_80" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_80" offset="0x240" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_81" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_81" offset="0x244" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_82" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_82" offset="0x248" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_83" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_83" offset="0x24C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_84" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_84" offset="0x250" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_85" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_85" offset="0x254" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_86" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_86" offset="0x258" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_87" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_87" offset="0x25C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_88" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_88" offset="0x260" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_89" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_89" offset="0x264" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_90" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_90" offset="0x268" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_91" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_91" offset="0x26C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_92" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_92" offset="0x270" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_93" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_93" offset="0x274" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_94" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_94" offset="0x278" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_95" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_95" offset="0x27C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_96" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_96" offset="0x280" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_97" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_97" offset="0x284" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_98" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_98" offset="0x288" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_99" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_99" offset="0x28C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_100" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_100" offset="0x290" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_101" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_101" offset="0x294" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_102" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_102" offset="0x298" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_103" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_103" offset="0x29C" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_104" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_104" offset="0x2A0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_105" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_105" offset="0x2A4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_106" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_106" offset="0x2A8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_107" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_107" offset="0x2AC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_108" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_108" offset="0x2B0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_109" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_109" offset="0x2B4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_110" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_110" offset="0x2B8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_111" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_111" offset="0x2BC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_112" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_112" offset="0x2C0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_113" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_113" offset="0x2C4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_114" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_114" offset="0x2C8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_115" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_115" offset="0x2CC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_116" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_116" offset="0x2D0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_117" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_117" offset="0x2D4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_118" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_118" offset="0x2D8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_119" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_119" offset="0x2DC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_120" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_120" offset="0x2E0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_121" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_121" offset="0x2E4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_122" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_122" offset="0x2E8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_123" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_123" offset="0x2EC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_124" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_124" offset="0x2F0" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_125" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_125" offset="0x2F4" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_126" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_126" offset="0x2F8" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="INTC_ILR_127" description="The INTC_ILRx registers contain the priority for the interrupts and the FIQ/IRQ steering.  " id="INTC_ILR_127" offset="0x2FC" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility.                         Reads returns 0" end="8" id="RESERVED" rwaccess="R" width="24"/>
+    
+  <bitfield begin="7" description="Interrupt priority" end="2" id="Priority" rwaccess="RW" width="6"/>
+    
+  <bitfield begin="0" description="Interrupt IRQ FiQ mapping" end="0" id="FIQnIRQ" rwaccess="RW" width="1">
+    <bitenum description="Interrupt is routed to IRQ." id="IntIRQ" token="IntIRQ" value="0"/>
+    <bitenum description="Interrupt is routed to FIQ (this selection is reserved on GP devices)." id="IntFIQ" token="IntFIQ" value="1"/>
+  </bitfield>
+  </register>
+</module>

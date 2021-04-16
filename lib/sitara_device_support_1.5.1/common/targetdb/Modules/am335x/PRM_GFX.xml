@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="PRM_GFX" id="PRM_GFX">
+  
+  
+  <register acronym="PM_GFX_PWRSTCTRL" description="This register controls the GFX power state to reach upon a domain sleep transition." id="PM_GFX_PWRSTCTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="19" id="Reserved3" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="18" description="GFX memory state when domain is ON." end="17" id="GFX_MEM_ONState" rwaccess="R" width="2">
+    <bitenum description="Memory bank is on when the domain is ON." id="Mem_on" token="Mem_on" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="16" description="Reserved" end="7" id="Reserved2" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="GFX_MEM_RETState" rwaccess="RW" width="1">
+    <bitenum description="Memory is in off state" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Memory is in retention state" id="RET" token="RET" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Reserved" end="5" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Power state change request when domain has already performed a sleep transition. Allows going into deeper low power state without waking up the power domain." end="4" id="LowPowerStateChange" rwaccess="RW" width="1">
+    <bitenum description="Do not request a low power state change." id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="Request a low power state change. This bit is automatically cleared when the power state is effectively changed or when power state is ON." id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="3" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Logic state when power domain is RETENTION" end="2" id="LogicRETState" rwaccess="RW" width="1">
+    <bitenum description="Only retention registers are retained and remaing logic is off when the domain is in RETENTION state." id="logic_off" token="logic_off" value="0"></bitenum>
+    <bitenum description="Whole logic is retained when domain is in RETENTION state." id="logic_ret" token="logic_ret" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Power state control" end="0" id="PowerState" rwaccess="RW" width="2">
+    <bitenum description="OFF State" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="" id="RET" token="RET" value="1"></bitenum>
+    <bitenum description="" id="reserved_1" token="reserved_1" value="2"></bitenum>
+    <bitenum description="ON State" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="RM_GFX_RSTCTRL" description="This register controls the release of the GFX Domain resets." id="RM_GFX_RSTCTRL" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="4" id="Reserved" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="2" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Reserved" end="1" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="GFX domain local reset control" end="0" id="GFX_RST" rwaccess="RW" width="1">
+    <bitenum description="Reset is cleared for the GFX Domain (SGX530)" id="CLEAR" token="CLEAR" value="0"></bitenum>
+    <bitenum description="Reset is asserted for the GFX Domain (SGX 530)" id="ASSERT" token="ASSERT" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PM_GFX_PWRSTST" description="This register provides a status on the current GFX power domain state.  [warm reset insensitive]" id="PM_GFX_PWRSTST" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="21" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="20" description="Domain transition status" end="20" id="InTransition" rwaccess="R" width="1">
+    <bitenum description="No on-going transition on power domain" id="No" token="No" value="0"></bitenum>
+    <bitenum description="Power domain transition is in progress." id="Ongoing" token="Ongoing" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="19" description="Reserved" end="6" id="Reserved2" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="5" description="GFX memory state status" end="4" id="GFX_MEM_StateSt" rwaccess="R" width="2">
+    <bitenum description="Memory is OFF" id="Mem_off" token="Mem_off" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Memory is ON" id="Mem_on" token="Mem_on" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Reserved" end="3" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Logic state status" end="2" id="LogicStateSt" rwaccess="R" width="1">
+    <bitenum description="Logic in domain is OFF" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Logic in domain is ON" id="ON" token="ON" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Current Power State Status" end="0" id="PowerStateSt" rwaccess="R" width="2">
+    <bitenum description="OFF State [warm reset insensitive]" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="" id="RET" token="RET" value="1"></bitenum>
+    <bitenum description="ON State [warm reset insensitive]" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="RM_GFX_RSTST" description="This register logs the different reset sources of the GFX domain. Each bit is set upon release of the domain reset signal. Must be cleared by software. [warm reset insensitive]" id="RM_GFX_RSTST" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="12" id="Reserved2" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Reserved" end="2" id="Reserved" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="1" description="Reserved" end="1" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="GFX Domain Logic Reset" end="0" id="GFX_RST" rwaccess="RW" width="1">
+    <bitenum description="No SW reset occured" id="RESET_NO" token="RESET_NO" value="0"></bitenum>
+    <bitenum description="GFX Domain Logic has been reset upon SW reset" id="RESET_YES" token="RESET_YES" value="1"></bitenum>
+  </bitfield>
+  </register>
+</module>

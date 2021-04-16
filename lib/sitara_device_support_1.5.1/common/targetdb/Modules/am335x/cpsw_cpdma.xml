@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="cpsw_cpdma" id="cpsw_cpdma">
+  
+  
+  <register acronym="TX_IDVER" description="CPDMA_REGS TX IDENTIFICATION AND VERSION REGISTER" id="TX_IDVER" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="TX Identification Value" end="16" id="TX_IDENT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="TX Major Version Value - The value read is the major version number" end="8" id="TX_MAJOR_VER" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="TX Minor Version Value - The value read is the minor version number" end="0" id="TX_MINOR_VER" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_CONTROL" description="CPDMA_REGS TX CONTROL REGISTER" id="TX_CONTROL" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="TX Enable   0 - Disabled   1 - Enabled " end="0" id="TX_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_TEARDOWN" description="CPDMA_REGS TX TEARDOWN REGISTER" id="TX_TEARDOWN" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Tx Teardown Ready - read as zero, but is always assumed to be one  (unused). " end="31" id="TX_TDN_RDY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Reserved" end="3" id="Reserved" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="2" description="Tx Teardown Channel - Transmit channel teardown is commanded by writing  the encoded value of the transmit channel to be torn down.  The teardown  register is read as zero.   000 - teardown transmit channel 0    ...   111 - teardown transmit channel 7 " end="0" id="TX_TDN_CH" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_IDVER" description="CPDMA_REGS RX IDENTIFICATION AND VERSION REGISTER" id="RX_IDVER" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="RX Identification Value" end="16" id="RX_IDENT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="RX Major Version Value" end="8" id="RX_MAJOR_VER" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="RX Minor Version Value" end="0" id="RX_MINOR_VER" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_CONTROL" description="CPDMA_REGS RX CONTROL REGISTER" id="RX_CONTROL" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="RX DMA Enable   0 - Disabled   1 - Enabled " end="0" id="RX_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_TEARDOWN" description="CPDMA_REGS RX TEARDOWN REGISTER" id="RX_TEARDOWN" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="Teardown Ready - read as zero, but is always assumed to be one (unused)." end="31" id="RX_TDN_RDY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Reserved" end="3" id="Reserved" rwaccess="R" width="28"></bitfield>
+    
+  <bitfield begin="2" description="Rx Teardown Channel -Receive channel teardown is commanded by writing  the encoded value of the receive channel to be torn down.  The teardown  register is read as zero.   000 - teardown receive channel 0    ...   111 - teardown receive channel 7 " end="0" id="RX_TDN_CH" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPDMA_SOFT_RESET" description="CPDMA_REGS SOFT RESET REGISTER" id="CPDMA_SOFT_RESET" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Software reset - Writing a one to this bit causes the CPDMA logic to be  reset.  Software reset occurs when the RX and TX DMA Controllers are in  an idle state to avoid locking up the VBUSP bus.  After writing a one to  this bit, it may be polled to determine if the reset has occurred.  If a one is  read, the reset has not yet occurred.  If a zero is read then reset has  occurred. " end="0" id="SOFT_RESET" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMACONTROL" description="CPDMA_REGS CPDMA CONTROL REGISTER" id="DMACONTROL" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Transmit Rate Limit Channel Bus   00000000 - no rate-limited channels   10000000 - channel 7 is rate-limited   11000000 - channels 7 downto 6 are rate-limited   11100000 - channels 7 downto 5 are rate-limited   11110000 - channels 7 downto 4 are rate-limited   11111000 - channels 7 downto 3 are rate-limited   11111100 - channels 7 downto 2 are rate-limited   11111110 - channels 7 downto 1 are rate-limited   11111111 - channels 7 downto 0 are rate-limited   all others invalid - this bus must be set msb towards lsb. tx_ptype must be set if any tx_rlim bit is set for fixed priority. " end="8" id="TX_RLIM" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="5" id="Reserved" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="RX Copy Error Frames Enable - Enables DMA overrun frames to be  transferred to memory (up to the point of overrun).  The overrun error bit will  be set in the frame EOP buffer descriptor.   Overrun frame data will be  filtered when rx_cef is not set.  Frames coming from the receive FIFO with  other error bits set are not effected by this bit.   0 - Frames containing overrun errors are filtered.   1 - Frames containing overrun errors are transferred to memory. " end="4" id="RX_CEF" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Command Idle   0 - Idle not commanded   1 - Idle Commanded (read idle in DMAStatus) " end="3" id="CMD_IDLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Receive Offset/Length word write block.   0 - Do not block the DMA writes to the receive buffer descriptor  offset/buffer length word.  The offset/buffer length word is written as  specified in CPPI 3.0.   1 - Block all CPDMA DMA controller writes to the receive buffer descriptor  offset/buffer length words during CPPI packet processing.  when this bit is  set, the CPDMA will never write the third word to any receive buffer  descriptor. " end="2" id="RX_OFFLEN_BLOCK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Receive Ownership Write Bit Value.  0 - The CPDMA writes the receive ownership bit to zero at the end of  packet processing as specified in CPPI 3.0. 1 - The CPDMA writes the receive ownership bit to one at the end of packet  processing.  Users who do not use the ownership mechanism can use this  mode to preclude the necessity of software having to set this bit each time  the buffer descriptor is used. " end="1" id="RX_OWNERSHIP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Transmit Queue Priority Type   0 - The queue uses a round robin scheme to select the next          channel for transmission.   1 - The queue uses a fixed (channel 7 highest priority) priority         scheme to select the next channel for transmission " end="0" id="TX_PTYPE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMASTATUS" description="CPDMA_REGS CPDMA STATUS REGISTER" id="DMASTATUS" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="Idle Status Bit - Indicates when set that the CPDMA is not transferring a  packet on transmit or receive. " end="31" id="IDLE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Reserved" end="24" id="Reserved3" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="23" description="TX Host Error Code - This field is set to indicate CPDMA detected TX DMA  related host errors.  The host should read this field after a HOST_ERR_INT to  determine the error.  Host error Interrupts require hardware reset in order to  recover.  A zero packet length is an error, but it is not detected. 0000 - No error 0001 - SOP error. 0010 - Ownership bit not set in SOP buffer. 0011 - Zero Next Buffer Descriptor Pointer Without EOP 0100 - Zero Buffer Pointer. 0101 - Zero Buffer Length 0110 - Packet Length Error (sum of buffers is less than packet length) 0111 - reserved ... 1111 - reserved " end="20" id="TX_HOST_ERR_CODE" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Reserved" end="19" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="TX Host Error Channel - This field indicates which TX channel (if applicable)  the host error occurred on.  This field is cleared to zero on a host read.   000 - The host error occurred on TX channel 0   ...    111 - The host error occurred on TX channel 7 " end="16" id="TX_ERR_CH" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="15" description="RX Host Error Code - This field is set to indicate CPDMA detected RX DMA  related host errors.  The host should read this field after a HOST_ERR_INT to  determine the error.  Host error Interrupts require hardware reset in order to  recover. 0000 - No error 0001 - reserved 0010 - Ownership bit not set in input buffer. 0011 - reserved 0100 - Zero Buffer Pointer. 0101 - Zero buffer length on non-SOP descriptor 0110 - SOP buffer length not greater than offset ... 1111 - reserved " end="12" id="RX_HOST_ERR_CODE" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Reserved" end="11" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="RX Host Error Channel - This field indicates which RX channel the host error  occurred on.  This field is cleared to zero on a host read.   000 - The host error occurred on RX channel 0   ...    111 - The host error occurred on RX channel 7 " end="8" id="RX_ERR_CH" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="0" id="Reserved" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_BUFFER_OFFSET" description="CPDMA_REGS RECEIVE BUFFER OFFSET" id="RX_BUFFER_OFFSET" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Receive Buffer Offset Value - The rx_buffer_offset will be written by the port  into each frame SOP buffer descriptor buffer_offset field.  The frame data  will begin after the rx_buffer_offset value of bytes.  A value of 0x0000  indicates that there are no unused bytes at the beginning of the data and that  valid data begins on the first byte of the buffer.  A value of 0x000F (decimal  15) indicates that the first 15 bytes of the buffer are to be ignored by the port  and that valid buffer data starts on byte 16 of the buffer.  This value is used  for all channels. " end="0" id="RX_BUFFER_OFFSET" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="EMCONTROL" description="CPDMA_REGS EMULATION CONTROL" id="EMCONTROL" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Emulation Soft Bit" end="1" id="SOFT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Emulation Free Bit" end="0" id="FREE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_PRI0_RATE" description="CPDMA_REGS TRANSMIT (INGRESS) PRIORITY 0 RATE" id="TX_PRI0_RATE" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Priority (7:0) idle count" end="16" id="PRIN_IDLE_CNT" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="14" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority (7:0) send count" end="0" id="PRIN_SEND_CNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_PRI1_RATE" description="CPDMA_REGS TRANSMIT (INGRESS) PRIORITY 1 RATE" id="TX_PRI1_RATE" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Priority (7:0) idle count" end="16" id="PRIN_IDLE_CNT" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="14" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority (7:0) send count" end="0" id="PRIN_SEND_CNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_PRI2_RATE" description="CPDMA_REGS TRANSMIT (INGRESS) PRIORITY 2 RATE" id="TX_PRI2_RATE" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Priority (7:0) idle count" end="16" id="PRIN_IDLE_CNT" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="14" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority (7:0) send count" end="0" id="PRIN_SEND_CNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_PRI3_RATE" description="CPDMA_REGS TRANSMIT (INGRESS) PRIORITY 3 RATE" id="TX_PRI3_RATE" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Priority (7:0) idle count" end="16" id="PRIN_IDLE_CNT" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="14" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority (7:0) send count" end="0" id="PRIN_SEND_CNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_PRI4_RATE" description="CPDMA_REGS TRANSMIT (INGRESS) PRIORITY 4 RATE" id="TX_PRI4_RATE" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Priority (7:0) idle count" end="16" id="PRIN_IDLE_CNT" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="14" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority (7:0) send count" end="0" id="PRIN_SEND_CNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_PRI5_RATE" description="CPDMA_REGS TRANSMIT (INGRESS) PRIORITY 5 RATE" id="TX_PRI5_RATE" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Priority (7:0) idle count" end="16" id="PRIN_IDLE_CNT" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="14" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority (7:0) send count" end="0" id="PRIN_SEND_CNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_PRI6_RATE" description="CPDMA_REGS TRANSMIT (INGRESS) PRIORITY 6 RATE" id="TX_PRI6_RATE" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Priority (7:0) idle count" end="16" id="PRIN_IDLE_CNT" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="14" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority (7:0) send count" end="0" id="PRIN_SEND_CNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_PRI7_RATE" description="CPDMA_REGS TRANSMIT (INGRESS) PRIORITY 7 RATE" id="TX_PRI7_RATE" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Priority (7:0) idle count" end="16" id="PRIN_IDLE_CNT" rwaccess="RW" width="14"></bitfield>
+    
+  <bitfield begin="15" description="Reserved" end="14" id="Reserved" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Priority (7:0) send count" end="0" id="PRIN_SEND_CNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_INTSTAT_RAW" description="CPDMA_INT TX INTERRUPT STATUS REGISTER (RAW VALUE)" id="TX_INTSTAT_RAW" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="TX7_PEND raw int read (before mask)." end="7" id="TX7_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="TX6_PEND raw int read (before mask)." end="6" id="TX6_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="TX5_PEND raw int read (before mask)." end="5" id="TX5_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="TX4_PEND raw int read (before mask)." end="4" id="TX4_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="TX3_PEND raw int read (before mask)." end="3" id="TX3_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="TX2_PEND raw int read (before mask)." end="2" id="TX2_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="TX1_PEND raw int read (before mask)." end="1" id="TX1_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="TX0_PEND raw int read (before mask)." end="0" id="TX0_PEND" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_INTSTAT_MASKED" description="CPDMA_INT TX INTERRUPT STATUS REGISTER  (MASKED VALUE)" id="TX_INTSTAT_MASKED" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="TX7_PEND masked interrupt read." end="7" id="TX7_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="TX6_PEND masked interrupt read." end="6" id="TX6_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="TX5_PEND masked interrupt read." end="5" id="TX5_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="TX4_PEND masked interrupt read." end="4" id="TX4_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="TX3_PEND masked interrupt read." end="3" id="TX3_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="TX2_PEND masked interrupt read." end="2" id="TX2_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="TX1_PEND masked interrupt read." end="1" id="TX1_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="TX0_PEND masked interrupt read." end="0" id="TX0_PEND" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_INTMASK_SET" description="CPDMA_INT TX INTERRUPT MASK SET REGISTER" id="TX_INTMASK_SET" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="TX Channel 7 Mask - Write one to enable interrupt." end="7" id="TX7_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="6" description="TX Channel 6 Mask - Write one to enable interrupt." end="6" id="TX6_MASK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="TX Channel 5 Mask - Write one to enable interrupt." end="5" id="TX5_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="4" description="TX Channel 4 Mask - Write one to enable interrupt." end="4" id="TX4_MASK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="TX Channel 3 Mask - Write one to enable interrupt." end="3" id="TX3_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="2" description="TX Channel 2 Mask - Write one to enable interrupt." end="2" id="TX2_MASK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="TX Channel 1 Mask - Write one to enable interrupt." end="1" id="TX1_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="0" description="TX Channel 0 Mask - Write one to enable interrupt." end="0" id="TX0_MASK" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_INTMASK_CLEAR" description="CPDMA_INT TX INTERRUPT MASK CLEAR REGISTER" id="TX_INTMASK_CLEAR" offset="0x8C" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="TX Channel 7 Mask - Write one to disable interrupt." end="7" id="TX7_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="6" description="TX Channel 6 Mask - Write one to disable interrupt." end="6" id="TX6_MASK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="TX Channel 5 Mask - Write one to disable interrupt." end="5" id="TX5_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="4" description="TX Channel 4 Mask - Write one to disable interrupt." end="4" id="TX4_MASK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="TX Channel 3 Mask - Write one to disable interrupt." end="3" id="TX3_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="2" description="TX Channel 2 Mask - Write one to disable interrupt." end="2" id="TX2_MASK" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="TX Channel 1 Mask - Write one to disable interrupt." end="1" id="TX1_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="0" description="TX Channel 0 Mask - Write one to disable interrupt." end="0" id="TX0_MASK" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPDMA_IN_VECTOR" description="CPDMA_INT INPUT VECTOR (READ ONLY)" id="CPDMA_IN_VECTOR" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="DMA Input Vector - The value of DMA_In_Vector is reset to zero, but will  change to the IN_VECTOR bus value one clock after reset is deasserted.   Thereafter, this value will change to a new IN_VECTOR value one clock after  the IN_VECTOR value changes.  " end="0" id="DMA_IN_VECTOR" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPDMA_EOI_VECTOR" description="CPDMA_INT END OF INTERRUPT VECTOR" id="CPDMA_EOI_VECTOR" offset="0x94" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="5" id="Reserved" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="DMA End of Interrupt Vector - The EOI_VECTOR(4:0) pins reflect the value  written to this location one CLK cycle after a write to this location.  The  EOI_WR signal is asserted for a single clock cycle after a latency of two  CLK cycles when a write is performed to this location. " end="0" id="DMA_EOI_VECTOR" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_INTSTAT_RAW" description="CPDMA_INT RX INTERRUPT STATUS REGISTER (RAW VALUE)" id="RX_INTSTAT_RAW" offset="0xA0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="RX7_THRESH_PEND raw int read (before mask)." end="15" id="RX7_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="14" description="RX6_THRESH_PEND raw int read (before mask)." end="14" id="RX6_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="13" description="RX5_THRESH_PEND raw int read (before mask)." end="13" id="RX5_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="12" description="RX4_THRESH_PEND raw int read (before mask)." end="12" id="RX4_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="11" description="RX3_THRESH_PEND raw int read (before mask)." end="11" id="RX3_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="RX2_THRESH_PEND raw int read (before mask)." end="10" id="RX2_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="RX1_THRESH_PEND raw int read (before mask)." end="9" id="RX1_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="RX0_THRESH_PEND raw int read (before mask)." end="8" id="RX0_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="RX7_PEND raw int read (before mask)." end="7" id="RX7_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="RX6_PEND raw int read (before mask)." end="6" id="RX6_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="RX5_PEND raw int read (before mask)." end="5" id="RX5_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="RX4_PEND raw int read (before mask)." end="4" id="RX4_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RX3_PEND raw int read (before mask)." end="3" id="RX3_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RX2_PEND raw int read (before mask)." end="2" id="RX2_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="RX1_PEND raw int read (before mask)." end="1" id="RX1_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RX0_PEND raw int read (before mask)." end="0" id="RX0_PEND" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_INTSTAT_MASKED" description="CPDMA_INT RX INTERRUPT STATUS REGISTER (MASKED VALUE)" id="RX_INTSTAT_MASKED" offset="0xA4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="RX7_THRESH_PEND masked int read." end="15" id="RX7_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="14" description="RX6_THRESH_PEND masked int read." end="14" id="RX6_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="13" description="RX5_THRESH_PEND masked int read." end="13" id="RX5_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="12" description="RX4_THRESH_PEND masked int read." end="12" id="RX4_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="11" description="RX3_THRESH_PEND masked int read." end="11" id="RX3_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="RX2_THRESH_PEND masked int read." end="10" id="RX2_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="RX1_THRESH_PEND masked int read." end="9" id="RX1_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="RX0_THRESH_PEND masked int read." end="8" id="RX0_THRESH_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="RX7_PEND masked int read." end="7" id="RX7_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="RX6_PEND masked int read." end="6" id="RX6_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="RX5_PEND masked int read." end="5" id="RX5_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="RX4_PEND masked int read." end="4" id="RX4_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RX3_PEND masked int read." end="3" id="RX3_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RX2_PEND masked int read." end="2" id="RX2_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="RX1_PEND masked int read." end="1" id="RX1_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RX0_PEND masked int read." end="0" id="RX0_PEND" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_INTMASK_SET" description="CPDMA_INT RX INTERRUPT MASK SET REGISTER" id="RX_INTMASK_SET" offset="0xA8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="RX Channel 7 Threshold Pending Int. Mask - Write one to enable Int." end="15" id="RX7_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="RX Channel 6 Threshold Pending Int. Mask - Write one to enable Int." end="14" id="RX6_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="RX Channel 5 Threshold Pending Int. Mask - Write one to enable Int." end="13" id="RX5_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="RX Channel 4 Threshold Pending Int. Mask - Write one to enable Int." end="12" id="RX4_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="RX Channel 3 Threshold Pending Int. Mask - Write one to enable Int." end="11" id="RX3_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="RX Channel 2 Threshold Pending Int. Mask - Write one to enable Int." end="10" id="RX2_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="RX Channel 1 Threshold Pending Int. Mask - Write one to enable Int." end="9" id="RX1_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="RX Channel 0 Threshold Pending Int. Mask - Write one to enable Int." end="8" id="RX0_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="RX Channel 7 Pending Int. Mask - Write one to enable Int." end="7" id="RX7_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="RX Channel 6 Pending Int. Mask - Write one to enable Int." end="6" id="RX6_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="RX Channel 5 Pending Int. Mask - Write one to enable Int." end="5" id="RX5_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="RX Channel 4 Pending Int. Mask - Write one to enable Int." end="4" id="RX4_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RX Channel 3 Pending Int. Mask - Write one to enable Int." end="3" id="RX3_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RX Channel 2 Pending Int. Mask - Write one to enable Int." end="2" id="RX2_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="RX Channel 1 Pending Int. Mask - Write one to enable Int." end="1" id="RX1_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RX Channel 0 Pending Int. Mask - Write one to enable Int." end="0" id="RX0_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX_INTMASK_CLEAR" description="CPDMA_INT RX INTERRUPT MASK CLEAR REGISTER" id="RX_INTMASK_CLEAR" offset="0xAC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="RX Channel 7 Threshold Pending Int. Mask - Write one to disable Int." end="15" id="RX7_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="RX Channel 6 Threshold Pending Int. Mask - Write one to disable Int." end="14" id="RX6_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="RX Channel 5 Threshold Pending Int. Mask - Write one to disable Int." end="13" id="RX5_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="RX Channel 4 Threshold Pending Int. Mask - Write one to disable Int." end="12" id="RX4_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="RX Channel 3 Threshold Pending Int. Mask - Write one to disable Int." end="11" id="RX3_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="RX Channel 2 Threshold Pending Int. Mask - Write one to disable Int." end="10" id="RX2_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="RX Channel 1 Threshold Pending Int. Mask - Write one to disable Int." end="9" id="RX1_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="RX Channel 0 Threshold Pending Int. Mask - Write one to disable Int." end="8" id="RX0_THRESH_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="RX Channel 7 Pending Int. Mask - Write one to disable Int." end="7" id="RX7_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="RX Channel 6 Pending Int. Mask - Write one to disable Int." end="6" id="RX6_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="RX Channel 5 Pending Int. Mask - Write one to disable Int." end="5" id="RX5_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="RX Channel 4 Pending Int. Mask - Write one to disable Int." end="4" id="RX4_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RX Channel 3 Pending Int. Mask - Write one to disable Int." end="3" id="RX3_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RX Channel 2 Pending Int. Mask - Write one to disable Int." end="2" id="RX2_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="RX Channel 1 Pending Int. Mask - Write one to disable Int." end="1" id="RX1_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RX Channel 0 Pending Int. Mask - Write one to disable Int." end="0" id="RX0_PEND_MASK" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMA_INTSTAT_RAW" description="CPDMA_INT DMA INTERRUPT STATUS REGISTER (RAW VALUE)" id="DMA_INTSTAT_RAW" offset="0xB0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Host Pending Interrupt - raw int read (before mask)." end="1" id="HOST_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Statistics Pending Interrupt - raw int read (before mask)." end="0" id="STAT_PEND" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMA_INTSTAT_MASKED" description="CPDMA_INT DMA INTERRUPT STATUS REGISTER (MASKED VALUE)" id="DMA_INTSTAT_MASKED" offset="0xB4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Host Pending Interrupt - masked interrupt read." end="1" id="HOST_PEND" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Statistics Pending Interrupt - masked interrupt read." end="0" id="STAT_PEND" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMA_INTMASK_SET" description="CPDMA_INT DMA INTERRUPT MASK SET REGISTER" id="DMA_INTMASK_SET" offset="0xB8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Host Error Interrupt Mask - Write one to enable interrupt." end="1" id="HOST_ERR_INT_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Statistics Interrupt Mask -   Write one to enable interrupt." end="0" id="STAT_INT_MASK" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="DMA_INTMASK_CLEAR" description="CPDMA_INT DMA INTERRUPT MASK CLEAR REGISTER" id="DMA_INTMASK_CLEAR" offset="0xBC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="2" id="Reserved" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description="Host Error Interrupt Mask - Write one to disable interrupt." end="1" id="HOST_ERR_INT_MASK" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Statistics Interrupt Mask -   Write one to disable interrupt." end="0" id="STAT_INT_MASK" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX0_PENDTHRESH" description="CPDMA_INT RECEIVE THRESHOLD PENDING REGISTER CHANNEL 0" id="RX0_PENDTHRESH" offset="0xC0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Rx Flow Threshold - This field contains the threshold value for issuing  receive threshold pending interrupts (when enabled). " end="0" id="RX_PENDTHRESH" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX1_PENDTHRESH" description="CPDMA_INT RECEIVE THRESHOLD PENDING REGISTER CHANNEL 1" id="RX1_PENDTHRESH" offset="0xC4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Rx Flow Threshold - This field contains the threshold value for issuing  receive threshold pending interrupts (when enabled). " end="0" id="RX_PENDTHRESH" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX2_PENDTHRESH" description="CPDMA_INT RECEIVE THRESHOLD PENDING REGISTER CHANNEL 2" id="RX2_PENDTHRESH" offset="0xC8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Rx Flow Threshold - This field contains the threshold value for issuing  receive threshold pending interrupts (when enabled). " end="0" id="RX_PENDTHRESH" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX3_PENDTHRESH" description="CPDMA_INT RECEIVE THRESHOLD PENDING REGISTER CHANNEL 3" id="RX3_PENDTHRESH" offset="0xCC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Rx Flow Threshold - This field contains the threshold value for issuing  receive threshold pending interrupts (when enabled). " end="0" id="RX_PENDTHRESH" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX4_PENDTHRESH" description="CPDMA_INT RECEIVE THRESHOLD PENDING REGISTER CHANNEL 4" id="RX4_PENDTHRESH" offset="0xD0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Rx Flow Threshold - This field contains the threshold value for issuing  receive threshold pending interrupts (when enabled). " end="0" id="RX_PENDTHRESH" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX5_PENDTHRESH" description="CPDMA_INT RECEIVE THRESHOLD PENDING REGISTER CHANNEL 5" id="RX5_PENDTHRESH" offset="0xD4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Rx Flow Threshold - This field contains the threshold value for issuing  receive threshold pending interrupts (when enabled). " end="0" id="RX_PENDTHRESH" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX6_PENDTHRESH" description="CPDMA_INT RECEIVE THRESHOLD PENDING REGISTER CHANNEL 6" id="RX6_PENDTHRESH" offset="0xD8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Rx Flow Threshold - This field contains the threshold value for issuing  receive threshold pending interrupts (when enabled). " end="0" id="RX_PENDTHRESH" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX7_PENDTHRESH" description="CPDMA_INT RECEIVE THRESHOLD PENDING REGISTER CHANNEL 7" id="RX7_PENDTHRESH" offset="0xDC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="Rx Flow Threshold - This field contains the threshold value for issuing  receive threshold pending interrupts (when enabled). " end="0" id="RX_PENDTHRESH" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX0_FREEBUFFER" description="CPDMA_INT RECEIVE FREE BUFFER REGISTER CHANNEL 0" id="RX0_FREEBUFFER" offset="0xE0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Rx Free Buffer Count - This field contains the count of free buffers  available.  The rx_pendthresh value is compared with this field to  determine if the receive threshold pending interrupt should be asseted (if  enabled).  This is a write to increment field.  This field rolls over to zero on  overflow. If receive threshold pending interrupts are used, the host must initialize this  field to the number of available buffers (one register per channel).  The port  decrements (by the number of buffers in the received frame) the  associated channel register for each received frame.  This is a write to  increment field.  The host must write this field with the number of buffers  that have been freed due to host processing. " end="0" id="RX_FREEBUFFER" rwaccess="W" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX1_FREEBUFFER" description="CPDMA_INT RECEIVE FREE BUFFER REGISTER CHANNEL 1" id="RX1_FREEBUFFER" offset="0xE4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Rx Free Buffer Count - This field contains the count of free buffers  available.  The rx_pendthresh value is compared with this field to  determine if the receive threshold pending interrupt should be asseted (if  enabled).  This is a write to increment field.  This field rolls over to zero on  overflow. If receive threshold pending interrupts are used, the host must initialize this  field to the number of available buffers (one register per channel).  The port  decrements (by the number of buffers in the received frame) the  associated channel register for each received frame.  This is a write to  increment field.  The host must write this field with the number of buffers  that have been freed due to host processing. " end="0" id="RX_FREEBUFFER" rwaccess="W" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX2_FREEBUFFER" description="CPDMA_INT RECEIVE FREE BUFFER REGISTER CHANNEL 2" id="RX2_FREEBUFFER" offset="0xE8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Rx Free Buffer Count - This field contains the count of free buffers  available.  The rx_pendthresh value is compared with this field to  determine if the receive threshold pending interrupt should be asseted (if  enabled).  This is a write to increment field.  This field rolls over to zero on  overflow. If receive threshold pending interrupts are used, the host must initialize this  field to the number of available buffers (one register per channel).  The port  decrements (by the number of buffers in the received frame) the  associated channel register for each received frame.  This is a write to  increment field.  The host must write this field with the number of buffers  that have been freed due to host processing. " end="0" id="RX_FREEBUFFER" rwaccess="W" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX3_FREEBUFFER" description="CPDMA_INT RECEIVE FREE BUFFER REGISTER CHANNEL 3" id="RX3_FREEBUFFER" offset="0xEC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Rx Free Buffer Count - This field contains the count of free buffers  available.  The rx_pendthresh value is compared with this field to  determine if the receive threshold pending interrupt should be asseted (if  enabled).  This is a write to increment field.  This field rolls over to zero on  overflow. If receive threshold pending interrupts are used, the host must initialize this  field to the number of available buffers (one register per channel).  The port  decrements (by the number of buffers in the received frame) the  associated channel register for each received frame.  This is a write to  increment field.  The host must write this field with the number of buffers  that have been freed due to host processing. " end="0" id="RX_FREEBUFFER" rwaccess="W" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX4_FREEBUFFER" description="CPDMA_INT RECEIVE FREE BUFFER REGISTER CHANNEL 4" id="RX4_FREEBUFFER" offset="0xF0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Rx Free Buffer Count - This field contains the count of free buffers  available.  The rx_pendthresh value is compared with this field to  determine if the receive threshold pending interrupt should be asseted (if  enabled).  This is a write to increment field.  This field rolls over to zero on  overflow. If receive threshold pending interrupts are used, the host must initialize this  field to the number of available buffers (one register per channel).  The port  decrements (by the number of buffers in the received frame) the  associated channel register for each received frame.  This is a write to  increment field.  The host must write this field with the number of buffers  that have been freed due to host processing. " end="0" id="RX_FREEBUFFER" rwaccess="W" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX5_FREEBUFFER" description="CPDMA_INT RECEIVE FREE BUFFER REGISTER CHANNEL 5" id="RX5_FREEBUFFER" offset="0xF4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Rx Free Buffer Count - This field contains the count of free buffers  available.  The rx_pendthresh value is compared with this field to  determine if the receive threshold pending interrupt should be asseted (if  enabled).  This is a write to increment field.  This field rolls over to zero on  overflow. If receive threshold pending interrupts are used, the host must initialize this  field to the number of available buffers (one register per channel).  The port  decrements (by the number of buffers in the received frame) the  associated channel register for each received frame.  This is a write to  increment field.  The host must write this field with the number of buffers  that have been freed due to host processing. " end="0" id="RX_FREEBUFFER" rwaccess="W" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX6_FREEBUFFER" description="CPDMA_INT RECEIVE FREE BUFFER REGISTER CHANNEL 6" id="RX6_FREEBUFFER" offset="0xF8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Rx Free Buffer Count - This field contains the count of free buffers  available.  The rx_pendthresh value is compared with this field to  determine if the receive threshold pending interrupt should be asseted (if  enabled).  This is a write to increment field.  This field rolls over to zero on  overflow. If receive threshold pending interrupts are used, the host must initialize this  field to the number of available buffers (one register per channel).  The port  decrements (by the number of buffers in the received frame) the  associated channel register for each received frame.  This is a write to  increment field.  The host must write this field with the number of buffers  that have been freed due to host processing. " end="0" id="RX_FREEBUFFER" rwaccess="W" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="RX7_FREEBUFFER" description="CPDMA_INT RECEIVE FREE BUFFER REGISTER CHANNEL 7" id="RX7_FREEBUFFER" offset="0xFC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="16" id="Reserved" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Rx Free Buffer Count - This field contains the count of free buffers  available.  The rx_pendthresh value is compared with this field to  determine if the receive threshold pending interrupt should be asseted (if  enabled).  This is a write to increment field.  This field rolls over to zero on  overflow. If receive threshold pending interrupts are used, the host must initialize this  field to the number of available buffers (one register per channel).  The port  decrements (by the number of buffers in the received frame) the  associated channel register for each received frame.  This is a write to  increment field.  The host must write this field with the number of buffers  that have been freed due to host processing. " end="0" id="RX_FREEBUFFER" rwaccess="W" width="16"></bitfield>
+  </register>
+</module>

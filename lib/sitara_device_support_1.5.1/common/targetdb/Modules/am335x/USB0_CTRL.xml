@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="USB0_CTRL" id="USB0_CTRL">
+  
+  
+  <register acronym="USB0REV" id="USB0REV" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Used to distinguish between legacy interface scheme and current. 0 = Legacy 1 = Current " end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="Function indicates a software compatible module family." end="16" id="FUNC" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="RTL revision. Will vary depending on release." end="11" id="R_RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major revision." end="8" id="X_MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Custom revision" end="6" id="CUSTOM" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Minor revision. USB0 Revision Register " end="0" id="Y_MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0CTRL" id="USB0CTRL" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Disable the VBUS debouncer circuit fix" end="31" id="DIS_DEB" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Disable the OTG Session Request Protocol (SRP) AVALID  circuit fix.  When enabled (=0) this allows additional time for  the VBUS signal to be measured against the VBUS  thresholds. The time is specified in the USB0 SRP Fix Time  Register. " end="30" id="DIS_SRP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Soft reset isolation.  When high this bit forces all USB0  signals that connect to the USBSS to known values during a  soft reset via bit 0 of this register.  This bit should be set  high prior to setting bit 0 and cleared after bit 0 is cleared. " end="5" id="SOFT_RESET_ISOLATION" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Global RNDIS mode enable for all endpoints." end="4" id="RNDIS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="USB interrupt enable 1 = Legacy 0 = Current (recommended setting); If uint is set high, then the mentor controller generic interrupt for USB[9] will be generated (if enabled). This requires S/W to read the mentor controller's registers to determine which interrupt from USB[0] to USB[7] that occurred.; If uint is set low, then the usb20otg_f module will automatically read the mentor controller's registers and set the appropriate interrupt from USB[0] to USB[7] (if enabled). The generic interrupt for USB[9] will not be generated. " end="3" id="UINT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Clock stop fast ack enable." end="1" id="CLKFACK" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Software reset of USB0. Write 0 = no action Write 1 = Initiate software reset Read 0 = Reset done, no action Read 1 = Reset ongoing; Both the soft_reset and soft_reset_isolation bits should be asserted simultaneously. This will cause the following sequence of actions to occur over multiple cycles:;; - All USB0 output signals will go to a known constant value via multiplexers. This removes the possibility of timing errors due to the asynchronous resets.; - All USB0 registers will be reset.; - The USB0 resets will be de-asserted.; - The reset isolation multiplexer inputs will be de-selected.; - Both the soft_reset and soft_reset_isolation bits will be automatically cleared.;; Setting only the soft_reset_isolation bit will cause all USB0 output signals to go to a known constant value via multiplexers. This will prevent future access to USB0. To clear this condition the USBSS must be reset via a hard or soft reset. " end="0" id="SOFT_RESET" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0STAT" id="USB0STAT" offset="0x18" width="32">
+    
+  <bitfield begin="0" description="Current DRVVBUS value USB0 Status Register " end="0" id="DRVVBUS" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQMSTAT" id="USB0IRQMSTAT" offset="0x20" width="32">
+    
+  <bitfield begin="1" description="0: No events pending from IRQ_STATUS_1 1: At least one event is pending from IRQ_STATUS_1 " end="1" id="BANK1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="0: No events pending from IRQ_STATUS_0 1: At least one event is pending from IRQ_STATUS_0 USB0 IRQ_MERGED_STATUS Register " end="0" id="BANK0" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQSTATRAW0" id="USB0IRQSTATRAW0" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Interrupt status for RX endpoint 15" end="31" id="RX_EP_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Interrupt status for RX endpoint 14" end="30" id="RX_EP_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Interrupt status for RX endpoint 13" end="29" id="RX_EP_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Interrupt status for RX endpoint 12" end="28" id="RX_EP_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Interrupt status for RX endpoint 11" end="27" id="RX_EP_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Interrupt status for RX endpoint 10" end="26" id="RX_EP_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Interrupt status for RX endpoint 9" end="25" id="RX_EP_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Interrupt status for RX endpoint 8" end="24" id="RX_EP_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Interrupt status for RX endpoint 7" end="23" id="RX_EP_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Interrupt status for RX endpoint 6" end="22" id="RX_EP_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt status for RX endpoint 5" end="21" id="RX_EP_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Interrupt status for RX endpoint 4" end="20" id="RX_EP_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Interrupt status for RX endpoint 3" end="19" id="RX_EP_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Interrupt status for RX endpoint 2" end="18" id="RX_EP_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Interrupt status for RX endpoint 1" end="17" id="RX_EP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Interrupt status for TX endpoint 15" end="15" id="TX_EP_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Interrupt status for TX endpoint 14" end="14" id="TX_EP_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Interrupt status for TX endpoint 13" end="13" id="TX_EP_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Interrupt status for TX endpoint 12" end="12" id="TX_EP_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Interrupt status for TX endpoint 11" end="11" id="TX_EP_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Interrupt status for TX endpoint 10" end="10" id="TX_EP_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt status for TX endpoint 9" end="9" id="TX_EP_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt status for TX endpoint 8" end="8" id="TX_EP_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt status for TX endpoint 7" end="7" id="TX_EP_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Interrupt status for TX endpoint 6" end="6" id="TX_EP_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Interrupt status for TX endpoint 5" end="5" id="TX_EP_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Interrupt status for TX endpoint 4" end="4" id="TX_EP_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt status for TX endpoint 3" end="3" id="TX_EP_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt status for TX endpoint 2" end="2" id="TX_EP_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt status for TX endpoint 1" end="1" id="TX_EP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt status for TX endpoint 0 USB0 IRQ_STATUS_RAW_0 Register " end="0" id="TX_EP_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQSTATRAW1" id="USB0IRQSTATRAW1" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="Interrupt status for TX FIFO endpoint 15" end="31" id="TX_FIFO_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Interrupt status for TX FIFO endpoint 14" end="30" id="TX_FIFO_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Interrupt status for TX FIFO endpoint 13" end="29" id="TX_FIFO_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Interrupt status for TX FIFO endpoint 12" end="28" id="TX_FIFO_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Interrupt status for TX FIFO endpoint 11" end="27" id="TX_FIFO_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Interrupt status for TX FIFO endpoint 10" end="26" id="TX_FIFO_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Interrupt status for TX FIFO endpoint 9" end="25" id="TX_FIFO_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Interrupt status for TX FIFO endpoint 8" end="24" id="TX_FIFO_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Interrupt status for TX FIFO endpoint 7" end="23" id="TX_FIFO_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Interrupt status for TX FIFO endpoint 6" end="22" id="TX_FIFO_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt status for TX FIFO endpoint 5" end="21" id="TX_FIFO_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Interrupt status for TX FIFO endpoint 4" end="20" id="TX_FIFO_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Interrupt status for TX FIFO endpoint 3" end="19" id="TX_FIFO_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Interrupt status for TX FIFO endpoint 2" end="18" id="TX_FIFO_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Interrupt status for TX FIFO endpoint 1" end="17" id="TX_FIFO_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Interrupt status for TX FIFO endpoint 0" end="16" id="TX_FIFO_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt status for Mentor controller USB_INT generic  interrupt " end="9" id="USB_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt status for DRVVBUS level change" end="8" id="USB_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt status for VBUS &lt; VBUS valid threshold" end="7" id="USB_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Interrupt status for SRP detected" end="6" id="USB_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Interrupt status for device disconnected (host mode)" end="5" id="USB_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Interrupt status for device connected (host mode)" end="4" id="USB_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt status for SOF started" end="3" id="USB_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt status for Reset signaling detected (peripheral  mode) Babble detected (host mode) " end="2" id="USB_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt status for Resume signaling detected" end="1" id="USB_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt status for Suspend signaling detected USB0 IRQ_STATUS_RAW_1 Register " end="0" id="USB_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQSTAT0" id="USB0IRQSTAT0" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Interrupt status for RX endpoint 15" end="31" id="RX_EP_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Interrupt status for RX endpoint 14" end="30" id="RX_EP_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Interrupt status for RX endpoint 13" end="29" id="RX_EP_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Interrupt status for RX endpoint 12" end="28" id="RX_EP_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Interrupt status for RX endpoint 11" end="27" id="RX_EP_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Interrupt status for RX endpoint 10" end="26" id="RX_EP_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Interrupt status for RX endpoint 9" end="25" id="RX_EP_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Interrupt status for RX endpoint 8" end="24" id="RX_EP_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Interrupt status for RX endpoint 7" end="23" id="RX_EP_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Interrupt status for RX endpoint 6" end="22" id="RX_EP_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt status for RX endpoint 5" end="21" id="RX_EP_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Interrupt status for RX endpoint 4" end="20" id="RX_EP_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Interrupt status for RX endpoint 3" end="19" id="RX_EP_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Interrupt status for RX endpoint 2" end="18" id="RX_EP_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Interrupt status for RX endpoint 1" end="17" id="RX_EP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Interrupt status for TX endpoint 15" end="15" id="TX_EP_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Interrupt status for TX endpoint 14" end="14" id="TX_EP_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Interrupt status for TX endpoint 13" end="13" id="TX_EP_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Interrupt status for TX endpoint 12" end="12" id="TX_EP_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Interrupt status for TX endpoint 11" end="11" id="TX_EP_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Interrupt status for TX endpoint 10" end="10" id="TX_EP_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt status for TX endpoint 9" end="9" id="TX_EP_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt status for TX endpoint 8" end="8" id="TX_EP_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt status for TX endpoint 7" end="7" id="TX_EP_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Interrupt status for TX endpoint 6" end="6" id="TX_EP_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Interrupt status for TX endpoint 5" end="5" id="TX_EP_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Interrupt status for TX endpoint 4" end="4" id="TX_EP_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt status for TX endpoint 3" end="3" id="TX_EP_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt status for TX endpoint 2" end="2" id="TX_EP_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt status for TX endpoint 1" end="1" id="TX_EP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt status for TX endpoint 0 USB0 IRQ_STATUS_0 Register " end="0" id="TX_EP_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQSTAT1" id="USB0IRQSTAT1" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Interrupt status for TX FIFO endpoint 15" end="31" id="TX_FIFO_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Interrupt status for TX FIFO endpoint 14" end="30" id="TX_FIFO_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Interrupt status for TX FIFO endpoint 13" end="29" id="TX_FIFO_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Interrupt status for TX FIFO endpoint 12" end="28" id="TX_FIFO_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Interrupt status for TX FIFO endpoint 11" end="27" id="TX_FIFO_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Interrupt status for TX FIFO endpoint 10" end="26" id="TX_FIFO_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Interrupt status for TX FIFO endpoint 9" end="25" id="TX_FIFO_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Interrupt status for TX FIFO endpoint 8" end="24" id="TX_FIFO_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Interrupt status for TX FIFO endpoint 7" end="23" id="TX_FIFO_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Interrupt status for TX FIFO endpoint 6" end="22" id="TX_FIFO_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt status for TX FIFO endpoint 5" end="21" id="TX_FIFO_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Interrupt status for TX FIFO endpoint 4" end="20" id="TX_FIFO_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Interrupt status for TX FIFO endpoint 3" end="19" id="TX_FIFO_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Interrupt status for TX FIFO endpoint 2" end="18" id="TX_FIFO_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Interrupt status for TX FIFO endpoint 1" end="17" id="TX_FIFO_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Interrupt status for TX FIFO endpoint 0" end="16" id="TX_FIFO_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt status for Mentor controller USB_INT generic  interrupt " end="9" id="USB_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt status for DRVVBUS level change" end="8" id="USB_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt status for VBUS &lt; VBUS valid threshold" end="7" id="USB_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Interrupt status for SRP detected" end="6" id="USB_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Interrupt status for device disconnected (host mode)" end="5" id="USB_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Interrupt status for device connected (host mode)" end="4" id="USB_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt status for SOF started" end="3" id="USB_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt status for Reset signaling detected (peripheral  mode) Babble detected (host mode) " end="2" id="USB_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt status for Resume signaling detected" end="1" id="USB_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt status for Suspend signaling detected USB0 IRQ_STATUS_1 Register " end="0" id="USB_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQENABLESET0" id="USB0IRQENABLESET0" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Interrupt enable for RX endpoint 15" end="31" id="RX_EP_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Interrupt enable for RX endpoint 14" end="30" id="RX_EP_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Interrupt enable for RX endpoint 13" end="29" id="RX_EP_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Interrupt enable for RX endpoint 12" end="28" id="RX_EP_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Interrupt enable for RX endpoint 11" end="27" id="RX_EP_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Interrupt enable for RX endpoint 10" end="26" id="RX_EP_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Interrupt enable for RX endpoint 9" end="25" id="RX_EP_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Interrupt enable for RX endpoint 8" end="24" id="RX_EP_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Interrupt enable for RX endpoint 7" end="23" id="RX_EP_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Interrupt enable for RX endpoint 6" end="22" id="RX_EP_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt enable for RX endpoint 5" end="21" id="RX_EP_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Interrupt enable for RX endpoint 4" end="20" id="RX_EP_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Interrupt enable for RX endpoint 3" end="19" id="RX_EP_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Interrupt enable for RX endpoint 2" end="18" id="RX_EP_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Interrupt enable for RX endpoint 1" end="17" id="RX_EP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Interrupt enable for TX endpoint 15" end="15" id="TX_EP_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Interrupt enable for TX endpoint 14" end="14" id="TX_EP_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Interrupt enable for TX endpoint 13" end="13" id="TX_EP_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Interrupt enable for TX endpoint 12" end="12" id="TX_EP_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Interrupt enable for TX endpoint 11" end="11" id="TX_EP_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Interrupt enable for TX endpoint 10" end="10" id="TX_EP_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt enable for TX endpoint 9" end="9" id="TX_EP_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt enable for TX endpoint 8" end="8" id="TX_EP_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt enable for TX endpoint 7" end="7" id="TX_EP_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Interrupt enable for TX endpoint 6" end="6" id="TX_EP_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Interrupt enable for TX endpoint 5" end="5" id="TX_EP_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Interrupt enable for TX endpoint 4" end="4" id="TX_EP_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt enable for TX endpoint 3" end="3" id="TX_EP_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt enable for TX endpoint 2" end="2" id="TX_EP_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt enable for TX endpoint 1" end="1" id="TX_EP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt enable for TX endpoint 0 USB0 IRQ_ENABLE_SET_0 Register " end="0" id="TX_EP_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQENABLESET1" id="USB0IRQENABLESET1" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="Interrupt enable for TX FIFO endpoint 15" end="31" id="TX_FIFO_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Interrupt enable for TX FIFO endpoint 14" end="30" id="TX_FIFO_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Interrupt enable for TX FIFO endpoint 13" end="29" id="TX_FIFO_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Interrupt enable for TX FIFO endpoint 12" end="28" id="TX_FIFO_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Interrupt enable for TX FIFO endpoint 11" end="27" id="TX_FIFO_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Interrupt enable for TX FIFO endpoint 10" end="26" id="TX_FIFO_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Interrupt enable for TX FIFO endpoint 9" end="25" id="TX_FIFO_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Interrupt enable for TX FIFO endpoint 8" end="24" id="TX_FIFO_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Interrupt enable for TX FIFO endpoint 7" end="23" id="TX_FIFO_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Interrupt enable for TX FIFO endpoint 6" end="22" id="TX_FIFO_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt enable for TX FIFO endpoint 5" end="21" id="TX_FIFO_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Interrupt enable for TX FIFO endpoint 4" end="20" id="TX_FIFO_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Interrupt enable for TX FIFO endpoint 3" end="19" id="TX_FIFO_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Interrupt enable for TX FIFO endpoint 2" end="18" id="TX_FIFO_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Interrupt enable for TX FIFO endpoint 1" end="17" id="TX_FIFO_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Interrupt enable for TX FIFO endpoint 0" end="16" id="TX_FIFO_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt enable for Mentor controller USB_INT generic  interrupt " end="9" id="USB_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt enable for DRVVBUS level change" end="8" id="USB_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt enable for VBUS &lt; VBUS valid threshold" end="7" id="USB_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Interrupt enable for SRP detected" end="6" id="USB_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Interrupt enable for device disconnected (host mode)" end="5" id="USB_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Interrupt enable for device connected (host mode)" end="4" id="USB_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt enable for SOF started" end="3" id="USB_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt enable for Reset signaling detected (peripheral  mode) Babble detected (host mode) " end="2" id="USB_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt enable for Resume signaling detected" end="1" id="USB_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt enable for Suspend signaling detected USB0 IRQ_ENABLE_SET_1 Register " end="0" id="USB_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQENABLECLR0" id="USB0IRQENABLECLR0" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Interrupt enable for RX endpoint 15" end="31" id="RX_EP_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Interrupt enable for RX endpoint 14" end="30" id="RX_EP_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Interrupt enable for RX endpoint 13" end="29" id="RX_EP_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Interrupt enable for RX endpoint 12" end="28" id="RX_EP_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Interrupt enable for RX endpoint 11" end="27" id="RX_EP_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Interrupt enable for RX endpoint 10" end="26" id="RX_EP_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Interrupt enable for RX endpoint 9" end="25" id="RX_EP_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Interrupt enable for RX endpoint 8" end="24" id="RX_EP_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Interrupt enable for RX endpoint 7" end="23" id="RX_EP_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Interrupt enable for RX endpoint 6" end="22" id="RX_EP_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt enable for RX endpoint 5" end="21" id="RX_EP_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Interrupt enable for RX endpoint 4" end="20" id="RX_EP_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Interrupt enable for RX endpoint 3" end="19" id="RX_EP_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Interrupt enable for RX endpoint 2" end="18" id="RX_EP_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Interrupt enable for RX endpoint 1" end="17" id="RX_EP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="Interrupt enable for TX endpoint 15" end="15" id="TX_EP_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="14" description="Interrupt enable for TX endpoint 14" end="14" id="TX_EP_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="13" description="Interrupt enable for TX endpoint 13" end="13" id="TX_EP_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="12" description="Interrupt enable for TX endpoint 12" end="12" id="TX_EP_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="11" description="Interrupt enable for TX endpoint 11" end="11" id="TX_EP_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Interrupt enable for TX endpoint 10" end="10" id="TX_EP_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt enable for TX endpoint 9" end="9" id="TX_EP_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt enable for TX endpoint 8" end="8" id="TX_EP_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt enable for TX endpoint 7" end="7" id="TX_EP_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Interrupt enable for TX endpoint 6" end="6" id="TX_EP_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Interrupt enable for TX endpoint 5" end="5" id="TX_EP_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Interrupt enable for TX endpoint 4" end="4" id="TX_EP_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt enable for TX endpoint 3" end="3" id="TX_EP_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt enable for TX endpoint 2" end="2" id="TX_EP_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt enable for TX endpoint 1" end="1" id="TX_EP_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt enable for TX endpoint 0 USB0 IRQ_ENABLE_CLR_0 Register " end="0" id="TX_EP_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0IRQENABLECLR1" id="USB0IRQENABLECLR1" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Interrupt enable for TX FIFO endpoint 15" end="31" id="TX_FIFO_15" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Interrupt enable for TX FIFO endpoint 14" end="30" id="TX_FIFO_14" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Interrupt enable for TX FIFO endpoint 13" end="29" id="TX_FIFO_13" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Interrupt enable for TX FIFO endpoint 12" end="28" id="TX_FIFO_12" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Interrupt enable for TX FIFO endpoint 11" end="27" id="TX_FIFO_11" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Interrupt enable for TX FIFO endpoint 10" end="26" id="TX_FIFO_10" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Interrupt enable for TX FIFO endpoint 9" end="25" id="TX_FIFO_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Interrupt enable for TX FIFO endpoint 8" end="24" id="TX_FIFO_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Interrupt enable for TX FIFO endpoint 7" end="23" id="TX_FIFO_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Interrupt enable for TX FIFO endpoint 6" end="22" id="TX_FIFO_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Interrupt enable for TX FIFO endpoint 5" end="21" id="TX_FIFO_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Interrupt enable for TX FIFO endpoint 4" end="20" id="TX_FIFO_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Interrupt enable for TX FIFO endpoint 3" end="19" id="TX_FIFO_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Interrupt enable for TX FIFO endpoint 2" end="18" id="TX_FIFO_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Interrupt enable for TX FIFO endpoint 1" end="17" id="TX_FIFO_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Interrupt enable for TX FIFO endpoint 0" end="16" id="TX_FIFO_0" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Interrupt enable for Mentor controller USB_INT generic  interrupt " end="9" id="USB_9" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Interrupt enable for DRVVBUS level change" end="8" id="USB_8" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Interrupt enable for VBUS &lt; VBUS valid threshold" end="7" id="USB_7" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Interrupt enable for SRP detected" end="6" id="USB_6" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Interrupt enable for device disconnected (host mode)" end="5" id="USB_5" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Interrupt enable for device connected (host mode)" end="4" id="USB_4" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Interrupt enable for SOF started" end="3" id="USB_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Interrupt enable for Reset signaling detected (peripheral  mode) Babble detected (host mode) " end="2" id="USB_2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt enable for Resume signaling detected" end="1" id="USB_1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt enable for Suspend signaling detected USB0 IRQ_ENABLE_CLR_1 Register " end="0" id="USB_0" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0TXMODE" id="USB0TXMODE" offset="0x70" width="32">
+    
+  <bitfield begin="29" description="00: Transparent Mode on TX endpoint 14 01: RNDIS Mode on TX endpoint 14 10: CDC Mode on TX endpoint 14 11: Generic RNDIS Mode on TX endpoint 14 " end="28" id="TX15_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="27" description="00: Transparent Mode on TX endpoint 13 01: RNDIS Mode on TX endpoint 13 10: CDC Mode on TX endpoint 13 11: Generic RNDIS Mode on TX endpoint 13 " end="26" id="TX14_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="25" description="00: Transparent Mode on TX endpoint 12 01: RNDIS Mode on TX endpoint 12 10: CDC Mode on TX endpoint 12 11: Generic RNDIS Mode on TX endpoint 12 " end="24" id="TX13_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="23" description="00: Transparent Mode on TX endpoint 11 01: RNDIS Mode on TX endpoint 11 10: CDC Mode on TX endpoint 11 11: Generic RNDIS Mode on TX endpoint 11 " end="22" id="TX12_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="21" description="00: Transparent Mode on TX endpoint 10 01: RNDIS Mode on TX endpoint 10 10: CDC Mode on TX endpoint 10 11: Generic RNDIS Mode on TX endpoint 10 " end="20" id="TX11_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="19" description="00: Transparent Mode on TX endpoint 9 01: RNDIS Mode on TX endpoint 9 10: CDC Mode on TX endpoint 9 11: Generic RNDIS Mode on TX endpoint 9 " end="18" id="TX10_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="00: Transparent Mode on TX endpoint 8 01: RNDIS Mode on TX endpoint 8 10: CDC Mode on TX endpoint 8 11: Generic RNDIS Mode on TX endpoint 8 " end="16" id="TX9_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="00: Transparent Mode on TX endpoint 7 01: RNDIS Mode on TX endpoint 7 10: CDC Mode on TX endpoint 7 11: Generic RNDIS Mode on TX endpoint 7 " end="14" id="TX8_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="00: Transparent Mode on TX endpoint 6 01: RNDIS Mode on TX endpoint 6 10: CDC Mode on TX endpoint 6 11: Generic RNDIS Mode on TX endpoint 6 " end="12" id="TX7_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="00: Transparent Mode on TX endpoint 5 01: RNDIS Mode on TX endpoint 5 10: CDC Mode on TX endpoint 5 11: Generic RNDIS Mode on TX endpoint 5 " end="10" id="TX6_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="00: Transparent Mode on TX endpoint 4 01: RNDIS Mode on TX endpoint 4 10: CDC Mode on TX endpoint 4 11: Generic RNDIS Mode on TX endpoint 4 " end="8" id="TX5_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="00: Transparent Mode on TX endpoint 3 01: RNDIS Mode on TX endpoint 3 10: CDC Mode on TX endpoint 3 11: Generic RNDIS Mode on TX endpoint 3 " end="6" id="TX4_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="00: Transparent Mode on TX endpoint 2 01: RNDIS Mode on TX endpoint 2 10: CDC Mode on TX endpoint 2 11: Generic RNDIS Mode on TX endpoint 2 " end="4" id="TX3_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="00: Transparent Mode on TX endpoint 1 01: RNDIS Mode on TX endpoint 1 10: CDC Mode on TX endpoint 1 11: Generic RNDIS Mode on TX endpoint 1 " end="2" id="TX2_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="00: Transparent Mode on TX endpoint 0 01: RNDIS Mode on TX endpoint 0 10: CDC Mode on TX endpoint 0 11: Generic RNDIS Mode on TX endpoint 0 USB0 Tx Mode Registers " end="0" id="TX1_MODE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0RXMODE" id="USB0RXMODE" offset="0x74" width="32">
+    
+  <bitfield begin="29" description="00: Transparent Mode on RX endpoint 14 01: RNDIS Mode on RX endpoint 14 10: CDC Mode on RX endpoint 14 11: Generic RNDIS or Infinite Mode on RX endpoint 14 " end="28" id="RX15_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="27" description="00: Transparent Mode on RX endpoint 13 01: RNDIS Mode on RX endpoint 13 10: CDC Mode on RX endpoint 13 11: Generic RNDIS or Infinite Mode on RX endpoint 13 " end="26" id="RX14_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="25" description="00: Transparent Mode on RX endpoint 12 01: RNDIS Mode on RX endpoint 12 10: CDC Mode on RX endpoint 12 11: Generic RNDIS or Infinite Mode on RX endpoint 12 " end="24" id="RX13_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="23" description="00: Transparent Mode on RX endpoint 11 01: RNDIS Mode on RX endpoint 11 10: CDC Mode on RX endpoint 11 11: Generic RNDIS or Infinite Mode on RX endpoint 11 " end="22" id="RX12_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="21" description="00: Transparent Mode on RX endpoint 10 01: RNDIS Mode on RX endpoint 10 10: CDC Mode on RX endpoint 10 11: Generic RNDIS or Infinite Mode on RX endpoint 10 " end="20" id="RX11_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="19" description="00: Transparent Mode on RX endpoint 9 01: RNDIS Mode on RX endpoint 9 10: CDC Mode on RX endpoint 9 11: Generic RNDIS or Infinite Mode on RX endpoint 9 " end="18" id="RX10_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="00: Transparent Mode on RX endpoint 8 01: RNDIS Mode on RX endpoint 8 10: CDC Mode on RX endpoint 8 11: Generic RNDIS Mode on RX endpoint 8 " end="16" id="RX9_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="00: Transparent Mode on RX endpoint 7 01: RNDIS Mode on RX endpoint 7 10: CDC Mode on RX endpoint 7 11: Generic RNDIS or Infinite Mode on RX endpoint 7 " end="14" id="RX8_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="00: Transparent Mode on RX endpoint 6 01: RNDIS Mode on RX endpoint 6 10: CDC Mode on RX endpoint 6 11: Generic RNDIS or Infinite Mode on RX endpoint 6 " end="12" id="RX7_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="00: Transparent Mode on RX endpoint 5 01: RNDIS Mode on RX endpoint 5 10: CDC Mode on RX endpoint 5 11: Generic RNDIS or Infinite Mode on RX endpoint 5 " end="10" id="RX6_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="00: Transparent Mode on RX endpoint 4 01: RNDIS Mode on RX endpoint 4 10: CDC Mode on RX endpoint 4 11: Generic RNDIS or Infinite Mode on RX endpoint 4 " end="8" id="RX5_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="00: Transparent Mode on RX endpoint 3 01: RNDIS Mode on RX endpoint 3 10: CDC Mode on RX endpoint 3 11: Generic RNDIS or Infinite Mode on RX endpoint 3 " end="6" id="RX4_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="00: Transparent Mode on RX endpoint 2 01: RNDIS Mode on RX endpoint 2 10: CDC Mode on RX endpoint 2 11: Generic RNDIS or Infinite Mode on RX endpoint 2 " end="4" id="RX3_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="00: Transparent Mode on RX endpoint 1 01: RNDIS Mode on RX endpoint 1 10: CDC Mode on RX endpoint 1 11: Generic RNDIS or Infinite Mode on RX endpoint 1 " end="2" id="RX2_MODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="00: Transparent Mode on RX endpoint 0 01: RNDIS Mode on RX endpoint 0 10: CDC Mode on RX endpoint 0 11: Generic RNDIS or Infinite Mode on RX endpoint 0 Each RX endpoint can be configured into 1 of 5 packet termination modes. Transparent mode (b00) * Supports USB endpoint sizes of o FS :  8, 16, 32, 64, and 1023 o HS : 64, 128, 512, and 1024 * Mentor Controller's RXMAXP/TXMAXP must be a valid USB endpoint size. * With autoreq=3 XDMA will always generate a ReqPkt's at the end of the packet. * With autoreq=1 XDMA will never generatate a ReqPkt at the end of the packet. * Each USB packet is equivalent to a single CPPI DMA packet. * Each received CPPI packet will be no larger than the USB max packet size (1023 bytes  for FS, 1024 bytes for HS) and will be both a SOP and EOP. * Transmitted CPPI packets can be no larger than the USB max packet size. * Primarily used for interrupt or isochronous endpoints, as CPU will receive an interrupt for  every USB packet (if enabled). RNDIS mode (b01) * Supports USB endpoint sizes of o FS : 64 o HS : 64, 128, 512, and 1024 * Mentor controller's RXMAXP/TXMAXP must be an integer multiple of the USB endpoint  size. * With autoreq=3 XDMA will always generate a ReqPkt's at the end of the packet. * With autoreq=1 XDMA will continue the generation of ReqPkt's to the Mentor controller  until a short packet is received. * Supports transmission of CPPI packets larger than the USB max packet size. * The end of a CPPI packet is defined by a USB short packet (a USB packet less than the  USB max packet size). * In the case where the CPPI packet is an exact multiple of the USB max packet size, a  zero length terminating packet is used (XDMA recognizes this terminating packet on  reception, and generates it on transmission). * Designed for use in an RNDIS compliant networking type of USB device and bulk  endpoints Linux CDC mode (b10) * Same as RNDIS mode, except terminating packet has 1-byte of 0 data. * Designed for use with a Linux OS and USB driver stack and bulk endpoints. Generic RNDIS mode (b11 and Generic RNDIS EP N Size register is greater than 0) * Same as RNDIS mode, except the end of a CPPI packet is determined by a USB short  packet or when the value in the GENERIC RNDIS EPn SIZE Register is reached (Rx  mode only)(i.e. Tx mode does not use this register). The CPU configures this register  with a value that is a multiple of the corresponding endpoint size. * No terminating packet is used. * Designed for general bulk endpoint use where specific packet terminations are not  required. * Transmit mode transfers only support FS or HS EP sizes through the XDMA and Mentor  controller.  The CPPI DMA size can be of any legal size as defined by the CPPI 4.1  specification. Infinite mode (b11 and Generic RNDIS EP N Size register equal to 0) * Same as RNDIS mode, except the end of a CPPI packet is determined by a USB short  packet or when the CPPI DMA closes up the packet after a defined number of buffers  have been filled. This is defined in Rx Channel N Global Configuration Register bits  28:26 rx_max_buffer_cnt. * The CPPI DMA will ignore SOPs generated by the XDMA. * The XDMA packet is assumed to be infinite. * The XDMA starts the packet with a SOP (ignored by the CPPI DMA). * The XDMA ends the packet when a short packet occurs. * Short packets are defined when RXMAXP (0x14) is not equal to RXCOUNT (0x18).  RXMAXP and RXCOUNT are both registers within the Mentor controller. * The XDMA will continue to request RX packets from the Mentor controller until a short  packet is received. * When the CPPI is configured for chaining mode, the Buffer Descriptor sizes must be  integer multiples of the RXMAXP size. * Transmit mode is not supported. * USB0 or USB1 Auto Req register should be set to AUTO REQ ALWAYS. " end="0" id="RX1_MODE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP1" id="USB0GENRNDISEP1" offset="0x80" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP1_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP2" id="USB0GENRNDISEP2" offset="0x84" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP2_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP3" id="USB0GENRNDISEP3" offset="0x88" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP3_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP4" id="USB0GENRNDISEP4" offset="0x8C" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP4_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP5" id="USB0GENRNDISEP5" offset="0x90" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP5_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP6" id="USB0GENRNDISEP6" offset="0x94" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP6_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP7" id="USB0GENRNDISEP7" offset="0x98" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP7_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP8" id="USB0GENRNDISEP8" offset="0x9C" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP8_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP9" id="USB0GENRNDISEP9" offset="0xA0" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP9_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP10" id="USB0GENRNDISEP10" offset="0xA4" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP10_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP11" id="USB0GENRNDISEP11" offset="0xA8" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP11_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP12" id="USB0GENRNDISEP12" offset="0xAC" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP12_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP13" id="USB0GENRNDISEP13" offset="0xB0" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP13_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP14" id="USB0GENRNDISEP14" offset="0xB4" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP14_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0GENRNDISEP15" id="USB0GENRNDISEP15" offset="0xB8" width="32">
+    
+  <bitfield begin="16" description="Generic RNDIS packet size. USB0 Generic RNDIS EP N Size Register " end="0" id="EP15_SIZE" rwaccess="RW" width="17"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0AUTOREQ" id="USB0AUTOREQ" offset="0xD0" width="32">
+    
+  <bitfield begin="29" description="RX endpoint 14 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="28" id="RX15_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="27" description="RX endpoint 13 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="26" id="RX14_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="25" description="RX endpoint 12 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="24" id="RX13_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="23" description="RX endpoint 11 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="22" id="RX12_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="21" description="RX endpoint 10 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="20" id="RX11_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="19" description="RX endpoint 9 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="18" id="RX10_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="RX endpoint 8 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="16" id="RX9_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="RX endpoint 7 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="14" id="RX8_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="13" description="RX endpoint 6 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="12" id="RX7_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="RX endpoint 5 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="10" id="RX6_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="RX endpoint 4 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="8" id="RX5_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="RX endpoint 3 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="6" id="RX4_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="RX endpoint 2 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="4" id="RX3_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="RX endpoint 1 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always " end="2" id="RX2_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="1" description="RX endpoint 0 Auto Req enable 00 = no auto req 01 = auto req on all but EOP 10 = reserved 11 = auto req always USB0 Auto Req Registers " end="0" id="RX1_AUTOREQ" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0SRPFIXTIME" id="USB0SRPFIXTIME" offset="0xD4" width="32">
+    
+  <bitfield begin="31" description="SRP Fix maximum time in 60 MHz cycles. Default is  700 ms. USB0 SRP Fix Time Register " end="0" id="SRPFIXTIME" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0_TDOWN" id="USB0_TDOWN" offset="0xD8" width="32">
+    
+  <bitfield begin="31" description="Tx Endpoint Teardown.  Write '1' to corresponding bit  to set.  Read as '0'. Bit 31 = Endpoint 15 ... Bit 17 = Endpoint 1 " end="17" id="TX_TDOWN" rwaccess="RW" width="15"></bitfield>
+    
+  <bitfield begin="15" description="RX Endpoint Teardown.  Write '1' to corresponding  bit to set.  Read as '0'. Bit 15 = Endpoint 15 ... Bit 1 = Endpoint 1 " end="1" id="RX_TDOWN" rwaccess="RW" width="15"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0UTMI" id="USB0UTMI" offset="0xE0" width="32">
+    
+  <bitfield begin="23" description="PHY UTMI input for signal txbitstuffen" end="23" id="TXBITSTUFFEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="PHY UTMI input for signal txbitstuffenh" end="22" id="TXBITSTUFFENH" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="PHY UTMI input for signal otgdisable" end="21" id="OTGDISABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="PHY UTMI input for signal vbusvldextsel" end="20" id="VBUSVLDEXTSEL" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="19" description="PHY UTMI input for signal vbusvldext" end="19" id="VBUSVLDEXT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="18" description="PHY UTMI input for signal txenablen" end="18" id="TXENABLEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="17" description="PHY UTMI input for signal fsxcvrowner" end="17" id="FSXCVROWNER" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="16" description="PHY UTMI input for signal txvalidh" end="16" id="TXVALIDH" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="PHY UTMI input for signal datainh" end="8" id="DATAINH" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="2" description="PHY UTMI input for signal wordinterface" end="2" id="WORDINTERFACE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="PHY UTMI input for signal fsdataext" end="1" id="FSDATAEXT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="PHY UTMI input for signal fsse0ext USB0 PHY UTMI Register " end="0" id="FSSE0EXT" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0MGCUTMILB" id="USB0MGCUTMILB" offset="0xE4" width="32">
+    
+  <bitfield begin="28" description="loopback test observed value for suspendm" end="28" id="SUSPENDM" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="27" description="loopback test observed value for opmode" end="26" id="OPMODE" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="25" description="loopback test observed value for txvalid" end="25" id="TXVALID" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="loopback test observed value for xcvrsel" end="23" id="XCVRSEL" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="22" description="loopback test observed value for termsel" end="22" id="TERMSEL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="loopback test observed value for drvvbus" end="21" id="DRVVBUS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="loopback test observed value for chrgvbus" end="20" id="CHRGVBUS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="loopback test observed value for dischrgvbus" end="19" id="DISCHRGVBUS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="loopback test observed value for dppulldown" end="18" id="DPPULLDOWN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="loopback test observed value for dmpulldown" end="17" id="DMPULLDOWN" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="loopback test observed value for idpullup" end="16" id="IDPULLUP" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="11" description="loopback test value for iddig" end="11" id="IDDIG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="loopback test value for hostdiscon" end="10" id="HOSTDISCON" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="loopback test value for sessend" end="9" id="SESSEND" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="loopback test value for avalid" end="8" id="AVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="loopback test value for vbusvalid" end="7" id="VBUSVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="loopback test value for rxerror" end="6" id="RXERROR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="loopback test value for linestate" end="2" id="LINESTATE" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="USB0MODE" id="USB0MODE" offset="0xE8" width="32">
+    
+  <bitfield begin="8" description="MGC input value for iddig 0=A type 1=B type " end="8" id="IDDIG" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Multiplexer control for IDDIG signal going to the controller. 0 = IDDIG is from PHY0. 1 = IDDIG is from bit 8 (IDDIG) of this USB0MODE register." end="7" id="IDDIG_MUX" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="PHY test 0 = Normal mode 1 = PHY test mode " end="1" id="PHY_TEST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Loopback test mode 0 = Normal mode 1 = Loopback test mode USB0 Mode Register " end="0" id="LOOPBACK" rwaccess="RW" width="1"></bitfield>
+  </register>
+</module>

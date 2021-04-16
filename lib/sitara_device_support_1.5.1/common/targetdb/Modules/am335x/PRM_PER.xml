@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="PRM_PER" id="PRM_PER">
+  
+  
+  <register acronym="RM_PER_RSTCTRL" description="This register controls the release of the PER Domain resets." id="RM_PER_RSTCTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Reserved" end="3" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="2" description="Reserved" end="2" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="PER domain PRU-ICSS local reset control" end="1" id="PRU_ICSS_LRST" rwaccess="RW" width="1">
+    <bitenum description="Reset is cleared for the PRU-ICSS" id="CLEAR" token="CLEAR" value="0"></bitenum>
+    <bitenum description="Reset is asserted for the PRU-ICSS" id="ASSERT" token="ASSERT" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="Reserved3" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="PM_PER_PWRSTST" description="This register provides a status on the current PER power domain state. [warm reset insensitive]" id="PM_PER_PWRSTST" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="25" id="Reserved1" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="24" description="PRU-ICSS memory state status" end="23" id="pru_icss_mem_statest" rwaccess="R" width="2">
+    <bitenum description="Memory is OFF" id="Mem_off" token="Mem_off" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Memory is ON" id="Mem_on" token="Mem_on" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="22" description="OCMC RAM memory state status" end="21" id="ram_mem_statest" rwaccess="R" width="2">
+    <bitenum description="Memory is OFF" id="Mem_off" token="Mem_off" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Memory is ON" id="Mem_on" token="Mem_on" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="20" description="Domain transition status" end="20" id="InTransition" rwaccess="R" width="1">
+    <bitenum description="No on-going transition on power domain" id="No" token="No" value="0"></bitenum>
+    <bitenum description="Power domain transition is in progress." id="Ongoing" token="Ongoing" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="19" description="Reserved" end="19" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="PER domain memory state status" end="17" id="PER_mem_statest" rwaccess="R" width="2">
+    <bitenum description="Memory is OFF" id="Mem_off" token="Mem_off" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Memory is ON" id="Mem_on" token="Mem_on" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="16" description="Reserved" end="3" id="Reserved2" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="2" description="Logic state status" end="2" id="LogicStateSt" rwaccess="R" width="1">
+    <bitenum description="Logic in domain is OFF" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Logic in domain is ON" id="ON" token="ON" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Current Power State Status" end="0" id="PowerStateSt" rwaccess="R" width="2">
+    <bitenum description="OFF State" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="" id="RET" token="RET" value="1"></bitenum>
+    <bitenum description="" id="Reserved1" token="Reserved1" value="2"></bitenum>
+    <bitenum description="ON State" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="PM_PER_PWRSTCTRL" description="Controls the power state of PER power domain" id="PM_PER_PWRSTCTRL" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="OCMC RAM memory on state" end="30" id="ram_mem_ONState" rwaccess="RW" width="2">
+    <bitenum description="Memory is OFF" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Memory is in retention state" id="RET" token="RET" value="1"></bitenum>
+    <bitenum description="" id="RESERVED" token="RESERVED" value="2"></bitenum>
+    <bitenum description="Memory is ON" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="29" description="Other memories in PER Domain RET state" end="29" id="PER_mem_RETState" rwaccess="RW" width="1">
+    <bitenum description="" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="" id="RET" token="RET" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="28" description="Reserved" end="28" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="27" description="OCMC RAM memory RET state" end="27" id="ram_mem_RETState" rwaccess="RW" width="1">
+    <bitenum description="Memory is in off state" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Memory is in retention state" id="RET" token="RET" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="26" description="Other memories in PER Domain ON state" end="25" id="PER_mem_ONState" rwaccess="RW" width="2">
+    <bitenum description="" id="Reserved2" token="Reserved2" value="0"></bitenum>
+    <bitenum description="" id="Reserved1" token="Reserved1" value="1"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Memory is ON" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="24" description="Reserved" end="8" id="Reserved1" rwaccess="R" width="17"></bitfield>
+    
+  <bitfield begin="7" description="PRU-ICSS memory RET state" end="7" id="pru_icss_mem_RETState" rwaccess="RW" width="1">
+    <bitenum description="Memory is in off state" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Memory is in retention state" id="RET" token="RET" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="PRU-ICSS memory ON state" end="5" id="pru_icss_mem_ONState" rwaccess="RW" width="2">
+    <bitenum description="" id="Reserved2" token="Reserved2" value="0"></bitenum>
+    <bitenum description="" id="Reserved1" token="Reserved1" value="1"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Memory is ON" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="Power state change request when domain has already performed a sleep transition. Allows going into deeper low power state without waking up the power domain." end="4" id="LowPowerStateChange" rwaccess="RW" width="1">
+    <bitenum description="Do not request a low power state change." id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="Request a low power state change. This bit is automatically cleared when the power state is effectively changed or when power state is ON." id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Logic state when power domain is RETENTION" end="3" id="LogicRETState" rwaccess="RW" width="1">
+    <bitenum description="Only retention registers are retained and remaing logic is off when the domain is in RETENTION state." id="logic_off" token="logic_off" value="0"></bitenum>
+    <bitenum description="Whole logic is retained when domain is in RETENTION state." id="logic_ret" token="logic_ret" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Reserved" end="2" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="PER domain power state control" end="0" id="PowerState" rwaccess="RW" width="2">
+    <bitenum description="" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="" id="RET" token="RET" value="1"></bitenum>
+    <bitenum description="" id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="" id="ON" token="ON" value="3"></bitenum>
+  </bitfield>
+  </register>
+</module>

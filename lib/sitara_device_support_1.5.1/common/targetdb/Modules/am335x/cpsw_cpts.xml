@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="cpsw_cpts" id="cpsw_cpts">
+  
+  
+  <register acronym="CPTS_IDVER" description="IDENTIFICATION AND VERSION REGISTER" id="CPTS_IDVER" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="TX Identification Value" end="16" id="TX_IDENT" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="RTL Version Value" end="11" id="RTL_VER" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="Major Version Value" end="8" id="MAJOR_VER" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Minor Version Value" end="0" id="MINOR_VER" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_CONTROL" description="TIME SYNC CONTROL REGISTER" id="CPTS_CONTROL" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Hardware push 4 enable" end="11" id="HW4_TS_PUSH_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Hardware push 3 enable" end="10" id="HW3_TS_PUSH_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Hardware push 2 enable" end="9" id="HW2_TS_PUSH_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Hardware push 1 enable" end="8" id="HW1_TS_PUSH_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Reserved" end="2" id="Reserved" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="1" description="Interrupt Test - When set, this bit allows the raw interrupt to be written to  facilitate interrupt test. " end="1" id="INT_TEST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Time Sync Enable - When disabled (cleared to zero), the RCLK domain is  held in reset.   0 - Time Sync Disabled   1 - Time Sync Enabled " end="0" id="CPTS_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_TS_PUSH" description="TIME STAMP EVENT PUSH REGISTER" id="CPTS_TS_PUSH" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Time stamp event push - When a logic high is written to this bit a time  stamp event is pushed onto the event FIFO.  The time stamp value is  the time of the write of this register, not the time of the event read.  The  time stamp value can then be read on interrupt via the event registers.   Software should not push a second time stamp event onto the event  FIFO until the first time stamp value has been read from the event FIFO  (there should be only one time stamp event in the event FIFO at any  given time).  This bit is write only and always reads zero. " end="0" id="TS_PUSH" rwaccess="W" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_TS_LOAD_VAL" description="TIME STAMP LOAD VALUE REGISTER" id="CPTS_TS_LOAD_VAL" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Time Stamp Load Value - Writing the ts_load_en bit causes the value  contained in this register to be written into the time stamp.  The time  stamp value is read by initiating a time stamp push event, not by  reading this register.  When reading this register, the value read is not  the time stamp, but is the value that was last written to this register.   " end="0" id="TS_LOAD_VAL" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_TS_LOAD_EN" description="TIME STAMP LOAD ENABLE REGISTER" id="CPTS_TS_LOAD_EN" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Time Stamp Load - Writing a one to this bit enables the time stamp  value to be written via the ts_load_val[31:0] register.  This feature is  included for test purposes.  This bit is write only. " end="0" id="TS_LOAD_EN" rwaccess="W" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_INTSTAT_RAW" description="TIME SYNC INTERRUPT STATUS RAW REGISTER" id="CPTS_INTSTAT_RAW" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="TS_PEND_RAW int read (before enable).  Writable when int_test = 1 A one in this bit indicates that there is one or more events in the event FIFO. " end="0" id="TS_PEND_RAW" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_INTSTAT_MASKED" description="TIME SYNC INTERRUPT STATUS MASKED REGISTER" id="CPTS_INTSTAT_MASKED" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="TS_PEND masked interrupt read (after enable)." end="0" id="TS_PEND" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_INT_ENABLE" description="TIME SYNC INTERRUPT ENABLE REGISTER" id="CPTS_INT_ENABLE" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="TS_PEND masked interrupt enable." end="0" id="TS_PEND_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_EVENT_POP" description="EVENT INTERRUPT POP REGISTER" id="CPTS_EVENT_POP" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="1" id="Reserved" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Event Pop - When a logic high is written to this bit an event is popped  off the event FIFO.  The event FIFO pop occurs as part of the interrupt  process after the event has been read in the Event_Low and  Event_High registers.  Popping an event discards the event and causes  the next event, if any, to be moved to the top of the FIFO ready to be  read by software on interrupt. " end="0" id="EVENT_POP" rwaccess="W" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_EVENT_LOW" description="LOWER 32-BITS OF THE EVENT VALUE" id="CPTS_EVENT_LOW" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Time Stamp - The timestamp is valid for transmit, receive, and time  stamp push event types.  The timestamp value is not valid for counter  roll event types. " end="0" id="TIME_STAMP" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="CPTS_EVENT_HIGH" description="UPPER 32-BITS OF THE EVENT VALUE" id="CPTS_EVENT_HIGH" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="29" id="Reserved" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Port Number - indicates the port number of an ethernet event or the hardware push pin number (1 to 4)." end="24" id="PORT_NUMBER" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="23" description="Time Sync Event Type   0000 - Time Stamp Push Event   0001 - Time Stamp Rollover Event   0010 - Time Stamp Half Rollover Event   0011 - Hardware Time Stamp Push Event   0100 - Ethernet Receive Event   0101 - Ethernet Transmit Event " end="20" id="EVENT_TYPE" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Message type - The message type value that was contained in an  ethernet transmit or receive time sync packet.  This field is valid only for  ethernet transmit or receive events. " end="16" id="MESSAGE_TYPE" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="15" description="Sequence ID - The 16-bit sequence id is the value that was contained in  an ethernet transmit or receivetime sync packet.  This field is valid only for ethernet transmit or receive events." end="0" id="SEQUENCE_ID" rwaccess="R" width="16"></bitfield>
+  </register>
+</module>

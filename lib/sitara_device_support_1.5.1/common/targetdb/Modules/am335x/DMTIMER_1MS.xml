@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<module description="DMTIMER_1MS" id="DMTIMER_1MS">
+  
+  
+  <register acronym="TIDR" description="This register contains the IP revision code   " id="TIDR" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reads return 0" end="8" id="Reserved_24" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="IP revision [7:4] Major revision [3:0] Minor revision Examples: 0x10 for 1.0, 0x21 for 2.1" end="0" id="TID_REV" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="TIOCP_CFG" description="This register controls the various parameters of the OCP interface   " id="TIOCP_CFG" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="10" id="Reserved_22" rwaccess="RW" width="22"></bitfield>
+    
+  <bitfield begin="9" description="" end="8" id="ClockActivity" rwaccess="RW" width="2">
+    <bitenum description="Functional clock can be switched-off ; OCP clock can be switched-off " id="CA0" token="CA0" value="0"></bitenum>
+    <bitenum description="Functional clock can be switched-off ; OCP clock is maintained during wake-up period " id="CA1" token="CA1" value="1"></bitenum>
+    <bitenum description="Functional clock is maintained during wake-up period; OCP clock can be switched-off " id="CA2" token="CA2" value="2"></bitenum>
+    <bitenum description="Functional clock is maintained during wake-up period; OCP clock is maintained during wake-up period " id="CA3" token="CA3" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Write 0's for future compatibility Reads return 0" end="6" id="Reserved_02" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Emulation mode" end="5" id="EmuFree" rwaccess="RW" width="1">
+    <bitenum description="Timer counter frozen in emulation" id="timer_frozen" token="timer_frozen" value="0"></bitenum>
+    <bitenum description="Timer counter free-running in emulation" id="timer_free" token="timer_free" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="Power Management, req/ack control" end="3" id="IdleMode" rwaccess="RW" width="2">
+    <bitenum description="Force-idle. An idle request is acknowledged unconditionally" id="fidle" token="fidle" value="0"></bitenum>
+    <bitenum description="No-idle. An idle request is never acknowledged" id="nidle" token="nidle" value="1"></bitenum>
+    <bitenum description="Smart-idle. Acknowledgement to an idle request is given based on the internal activity of the module" id="sidle" token="sidle" value="2"></bitenum>
+    <bitenum description="reserved   do not use" id="res" token="res" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Wake-up feature global control" end="2" id="EnaWakeup" rwaccess="RW" width="1">
+    <bitenum description="No wakeup line assertion in idle mode" id="nowake" token="nowake" value="0"></bitenum>
+    <bitenum description="Wakeup line assertion enabled in smart-idle mode" id="enbwake" token="enbwake" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Software reset. This bit is automatically reset by the hardware. During reads, it always return 0" end="1" id="SoftReset" rwaccess="RW" width="1">
+    <bitenum description="Normal mode" id="nmode" token="nmode" value="0"></bitenum>
+    <bitenum description="The module is reset" id="rstmode" token="rstmode" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Internal OCP clock gating strategy" end="0" id="AutoIdle" rwaccess="RW" width="1">
+    <bitenum description="OCP clock is free-running" id="clkfree" token="clkfree" value="0"></bitenum>
+    <bitenum description="Automatic OCP clock gating strategy is applied, based on the OCP interface activity" id="clkgate" token="clkgate" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TISTAT" description="This register provides status information about the module, excluding the interrupt status information   " id="TISTAT" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="Reads return 0                                                                                                Reserved for OCP-socket status information" end="1" id="reserved_31" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Internal reset monitoring" end="0" id="ResetDone" rwaccess="R" width="1">
+    <bitenum description="Internal module reset in on-going" id="rstongoing" token="rstongoing" value="0"></bitenum>
+    <bitenum description="Reset completed" id="rstcomp" token="rstcomp" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TISR" description="The Timer Status Register is used to determine which of the timer events requested an interrupt.  " id="TISR" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="Reads return 0" end="3" id="Reserved_29" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="indicates when an external pulse transition of the correct polarity is detected on the external pin PIEVENTCAPT" end="2" id="TCAR_IT_FLAG" rwaccess="RW" width="1">
+    <bitenum description="no capture interrupt request" id="TCAR_IT_FLAG_0" token="TCAR_IT_FLAG_0" value="0"></bitenum>
+    <bitenum description="capture interrupt request" id="TACR_IT_FLAG_1" token="TACR_IT_FLAG_1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="TCRR overflow " end="1" id="OVF_IT_FLAG" rwaccess="RW" width="1">
+    <bitenum description="no overflow interrupt request" id="OVF_IT_FLAG_0" token="OVF_IT_FLAG_0" value="0"></bitenum>
+    <bitenum description="overflow interrupt pending" id="OVF_IT_FLAG_1" token="OVF_IT_FLAG_1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="the compare result of TCRR and TMAR " end="0" id="MAT_IT_FLAG" rwaccess="RW" width="1">
+    <bitenum description="no compare interrupt request" id="MAT_IT_FLAG_0" token="MAT_IT_FLAG_0" value="0"></bitenum>
+    <bitenum description="compare interrupt pending" id="MAT_IT_FLAG_1" token="MAT_IT_FLAG_1" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TIER" description="This register controls (enable/disable) the interrupt events   " id="TIER" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="Reads return 0" end="3" id="Reserved_29" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Enable capture interrupt" end="2" id="TCAR_IT_ENA" rwaccess="RW" width="1">
+    <bitenum description="Disable capture interrupt" id="Dsb_capt" token="Dsb_capt" value="0"></bitenum>
+    <bitenum description="Enable capture interrupt" id="Enb_capt" token="Enb_capt" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Enable overflow interrupt" end="1" id="OVF_IT_ENA" rwaccess="RW" width="1">
+    <bitenum description="Disable overflow interrupt" id="Dsb_ovf" token="Dsb_ovf" value="0"></bitenum>
+    <bitenum description="Enable overflow interrupt" id="Enb_ovf" token="Enb_ovf" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Enable match interrupt" end="0" id="MAT_IT_ENA" rwaccess="RW" width="1">
+    <bitenum description="Disable match interrupt" id="Dsb_match" token="Dsb_match" value="0"></bitenum>
+    <bitenum description="Enable match interrupt" id="Enb_match" token="Enb_match" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TWER" description="This register controls (enable/disable) the wakeup feature on specific interrupt events   " id="TWER" offset="0x20" width="32">
+    
+  <bitfield begin="31" description="Reads return 0" end="3" id="Reserved_29" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description="Enable capture wake-up " end="2" id="TCAR_WUP_ENA" rwaccess="RW" width="1">
+    <bitenum description="Disable capture wake-up" id="DsbWupCap" token="DsbWupCap" value="0"></bitenum>
+    <bitenum description="Enable capture wake-up " id="EnbWupCapt" token="EnbWupCapt" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Enable overflow wake-up" end="1" id="OVF_WUP_ENA" rwaccess="RW" width="1">
+    <bitenum description="Disable overflow wake-up" id="DsbWupOvf" token="DsbWupOvf" value="0"></bitenum>
+    <bitenum description="Enable overflow wake-up" id="EnbWupOvf" token="EnbWupOvf" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Enable match wake-up " end="0" id="MAT_WUP_ENA" rwaccess="RW" width="1">
+    <bitenum description="Disable match wake-up" id="DsbWupMat" token="DsbWupMat" value="0"></bitenum>
+    <bitenum description="Enable match wake-up " id="EnbWupMat" token="EnbWupMat" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TCLR" description="This register controls optional features specific to the timer functionality   " id="TCLR" offset="0x24" width="32">
+    
+  <bitfield begin="31" description="Reads return 0" end="15" id="Reserved_17" rwaccess="R" width="17"></bitfield>
+    
+  <bitfield begin="14" description="" end="14" id="GPO_CFG" rwaccess="RW" width="1">
+    <bitenum description="PORGPOCFG drives 0" id="GPO_CFG_0" token="GPO_CFG_0" value="0"></bitenum>
+    <bitenum description="PORGPOCFG drives 1" id="GPO_CFG_1" token="GPO_CFG_1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Capture mode select bit (first/second)" end="13" id="CAPT_MODE" rwaccess="RW" width="1">
+    <bitenum description="Capture the first enabled capture event in TCAR1" id="First_capt" token="First_capt" value="0"></bitenum>
+    <bitenum description="Capture the second enabled capture event in TCAR2" id="Sec_capt" token="Sec_capt" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="Pulse or Toggle select bit" end="12" id="PT" rwaccess="RW" width="1">
+    <bitenum description="pulse modulation" id="pulse" token="pulse" value="0"></bitenum>
+    <bitenum description="toggle modulation" id="toggle" token="toggle" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Trigger Output Mode" end="10" id="TRG" rwaccess="RW" width="2">
+    <bitenum description="No trigger" id="no_trg" token="no_trg" value="0"></bitenum>
+    <bitenum description="Overflow trigger" id="ovf_trg" token="ovf_trg" value="1"></bitenum>
+    <bitenum description="Overflow and match trigger" id="ovf_mat_trg" token="ovf_mat_trg" value="2"></bitenum>
+    <bitenum description="Reserved" id="reserved" token="reserved" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Transition Capture Mode" end="8" id="TCM" rwaccess="RW" width="2">
+    <bitenum description="No capture" id="no_edge" token="no_edge" value="0"></bitenum>
+    <bitenum description="Capture on rising edges of PIEVETCAPT" id="rise_edge" token="rise_edge" value="1"></bitenum>
+    <bitenum description="Capture on falling edges of PIEVETCAPT" id="fall_edge" token="fall_edge" value="2"></bitenum>
+    <bitenum description="Capture on booth edges of PIEVETCAPT" id="booth_edges" token="booth_edges" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Pulse Width Modulation output pin default value" end="7" id="SCPWM" rwaccess="RW" width="1">
+    <bitenum description="default value of PORPWM: 0" id="def_low" token="def_low" value="0"></bitenum>
+    <bitenum description="default value of PORPWM: 1" id="def_high" token="def_high" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="Compare enable" end="6" id="CE" rwaccess="RW" width="1">
+    <bitenum description="Compare disabled" id="dsb_cmp" token="dsb_cmp" value="0"></bitenum>
+    <bitenum description="Compare enabled" id="enb_cmp" token="enb_cmp" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Prescaler enable" end="5" id="PRE" rwaccess="RW" width="1">
+    <bitenum description="Prescaler disabled" id="no_prescal" token="no_prescal" value="0"></bitenum>
+    <bitenum description="Prescaler enabled" id="prescal_on" token="prescal_on" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="Trigger Output Mode" end="2" id="PTV" rwaccess="RW" width="3">
+    <bitenum description="The timer counter is prescaled with the value: 2PTV. Example: PTV = 3: counter increases value is started after 8 functional clock periods" id="ptv" token="ptv" value="0"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Auto-reload mode" end="1" id="AR" rwaccess="RW" width="1">
+    <bitenum description="One shot mode overflow" id="one_shot" token="one_shot" value="0"></bitenum>
+    <bitenum description="Auto-reload mode overflow" id="auto_rel" token="auto_rel" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Start/Stop timer control" end="0" id="ST" rwaccess="RW" width="1">
+    <bitenum description="Stop the timer" id="cnt_stop" token="cnt_stop" value="0"></bitenum>
+    <bitenum description="Start the timer" id="cnt_start" token="cnt_start" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TCRR" description="This register holds the value of the internal counter   " id="TCRR" offset="0x28" width="32">
+    
+  <bitfield begin="31" description="The value of the timer counter register" end="0" id="TIMER_COUNTER" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TLDR" description="This register holds the timer's load value   " id="TLDR" offset="0x2C" width="32">
+    
+  <bitfield begin="31" description="The value of the timer load register" end="0" id="LOAD_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TTGR" description="This register triggers a counter reload of timer by writing any value in it.   " id="TTGR" offset="0x30" width="32">
+    
+  <bitfield begin="31" description="The value of the trigger register                                       During reads, it always returns &quot;0xFFFFFFFF&quot;" end="0" id="TTGR_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TWPS" description="This register contains the write posting bits for all writ-able functional registers    " id="TWPS" offset="0x34" width="32">
+    
+  <bitfield begin="31" description="Reads return 0" end="10" id="Reserved_22" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Write pending for register TOWR" end="9" id="W_PEND_TOWR" rwaccess="R" width="1">
+    <bitenum description="No Overflow Wrapping Register write pending." id="OWR_nPend" token="OWR_nPend" value="0"></bitenum>
+    <bitenum description="Overflow Wrapping Register write pending." id="OWR_Pend" token="OWR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="Write pending for register TOCR" end="8" id="W_PEND_TOCR" rwaccess="R" width="1">
+    <bitenum description="No Overflow Counter Register write pending." id="OCR_nPend" token="OCR_nPend" value="0"></bitenum>
+    <bitenum description="Overflow Counter Register write pending." id="OCR_Pend" token="OCR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Write pending for register TCVR" end="7" id="W_PEND_TCVR" rwaccess="R" width="1">
+    <bitenum description="No Counter Register write pending." id="CVR_nPend" token="CVR_nPend" value="0"></bitenum>
+    <bitenum description="Counter Register write pending." id="CVR_Pend" token="CVR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="Write pending for register TNIR" end="6" id="W_PEND_TNIR" rwaccess="R" width="1">
+    <bitenum description="No Negativ Increment Register write pending." id="NIR_nPend" token="NIR_nPend" value="0"></bitenum>
+    <bitenum description="Negativ Increment Register write pending." id="NIR_Pend" token="NIR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Write pending for register TPIR" end="5" id="W_PEND_TPIR" rwaccess="R" width="1">
+    <bitenum description="No Positive Increment Register write pending." id="PIR_nPend" token="PIR_nPend" value="0"></bitenum>
+    <bitenum description="Positive Increment Register write pending." id="PIR_Pend" token="PIR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="Write pending for register TMAR" end="4" id="W_PEND_TMAR" rwaccess="R" width="1">
+    <bitenum description="No Match Register write pending" id="MAR_nPend" token="MAR_nPend" value="0"></bitenum>
+    <bitenum description="Match Register write pending" id="MAR_Pend" token="MAR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Write pending for register TTGR" end="3" id="W_PEND_TTGR" rwaccess="R" width="1">
+    <bitenum description="No Trigger Register write pending" id="TGR_nPend" token="TGR_nPend" value="0"></bitenum>
+    <bitenum description="Trigger Register write pending" id="TGR_Pend" token="TGR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Write pending for register TLDR" end="2" id="W_PEND_TLDR" rwaccess="R" width="1">
+    <bitenum description="No Load Register write pending" id="LDR_nPend" token="LDR_nPend" value="0"></bitenum>
+    <bitenum description="Load Register write pending" id="LDR_Pend" token="LDR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Write pending for register TCRR" end="1" id="W_PEND_TCRR" rwaccess="R" width="1">
+    <bitenum description="No Counter Register write pending" id="CRR_nPend" token="CRR_nPend" value="0"></bitenum>
+    <bitenum description="Counter Register write pending" id="CRR_Pend" token="CRR_Pend" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Write pending for register TCLR" end="0" id="W_PEND_TCLR" rwaccess="R" width="1">
+    <bitenum description="No Control Register write pending" id="CLR_nPend" token="CLR_nPend" value="0"></bitenum>
+    <bitenum description="Control Register write pending" id="CLR_Pend" token="CLR_Pend" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="TMAR" description="This register holds the match value to be compared with the counter's value   " id="TMAR" offset="0x38" width="32">
+    
+  <bitfield begin="31" description="The value of the match register" end="0" id="COMPARE_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCAR1" description="This register holds the value of the first counter register capture   " id="TCAR1" offset="0x3C" width="32">
+    
+  <bitfield begin="31" description="The value of first captured counter register" end="0" id="CAPTURE_VALUE1" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TSICR" description="Timer Synchronous Interface Control Register    " id="TSICR" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Reads return 0" end="3" id="Reserved_29" rwaccess="R" width="29"></bitfield>
+    
+  <bitfield begin="2" description=" posted mode active/inactive" end="2" id="POSTED" rwaccess="RW" width="1">
+    <bitenum description="posted mode inactive: will delay the command accept output signal" id="POSTED_0" token="POSTED_0" value="0"></bitenum>
+    <bitenum description="posted mode active (clocks ratio needs to fit freq (timer) &lt; freq (OCP)/4 frequency requirement) " id="POSTED_1" token="POSTED_1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="This bit reset all the functional part of the module " end="1" id="SFT" rwaccess="RW" width="1">
+    <bitenum description="software reset is disabled" id="SFT_0" token="SFT_0" value="0"></bitenum>
+    <bitenum description="software reset is enabled" id="SFT_1" token="SFT_1" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="Reads return 0" end="0" id="Reserved_1" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCAR2" description="This register holds the value of the second counter register capture   " id="TCAR2" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="The value of second captured counter register" end="0" id="CAPTURE_VALUE2" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TPIR" description="This register is used for 1ms tick generation. The TPIR register holds the value of the positive increment. The value of this register is added with the value of the TCVR to define whether next value loaded in TCRR will be the sub-period  value or the over-period value." id="TPIR" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="The value of the positive increment." end="0" id="POSITIVE_INC_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TNIR" description="This register is used for 1ms tick generation. The TNIR register holds the value of the negative increment. The value of this register is added with the value of the TCVR to define whether next value loaded in TCRR will be the sub-period  value or the over-period value. " id="TNIR" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="The value of the negative increment." end="0" id="NEGATIVE_INV_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCVR" description="This register is used for 1ms tick generation. The TCVR register defines whether next value loaded in TCRR will be the sub-period  value or the over-period value." id="TCVR" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="The value of CVR counter." end="0" id="COUNTER_VALUE" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="TOCR" description="This register is used to mask the tick interrupt for a selected number of ticks." id="TOCR" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="Reads return 0." end="24" id="Reserved_24" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="The number of overflow events." end="0" id="OVF_COUNTER_VALUE" rwaccess="RW" width="24"></bitfield>
+  </register>
+  
+  
+  <register acronym="TOWR" description="This register holds the number of masked overflow interrupts. " id="TOWR" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="Reads return 0" end="24" id="Reserved_24" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description="The number of masked interrupts." end="0" id="OVF_WRAPPING_VALUE" rwaccess="RW" width="24"></bitfield>
+  </register>
+</module>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRU_ICSS_IEP" id="PRU_ICSS_IEP">
+  
+  
+  <register acronym="IEP_TMR_GLB_CFG" description="GLOBAL CONFIGURE" id="IEP_TMR_GLB_CFG" offset="0x0" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="20" id="RESERVED_1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="19" description=" Defines the increment value when compensation is active" end="8" id="CMP_INC" rwaccess="RW" width="12"></bitfield>
+    
+  <bitfield begin="7" description=" Defines the default increment value" end="4" id="DEFAULT_INC" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description=" " end="1" id="RESERVED_2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="0" description=" Counter enable  0: Disables the counter.  The counter maintains the current count.  1: Enables the counter." end="0" id="CNT_ENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_GLB_STS" description="GLOBAL STATUS" id="IEP_TMR_GLB_STS" offset="0x4" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="1" id="RESERVED_1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description=" Counter overflow status.  0: No overflow  1: Overflow occurred" end="0" id="CNT_OVF" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_COMPEN" description="COMPENSATION" id="IEP_TMR_COMPEN" offset="0x8" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="24" id="RESERVED_1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="23" description=" Compensation counter.  Read returns the current compen_cnt value.  0: Compensation is disabled and counter will increment by DEFAULT_INC.  Compensation is enabled until COMPEN_CNT decrements to 0.  The COMPEN_CNT value decrements on every iep_clk cycle.  When COMPEN_CNT is greater than 0, then count value increments by CMP_INC.  " end="0" id="COMPEN_CNT" rwaccess="RW" width="24"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CNT" description="COUNTER" id="IEP_TMR_CNT" offset="0xC" page="2" width="32">
+    
+  <bitfield begin="31" description=" 32-bit count value.  Increments by (DEFAULT_INC or CMP_INC) on every positive edge of iep_clk (200MHz)." end="0" id="COUNT" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP_CFG" description="COMPARE CONFIGURE" id="IEP_TMR_CMP_CFG" offset="0x40" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="9" id="RESERVED_1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description=" Compare registers enable, where CMP_EN[0] maps to CMP[0].  0: Disables event  1: Enables event " end="1" id="CMP_EN" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="0" description=" Counter reset enable.  0: Disable   1: Enable the reset of the counter if a CMP0 event occurs  " end="0" id="CMP0_RST_CNT_EN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP_STS" description="COMPARE STATUS" id="IEP_TMR_CMP_STS" offset="0x44" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="8" id="RESERVED_1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description=" Status bit for each of the compare registers, where CMP_HIT[n] maps to CMP[n].  &quot;Match&quot; indicates the current counter is greater than or equal to the compare value.  Note it is the firmware's responsibility to handle the IEP overflow.  0: Match has not occurred.  1: Match occurred.  The associated hardware event signal will assert and remain high until the status is cleared.  " end="0" id="CMP_HIT" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP0" description="COMPARE0" id="IEP_TMR_CMP0" offset="0x48" page="2" width="32">
+    
+  <bitfield begin="31" description=" Compare 0 value" end="0" id="CMP0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP1" description="COMPARE1" id="IEP_TMR_CMP1" offset="0x4C" page="2" width="32">
+    
+  <bitfield begin="31" description=" Compare 1 value" end="0" id="CMP1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP2" description="COMPARE2" id="IEP_TMR_CMP2" offset="0x50" page="2" width="32">
+    
+  <bitfield begin="31" description=" Compare 2 value" end="0" id="CMP2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP3" description="COMPARE3" id="IEP_TMR_CMP3" offset="0x54" page="2" width="32">
+    
+  <bitfield begin="31" description=" Compare 3 value" end="0" id="CMP3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP4" description="COMPARE4" id="IEP_TMR_CMP4" offset="0x58" page="2" width="32">
+    
+  <bitfield begin="31" description=" Compare 4 value" end="0" id="CMP4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP5" description="COMPARE5" id="IEP_TMR_CMP5" offset="0x5C" page="2" width="32">
+    
+  <bitfield begin="31" description=" Compare 5 value" end="0" id="CMP5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP6" description="COMPARE6" id="IEP_TMR_CMP6" offset="0x60" page="2" width="32">
+    
+  <bitfield begin="31" description=" Compare 6 value" end="0" id="CMP6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_TMR_CMP7" description="COMPARE7" id="IEP_TMR_CMP7" offset="0x64" page="2" width="32">
+    
+  <bitfield begin="31" description=" Compare 7 value" end="0" id="CMP7" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_DIGIO_CTRL" description="DIGITAL INPUT OUTPUT CONTROL" id="IEP_DIGIO_CTRL" offset="0x300" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="5" id="RESERVED_1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description=" Enable pr1_edio_data_in [31:0] to be sampled by external pr1_edio_latch_in signal.  0: Disable  1: Enable" end="4" id="IN_MODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description=" " end="0" id="RESERVED_2" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_DIGIO_DATA_IN" description="DIGITAL DATA INPUT" id="IEP_DIGIO_DATA_IN" offset="0x308" page="2" width="32">
+    
+  <bitfield begin="31" description=" Data input.  Sample time of digital inputs is controlled externally by using the pr1_edio_latch_in signal.  Must enable by setting DIGIO_CTRL[IN_MODE]." end="0" id="DATA_IN" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_DIGIO_DATA_IN_RAW" description="DIGITAL DATA INPUT DIRECT SAMPLE" id="IEP_DIGIO_DATA_IN_RAW" offset="0x30C" page="2" width="32">
+    
+  <bitfield begin="31" description=" Raw data input.  Direct sample of pr1_edio_data_in[31:0].  " end="0" id="DATA_IN_RAW" rwaccess="R" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_DIGIO_DATA_OUT" description="DIGITAL DATA OUTPUT" id="IEP_DIGIO_DATA_OUT" offset="0x310" page="2" width="32">
+    
+  <bitfield begin="31" description=" Data output, pr1_edio_data_out[31:0]." end="0" id="DATA_OUT" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_DIGIO_DATA_OUT_EN" description="DIGITAL DATA OUT ENABLE" id="IEP_DIGIO_DATA_OUT_EN" offset="0x314" page="2" width="32">
+    
+  <bitfield begin="31" description=" Enables tri-state control for pr1_edio_data_out[31:0].  " end="0" id="DATA_OUT_EN" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="IEP_DIGIO_EXP" description="DIGIO EXPIRATION CONFIGURE" id="IEP_DIGIO_EXP" offset="0x318" page="2" width="32">
+    
+  <bitfield begin="31" description=" " end="2" id="RESERVED_1" rwaccess="R" width="30"></bitfield>
+    
+  <bitfield begin="1" description=" Enable software to control value of pr1_edio_data_out [31:0].  0: Disable  1: Enable" end="1" id="OUTVALID_OVR_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description=" Enable DIGIO_DATA_OUT to be driven out on pr1_edio_data_out.  Only valid if OUTVALID_OVR_EN = 1.  0: Disable   1: Enable   " end="0" id="SW_DATA_OUT_UPDATE" rwaccess="RW" width="1"></bitfield>
+  </register>
+</module>

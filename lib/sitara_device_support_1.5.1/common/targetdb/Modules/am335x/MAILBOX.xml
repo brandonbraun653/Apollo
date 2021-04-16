@@ -1,0 +1,2083 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="MAILBOX" id="MAILBOX">
+  
+  
+  <register acronym="REVISION" description="This register contains the IP revision code  " id="REVISION" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Not defined yet" end="30" id="SCHEME" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Reserved" end="28" id="RES" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="27" description="Not defined yet" end="16" id="FUNC" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="15" description="Not defined yet" end="11" id="RTL" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="10" description="IP-Major Revision" end="8" id="MAJOR" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="7" description="Not Defined Yet" end="6" id="Custom" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="IP-Minor Revision" end="0" id="MINOR" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="SYSCONFIG" description="This register controls the various parameters of the OCP interface  " id="SYSCONFIG" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="Write 0's for future compatibility Reads returns 0" end="4" id="reserved_4" rwaccess="RW" width="28"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="SIdleMode" rwaccess="RW" width="2">
+    <bitenum description="An idle request is acknowledged unconditionally" id="ForceIdle" token="ForceIdle" value="0"></bitenum>
+    <bitenum description="An idle request is never acknowledged" id="NoIdle" token="NoIdle" value="1"></bitenum>
+    <bitenum description="Acknowledgement to an idle request is given based on the internal activity of the module based on the internal activity of the module" id="SmartIdle" token="SmartIdle" value="2"></bitenum>
+    <bitenum description="Do not use" id="Reserved" token="Reserved" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Write 0's for future compatibility Read returns 0" end="1" id="reserved_3" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Software reset. This bit is automatically reset by the hardware. During reads, it always return 0" end="0" id="SoftReset" rwaccess="RW" width="1">
+    <bitenum description="Normal mode" id="Normal" token="Normal" value="0"></bitenum>
+    <bitenum description="The module is reset" id="Reset" token="Reset" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="MESSAGE_0" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="MESSAGE_0" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="0" id="MESSAGEVALUEMBM" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MESSAGE_1" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="MESSAGE_1" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="0" id="MESSAGEVALUEMBM" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MESSAGE_2" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="MESSAGE_2" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="0" id="MESSAGEVALUEMBM" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MESSAGE_3" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="MESSAGE_3" offset="0x4C" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="0" id="MESSAGEVALUEMBM" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MESSAGE_4" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="MESSAGE_4" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="0" id="MESSAGEVALUEMBM" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MESSAGE_5" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="MESSAGE_5" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="0" id="MESSAGEVALUEMBM" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MESSAGE_6" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="MESSAGE_6" offset="0x58" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="0" id="MESSAGEVALUEMBM" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="MESSAGE_7" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="MESSAGE_7" offset="0x5C" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="0" id="MESSAGEVALUEMBM" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="FIFOSTATUS_0" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="FIFOSTATUS_0" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="1" id="MESSAGEVALUEMBM" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Full flag for Mailbox" end="0" id="FIFOFULLMBM" rwaccess="R" width="1">
+    <bitenum description="Mailbox FIFO is not full" id="NotFull" token="NotFull" value="0"></bitenum>
+    <bitenum description="Mailbox FIFO is full" id="Full" token="Full" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="FIFOSTATUS_1" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="FIFOSTATUS_1" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="1" id="MESSAGEVALUEMBM" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Full flag for Mailbox" end="0" id="FIFOFULLMBM" rwaccess="R" width="1">
+    <bitenum description="Mailbox FIFO is not full" id="NotFull" token="NotFull" value="0"></bitenum>
+    <bitenum description="Mailbox FIFO is full" id="Full" token="Full" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="FIFOSTATUS_2" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="FIFOSTATUS_2" offset="0x88" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="1" id="MESSAGEVALUEMBM" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Full flag for Mailbox" end="0" id="FIFOFULLMBM" rwaccess="R" width="1">
+    <bitenum description="Mailbox FIFO is not full" id="NotFull" token="NotFull" value="0"></bitenum>
+    <bitenum description="Mailbox FIFO is full" id="Full" token="Full" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="FIFOSTATUS_3" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="FIFOSTATUS_3" offset="0x8C" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="1" id="MESSAGEVALUEMBM" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Full flag for Mailbox" end="0" id="FIFOFULLMBM" rwaccess="R" width="1">
+    <bitenum description="Mailbox FIFO is not full" id="NotFull" token="NotFull" value="0"></bitenum>
+    <bitenum description="Mailbox FIFO is full" id="Full" token="Full" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="FIFOSTATUS_4" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="FIFOSTATUS_4" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="1" id="MESSAGEVALUEMBM" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Full flag for Mailbox" end="0" id="FIFOFULLMBM" rwaccess="R" width="1">
+    <bitenum description="Mailbox FIFO is not full" id="NotFull" token="NotFull" value="0"></bitenum>
+    <bitenum description="Mailbox FIFO is full" id="Full" token="Full" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="FIFOSTATUS_5" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="FIFOSTATUS_5" offset="0x94" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="1" id="MESSAGEVALUEMBM" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Full flag for Mailbox" end="0" id="FIFOFULLMBM" rwaccess="R" width="1">
+    <bitenum description="Mailbox FIFO is not full" id="NotFull" token="NotFull" value="0"></bitenum>
+    <bitenum description="Mailbox FIFO is full" id="Full" token="Full" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="FIFOSTATUS_6" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="FIFOSTATUS_6" offset="0x98" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="1" id="MESSAGEVALUEMBM" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Full flag for Mailbox" end="0" id="FIFOFULLMBM" rwaccess="R" width="1">
+    <bitenum description="Mailbox FIFO is not full" id="NotFull" token="NotFull" value="0"></bitenum>
+    <bitenum description="Mailbox FIFO is full" id="Full" token="Full" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="FIFOSTATUS_7" description="The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue" id="FIFOSTATUS_7" offset="0x9C" width="32">
+    
+  <bitfield begin="31" description="Message in Mailbox. The message register stores the next to be read message of the mailbox. Reads remove the message from the FIFO queue." end="1" id="MESSAGEVALUEMBM" rwaccess="RW" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Full flag for Mailbox" end="0" id="FIFOFULLMBM" rwaccess="R" width="1">
+    <bitenum description="Mailbox FIFO is not full" id="NotFull" token="NotFull" value="0"></bitenum>
+    <bitenum description="Mailbox FIFO is full" id="Full" token="Full" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="MSGSTATUS_0" description="The message status register has the status of the messages in the mailbox" id="MSGSTATUS_0" offset="0xC0" width="32">
+    
+  <bitfield begin="2" description="Number of unread messages in Mailbox. Limited to four messages per mailbox." end="0" id="NBOFMSGMBM" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="MSGSTATUS_1" description="The message status register has the status of the messages in the mailbox" id="MSGSTATUS_1" offset="0xC4" width="32">
+    
+  <bitfield begin="2" description="Number of unread messages in Mailbox. Limited to four messages per mailbox." end="0" id="NBOFMSGMBM" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="MSGSTATUS_2" description="The message status register has the status of the messages in the mailbox" id="MSGSTATUS_2" offset="0xC8" width="32">
+    
+  <bitfield begin="2" description="Number of unread messages in Mailbox. Limited to four messages per mailbox." end="0" id="NBOFMSGMBM" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="MSGSTATUS_3" description="The message status register has the status of the messages in the mailbox" id="MSGSTATUS_3" offset="0xCC" width="32">
+    
+  <bitfield begin="2" description="Number of unread messages in Mailbox. Limited to four messages per mailbox." end="0" id="NBOFMSGMBM" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="MSGSTATUS_4" description="The message status register has the status of the messages in the mailbox" id="MSGSTATUS_4" offset="0xD0" width="32">
+    
+  <bitfield begin="2" description="Number of unread messages in Mailbox. Limited to four messages per mailbox." end="0" id="NBOFMSGMBM" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="MSGSTATUS_5" description="The message status register has the status of the messages in the mailbox" id="MSGSTATUS_5" offset="0xD4" width="32">
+    
+  <bitfield begin="2" description="Number of unread messages in Mailbox. Limited to four messages per mailbox." end="0" id="NBOFMSGMBM" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="MSGSTATUS_6" description="The message status register has the status of the messages in the mailbox" id="MSGSTATUS_6" offset="0xD8" width="32">
+    
+  <bitfield begin="2" description="Number of unread messages in Mailbox. Limited to four messages per mailbox." end="0" id="NBOFMSGMBM" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="MSGSTATUS_7" description="The message status register has the status of the messages in the mailbox" id="MSGSTATUS_7" offset="0xDC" width="32">
+    
+  <bitfield begin="2" description="Number of unread messages in Mailbox. Limited to four messages per mailbox." end="0" id="NBOFMSGMBM" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_RAW_0" description="The interrupt status register has the status for each event that may be responsible for the generation of an interrupt to the corresponding user - write 1 to a given bit resets this bit. This register is mainly used for debug purpose." id="IRQSTATUS_RAW_0" offset="0x100" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_CLR_0" description="The interrupt status register has the status combined with irq-enable for each event that may be responsible for the generation of an interrupt to the corresponding user - write 1 to a given bit resets this bit." id="IRQSTATUS_CLR_0" offset="0x104" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_SET_0" description="The interrupt enable register enables to unmask the module internal source of interrupt to the corresponding user. This register is write 1 to set." id="IRQENABLE_SET_0" offset="0x108" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_CLR_0" description="The interrupt enable register enables to mask the module internal source of interrupt to the corresponding user. This register is write 1 to clear." id="IRQENABLE_CLR_0" offset="0x10C" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_RAW_1" description="The interrupt status register has the status for each event that may be responsible for the generation of an interrupt to the corresponding user - write 1 to a given bit resets this bit. This register is mainly used for debug purpose." id="IRQSTATUS_RAW_1" offset="0x110" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_CLR_1" description="The interrupt status register has the status combined with irq-enable for each event that may be responsible for the generation of an interrupt to the corresponding user - write 1 to a given bit resets this bit." id="IRQSTATUS_CLR_1" offset="0x114" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_SET_1" description="The interrupt enable register enables to unmask the module internal source of interrupt to the corresponding user. This register is write 1 to set." id="IRQENABLE_SET_1" offset="0x118" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_CLR_1" description="The interrupt enable register enables to mask the module internal source of interrupt to the corresponding user. This register is write 1 to clear." id="IRQENABLE_CLR_1" offset="0x11C" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_RAW_2" description="The interrupt status register has the status for each event that may be responsible for the generation of an interrupt to the corresponding user - write 1 to a given bit resets this bit. This register is mainly used for debug purpose." id="IRQSTATUS_RAW_2" offset="0x120" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_CLR_2" description="The interrupt status register has the status combined with irq-enable for each event that may be responsible for the generation of an interrupt to the corresponding user - write 1 to a given bit resets this bit." id="IRQSTATUS_CLR_2" offset="0x124" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_SET_2" description="The interrupt enable register enables to unmask the module internal source of interrupt to the corresponding user. This register is write 1 to set." id="IRQENABLE_SET_2" offset="0x128" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_CLR_2" description="The interrupt enable register enables to mask the module internal source of interrupt to the corresponding user. This register is write 1 to clear." id="IRQENABLE_CLR_2" offset="0x12C" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_RAW_3" description="The interrupt status register has the status for each event that may be responsible for the generation of an interrupt to the corresponding user - write 1 to a given bit resets this bit. This register is mainly used for debug purpose." id="IRQSTATUS_RAW_3" offset="0x130" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQSTATUS_CLR_3" description="The interrupt status register has the status combined with irq-enable for each event that may be responsible for the generation of an interrupt to the corresponding user - write 1 to a given bit resets this bit." id="IRQSTATUS_CLR_3" offset="0x134" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_SET_3" description="The interrupt enable register enables to unmask the module internal source of interrupt to the corresponding user. This register is write 1 to set." id="IRQENABLE_SET_3" offset="0x138" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+  
+  
+  <register acronym="IRQENABLE_CLR_3" description="The interrupt enable register enables to mask the module internal source of interrupt to the corresponding user. This register is write 1 to clear." id="IRQENABLE_CLR_3" offset="0x13C" width="32">
+    
+  <bitfield begin="15" description="Not Full Status bit for User u, Mailbox 7" end="15" id="NotFullStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="14" description="New Message Status bit for User u, Mailbox 7" end="14" id="NewMSGStatusUuMB7" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="13" description="Not Full Status bit for User u, Mailbox 6" end="13" id="NotFullStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="12" description="New Message Status bit for User u, Mailbox 6" end="12" id="NewMSGStatusUuMB6" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="11" description="Not Full Status bit for User u, Mailbox 5" end="11" id="NotFullStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="10" description="New Message Status bit for User u, Mailbox 5" end="10" id="NewMSGStatusUuMB5" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="9" description="Not Full Status bit for User u, Mailbox 4" end="9" id="NotFullStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="8" description="New Message Status bit for User u, Mailbox 4" end="8" id="NewMSGStatusUuMB4" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="7" description="Not Full Status bit for User u, Mailbox 3" end="7" id="NotFullStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="New Message Status bit for User u, Mailbox 3" end="6" id="NewMSGStatusUuMB3" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="Not Full Status bit for User u, Mailbox 2" end="5" id="NotFullStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="New Message Status bit for User u, Mailbox 2" end="4" id="NewMSGStatusUuMB2" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Not Full Status bit for User u, Mailbox 1" end="3" id="NotFullStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="New Message Status bit for User u, Mailbox 1" end="2" id="NewMSGStatusUuMB1" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Not Full Status bit for User u, Mailbox 0" end="1" id="NotFullStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event pending (message queue full)" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event pending (message queue not full)" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="0" description="New Message Status bit for User u, Mailbox 0" end="0" id="NewMSGStatusUuMB0" rwaccess="RW" width="1">
+    <bitenum description="No action" id="NoAction" token="NoAction" value="0"></bitenum>
+    <bitenum description="No event (message) pending" id="NoEvent" token="NoEvent" value="0"></bitenum>
+    <bitenum description="Set the event (for debug)" id="SetEvent" token="SetEvent" value="1"></bitenum>
+    <bitenum description="Event (message) pending" id="EventPending" token="EventPending" value="1"></bitenum>
+  </bitfield>
+  </register>
+</module>

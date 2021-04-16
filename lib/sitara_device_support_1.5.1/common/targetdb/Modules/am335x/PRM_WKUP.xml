@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="PRM_WKUP" id="PRM_WKUP">
+  
+  
+  <register acronym="RM_WKUP_RSTCTRL" description="This register controls the release of the ALWAYS ON Domain resets." id="RM_WKUP_RSTCTRL" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="6" id="Reserved" rwaccess="R" width="26"></bitfield>
+    
+  <bitfield begin="5" description="Reserved" end="4" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Assert Reset to WKUP_M3" end="3" id="WKUP_M3_LRST" rwaccess="RW" width="1">
+    <bitenum description="Reset is cleared for the M3" id="CLEAR" token="CLEAR" value="0"></bitenum>
+    <bitenum description="Reset is asserted for the M3 by A8" id="ASSERT" token="ASSERT" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Reserved" end="0" id="Reserved1" rwaccess="R" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="PM_WKUP_PWRSTCTRL" description="Controls power state of WKUP power domain" id="PM_WKUP_PWRSTCTRL" offset="0x4" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="30" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Reserved" end="29" id="Reserved7" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Reserved" end="28" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Reserved" end="27" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Reserved" end="25" id="Reserved6" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Reserved" end="5" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="4" description="Power state change request when domain has already performed a sleep transition. Allows going into deeper low power state without waking up the power domain." end="4" id="LowPowerStateChange" rwaccess="RW" width="1">
+    <bitenum description="Do not request a low power state change." id="DIS" token="DIS" value="0"></bitenum>
+    <bitenum description="Request a low power state change. This bit is automatically cleared when the power state is effectively changed or when power state is ON." id="EN" token="EN" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="3" description="Logic state when power domain is RETENTION" end="3" id="LogicRETState" rwaccess="RW" width="1">
+    <bitenum description="Only retention registers are retained and remaing logic is off when the domain is in RETENTION state." id="logic_off" token="logic_off" value="0"></bitenum>
+    <bitenum description="Whole logic is retained when domain is in RETENTION state." id="logic_ret" token="logic_ret" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="2" description="Reserved" end="2" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Reserved" end="0" id="Reserved5" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="PM_WKUP_PWRSTST" description="This register provides a status on the current WKUP power domain state. [warm reset insensitive]" id="PM_WKUP_PWRSTST" offset="0x8" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="23" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="22" description="Reserved" end="21" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="20" description="Domain transition status" end="20" id="InTransition" rwaccess="R" width="1">
+    <bitenum description="No on-going transition on power domain" id="No" token="No" value="0"></bitenum>
+    <bitenum description="Power domain transition is in progress." id="Ongoing" token="Ongoing" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="19" description="Reserved" end="19" id="Reserved" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="WKUP domain memory state status" end="17" id="Debugss_mem_statest" rwaccess="R" width="2">
+    <bitenum description="Memory is OFF" id="Mem_off" token="Mem_off" value="0"></bitenum>
+    <bitenum description="Reserved" id="Reserved" token="Reserved" value="2"></bitenum>
+    <bitenum description="Memory is ON" id="Mem_on" token="Mem_on" value="3"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="16" description="Reserved" end="3" id="Reserved2" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="2" description="Logic state status" end="2" id="LogicStateSt" rwaccess="R" width="1">
+    <bitenum description="Logic in domain is OFF" id="OFF" token="OFF" value="0"></bitenum>
+    <bitenum description="Logic in domain is ON" id="ON" token="ON" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="1" description="Reserved" end="0" id="Reserved4" rwaccess="R" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="RM_WKUP_RSTST" description="This register  logs  the different reset sources of the ALWON domain. Each bit is set upon release of the domain reset signal. Must be cleared by software. [warm reset insensitive]" id="RM_WKUP_RSTST" offset="0xC" width="32">
+    
+  <bitfield begin="31" description="Reserved" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="M3 Processor  has been reset due to M3 ICECRUSHER1 reset event" end="7" id="ICECRUSHER_M3_RST" rwaccess="RW" width="1">
+    <bitenum description="No reset" id="RESET_NO" token="RESET_NO" value="0"></bitenum>
+    <bitenum description="M3 Processor has been reset" id="RESET_YES" token="RESET_YES" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="6" description="M3 Processor  has been reset due to emulation reset source  e.g. assert reset command initiated by the icepick module" end="6" id="EMULATION_M3_RST" rwaccess="RW" width="1">
+    <bitenum description="No reset" id="RESET_NO" token="RESET_NO" value="0"></bitenum>
+    <bitenum description="M3 Processor has been reset" id="RESET_YES" token="RESET_YES" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="5" description="M3 Processor  has been reset" end="5" id="WKUP_M3_LRST" rwaccess="RW" width="1">
+    <bitenum description="No reset" id="RESET_NO" token="RESET_NO" value="0"></bitenum>
+    <bitenum description="M3 Processor has been reset" id="RESET_YES" token="RESET_YES" value="1"></bitenum>
+  </bitfield>
+    
+  <bitfield begin="4" description="Reserved" end="0" id="Reserved" rwaccess="R" width="5"></bitfield>
+  </register>
+</module>

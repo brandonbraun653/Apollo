@@ -1,0 +1,2397 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="GPMC" id="GPMC">
+  
+  
+  <register acronym="GPMC_REVISION" description="The GPMC_REVISION register contains the IP revision code." id="GPMC_REVISION" offset="0x0" width="32">
+    
+  <bitfield begin="31" description="" end="8" id="Reserved1" rwaccess="R" width="24"></bitfield>
+    
+  <bitfield begin="7" description="IP revision. Major revision is [7:4]. Minor revision is [3:0]. Examples: 10h for revision 1.0, 21h for revision 2.1." end="0" id="REV" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_SYSCONFIG" description="The GPMC_SYSCONFIG register controls the various parameters of the OCP interface." id="GPMC_SYSCONFIG" offset="0x10" width="32">
+    
+  <bitfield begin="31" description="" end="5" id="Reserved1" rwaccess="R" width="27"></bitfield>
+    
+  <bitfield begin="4" description="Idle mode" end="3" id="SIDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="2" description="" end="2" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Software reset (Set 1 to this bit triggers a module reset. This bit is automatically reset by hardware. During reads, it always returns 0)." end="1" id="SOFTRESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Internal OCP clock gating strategy." end="0" id="AUTOIDLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_SYSSTATUS" description="The GPMC_SYSSTATUS register provides status information about the module, excluding the interrupt status information." id="GPMC_SYSSTATUS" offset="0x14" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Internal reset monitoring" end="0" id="RESETDONE" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_IRQSTATUS" description="The GPMC_IRQSTATUS interrupt status register regroups all the status of the module internal events that can generate an interrupt." id="GPMC_IRQSTATUS" offset="0x18" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Status of the Wait1 Edge Detection interrupt" end="9" id="WAIT1EDGEDETECTIONSTATUS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Status of the Wait0 Edge Detection interrupt" end="8" id="WAIT0EDGEDETECTIONSTATUS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="2" id="Reserved2" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="1" description="Status of the TerminalCountEvent interrupt" end="1" id="TERMINALCOUNTSTATUS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Status of the FIFOEvent interrupt" end="0" id="FIFOEVENTSTATUS" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_IRQENABLE" description="The GPMC_IRQENABLE interrupt enable register allows to mask/unmask the module internal sources of interrupt, on a event-by-event basis." id="GPMC_IRQENABLE" offset="0x1C" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Enables the Wait1 Edge Detection interrupt" end="9" id="WAIT1EDGEDETECTIONENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Enables the Wait0 Edge Detection interrupt" end="8" id="WAIT0EDGEDETECTIONENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="2" id="Reserved2" rwaccess="R" width="6"></bitfield>
+    
+  <bitfield begin="1" description="Enables TerminalCountEvent interrupt issuing in pre-fetch or write posting mode" end="1" id="TERMINALCOUNTEVENTENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Enables the FIFOEvent interrupt" end="0" id="FIFOEVENTENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_TIMEOUT_CONTROL" description="The GPMC_TIMEOUT_CONTROL register allows the user to set the start value of the timeout counter" id="GPMC_TIMEOUT_CONTROL" offset="0x40" width="32">
+    
+  <bitfield begin="31" description="" end="13" id="Reserved1" rwaccess="R" width="19"></bitfield>
+    
+  <bitfield begin="12" description="Start value of the time-out counter (000 corresponds to 0 GPMC.FCLK cycle, 1h corresponds to 1 GPMC.FCLK cycle, and 1FFh corresponds to 511 GPMC.FCLK cycles)" end="4" id="TIMEOUTSTARTVALUE" rwaccess="RW" width="9"></bitfield>
+    
+  <bitfield begin="3" description="" end="1" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="0" description="Enable bit of the TimeOut feature" end="0" id="TIMEOUTENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ERR_ADDRESS" description="The GPMC_ERR_ADDRESS register stores the address of the illegal access when an error occurs." id="GPMC_ERR_ADDRESS" offset="0x44" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Address of illegal access: A30 (0 for memory region, 1 for GPMC register region) and A29 to A0 (1GByte maximum)" end="0" id="ILLEGALADD" rwaccess="RW" width="31"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ERR_TYPE" description="The GPMC_ERR_TYPE register stores the type of error when an error occurs." id="GPMC_ERR_TYPE" offset="0x48" width="32">
+    
+  <bitfield begin="31" description="" end="11" id="Reserved1" rwaccess="R" width="21"></bitfield>
+    
+  <bitfield begin="10" description="System Command of the transaction that caused the error" end="8" id="ILLEGALMCMD" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Not supported Address error" end="4" id="ERRORNOTSUPPADD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Not supported Command error" end="3" id="ERRORNOTSUPPMCMD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Time-out error" end="2" id="ERRORTIMEOUT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="" end="1" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Error validity status - Must be explicitly cleared with a write 1 transaction" end="0" id="ERRORVALID" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG" description="The configuration register allows global configuration of the GPMC." id="GPMC_CONFIG" offset="0x50" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Selects the polarity of input pin WAIT1." end="9" id="WAIT1PINPOLARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Selects the polarity of input pin WAIT0." end="8" id="WAIT0PINPOLARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Controls the WP output pin level." end="4" id="WRITEPROTECT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Limited Address device support." end="1" id="LIMITEDADDRESS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="NANDFORCEPOSTEDWRITE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_STATUS" description="The status register provides global status bits of the GPMC." id="GPMC_STATUS" offset="0x54" width="32">
+    
+  <bitfield begin="31" description="" end="10" id="Reserved1" rwaccess="R" width="22"></bitfield>
+    
+  <bitfield begin="9" description="Is a copy of input pin WAIT1. (Reset value is WAIT1 input pin sampled at IC reset)" end="9" id="WAIT1STATUS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Is a copy of input pin WAIT0. (Reset value is WAIT0 input pin sampled at IC reset)" end="8" id="WAIT0STATUS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="1" id="Reserved2" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="0" description="Stores the empty status of the write buffer" end="0" id="EMPTYWRITEBUFFERSTATUS" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG1_0" description="The configuration 1 register sets signal control parameters per chip select." id="GPMC_CONFIG1_0" offset="0x60" width="32">
+    
+  <bitfield begin="31" description="Enables the wrapping burst capability. Must be set if the attached device is configured in wrapping burst" end="31" id="WRAPBURST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Selects the read single or multiple access" end="30" id="READMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Selects the read mode operation" end="29" id="READTYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Selects the write single or multiple access" end="28" id="WRITEMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Selects the write mode operation" end="27" id="WRITETYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Output GPMC.CLK activation time" end="25" id="CLKACTIVATIONTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Specifies the attached device page (burst) length (1 Word = Interface size)" end="23" id="ATTACHEDDEVICEPAGELENGTH" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="Selects the Wait monitoring configuration for Read accesses." end="22" id="WAITREADMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Selects the Wait monitoring configuration for Write accesses" end="21" id="WAITWRITEMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Selects input pin Wait monitoring time" end="18" id="WAITMONITORINGTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Selects the input WAIT pin for this chip select." end="16" id="WAITPINSELECT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Selects the device size attached (Reset value is SYSBOOT[8] input pin sampled at IC reset for CS[0] (active low) and 01 for CS[1] to CS[6] (active low))." end="12" id="DEVICESIZE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Selects the attached device type" end="10" id="DEVICETYPE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Enables the Address and data multiplexed protocol (Reset value is SYSBOOT[11] and SYSBOOT[10] input pins sampled at IC reset for CS[0] (active low) and 0 for CS[1] to CS[6] (active low))." end="8" id="MUXADDDATA" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Signals timing latencies scalar factor (Rd/WRCycleTime, AccessTime, PageBurstAccessTime, CSOnTime, CSRd/WrOffTime, ADVOnTime, ADVRd/WrOffTime, OEOnTime, OEOffTime, WEOnTime, WEOffTime, Cycle2CycleDelay, BusTurnAround, TimeOutStartValue)" end="4" id="TIMEPARAGRANULARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Divides the GPMC.FCLK clock" end="0" id="GPMCFCLKDIVIDER" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG2_0" description="Chip-select signal timing parameter configuration." id="GPMC_CONFIG2_0" offset="0x64" width="32">
+    
+  <bitfield begin="31" description="" end="21" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="20" description="CS# de-assertion time from start cycle time for write accesses" end="16" id="CSWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="CS# de-assertion time from start cycle time for read accesses" end="8" id="CSRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="CS# Add Extra Half GPMC.FCLK cycle" end="7" id="CSEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="4" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="3" description="CS# assertion time from start cycle time" end="0" id="CSONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG3_0" description="ADV# signal timing parameter configuration." id="GPMC_CONFIG3_0" offset="0x68" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="ADV# de-assertion for first address phase when using the AAD-Mux protocol" end="28" id="ADVAADMUXWROFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="ADV# assertion for first address phase when using the AAD-Mux protocol" end="24" id="ADVAADMUXRDOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="ADV# de-assertion time from start cycle time for write accesses" end="16" id="ADVWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="ADV# de-assertion time from start cycle time for read accesses" end="8" id="ADVRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="ADV# Add Extra Half GPMC.FCLK cycle" end="7" id="ADVEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="ADV# assertion for first address phase when using the AAD-Multiplexed protocol" end="4" id="ADVAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="ADV# assertion time from start cycle time" end="0" id="ADVONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG4_0" description="WE# and OE# signals timing parameter configuration." id="GPMC_CONFIG4_0" offset="0x6C" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="WE# de-assertion time from start cycle time" end="24" id="WEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="WE# Add Extra Half GPMC.FCLK cycle" end="23" id="WEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="20" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="WE# assertion time from start cycle time" end="16" id="WEONTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="OE# de-assertion time for the first address phase in an AAD-Multiplexed access" end="13" id="OEAADMUXOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="OE# de-assertion time from start cycle time" end="8" id="OEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="OE# Add Extra Half GPMC.FCLK cycle" end="7" id="OEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="OE# assertion time for the first address phase in an AAD-Multiplexed access" end="4" id="OEAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="OE# assertion time from start cycle time" end="0" id="OEONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG5_0" description="RdAccessTime and CycleTime timing parameters configuration." id="GPMC_CONFIG5_0" offset="0x70" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Delay between successive words in a multiple access" end="24" id="PAGEBURSTACCESSTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Delay between start cycle time and first data valid" end="16" id="RDACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Total write cycle time" end="8" id="WRCYCLETIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Total read cycle time" end="0" id="RDCYCLETIME" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG6_0" description="WrAccessTime, WrDataOnADmuxBus, Cycle2Cycle, and BusTurnAround parameters configuration" id="GPMC_CONFIG6_0" offset="0x74" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Delay from StartAccessTime to the GPMC.FCLK rising edge corresponding the the GPMC.CLK rising edge used by the attached memory for the first data capture" end="24" id="WRACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="" end="20" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Specifies on which GPMC.FCLK rising edge the first data of the synchronous burst write is driven in the add/data multiplexed bus" end="16" id="WRDATAONADMUXBUS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Chip select high pulse delay between two successive accesses" end="8" id="CYCLE2CYCLEDELAY" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Add Cycle2CycleDelay between two successive accesses to the same chip-select (any access type)" end="7" id="CYCLE2CYCLESAMECSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Add Cycle2CycleDelay between two successive accesses to a different chip-select (any access type)" end="6" id="CYCLE2CYCLEDIFFCSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="4" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Bus turn around latency between two successive accesses to the same chip-select (read to write) or to a different chip-select (read to read and read to write)" end="0" id="BUSTURNAROUND" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG7_0" description="Chip-select address mapping configuration." id="GPMC_CONFIG7_0" offset="0x78" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Chip-select mask address. Values not listed must be avoided as they create holes in the chip-select address space." end="8" id="MASKADDRESS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Chip-select enable (reset value is 1 for CS[0] (active low) and 0 for CS[1] to CS[5] (active low))." end="6" id="CSVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Chip-select base address. CSi base address where i = 0 to 3 (16 Mbytes minimum granularity). Bits 5 to 0 correspond to A29, A28, A27, A26, A25, and A24." end="0" id="BASEADDRESS" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_COMMAND_0" description="This register is not a true register, just an address location." id="GPMC_NAND_COMMAND_0" offset="0x7C" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_COMMAND_0 location places the data as the NAND command value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_COMMAND_0" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_ADDRESS_0" description="This register is not a true register, just an address location." id="GPMC_NAND_ADDRESS_0" offset="0x80" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_ADDRESS_0 location places the data as the NAND partial address value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_ADDRESS_0" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_DATA_0" description="This register is not a true register, just an address location." id="GPMC_NAND_DATA_0" offset="0x84" width="32">
+    
+  <bitfield begin="31" description="Reading data from the GPMC_NAND_DATA_0 location or from any location in the associated chip-select memory region activates an asynchronous read access." end="0" id="GPMC_NAND_DATA_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG1_1" description="The configuration 1 register sets signal control parameters per chip select." id="GPMC_CONFIG1_1" offset="0x90" width="32">
+    
+  <bitfield begin="31" description="Enables the wrapping burst capability. Must be set if the attached device is configured in wrapping burst" end="31" id="WRAPBURST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Selects the read single or multiple access" end="30" id="READMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Selects the read mode operation" end="29" id="READTYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Selects the write single or multiple access" end="28" id="WRITEMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Selects the write mode operation" end="27" id="WRITETYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Output GPMC.CLK activation time" end="25" id="CLKACTIVATIONTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Specifies the attached device page (burst) length (1 Word = Interface size)" end="23" id="ATTACHEDDEVICEPAGELENGTH" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="Selects the Wait monitoring configuration for Read accesses." end="22" id="WAITREADMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Selects the Wait monitoring configuration for Write accesses" end="21" id="WAITWRITEMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Selects input pin Wait monitoring time" end="18" id="WAITMONITORINGTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Selects the input WAIT pin for this chip select." end="16" id="WAITPINSELECT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Selects the device size attached (Reset value is SYSBOOT[8] input pin sampled at IC reset for CS[0] (active low) and 01 for CS[1] to CS[6] (active low))." end="12" id="DEVICESIZE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Selects the attached device type." end="10" id="DEVICETYPE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Enables the Address and data multiplexed protocol (Reset value is SYSBOOT[11] and SYSBOOT[10] input pins sampled at IC reset for CS[0] (active low) and 0 for CS[1] to CS[6] (active low))." end="8" id="MUXADDDATA" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Signals timing latencies scalar factor (Rd/WRCycleTime, AccessTime, PageBurstAccessTime, CSOnTime, CSRd/WrOffTime, ADVOnTime, ADVRd/WrOffTime, OEOnTime, OEOffTime, WEOnTime, WEOffTime, Cycle2CycleDelay, BusTurnAround, TimeOutStartValue)" end="4" id="TIMEPARAGRANULARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Divides the GPMC.FCLK clock." end="0" id="GPMCFCLKDIVIDER" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG2_1" description="Chip-select signal timing parameter configuration." id="GPMC_CONFIG2_1" offset="0x94" width="32">
+    
+  <bitfield begin="31" description="" end="21" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="20" description="CS# de-assertion time from start cycle time for write accesses" end="16" id="CSWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="CS# de-assertion time from start cycle time for read accesses" end="8" id="CSRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="CS# Add Extra Half GPMC.FCLK cycle" end="7" id="CSEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="4" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="3" description="CS# assertion time from start cycle time" end="0" id="CSONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG3_1" description="ADV# signal timing parameter configuration." id="GPMC_CONFIG3_1" offset="0x98" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="ADV# de-assertion for first address phase when using the AAD-Mux protocol" end="28" id="ADVAADMUXWROFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="ADV# assertion for first address phase when using the AAD-Mux protocol" end="24" id="ADVAADMUXRDOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="ADV# de-assertion time from start cycle time for write accesses" end="16" id="ADVWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="ADV# de-assertion time from start cycle time for read accesses" end="8" id="ADVRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="ADV# Add Extra Half GPMC.FCLK cycle" end="7" id="ADVEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="ADV# assertion for first address phase when using the AAD-Multiplexed protocol" end="4" id="ADVAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="ADV# assertion time from start cycle time" end="0" id="ADVONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG4_1" description="WE# and OE# signals timing parameter configuration." id="GPMC_CONFIG4_1" offset="0x9C" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="WE# de-assertion time from start cycle time" end="24" id="WEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="WE# Add Extra Half GPMC.FCLK cycle" end="23" id="WEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="20" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="WE# assertion time from start cycle time" end="16" id="WEONTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="OE# de-assertion time for the first address phase in an AAD-Multiplexed access" end="13" id="OEAADMUXOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="OE# de-assertion time from start cycle time" end="8" id="OEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="OE# Add Extra Half GPMC.FCLK cycle" end="7" id="OEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="OE# assertion time for the first address phase in an AAD-Multiplexed access" end="4" id="OEAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="OE# assertion time from start cycle time" end="0" id="OEONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG5_1" description="RdAccessTime and CycleTime timing parameters configuration." id="GPMC_CONFIG5_1" offset="0xA0" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Delay between successive words in a multiple access" end="24" id="PAGEBURSTACCESSTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Delay between start cycle time and first data valid" end="16" id="RDACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Total write cycle time" end="8" id="WRCYCLETIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Total read cycle time" end="0" id="RDCYCLETIME" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG6_1" description="WrAccessTime, WrDataOnADmuxBus, Cycle2Cycle, and BusTurnAround parameters configuration" id="GPMC_CONFIG6_1" offset="0xA4" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Delay from StartAccessTime to the GPMC.FCLK rising edge corresponding the the GPMC.CLK rising edge used by the attached memory for the first data capture" end="24" id="WRACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="" end="20" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Specifies on which GPMC.FCLK rising edge the first data of the synchronous burst write is driven in the add/data multiplexed bus" end="16" id="WRDATAONADMUXBUS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Chip select high pulse delay between two successive accesses" end="8" id="CYCLE2CYCLEDELAY" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Add Cycle2CycleDelay between two successive accesses to the same chip-select (any access type)" end="7" id="CYCLE2CYCLESAMECSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Add Cycle2CycleDelay between two successive accesses to a different chip-select (any access type)" end="6" id="CYCLE2CYCLEDIFFCSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="4" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Bus turn around latency between two successive accesses to the same chip-select (read to write) or to a different chip-select (read to read and read to write)" end="0" id="BUSTURNAROUND" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG7_1" description="Chip-select address mapping configuration." id="GPMC_CONFIG7_1" offset="0xA8" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Chip-select mask address. Values not listed must be avoided as they create holes in the chip-select address space." end="8" id="MASKADDRESS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Chip-select enable (reset value is 1 for CS[0] (active low) and 0 for CS[1] to CS[5] (active low))." end="6" id="CSVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Chip-select base address. CSi base address where i = 0 to 3 (16 Mbytes minimum granularity). Bits 5 to 0 correspond to A29, A28, A27, A26, A25, and A24." end="0" id="BASEADDRESS" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_COMMAND_1" description="This register is not a true register, just an address location." id="GPMC_NAND_COMMAND_1" offset="0xAC" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_COMMAND_1 location places the data as the NAND command value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_COMMAND_1" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_ADDRESS_1" description="This register is not a true register, just an address location." id="GPMC_NAND_ADDRESS_1" offset="0xB0" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_ADDRESS_1 location places the data as the NAND partial address value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_ADDRESS_1" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_DATA_1" description="This register is not a true register, just an address location." id="GPMC_NAND_DATA_1" offset="0xB4" width="32">
+    
+  <bitfield begin="31" description="Reading data from the GPMC_NAND_DATA_1 location or from any location in the associated chip-select memory region activates an asynchronous read access." end="0" id="GPMC_NAND_DATA_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG1_2" description="The configuration 1 register sets signal control parameters per chip select." id="GPMC_CONFIG1_2" offset="0xC0" width="32">
+    
+  <bitfield begin="31" description="Enables the wrapping burst capability. Must be set if the attached device is configured in wrapping burst" end="31" id="WRAPBURST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Selects the read single or multiple access" end="30" id="READMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Selects the read mode operation" end="29" id="READTYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Selects the write single or multiple access" end="28" id="WRITEMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Selects the write mode operation" end="27" id="WRITETYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Output GPMC.CLK activation time" end="25" id="CLKACTIVATIONTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Specifies the attached device page (burst) length (1 Word = Interface size)" end="23" id="ATTACHEDDEVICEPAGELENGTH" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="Selects the Wait monitoring configuration for Read accesses." end="22" id="WAITREADMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Selects the Wait monitoring configuration for Write accesses" end="21" id="WAITWRITEMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Selects input pin Wait monitoring time" end="18" id="WAITMONITORINGTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Selects the input WAIT pin for this chip select." end="16" id="WAITPINSELECT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Selects the device size attached (Reset value is SYSBOOT[8] input pin sampled at IC reset for CS[0] (active low) and 01 for CS[1] to CS[6] (active low))." end="12" id="DEVICESIZE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Selects the attached device type." end="10" id="DEVICETYPE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Enables the Address and data multiplexed protocol (Reset value is SYSBOOT[11] and SYSBOOT[10] input pins sampled at IC reset for CS[0] (active low) and 0 for CS[1] to CS[6] (active low))." end="8" id="MUXADDDATA" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Signals timing latencies scalar factor (Rd/WRCycleTime, AccessTime, PageBurstAccessTime, CSOnTime, CSRd/WrOffTime, ADVOnTime, ADVRd/WrOffTime, OEOnTime, OEOffTime, WEOnTime, WEOffTime, Cycle2CycleDelay, BusTurnAround, TimeOutStartValue)." end="4" id="TIMEPARAGRANULARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Divides the GPMC.FCLK clock." end="0" id="GPMCFCLKDIVIDER" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG2_2" description="Chip-select signal timing parameter configuration." id="GPMC_CONFIG2_2" offset="0xC4" width="32">
+    
+  <bitfield begin="31" description="" end="21" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="20" description="CS# de-assertion time from start cycle time for write accesses" end="16" id="CSWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="CS# de-assertion time from start cycle time for read accesses" end="8" id="CSRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="CS# Add Extra Half GPMC.FCLK cycle" end="7" id="CSEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="4" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="3" description="CS# assertion time from start cycle time" end="0" id="CSONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG3_2" description="ADV# signal timing parameter configuration." id="GPMC_CONFIG3_2" offset="0xC8" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="ADV# de-assertion for first address phase when using the AAD-Mux protocol" end="28" id="ADVAADMUXWROFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="ADV# assertion for first address phase when using the AAD-Mux protocol" end="24" id="ADVAADMUXRDOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="ADV# de-assertion time from start cycle time for write accesses" end="16" id="ADVWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="ADV# de-assertion time from start cycle time for read accesses" end="8" id="ADVRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="ADV# Add Extra Half GPMC.FCLK cycle" end="7" id="ADVEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="ADV# assertion for first address phase when using the AAD-Multiplexed protocol" end="4" id="ADVAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="ADV# assertion time from start cycle time" end="0" id="ADVONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG4_2" description="WE# and OE# signals timing parameter configuration." id="GPMC_CONFIG4_2" offset="0xCC" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="WE# de-assertion time from start cycle time" end="24" id="WEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="WE# Add Extra Half GPMC.FCLK cycle" end="23" id="WEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="20" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="WE# assertion time from start cycle time" end="16" id="WEONTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="OE# de-assertion time for the first address phase in an AAD-Multiplexed access" end="13" id="OEAADMUXOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="OE# de-assertion time from start cycle time" end="8" id="OEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="OE# Add Extra Half GPMC.FCLK cycle" end="7" id="OEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="OE# assertion time for the first address phase in an AAD-Multiplexed access" end="4" id="OEAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="OE# assertion time from start cycle time" end="0" id="OEONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG5_2" description="RdAccessTime and CycleTime timing parameters configuration." id="GPMC_CONFIG5_2" offset="0xD0" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Delay between successive words in a multiple access" end="24" id="PAGEBURSTACCESSTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Delay between start cycle time and first data valid" end="16" id="RDACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Total write cycle time" end="8" id="WRCYCLETIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Total read cycle time" end="0" id="RDCYCLETIME" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG6_2" description="WrAccessTime, WrDataOnADmuxBus, Cycle2Cycle, and BusTurnAround parameters configuration" id="GPMC_CONFIG6_2" offset="0xD4" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Delay from StartAccessTime to the GPMC.FCLK rising edge corresponding the the GPMC.CLK rising edge used by the attached memory for the first data capture" end="24" id="WRACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="" end="20" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Specifies on which GPMC.FCLK rising edge the first data of the synchronous burst write is driven in the add/data multiplexed bus" end="16" id="WRDATAONADMUXBUS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Chip select high pulse delay between two successive accesses" end="8" id="CYCLE2CYCLEDELAY" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Add Cycle2CycleDelay between two successive accesses to the same chip-select (any access type)" end="7" id="CYCLE2CYCLESAMECSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Add Cycle2CycleDelay between two successive accesses to a different chip-select (any access type)" end="6" id="CYCLE2CYCLEDIFFCSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="4" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Bus turn around latency between two successive accesses to the same chip-select (read to write) or to a different chip-select (read to read and read to write)" end="0" id="BUSTURNAROUND" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG7_2" description="Chip-select address mapping configuration." id="GPMC_CONFIG7_2" offset="0xD8" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Chip-select mask address. Values not listed must be avoided as they create holes in the chip-select address space." end="8" id="MASKADDRESS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Chip-select enable (reset value is 1 for CS[0] (active low) and 0 for CS[1] to CS[5] (active low))." end="6" id="CSVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Chip-select base address. CSi base address where i = 0 to 3 (16 Mbytes minimum granularity). Bits 5 to 0 correspond to A29, A28, A27, A26, A25, and A24." end="0" id="BASEADDRESS" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_COMMAND_2" description="This register is not a true register, just an address location." id="GPMC_NAND_COMMAND_2" offset="0xDC" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_COMMAND_2 location places the data as the NAND command value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_COMMAND_2" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_ADDRESS_2" description="This register is not a true register, just an address location." id="GPMC_NAND_ADDRESS_2" offset="0xE0" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_ADDRESS_2 location places the data as the NAND partial address value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_ADDRESS_2" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_DATA_2" description="This register is not a true register, just an address location." id="GPMC_NAND_DATA_2" offset="0xE4" width="32">
+    
+  <bitfield begin="31" description="Reading data from the GPMC_NAND_DATA_2 location or from any location in the associated chip-select memory region activates an asynchronous read access." end="0" id="GPMC_NAND_DATA_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG1_3" description="The configuration 1 register sets signal control parameters per chip select." id="GPMC_CONFIG1_3" offset="0xF0" width="32">
+    
+  <bitfield begin="31" description="Enables the wrapping burst capability. Must be set if the attached device is configured in wrapping burst" end="31" id="WRAPBURST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Selects the read single or multiple access" end="30" id="READMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Selects the read mode operation" end="29" id="READTYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Selects the write single or multiple access" end="28" id="WRITEMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Selects the write mode operation" end="27" id="WRITETYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Output GPMC.CLK activation time" end="25" id="CLKACTIVATIONTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Specifies the attached device page (burst) length (1 Word = Interface size)" end="23" id="ATTACHEDDEVICEPAGELENGTH" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="Selects the Wait monitoring configuration for Read accesses." end="22" id="WAITREADMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Selects the Wait monitoring configuration for Write accesses" end="21" id="WAITWRITEMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Selects input pin Wait monitoring time" end="18" id="WAITMONITORINGTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Selects the input WAIT pin for this chip select." end="16" id="WAITPINSELECT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Selects the device size attached (Reset value is SYSBOOT[8] input pin sampled at IC reset for CS[0] (active low) and 01 for CS[1] to CS[6] (active low))." end="12" id="DEVICESIZE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Selects the attached device type" end="10" id="DEVICETYPE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Enables the Address and data multiplexed protocol (Reset value is SYSBOOT[11] and SYSBOOT[10] input pins sampled at IC reset for CS[0] (active low) and 0 for CS[1] to CS[6] (active low))." end="8" id="MUXADDDATA" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Signals timing latencies scalar factor (Rd/WRCycleTime, AccessTime, PageBurstAccessTime, CSOnTime, CSRd/WrOffTime, ADVOnTime, ADVRd/WrOffTime, OEOnTime, OEOffTime, WEOnTime, WEOffTime, Cycle2CycleDelay, BusTurnAround, TimeOutStartValue)." end="4" id="TIMEPARAGRANULARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Divides the GPMC.FCLK clock." end="0" id="GPMCFCLKDIVIDER" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG2_3" description="Chip-select signal timing parameter configuration." id="GPMC_CONFIG2_3" offset="0xF4" width="32">
+    
+  <bitfield begin="31" description="" end="21" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="20" description="CS# de-assertion time from start cycle time for write accesses" end="16" id="CSWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="CS# de-assertion time from start cycle time for read accesses" end="8" id="CSRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="CS# Add Extra Half GPMC.FCLK cycle" end="7" id="CSEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="4" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="3" description="CS# assertion time from start cycle time" end="0" id="CSONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG3_3" description="ADV# signal timing parameter configuration." id="GPMC_CONFIG3_3" offset="0xF8" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="ADV# de-assertion for first address phase when using the AAD-Mux protocol" end="28" id="ADVAADMUXWROFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="ADV# assertion for first address phase when using the AAD-Mux protocol" end="24" id="ADVAADMUXRDOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="ADV# de-assertion time from start cycle time for write accesses" end="16" id="ADVWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="ADV# de-assertion time from start cycle time for read accesses" end="8" id="ADVRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="ADV# Add Extra Half GPMC.FCLK cycle" end="7" id="ADVEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="ADV# assertion for first address phase when using the AAD-Multiplexed protocol" end="4" id="ADVAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="ADV# assertion time from start cycle time" end="0" id="ADVONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG4_3" description="WE# and OE# signals timing parameter configuration." id="GPMC_CONFIG4_3" offset="0xFC" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="WE# de-assertion time from start cycle time" end="24" id="WEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="WE# Add Extra Half GPMC.FCLK cycle" end="23" id="WEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="20" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="WE# assertion time from start cycle time" end="16" id="WEONTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="OE# de-assertion time for the first address phase in an AAD-Multiplexed access" end="13" id="OEAADMUXOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="OE# de-assertion time from start cycle time" end="8" id="OEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="OE# Add Extra Half GPMC.FCLK cycle" end="7" id="OEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="OE# assertion time for the first address phase in an AAD-Multiplexed access" end="4" id="OEAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="OE# assertion time from start cycle time" end="0" id="OEONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG5_3" description="RdAccessTime and CycleTime timing parameters configuration." id="GPMC_CONFIG5_3" offset="0x100" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Delay between successive words in a multiple access" end="24" id="PAGEBURSTACCESSTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Delay between start cycle time and first data valid" end="16" id="RDACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Total write cycle time" end="8" id="WRCYCLETIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Total read cycle time" end="0" id="RDCYCLETIME" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG6_3" description="WrAccessTime, WrDataOnADmuxBus, Cycle2Cycle, and BusTurnAround parameters configuration" id="GPMC_CONFIG6_3" offset="0x104" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Delay from StartAccessTime to the GPMC.FCLK rising edge corresponding the the GPMC.CLK rising edge used by the attached memory for the first data capture" end="24" id="WRACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="" end="20" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Specifies on which GPMC.FCLK rising edge the first data of the synchronous burst write is driven in the add/data multiplexed bus" end="16" id="WRDATAONADMUXBUS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Chip select high pulse delay between two successive accesses" end="8" id="CYCLE2CYCLEDELAY" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Add Cycle2CycleDelay between two successive accesses to the same chip-select (any access type)" end="7" id="CYCLE2CYCLESAMECSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Add Cycle2CycleDelay between two successive accesses to a different chip-select (any access type)" end="6" id="CYCLE2CYCLEDIFFCSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="4" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Bus turn around latency between two successive accesses to the same chip-select (read to write) or to a different chip-select (read to read and read to write)" end="0" id="BUSTURNAROUND" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG7_3" description="Chip-select address mapping configuration." id="GPMC_CONFIG7_3" offset="0x108" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Chip-select mask address. Values not listed must be avoided as they create holes in the chip-select address space." end="8" id="MASKADDRESS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Chip-select enable (reset value is 1 for CS[0] (active low) and 0 for CS[1] to CS[5] (active low))." end="6" id="CSVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Chip-select base address. CSi base address where i = 0 to 3 (16 Mbytes minimum granularity). Bits 5 to 0 correspond to A29, A28, A27, A26, A25, and A24." end="0" id="BASEADDRESS" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_COMMAND_3" description="This register is not a true register, just an address location." id="GPMC_NAND_COMMAND_3" offset="0x10C" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_COMMAND_3 location places the data as the NAND command value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_COMMAND_3" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_ADDRESS_3" description="This register is not a true register, just an address location." id="GPMC_NAND_ADDRESS_3" offset="0x110" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_ADDRESS_3 location places the data as the NAND partial address value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_ADDRESS_3" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_DATA_3" description="This register is not a true register, just an address location." id="GPMC_NAND_DATA_3" offset="0x114" width="32">
+    
+  <bitfield begin="31" description="Reading data from the GPMC_NAND_DATA_3 location or from any location in the associated chip-select memory region activates an asynchronous read access." end="0" id="GPMC_NAND_DATA_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG1_4" description="The configuration 1 register sets signal control parameters per chip select." id="GPMC_CONFIG1_4" offset="0x120" width="32">
+    
+  <bitfield begin="31" description="Enables the wrapping burst capability. Must be set if the attached device is configured in wrapping burst" end="31" id="WRAPBURST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Selects the read single or multiple access" end="30" id="READMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Selects the read mode operation" end="29" id="READTYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Selects the write single or multiple access" end="28" id="WRITEMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Selects the write mode operation" end="27" id="WRITETYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Output GPMC.CLK activation time" end="25" id="CLKACTIVATIONTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Specifies the attached device page (burst) length (1 Word = Interface size)" end="23" id="ATTACHEDDEVICEPAGELENGTH" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="Selects the Wait monitoring configuration for Read accesses." end="22" id="WAITREADMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Selects the Wait monitoring configuration for Write accesses" end="21" id="WAITWRITEMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Selects input pin Wait monitoring time" end="18" id="WAITMONITORINGTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Selects the input WAIT pin for this chip select." end="16" id="WAITPINSELECT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Selects the device size attached (Reset value is SYSBOOT[8] input pin sampled at IC reset for CS[0] (active low) and 01 for CS[1] to CS[6] (active low))." end="12" id="DEVICESIZE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Selects the attached device type" end="10" id="DEVICETYPE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Enables the Address and data multiplexed protocol (Reset value is SYSBOOT[11] and SYSBOOT[10] input pins sampled at IC reset for CS[0] (active low) and 0 for CS[1] to CS[6] (active low))." end="8" id="MUXADDDATA" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Signals timing latencies scalar factor (Rd/WRCycleTime, AccessTime, PageBurstAccessTime, CSOnTime, CSRd/WrOffTime, ADVOnTime, ADVRd/WrOffTime, OEOnTime, OEOffTime, WEOnTime, WEOffTime, Cycle2CycleDelay, BusTurnAround, TimeOutStartValue)." end="4" id="TIMEPARAGRANULARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Divides the GPMC.FCLK clock." end="0" id="GPMCFCLKDIVIDER" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG2_4" description="Chip-select signal timing parameter configuration." id="GPMC_CONFIG2_4" offset="0x124" width="32">
+    
+  <bitfield begin="31" description="" end="21" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="20" description="CS# de-assertion time from start cycle time for write accesses" end="16" id="CSWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="CS# de-assertion time from start cycle time for read accesses" end="8" id="CSRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="CS# Add Extra Half GPMC.FCLK cycle" end="7" id="CSEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="4" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="3" description="CS# assertion time from start cycle time" end="0" id="CSONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG3_4" description="ADV# signal timing parameter configuration." id="GPMC_CONFIG3_4" offset="0x128" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="ADV# de-assertion for first address phase when using the AAD-Mux protocol" end="28" id="ADVAADMUXWROFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="ADV# assertion for first address phase when using the AAD-Mux protocol" end="24" id="ADVAADMUXRDOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="ADV# de-assertion time from start cycle time for write accesses" end="16" id="ADVWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="ADV# de-assertion time from start cycle time for read accesses" end="8" id="ADVRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="ADV# Add Extra Half GPMC.FCLK cycle" end="7" id="ADVEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="ADV# assertion for first address phase when using the AAD-Multiplexed protocol" end="4" id="ADVAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="ADV# assertion time from start cycle time" end="0" id="ADVONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG4_4" description="WE# and OE# signals timing parameter configuration." id="GPMC_CONFIG4_4" offset="0x12C" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="WE# de-assertion time from start cycle time" end="24" id="WEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="WE# Add Extra Half GPMC.FCLK cycle" end="23" id="WEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="20" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="WE# assertion time from start cycle time" end="16" id="WEONTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="OE# de-assertion time for the first address phase in an AAD-Multiplexed access" end="13" id="OEAADMUXOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="OE# de-assertion time from start cycle time" end="8" id="OEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="OE# Add Extra Half GPMC.FCLK cycle" end="7" id="OEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="OE# assertion time for the first address phase in an AAD-Multiplexed access" end="4" id="OEAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="OE# assertion time from start cycle time" end="0" id="OEONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG5_4" description="RdAccessTime and CycleTime timing parameters configuration." id="GPMC_CONFIG5_4" offset="0x130" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Delay between successive words in a multiple access" end="24" id="PAGEBURSTACCESSTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Delay between start cycle time and first data valid" end="16" id="RDACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Total write cycle time" end="8" id="WRCYCLETIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Total read cycle time" end="0" id="RDCYCLETIME" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG6_4" description="WrAccessTime, WrDataOnADmuxBus, Cycle2Cycle, and BusTurnAround parameters configuration" id="GPMC_CONFIG6_4" offset="0x134" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Delay from StartAccessTime to the GPMC.FCLK rising edge corresponding the the GPMC.CLK rising edge used by the attached memory for the first data capture" end="24" id="WRACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="" end="20" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Specifies on which GPMC.FCLK rising edge the first data of the synchronous burst write is driven in the add/data multiplexed bus" end="16" id="WRDATAONADMUXBUS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Chip select high pulse delay between two successive accesses" end="8" id="CYCLE2CYCLEDELAY" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Add Cycle2CycleDelay between two successive accesses to the same chip-select (any access type)" end="7" id="CYCLE2CYCLESAMECSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Add Cycle2CycleDelay between two successive accesses to a different chip-select (any access type)" end="6" id="CYCLE2CYCLEDIFFCSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="4" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Bus turn around latency between two successive accesses to the same chip-select (read to write) or to a different chip-select (read to read and read to write)" end="0" id="BUSTURNAROUND" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG7_4" description="Chip-select address mapping configuration." id="GPMC_CONFIG7_4" offset="0x138" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Chip-select mask address. Values not listed must be avoided as they create holes in the chip-select address space." end="8" id="MASKADDRESS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Chip-select enable (reset value is 1 for CS[0] (active low) and 0 for CS[1] to CS[5] (active low))." end="6" id="CSVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Chip-select base address. CSi base address where i = 0 to 3 (16 Mbytes minimum granularity). Bits 5 to 0 correspond to A29, A28, A27, A26, A25, and A24." end="0" id="BASEADDRESS" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_COMMAND_4" description="This register is not a true register, just an address location." id="GPMC_NAND_COMMAND_4" offset="0x13C" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_COMMAND_4 location places the data as the NAND command value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_COMMAND_4" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_ADDRESS_4" description="This register is not a true register, just an address location." id="GPMC_NAND_ADDRESS_4" offset="0x140" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_ADDRESS_4 location places the data as the NAND partial address value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_ADDRESS_4" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_DATA_4" description="This register is not a true register, just an address location." id="GPMC_NAND_DATA_4" offset="0x144" width="32">
+    
+  <bitfield begin="31" description="Reading data from the GPMC_NAND_DATA_4 location or from any location in the associated chip-select memory region activates an asynchronous read access." end="0" id="GPMC_NAND_DATA_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG1_5" description="The configuration 1 register sets signal control parameters per chip select." id="GPMC_CONFIG1_5" offset="0x150" width="32">
+    
+  <bitfield begin="31" description="Enables the wrapping burst capability. Must be set if the attached device is configured in wrapping burst" end="31" id="WRAPBURST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Selects the read single or multiple access" end="30" id="READMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Selects the read mode operation" end="29" id="READTYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Selects the write single or multiple access" end="28" id="WRITEMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Selects the write mode operation" end="27" id="WRITETYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Output GPMC.CLK activation time" end="25" id="CLKACTIVATIONTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Specifies the attached device page (burst) length (1 Word = Interface size)" end="23" id="ATTACHEDDEVICEPAGELENGTH" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="Selects the Wait monitoring configuration for Read accesses." end="22" id="WAITREADMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Selects the Wait monitoring configuration for Write accesses" end="21" id="WAITWRITEMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Selects input pin Wait monitoring time" end="18" id="WAITMONITORINGTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Selects the input WAIT pin for this chip select." end="16" id="WAITPINSELECT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Selects the device size attached (Reset value is SYSBOOT[8] input pin sampled at IC reset for CS[0] (active low) and 01 for CS[1] to CS[6] (active low))." end="12" id="DEVICESIZE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Selects the attached device type" end="10" id="DEVICETYPE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Enables the Address and data multiplexed protocol (Reset value is SYSBOOT[11] and SYSBOOT[10] input pins sampled at IC reset for CS[0] (active low) and 0 for CS[1] to CS[6] (active low))." end="8" id="MUXADDDATA" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Signals timing latencies scalar factor (Rd/WRCycleTime, AccessTime, PageBurstAccessTime, CSOnTime, CSRd/WrOffTime, ADVOnTime, ADVRd/WrOffTime, OEOnTime, OEOffTime, WEOnTime, WEOffTime, Cycle2CycleDelay, BusTurnAround, TimeOutStartValue)." end="4" id="TIMEPARAGRANULARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Divides the GPMC.FCLK clock." end="0" id="GPMCFCLKDIVIDER" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG2_5" description="Chip-select signal timing parameter configuration." id="GPMC_CONFIG2_5" offset="0x154" width="32">
+    
+  <bitfield begin="31" description="" end="21" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="20" description="CS# de-assertion time from start cycle time for write accesses" end="16" id="CSWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="CS# de-assertion time from start cycle time for read accesses" end="8" id="CSRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="CS# Add Extra Half GPMC.FCLK cycle" end="7" id="CSEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="4" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="3" description="CS# assertion time from start cycle time" end="0" id="CSONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG3_5" description="ADV# signal timing parameter configuration." id="GPMC_CONFIG3_5" offset="0x158" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="ADV# de-assertion for first address phase when using the AAD-Mux protocol" end="28" id="ADVAADMUXWROFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="ADV# assertion for first address phase when using the AAD-Mux protocol" end="24" id="ADVAADMUXRDOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="ADV# de-assertion time from start cycle time for write accesses" end="16" id="ADVWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="ADV# de-assertion time from start cycle time for read accesses" end="8" id="ADVRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="ADV# Add Extra Half GPMC.FCLK cycle" end="7" id="ADVEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="ADV# assertion for first address phase when using the AAD-Multiplexed protocol" end="4" id="ADVAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="ADV# assertion time from start cycle time" end="0" id="ADVONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG4_5" description="WE# and OE# signals timing parameter configuration." id="GPMC_CONFIG4_5" offset="0x15C" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="WE# de-assertion time from start cycle time" end="24" id="WEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="WE# Add Extra Half GPMC.FCLK cycle" end="23" id="WEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="20" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="WE# assertion time from start cycle time" end="16" id="WEONTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="OE# de-assertion time for the first address phase in an AAD-Multiplexed access" end="13" id="OEAADMUXOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="OE# de-assertion time from start cycle time" end="8" id="OEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="OE# Add Extra Half GPMC.FCLK cycle" end="7" id="OEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="OE# assertion time for the first address phase in an AAD-Multiplexed access" end="4" id="OEAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="OE# assertion time from start cycle time" end="0" id="OEONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG5_5" description="RdAccessTime and CycleTime timing parameters configuration." id="GPMC_CONFIG5_5" offset="0x160" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Delay between successive words in a multiple access" end="24" id="PAGEBURSTACCESSTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Delay between start cycle time and first data valid" end="16" id="RDACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Total write cycle time" end="8" id="WRCYCLETIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Total read cycle time" end="0" id="RDCYCLETIME" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG6_5" description="WrAccessTime, WrDataOnADmuxBus, Cycle2Cycle, and BusTurnAround parameters configuration" id="GPMC_CONFIG6_5" offset="0x164" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Delay from StartAccessTime to the GPMC.FCLK rising edge corresponding the the GPMC.CLK rising edge used by the attached memory for the first data capture" end="24" id="WRACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="" end="20" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Specifies on which GPMC.FCLK rising edge the first data of the synchronous burst write is driven in the add/data multiplexed bus" end="16" id="WRDATAONADMUXBUS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Chip select high pulse delay between two successive accesses" end="8" id="CYCLE2CYCLEDELAY" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Add Cycle2CycleDelay between two successive accesses to the same chip-select (any access type)" end="7" id="CYCLE2CYCLESAMECSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Add Cycle2CycleDelay between two successive accesses to a different chip-select (any access type)" end="6" id="CYCLE2CYCLEDIFFCSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="4" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Bus turn around latency between two successive accesses to the same chip-select (read to write) or to a different chip-select (read to read and read to write)" end="0" id="BUSTURNAROUND" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG7_5" description="Chip-select address mapping configuration." id="GPMC_CONFIG7_5" offset="0x168" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Chip-select mask address. Values not listed must be avoided as they create holes in the chip-select address space." end="8" id="MASKADDRESS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Chip-select enable (reset value is 1 for CS[0] (active low) and 0 for CS[1] to CS[5] (active low))." end="6" id="CSVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Chip-select base address. CSi base address where i = 0 to 3 (16 Mbytes minimum granularity). Bits 5 to 0 correspond to A29, A28, A27, A26, A25, and A24." end="0" id="BASEADDRESS" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_COMMAND_5" description="This register is not a true register, just an address location." id="GPMC_NAND_COMMAND_5" offset="0x16C" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_COMMAND_5 location places the data as the NAND command value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_COMMAND_5" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_ADDRESS_5" description="This register is not a true register, just an address location." id="GPMC_NAND_ADDRESS_5" offset="0x170" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_ADDRESS_5 location places the data as the NAND partial address value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_ADDRESS_5" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_DATA_5" description="This register is not a true register, just an address location." id="GPMC_NAND_DATA_5" offset="0x174" width="32">
+    
+  <bitfield begin="31" description="Reading data from the GPMC_NAND_DATA_5 location or from any location in the associated chip-select memory region activates an asynchronous read access." end="0" id="GPMC_NAND_DATA_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG1_6" description="The configuration 1 register sets signal control parameters per chip select." id="GPMC_CONFIG1_6" offset="0x180" width="32">
+    
+  <bitfield begin="31" description="Enables the wrapping burst capability. Must be set if the attached device is configured in wrapping burst" end="31" id="WRAPBURST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Selects the read single or multiple access" end="30" id="READMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="29" description="Selects the read mode operation" end="29" id="READTYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="28" description="Selects the write single or multiple access" end="28" id="WRITEMULTIPLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="27" description="Selects the write mode operation" end="27" id="WRITETYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Output GPMC.CLK activation time" end="25" id="CLKACTIVATIONTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="24" description="Specifies the attached device page (burst) length (1 Word = Interface size)" end="23" id="ATTACHEDDEVICEPAGELENGTH" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="22" description="Selects the Wait monitoring configuration for Read accesses." end="22" id="WAITREADMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Selects the Wait monitoring configuration for Write accesses" end="21" id="WAITWRITEMONITORING" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="20" description="" end="20" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Selects input pin Wait monitoring time" end="18" id="WAITMONITORINGTIME" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="17" description="Selects the input WAIT pin for this chip select." end="16" id="WAITPINSELECT" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Selects the device size attached (Reset value is SYSBOOT[8] input pin sampled at IC reset for CS[0] (active low) and 01 for CS[1] to CS[6] (active low))." end="12" id="DEVICESIZE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Selects the attached device type" end="10" id="DEVICETYPE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="9" description="Enables the Address and data multiplexed protocol (Reset value is SYSBOOT[11] and SYSBOOT[10] input pin sampled at IC reset for CS[0] (active low) and 0 for CS[1] to CS[6] (active low))." end="8" id="MUXADDDATA" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Signals timing latencies scalar factor (Rd/WRCycleTime, AccessTime, PageBurstAccessTime, CSOnTime, CSRd/WrOffTime, ADVOnTime, ADVRd/WrOffTime, OEOnTime, OEOffTime, WEOnTime, WEOffTime, Cycle2CycleDelay, BusTurnAround, TimeOutStartValue)." end="4" id="TIMEPARAGRANULARITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="" end="2" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="1" description="Divides the GPMC.FCLK clock." end="0" id="GPMCFCLKDIVIDER" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG2_6" description="Chip-select signal timing parameter configuration." id="GPMC_CONFIG2_6" offset="0x184" width="32">
+    
+  <bitfield begin="31" description="" end="21" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="20" description="CS# de-assertion time from start cycle time for write accesses" end="16" id="CSWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="CS# de-assertion time from start cycle time for read accesses" end="8" id="CSRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="CS# Add Extra Half GPMC.FCLK cycle" end="7" id="CSEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="4" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="3" description="CS# assertion time from start cycle time" end="0" id="CSONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG3_6" description="ADV# signal timing parameter configuration." id="GPMC_CONFIG3_6" offset="0x188" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="ADV# de-assertion for first address phase when using the AAD-Mux protocol" end="28" id="ADVAADMUXWROFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="" end="27" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="ADV# assertion for first address phase when using the AAD-Mux protocol" end="24" id="ADVAADMUXRDOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="ADV# de-assertion time from start cycle time for write accesses" end="16" id="ADVWROFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="ADV# de-assertion time from start cycle time for read accesses" end="8" id="ADVRDOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="ADV# Add Extra Half GPMC.FCLK cycle" end="7" id="ADVEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="ADV# assertion for first address phase when using the AAD-Multiplexed protocol" end="4" id="ADVAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="ADV# assertion time from start cycle time" end="0" id="ADVONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG4_6" description="WE# and OE# signals timing parameter configuration." id="GPMC_CONFIG4_6" offset="0x18C" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="WE# de-assertion time from start cycle time" end="24" id="WEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="WE# Add Extra Half GPMC.FCLK cycle" end="23" id="WEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="20" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="WE# assertion time from start cycle time" end="16" id="WEONTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="OE# de-assertion time for the first address phase in an AAD-Multiplexed access" end="13" id="OEAADMUXOFFTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="12" description="OE# de-assertion time from start cycle time" end="8" id="OEOFFTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="OE# Add Extra Half GPMC.FCLK cycle" end="7" id="OEEXTRADELAY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="OE# assertion time for the first address phase in an AAD-Multiplexed access" end="4" id="OEAADMUXONTIME" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="OE# assertion time from start cycle time" end="0" id="OEONTIME" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG5_6" description="RdAccessTime and CycleTime timing parameters configuration." id="GPMC_CONFIG5_6" offset="0x190" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Delay between successive words in a multiple access" end="24" id="PAGEBURSTACCESSTIME" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="23" description="" end="21" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="20" description="Delay between start cycle time and first data valid" end="16" id="RDACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="15" description="" end="13" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="12" description="Total write cycle time" end="8" id="WRCYCLETIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="7" description="" end="5" id="Reserved4" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="4" description="Total read cycle time" end="0" id="RDCYCLETIME" rwaccess="RW" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG6_6" description="WrAccessTime, WrDataOnADmuxBus, Cycle2Cycle, and BusTurnAround parameters configuration" id="GPMC_CONFIG6_6" offset="0x194" width="32">
+    
+  <bitfield begin="31" description="" end="29" id="Reserved1" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="28" description="Delay from StartAccessTime to the GPMC.FCLK rising edge corresponding the the GPMC.CLK rising edge used by the attached memory for the first data capture" end="24" id="WRACCESSTIME" rwaccess="RW" width="5"></bitfield>
+    
+  <bitfield begin="23" description="" end="20" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="19" description="Specifies on which GPMC.FCLK rising edge the first data of the synchronous burst write is driven in the add/data multiplexed bus" end="16" id="WRDATAONADMUXBUS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Chip select high pulse delay between two successive accesses" end="8" id="CYCLE2CYCLEDELAY" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Add Cycle2CycleDelay between two successive accesses to the same chip-select (any access type)" end="7" id="CYCLE2CYCLESAMECSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Add Cycle2CycleDelay between two successive accesses to a different chip-select (any access type)" end="6" id="CYCLE2CYCLEDIFFCSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="4" id="Reserved4" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Bus turn around latency between two successive accesses to the same chip-select (read to write) or to a different chip-select (read to read and read to write)" end="0" id="BUSTURNAROUND" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_CONFIG7_6" description="Chip-select address mapping configuration." id="GPMC_CONFIG7_6" offset="0x198" width="32">
+    
+  <bitfield begin="31" description="" end="12" id="Reserved1" rwaccess="R" width="20"></bitfield>
+    
+  <bitfield begin="11" description="Chip-select mask address. Values not listed must be avoided as they create holes in the chip-select address space." end="8" id="MASKADDRESS" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Chip-select enable (reset value is 1 for CS[0] (active low) and 0 for CS[1] to CS[5] (active low))." end="6" id="CSVALID" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Chip-select base address. CSi base address where i = 0 to 3 (16 Mbytes minimum granularity). Bits 5 to 0 correspond to A29, A28, A27, A26, A25, and A24." end="0" id="BASEADDRESS" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_COMMAND_6" description="This register is not a true register, just an address location." id="GPMC_NAND_COMMAND_6" offset="0x19C" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_COMMAND_6 location places the data as the NAND command value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_COMMAND_6" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_ADDRESS_6" description="This register is not a true register, just an address location." id="GPMC_NAND_ADDRESS_6" offset="0x1A0" width="32">
+    
+  <bitfield begin="31" description="Writing data at the GPMC_NAND_ADDRESS_6 location places the data as the NAND partial address value on the bus, using a regular asynchronous write access." end="0" id="GPMC_NAND_ADDRESS_6" rwaccess="W" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_NAND_DATA_6" description="This register is not a true register, just an address location." id="GPMC_NAND_DATA_6" offset="0x1A4" width="32">
+    
+  <bitfield begin="31" description="Reading data from the GPMC_NAND_DATA_6 location or from any location in the associated chip-select memory region activates an asynchronous read access." end="0" id="GPMC_NAND_DATA_6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_PREFETCH_CONFIG1" description="" id="GPMC_PREFETCH_CONFIG1" offset="0x1E0" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="Define the number of GPMC.FCLK cycles to be substracted from RdCycleTime, WrCycleTime, AccessTime, CSRdOffTime, CSWrOffTime, ADVRdOffTime, ADVWrOffTime, OEOffTime, WEOffTime" end="28" id="CYCLEOPTIMIZATION" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="27" description="Enables access cycle optimization" end="27" id="ENABLEOPTIMIZEDACCESS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Selects the CS (active low) where Prefetch Postwrite engine is active" end="24" id="ENGINECSSELECTOR" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="23" description="" end="23" id="PFPWENROUNDROBIN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="22" description="" end="20" id="Reserved2" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="19" description="" end="16" id="PFPWWEIGHTEDPRIO" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="15" description="" end="15" id="Reserved3" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="14" description="" end="8" id="FIFOTHRESHOLD" rwaccess="RW" width="7"></bitfield>
+    
+  <bitfield begin="7" description="" end="7" id="ENABLEENGINE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="Reserved4" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="4" id="WAITPINSELECTOR" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="" end="3" id="SYNCHROMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="" end="2" id="DMAMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="" end="1" id="Reserved5" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="ACCESSMODE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_PREFETCH_CONFIG2" description="" id="GPMC_PREFETCH_CONFIG2" offset="0x1E4" width="32">
+    
+  <bitfield begin="31" description="" end="14" id="Reserved1" rwaccess="R" width="18"></bitfield>
+    
+  <bitfield begin="13" description="Selects the number of bytes to be read or written by the engine to the selected CS (active low)" end="0" id="TRANSFERCOUNT" rwaccess="RW" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_PREFETCH_CONTROL" description="" id="GPMC_PREFETCH_CONTROL" offset="0x1EC" width="32">
+    
+  <bitfield begin="31" description="" end="1" id="Reserved1" rwaccess="R" width="31"></bitfield>
+    
+  <bitfield begin="0" description="Resets the FIFO pointer and starts the engine" end="0" id="STARTENGINE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_PREFETCH_STATUS" description="" id="GPMC_PREFETCH_STATUS" offset="0x1F0" width="32">
+    
+  <bitfield begin="31" description="" end="31" id="Reserved1" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="30" description="FIFOPOINTER." end="24" id="FIFOPOINTER" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="23" description="" end="17" id="Reserved2" rwaccess="R" width="7"></bitfield>
+    
+  <bitfield begin="16" description="Set when FIFOPointer exceeds FIFOThreshold value." end="16" id="FIFOTHRESHOLDSTATUS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved3" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Number of remaining bytes to be read or to be written by the engine according to the TransferCount value." end="0" id="COUNTVALUE" rwaccess="R" width="14"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC_CONFIG" description="" id="GPMC_ECC_CONFIG" offset="0x1F4" width="32">
+    
+  <bitfield begin="31" description="" end="17" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="16" description="ECC algorithm used" end="16" id="ECCALGORITHM" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="14" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="13" description="Error correction capability used for BCH" end="12" id="ECCBCHTSEL" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="11" description="Spare area organization definition for the BCH algorithm. See the BCH syndrome/parity calculator module functional specification for more details" end="8" id="ECCWRAPMODE" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="7" description="Selects an ECC calculated on 16 columns" end="7" id="ECC16B" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Number of sectors to process with the BCH algorithm" end="4" id="ECCTOPSECTOR" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="3" description="Selects the Chip-select where ECC is computed" end="1" id="ECCCS" rwaccess="RW" width="3"></bitfield>
+    
+  <bitfield begin="0" description="Enables the ECC feature" end="0" id="ECCENABLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC_CONTROL" description="" id="GPMC_ECC_CONTROL" offset="0x1F8" width="32">
+    
+  <bitfield begin="31" description="" end="9" id="Reserved1" rwaccess="R" width="23"></bitfield>
+    
+  <bitfield begin="8" description="Clear all ECC result registers" end="8" id="ECCCLEAR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="" end="4" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Selects ECC result register (Reads to this field give the dynamic position of the ECC pointer - Writes to this field select the ECC result register where the first ECC computation will be stored). Writing values not listed disables the ECC engine (ECCEnable bit of GPMC_ECC_CONFIG cleared to 0)." end="0" id="ECCPOINTER" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC_SIZE_CONFIG" description="" id="GPMC_ECC_SIZE_CONFIG" offset="0x1FC" width="32">
+    
+  <bitfield begin="31" description="" end="30" id="Reserved1" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="29" description="Defines ECC size 1" end="22" id="ECCSIZE1" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="21" description="" end="20" id="Reserved2" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="19" description="Defines ECC size 0" end="12" id="ECCSIZE0" rwaccess="RW" width="8"></bitfield>
+    
+  <bitfield begin="11" description="" end="9" id="Reserved3" rwaccess="R" width="3"></bitfield>
+    
+  <bitfield begin="8" description="Selects ECC size for ECC 9 result register" end="8" id="ECC9RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Selects ECC size for ECC 8 result register" end="7" id="ECC8RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Selects ECC size for ECC 7 result register" end="6" id="ECC7RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Selects ECC size for ECC 6 result register" end="5" id="ECC6RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Selects ECC size for ECC 5 result register" end="4" id="ECC5RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Selects ECC size for ECC 4 result register" end="3" id="ECC4RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Selects ECC size for ECC 3 result register" end="2" id="ECC3RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Selects ECC size for ECC 2 result register" end="1" id="ECC2RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Selects ECC size for ECC 1 result register" end="0" id="ECC1RESULTSIZE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC1_RESULT" description="" id="GPMC_ECC1_RESULT" offset="0x200" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC2_RESULT" description="" id="GPMC_ECC2_RESULT" offset="0x204" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC3_RESULT" description="" id="GPMC_ECC3_RESULT" offset="0x208" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC4_RESULT" description="" id="GPMC_ECC4_RESULT" offset="0x20C" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC5_RESULT" description="" id="GPMC_ECC5_RESULT" offset="0x210" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC6_RESULT" description="" id="GPMC_ECC6_RESULT" offset="0x214" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC7_RESULT" description="" id="GPMC_ECC7_RESULT" offset="0x218" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC8_RESULT" description="" id="GPMC_ECC8_RESULT" offset="0x21C" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_ECC9_RESULT" description="" id="GPMC_ECC9_RESULT" offset="0x220" width="32">
+    
+  <bitfield begin="31" description="" end="28" id="Reserved1" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="27" description="Odd Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="27" id="P2048O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="26" description="Odd Row Parity bit 1024" end="26" id="P1024O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="25" description="Odd Row Parity bit 512" end="25" id="P512O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="24" description="Odd Row Parity bit 256" end="24" id="P256O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="23" description="Odd Row Parity bit 128" end="23" id="P128O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="22" description="Odd Row Parity bit 64" end="22" id="P64O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="21" description="Odd Row Parity bit 32" end="21" id="P32O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="20" description="Odd Row Parity bit 16" end="20" id="P16O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="19" description="Odd Row Parity bit 8" end="19" id="P8O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="18" description="Odd Column Parity bit 4" end="18" id="P4O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="17" description="Odd Column Parity bit 2" end="17" id="P2O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="16" description="Odd Column Parity bit 1" end="16" id="P1O" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="15" description="" end="12" id="Reserved2" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="11" description="Even Row Parity bit 2048, only used for ECC computed on 512 Bytes" end="11" id="P2048E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="10" description="Even Row Parity bit 1024" end="10" id="P1024E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="9" description="Even Row Parity bit 512" end="9" id="P512E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="8" description="Even Row Parity bit 256" end="8" id="P256E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="7" description="Even Row Parity bit 128" end="7" id="P128E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Even Row Parity bit 64" end="6" id="P64E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Even Row Parity bit 32" end="5" id="P32E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Even Row Parity bit 16" end="4" id="P16E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Even Row Parity bit 8" end="3" id="P8E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Even Column Parity bit 4" end="2" id="P4E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Even Column Parity bit 2" end="1" id="P2E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Even Column Parity bit 1" end="0" id="P1E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT0_0" description="" id="GPMC_BCH_RESULT0_0" offset="0x240" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 0 to 31" end="0" id="BCH_RESULT0_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT1_0" description="" id="GPMC_BCH_RESULT1_0" offset="0x244" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 32 to 63" end="0" id="BCH_RESULT1_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT2_0" description="" id="GPMC_BCH_RESULT2_0" offset="0x248" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 64 to 95" end="0" id="BCH_RESULT2_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT3_0" description="" id="GPMC_BCH_RESULT3_0" offset="0x24C" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 96 to 127" end="0" id="BCH_RESULT3_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT0_1" description="" id="GPMC_BCH_RESULT0_1" offset="0x250" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 0 to 31" end="0" id="BCH_RESULT0_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT1_1" description="" id="GPMC_BCH_RESULT1_1" offset="0x254" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 32 to 63" end="0" id="BCH_RESULT1_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT2_1" description="" id="GPMC_BCH_RESULT2_1" offset="0x258" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 64 to 95" end="0" id="BCH_RESULT2_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT3_1" description="" id="GPMC_BCH_RESULT3_1" offset="0x25C" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 96 to 127" end="0" id="BCH_RESULT3_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT0_2" description="" id="GPMC_BCH_RESULT0_2" offset="0x260" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 0 to 31" end="0" id="BCH_RESULT0_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT1_2" description="" id="GPMC_BCH_RESULT1_2" offset="0x264" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 32 to 63" end="0" id="BCH_RESULT1_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT2_2" description="" id="GPMC_BCH_RESULT2_2" offset="0x268" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 64 to 95" end="0" id="BCH_RESULT2_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT3_2" description="" id="GPMC_BCH_RESULT3_2" offset="0x26C" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 96 to 127" end="0" id="BCH_RESULT3_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT0_3" description="" id="GPMC_BCH_RESULT0_3" offset="0x270" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 0 to 31" end="0" id="BCH_RESULT0_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT1_3" description="" id="GPMC_BCH_RESULT1_3" offset="0x274" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 32 to 63" end="0" id="BCH_RESULT1_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT2_3" description="" id="GPMC_BCH_RESULT2_3" offset="0x278" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 64 to 95" end="0" id="BCH_RESULT2_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT3_3" description="" id="GPMC_BCH_RESULT3_3" offset="0x27C" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 96 to 127" end="0" id="BCH_RESULT3_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT0_4" description="" id="GPMC_BCH_RESULT0_4" offset="0x280" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 0 to 31" end="0" id="BCH_RESULT0_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT1_4" description="" id="GPMC_BCH_RESULT1_4" offset="0x284" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 32 to 63" end="0" id="BCH_RESULT1_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT2_4" description="" id="GPMC_BCH_RESULT2_4" offset="0x288" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 64 to 95" end="0" id="BCH_RESULT2_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT3_4" description="" id="GPMC_BCH_RESULT3_4" offset="0x28C" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 96 to 127" end="0" id="BCH_RESULT3_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT0_5" description="" id="GPMC_BCH_RESULT0_5" offset="0x290" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 0 to 31" end="0" id="BCH_RESULT0_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT1_5" description="" id="GPMC_BCH_RESULT1_5" offset="0x294" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 32 to 63" end="0" id="BCH_RESULT1_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT2_5" description="" id="GPMC_BCH_RESULT2_5" offset="0x298" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 64 to 95" end="0" id="BCH_RESULT2_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT3_5" description="" id="GPMC_BCH_RESULT3_5" offset="0x29C" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 96 to 127" end="0" id="BCH_RESULT3_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT0_6" description="" id="GPMC_BCH_RESULT0_6" offset="0x2A0" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 0 to 31" end="0" id="BCH_RESULT0_6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT1_6" description="" id="GPMC_BCH_RESULT1_6" offset="0x2A4" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 32 to 63" end="0" id="BCH_RESULT1_6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT2_6" description="" id="GPMC_BCH_RESULT2_6" offset="0x2A8" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 64 to 95" end="0" id="BCH_RESULT2_6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT3_6" description="" id="GPMC_BCH_RESULT3_6" offset="0x2AC" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 96 to 127" end="0" id="BCH_RESULT3_6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_SWDATA" description="This register is used to directly pass data to the BCH ECC calculator without accessing the actual NAND flash interface." id="GPMC_BCH_SWDATA" offset="0x2D0" width="32">
+    
+  <bitfield begin="31" description="" end="16" id="Reserved_1" rwaccess="R" width="16"></bitfield>
+    
+  <bitfield begin="15" description="Data to be included in the BCH calculation. Only bits 0 to 7 are taken into account, if the calculator is configured to use 8 bits data (GPMC_ECC_CONFIG[7] ECC16B = 0)." end="0" id="BCH_DATA" rwaccess="RW" width="16"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT4_0" description="" id="GPMC_BCH_RESULT4_0" offset="0x300" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 128 to 159" end="0" id="BCH_RESULT4_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT5_0" description="" id="GPMC_BCH_RESULT5_0" offset="0x304" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 160 to 191" end="0" id="BCH_RESULT5_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT6_0" description="" id="GPMC_BCH_RESULT6_0" offset="0x308" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 192 to 207" end="0" id="BCH_RESULT6_0" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT4_1" description="" id="GPMC_BCH_RESULT4_1" offset="0x310" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 128 to 159" end="0" id="BCH_RESULT4_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT5_1" description="" id="GPMC_BCH_RESULT5_1" offset="0x314" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 160 to 191" end="0" id="BCH_RESULT5_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT6_1" description="" id="GPMC_BCH_RESULT6_1" offset="0x318" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 192 to 207" end="0" id="BCH_RESULT6_1" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT4_2" description="" id="GPMC_BCH_RESULT4_2" offset="0x320" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 128 to 159" end="0" id="BCH_RESULT4_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT5_2" description="" id="GPMC_BCH_RESULT5_2" offset="0x324" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 160 to 191" end="0" id="BCH_RESULT5_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT6_2" description="" id="GPMC_BCH_RESULT6_2" offset="0x328" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 192 to 207" end="0" id="BCH_RESULT6_2" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT4_3" description="" id="GPMC_BCH_RESULT4_3" offset="0x330" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 128 to 159" end="0" id="BCH_RESULT4_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT5_3" description="" id="GPMC_BCH_RESULT5_3" offset="0x334" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 160 to 191" end="0" id="BCH_RESULT5_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT6_3" description="" id="GPMC_BCH_RESULT6_3" offset="0x338" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 192 to 207" end="0" id="BCH_RESULT6_3" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT4_4" description="" id="GPMC_BCH_RESULT4_4" offset="0x340" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 128 to 159" end="0" id="BCH_RESULT4_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT5_4" description="" id="GPMC_BCH_RESULT5_4" offset="0x344" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 160 to 191" end="0" id="BCH_RESULT5_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT6_4" description="" id="GPMC_BCH_RESULT6_4" offset="0x348" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 192 to 207" end="0" id="BCH_RESULT6_4" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT4_5" description="" id="GPMC_BCH_RESULT4_5" offset="0x350" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 128 to 159" end="0" id="BCH_RESULT4_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT5_5" description="" id="GPMC_BCH_RESULT5_5" offset="0x354" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 160 to 191" end="0" id="BCH_RESULT5_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT6_5" description="" id="GPMC_BCH_RESULT6_5" offset="0x358" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 192 to 207" end="0" id="BCH_RESULT6_5" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT4_6" description="" id="GPMC_BCH_RESULT4_6" offset="0x360" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 128 to 159" end="0" id="BCH_RESULT4_6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT5_6" description="" id="GPMC_BCH_RESULT5_6" offset="0x364" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 160 to 191" end="0" id="BCH_RESULT5_6" rwaccess="RW" width="32"></bitfield>
+  </register>
+  
+  
+  <register acronym="GPMC_BCH_RESULT6_6" description="" id="GPMC_BCH_RESULT6_6" offset="0x368" width="32">
+    
+  <bitfield begin="31" description="BCH ECC result, bits 192 to 207" end="0" id="BCH_RESULT6_6" rwaccess="RW" width="32"></bitfield>
+  </register>
+</module>

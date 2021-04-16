@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<board 	id="EVMAM1808" XML_version="1" desc="EVMAM1808" description="LogicPD AM1808 EVM Board">
+  <instance XML_version="1.2" desc="AM1808_0" href="devices/AM1808.xml" id="AM1808_0" xml="AM1808.xml" xmlpath="Devices"/>
+    <device HW_revision="1" XML_version="1.2" description="AM18x - ARM9 Embedded Processor" id="AM1808_0" partnum="AM1808">
+      <router HW_revision="" XML_version="1.2" description="" id="device_0" isa="ICEPICK_C">
+        <subpath id="device_3">
+          <cpu HW_revision="" XML_version="1.2" description="" id="device_4" isa="ARM9">
+            <property Type="filepathfield" Value="../../../emulation/boards/evmam1808/gel/AM1808.gel" id="GEL File"/>
+          </cpu>
+        </subpath>
+      </router>
+    </device>
+</board>
+       

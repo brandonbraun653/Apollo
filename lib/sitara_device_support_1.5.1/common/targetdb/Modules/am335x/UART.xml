@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+
+<module description="UART" id="UART">
+  
+  
+  <register acronym="DLL" description="The divisor latches low register (DLL) is selected with a register bit setting of LCR[7] not equal to BFh or LCR[7] = BFh. The divisor latches low register (DLL) with the DLH register stores the 14-bit divisor for generation of the baud clock in the baud rate generator. DLH stores the most-significant part of the divisor, DLL stores the least-significant part of the divisor. DLL and DLH can be written to only before sleep mode is enabled (before IER[4] is set)." id="DLL" offset="0x0" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Divisor latches low. Stores the 8 LSB divisor value. Value 0 to FFh." end="0" id="CLOCK_LSB" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RHR" description="The receiver holding register (RHR) is selected with the register bit setting of LCR[7] = 0. The receiver section consists of the receiver holding register and the receiver shift register. The RHR is actually a 64-byte FIFO. The receiver shift register receives serial data from RX input. The data is converted to parallel data and moved to the RHR. If the FIFO is disabled, location zero of the FIFO is used to store the single data character. If an overflow occurs, the data in the RHR is not overwritten." id="RHR" offset="0x0" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Receive holding register. Value 0 to FFh." end="0" id="RHR" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="THR" description="The transmit holding register (THR) is selected with the register bit setting of LCR[7] = 0. The transmitter section consists of the transmit holding register and the transmit shift register. The transmit holding register is a 64-byte FIFO. The MPU writes data to the THR. The data is placed in the transmit shift register where it is shifted out serially on the TX output. If the FIFO is disabled, location zero of the FIFO is used to store the data." id="THR" offset="0x0" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Transmit holding register. Value 0 to FFh." end="0" id="THR" rwaccess="W" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="DLH" description="The divisor latches high register (DLH) is selected with a register bit setting of LCR[7] not equal to BFh or LCR[7] = BFh. The divisor latches high register (DLH) with the DLL register stores the 14-bit divisor for generation of the baud clock in the baud rate generator. DLH stores the most-significant part of the divisor, DLL stores the least-significant part of the divisor. DLL and DLH can be written to only before sleep mode is enabled (before IER[4] is set)." id="DLH" offset="0x4" width="16">
+    
+  <bitfield begin="15" description="" end="6" id="Reserved1" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="5" description="Divisor latches high. Stores the 6 MSB divisor value. Value 0 to 3Fh." end="0" id="CLOCK_MSB" rwaccess="RW" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="IER_CIR" description="The following interrupt enable register (IER) description is for CIR mode. The CIR IER is selected with a register bit setting of LCR[7] = 0. In IrDA mode, EFR[4] has no impact on the access to IER[7:4]. The CIR interrupt enable register (IER) can be programmed to enable/disable any interrupt. There are 5 types of interrupt in these modes, TX status, RX overrun, RX stop interrupt, THR interrupt, and RHR interrupt. Each interrupt can be enabled/disabled individually. In CIR mode, the TXSTATUSIT bit has only one meaning corresponding to the case MDR2[0] = 0. The RXSTOPIT interrupt is generated based on the value set in the BOF Length register (EBLR)." id="IER_CIR" offset="0x4" width="16">
+    
+  <bitfield begin="15" description="" end="6" id="Reserved1" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="5" description="TXSTATUSIT." end="5" id="TXSTATUSIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="" end="4" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RXOVERRUNIT." end="3" id="RXOVERRUNIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RXSTOPIT." end="2" id="RXSTOPIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="THRIT." end="1" id="THRIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RHRIT." end="0" id="RHRIT" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IER_UART" description="The following interrupt enable register (IER) description is for UART mode. The UART IER is selected with a register bit setting of LCR[7] = 0. In UART mode, IER[7:4] can only be written when EFR[4] = 1 The interrupt enable register (IER) can be programmed to enable/disable any interrupt. There are seven types of interrupt in this mode: receiver error, RHR interrupt, THR interrupt, XOFF received and CTS (active-low)/RTS (active-low) change of state from low to high. Each interrupt can be enabled/disabled individually. There is also a sleep mode enable bit. The UART interrupt enable register (IER) is shown in and described in ." id="IER_UART" offset="0x4" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Can be written only when EFR[4] = 1." end="7" id="CTSIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Can be written only when EFR[4] = 1." end="6" id="RTSIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Can be written only when EFR[4] = 1." end="5" id="XOFFIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Can be only written when EFR[4] = 1." end="4" id="SLEEPMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="MODEMSTSIT." end="3" id="MODEMSTSIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="LINESTSIT." end="2" id="LINESTSIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="THRIT." end="1" id="THRIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RHRIT." end="0" id="RHRIT" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IER_IRDA" description="The following interrupt enable register (IER) description is for IrDA mode. The IrDA IER is selected with a register bit setting of LCR[7] = 0. In IrDA mode, EFR[4] has no impact on the access to IER[7:4]. The IrDA interrupt enable register (IER) can be programmed to enable/disable any interrupt. There are 8 types of interrupt in these modes, received EOF, LSR interrupt, TX status, status FIFO interrupt, RX overrun, last byte in RX FIFO, THR interrupt, and RHR interrupt. Each interrupt can be enabled/disabled individually. The TXSTATUSIT interrupt reflects two possible conditions. The MDR2[0] bit should be read to determine the status in the event of this interrupt." id="IER_IRDA" offset="0x4" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="EOFIT" end="7" id="EOFIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="LINESTSIT" end="6" id="LINESTSIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="TXSTATUSIT" end="5" id="TXSTATUSIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="STSFIFOTRIGIT" end="4" id="STSFIFOTRIGIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RXOVERRUNIT" end="3" id="RXOVERRUNIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="LASTRXBYTEIT" end="2" id="LASTRXBYTEIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="THRIT" end="1" id="THRIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RHRIT" end="0" id="RHRIT" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IIR_CIR" description="The following interrupt identification register (IIR) description is for CIR mode. The CIR IIR is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. The CIR interrupt identification register (IIR) is a read-only register that provides the source of the interrupt. An interrupt source can be flagged only if enabled in the IER register." id="IIR_CIR" offset="0x8" width="16">
+    
+  <bitfield begin="15" description="" end="6" id="Reserved1" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="5" description="TXSTATUSIT" end="5" id="TXSTATUSIT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="" end="4" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RXOEIT" end="3" id="RXOEIT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RXSTOPIT" end="2" id="RXSTOPIT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="THRIT" end="1" id="THRIT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RHRIT" end="0" id="RHRIT" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IIR_IRDA" description="The following interrupt identification register (IIR) description is for IrDA mode. The IrDA IIR is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. The IrDA interrupt identification register (IIR) is a read-only register that provides the source of the interrupt. An interrupt source can be flagged only if enabled in the IER register." id="IIR_IRDA" offset="0x8" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="EOF_IT" end="7" id="EOF_IT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="LINE_STS_IT" end="6" id="LINE_STS_IT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="TX_STATUS_IT" end="5" id="TX_STATUS_IT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="STS_FIFO_IT" end="4" id="STS_FIFO_IT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RX_OE_IT" end="3" id="RX_OE_IT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RX_FIFO_LAST_BYTE_IT" end="2" id="RX_FIFO_LAST_BYTE_IT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="THR_IT" end="1" id="THR_IT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RHR_IT" end="0" id="RHR_IT" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="FCR" description="The FIFO control register (FCR) is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. FCR[5:4] can only be written when EFR[4] = 1." id="FCR" offset="0x8" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Sets the trigger level for the RX FIFO: If SCR[7] = 0 and TLR[7] to TLR[4] not equal to 0000, RX_FIFO_TRIG is not considered. If SCR[7] = 1, RX_FIFO_TRIG is 2 LSB of the trigger level (1 to 63 on 6 bits) with the granularity 1. If SCR[7] = 0 and TLR[7] to TLR[4] = 0000, then:" end="6" id="RX_FIFO_TRIG" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Can be written only if EFR[4] = 1. Sets the trigger level for the TX FIFO: If SCR[6] = 0 and TLR[3] to TLR[0] not equal to 0000, TX_FIFO_TRIG is not considered. If SCR[6] = 1, TX_FIFO_TRIG is 2 LSB of the trigger level (1 to 63 on 6 bits) with a granularity of 1. If SCR[6] = 0 and TLR[3] to TLR[0] = 0000, then:" end="4" id="TX_FIFO_TRIG" rwaccess="W" width="2"></bitfield>
+    
+  <bitfield begin="3" description="Can be changed only when the baud clock is not running (DLL and DLH cleared to 0). If SCR[0] = 0, this register is considered." end="3" id="DMA_MODE" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="2" description="TX_FIFO_CLEAR." end="2" id="TX_FIFO_CLEAR" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="1" description="RX_FIFO_CLEAR." end="1" id="RX_FIFO_CLEAR" rwaccess="W" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Can be changed only when the baud clock is not running (DLL and DLH cleared to 0)." end="0" id="FIFO_EN" rwaccess="W" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="IIR_UART" description="The following interrupt identification register (IIR) description is for UART mode. The UART IIR is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. The UART interrupt identification register (IIR) is a read-only register that provides the source of the interrupt. An interrupt source can be flagged only if enabled in the IER register." id="IIR_UART" offset="0x8" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Mirror the contents of FCR[0] on both bits." end="6" id="FCR_MIRROR" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Seven possible interrupts in UART mode. Other combinations never occur:" end="1" id="IT_TYPE" rwaccess="R" width="5"></bitfield>
+    
+  <bitfield begin="0" description="Interrupt pending." end="0" id="IT_PENDING" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="EFR" description="The enhanced feature register (EFR) is selected with a register bit setting of LCR[7] = BFh. The enhanced feature register (EFR) enables or disables enhanced features. Most enhanced functions apply only to UART modes, but EFR[4] enables write accesses to FCR[5:4], the TX trigger level, which is also used in IrDA modes." id="EFR" offset="0x8" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Auto-CTS enable bit (UART mode only)." end="7" id="AUTOCTSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Auto-RTS enable bit (UART mode only)." end="6" id="AUTORTSEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Special character detect (UART mode only)." end="5" id="SPECIALCHARDETECT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Enhanced functions write enable bit." end="4" id="ENHANCEDEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Combinations of software flow control can be selected by programming this bit. XON1 and XON2 should be set to different values if the software flow control is enabled. The TX and RX software flow control options are as follows. EFR[3] = 0, EFR[2] = 0, EFR[1] = X, and EFR[0] = X, then: No transmit flow control. EFR[3] = 1, EFR[2] = 0, EFR[1] = X, and EFR[0] = X, then: Transmit XON1, XOFF1. EFR[3] = 0, EFR[2] = 1, EFR[1] = X, and EFR[0] = X, then: Transmit XON2, XOFF2. EFR[3] = 1, EFR[2] = 1, EFR[1] = X, and EFR[0] = X, then: Transmit XON1, XON2 or XOFF1, XOFF2. The XON1 and XON2 characters or the XOFF1 and XOFF2 characters must be transmitted/received sequentially with XON1/XOFF1 followed by XON2/XOFF2. EFR[3] = X, EFR[2] = X, EFR[1] = 0, and EFR[0] = 0, then: No receive flow control. EFR[3] = X, EFR[2] = X, EFR[1] = 1, and EFR[0] = 0, then: Receiver compares XON1, XOFF1. EFR[3] = X, EFR[2] = X, EFR[1] = 0, and EFR[0] = 1, then: Receiver compares XON2, XOFF2. EFR[3] = X, EFR[2] = X, EFR[1] = 1, and EFR[0] = 1, then: Receiver compares XON1, XON2 or XOFF1, XOFF2. The XON1 and XON2 characters or the XOFF1 and XOFF2 characters must be transmitted/received sequentially with XON1/XOFF1 followed by XON2/XOFF2. In IrDA mode, EFR[1] and EFR[0] select the IR address to check (see IR Address Checking)." end="0" id="SWFLOWCONTROL" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="LCR" description="The line control register (LCR) is selected with a bit register setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. As soon as LCR[6] is set to 1, the TX line is forced to 0 and remains in this state as long as LCR[6] = 1." id="LCR" offset="0xC" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Divisor latch enable." end="7" id="DIV_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Break control bit. Note: When LCR[6] is set to 1, the TX line is forced to 0 and remains in this state as long as LCR[6] = 1." end="6" id="BREAK_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="If LCR[3] = 1, then:" end="5" id="PARITY_TYPE2" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="If LCR[3] = 1, then:" end="4" id="PARITY_TYPE1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="Parity bit." end="3" id="PARITY_EN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Specifies the number of stop bits." end="2" id="NB_STOP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Specifies the word length to be transmitted or received." end="0" id="CHAR_LENGTH" rwaccess="RW" width="2"></bitfield>
+  </register>
+  
+  
+  <register acronym="XON1_ADDR1" description="The XON1/ADDR1 registers are selected with a register bit setting of LCR[7] = BFh. In UART mode, XON1 character; in IrDA mode, ADDR1 address 1." id="XON1_ADDR1" offset="0x10" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Stores the 8 bit XON1 character in UART modes and ADDR1 address 1 in IrDA modes." end="0" id="XONWORD1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="MCR" description="The modem control register (MCR) is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. MCR[7:5] can only be written when EFR[4] = 1. Bits 3-0 control the interface with the modem, data set, or peripheral device that is emulating the modem. " id="MCR" offset="0x10" width="16">
+    
+  <bitfield begin="15" description="" end="7" id="Reserved1" rwaccess="R" width="9"></bitfield>
+    
+  <bitfield begin="6" description="Can be written only when EFR[4] = 1." end="6" id="TCRTLR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Can be written only when EFR[4] = 1." end="5" id="XONEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Loopback mode enable." end="4" id="LOOPBACKEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="CDSTSCH." end="3" id="CDSTSCH" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RISTSCH." end="2" id="RISTSCH" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="In loopback mode, controls MSR[4]. If auto-RTS is enabled, the RTS (active-low) output is controlled by hardware flow control." end="1" id="RTS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="DTR." end="0" id="DTR" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="LSR_UART" description="The following line status register (LSR) description is for UART mode. The UART LSR is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. When the UART line status register (LSR) is read, LSR[4:2] reflect the error bits (BI, FE, PE) of the character at the top of the RX FIFO (next character to be read). Therefore, reading the LSR and then reading the RHR identifies errors in a character. Reading RHR updates BI, FE, and PE. LSR [7] is set when there is an error anywhere in the RX FIFO and is cleared only when there are no more errors remaining in the RX FIFO. Reading the LSR does not cause an increment of the RX FIFO read pointer. The RX FIFO read pointer is incremented by reading the RHR. Reading LSR clears OE if set." id="LSR_UART" offset="0x14" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="RXFIFOSTS." end="7" id="RXFIFOSTS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="TXSRE." end="6" id="TXSRE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="TXFIFOE." end="5" id="TXFIFOE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="RXBI." end="4" id="RXBI" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="RXFE." end="3" id="RXFE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RXPE." end="2" id="RXPE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="RXOE." end="1" id="RXOE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RXFIFOE." end="0" id="RXFIFOE" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="LSR_CIR" description="The following line status register (LSR) description is for CIR mode. The CIR LSR is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh." id="LSR_CIR" offset="0x14" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="THREMPTY." end="7" id="THREMPTY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="" end="6" id="Reserved2" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="The RXSTOP is generated based on the value set in the BOF Length register (EBLR)." end="5" id="RXSTOP" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="" end="1" id="Reserved3" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="0" description="RXFIFOE." end="0" id="RXFIFOE" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="LSR_IRDA" description="The following line status register (LSR) description is for IrDA mode. The IrDA LSR is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. When the IrDA line status register (LSR) is read, LSR[4:2] reflect the error bits (FL, CRC, ABORT) of the frame at the top of the status FIFO (next frame status to be read). " id="LSR_IRDA" offset="0x14" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="THR_EMPTY." end="7" id="THR_EMPTY" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="STS_FIFO_FULL." end="6" id="STS_FIFO_FULL" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="RX_LAST_BYTE." end="5" id="RX_LAST_BYTE" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="FRAME_TOO_LONG." end="4" id="FRAME_TOO_LONG" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="ABORT." end="3" id="ABORT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="CRC." end="2" id="CRC" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="STS_FIFO_E." end="1" id="STS_FIFO_E" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RX_FIFO_E." end="0" id="RX_FIFO_E" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="XON2_ADDR2" description="The XON2/ADDR2 registers are selected with a register bit setting of LCR[7] = BFh. In UART mode, XON2 character; in IrDA mode, ADDR2 address 2." id="XON2_ADDR2" offset="0x14" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Stores the 8 bit XON2 character in UART modes and ADDR2 address 2 in IrDA modes." end="0" id="XONWORD2" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="XOFF1" description="The XOFF1 register is selected with a register bit setting of LCR[7] = BFh. In UART mode, XOFF1 character." id="XOFF1" offset="0x18" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Stores the 8 bit XOFF1 character in UART modes." end="0" id="XOFFWORD1" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="MSR" description="The modem status register (MSR) is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. The modem status register (MSR) provides information about the current state of the control lines from the modem, data set, or peripheral device to the Local Host. It also indicates when a control input from the modem changes state. " id="MSR" offset="0x18" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="This bit is the complement of the DCD (active-low) input. In loopback mode, it is equivalent to MCR[3]." end="7" id="NCD_STS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="6" description="This bit is the complement of the RI (active-low) input. In loopback mode, it is equivalent to MCR[2]." end="6" id="NRI_STS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="5" description="This bit is the complement of the DSR (active-low) input. In loopback mode, it is equivalent to MCR[0]." end="5" id="NDSR_STS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="This bit is the complement of the CTS (active-low) input. In loopback mode, it is equivalent to MCR[1]." end="4" id="NCTS_STS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="DCD_STS." end="3" id="DCD_STS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RI_STS." end="2" id="RI_STS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="DSR_STS." end="1" id="DSR_STS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="CTS_STS." end="0" id="CTS_STS" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TCR" description="The transmission control register (TCR) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The TCR is accessible only when EFR[4] = 1 and MCR[6] = 1. The transmission control register (TCR) stores the receive FIFO threshold levels to start/stop transmission during hardware flow control. Trigger levels from 0-60 bytes are available with a granularity of 4. Trigger level = 4 x [4-bit register value]. You must ensure that TCR[3:0] > TCR[7:4], whenever auto-RTS or software flow control is enabled to avoid a misoperation of the device. In FIFO interrupt mode with flow control, you have to also ensure that the trigger level to HALT transmission is greater or equal to receive FIFO trigger level (either TLR[7:4] or FCR[7:6]); otherwise, FIFO operation stalls. In FIFO DMA mode with flow control, this concept does not exist because the DMA request is sent each time a byte is received." id="TCR" offset="0x18" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="RX FIFO trigger level to RESTORE transmission (0 to 60)." end="4" id="RXFIFOTRIGSTART" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="RX FIFO trigger level to HALT transmission (0 to 60)." end="0" id="RXFIFOTRIGHALT" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="TLR" description="The trigger level register is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The TLR is accessible only when EFR[4] = 1 and MCR[6] = 1. This register stores the programmable transmit and receive FIFO trigger levels used for DMA and IRQ generation. " id="TLR" offset="0x1C" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Receive FIFO trigger level. Following is a summary of settings for the RX FIFO trigger level. SCR[7] = 0, and TLR[7] to TLR[4]=0, then: Defined by FCR[7] and FCR[6] (either 8, 16, 56, 60 characters). SCR[7] = 0, and TLR[7] to TLR[4] not equal to 0000, then: Defined by TLR[7] to TLR[4] (from 4 to 60 characters with a granularity of 4 characters). SCR[7] = 1, and TLR[7] to TLR[4] = any value, then: Defined by the concatenated value of TLR[7] to TLR[4] and FCR[7] and FCR[6] (from 1 to 63 characters with a granularity of 1 character). Note: the combination of TLR[7] to TLR[4] = 0000 and FCR[7] and FCR[6] = 00 (all zeros) is not supported (minimum of 1 character is required). All zeros results in unpredictable behavior." end="4" id="RX_FIFO_TRIG_DMA" rwaccess="RW" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Transmit FIFO trigger level. Following is a summary of settings for the TX FIFO trigger level. SCR[6] = 0, and TLR[3] to TLR[0] = 0, then: Defined by FCR[5] and FCR[4] (either 8, 16, 32, 56 characters). SCR[6] = 0, and TLR[3] to TLR[0] not equal to 0000, then: Defined by TLR[3] to TLR[0] (from 4 to 60 characters with a granularity of 4 characters). SCR[6] = 1, and TLR[3] to TLR[0] = any value, then: Defined by the concatenated value of TLR[3] and TLR[0] and FCR[5] and FCR[4] (from 1 to 63 characters with a granularity of 1 character). Note: the combination of TLR[3] to TLR[0] = 0000 and FCR[5] and FCR[4] = 00 (all zeros) is not supported (minimum of 1 character is required). All zeros results in unpredictable behavior." end="0" id="TX_FIFO_TRIG_DMA" rwaccess="RW" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="XOFF2" description="The XOFF2 register is selected with a register bit setting of LCR[7] = BFh. In UART mode, XOFF2 character." id="XOFF2" offset="0x1C" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Stores the 8 bit XOFF2 character in UART modes." end="0" id="XOFFWORD2" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="SPR" description="The scratchpad register (SPR) is selected with a register bit setting of LCR[7] = 0 or LCR[7] not equal to BFh. The scratchpad register (SPR) is a read/write register that does not control the module. It is a scratchpad register used to hold temporary data. " id="SPR" offset="0x1C" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Scratchpad register." end="0" id="SPR_WORD" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="MDR1" description="The mode definition register 1 (MDR1) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The mode of operation is programmed by writing to MDR1[2:0]; therefore, the mode definition register 1 (MDR1) must be programmed on startup after configuration of the configuration registers (DLL, DLH, and LCR). The value of MDR1[2:0] must not be changed again during normal operation. If the module is disabled by setting the MODESELECT field to 7h, interrupt requests can still be generated unless disabled through the interrupt enable register (IER). In this case, UART mode interrupts are visible. Reading the interrupt identification register (IIR) shows the UART mode interrupt flags." id="MDR1" offset="0x20" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="IrDA mode only." end="7" id="FRAMEENDMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="MIR/FIR modes only." end="6" id="SIPMODE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Store and control the transmission." end="5" id="SCT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Used to configure the infrared transceiver." end="4" id="SETTXIR" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="IrDA/CIR sleep mode." end="3" id="IRSLEEP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="UART/IrDA/CIR mode selection." end="0" id="MODESELECT" rwaccess="RW" width="3"></bitfield>
+  </register>
+  
+  
+  <register acronym="MDR2" description="The mode definition register 2 (MDR2) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The MDR2[0] bit describes the status of the TX status interrupt in IIR[5]. The IRTXUNDERRUN bit must be read after a TX status interrupt occurs. The MDR2[2:1] bits set the trigger level for the frame status FIFO (8 entries) and must be programmed before the mode is programmed in MDR1[2:0]. The MDR2[6] bit gives the flexibility to invert the RX pin inside the UART module to ensure that the protocol at the input of the transceiver module has the same polarity at module level. By default, the RX pin is inverted because most of transceiver invert the IR receive pin." id="MDR2" offset="0x24" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Provides alternate functionality for MDR1[4]." end="7" id="SETTXIRALT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Only for IR mode (IrDA and CIR). Invert RX pin in the module before the voting or sampling system logic of the infrared block. This does not affect the RX path in UART modem modes." end="6" id="IRRXINVERT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="CIR pulse modulation definition. Defines high level of the pulse width associated with a digit:" end="4" id="CIRPULSEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="3" description="UART mode only. Used to allow pulse shaping in UART mode." end="3" id="UARTPULSE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Only for IrDA mode. Frame status FIFO threshold select:" end="1" id="STSFIFOTRIG" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="0" description="IrDA transmission status interrupt. When the TX status interrupt (IIR[5]) occurs, the meaning of the interrupt is:" end="0" id="IRTXUNDERRUN" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="SFLSR" description="The status FIFO line status register (SFLSR) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. Reading the status FIFO line status register (SFLSR) effectively reads frame status information from the status FIFO. This register does not physically exist. Reading this register increments the status FIFO read pointer (SFREGL and SFREGH must be read first). Top of RX FIFO = Next frame to be read from RX FIFO." id="SFLSR" offset="0x28" width="16">
+    
+  <bitfield begin="15" description="" end="5" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="4" description="OE_ERROR." end="4" id="OE_ERROR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="3" description="FRAME_TOO_LONG_ERROR." end="3" id="FRAME_TOO_LONG_ERROR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="2" description="ABORT_DETECT." end="2" id="ABORT_DETECT" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="1" description="CRC_ERROR." end="1" id="CRC_ERROR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="" end="0" id="Reserved2" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXFLL" description="The transmit frame length low register (TXFLL) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The transmit frame length low register (TXFLL) and the TXFLH register hold the 13-bit transmit frame length (expressed in bytes). TXFLL holds the LSBs and TXFLH holds the MSBs. The frame length value is used if the frame length method of frame closing is used. " id="TXFLL" offset="0x28" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="LSB register used to specify the frame length." end="0" id="TXFLL" rwaccess="W" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXFLH" description="The transmit frame length high register (TXFLH) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The transmit frame length high register (TXFLH) and the TXFLL register hold the 13-bit transmit frame length (expressed in bytes). TXFLL holds the LSBs and TXFLH holds the MSBs. The frame length value is used if the frame length method of frame closing is used." id="TXFLH" offset="0x2C" width="16">
+    
+  <bitfield begin="15" description="" end="5" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="4" description="MSB register used to specify the frame length, value 0 to 1Fh." end="0" id="TXFLH" rwaccess="W" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="RESUME" description="The RESUME register is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The RESUME register is used to clear internal flags, which halt transmission/reception when an underrun/overrun error occurs. Reading this register resumes the halted operation. This register does not physically exist and always reads as 00. " id="RESUME" offset="0x2C" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Dummy read to restart the TX or RX, value 0 to FFh." end="0" id="RESUME" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="SFREGL" description="The status FIFO register low (SFREGL) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The frame lengths of received frames are written into the status FIFO. This information can be read by reading the status FIFO register low (SFREGL) and the status FIFO register high (SFREGH). These registers do not physically exist. The LSBs are read from SFREGL and the MSBs are read from SFREGH. Reading these registers does not alter the status FIFO read pointer. These registers must be read before the pointer is incremented by reading the SFLSR. " id="SFREGL" offset="0x30" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="LSB part of the frame length, value 0 to FFh." end="0" id="SFREGL" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXFLL" description="The received frame length low register (RXFLL) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The received frame length low register (RXFLL) and the RXFLH register hold the 12-bit receive maximum frame length. RXFLL holds the LSBs and RXFLH holds the MSBs. If the intended maximum receive frame length is n bytes, program RXFLL and RXFLH to be n + 3 in SIR or MIR modes and n + 6 in FIR mode (+3 and +6 are the result of frame format with CRC and stop flag; two bytes are associated with the FIR stop flag). " id="RXFLL" offset="0x30" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="LSB register used to specify the frame length in reception, value 0 to FFh." end="0" id="RXFLL" rwaccess="W" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXFLH" description="The received frame length high register (RXFLH) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The received frame length high register (RXFLH) and the RXFLL register hold the 12-bit receive maximum frame length. RXFLL holds the LSBs and RXFLH holds the MSBs. If the intended maximum receive frame length is n bytes, program RXFLL and RXFLH to be n + 3 in SIR or MIR modes and n + 6 in FIR mode (+3 and +6 are the result of frame format with CRC and stop flag; two bytes are associated with the FIR stop flag). " id="RXFLH" offset="0x34" width="16">
+    
+  <bitfield begin="15" description="" end="4" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="3" description="MSB register used to specify the frame length in reception, value 0 to Fh." end="0" id="RXFLH" rwaccess="W" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="SFREGH" description="The status FIFO register high (SFREGH) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The frame lengths of received frames are written into the status FIFO. This information can be read by reading the status FIFO register low (SFREGL) and the status FIFO register high (SFREGH). These registers do not physically exist. The LSBs are read from SFREGL and the MSBs are read from SFREGH. Reading these registers does not alter the status FIFO read pointer. These registers must be read before the pointer is incremented by reading the SFLSR. " id="SFREGH" offset="0x34" width="16">
+    
+  <bitfield begin="15" description="" end="4" id="Reserved1" rwaccess="R" width="12"></bitfield>
+    
+  <bitfield begin="3" description="MSB part of the frame length, value 0 to Fh." end="0" id="SFREGH" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="UASR" description="The UART autobauding status register (UASR) is selected with a register bit setting of LCR[7] not equal to BFh or LCR[7] = BFh. The UART autobauding status register (UASR) returns the speed, the number of bits by characters, and the type of parity in UART autobauding mode. In autobauding mode, the input frequency of the UART modem must be fixed to 48 MHz. Any other module clock frequency results in incorrect baud rate recognition. This register is used to set up transmission according to characteristics of previous reception, instead of LCR, DLL, and DLH registers when UART is in autobauding mode. To reset the autobauding hardware (to start a new AT detection) or to set the UART in standard mode (no autobaud), MDR1[2:0] must be set to 7h (reset state), then set to 2h (UART in autobaud mode) or cleared to 0 (UART in standard mode). Usage limitation: Only 7 and 8 bits character (5 and 6 bits not supported). 7 bits character with space parity not supported. Baud rate between 1200 and 115 200 bp/s (10 possibilities)." id="UASR" offset="0x38" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Type of the parity in UART autobauding mode." end="6" id="PARITYTYPE" rwaccess="R" width="2"></bitfield>
+    
+  <bitfield begin="5" description="Number of bits by characters." end="5" id="BITBYCHAR" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Speed." end="0" id="SPEED" rwaccess="R" width="5"></bitfield>
+  </register>
+  
+  
+  <register acronym="BLR" description="The BOF control register (BLR) is selected with a register bit setting of LCR[7] = 0. The BLR[6] bit is used to select whether C0h or FFh start patterns are to be used, when multiple start flags are required in SIR mode. If only one start flag is required, this is always C0h. If n start flags are required, either (n 1) C0h or (n 1) FFh flags are sent, followed by a single C0h flag (immediately preceding the first data byte). " id="BLR" offset="0x38" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Status FIFO reset. This bit is self-clearing." end="7" id="STSFIFORESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="SIR xBOF select." end="6" id="XBOFTYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="" end="0" id="Reserved2" rwaccess="R" width="6"></bitfield>
+  </register>
+  
+  
+  <register acronym="ACREG" description="The auxiliary control register (ACREG) is selected with a register bit setting of LCR[7] = 0. If transmit FIFO is not empty and MDR1[5] = 1, IrDA starts a new transfer with data of previous frame as soon as abort frame has been sent. Therefore, TX FIFO must be reset before sending an abort frame. It is recommended to disable TX FIFO underrun capability by masking corresponding underrun interrupt. When disabling underrun by setting ACREG[4] = 1, unknown data is sent over TX line." id="ACREG" offset="0x3C" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="SIR pulse-width select:" end="7" id="PULSETYPE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Primary output used to configure transceivers. Connected to the SD/MODE input pin of IrDA transceivers." end="6" id="SDMOD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="Disable RX input." end="5" id="DISIRRX" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="Disable TX underrun." end="4" id="DISTXUNDERRUN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="MIR/FIR modes only. Send serial infrared interaction pulse (SIP). If this bit is set during an MIR/FIR transmission, the SIP is sent at the end of it. This bit is automatically cleared at the end of the SIP transmission." end="3" id="SENDSIP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Store and control TX start. When MDR1[5] = 1 and the LH writes 1 to this bit, the TX state-machine starts frame transmission. This bit is self-clearing." end="2" id="SCTXEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Frame abort. The LH can intentionally abort transmission of a frame by writing 1 to this bit. Neither the end flag nor the CRC bits are appended to the frame." end="1" id="ABORTEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="EOT (end-of-transmission) bit. The LH writes 1 to this bit just before it writes the last byte to the TX FIFO in the set-EOT bit frame-closing method. This bit is automatically cleared when the LH writes to the THR (TX FIFO)." end="0" id="EOTEN" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="SCR" description="The supplementary control register (SCR) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. Bit 4 enables the wake-up interrupt, but this interrupt is not mapped into the IIR register. Therefore, when an interrupt occurs and there is no interrupt pending in the IIR register, the SSR[1] bit must be checked. To clear the wake-up interrupt, bit SCR[4] must be reset to 0." id="SCR" offset="0x40" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="RXTRIGGRANU1" end="7" id="RXTRIGGRANU1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="TXTRIGGRANU1" end="6" id="TXTRIGGRANU1" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="DSRIT" end="5" id="DSRIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="RX CTS wake-up enable." end="4" id="RXCTSDSRWAKEUPENABLE" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="TXEMPTYCTLIT" end="3" id="TXEMPTYCTLIT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="Specifies the DMA mode valid if SCR[0] = 1, then:" end="1" id="DMAMODE2" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="0" description="DMAMODECT" end="0" id="DMAMODECTL" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="SSR" description="The supplementary status register (SSR) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. Bit 1 is reset only when SCR[4] is reset to 0." id="SSR" offset="0x44" width="16">
+    
+  <bitfield begin="15" description="" end="3" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="2" description="DMACOUNTERRST." end="2" id="DMACOUNTERRST" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Pin falling edge detection: Reset only when SCR[4] is reset to 0." end="1" id="RXCTSDSRWAKEUPSTS" rwaccess="R" width="1"></bitfield>
+    
+  <bitfield begin="0" description="TXFIFOFULL." end="0" id="TXFIFOFULL" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="EBLR" description="The BOF length register (EBLR) is selected with a register bit setting of LCR[7] = 0. In IrDA SIR operation, the BOF length register (EBLR) specifies the number of BOF + xBOFs to transmit. The value set into this register must consider the BOF character; therefore, to send only one BOF with no XBOF, this register must be set to 1. To send one BOF with n XBOFs, this register must be set to n + 1. Furthermore, the value 0 sends 1 BOF plus 255 XBOFs. In IrDA MIR mode, the BOF length register (EBLR) specifies the number of additional start flags (MIR protocol mandates a minimum of 2 start flags). In CIR mode, the BOF length register (EBLR) specifies the number of consecutive zeros to be received before generating the RXSTOP interrupt (IIR[2]). All the received zeros are stored in the RX FIFO. When the register is cleared to 0, this feature is deactivated and always in reception state, which is disabled by setting the ACREG[5] bit to 1. If the RX_STOP interrupt occurs before a byte boundary, the remaining bits of the last byte are filled with zeros and then passed into the RX FIFO." id="EBLR" offset="0x48" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="IrDA mode: This register allows definition of up to 176 xBOFs, the maximum required by IrDA specification. CIR mode: This register specifies the number of consecutive zeros to be received before generating the RXSTOP interrupt (IIR[2]). " end="0" id="EBLR" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="MVR" description="The module version register (MVR) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The reset value is fixed by hardware and corresponds to the RTL revision of this module. A reset has no effect on the value returned. " id="MVR" offset="0x50" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Major revision number of the module." end="4" id="MAJORREV" rwaccess="R" width="4"></bitfield>
+    
+  <bitfield begin="3" description="Minor revision number of the module." end="0" id="MINORREV" rwaccess="R" width="4"></bitfield>
+  </register>
+  
+  
+  <register acronym="SYSC" description="The system configuration register (SYSC) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The AUTOIDLE bit controls a power-saving technique to reduce the logic power consumption of the module interface; that is, when the feature is enabled, the interface clock is gated off until the module interface is accessed. When the SOFTRESET bit is set high, it causes a full device reset. " id="SYSC" offset="0x54" width="16">
+    
+  <bitfield begin="15" description="" end="5" id="Reserved1" rwaccess="R" width="11"></bitfield>
+    
+  <bitfield begin="4" description="Power management req/ack control." end="3" id="IDLEMODE" rwaccess="RW" width="2"></bitfield>
+    
+  <bitfield begin="2" description="Wakeup control." end="2" id="ENAWAKEUP" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="Software reset. Set this bit to 1 to trigger a module reset. This bit is automatically reset by the hardware. Read returns 0." end="1" id="SOFTRESET" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Internal interface clock-gating strategy." end="0" id="AUTOIDLE" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="SYSS" description="The system status register (SYSS) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh." id="SYSS" offset="0x58" width="16">
+    
+  <bitfield begin="15" description="" end="1" id="Reserved1" rwaccess="R" width="15"></bitfield>
+    
+  <bitfield begin="0" description="Internal reset monitoring." end="0" id="RESETDONE" rwaccess="R" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="WER" description="The wake-up enable register (WER) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The wake-up enable register (WER) is used to mask and unmask a UART event that subsequently notifies the system. An event is any activity in the logic that can cause an interrupt and/or an activity that requires the system to wake up. Even if wakeup is disabled for certain events, if these events are also an interrupt to the UART, the UART still registers the interrupt as such. " id="WER" offset="0x5C" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Wake-up interrupt." end="7" id="TXWAKEUPEN" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="6" description="Receiver line status interrupt." end="6" id="RLS_INTERRUPT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="5" description="RHR interrupt." end="5" id="RHR_INTERRUPT" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="4" description="RX_ACTIVITY." end="4" id="RX_ACTIVITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="3" description="DCD_ACTIVITY." end="3" id="DCD_ACTIVITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="2" description="RI_ACTIVITY." end="2" id="RI_ACTIVITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="DSR_ACTIVITY." end="1" id="DSR_ACTIVITY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="CTS_ACTIVITY." end="0" id="CTS_ACTIVITY" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="CFPS" description="The carrier frequency prescaler register (CFPS) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. Since the consumer IR (CIR) works at modulation rates of 30 56.8 kHz, the 48 MHz clock must be prescaled before the clock can drive the IR logic. The carrier frequency prescaler register (CFPS) sets the divisor rate to give a range to accommodate the remote control requirements in BAUD multiples of 12x. The value of the CFPS at reset is 105 decimal (69h), which equates to a 38.1 kHz output from starting conditions. The 48 MHz carrier is prescaled by the CFPS that is then divided by the 12x BAUD multiple. " id="CFPS" offset="0x60" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="System clock frequency prescaler at (12x multiple). CFPS = 0 is not supported. Examples for CFPS values follow. Target Frequency (kHz) = 30, CFPS (decimal) = 133, Actual Frequency (kHz) = 30.08. Target Frequency (kHz) = 32.75, CFPS (decimal) = 122, Actual Frequency (kHz) = 32.79. Target Frequency (kHz) = 36, CFPS (decimal) = 111, Actual Frequency (kHz) = 36.04. Target Frequency (kHz) = 36.7, CFPS (decimal) = 109, Actual Frequency (kHz) = 36.69. Target Frequency (kHz) = 38, CFPS (decimal) = 105, Actual Frequency (kHz) = 38.1. Target Frequency (kHz) = 40, CFPS (decimal) = 100, Actual Frequency (kHz) = 40. Target Frequency (kHz) = 56.8, CFPS (decimal) = 70, Actual Frequency (kHz) = 57.14." end="0" id="CFPS" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="RXFIFO_LVL" description="" id="RXFIFO_LVL" offset="0x64" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Level of the RX FIFO" end="0" id="RXFIFO_LVL" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="TXFIFO_LVL" description="" id="TXFIFO_LVL" offset="0x68" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Level of the TX FIFO" end="0" id="TXFIFO_LVL" rwaccess="R" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="IER2" description="The IER2 enables RX/TX FIFOs empty corresponding interrupts." id="IER2" offset="0x6C" width="16">
+    
+  <bitfield begin="15" description="" end="2" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="EN_TXFIFO_EMPTY." end="1" id="EN_TXFIFO_EMPTY" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="Number of bits by characters." end="0" id="EN_RXFIFO_EMPTY" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="ISR2" description="The interrupt status register 2 (ISR2) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The ISR2 displays the status of RX/TX FIFOs empty corresponding interrupts. " id="ISR2" offset="0x70" width="16">
+    
+  <bitfield begin="15" description="" end="2" id="Reserved1" rwaccess="R" width="14"></bitfield>
+    
+  <bitfield begin="1" description="TXFIFO_EMPTY_STS." end="1" id="TXFIFO_EMPTY_STS" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="RXFIFO_EMPTY_STS." end="0" id="RXFIFO_EMPTY_STS" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="FREQ_SEL" description="" id="FREQ_SEL" offset="0x74" width="16">
+    
+  <bitfield begin="15" description="" end="8" id="Reserved1" rwaccess="R" width="8"></bitfield>
+    
+  <bitfield begin="7" description="Sets the sample per bit if non default frequency is used. MDR3[1] must be set to 1 after this value is set. Must be equal or higher then 6." end="0" id="FREQ_SEL" rwaccess="RW" width="8"></bitfield>
+  </register>
+  
+  
+  <register acronym="MDR3" description="The mode definition register 3 (MDR3) is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh. The DISABLE_CIR_RX_DEMOD register bit will force the CIR receiver to bypass demodulation of received data if set. See the CIR Mode Block Components. The NONDEFAULT_FREQ register bit allows the user to set sample per bit by writing it into FREQ_SEL register. Set it if non-default (48 MHz) fclk frequency is used to achieve a less than 2% error rate. Changing this bit (to any value) will automatically disable the device by setting MDR[2:0] to 111 ." id="MDR3" offset="0x80" width="16">
+    
+  <bitfield begin="15" description="" end="3" id="Reserved1" rwaccess="R" width="13"></bitfield>
+    
+  <bitfield begin="2" description="SET_DMA_TX_THRESHOLD." end="2" id="SET_DMA_TX_THRESHOLD" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="1" description="NONDEFAULT_FREQ." end="1" id="NONDEFAULT_FREQ" rwaccess="RW" width="1"></bitfield>
+    
+  <bitfield begin="0" description="DISABLE_CIR_RX_DEMOD." end="0" id="DISABLE_CIR_RX_DEMOD" rwaccess="RW" width="1"></bitfield>
+  </register>
+  
+  
+  <register acronym="TX_DMA_THRESHOLD" description="The TX DMA threshold register is selected with a register bit setting of LCR[7] = 0, LCR[7] not equal to BFh, or LCR[7] = BFh." id="TX_DMA_THRESHOLD" offset="0x84" width="16">
+    
+  <bitfield begin="15" description="" end="6" id="Reserved1" rwaccess="R" width="10"></bitfield>
+    
+  <bitfield begin="5" description="Used to manually set the TX DMA threshold level. UART_MDR3[2] SET_TX_DMA_THRESHOLD must be 1 and must be value + tx_trigger_level = 64 (TX FIFO size). If not, 64_tx_trigger_level will be used without modifying the value of this register." end="0" id="TX_DMA_THRESHOLD" rwaccess="RW" width="6"></bitfield>
+  </register>
+</module>
