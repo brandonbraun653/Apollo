@@ -373,8 +373,8 @@ class ReadElf(object):
                     parsed = '%#x' % tag['d_val']
 
                 self._emitline(" %s %-*s %s" % (
-                    self._format_hex(ENUM_D_TAG.get(tag.entry.d_tag, tag.entry.d_tag),
-                        fullhex=True, lead0x=True),
+                    self._format_hex(ENUM_D_TAG.get_value(tag.entry.d_tag, tag.entry.d_tag),
+                                     fullhex=True, lead0x=True),
                     padding,
                     '(%s)' % (tag.entry.d_tag[3:],),
                     parsed))
